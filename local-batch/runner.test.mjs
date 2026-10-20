@@ -64,9 +64,11 @@ test('100 ordered actions finish in a single batch with one browser launch', asy
 
 test('failures stop promptly, hide underlying sensitive errors and clean up', async () => {
   const { state, playwright } = makeFake({ failAt: 3 });
+  let sourceDiagnostic;
   const result = await runWorkflow({
     steps: Array.from({ length: 8 }, () => ({ type: 'click', selector: '#x' })),
-  }, { playwright });
+  }, { playwright, onActionFailure: error => { sourceDiagnostic = error; } });
+  assert.equal(sourceDiagnostic.message.includes('never-leak'), true);
   assert.equal(result.ok, false);
   assert.equal(result.reason, 'action_failed');
   assert.equal(result.completed, 2);

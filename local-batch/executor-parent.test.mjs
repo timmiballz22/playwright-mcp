@@ -1,3 +1,4 @@
+import { ownedDescendants } from './fixtures/process-audit.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -48,6 +49,7 @@ test('abrupt execution-host death terminates its supervisor, worker and real bro
         let receipt;
         try { receipt = JSON.parse(await readFile(path.join(dir, workspaces[0], 'cleanup-diagnostic.json'), 'utf8')); } catch { receipt = { receipt: 'unavailable' }; }
         await assert.rejects(stat(path.join(dir, workspaces[0], 'tmp')), { code: 'ENOENT' }, JSON.stringify(receipt));
+        assert.deepEqual(await ownedDescendants(pids), [], 'Owned descendant processes remain after host death');
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 50));

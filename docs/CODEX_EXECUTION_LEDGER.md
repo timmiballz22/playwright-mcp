@@ -2,8 +2,8 @@
 
 Updated 2026-10-20. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest executed matrix: `90414976ac8aff1627f58939fc467723c94b9946`,
-357 passed and 2 Firefox timing failures. All wrapper jobs and owned shutdown
+Latest executed matrix: `f30d933fd9cab5802e3420d390d4ece049d052f4`,
+382 passed and 1 raw Firefox click/cleanup failure. All wrapper jobs and owned shutdown
 checks passed; batch matrix is FAILED. Last complete green matrix remains
 `2321179bf52f79abe7986c8d6a2b133c46f1da5a` (212 passed, no failed/skipped/cancelled).
 Current scheduling/interaction candidate needs native verification. All 45
@@ -399,3 +399,29 @@ Scheduling-candidate launcher verification: complete local 45-test run, 42 passe
 launcher preserves failure exit status and complete UTF-8 output. Separate real
 Chromium/Firefox ten-second deadline fixtures: 2 passed. Original interaction
 fixtures: 4 passed, including symlink escape and stale frame negative cases.
+
+## Native Firefox hang diagnosis and whole-tree audits
+
+f30d933: wrapper all jobs green, 52 tests per native OS plus Docker 2; batch four
+jobs passed 45/45 each, Windows passed 44/45. Total 382 passed, 1 failed, no test
+skips/cancellations. Mac deadline now passes. Windows raw Firefox still fails
+mid-click despite serialized files: completed six operations, then a 5s click
+timeout and failed cooperative cleanup (15.162s total). Host contention alone is
+not established as the cause. All owned EOF/SIGTERM/abrupt-host shutdown checks
+and native symlink/junction/dialog/frame fixtures passed; full batch remains FAILED.
+
+Next candidate keeps the failing raw sequence and adds a trusted source-only
+onActionFailure hook to obtain the fixed local fixture's Playwright call log.
+No callback or raw diagnostics are accepted through workflow JSON/MCP. Unit
+secret-canary proof confirms default results still omit underlying exception text.
+It also adds positive supervised 20-click/exact-counter/PNG/report fixtures for
+all three engines, because the previous positive integration called the raw
+runner. Read-only OS process audits inspect descendants beyond the three tracked
+root PIDs (POSIX process groups; Windows CIM PID/parent data only, no command lines).
+These audits never terminate processes and will expose surviving descendants.
+
+Local targeted proof: 14 unit tests, raw Firefox one, supervised positives two,
+real deadlines two and abrupt-parent audit one passed (20 total). Local WebKit
+host libraries remain unavailable. Windows CIM audit and the recurring raw
+Firefox failure still require native execution. No retry, timeout increase for
+the failing raw click, or successful release claim is introduced.

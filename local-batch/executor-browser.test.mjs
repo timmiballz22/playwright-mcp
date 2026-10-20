@@ -1,3 +1,4 @@
+import { ownedDescendants } from './fixtures/process-audit.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
@@ -30,6 +31,7 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
       assert.ok(result.durationMs < 15000);
       assert.equal(result.execution.tempCleanup, 'removed');
       await assert.rejects(stat(path.join(dir, 'exec-' + result.runId, 'tmp')), { code: 'ENOENT' });
+      assert.deepEqual(await ownedDescendants([result.execution.supervisorPid, result.execution.workerPid, ...owned]), [], 'Owned descendant processes remain after cleanup');
       for (const pid of owned) {
         // Zombies have exited and released browser resources; host reaping is
         // separate. Do not count a still-executing process as successful cleanup.

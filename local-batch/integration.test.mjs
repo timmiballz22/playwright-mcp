@@ -20,14 +20,19 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
     await once(server, 'listening');
     const origin = 'http://127.0.0.1:' + server.address().port;
     const dir = await mkdtemp(path.join(os.tmpdir(), 'pw-batch-'));
+    let diagnostic;
     try {
       const steps = [{ type: 'goto', url: origin + '/' },
         ...Array.from({ length: clicks }, () => ({ type: 'click', selector: { role: 'button', name: 'Add' } })),
         { type: 'assertText', selector: '#count', equals: String(clicks) },
         { type: 'screenshot' }];
       const result = await runWorkflow({ browser, schemaVersion: 1, steps, timeoutMs: 120000 },
-        { artifactsDir: dir, allowedOrigins: [origin], allowSensitiveArtifacts: true });
-      assert.equal(result.ok, true, JSON.stringify(result).slice(-1500));
+        { artifactsDir: dir, allowedOrigins: [origin], allowSensitiveArtifacts: true,
+          // This fixture has only static local data and no credentials. Raw call
+          // logs stay in trusted test diagnostics, outside model-visible results.
+          onActionFailure: (error, step) => { diagnostic = { ...step, name: error?.name, fixtureCallLog: String(error?.message).slice(-5000) }; },
+        });
+      assert.equal(result.ok, true, JSON.stringify({ result, diagnostic }).slice(-6500));
       assert.equal(result.completed, clicks + 3);
       assert.ok((await stat(result.results.at(-1).artifact)).size > 0);
     } finally {

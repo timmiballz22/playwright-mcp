@@ -191,6 +191,7 @@ export async function runWorkflow(workflow, {
   allowSensitiveArtifacts = false,
   onBrowserProcess,
   onProgress,
+  onActionFailure, // Trusted source diagnostics only; never accepted in workflow JSON.
 } = {}) {
   const spec = validateWorkflow(workflow);
   const allowed = parseOrigins(allowedOrigins);
@@ -299,6 +300,7 @@ export async function runWorkflow(workflow, {
             ok: true, durationMs: Math.round(performance.now() - start), ...metadata });
           onProgress?.({ completed: results.length });
         } catch (error) {
+          try { onActionFailure?.(error, { index, type: step.type }); } catch {}
           const httpFailure = ['rate_limited', 'http_401', 'http_403', 'http_404', 'http_4xx', 'http_5xx'].includes(error?.safeCode);
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: false, durationMs: Math.round(performance.now() - start),
