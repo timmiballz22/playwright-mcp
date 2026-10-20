@@ -2,31 +2,31 @@
 
 Updated 2026-10-20. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-First tested implementation SHA: `a5a5a13` (use `git rev-parse a5a5a13` for full SHA).
-Second milestone in progress: sensitive-artifact policy, schema v1, accessible
-selectors, actual EOF/SIGTERM shutdown, concurrent screenshot fixtures.
+Latest tested code: `2321179bf52f79abe7986c8d6a2b133c46f1da5a`.
+Final native CI: 212 passed, zero failed/skipped/cancelled; exact run links below.
+Runtime/test sources in documentation-only follow-ups remain identical.
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md; evidence/baseline-upstream.txt: 6 pass / 2 missing-Chrome failures | Run native full matrix; establish prechange full baseline where possible |
-| G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs: production tarball, both stdio handshakes; SDK runtime, private fork identity | Obtain native OS / Node LTS matrix |
-| G02 MCP | IN PROGRESS | local-batch/mcp.test.mjs handshake, discovery, real 100-click call; production-smoke.mjs | Test active disconnect, signals, concurrent calls and resource ownership |
+| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md; original managed-Chromium baseline 8/8 and six unchanged schemas; default local Chrome still absent | Preserve channel/OS baseline limitations; extend original native baseline evidence |
+| G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs: production tarball, both stdio handshakes; SDK runtime, private fork identity | Finish minimum Node-version policy and automated current Node LTS matrix |
+| G02 MCP | IN PROGRESS | local-batch/mcp.test.mjs real compact 1000-action call, EOF/SIGTERM and actual Codex operator evidence; production-smoke.mjs | Test concurrent calls, malformed protocol and full resource ownership |
 | G03 FEATURE PARITY | IN PROGRESS | evidence/discovery-*.json: 25 default / 72 extended tools per configured browser; tests/capabilities.spec.ts | Add representative behavior tests for every capability group |
-| G04 BATCH | VERIFIED PASS | local-batch/integration.test.mjs; evidence/thousand.txt: 1,000 real Chromium operations, 997 clicks, exact completion and counter assertion | Extend real long workflow to other browsers |
+| G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs + integration.test.mjs; evidence/codex-client-operator.txt: exact 1000 actions / 997 clicks | Extend real long workflow to other browsers |
 | G05 RETRIES | IN PROGRESS | route.fetch maxRetries:0 avoids automatic replay; no 429/503 policy | Implement tested Retry-After handling without unsafe replay |
 | G06 JOBS | IN PROGRESS | runner.test.mjs stalled launch deadline + late close; runner.mjs bounded cleanup | Worker isolation, durable IDs/queue/journal; process-tree kill; reporting deadline |
 | G07 SECURITY | FAILED | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
-| G08 STORAGE | IN PROGRESS | runner.mjs mkdtemp private per-run artifacts; report.mjs exclusive report write | Atomic artifacts, quotas, retention, retention quota test (20-run concurrent screenshot test now passed) |
+| G08 STORAGE | IN PROGRESS | runner.mjs mkdtemp private per-run artifacts; report.mjs exclusive report write | Atomic artifacts, quotas, retention and native Windows ACL evidence; 20-run uniqueness already passed |
 | G09 AUTH/PROFILES | NOT STARTED | Batch ephemeral only; upstream retains profile features | Reuse upstream isolation/profile APIs with project locks and tests |
 | G10 CROSS-BROWSER | VERIFIED PASS | CI at 2321179: Chromium/Firefox/WebKit positive batch + redirect fixtures, original Chrome/Chromium/Firefox/WebKit behavior on Linux/macOS/Windows; evidence/ci-final-*.json | Keep wider interaction coverage tracked in G13/G14; local container WebKit remains blocked |
 | G11 CROSS-OS | IN PROGRESS | Native CI green at 2321179; plain CLI + actual Codex operator smoke verified on Linux | Execute bootstrap scripts and batch CLI/Codex operator setup on native Windows/macOS |
 | G12 PERFORMANCE | IN PROGRESS | scripts/soak-local.mjs; PERFORMANCE.md; evidence/soak*.txt | Process-tree RSS/FD/CPU measurement, latency/token/CLI comparison |
-| G13 ACCESSIBILITY/MOBILE | IN PROGRESS | Original MCP preserves role-based click; batch role/name, testId, label, placeholder and text selectors added | Versioned selector AST, accessible assertions, touch/media fixtures |
-| G14 ADVANCED | IN PROGRESS | 72 contracts; native original storage/screenshot/trace/video/tabs/Chromium PDF behavior passed; tests/advanced.spec.ts | Tabs/frames/dialog/upload/storage/tracing/video/PDF real tests |
+| G13 ACCESSIBILITY/MOBILE | IN PROGRESS | Original MCP preserves role-based click; batch role/name, testId, label, placeholder and text selectors added | Keyboard, mobile/touch/media assertions and selector behavior/negative fixtures |
+| G14 ADVANCED | IN PROGRESS | 72 contracts; native original storage/screenshot/trace/video/tabs/Chromium PDF behavior passed; tests/advanced.spec.ts | Frames/dialog/upload/network tools and remaining advanced positive/negative cases |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs, private package, publish-disabled.cjs; no registry publishing workflow | Keep publication disabled; registry ownership and a future authorized release remain separate |
-| G16 DOCUMENTATION | IN PROGRESS | LOCAL_BATCH.md, BASELINE_AUDIT.md, THREAT_MODEL.md, PERFORMANCE.md | Complete schema/client/architecture/release docs against implemented behavior |
-| G17 AUDIT EVIDENCE | IN PROGRESS | This ledger + evidence logs + test scripts | Link tested SHA and CI results; complete all 45 scenarios |
-| G18 CLEAN MERGE | IN PROGRESS | Fork branch, pinned dependencies retained; lint and diff checks | Green required CI, review all unresolved critical items; do not merge as READY |
+| G16 DOCUMENTATION | IN PROGRESS | LOCAL_BATCH.md, BASELINE_AUDIT.md, THREAT_MODEL.md, PERFORMANCE.md | Finish examples/feature docs as jobs/profiles mature; operator walkthroughs on all OSs |
+| G17 AUDIT EVIDENCE | IN PROGRESS | This ledger + evidence logs + test scripts | Keep tested SHA/CI evidence current; complete all 45 scenarios |
+| G18 CLEAN MERGE | IN PROGRESS | Fork branch, pinned dependencies retained; lint and diff checks | Retain green configured CI; resolve critical gaps and inspect protection before merge |
 
 ## Defects and risk register
 
@@ -205,5 +205,5 @@ Tested code commit: `2321179bf52f79abe7986c8d6a2b133c46f1da5a`.
 
 Still NOT RELEASE-READY: all remaining G00–G18 criteria apply. G04/G10/G15 have
 the evidence above; other gates are partial or failed. NEXT ACTION remains isolated
-worker jobs/process/report deadlines, then profile/recovery/resource/network and
-remaining 45-scenario acceptance work. No package publication or main merge.
+worker ownership/process/report deadlines, DNS/egress and byte/memory quotas;
+then durable jobs/queues, profiles/recovery and remaining acceptance work. No package publication or main merge.
