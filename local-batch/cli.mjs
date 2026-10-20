@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Local-only batch CLI; no cloud service, HTTP listener or arbitrary code execution.
-import { readFile } from 'node:fs/promises';
+import { readWorkflowFile } from './workflow-file.mjs';
 import path from 'node:path';
 import { executeWorkflow } from './executor.mjs';
 
@@ -26,7 +26,7 @@ function argsOf(argv) {
 
 async function main() {
   const options = argsOf(process.argv.slice(2));
-  const input = JSON.parse(await readFile(options.workflow, 'utf8'));
+  const input = await readWorkflowFile(options.workflow);
   const artifactsDir = path.resolve(options.artifacts ?? '.local-batch-output');
   const abort = new AbortController();
   const cancel = () => abort.abort();

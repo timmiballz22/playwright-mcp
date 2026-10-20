@@ -2,9 +2,10 @@
 
 Updated 2026-10-20. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest tested code: `2321179bf52f79abe7986c8d6a2b133c46f1da5a`.
-Final native CI: 212 passed, zero failed/skipped/cancelled; exact run links below.
-Runtime/test sources in documentation-only follow-ups remain identical.
+Last complete native matrix: `2321179bf52f79abe7986c8d6a2b133c46f1da5a`,
+212 passed with zero failed/skipped/cancelled. New supervisor candidate `37be5d0`
+has local evidence below and native CI in progress; ingestion/routing follow-up
+adds runtime changes. Do not apply the old complete matrix to newer code.
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
@@ -14,7 +15,7 @@ Runtime/test sources in documentation-only follow-ups remain identical.
 | G03 FEATURE PARITY | IN PROGRESS | evidence/discovery-*.json: 25 default / 72 extended tools per configured browser; tests/capabilities.spec.ts | Add representative behavior tests for every capability group |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs + integration.test.mjs; evidence/codex-client-operator.txt: exact 1000 actions / 997 clicks | Extend real long workflow to other browsers |
 | G05 RETRIES | IN PROGRESS | route.fetch maxRetries:0 avoids automatic replay; no 429/503 policy | Implement tested Retry-After handling without unsafe replay |
-| G06 JOBS | IN PROGRESS | runner.test.mjs stalled launch deadline + late close; runner.mjs bounded cleanup | Worker isolation, durable IDs/queue/journal; process-tree kill; reporting deadline |
+| G06 JOBS | IN PROGRESS | executor fault tests, independent worker/supervisor and real parent-death cleanup; native candidate CI pending | Durable IDs/queue/journal; native ownership proof and recovery |
 | G07 SECURITY | FAILED | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
 | G08 STORAGE | IN PROGRESS | runner.mjs mkdtemp private per-run artifacts; report.mjs exclusive report write | Atomic artifacts, quotas, retention and native Windows ACL evidence; 20-run uniqueness already passed |
 | G09 AUTH/PROFILES | NOT STARTED | Batch ephemeral only; upstream retains profile features | Reuse upstream isolation/profile APIs with project locks and tests |
@@ -37,7 +38,7 @@ Runtime/test sources in documentation-only follow-ups remain identical.
   maxRedirects:0/maxRetries:0; **all redirects currently rejected**, including approved
   same-origin. WebSockets closed, service workers blocked. DNS/OS egress still residual.
 - RISK-005: launch included in deadline; late launch closed; cleanup bounded at 5s/resource.
-  Process-tree force-kill and report I/O deadline remain open.
+  Supervised CLI/MCP process termination and report deadline added; native candidate evidence pending. Raw runner remains cooperative.
 - RISK-006: per-run directories prevent screenshot overwrite; retention/redaction open.
 - RISK-007: errors remain sanitized, diagnostic taxonomy incomplete.
 - RISK-008: durable jobs/queues/reconnect are NOT implemented.
@@ -242,3 +243,27 @@ queues, durable jobs or persistent companion profiles are implemented. G06/G07
 and the full mission remain incomplete; old 212-test evidence applies to 2321179.
 NEXT ACTION: native candidate CI, bounded CLI ingestion, then remaining egress,
 resource, durable-state and acceptance requirements. No publish or main merge.
+
+## Follow-up: bounded input and successful long-poll cleanup
+
+CLI file ingestion now opens without POSIX FIFO blocking, checks the opened
+handle is a regular file, reads at most 1 MiB plus one sentinel byte, rejects
+oversize/growth and invalid UTF-8, and supports a UTF-8 BOM. It does not promise
+bounded latency for a stalled filesystem; ingestion still precedes execution's
+monotonic deadline. Tests cover exact-limit JSON, oversize, invalid encoding,
+directory and POSIX FIFO inputs.
+
+A real allowed long-poll fixture reproduced false `policy_blocked` on successful
+context closure. Teardown now distinguishes transport errors after closing starts;
+explicit origin and redirect denials still increment policy violations. Local
+follow-up: routing and loader passed, Chromium/Firefox redirect protection passed,
+WebKit redirect setup failed due to host libraries (4 passed, 1 failed). Real CLI
+26-operation redaction/report fixture passed. Native CI for the preceding worker
+commit remains pending; no new compatibility gate is claimed.
+
+Follow-up verification: 10 targeted tests passed; two new tests passed on Node 22;
+fresh installed-package real browser calls passed for both endpoints (58 files).
+
+Actual Codex app-server recheck on supervised source: both endpoints discovered,
+upstream navigation passed; one batch call completed 1,000 operations in 34.061s,
+zero model turns. Temporary configuration only. See worker-codex-followup evidence.

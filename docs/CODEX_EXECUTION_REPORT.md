@@ -132,3 +132,27 @@ queues, durable jobs or persistent companion profiles are implemented. G06/G07
 and the full mission remain incomplete; old 212-test evidence applies to 2321179.
 NEXT ACTION: native candidate CI, bounded CLI ingestion, then remaining egress,
 resource, durable-state and acceptance requirements. No publish or main merge.
+
+## Follow-up: bounded input and successful long-poll cleanup
+
+CLI file ingestion now opens without POSIX FIFO blocking, checks the opened
+handle is a regular file, reads at most 1 MiB plus one sentinel byte, rejects
+oversize/growth and invalid UTF-8, and supports a UTF-8 BOM. It does not promise
+bounded latency for a stalled filesystem; ingestion still precedes execution's
+monotonic deadline. Tests cover exact-limit JSON, oversize, invalid encoding,
+directory and POSIX FIFO inputs.
+
+A real allowed long-poll fixture reproduced false `policy_blocked` on successful
+context closure. Teardown now distinguishes transport errors after closing starts;
+explicit origin and redirect denials still increment policy violations. Local
+follow-up: routing and loader passed, Chromium/Firefox redirect protection passed,
+WebKit redirect setup failed due to host libraries (4 passed, 1 failed). Real CLI
+26-operation redaction/report fixture passed. Native CI for the preceding worker
+commit remains pending; no new compatibility gate is claimed.
+
+Follow-up verification: 10 targeted tests passed; two new tests passed on Node 22;
+fresh installed-package real browser calls passed for both endpoints (58 files).
+
+Actual Codex app-server recheck on supervised source: both endpoints discovered,
+upstream navigation passed; one batch call completed 1,000 operations in 34.061s,
+zero model turns. Temporary configuration only. See worker-codex-followup evidence.

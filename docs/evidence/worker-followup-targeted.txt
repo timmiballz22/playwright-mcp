@@ -1,0 +1,18 @@
+✔ supervised hang: bounded completion and owned process cleanup (1872.399147ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1854.007409ms)
+✔ supervised crash: bounded completion and owned process cleanup (96.146188ms)
+✔ pre-cancelled execution never starts a worker (0.577768ms)
+✔ cancel interrupts a worker that cannot service its abort listener (332.737782ms)
+✔ supervisor crash cannot strand its worker or detached child (126.085959ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (40.190665ms)
+✔ partial report write failure preserves completed actions and publishes no corrupt JSON (684.106727ms)
+✔ closing a successful workflow with an outstanding allowed request is not a policy denial (643.450689ms)
+✔ file ingestion accepts UTF-8 BOM and rejects oversized, invalid UTF-8 and non-files (20.784592ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5931.711951

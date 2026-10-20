@@ -125,7 +125,7 @@ the workflow JSON, and reports as potentially sensitive.** Do not commit them.
 - Tests in `runner.test.mjs` use mocks; `integration.test.mjs` executes
   a real Chromium browser when `RUN_BROWSER_TESTS=1`.
 - Persistent sessions, cross-run cancellation by job ID, per-origin pacing,
-  secure profile storage, deeper isolation and full cross-browser tests are
+  secure profile storage, OS sandboxing and complete cross-browser acceptance are
   Codex follow-up work, **not implemented features** in this initial batch tool.
 - For coding-agent tasks with limited model context, consider Microsoft
   Playwright CLI + SKILLS, which upstream recommends over MCP in some cases.
@@ -134,10 +134,14 @@ See [CODEX_HANDOFF.md](CODEX_HANDOFF.md) for the outstanding work.
 
 ## Current hardening limits
 
-The lifecycle timer includes artifact setup, browser import, launch and actions.
-Cleanup has a separate five-second ceiling per resource. Report serialization
-and filesystem writes are not yet covered by a process-wide deadline. A late
-launch is closed; strict process-tree kill verification remains outstanding.
+CLI and MCP execute through an independent supervisor and worker. A monotonic
+execution deadline covers browser setup, actions, report publication and worker
+exit; stalled cleanup triggers scoped process termination. Uncertain cleanup
+fails closed and blocks new MCP work. Direct source calls to the raw runner use
+cooperative cleanup. CLI input accepts regular files up to 1 MiB with strict UTF-8
+validation, but filesystem ingestion latency precedes the execution deadline.
+Worker V8 heap limits do not cap browser RSS. Reports use atomic publication;
+there is no durable job journal or automatic replay of uncertain actions.
 Screenshots use an exclusively created per-run directory. There is no retention
 quota or guaranteed screenshot secret masking yet: capture only approved data.
 HTTP requests are fetched without automatic redirects/retries and fulfilled to

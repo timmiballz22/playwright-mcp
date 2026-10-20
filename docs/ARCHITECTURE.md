@@ -25,7 +25,8 @@ cancellation stalls. Parent IPC loss also triggers cleanup. Native process-tree
 termination is bounded separately; uncertain cleanup fails closed and blocks new
 MCP work. Direct source calls to `runWorkflow` retain their cooperative lifecycle
 and are not this supervised boundary. CLI file loading/parsing precedes it and
-still needs bounded ingestion.
+accepts only regular files and reads at most 1 MiB plus one sentinel byte.
+Filesystem latency is not covered by that deadline.
 
 Each worker has a private execution directory and temporary browser directory.
 The supervisor removes temporary files after termination. Reports publish via

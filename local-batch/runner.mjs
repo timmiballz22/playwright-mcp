@@ -211,6 +211,7 @@ export async function runWorkflow(workflow, {
   let timedOut = false;
   let cleanupFailed = false;
   let blockedRequests = 0;
+  let closing = false;
   let rejectStopped;
   const stopped = new Promise((_, reject) => { rejectStopped = reject; });
   // A stop can arrive between operations; mark rejection handled immediately.
@@ -276,7 +277,7 @@ export async function runWorkflow(workflow, {
         }
         await response.dispose();
       } catch {
-        blockedRequests++;
+        if (!closing) blockedRequests++;
         await route.abort('failed').catch(() => {});
       }
     }));
@@ -311,6 +312,7 @@ export async function runWorkflow(workflow, {
     if (!cancelled && !timedOut)
       results.push({ index: 0, type: 'setup', ok: false, error: 'setup_failed' });
   } finally {
+    closing = true;
     if (timer) clearTimeout(timer);
     if (abortListener) signal?.removeEventListener('abort', abortListener);
     for (const resource of [context, browser, browserServer]) {
