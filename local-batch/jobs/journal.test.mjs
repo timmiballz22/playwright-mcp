@@ -240,6 +240,9 @@ if (!supportsJournal) {
       const created = await a.call('create', request(id, 'fake-request-secret-canary'));
       assert.equal(created.jobId, id);
       assert.equal(created.state, 'QUEUED');
+      assert.deepEqual(await a.call('verify', { id, workflowDigest: request(id, 'unused').workflowDigest }), { verified: true });
+      await assert.rejects(a.call('verify', { id, workflowDigest: 'f'.repeat(64) }), { code: 'idempotency_conflict' });
+      await assert.rejects(b.call('verify', { id, workflowDigest: request(id, 'unused').workflowDigest }), { code: 'not_found' });
       const duplicate = await a.call('create', request(randomUUID(), 'fake-request-secret-canary'));
       assert.equal(duplicate.jobId, id);
       await assert.rejects(b.call('read', { id }), { code: 'not_found' });
@@ -258,7 +261,7 @@ if (!supportsJournal) {
         summary: { ok: false, completed: 2, total: 3, recentSteps: [{ index: 3, type: 'click', ok: false, error: 'fake-workflow-secret-canary' }] } }), { code: 'invalid_metadata' });
       for (const injected of [
         { browser: 'fake-workflow-secret-canary' }, { stage: 'fake-workflow-secret-canary' },
-        { reportPath: 'fake-workflow-secret-canary' }, { runId: 'fake-workflow-secret-canary' },
+        { reportPath: 'fake-workflow-secret-canary' }, { reportId: 'fake-workflow-secret-canary' }, { runId: 'fake-workflow-secret-canary' },
         { execution: { mode: 'fake-workflow-secret-canary' } },
         { execution: { browserPids: ['fake-workflow-secret-canary'] } },
         { recentSteps: [{ index: 3, type: 'click', ok: false, durationMs: 'fake-workflow-secret-canary' }] },

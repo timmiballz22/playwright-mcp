@@ -105,7 +105,7 @@ function validateSummary(value, row, state, completed) {
   if (!result || typeof result !== 'object' || Array.isArray(result)) error('invalid_metadata');
   const allowed = new Set(['schemaVersion', 'runId', 'ok', 'reason', 'browser', 'completed', 'total',
     'durationMs', 'blockedRequests', 'recentSteps', 'failedStep', 'completionCertainty',
-    'retrySafe', 'execution', 'stage', 'actionsSucceeded', 'reportScope']);
+    'retrySafe', 'execution', 'stage', 'actionsSucceeded', 'reportScope', 'cleanupFailures', 'reportId']);
   if (Object.keys(result).some(name => !allowed.has(name))) error('invalid_metadata');
   if (result.ok !== (state === 'SUCCEEDED') || result.completed !== completed || result.total !== row.total)
     error('invalid_metadata');
@@ -114,12 +114,14 @@ function validateSummary(value, row, state, completed) {
   };
   optional(result, 'schemaVersion', value => value === 1);
   optional(result, 'runId', value => typeof value === 'string' && uuid.test(value));
+  optional(result, 'reportId', value => typeof value === 'string' && uuid.test(value));
   optional(result, 'browser', value => ['chromium', 'firefox', 'webkit'].includes(value));
   optional(result, 'durationMs', value => integer(value, 0, 86400000));
   optional(result, 'blockedRequests', value => integer(value, 0, 2147483647));
   optional(result, 'completionCertainty', value => ['exact', 'confirmed_lower_bound'].includes(value));
   optional(result, 'retrySafe', value => value === false);
   optional(result, 'stage', value => ['workspace', 'execution', 'report'].includes(value));
+  optional(result, 'cleanupFailures', value => Array.isArray(value) && value.length <= 3 && value.every(code => ['context_timeout', 'context_error', 'browser_timeout', 'browser_error', 'server_timeout', 'server_error'].includes(code)));
   if (result.actionsSucceeded !== undefined && typeof result.actionsSucceeded !== 'boolean' ||
       state === 'SUCCEEDED' && result.actionsSucceeded === false ||
       result.reportScope !== undefined && result.reportScope !== 'worker_execution') error('invalid_metadata');
@@ -230,6 +232,12 @@ const handlers = new Map([
     row = update(row, data.deadlineAt <= now ? 'TIMED_OUT' : 'QUEUED', 0, data.deadlineAt <= now ? 'complete' : 'queued', data.deadlineAt <= now ? 'queue_expired' : null);
     return dto(row);
   })],
+  ['verify', data => {
+    const row = owned(data.id);
+    if (!/^[0-9a-f]{64}$/.test(data.workflowDigest || '')) error('invalid_metadata');
+    if (row.fingerprint !== mac('workflow:' + data.workflowDigest)) error('idempotency_conflict');
+    return { verified: true };
+  }],
   ['read', data => dto(owned(data.id))],
   ['list', (data = {}) => {
     const limit = data.limit ?? 20;

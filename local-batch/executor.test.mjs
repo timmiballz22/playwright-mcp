@@ -153,12 +153,14 @@ test('stalled durable admission cannot evade watchdog deadline or start late', {
   const { executeWorkflow } = await import('./executor.mjs');
   const events = [];
   let release;
+  let pendingAdmission = false;
   const gate = new Promise(resolve => { release = resolve; });
   const result = await executeWorkflow({ timeoutMs: 2000, steps: [{ type: 'click', selector: 'button' }] }, {
     workerModule: new URL('./fixtures/hang-worker.mjs', import.meta.url),
-    beforeWorkerStart: () => gate, onEvent: event => events.push(event),
+    beforeWorkerStart: () => { pendingAdmission = true; return gate; }, onEvent: event => events.push(event),
   });
   release();
+  assert.equal(pendingAdmission, true);
   assert.equal(result.completionCertainty, 'exact');
   assert.equal(result.reason, 'timeout');
   assert.equal(result.completed, 0);

@@ -143,7 +143,7 @@ async function perform(page, step, index, artifactsDir) {
           status === 403 ? 'http_403' : status === 404 ? 'http_404' : status >= 500 ? 'http_5xx' : 'http_4xx';
         const rawRetryAfter = response.headers()['retry-after'];
         const parsed = rawRetryAfter && /^\d+$/.test(rawRetryAfter) ? Number(rawRetryAfter) * 1000 : Date.parse(rawRetryAfter) - Date.now();
-        const retryAfterMs = Number.isFinite(parsed) && parsed >= 0 ? Math.ceil(parsed) : undefined;
+        const retryAfterMs = Number.isSafeInteger(Math.ceil(parsed)) && parsed >= 0 && parsed <= 86400000 ? Math.ceil(parsed) : undefined;
         throw Object.assign(new Error('HTTP navigation failed'), { safeCode, httpStatus: status, retryAfterMs });
       }
       break;
@@ -212,6 +212,7 @@ export async function runWorkflow(workflow, {
   let cancelled = false;
   let timedOut = false;
   let cleanupFailed = false;
+  const cleanupFailures = [];
   let blockedRequests = 0;
   let closing = false;
   let rejectStopped;
@@ -320,11 +321,12 @@ export async function runWorkflow(workflow, {
     closing = true;
     if (timer) clearTimeout(timer);
     if (abortListener) signal?.removeEventListener('abort', abortListener);
-    for (const resource of [context, browser, browserServer]) {
+    for (const [name, resource] of [['context', context], ['browser', browser], ['server', browserServer]]) {
       let cleanupTimer;
+      const timeoutError = new Error('cleanup_timeout');
       try {
-        await Promise.race([resource?.close(), new Promise((_, reject) => { cleanupTimer = setTimeout(() => reject(new Error('cleanup_timeout')), 5000); })]);
-      } catch { cleanupFailed = true; }
+        await Promise.race([resource?.close(), new Promise((_, reject) => { cleanupTimer = setTimeout(() => reject(timeoutError), 5000); })]);
+      } catch (error) { cleanupFailed = true; cleanupFailures.push(name + (error === timeoutError ? '_timeout' : '_error')); }
       finally { clearTimeout(cleanupTimer); }
     }
   }
@@ -332,7 +334,7 @@ export async function runWorkflow(workflow, {
   const ok = blockedRequests === 0 && !cancelled && !timedOut && !cleanupFailed && actionsSucceeded;
   return { ok, reason: cancelled ? 'cancelled' : timedOut ? 'timeout' :
     cleanupFailed ? 'cleanup_failed' : blockedRequests ? 'policy_blocked' : ok ? null : 'action_failed',
-    browser: spec.browser, blockedRequests, actionsSucceeded, completed: results.filter(r => r.ok).length,
+    browser: spec.browser, blockedRequests, actionsSucceeded, cleanupFailures, completed: results.filter(r => r.ok).length,
     total: spec.steps.length * spec.iterations,
     durationMs: Math.round(performance.now() - started), results };
 }

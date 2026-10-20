@@ -2,9 +2,9 @@
 
 The SQLite journal in `local-batch/jobs/` is an internal metadata component.
 It does not expose job tools, schedule workflows, or make the durable jobs gate
-complete. The synchronous companion still exposes one batch tool. Guardian-owned
-execution integration, public status/cancel/result tools, retention and recovery
-operator flows remain unfinished; see [JOBS_DESIGN.md](JOBS_DESIGN.md).
+complete. The synchronous companion still exposes one batch tool. The internal execution bridge is described in [JOBS_GUARDIAN.md](JOBS_GUARDIAN.md).
+Public scheduling/status/cancel/result tools, retention and recovery operator
+flows remain unfinished; see [JOBS_DESIGN.md](JOBS_DESIGN.md).
 
 The journal requires Node 22.13 or newer and runs SQLite in a bounded child process.
 Node 20 synchronous execution remains available. Use a local filesystem; network

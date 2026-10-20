@@ -1,10 +1,12 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest complete green native candidate: `d71c91eb47815ff1945375cb735dc203cbb8daa7`:
-469 passed, zero test failures/skips/cancellations, all 14 jobs green. Later worker
-admission and journal key hard-link commits require native verification. Earlier
-intermittent failures remain recorded and are not declared fully explained.
-Public durable jobs and the remaining master-spec gates are incomplete.
+Latest completed native candidate: `9e73a08445803c0588fde16794891e9f140af1c9`:
+483 passed and one strict Windows raw Firefox cleanup failure. All supervised
+lifecycle/admission, journal and wrapper cases passed. Last complete green remains
+`d71c91eb47815ff1945375cb735dc203cbb8daa7` (469 passed, all 14 jobs green).
+The internal guardian/diagnostics candidate needs native verification. Earlier
+intermittent failures remain recorded. Public job tools, queues, profiles and
+remaining master-spec gates are incomplete.
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
 
@@ -508,3 +510,78 @@ worker admission hook. Those later commits require their own native matrix.
 Their latest installed-package smoke passes both real browser endpoints and
 journal owner isolation/cancel/result operations. Public durable execution,
 profiles, quotas/retention, egress and remaining acceptance gates are unfinished.
+
+## Internal durable execution bridge and cleanup-stage diagnostics
+
+Added the trusted guardian described in JOBS_GUARDIAN.md. It verifies a canonical
+workflow digest against the keyed journal record, activates its lease, commits
+worker ownership before action admission, handles cancellation/IPC loss, and
+persists only safe bounded results after cleanup. A guardian crash retains an
+uncertain lease; no persisted PID authorizes a kill and no action resumes.
+Six guardian + eleven journal + two snapshot tests pass locally (19) on Node
+24 and Node 22. Fresh production tarball: both real browser endpoints plus a
+real seven-action Chromium guardian workflow, durable result and owner isolation
+pass. This remains an internal bridge: public jobs/queue/controller are absent.
+
+A first disconnect test timed out waiting for ChildProcess close after IPC loss
+although the guardian was already gone. The harness now observes exit and audits
+descendants independently; failing-before and corrected logs are retained.
+A fixed SQLite storage-full resource-write fault proves admission fails before
+worker effects. Workflow fingerprints ignore object key order/defaults/repeat
+expansion; source input mutation cannot change a captured workflow.
+
+The raw runner now returns at most three fixed cleanup-stage codes (resource
+context/browser/server, timeout/error). It continues to fail on cooperative
+cleanup error; these diagnostics do not promote success. Two fault cases prove
+private cleanup text is omitted and later browser close is still attempted.
+Combined engine/executor/report regression initially 32 passed; latest 33 after
+the Retry-After boundary case. Native QA remains pending.
+
+Native batch moves to Node 22 on all OSes for real installed guardian coverage,
+retaining Linux Node 20/24. Original wrapper jobs remain Node 20 on all OSes and
+Windows additionally runs the same strict five-fresh-run Firefox raw fixture,
+so legacy cleanup failure coverage is retained. No added jobs or retries.
+
+## Native 9e73a08: 483 passed, one strict raw Firefox cleanup failure
+
+[Batch/journal](https://github.com/timmiballz22/playwright-mcp/actions/runs/39510797191):
+Linux Node 20/22/24 and macOS each 56 passed; Windows 55 passed and one failed.
+All four journal jobs passed (43 total). All trusted admission cases and gated
+real browser positives passed on native OSes.
+[Wrapper](https://github.com/timmiballz22/playwright-mcp/actions/runs/39510797200):
+52 per native OS, three fresh macOS modal workflows, Docker 2 and lint passed
+(161 tests). Total 483 passed, 1 failed, zero test skips/cancellations. FAILED
+matrix; last complete green remains d71c91e (469).
+
+The fourth fresh Windows raw Firefox run completed all 23 actions, exact counter
+and PNG, then returned cleanup_failed in 9.533s. No action failed and no blocked
+request was recorded. The prior raw click-timeout problem did not recur here;
+these are distinct observed failures. The old raw result cannot identify which
+close call timed out or threw. Fixed cleanup-stage codes now preserve that
+distinction without raw error text, timeout inflation or relaxing success tests.
+This is diagnostic progress, not a claimed cleanup fix. Public supervised lifecycle
+cases passed; raw runWorkflow remains a trusted cooperative source API.
+
+The internal guardian candidate retains opaque verified report IDs without storing
+paths. A separate failing-before test showed oversized Retry-After values could
+exceed journal metadata bounds; raw hints now must be safe integers in 0..24h,
+otherwise the hint is omitted. HTTP errors still fail with no replay/backoff.
+The latest local engine/executor/report subset is 33 passed, and guardian/storage
+component is 19 passed on Node 24 and 19 on Node 22. Installed production package
+passes real existing endpoints and seven-action Chromium durable execution with
+report-ID lookup. Native guardian/controller acceptance is pending; no public
+job tools, queue manager, profiles or release readiness are claimed.
+
+## Guardian startup IPC-loss fence before native push
+
+A trusted pre-disconnected-loader fixture reproduced a real startup race: the
+old candidate missed the disconnect event during ESM loading, activated its lease
+and ran the fake worker until TIMED_OUT. The guardian now explicitly checks
+process.connected at startup and before processing a start packet, in addition
+to its disconnect listener. The same fixture now becomes CANCELLED with exact
+zero before activation; no worker effects start. All 20 component tests pass on
+Node 24 and all 20 on Node 22 (zero failures/skips/cancellations). This remains
+local fixture evidence; native and actual future controller SIGKILL proof remain.
+The focused legacy Node 20 Firefox test also passes locally on Linux: one test,
+five fresh complete workflows, no retries/skips. The Windows source cleanup
+intermittency is not declared fixed.

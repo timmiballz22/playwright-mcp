@@ -1,10 +1,10 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Latest complete green native candidate d71c91e has 469 passes, zero test
-failures/skips/cancellations and all 14 jobs green. Later worker admission and key
-hard-link changes require native verification. Earlier failures remain recorded;
-the intermittent macOS modal timeout is not fully explained. OPEN means no adequate proof;
+PASS. Latest completed native candidate 9e73a08 has 483 passes and one strict
+Windows raw Firefox cleanup failure. Last complete green is d71c91e (469, all
+14 jobs). Internal guardian/diagnostic changes need native verification. Earlier
+intermittent failures remain recorded and are not fully explained. OPEN means no adequate proof;
 PARTIAL means the remaining condition is still mandatory.
 
 | # | Scenario | Status and concrete evidence / gap |
@@ -29,7 +29,7 @@ PARTIAL means the remaining condition is still mandatory.
 | 18 | Approved-to-denied redirect | Verified real Chromium/Firefox/WebKit CI fixtures. All redirects are rejected, including same-origin. |
 | 19 | Unknown localhost port | Verified exact-origin unit policy and real redirect-to-denied-port hit counter. |
 | 20 | Credentials, IPv6, encodings, file URLs | PARTIAL: credentials/file/unknown IPv6 loopback covered; complete encoding/canonicalization adversarial matrix remains. |
-| 21 | Upload symlink escape | PARTIAL: original upload outside/symlink/junction negatives passed all native browsers at 033cbe3; latest macOS Chromium combined modal/upload test timed out with unknown stage. Companion has no upload action. |
+| 21 | Upload symlink escape | PARTIAL: original upload outside/symlink/junction negatives passed all native browsers at 9e73a08; earlier macOS modal timeout remains unexplained. Companion has no upload action. |
 | 22 | Popup/iframe/WebSocket policy | PARTIAL: iframe and WebSocket zero-hit fixtures pass; popup policy proof remains. |
 | 23 | Service worker limitation | OPEN: disabled in context options; dedicated hostile worker fixture still required. |
 | 24 | 20-run artifact uniqueness + retention | PARTIAL: uniqueness/private POSIX dirs and ignore rules proved; retention/quota policy absent. |
@@ -37,14 +37,14 @@ PARTIAL means the remaining condition is still mandatory.
 | 26 | HTTP errors vs JS exceptions | PARTIAL: status/Retry-After taxonomy and sanitized generic failures tested; complete real-response/exception matrix remains. |
 | 27 | Retry-After backoff + no unsafe replay | PARTIAL: metadata and maxRetries=0; report-fault fixture proves no navigation replay. Backoff scheduler absent. |
 | 28 | CSS/test-id/role-name locators | PARTIAL: validator/resolver tests, real role/name 997 clicks and label operator fixture; full real locator/ambiguity matrix remains. |
-| 29 | Dialog/popup/cross-frame behavior | PARTIAL: original dialog/frame and stale-target negatives passed native matrix at 033cbe3; latest macOS Chromium modal timeout remains open. Popup behavior proof remains. |
+| 29 | Dialog/popup/cross-frame behavior | PARTIAL: original dialog/frame and stale-target negatives passed native matrix at 9e73a08; earlier modal intermittency remains unexplained. Popup behavior proof remains. |
 | 30 | Mobile touch/viewport/DPI | OPEN: no executed mobile acceptance fixture. |
 | 31 | Held/repeated keyboard/canvas input | OPEN: no full hold/release/repeated-Space fixture. |
 | 32 | Dark mode/reduced motion | OPEN: discovery retains upstream capability; behavior not proved. |
 | 33 | Bounded console/request errors | PARTIAL: companion suppresses page logs; upstream console/network output behavior and large/error bounds still need fixtures. |
 | 34 | Isolated storage + project persistence | PARTIAL: original cookie/localStorage functions verified; companion persistent profiles absent. |
 | 35 | Corrupt profile/lock diagnosis | OPEN: no companion profile manager. |
-| 36 | Reconnect persistence or honest limitation | LIMITATION documented: internal durable metadata kernel exists, but public durable execution/reconnect/recovery is unfinished. This does not pass G06. |
+| 36 | Reconnect persistence or honest limitation | LIMITATION documented: internal journal and trusted guardian bridge exist; public jobs/queue/controller/reconnect is unfinished. This does not pass G06. |
 | 37 | CPU/RAM/process caps | OPEN: one active workflow and worker V8 heap cap are not total browser/process-tree quotas. |
 | 38 | Soak RSS/handles/pages/FDs | PARTIAL: old raw-runner 100-run RSS samples; complete supervised process-tree measurements remain. |
 | 39 | Original screenshot/network/storage/PDF/video/trace | PARTIAL: PNG/PDF/WebM/trace/storage/tabs native behavior passed; full network and negative capability coverage remains. |

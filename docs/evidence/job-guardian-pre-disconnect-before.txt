@@ -1,0 +1,31 @@
+✖ durable guardian preDisconnected: cleanup and canonical journal outcome (9428.390647ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9502.20825
+
+✖ failing tests:
+
+test at local-batch/jobs/guardian.test.mjs:16:5
+✖ durable guardian preDisconnected: cleanup and canonical journal outcome (9428.390647ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'TIMED_OUT'
+  - 'CANCELLED'
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/guardian.test.mjs:53:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'TIMED_OUT',
+    expected: 'CANCELLED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

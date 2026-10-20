@@ -7,7 +7,10 @@ import os from 'node:os';
 import path from 'node:path';
 import { runWorkflow } from './runner.mjs';
 
-for (const browser of ['chromium', 'firefox', 'webkit']) {
+const browsers = (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',');
+if (!browsers.length || browsers.some(browser => !['chromium', 'firefox', 'webkit'].includes(browser)) || new Set(browsers).size !== browsers.length)
+  throw new TypeError('Invalid test browser selection');
+for (const browser of browsers) {
   const clicks = browser === 'chromium' ? 997 : 20;
   const freshRuns = browser === 'firefox' ? Number(process.env.PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS ?? (process.platform === 'win32' ? 5 : 1)) : 1;
   if (!Number.isInteger(freshRuns) || freshRuns < 1 || freshRuns > 20) throw new TypeError('Invalid test run count');
@@ -38,7 +41,7 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
             // logs stay in trusted test diagnostics, outside model-visible results.
             onActionFailure: (error, step) => { diagnostic = { ...step, name: error?.name, fixtureCallLog: String(error?.message).slice(-5000) }; },
           });
-        assert.equal(result.ok, true, JSON.stringify({ freshRun: freshRun + 1, result, diagnostic }).slice(-6500));
+        assert.equal(result.ok, true, JSON.stringify({ freshRun: freshRun + 1, result, cleanupFailures: result.cleanupFailures, diagnostic }).slice(-6500));
         assert.equal(result.completed, clicks + 3);
         const artifact = result.results.at(-1).artifact;
         assert.equal(captures.has(artifact), false, 'Fresh run reused a screenshot path');
