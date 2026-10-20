@@ -1,10 +1,10 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Latest completed candidate 5264cb6 has 457 passes and one macOS Chromium
-modal/upload timeout. All native batch/bootstrap and internal journal jobs passed.
-Candidate d71c91e is under verification. Earlier complete green 212-test evidence
-applies to 2321179. OPEN means no adequate proof;
+PASS. Latest complete green native candidate d71c91e has 469 passes, zero test
+failures/skips/cancellations and all 14 jobs green. Later worker admission and key
+hard-link changes require native verification. Earlier failures remain recorded;
+the intermittent macOS modal timeout is not fully explained. OPEN means no adequate proof;
 PARTIAL means the remaining condition is still mandatory.
 
 | # | Scenario | Status and concrete evidence / gap |

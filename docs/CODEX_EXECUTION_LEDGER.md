@@ -2,13 +2,13 @@
 
 Updated 2026-10-20. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest completed native matrix: `5264cb620ad590e12908e196562de32b99b82f53`,
-457 passed and 1 macOS Chromium modal/upload timeout. All nine batch/journal jobs
-passed, including native bootstrap and Windows verified cleanup recovery. Wrapper
-matrix FAILED. Last complete green matrix remains `2321179bf52f79abe7986c8d6a2b133c46f1da5a`
-(212 passed, no failed/skipped/cancelled). Candidate `d71c91e` is under native
-verification for journal state/value fences and modal diagnostics/fresh workflows.
-All 45 mandatory scenarios are mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
+Latest completed native matrix: `d71c91eb47815ff1945375cb735dc203cbb8daa7`,
+469 passed, zero test failures/skips/cancellations, all 14 jobs green. This includes
+native batch/bootstrap, journals, original tools, Docker and three fresh macOS
+modal workflows. Previous failures remain in evidence; macOS timeout root cause
+is still unknown. Later worker admission/key hard-link commits are locally tested
+but require native verification. All 45 mandatory scenarios are mapped in
+[SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
@@ -595,3 +595,22 @@ run terminates cleanly. Lint/diff checks pass; native verification is pending.
 Additional legacy compatibility check for worker admission: Node 20 selected three
 admission tests passed, eleven unmatched tests were reported skipped by that old
 test runner. This targeted selection is not a full 14-test Node 20 run.
+
+## Complete green native matrix at d71c91e
+
+Exact tested commit: d71c91eb47815ff1945375cb735dc203cbb8daa7.
+[Batch/journal](https://github.com/timmiballz22/playwright-mcp/actions/runs/39509693584):
+nine jobs passed, 53 batch tests on Linux Node 20/22/24, macOS and Windows (265),
+plus journal 11 on three POSIX jobs and 10 on Windows (43).
+[Wrapper](https://github.com/timmiballz22/playwright-mcp/actions/runs/39509693524):
+five jobs passed, 52 per native OS (156), three additional fresh macOS Chromium
+modal workflows and Docker 2; lint passed. Total **469 passed, 0 failed, 0 test
+skipped/cancelled**, all 14 jobs successful. No test retries were configured.
+
+The previous macOS timeout did not recur; its product root cause remains unknown,
+and this green run does not erase earlier intermittent failures. This commit
+verifies journal result/value/state fences, not the later key hard-link fix or
+worker admission hook. Those later commits require their own native matrix.
+Their latest installed-package smoke passes both real browser endpoints and
+journal owner isolation/cancel/result operations. Public durable execution,
+profiles, quotas/retention, egress and remaining acceptance gates are unfinished.
