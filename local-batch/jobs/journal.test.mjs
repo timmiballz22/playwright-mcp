@@ -64,6 +64,46 @@ if (!supportsJournal) {
       await assert.rejects(old.call('finish', { id: active.jobId, nonce, state: 'SUCCEEDED', completed: 1, cleanupOk: true }), { code: 'invalid_transition' });
     } finally { await Promise.allSettled(clients.map(client => client.close())); await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
   });
+  test('cancelled reservations never start and uncertain active cancellation keeps the project blocked', { timeout: 10000 }, async () => {
+    const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-cancel-states-'));
+    let journal;
+    try {
+      journal = await JobJournal.open({ directory, projectId: '7'.repeat(64), ownerId: 'owner' });
+      const create = (deadlineAt = Date.now() + 30000) => journal.call('create', {
+        id: randomUUID(), requestKey: randomUUID(), workflowDigest: '8'.repeat(64), total: 3, deadlineAt,
+      });
+      const expired = await create(Date.now() - 1);
+      assert.equal(expired.state, 'TIMED_OUT');
+      assert.equal(expired.completed, 0);
+      assert.equal(expired.completionCertainty, 'exact');
+      const reserved = await create();
+      const firstNonce = randomUUID();
+      assert.equal((await journal.call('reserve', { id: reserved.jobId, nonce: firstNonce })).acquired, true);
+      const intent = await journal.call('cancel', { id: reserved.jobId });
+      assert.equal(intent.state, 'QUEUED');
+      assert.equal(intent.cancelRequested, true);
+      const stopped = await journal.call('activate', { id: reserved.jobId, nonce: firstNonce });
+      assert.equal(stopped.state, 'CANCELLED');
+      assert.equal(stopped.completed, 0);
+      assert.equal(stopped.completionCertainty, 'exact');
+      assert.deepEqual(await journal.call('cancel', { id: reserved.jobId }), stopped);
+      const active = await create();
+      const nonce = randomUUID();
+      assert.equal((await journal.call('reserve', { id: active.jobId, nonce })).acquired, true);
+      await journal.call('activate', { id: active.jobId, nonce });
+      await journal.call('progress', { id: active.jobId, nonce, completed: 1 });
+      assert.equal((await journal.call('cancel', { id: active.jobId })).state, 'RUNNING');
+      const finished = await journal.call('finish', { id: active.jobId, nonce, state: 'CANCELLED', completed: 1, cleanupOk: false });
+      assert.equal(finished.operatorAttentionRequired, true);
+      assert.equal(finished.retrySafe, false);
+      assert.equal(finished.completionCertainty, 'confirmed_lower_bound');
+      assert.deepEqual(await journal.call('cancel', { id: active.jobId }), finished);
+      assert.equal((await journal.call('recover')).cleanupBlocked, true);
+      const next = await create();
+      assert.deepEqual(await journal.call('reserve', { id: next.jobId, nonce: randomUUID() }), { acquired: false, reason: 'cleanup_blocked' });
+      assert.deepEqual(await journal.call('integrity'), { ok: true });
+    } finally { await journal?.close(); await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
+  });
   test('competing writers initialize consistently and cannot overfill the project queue', { timeout: 15000 }, async () => {
     const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-competing-'));
     const clients = [];

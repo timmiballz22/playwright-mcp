@@ -1,0 +1,72 @@
+TAP version 13
+# Subtest: managed directory links and database hardlinks cannot modify another file
+ok 1 - managed directory links and database hardlinks cannot modify another file
+  ---
+  duration_ms: 119.040042
+  type: 'test'
+  ...
+# Subtest: POSIX journal directory must exclude group and other access
+ok 2 - POSIX journal directory must exclude group and other access
+  ---
+  duration_ms: 54.331968
+  type: 'test'
+  ...
+# Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+ok 3 - a simulated reused PID cannot resume old work or clear uncertain active resources
+  ---
+  duration_ms: 121.478276
+  type: 'test'
+  ...
+# Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+ok 4 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+  ---
+  duration_ms: 65.261711
+  type: 'test'
+  ...
+# Subtest: competing writers initialize consistently and cannot overfill the project queue
+ok 5 - competing writers initialize consistently and cannot overfill the project queue
+  ---
+  duration_ms: 67.415021
+  type: 'test'
+  ...
+# Subtest: killed transaction rolls back without a partial job or duplicate request
+ok 6 - killed transaction rolls back without a partial job or duplicate request
+  ---
+  duration_ms: 213.792751
+  type: 'test'
+  ...
+# Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+ok 7 - reconnect marks a dead controller queued job crashed and never requeues its request
+  ---
+  duration_ms: 146.823052
+  type: 'test'
+  ...
+# Subtest: corrupt journal is rejected without silently erasing the file
+ok 8 - corrupt journal is rejected without silently erasing the file
+  ---
+  duration_ms: 107.799084
+  type: 'test'
+  ...
+# (node:93318) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: an unrelated SQLite file is rejected without changing its bytes
+ok 9 - an unrelated SQLite file is rejected without changing its bytes
+  ---
+  duration_ms: 60.852214
+  type: 'test'
+  ...
+# Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+ok 10 - journal preserves idempotency, owner isolation and a single project execution lease
+  ---
+  duration_ms: 181.404189
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1198.410292

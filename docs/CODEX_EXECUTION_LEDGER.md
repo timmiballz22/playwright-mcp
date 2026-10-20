@@ -507,3 +507,13 @@ including nested execution and step fields, and excludes report/artifact paths.
 A complete valid result round-trips; injected secret strings are rejected before
 commit and remain absent from journal files. Nine local tests pass on Node 24
 and Node 22. Evidence includes the failing-before and passing-after runs.
+
+## Journal cancellation and deadline transition checks
+
+Added a deterministic metadata-state test covering already expired requests,
+cancel-before-activation, repeated terminal cancellation, active cancellation
+intent and uncertain cleanup retaining the project lease. No browser starts in
+this storage-only test. Ten local tests pass on Node 24 and ten on Node 22.
+Native candidate 5264cb6 has passed all four journal jobs and all three Linux
+batch jobs; macOS wrapper failed and remaining native jobs are still pending.
+The failure is being investigated; the matrix is not green.
