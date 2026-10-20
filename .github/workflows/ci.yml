@@ -59,6 +59,7 @@ jobs:
       env:
         RUN_BROWSER_TESTS: '1'
         PLAYWRIGHT_BATCH_TEST_BROWSERS: firefox
+        PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS: '10'
 
   test_mcp_docker:
     timeout-minutes: 30

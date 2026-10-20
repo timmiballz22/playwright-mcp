@@ -132,7 +132,7 @@ function allowedAddress(raw, allowed) {
   return allowed.has(url.origin);
 }
 
-async function perform(page, step, index, artifactsDir) {
+async function perform(page, step, index, artifactsDir, clickOptions) {
   const locator = step.selector ? resolveLocator(page, step.selector) : undefined;
   switch (step.type) {
     case 'goto': {
@@ -148,7 +148,7 @@ async function perform(page, step, index, artifactsDir) {
       }
       break;
     }
-    case 'click': await locator.click(); break;
+    case 'click': await locator.click(clickOptions); break;
     case 'fill': await locator.fill(step.value); break;
     case 'press': await locator.press(step.key); break;
     case 'check': await locator.check(); break;
@@ -195,6 +195,10 @@ export async function runWorkflow(workflow, {
   onActionFailure, // Trusted source diagnostics only; never accepted in workflow JSON.
 } = {}) {
   const spec = validateWorkflow(workflow);
+  // In the pinned driver, zero-delay Mouse.click pipelines move/down/up.
+  // A positive supported delay awaits each phase. Keep locator checks and the
+  // same action deadline while avoiding concurrent native input on Windows FF.
+  const clickOptions = spec.browser === 'firefox' && process.platform === 'win32' ? { delay: 1 } : undefined;
   const allowed = parseOrigins(allowedOrigins);
   if (spec.steps.some(step => step.type === 'screenshot') && allowSensitiveArtifacts !== true)
     throw new TypeError('Sensitive artifact capture requires local operator approval');
@@ -297,7 +301,7 @@ export async function runWorkflow(workflow, {
         const start = performance.now();
         index++;
         try {
-          const metadata = await bounded(perform(page, step, index, artifactsDir));
+          const metadata = await bounded(perform(page, step, index, artifactsDir, clickOptions));
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: true, durationMs: Math.round(performance.now() - start), ...metadata });
           onProgress?.({ completed: results.length });
@@ -305,7 +309,7 @@ export async function runWorkflow(workflow, {
           const httpFailure = ['rate_limited', 'http_401', 'http_403', 'http_404', 'http_4xx', 'http_5xx'].includes(error?.safeCode);
           const safeError = cancelled ? 'cancelled' : timedOut ? 'timeout' : httpFailure ? error.safeCode : 'action_failed';
           const failureKind = cancelled || timedOut ? 'interrupted' : classifyActionFailure(error, step);
-          try { onActionFailure?.(error, { index, type: step.type, error: safeError, failureKind }); } catch {}
+          try { onActionFailure?.(error, { index, type: step.type, error: safeError, failureKind }, page); } catch {}
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: false, durationMs: Math.round(performance.now() - start),
             error: safeError, failureKind,

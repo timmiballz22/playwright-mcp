@@ -58,3 +58,5 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: ./scripts/bootstrap-local-batch.ps1
+        env:
+          PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS: '10'

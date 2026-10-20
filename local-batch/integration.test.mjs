@@ -26,6 +26,7 @@ for (const browser of browsers) {
     const origin = 'http://127.0.0.1:' + server.address().port;
     const dir = await mkdtemp(path.join(os.tmpdir(), 'pw-batch-'));
     let diagnostic;
+    let probe;
     try {
       const steps = [{ type: 'goto', url: origin + '/' },
         ...Array.from({ length: clicks }, () => ({ type: 'click', selector: { role: 'button', name: 'Add' } })),
@@ -34,13 +35,20 @@ for (const browser of browsers) {
       const captures = new Set();
       // Each iteration must succeed before the next starts; no failed action is retried.
       for (let freshRun = 0; freshRun < freshRuns; freshRun++) {
-        diagnostic = undefined;
+        diagnostic = undefined; probe = undefined;
         const result = await runWorkflow({ browser, schemaVersion: 1, steps, timeoutMs: 120000 },
           { artifactsDir: dir, allowedOrigins: [origin], allowSensitiveArtifacts: true,
             // This fixture has only static local data and no credentials. Raw call
             // logs stay in trusted test diagnostics, outside model-visible results.
-            onActionFailure: (error, step) => { diagnostic = { ...step, name: error?.name, fixtureCallLog: String(error?.message).slice(-5000) }; },
+            onActionFailure: (error, step, page) => {
+              diagnostic = { ...step, name: error?.name, fixtureCallLog: String(error?.message).slice(-5000) };
+              // Read the fixed fixture counter once after failure; never replay input.
+              probe = page.locator('#count').textContent({ timeout: 500 }).then(value => {
+                diagnostic.fixtureCounter = /^\d{1,4}$/.test(value ?? '') ? Number(value) : 'invalid_fixture_counter';
+              }).catch(error => { diagnostic.counterProbe = error?.name === 'TimeoutError' ? 'timeout' : 'unavailable'; });
+            },
           });
+        if (probe) await probe;
         assert.equal(result.ok, true, JSON.stringify({ freshRun: freshRun + 1, result, cleanupFailures: result.cleanupFailures, diagnostic }).slice(-6500));
         assert.equal(result.completed, clicks + 3);
         const artifact = result.results.at(-1).artifact;

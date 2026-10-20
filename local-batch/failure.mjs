@@ -1,6 +1,6 @@
 export const FAILURE_KINDS = Object.freeze(['interrupted', 'http_failure', 'assertion_mismatch',
   'not_visible', 'not_enabled', 'not_stable', 'detached', 'pointer_intercepted',
-  'locator_timeout', 'navigation_timeout', 'target_closed', 'ambiguous_locator', 'invalid_selector', 'unknown']);
+  'locator_timeout', 'pointer_action_timeout', 'navigation_timeout', 'target_closed', 'ambiguous_locator', 'invalid_selector', 'unknown']);
 export const STEP_FAILURE_CODES = Object.freeze(['cancelled', 'timeout', 'action_failed',
   'rate_limited', 'http_401', 'http_403', 'http_404', 'http_4xx', 'http_5xx']);
 
@@ -13,6 +13,8 @@ export function classifyActionFailure(error, step) {
     const markers = [['element is not visible', 'not_visible'], ['element is not enabled', 'not_enabled'],
       ['element is not stable', 'not_stable'], ['element was detached', 'detached'],
       ['intercepts pointer events', 'pointer_intercepted']];
+    if (message.lastIndexOf('performing click action') > message.lastIndexOf('click action done'))
+      markers.push(['performing click action', 'pointer_action_timeout']);
     const last = markers.map(([marker, kind]) => [message.lastIndexOf(marker), kind]).sort((a, b) => b[0] - a[0])[0];
     return last[0] >= 0 ? last[1] : step.type === 'goto' ? 'navigation_timeout' : 'locator_timeout';
   }

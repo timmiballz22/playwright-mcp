@@ -1,11 +1,10 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native candidate: `9a7bc1d27687360d74518c349279fd1309a53d5a`:
-535 passed, one cold Windows read-only process audit failure. All batch/bootstrap
-and wrapper jobs passed. No complete audit was obtained for the failed case.
-Last complete green remains `d71c91eb47815ff1945375cb735dc203cbb8daa7` (469).
-The bounded audit fix needs native verification. Public job tools/queue/controller,
-profiles and remaining master-spec gates are incomplete.
+Latest completed native candidate: `741f31ebaffeee750e2e4dd3338659e4f807db9c`:
+535 passed, one Windows raw Firefox pointer-action timeout. All component/guardian
+and wrapper jobs passed. Last complete green remains d71c91e (469).
+The supported sequential input candidate needs native validation. Public job
+controller/tools, profiles and remaining master-spec gates are incomplete.
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
 
@@ -612,3 +611,37 @@ Actual Codex CLI 0.163.0 app-server at exact 9a7bc1d: original endpoint 25 tools
 batch endpoint one tool, original navigation and one 1,000-action batch passed
 in 33.952s, zero model turns, temporary per-process config only. Public job tools
 and queue/controller remain unfinished; this is not release readiness.
+
+## Native 741f31e and Windows Firefox input mitigation candidate
+
+[Batch/journal](https://github.com/timmiballz22/playwright-mcp/actions/runs/39516057228):
+four batch jobs passed 59 each; Windows Node 22 passed 58/59. All four component
+jobs passed (20 per POSIX job, 19 Windows), including the previously failed cold
+Windows descendant snapshot.
+[Wrapper](https://github.com/timmiballz22/playwright-mcp/actions/runs/39516057263):
+all 162 tests and lint passed, including five fresh Windows Node 20 Firefox runs.
+Total 535 passed, 1 failed, zero test skips/cancellations. Matrix remains FAILED.
+
+Windows Node 22 raw Firefox fresh run #3 stopped at step 11, completed 10/23,
+with zero blocked requests and cleanupFailures empty. The trusted call log shows
+the locator resolved, visibility/enabled/stability checks passed, scrolling
+finished, then timeout at 'performing click action' (5.010s). This is distinct
+from the previous cooperative cleanup failure. No failure is reclassified success.
+
+Read-only inspection of the pinned playwright-core coreBundle.js Mouse.click
+(line 22639+) shows zero delay pipelines move/down/up with Promise.all; a positive
+delay awaits each phase. Public Locator.click types document delay. The candidate
+uses the supported delay=1ms only on Windows Firefox, retains all locator checks,
+the same 5s default deadline and one click call, and introduces no force or replay.
+This targets a plausible concurrent pointer-input issue; precise native cause
+is not proved and real validation is mandatory. Node 20 and 22 Windows CI now
+require ten fresh complete workflows each, all passing before the next begins.
+
+Local policy/runner/cleanup subset: 21 passed; Node 22 policy subset: 3 passed.
+Simulated host tests verify options, one locator invocation, failure counts, no
+force/replay and no private error text. They do not emulate a Windows driver.
+Unfinished pointer phases now use fixed pointer_action_timeout; this is a stage
+classification, not proof of which internal acknowledgement stalled. A trusted
+fixture-only failure hook can read its numeric counter once (500ms), without
+replaying input. CLI/MCP hooks ignore the live Page and forward fixed metadata.
+Public job tools/controller and remaining master gates remain unfinished.

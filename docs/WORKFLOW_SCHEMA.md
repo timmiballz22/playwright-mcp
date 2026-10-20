@@ -63,7 +63,7 @@ blocks subsequent MCP work until the operator investigates. Process IDs are
 execution diagnostics, not accepted workflow parameters or cancellation authority.
 
 Failed steps may include `failureKind`, a fixed diagnostic code such as
-`not_stable`, `pointer_intercepted`, `locator_timeout`, `target_closed`,
+`not_stable`, `pointer_intercepted`, `locator_timeout`, `pointer_action_timeout`, `target_closed`,
 `assertion_mismatch` or `unknown`. It is best-effort classification, never raw
 browser text or permission to replay an action. The last observed safe failure
 and confirmed progress are retained if later cleanup/reporting fails.
@@ -75,3 +75,9 @@ worker's original evidence. A final supervisor reply can resolve a cooperative
 cleanup failure after independent termination/temp verification; in that case
 `execution.workerCleanupFailed` is true. It never resolves an action/policy failure
 into success or authorizes replay.
+
+On Windows Firefox, click uses Playwright's supported one-millisecond delay to
+serialize move/down/up acknowledgements. Locator checks, declared click count and
+action/global deadlines still apply. No force or replay is enabled. Native
+stability validation of this mitigation is pending; other browsers/hosts retain
+their existing click timing.
