@@ -37,9 +37,21 @@ async function finish(exitCode) {
   }
   const reason = !cleaned ? 'cleanup_failed' : stopReason ||
     (remaining() <= 0 ? 'timeout' : exitCode !== 0 ? 'worker_crashed' : candidate ? null : 'execution_failed');
-  const summary = reason ? { ok: false, reason, completed, total: packet.total,
+  let summary = reason ? { ok: false, reason, completed, total: packet.total,
     recentSteps: [], failedStep, reportPath: null } : candidate;
-  const response = { type: 'result', summary: { ...summary, execution: { mode: 'supervised', forced, cleanup: cleaned ? 'terminated' : 'failed', tempCleanup, supervisorPid: process.pid, workerPid: worker.pid, browserPids: [...browserPids] } } };
+  const workerCleanupFailed = !reason && candidate?.reason === 'cleanup_failed';
+  const workerReportPublished = candidate?.reportScope === 'worker_execution' && typeof candidate.reportPath === 'string' &&
+    path.dirname(candidate.reportPath) === workspaceRoot && /^run-[0-9a-f-]+\.json$/.test(path.basename(candidate.reportPath));
+  if (workerCleanupFailed && workerReportPublished && tempCleanup === 'removed' &&
+      Number.isInteger(candidate.blockedRequests) && candidate.blockedRequests >= 0 && typeof candidate.actionsSucceeded === 'boolean') {
+    // The worker's cooperative close failure is superseded only after this
+    // independent watchdog has verified termination and temporary cleanup within
+    // the same deadline. Action and policy failures remain failures.
+    const actionsConfirmed = candidate.actionsSucceeded === true && candidate.completed === packet.total && candidate.failedStep === null;
+    summary = { ...candidate, ok: actionsConfirmed && candidate.blockedRequests === 0,
+      reason: candidate.blockedRequests ? 'policy_blocked' : actionsConfirmed ? null : 'action_failed' };
+  }
+  const response = { type: 'result', summary: { ...summary, execution: { mode: 'supervised', forced, cleanup: cleaned ? 'terminated' : 'failed', tempCleanup, supervisorPid: process.pid, workerPid: worker.pid, browserPids: [...browserPids], ...(workerCleanupFailed ? { workerCleanupFailed: true } : {}) } } };
   if (process.connected) {
     process.send(response, () => { if (process.connected) process.disconnect(); });
   }

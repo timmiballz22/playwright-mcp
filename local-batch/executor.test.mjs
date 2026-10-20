@@ -1,7 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { readFile } from 'node:fs/promises';
+import { readFile, mkdtemp, rm } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
 
 async function alive(pid) {
   try {
@@ -106,3 +108,25 @@ test('safe failure and lower-bound progress survive supervisor death without raw
   assert.equal(JSON.stringify(result).includes('fake-worker-diagnostic-canary'), false);
   await assertStopped(observed);
 });
+
+for (const mode of ['success', 'blocked', 'action']) {
+  test(`verified cleanup recovery preserves ${mode} action outcome`, { timeout: 15000 }, async () => {
+    const { executeWorkflow } = await import('./executor.mjs');
+    const observed = [];
+    const directory = await mkdtemp(path.join(os.tmpdir(), 'cleanup-outcome-'));
+    try {
+      const result = await executeWorkflow({ timeoutMs: 10000, steps: [{ type: 'click', selector: 'button' }] }, {
+        artifactsDir: directory,
+        workerModule: new URL('./fixtures/cleanup-' + mode + '-worker.mjs', import.meta.url),
+        onEvent: event => { if (event.pid) observed.push(event.pid); },
+      });
+      await assertStopped(observed);
+      assert.equal(result.execution.cleanup, 'terminated');
+      assert.equal(result.execution.workerCleanupFailed, true);
+      assert.equal(result.execution.tempCleanup, 'removed');
+      assert.equal(result.ok, mode === 'success');
+      assert.equal(result.reason, mode === 'blocked' ? 'policy_blocked' : mode === 'action' ? 'action_failed' : null);
+      assert.equal(result.completed, mode === 'action' ? 0 : 1);
+    } finally { await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
+  });
+}

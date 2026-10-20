@@ -44,3 +44,10 @@ Decision: option A (separate companion), with reusable runner entrypoint for CLI
 and MCP. A facade would add protocol delegation and capability maintenance before
 showing measurable benefit. No upstream sync was attempted: pinned alpha and
 current monorepo differ; retain exact versions until compatibility is proved.
+
+Worker reports retain original execution evidence, tagged worker_execution. Final
+supervisor replies include independent cleanup verification. A failed cooperative
+close can be reconciled after worker exit, owned process termination, temp removal
+and report publication within budget; the original failure remains in metadata.
+Actions, policy and report errors are preserved. This prevents false failure after
+confirmed effects and verified cleanup without replaying those effects.

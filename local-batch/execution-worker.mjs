@@ -34,7 +34,7 @@ process.once('message', async packet => {
       onActionFailure: (error, step) => send({ type: 'actionFailure', failedStep: { ...step, ok: false } }),
     });
     stage = 'report';
-    summary = await saveReport({ schemaVersion: 1, runId: packet.runId, ...result }, packet.workspaceRoot);
+    summary = await saveReport({ schemaVersion: 1, runId: packet.runId, reportScope: 'worker_execution', ...result }, packet.workspaceRoot);
   } catch {
     summary = { ok: false, reason: 'execution_failed', stage, completed, recentSteps: [], failedStep: null, reportPath: null };
   }

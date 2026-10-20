@@ -67,3 +67,11 @@ Failed steps may include `failureKind`, a fixed diagnostic code such as
 `assertion_mismatch` or `unknown`. It is best-effort classification, never raw
 browser text or permission to replay an action. The last observed safe failure
 and confirmed progress are retained if later cleanup/reporting fails.
+
+`actionsSucceeded` confirms that all declared actions and assertions acknowledged
+success. Overall `ok` also requires policy, reporting, deadline and verified cleanup.
+`reportScope: "worker_execution"` describes the local report's scope: it keeps the
+worker's original evidence. A final supervisor reply can resolve a cooperative
+cleanup failure after independent termination/temp verification; in that case
+`execution.workerCleanupFailed` is true. It never resolves an action/policy failure
+into success or authorizes replay.

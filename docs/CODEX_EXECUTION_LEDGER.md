@@ -457,3 +457,34 @@ An uncommitted journal storage kernel is under local development in local-batch/
 it is not packaged, exposed through MCP or part of this candidate's job claims.
 Durable jobs remain unimplemented at the public endpoints. NEXT ACTION: native
 verification and continued journal crash/ownership testing, then API integration.
+
+## Independent cleanup authority fixes a false failure
+
+033cbe3: four batch jobs 50/50 each; Windows 49/50. All wrapper jobs passed.
+Total 407 passed, 1 failed, no test skips/cancellations. Windows five fresh raw
+Firefox workflows passed without retries; its earlier intermittent action hang
+is not declared explained. All serial Linux Node 20/22/24 jobs passed, including
+the previously failing supervised WebKit positive. Full matrix remains FAILED.
+
+The remaining Windows case completed all 23 Chromium actions, exact assertion
+and PNG, then the worker reported cleanup_failed after a cooperative close.
+The supervisor independently verified process termination and temp removal in
+7.045s of the 20s budget, and the OS descendant audit passed. Propagating the
+worker's earlier close failure despite that final proof produced a false failure.
+
+The new supervisor reconciles cleanup-only outcomes only after clean worker exit,
+owned termination, temp removal, a published worker report inside the owned run
+and time remaining. Success additionally requires all actions confirmed, no failed
+step and zero blocked requests. Action/policy failures remain failed; cancellation,
+deadline, crash, report failure and uncertain cleanup cannot use this path.
+execution.workerCleanupFailed preserves the original close failure. Worker reports
+are explicitly reportScope=worker_execution and retain original evidence; the
+supervisor reply is the final lifecycle outcome. This is verified recovery, not
+an action retry or ignoring missing resources.
+
+Three owned-child fault fixtures verify success, policy failure and action failure
+through cleanup recovery; no live tracked processes remain. The existing real
+ENOSPC report fault still fails correctly. Local combined unit/fault/report tests:
+27 passed; targeted executor/report subset 12 passed; real Chromium/Firefox
+supervised positives 2 passed; installed endpoints and lint passed. New native
+verification is required before assigning a complete matrix PASS.

@@ -328,11 +328,11 @@ export async function runWorkflow(workflow, {
       finally { clearTimeout(cleanupTimer); }
     }
   }
-  const ok = blockedRequests === 0 && !cancelled && !timedOut && !cleanupFailed &&
-    results.length === spec.steps.length * spec.iterations && results.every(r => r.ok);
+  const actionsSucceeded = results.length === spec.steps.length * spec.iterations && results.every(r => r.ok);
+  const ok = blockedRequests === 0 && !cancelled && !timedOut && !cleanupFailed && actionsSucceeded;
   return { ok, reason: cancelled ? 'cancelled' : timedOut ? 'timeout' :
     cleanupFailed ? 'cleanup_failed' : blockedRequests ? 'policy_blocked' : ok ? null : 'action_failed',
-    browser: spec.browser, blockedRequests, completed: results.filter(r => r.ok).length,
+    browser: spec.browser, blockedRequests, actionsSucceeded, completed: results.filter(r => r.ok).length,
     total: spec.steps.length * spec.iterations,
     durationMs: Math.round(performance.now() - started), results };
 }
