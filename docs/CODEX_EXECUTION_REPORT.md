@@ -404,3 +404,14 @@ this storage-only test. Ten local tests pass on Node 24 and ten on Node 22.
 Native candidate 5264cb6 has passed all four journal jobs and all three Linux
 batch jobs; macOS wrapper failed and remaining native jobs are still pending.
 The failure is being investigated; the matrix is not green.
+
+## Actual Codex client check at 97f3c57
+
+Codex CLI 0.163.0 app-server discovered the original 25-tool endpoint and the
+one-tool batch endpoint. Original navigation and one 1,000-action batch with
+exact final assertions passed in 34.021s, zero model turns. Per-process config
+only; global config unchanged. The first verification attempt used a malformed
+temporary TOML override, exited before initialization and timed out in the old
+harness. Correcting that override and detecting early child exit produced the
+recorded pass. This was a harness correction, not an action retry. Evidence:
+[worker-codex-97f3c57.txt](evidence/worker-codex-97f3c57.txt).

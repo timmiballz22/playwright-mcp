@@ -19,6 +19,14 @@ if (supportsJournal) {
     assert.equal((await owner.call('create', { ...data, id: randomUUID() })).jobId, job.jobId);
     await assert.rejects(other.call('read', { id: job.jobId }), { code: 'not_found' });
     assert.equal((await owner.call('cancel', { id: job.jobId })).state, 'CANCELLED');
+    const active = await owner.call('create', { ...data, id: randomUUID(), requestKey: 'installed-result' });
+    const nonce = randomUUID();
+    assert.equal((await owner.call('reserve', { id: active.jobId, nonce })).acquired, true);
+    await owner.call('activate', { id: active.jobId, nonce });
+    const summary = { ok: true, completed: 1, total: 1, browser: 'chromium', completionCertainty: 'exact' };
+    await owner.call('finish', { id: active.jobId, nonce, state: 'SUCCEEDED', completed: 1, cleanupOk: true, summary });
+    assert.deepEqual(await owner.call('result', { id: active.jobId }), summary);
+    await assert.rejects(other.call('result', { id: active.jobId }), { code: 'not_found' });
     assert.deepEqual(await owner.call('integrity'), { ok: true });
     process.stdout.write(JSON.stringify({ entry: 'local-batch/jobs/journal.mjs', storageKernel: true, ownerIsolation: true, production: true }) + '\n');
   } finally {
