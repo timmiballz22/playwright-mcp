@@ -458,3 +458,19 @@ The individual-job log redirect was denied by this environment's network proxy.
 The completed workflow archive was accessible and supplied the preserved evidence.
 The durable result/cancellation/deadline hardening commits after 5264cb6 have only
 local Node 22/24 evidence until the next native run. Public jobs remain unfinished.
+
+## Trusted worker admission boundary (local verification)
+
+Added source-only beforeWorkerStart to the supervised executor. The watchdog
+withholds the worker start message until ownership admission resolves; rejection
+returns journal_unavailable, pending admission cannot evade the existing deadline,
+and a late resolution cannot start actions after cancellation/termination. No new
+MCP/CLI inputs or job tools are exposed. Pre-ack failures preserve exact zero
+actions. This is preparation for guardian-owned durable execution, not that full
+integration. Default no-hook execution retains the direct start path.
+
+Failing-before tests showed the missing hook allowed fixture effects. Afterward:
+14 executor tests passed, one ENOSPC report-failure test passed, three admission
+tests passed on Node 22, and gated real Chromium/Firefox positives passed (23
+actions, exact counter, PNG and report per browser). Lint/diff checks passed.
+Native hook/WebKit verification is pending; local WebKit remains unavailable.

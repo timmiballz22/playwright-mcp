@@ -9,7 +9,7 @@ import { terminateOwnedProcesses } from './process-tree.mjs';
 
 export async function executeWorkflow(input, {
   allowedOrigins = [], artifactsDir = path.resolve('.local-batch-output'), allowSensitiveArtifacts = false, signal,
-  workerModule = new URL('./execution-worker.mjs', import.meta.url), onEvent,
+  workerModule = new URL('./execution-worker.mjs', import.meta.url), onEvent, beforeWorkerStart,
 } = {}) {
   const started = process.hrtime.bigint();
   const encoded = JSON.stringify(input);
@@ -35,6 +35,7 @@ export async function executeWorkflow(input, {
     let stopReason;
     let lastCompleted = 0;
     let workerPid;
+    let startAcknowledged = false;
     let failedStep = null;
     const ownedPids = new Set();
     const supervisor = fork(fileURLToPath(new URL('./execution-supervisor.mjs', import.meta.url)), [], {
@@ -54,7 +55,7 @@ export async function executeWorkflow(input, {
       }
       signal?.removeEventListener('abort', abort);
       resolve({ schemaVersion: 1, runId, browser: spec.browser, total, ...summary,
-        completionCertainty: summary.ok ? 'exact' : 'confirmed_lower_bound',
+        completionCertainty: summary.ok || beforeWorkerStart && !startAcknowledged ? 'exact' : 'confirmed_lower_bound',
         ...(!summary.ok ? { retrySafe: false } : {}), durationMs: elapsed() });
     };
     const force = async reason => {
@@ -75,7 +76,19 @@ export async function executeWorkflow(input, {
     supervisor.on('message', event => {
       if (event.type === 'result') candidate = event.summary;
       else {
-        if (event.type === 'workerSpawned') workerPid = event.pid;
+        if (event.type === 'workerSpawned') {
+          workerPid = event.pid;
+          if (beforeWorkerStart) {
+            Promise.resolve().then(() => {
+              if (!settled && !forcing && !stopReason) return beforeWorkerStart({ pid: event.pid });
+            }).then(() => {
+              if (!settled && !forcing && !stopReason && supervisor.connected) {
+                startAcknowledged = true;
+                supervisor.send({ type: 'workerReady' }, () => {});
+              }
+            }).catch(() => { if (!settled && !forcing) stop('journal_unavailable'); });
+          }
+        }
         if (event.pid) ownedPids.add(event.pid);
         if (event.type === 'progress') lastCompleted = event.completed;
         if (event.type === 'actionFailure') {
@@ -101,6 +114,6 @@ export async function executeWorkflow(input, {
     if (signal?.aborted) abort();
     else if (elapsed() >= spec.timeoutMs) void force('timeout');
     else supervisor.send({ type: 'start', workflow, options: { allowedOrigins, artifactsDir, allowSensitiveArtifacts },
-      workerModule: workerURL.href, runId, total, timeoutMs: spec.timeoutMs, deadlineNs: String(deadlineNs) }, () => {});
+      workerModule: workerURL.href, requireReadyAck: Boolean(beforeWorkerStart), runId, total, timeoutMs: spec.timeoutMs, deadlineNs: String(deadlineNs) }, () => {});
   });
 }

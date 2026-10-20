@@ -13,6 +13,7 @@ let stopReason;
 let candidate;
 let finishing = false;
 let workerExited = false;
+let workerStarted = false;
 let forced = false;
 let completed = 0;
 let failedStep = null;
@@ -69,8 +70,14 @@ function stop(reason) {
   forceTimer = setTimeout(() => { void force(); }, Math.max(0, Math.min(process.platform === 'win32' ? 750 : 200, remaining() / 3)));
 }
 process.once('disconnect', () => stop('cancelled'));
+function startWorker() {
+  if (!worker || workerStarted || finishing || stopReason || remaining() <= 0 || !worker.connected) return;
+  workerStarted = true;
+  worker.send({ type: 'start', workflow: packet.workflow, options: packet.options, runId: packet.runId, workspaceRoot }, () => {});
+}
 process.on('message', message => {
-  if (message.type === 'stop') { stop(message.reason === 'timeout' ? 'timeout' : 'cancelled'); return; }
+  if (message.type === 'workerReady') { if (packet?.requireReadyAck) startWorker(); return; }
+  if (message.type === 'stop') { stop(['timeout', 'journal_unavailable'].includes(message.reason) ? message.reason : 'cancelled'); return; }
   if (message.type !== 'start' || packet || !process.connected || stopReason) return;
   packet = message;
   workspaceRoot = path.resolve(packet.options.artifactsDir, 'exec-' + packet.runId);
@@ -104,6 +111,6 @@ process.on('message', message => {
   // reporting. A stalled report or even a stalled event loop cannot evade this.
   const reserve = process.platform === 'win32' ? Math.min(3000, Math.max(20, packet.timeoutMs / 2)) : Math.min(1000, Math.max(20, packet.timeoutMs / 5));
   deadlineTimer = setTimeout(() => stop('timeout'), Math.max(0, remaining() - reserve));
-  worker.send({ type: 'start', workflow: packet.workflow, options: packet.options, runId: packet.runId, workspaceRoot }, () => {});
+  if (!packet.requireReadyAck) startWorker();
   if (stopReason) { const reason = stopReason; stopReason = undefined; stop(reason); }
 });

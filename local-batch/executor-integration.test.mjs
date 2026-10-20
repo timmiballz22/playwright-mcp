@@ -17,11 +17,18 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
     fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
     const origin = `http://127.0.0.1:${fixture.address().port}`;
     const dir = await mkdtemp(path.join(os.tmpdir(), 'supervised-positive-'));
+    let admitted = false;
+    let browserBeforeAdmission = false;
     try {
       const result = await executeWorkflow({ browser, timeoutMs: 20000, steps: [
         { type: 'goto', url: origin }, { type: 'click', selector: { role: 'button', name: 'Add' }, repeat: 20 },
         { type: 'assertText', selector: 'output', equals: '20' }, { type: 'screenshot' },
-      ] }, { allowedOrigins: [origin], artifactsDir: dir, allowSensitiveArtifacts: true });
+      ] }, { allowedOrigins: [origin], artifactsDir: dir, allowSensitiveArtifacts: true,
+        beforeWorkerStart: async ({ pid }) => { assert.ok(pid > 1); admitted = true; },
+        onEvent: event => { if (event.type === 'ownedProcess' && !admitted) browserBeforeAdmission = true; },
+      });
+      assert.equal(admitted, true);
+      assert.equal(browserBeforeAdmission, false);
       assert.equal(result.execution.mode, 'supervised');
       assert.equal(result.execution.cleanup, 'terminated');
       assert.equal(result.execution.tempCleanup, 'removed');

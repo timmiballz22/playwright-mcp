@@ -130,3 +130,66 @@ for (const mode of ['success', 'blocked', 'action']) {
     } finally { await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
   });
 }
+
+test('failed durable admission cannot start worker actions', { timeout: 15000 }, async () => {
+  const { executeWorkflow } = await import('./executor.mjs');
+  const events = [];
+  let admittedPid;
+  const result = await executeWorkflow({ timeoutMs: 3000, steps: [{ type: 'click', selector: 'button' }] }, {
+    workerModule: new URL('./fixtures/hang-worker.mjs', import.meta.url),
+    beforeWorkerStart: async ({ pid }) => { admittedPid = pid; throw new Error('fake-private-journal-failure'); },
+    onEvent: event => events.push(event),
+  });
+  assert.equal(result.reason, 'journal_unavailable');
+  assert.equal(result.completionCertainty, 'exact');
+  assert.ok(admittedPid > 1);
+  assert.equal(result.completed, 0);
+  assert.equal(events.some(event => event.type === 'ownedProcess'), false);
+  assert.equal(JSON.stringify(result).includes('fake-private-journal-failure'), false);
+  await assertStopped(events.filter(event => event.pid).map(event => event.pid));
+});
+
+test('stalled durable admission cannot evade watchdog deadline or start late', { timeout: 15000 }, async () => {
+  const { executeWorkflow } = await import('./executor.mjs');
+  const events = [];
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  const result = await executeWorkflow({ timeoutMs: 2000, steps: [{ type: 'click', selector: 'button' }] }, {
+    workerModule: new URL('./fixtures/hang-worker.mjs', import.meta.url),
+    beforeWorkerStart: () => gate, onEvent: event => events.push(event),
+  });
+  release();
+  assert.equal(result.completionCertainty, 'exact');
+  assert.equal(result.reason, 'timeout');
+  assert.equal(result.completed, 0);
+  assert.equal(events.some(event => event.type === 'ownedProcess'), false);
+  await assertStopped(events.filter(event => event.pid).map(event => event.pid));
+});
+
+
+test('successful durable admission precedes owned worker effects', { timeout: 20000 }, async () => {
+  const { executeWorkflow } = await import('./executor.mjs');
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'executor-admission-'));
+  const observed = [];
+  let admitted = false;
+  let effectBeforeAdmission = false;
+  try {
+    const result = await executeWorkflow({ timeoutMs: 10000, steps: [{ type: 'click', selector: 'button' }] }, {
+      artifactsDir: directory, workerModule: new URL('./fixtures/cleanup-success-worker.mjs', import.meta.url),
+      beforeWorkerStart: async ({ pid }) => {
+        assert.equal(await alive(pid), true);
+        await new Promise(resolve => setTimeout(resolve, 40));
+        admitted = true;
+      },
+      onEvent: event => {
+        if (event.pid) observed.push(event.pid);
+        if (event.type === 'ownedProcess' && !admitted) effectBeforeAdmission = true;
+      },
+    });
+    assert.equal(admitted, true);
+    assert.equal(effectBeforeAdmission, false);
+    assert.equal(result.ok, true);
+    assert.equal(result.completed, 1);
+    await assertStopped(observed);
+  } finally { await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
+});

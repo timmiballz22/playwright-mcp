@@ -2,12 +2,13 @@
 
 Updated 2026-10-20. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest executed matrix: `f30d933fd9cab5802e3420d390d4ece049d052f4`,
-382 passed and 1 raw Firefox click/cleanup failure. All wrapper jobs and owned shutdown
-checks passed; batch matrix is FAILED. Last complete green matrix remains
-`2321179bf52f79abe7986c8d6a2b133c46f1da5a` (212 passed, no failed/skipped/cancelled).
-Current scheduling/interaction candidate needs native verification. All 45
-mandatory scenarios are mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
+Latest completed native matrix: `5264cb620ad590e12908e196562de32b99b82f53`,
+457 passed and 1 macOS Chromium modal/upload timeout. All nine batch/journal jobs
+passed, including native bootstrap and Windows verified cleanup recovery. Wrapper
+matrix FAILED. Last complete green matrix remains `2321179bf52f79abe7986c8d6a2b133c46f1da5a`
+(212 passed, no failed/skipped/cancelled). Candidate `d71c91e` is under native
+verification for journal state/value fences and modal diagnostics/fresh workflows.
+All 45 mandatory scenarios are mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
@@ -17,12 +18,12 @@ mandatory scenarios are mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | G03 FEATURE PARITY | IN PROGRESS | evidence/discovery-*.json: 25 default / 72 extended tools per configured browser; tests/capabilities.spec.ts | Add representative behavior tests for every capability group |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs + integration.test.mjs; evidence/codex-client-operator.txt: exact 1000 actions / 997 clicks | Extend real long workflow to other browsers |
 | G05 RETRIES | IN PROGRESS | route.fetch maxRetries:0 avoids automatic replay; no 429/503 policy | Implement tested Retry-After handling without unsafe replay |
-| G06 JOBS | IN PROGRESS | executor fault tests, independent worker/supervisor and real parent-death cleanup; 9041497 native owned shutdown proof; durable jobs absent | Durable IDs/queue/journal, leases and recovery |
+| G06 JOBS | IN PROGRESS | Independent supervisor/worker ownership; 5264cb6 native cleanup and internal journal metadata tests passed; public durable jobs absent | Guardian integration, public IDs/queue/status/result/cancel/cleanup and recovery |
 | G07 SECURITY | FAILED | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
 | G08 STORAGE | IN PROGRESS | runner.mjs mkdtemp private per-run artifacts; report.mjs exclusive report write | Atomic artifacts, quotas, retention and native Windows ACL evidence; 20-run uniqueness already passed |
 | G09 AUTH/PROFILES | NOT STARTED | Batch ephemeral only; upstream retains profile features | Reuse upstream isolation/profile APIs with project locks and tests |
-| G10 CROSS-BROWSER | IN PROGRESS | CI at 2321179: Chromium/Firefox/WebKit positive batch + redirect fixtures, original Chrome/Chromium/Firefox/WebKit behavior on Linux/macOS/Windows; evidence/ci-final-*.json | 9041497 Firefox timing failures require scheduling candidate verification; local container WebKit remains blocked |
-| G11 CROSS-OS | IN PROGRESS | Native CI green at 2321179; plain CLI + actual Codex operator smoke verified on Linux | Execute bootstrap scripts and batch CLI/Codex operator setup on native Windows/macOS |
+| G10 CROSS-BROWSER | IN PROGRESS | CI at 2321179: Chromium/Firefox/WebKit positive batch + redirect fixtures, original Chrome/Chromium/Firefox/WebKit behavior on Linux/macOS/Windows; evidence/ci-final-*.json | 5264cb6 native batch positives pass; investigate macOS Chromium modal timeout; earlier intermittent Firefox/WebKit failures remain recorded; local WebKit unavailable |
+| G11 CROSS-OS | IN PROGRESS | Native CI green at 2321179; plain CLI + actual Codex operator smoke verified on Linux | Native bootstrap passed 53 tests per OS at 5264cb6; execute actual Codex operator setup on native Windows/macOS |
 | G12 PERFORMANCE | IN PROGRESS | scripts/soak-local.mjs; PERFORMANCE.md; evidence/soak*.txt | Process-tree RSS/FD/CPU measurement, latency/token/CLI comparison |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | Original MCP preserves role-based click; batch role/name, testId, label, placeholder and text selectors added | Keyboard, mobile/touch/media assertions and selector behavior/negative fixtures |
 | G14 ADVANCED | IN PROGRESS | 72 contracts; native original storage/screenshot/trace/video/tabs/Chromium PDF behavior passed; tests/advanced.spec.ts | Frames/dialog/upload/network tools and remaining advanced positive/negative cases |
@@ -562,3 +563,19 @@ The individual-job log redirect was denied by this environment's network proxy.
 The completed workflow archive was accessible and supplied the preserved evidence.
 The durable result/cancellation/deadline hardening commits after 5264cb6 have only
 local Node 22/24 evidence until the next native run. Public jobs remain unfinished.
+
+## Trusted worker admission boundary (local verification)
+
+Added source-only beforeWorkerStart to the supervised executor. The watchdog
+withholds the worker start message until ownership admission resolves; rejection
+returns journal_unavailable, pending admission cannot evade the existing deadline,
+and a late resolution cannot start actions after cancellation/termination. No new
+MCP/CLI inputs or job tools are exposed. Pre-ack failures preserve exact zero
+actions. This is preparation for guardian-owned durable execution, not that full
+integration. Default no-hook execution retains the direct start path.
+
+Failing-before tests showed the missing hook allowed fixture effects. Afterward:
+14 executor tests passed, one ENOSPC report-failure test passed, three admission
+tests passed on Node 22, and gated real Chromium/Firefox positives passed (23
+actions, exact counter, PNG and report per browser). Lint/diff checks passed.
+Native hook/WebKit verification is pending; local WebKit remains unavailable.

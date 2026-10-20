@@ -35,8 +35,8 @@ The supervisor removes temporary files after termination through a bounded clean
 child, with retries for transient Windows file locks. Reports publish via
 exclusive temporary files and atomic rename, not a power-loss durable journal.
 Replies contain at most ten recent steps. Failed execution counts can be confirmed
-lower bounds; unsafe actions are never automatically replayed. There is no durable
-job state machine, retention/quota controller, persistent companion profile or
+lower bounds; unsafe actions are never automatically replayed. There is an internal durable metadata journal, but no public durable
+job execution API, retention/quota controller, persistent companion profile or
 resume engine. Worker V8 heap is capped at 256 MiB; browser RSS and response-body
 memory are not capped by that setting.
 
@@ -51,3 +51,13 @@ close can be reconciled after worker exit, owned process termination, temp remov
 and report publication within budget; the original failure remains in metadata.
 Actions, policy and report errors are preserved. This prevents false failure after
 confirmed effects and verified cleanup without replaying those effects.
+
+Trusted source callers can supply `beforeWorkerStart({pid})` to executeWorkflow.
+When configured, the supervisor creates an idle worker and withholds its start
+packet until the frontend acknowledges successful admission. This lets a future
+job guardian persist ownership before browser actions. Throwing rejects admission
+with journal_unavailable; a pending admission remains under the same independent
+watchdog deadline. Cancellation/deadline blocks late acknowledgement. Failure
+before acknowledgement has exact zero action completion and remains retrySafe=false.
+The normal CLI/MCP do not configure this hook. It is not accepted in workflow JSON
+or a public job API, and callback code is trusted source code, not model input.
