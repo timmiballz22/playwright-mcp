@@ -29,7 +29,7 @@ async function finish(exitCode) {
   let cleaned = await terminateOwnedProcesses(worker.pid, [...browserPids], !workerExited);
   let tempCleanup = 'not-created';
   if (ownsWorkspace) {
-    const removed = await cleanupTemporaryDirectory(path.join(workspaceRoot, 'tmp'), Math.max(1, Math.min(2000, remaining())));
+    const removed = await cleanupTemporaryDirectory(path.join(workspaceRoot, 'tmp'), Math.max(1, Math.min(2000, remaining())), path.join(workspaceRoot, 'cleanup-diagnostic.json'));
     tempCleanup = removed ? 'removed' : 'failed';
     if (!removed) cleaned = false;
   }
@@ -52,7 +52,7 @@ function stop(reason) {
   stopReason = reason;
   if (!worker) { if (process.connected) process.disconnect(); return; }
   if (worker.connected) { try { worker.send({ type: 'abort' }, () => {}); } catch {} }
-  forceTimer = setTimeout(() => { void force(); }, Math.max(0, Math.min(200, remaining())));
+  forceTimer = setTimeout(() => { void force(); }, Math.max(0, Math.min(process.platform === 'win32' ? 750 : 200, remaining() / 3)));
 }
 process.once('disconnect', () => stop('cancelled'));
 process.on('message', message => {
@@ -82,7 +82,7 @@ process.on('message', message => {
   worker.once('exit', code => { workerExited = true; void finish(code); });
   // Reserve part of the same deadline for cancellation, process termination and
   // reporting. A stalled report or even a stalled event loop cannot evade this.
-  const reserve = Math.min(1000, Math.max(20, packet.timeoutMs / 5));
+  const reserve = process.platform === 'win32' ? Math.min(3000, Math.max(20, packet.timeoutMs / 2)) : Math.min(1000, Math.max(20, packet.timeoutMs / 5));
   deadlineTimer = setTimeout(() => stop('timeout'), Math.max(0, remaining() - reserve));
   worker.send({ type: 'start', workflow: packet.workflow, options: packet.options, runId: packet.runId, workspaceRoot }, () => {});
   if (stopReason) { const reason = stopReason; stopReason = undefined; stop(reason); }

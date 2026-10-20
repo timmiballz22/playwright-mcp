@@ -45,7 +45,9 @@ test('abrupt execution-host death terminates its supervisor, worker and real bro
       if (!(await Promise.all(pids.map(running))).some(Boolean)) {
         const workspaces = (await readdir(dir)).filter(name => name.startsWith('exec-'));
         assert.equal(workspaces.length, 1);
-        await assert.rejects(stat(path.join(dir, workspaces[0], 'tmp')), { code: 'ENOENT' });
+        let receipt;
+        try { receipt = JSON.parse(await readFile(path.join(dir, workspaces[0], 'cleanup-diagnostic.json'), 'utf8')); } catch { receipt = { receipt: 'unavailable' }; }
+        await assert.rejects(stat(path.join(dir, workspaces[0], 'tmp')), { code: 'ENOENT' }, JSON.stringify(receipt));
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 50));

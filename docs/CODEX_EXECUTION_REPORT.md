@@ -185,3 +185,22 @@ policy denial and cleanup are observed. Local lifecycle/security subset: 13 pass
 cleanup subprocess test: 1 passed. Typed Chromium/Firefox deadline fixtures passed.
 New candidate native CI is required; Windows cleanup is still an open gate until
 it passes. Filesystem/kernel stalls remain subject to OS termination limitations.
+
+## Cancellation cleanup budget correction (native CI pending)
+
+CI at 87ddfe2: batch Linux and macOS 43/43 each; Windows 40/43. WebKit now
+passes the real deadline fixture with explicit HTML content type. Windows EOF,
+SIGTERM and abrupt-host cleanup still fail temporary-directory assertions. Wrapper
+all native jobs, Docker and lint passed. These failed assertions are retained.
+
+Inspection found frontend cancellation forced the supervisor after only 500 ms,
+shorter than its process-termination plus filesystem-cleanup budgets. The new
+candidate allows up to five seconds for cooperative cancellation (the global
+workflow deadline remains authoritative), reserves more of the Windows deadline
+for cleanup and grants Windows 750 ms cooperative stop time. Windows termination
+handles known browser trees before their worker root. A tiny private cleanup
+receipt contains only schemaVersion, ok and an allowlisted filesystem error code;
+fixtures print it on failure to distinguish absent completion from deletion errors.
+It is diagnostic metadata, not a job journal. Local lifecycle subset: 11 passed;
+no new Windows PASS is claimed before native execution. JOBS_DESIGN.md records
+future durable-state invariants; durable jobs remain unimplemented.

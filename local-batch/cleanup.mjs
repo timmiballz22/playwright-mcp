@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 // Filesystem calls can stall independently of the supervisor's event loop.
 // Contain them in a child that can be terminated within its cleanup budget.
-export async function cleanupTemporaryDirectory(directory, timeoutMs = 2000) {
+export async function cleanupTemporaryDirectory(directory, timeoutMs = 2000, diagnosticPath) {
   return await new Promise(resolve => {
     let reported = false;
     let expired = false;
@@ -14,6 +14,6 @@ export async function cleanupTemporaryDirectory(directory, timeoutMs = 2000) {
     child.on('message', message => { reported = message.ok === true; });
     child.once('error', () => { clearTimeout(timer); resolve(false); });
     child.once('exit', code => { clearTimeout(timer); resolve(!expired && reported && code === 0); });
-    child.send({ directory }, () => {});
+    child.send({ directory, diagnosticPath }, () => {});
   });
 }

@@ -64,7 +64,7 @@ export async function executeWorkflow(input, {
     const stop = reason => {
       stopReason ||= reason;
       if (supervisor.connected) { try { supervisor.send({ type: 'stop', reason: stopReason }, () => {}); } catch {} }
-      if (!fallbackTimer) fallbackTimer = setTimeout(() => { void force(stopReason); }, 500);
+      if (!fallbackTimer) fallbackTimer = setTimeout(() => { void force(stopReason); }, 5000);
     };
     const abort = () => stop('cancelled');
     signal?.addEventListener('abort', abort, { once: true });

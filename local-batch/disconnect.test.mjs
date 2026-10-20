@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
 import { createInterface } from 'node:readline';
-import { mkdtemp, rm, readdir, stat } from 'node:fs/promises';
+import { mkdtemp, rm, readdir, stat, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -57,7 +57,8 @@ for (const stop of ['eof', 'SIGTERM']) {
         if (!temporaryExists.some(Boolean)) { cleaned = true; break; }
         await new Promise(resolve => setTimeout(resolve, 50));
       }
-      assert.equal(cleaned, true, 'Supervisor did not remove temporary browser files');
+      const receipts = await Promise.all((await readdir(dir)).filter(name => name.startsWith('exec-')).map(async name => { try { return JSON.parse(await readFile(path.join(dir, name, 'cleanup-diagnostic.json'), 'utf8')); } catch { return { receipt: 'unavailable' }; } }));
+      assert.equal(cleaned, true, 'Temporary cleanup incomplete: ' + JSON.stringify(receipts));
     } finally {
       clearTimeout(timer); child.kill('SIGKILL'); lines.close();
       fixture.closeAllConnections(); fixture.close();

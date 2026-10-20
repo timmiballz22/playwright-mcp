@@ -21,7 +21,7 @@ export async function terminateOwnedProcesses(rootPid, browserPids = [], rootRun
   let ok = true;
   if (process.platform === 'win32') {
     // /T catches startup children even before launchServer can report its PID.
-    for (const pid of new Set([...(rootRunning ? [rootPid] : []), ...owned])) {
+    for (const pid of new Set([...owned, ...(rootRunning ? [rootPid] : [])])) {
       try {
         await exec(path.join(process.env.SystemRoot || 'C:\Windows', 'System32', 'taskkill.exe'), ['/PID', String(pid), '/T', '/F'], { timeout: commandTimeout(), windowsHide: true, maxBuffer: 65536 });
       } catch {

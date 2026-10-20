@@ -26,7 +26,7 @@ test('partial report write failure preserves completed actions and publishes no 
     assert.equal(navigations, 1, 'Reporting failure replayed an already executed navigation');
     assert.equal(JSON.stringify(result).includes('fake-report-secret'), false, 'Report exception leaked sensitive diagnostic text');
     const files = await readdir(path.join(dir, 'exec-' + result.runId));
-    assert.equal(files.some(file => file.endsWith('.json') || file.endsWith('.tmp')), false, 'A partial report was published or retained');
+    assert.equal(files.some(file => /^\.?run-[0-9a-f-]+\.(json|tmp)$/.test(file)), false, 'A partial report was published or retained');
   } finally {
     fixture.closeAllConnections(); fixture.close(); await rm(dir, { recursive: true, force: true });
   }
