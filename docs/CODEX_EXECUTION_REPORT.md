@@ -44,3 +44,44 @@ DNS/egress threat cases, approved redirect semantics, screenshot masking, artifa
 quotas/retention, retry/backoff policy, robust assertions/AST, mobile/accessibility
 matrix, real Codex operator setup, resource/token/CLI comparison and full CI.
 No packages published, no main merge, no production actions performed.
+
+## Final verified code milestone
+
+Tested commit: 2321179bf52f79abe7986c8d6a2b133c46f1da5a.
+Native batch CI: https://github.com/timmiballz22/playwright-mcp/actions/runs/39478123877
+Native wrapper/Docker/lint CI: https://github.com/timmiballz22/playwright-mcp/actions/runs/39478123906
+All eight jobs succeeded: 26 batch + 44 wrapper tests per Linux/macOS/Windows,
+plus 2 Docker tests = 212 passed, 0 failed/skipped/cancelled in final CI.
+Windows uses one wrapper worker and an explicit 15s Chrome action/60s test
+budget; production defaults are unchanged. Repeated cold Windows Chrome
+reliability remains a follow-up, not silently dismissed as a fixed engine bug.
+
+Actual Codex CLI 0.163.0 app-server: both stdio endpoints discovered, original
+local navigation passed, compact one-call 1,000-operation batch passed in 33.882s,
+zero model turns. Plain CLI: 26 operations and canary/report checks passed.
+Separate original 804bc7e baseline: 8 tests passed using managed Chromium and
+all six complete tool schema records unchanged. Raw operator scripts/results and
+CI summaries are under docs/evidence.
+
+The final evidence/gitignore follow-up changes no runtime or tests, and deliberately
+skips duplicate CI. The tested code SHA and executed results above remain explicit.
+G04/G10/G15 verified; other gates remain partial/failed as detailed in the ledger.
+No release-ready claim, publication, main merge, or production action.
+
+Reproduce tested code:
+
+```bash
+git clone --branch feat/local-production-hardening https://github.com/timmiballz22/playwright-mcp.git
+cd playwright-mcp
+git checkout 2321179bf52f79abe7986c8d6a2b133c46f1da5a
+npm ci
+npx playwright install --with-deps chromium firefox webkit chrome
+npm test
+npm run test:batch
+node scripts/verify-package.mjs
+```
+
+Browser system dependency installation can require administrator access. The
+local container could not install those dependencies; native CI provides the
+complete browser matrix. Node 18 support is unverified despite inherited engine
+metadata; prefer the tested current Node 22/24 runtimes for local operation.

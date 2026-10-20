@@ -10,8 +10,9 @@ Top-level fields: `schemaVersion`, `browser` (chromium default, firefox, webkit)
 default 120000), `actionTimeoutMs` (100–30000, default 5000). Each action accepts optional integer `repeat` (1–1000, default 1), an explicit
 ordered repeat, not an automatic retry. Sum of action repeats × iterations cannot
 exceed 1,000; bounds are checked before allocation. Example:
-`{"schemaVersion":1,"steps":[{"type":"click","selector":{"role":"button","name":"Add"},"repeat":1000}]}`
-performs 1,000 clicks on the existing page (navigation is a separate action). Action timeouts use Playwright auto-wait;
+`{"schemaVersion":1,"steps":[{"type":"goto","url":"http://127.0.0.1:3000/"},{"type":"click","selector":{"role":"button","name":"Add"},"repeat":997},{"type":"assertText","selector":"output","equals":"997"},{"type":"assertURL","url":"http://127.0.0.1:3000/"}]}`
+performs 1,000 operations on an operator-approved counter fixture. Every run
+starts a fresh context/page; navigation and assertions count toward the cap. Action timeouts use Playwright auto-wait;
 assertText currently reads once and is NOT a retrying expect assertion.
 
 | Action type | Required fields | Meaning |

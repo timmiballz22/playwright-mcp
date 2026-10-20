@@ -8,22 +8,22 @@ selectors, actual EOF/SIGTERM shutdown, concurrent screenshot fixtures.
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | FAILED | BASELINE_AUDIT.md; evidence/baseline-upstream.txt: 6 pass / 2 missing-Chrome failures | Run native full matrix; establish prechange full baseline where possible |
+| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md; evidence/baseline-upstream.txt: 6 pass / 2 missing-Chrome failures | Run native full matrix; establish prechange full baseline where possible |
 | G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs: production tarball, both stdio handshakes; SDK runtime, private fork identity | Obtain native OS / Node LTS matrix |
 | G02 MCP | IN PROGRESS | local-batch/mcp.test.mjs handshake, discovery, real 100-click call; production-smoke.mjs | Test active disconnect, signals, concurrent calls and resource ownership |
 | G03 FEATURE PARITY | IN PROGRESS | evidence/discovery-*.json: 25 default / 72 extended tools per configured browser; tests/capabilities.spec.ts | Add representative behavior tests for every capability group |
 | G04 BATCH | VERIFIED PASS | local-batch/integration.test.mjs; evidence/thousand.txt: 1,000 real Chromium operations, 997 clicks, exact completion and counter assertion | Extend real long workflow to other browsers |
-| G05 RETRIES | NOT STARTED | route.fetch maxRetries:0 avoids automatic replay; no 429/503 policy | Implement tested Retry-After handling without unsafe replay |
+| G05 RETRIES | IN PROGRESS | route.fetch maxRetries:0 avoids automatic replay; no 429/503 policy | Implement tested Retry-After handling without unsafe replay |
 | G06 JOBS | IN PROGRESS | runner.test.mjs stalled launch deadline + late close; runner.mjs bounded cleanup | Worker isolation, durable IDs/queue/journal; process-tree kill; reporting deadline |
 | G07 SECURITY | FAILED | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
 | G08 STORAGE | IN PROGRESS | runner.mjs mkdtemp private per-run artifacts; report.mjs exclusive report write | Atomic artifacts, quotas, retention, retention quota test (20-run concurrent screenshot test now passed) |
 | G09 AUTH/PROFILES | NOT STARTED | Batch ephemeral only; upstream retains profile features | Reuse upstream isolation/profile APIs with project locks and tests |
-| G10 CROSS-BROWSER | BLOCKED | Chromium/Firefox browser security + wrapper tests pass; WebKit actual launch fails missing libraries | Install native dependencies through CI (local su unavailable) |
-| G11 CROSS-OS | IN PROGRESS | .github/workflows/{ci,local-batch}.yml native OS matrix configured | Inspect actual Windows/macOS/Linux results; queued != passed |
+| G10 CROSS-BROWSER | VERIFIED PASS | CI at 2321179: Chromium/Firefox/WebKit positive batch + redirect fixtures, original Chrome/Chromium/Firefox/WebKit behavior on Linux/macOS/Windows; evidence/ci-final-*.json | Keep wider interaction coverage tracked in G13/G14; local container WebKit remains blocked |
+| G11 CROSS-OS | IN PROGRESS | Native CI green at 2321179; plain CLI + actual Codex operator smoke verified on Linux | Execute bootstrap scripts and batch CLI/Codex operator setup on native Windows/macOS |
 | G12 PERFORMANCE | IN PROGRESS | scripts/soak-local.mjs; PERFORMANCE.md; evidence/soak*.txt | Process-tree RSS/FD/CPU measurement, latency/token/CLI comparison |
-| G13 ACCESSIBILITY/MOBILE | NOT STARTED | Original MCP preserves role-based click; batch role/name, testId, label, placeholder and text selectors added | Versioned selector AST, accessible assertions, touch/media fixtures |
-| G14 ADVANCED | NOT STARTED | 72 discovery contracts only; behavior not proved | Tabs/frames/dialog/upload/storage/tracing/video/PDF real tests |
-| G15 RELEASE SAFETY | IN PROGRESS | distribution.test.mjs, private package, publish-disabled.cjs; no registry publishing workflow | Release/evidence CI gate contract tests; registry ownership intentionally not asserted |
+| G13 ACCESSIBILITY/MOBILE | IN PROGRESS | Original MCP preserves role-based click; batch role/name, testId, label, placeholder and text selectors added | Versioned selector AST, accessible assertions, touch/media fixtures |
+| G14 ADVANCED | IN PROGRESS | 72 contracts; native original storage/screenshot/trace/video/tabs/Chromium PDF behavior passed; tests/advanced.spec.ts | Tabs/frames/dialog/upload/storage/tracing/video/PDF real tests |
+| G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs, private package, publish-disabled.cjs; no registry publishing workflow | Keep publication disabled; registry ownership and a future authorized release remain separate |
 | G16 DOCUMENTATION | IN PROGRESS | LOCAL_BATCH.md, BASELINE_AUDIT.md, THREAT_MODEL.md, PERFORMANCE.md | Complete schema/client/architecture/release docs against implemented behavior |
 | G17 AUDIT EVIDENCE | IN PROGRESS | This ledger + evidence logs + test scripts | Link tested SHA and CI results; complete all 45 scenarios |
 | G18 CLEAN MERGE | IN PROGRESS | Fork branch, pinned dependencies retained; lint and diff checks | Green required CI, review all unresolved critical items; do not merge as READY |
@@ -173,3 +173,37 @@ implemented. Treat this as an additional resource-exhaustion release blocker.
 NEXT ACTION: inspect newest CI Windows/macOS/Linux results, diagnose failures;
 then build isolated worker jobs with durable metadata and full process/report
 deadlines. All remaining G00–G18 criteria still apply.
+
+## Final tested milestone (mission incomplete)
+
+Tested code commit: `2321179bf52f79abe7986c8d6a2b133c46f1da5a`.
+- https://github.com/timmiballz22/playwright-mcp/actions/runs/39478123877
+  All three native OS batch jobs: 26 passed each, 0 failed/skipped/cancelled.
+- https://github.com/timmiballz22/playwright-mcp/actions/runs/39478123906
+  All three native OS wrapper jobs: 44 passed each; Docker: 2 passed; lint green.
+  Eight configured CI jobs across both workflows succeeded, 212 executed tests total,
+  0 failures/skips/cancellations in these final runs. Earlier superseded runs
+  remain cancelled or failed as recorded; they are not relabeled.
+- Native Node 20 CI; local Node 24.19.0; Node 22.23.3 subset 16/16 passed.
+- Separate baseline 804bc7e worktree: all 8 original tests passed with an explicit
+  managed-Chromium config (default branded Chrome still unavailable locally).
+  All six complete discovery schema records match the original exactly.
+- Actual Codex CLI 0.163.0 app-server: original + batch endpoints discovered;
+  real upstream navigation; one batch call, four declared steps, 1,000 operations
+  with exact counter, 33.882s; zero model turns. Temporary per-process configuration
+  and ephemeral thread; global Codex config unchanged. See operator evidence.
+- Plain CLI operator fixture: 26 operations, accessible label/role selectors,
+  empty fill/check/uncheck, exact count, report write and seeded input canary
+  absence from stdout/stderr/report. Local HTTP only, no connected model/client.
+- G15 evidence also includes expected npm-publish refusal and package.private;
+  no registry publish operation remains in inherited workflow.
+- Final evidence/hygiene follow-up adds `.playwright-mcp/` to gitignore after the
+  real client generated an upstream snapshot there. `git check-ignore` confirms
+  exclusion. This changes no runtime source or test behavior. Its commit uses
+  [skip ci] to avoid rerunning an identical matrix; CI PASS applies to 2321179,
+  not to an unexecuted/skipped run.
+
+Still NOT RELEASE-READY: all remaining G00–G18 criteria apply. G04/G10/G15 have
+the evidence above; other gates are partial or failed. NEXT ACTION remains isolated
+worker jobs/process/report deadlines, then profile/recovery/resource/network and
+remaining 45-scenario acceptance work. No package publication or main merge.

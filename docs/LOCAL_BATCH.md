@@ -39,7 +39,7 @@ Example `~/.codex/config.toml`:
 ```toml
 [mcp_servers.playwright]
 command = "node"
-args = ["/ABSOLUTE/PATH/playwright-mcp/cli.js"]
+args = ["/ABSOLUTE/PATH/playwright-mcp/cli.js", "--browser=chromium", "--isolated", "--headless"]
 
 [mcp_servers.local_playwright_batch]
 command = "node"

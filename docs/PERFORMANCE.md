@@ -26,3 +26,10 @@ representative argument JSON is 60,952 UTF-8 bytes inline vs 209 with repeat.
 This is argument serialization size, not transferred MCP frame size or measured
 model tokens. A real MCP acceptance fixture uses the compact form and exact
 final count. See evidence/batch-third-final.txt for execution time.
+
+Actual Codex client sample at tested code 2321179:
+Codex CLI 0.163.0 app-server -> upstream navigation + batch endpoint, 1,000
+operations in one positive batch tool call (four declared steps), 33,882ms.
+The counter is asserted exactly after 997 clicks; navigation and two assertions
+complete the 1,000 actions. No model turn was started in this protocol test; this
+is not a claim of zero model usage in normal conversational automation.

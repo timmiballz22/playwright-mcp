@@ -1,0 +1,70 @@
+Codex CLI 0.163.0; temporary config overrides, ephemeral thread, no model turns.
+Executed: node /tmp/codex-client-verification-diagnostic.mjs
+
+Script:
+import { spawn } from 'node:child_process';
+import { createInterface } from 'node:readline';
+import { createServer } from 'node:http';
+import { once } from 'node:events';
+import { mkdtemp, rm } from 'node:fs/promises';
+import path from 'node:path';
+import os from 'node:os';
+import assert from 'node:assert/strict';
+const root = '/workspace/playwright-mcp';
+const dir = await mkdtemp(path.join(os.tmpdir(), 'codex-mcp-verification-'));
+const fixture = createServer((req, res) => { res.writeHead(200, { 'content-type': 'text/html' }); res.end('<title>Local Codex Fixture</title><button>Add</button><output>0</output><script>let n=0;document.querySelector("button").onclick=()=>{document.querySelector("output").textContent=String(++n)}</script>'); });
+fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
+const origin = `http://127.0.0.1:${fixture.address().port}`;
+const config = `mcp_servers={local_playwright_batch={command=${JSON.stringify(process.execPath)},args=[${JSON.stringify(path.join(root,'local-batch/mcp.mjs'))}],env={PLAYWRIGHT_BATCH_ALLOWED_ORIGINS=${JSON.stringify(origin)},PLAYWRIGHT_BATCH_ARTIFACTS_DIR=${JSON.stringify(dir)}}},playwright_upstream={command=${JSON.stringify(process.execPath)},args=[${JSON.stringify(path.join(root,'cli.js'))},"--browser=chromium","--isolated","--headless"]}}`;
+await (await import('node:fs/promises')).writeFile('/tmp/codex-client-config.txt', config);
+const child = spawn('/opt/codex/bin/codex', ['app-server', '--stdio', '-c', config], { cwd: root, stdio: ['pipe','pipe','pipe'] });
+let diagnostic = '';
+child.stderr.on('data', data => { diagnostic = (diagnostic + data).slice(-8192); });
+const lines = createInterface({ input: child.stdout });
+const pending = new Map(); let nextId = 1;
+child.on('exit', (code,signal) => {
+  let safe = diagnostic;
+  for (const value of Object.values(process.env)) if (value && value.length >= 8) safe=safe.split(value).join('[redacted-env]');
+  safe=safe.replace(/https?:\/\/\S+/g, '[redacted-url]').replace(/Bearer\s+\S+/gi, 'Bearer [redacted]');
+  for (const item of pending.values()) { clearTimeout(item.timer); item.reject(new Error('Codex process exit '+code+'/'+signal+': '+safe.slice(-1000))); }
+  pending.clear();
+});
+lines.on('line', line => { const value = JSON.parse(line); if (pending.has(value.id)) { const item=pending.get(value.id); pending.delete(value.id); clearTimeout(item.timer); value.error ? item.reject(new Error(value.error.code + ':' + value.error.message)) : item.resolve(value.result); } });
+const send = packet => child.stdin.write(JSON.stringify({jsonrpc:'2.0', ...packet})+'\n');
+const rpc = (method, params) => (console.log(JSON.stringify({stage:method})), new Promise((resolve,reject) => { const id=nextId++; const timer=setTimeout(()=>{ pending.delete(id); reject(new Error('Codex RPC timeout: '+method)); },100000); pending.set(id,{resolve,reject,timer}); send({id,method,params}); }));
+try {
+  await rpc('initialize', { clientInfo: { name:'local-mcp-acceptance', version:'1.0.0' }, capabilities:{experimentalApi:true} });
+  send({method:'initialized',params:{}});
+  const started = await rpc('thread/start', {cwd:root,ephemeral:true,sandbox:'workspace-write',approvalPolicy:'never'});
+  const threadId=started.thread.id;
+  for(const serverName of ['local_playwright_batch','playwright_upstream']) {
+    const inventory=await rpc('mcpServerStatus/list',{threadId,serverName,detail:'toolsAndAuthOnly'});
+    const server=inventory.data.find(item=>item.name===serverName);
+    assert.ok(server, 'Codex did not discover '+serverName);
+    const names=Object.keys(server.tools);
+    assert.ok(names.includes(serverName==='local_playwright_batch'?'browser_run_batch':'browser_navigate'));
+    console.log(JSON.stringify({client:'codex-cli 0.163.0 app-server', server:serverName, toolCount:names.length}));
+  }
+  const original=await rpc('mcpServer/tool/call',{threadId,server:'playwright_upstream',tool:'browser_navigate',arguments:{url:origin+'/'}});
+  assert.notEqual(original.isError,true); assert.ok(JSON.stringify(original.content).includes('Local Codex Fixture'));
+  const start=performance.now();
+  const result=await rpc('mcpServer/tool/call',{threadId,server:'local_playwright_batch',tool:'browser_run_batch',arguments:{schemaVersion:1,steps:[{type:'goto',url:origin+'/'},{type:'click',selector:{role:'button',name:'Add'},repeat:997},{type:'assertText',selector:'output',equals:'997'},{type:'assertURL',url:origin+'/'}]}});
+  assert.notEqual(result.isError,true,JSON.stringify(result)); const summary=JSON.parse(result.content[0].text); assert.equal(summary.ok,true); assert.equal(summary.completed,1000);
+  console.log(JSON.stringify({client:'codex-cli 0.163.0 app-server',originalNavigation:true,batchCompleted:summary.completed,positiveBatchToolCalls:1,declaredSteps:4,modelTurns:0,durationMs:Math.round(performance.now()-start)}));
+} finally {
+  for(const item of pending.values()) clearTimeout(item.timer);
+  child.stdin.end(); lines.close(); child.kill('SIGTERM');
+  fixture.closeAllConnections(); fixture.close();
+  await rm(dir,{recursive:true,force:true});
+}
+
+Observed output:
+{"stage":"initialize"}
+{"stage":"thread/start"}
+{"stage":"mcpServerStatus/list"}
+{"client":"codex-cli 0.163.0 app-server","server":"local_playwright_batch","toolCount":1}
+{"stage":"mcpServerStatus/list"}
+{"client":"codex-cli 0.163.0 app-server","server":"playwright_upstream","toolCount":25}
+{"stage":"mcpServer/tool/call"}
+{"stage":"mcpServer/tool/call"}
+{"client":"codex-cli 0.163.0 app-server","originalNavigation":true,"batchCompleted":1000,"positiveBatchToolCalls":1,"declaredSteps":4,"modelTurns":0,"durationMs":33882}

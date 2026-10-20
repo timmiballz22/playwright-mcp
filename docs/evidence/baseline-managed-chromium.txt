@@ -1,0 +1,23 @@
+
+> @playwright/mcp@0.0.83 test
+> playwright test --config baseline.config.ts
+
+
+Running 8 tests using 2 workers
+
+(node:42723) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:42722) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium-baseline] › tests/capabilities.spec.ts:50:5 › test capabilities (pdf) (467ms)
+  ✓  2 [chromium-baseline] › tests/capabilities.spec.ts:19:5 › test snapshot tool list (596ms)
+  ✓  3 [chromium-baseline] › tests/capabilities.spec.ts:59:5 › test capabilities (vision) (498ms)
+  ✓  4 [chromium-baseline] › tests/capabilities.spec.ts:70:5 › support for legacy --vision option (423ms)
+  ✓  5 [chromium-baseline] › tests/cli.spec.ts:22:5 › install-browser --help (421ms)
+  ✓  7 [chromium-baseline] › tests/core.spec.ts:19:5 › browser_navigate (1.4s)
+(node:43014) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  8 [chromium-baseline] › tests/library.spec.ts:20:5 › library can be used from CommonJS (292ms)
+  ✓  6 [chromium-baseline] › tests/click.spec.ts:19:5 › browser_click (2.2s)
+
+  8 passed (4.4s)

@@ -32,5 +32,13 @@ CODEX_ULTIMATE_MASTER_PROMPT.md; the ledger tracks G00–G18.
 | 44 | Publication disabled/private package; complete release-CI evidence gate pending |
 | 45 | Source setup documented; clean real Codex operator validation pending |
 
-WebKit discovery is not browser execution. Local WebKit launch FAILED on missing
-libraries. No physical iOS coverage, no substitution from mobile emulation.
+Native CI at 2321179 executed real Chromium/Firefox/WebKit positive batch and
+security fixtures on Linux/macOS/Windows (26/26 per OS). Wrapper projects Chrome,
+Chromium, Firefox and WebKit passed 44/44 per OS; Docker 2/2. Local container
+WebKit launch still FAILED on missing libraries. No physical iOS coverage, no substitution from mobile emulation.
+
+Latest operator evidence: docs/evidence/cli-operator.txt and
+codex-client-operator.txt prove Linux plain CLI and actual Codex app-server
+configuration/discovery/navigation/1,000-operation tool call. No model turn was
+started. Native Windows/macOS interactive Codex and bootstrap scripts are not
+certified by these SDK/browser CI jobs.

@@ -19,7 +19,7 @@ Codex config template (replace paths and origins with operator-approved values):
 ```toml
 [mcp_servers.playwright]
 command = "node"
-args = ["/absolute/playwright-mcp/cli.js", "--isolated", "--headless"]
+args = ["/absolute/playwright-mcp/cli.js", "--browser=chromium", "--isolated", "--headless"]
 
 [mcp_servers.local_playwright_batch]
 command = "node"
@@ -39,8 +39,10 @@ secrets; there is no pixel masking. Origins include exact scheme/host/port;
 localhost access is not implicit. Redirects and WebSockets are rejected.
 
 Verified pathway: SDK stdio initialize, ping, discovery and actual batch browser
-calls, plus independent production tarball handshakes. This template has NOT been
-verified inside an interactive Codex client. It does not install a plugin into a
+calls, plus independent production tarball handshakes. Codex CLI 0.163.0 app-server was verified with temporary config overrides:
+both endpoints discovered, original navigation passed, and one compact batch
+tool call completed 1,000 operations in 33.882s. No model turn was started.
+Interactive conversational use and native Windows/macOS Codex are not verified. It does not install a plugin into a
 ChatGPT iPhone app. A local process must be launched by a local MCP-capable client.
 Client/model quotas, machine limits and website rate limits still apply.
 
@@ -48,3 +50,7 @@ For missing browsers install the matching pinned Playwright build from this
 checkout. For rejected requests inspect the locally configured origin list;
 do not let a page or model widen it automatically. Durable job IDs, reconnect
 execution and background daemon supervision are not available.
+
+The verified original endpoint explicitly selects managed Chromium. Without
+`--browser=chromium`, upstream defaults to branded Chrome, which may require a
+separate installation. Avoid assuming a managed Chromium download installs Chrome.
