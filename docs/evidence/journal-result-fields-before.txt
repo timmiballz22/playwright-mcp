@@ -1,0 +1,34 @@
+✔ managed directory links and database hardlinks cannot modify another file (98.615351ms)
+✔ POSIX journal directory must exclude group and other access (71.797781ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (261.371878ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (110.527801ms)
+✔ killed transaction rolls back without a partial job or duplicate request (282.538817ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (148.944276ms)
+✔ corrupt journal is rejected without silently erasing the file (89.664995ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (68.488114ms)
+✖ journal preserves idempotency, owner isolation and a single project execution lease (119.2717ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1330.322609
+
+✖ failing tests:
+
+test at local-batch/jobs/journal.test.mjs:158:3
+✖ journal preserves idempotency, owner isolation and a single project execution lease (119.2717ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal.test.mjs:199:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { code: 'invalid_metadata' },
+    operator: 'rejects',
+    diff: 'simple'
+  }

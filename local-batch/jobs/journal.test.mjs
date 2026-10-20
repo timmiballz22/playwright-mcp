@@ -188,9 +188,27 @@ if (!supportsJournal) {
         summary: { ok: false, completed: 2, total: 3, recentSteps: [{ index: 3, type: 'fake-workflow-secret-canary', ok: false, error: 'action_failed' }] } }), { code: 'invalid_metadata' });
       await assert.rejects(a.call('finish', { id, nonce, state: 'FAILED', completed: 2, cleanupOk: true,
         summary: { ok: false, completed: 2, total: 3, recentSteps: [{ index: 3, type: 'click', ok: false, error: 'fake-workflow-secret-canary' }] } }), { code: 'invalid_metadata' });
+      for (const injected of [
+        { browser: 'fake-workflow-secret-canary' }, { stage: 'fake-workflow-secret-canary' },
+        { reportPath: 'fake-workflow-secret-canary' }, { runId: 'fake-workflow-secret-canary' },
+        { execution: { mode: 'fake-workflow-secret-canary' } },
+        { execution: { browserPids: ['fake-workflow-secret-canary'] } },
+        { recentSteps: [{ index: 3, type: 'click', ok: false, durationMs: 'fake-workflow-secret-canary' }] },
+        { recentSteps: [{ index: 3, type: 'screenshot', ok: true, artifact: 'fake-workflow-secret-canary' }] },
+      ]) {
+        await assert.rejects(a.call('finish', { id, nonce, state: 'FAILED', completed: 2, cleanupOk: true,
+          summary: { ok: false, completed: 2, total: 3, ...injected } }), { code: 'invalid_metadata' });
+      }
       await assert.rejects(a.call('progress', { id, nonce, completed: 1 }), { code: 'invalid_progress' });
       await assert.rejects(a.call('finish', { id, nonce, state: 'SUCCEEDED', completed: 2, cleanupOk: true }), { code: 'invalid_transition' });
-      await a.call('finish', { id, nonce, state: 'SUCCEEDED', completed: 3, cleanupOk: true });
+      const safeSummary = { schemaVersion: 1, runId: randomUUID(), ok: true, reason: null,
+        browser: 'chromium', completed: 3, total: 3, durationMs: 100, blockedRequests: 0,
+        completionCertainty: 'exact', actionsSucceeded: true, failedStep: null,
+        recentSteps: [{ index: 3, repetition: 1, type: 'click', ok: true, durationMs: 2 }],
+        execution: { mode: 'supervised', forced: false, cleanup: 'terminated', tempCleanup: 'removed',
+          supervisorPid: process.pid, workerPid: process.pid, browserPids: [] } };
+      await a.call('finish', { id, nonce, state: 'SUCCEEDED', completed: 3, cleanupOk: true, summary: safeSummary });
+      assert.deepEqual(await a.call('result', { id }), safeSummary);
       const final = await a.call('read', { id });
       assert.equal(final.state, 'SUCCEEDED');
       assert.equal(final.completed, 3);

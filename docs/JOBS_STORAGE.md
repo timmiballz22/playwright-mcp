@@ -15,7 +15,10 @@ rollback, not a simulated storage-controller or power failure.
 Fixed commands and SQL enforce owner isolation, request idempotency, bounded
 queue/history, monotonic progress and one project execution lease. Raw workflows,
 credentials and action error text are not stored. Request keys and workflow
-fingerprints are keyed hashes. Responses omit private identity and lease tokens.
+fingerprints are keyed hashes. Responses omit private identity and lease tokens. Persisted results accept only
+validated numeric/boolean/enum metadata and run UUIDs. Report paths and artifact
+paths are excluded; future execution integration must project those fields out
+before storing a result.
 A timed-out journal RPC kills its owned child handle and never retries a mutation.
 Only idempotent schema initialization has bounded busy retries.
 

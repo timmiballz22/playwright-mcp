@@ -385,3 +385,12 @@ A dedicated native journal matrix now exercises Linux/macOS/Windows Node 22 and
 Linux Node 24. No public job API or durable browser scheduler is implemented by
 this change. G06 and the overall mission remain incomplete. Next: native evidence,
 then guardian-owned job execution and public job tools without replay.
+
+## Journal result value validation follow-up
+
+A new negative test reproduced arbitrary string persistence through an otherwise
+allowed result field. The journal now validates every persisted result value,
+including nested execution and step fields, and excludes report/artifact paths.
+A complete valid result round-trips; injected secret strings are rejected before
+commit and remain absent from journal files. Nine local tests pass on Node 24
+and Node 22. Evidence includes the failing-before and passing-after runs.

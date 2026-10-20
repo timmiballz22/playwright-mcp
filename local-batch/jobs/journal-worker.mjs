@@ -96,25 +96,53 @@ function validateSummary(value, row, state, completed) {
   const result = value ?? { ok: state === 'SUCCEEDED', completed, total: row.total };
   if (!result || typeof result !== 'object' || Array.isArray(result)) error('invalid_metadata');
   const allowed = new Set(['schemaVersion', 'runId', 'ok', 'reason', 'browser', 'completed', 'total',
-    'durationMs', 'blockedRequests', 'recentSteps', 'failedStep', 'reportPath', 'completionCertainty',
+    'durationMs', 'blockedRequests', 'recentSteps', 'failedStep', 'completionCertainty',
     'retrySafe', 'execution', 'stage', 'actionsSucceeded', 'reportScope']);
   if (Object.keys(result).some(name => !allowed.has(name))) error('invalid_metadata');
   if (result.ok !== (state === 'SUCCEEDED') || result.completed !== completed || result.total !== row.total)
     error('invalid_metadata');
+  const optional = (object, field, valid) => {
+    if (object[field] !== undefined && !valid(object[field])) error('invalid_metadata');
+  };
+  optional(result, 'schemaVersion', value => value === 1);
+  optional(result, 'runId', value => typeof value === 'string' && uuid.test(value));
+  optional(result, 'browser', value => ['chromium', 'firefox', 'webkit'].includes(value));
+  optional(result, 'durationMs', value => integer(value, 0, 86400000));
+  optional(result, 'blockedRequests', value => integer(value, 0, 2147483647));
+  optional(result, 'completionCertainty', value => ['exact', 'confirmed_lower_bound'].includes(value));
+  optional(result, 'retrySafe', value => value === false);
+  optional(result, 'stage', value => ['workspace', 'execution', 'report'].includes(value));
   if (result.actionsSucceeded !== undefined && typeof result.actionsSucceeded !== 'boolean' ||
       state === 'SUCCEEDED' && result.actionsSucceeded === false ||
       result.reportScope !== undefined && result.reportScope !== 'worker_execution') error('invalid_metadata');
   if (result.recentSteps !== undefined && (!Array.isArray(result.recentSteps) || result.recentSteps.length > 10)) error('invalid_metadata');
+  if (result.failedStep !== undefined && result.failedStep !== null &&
+      (typeof result.failedStep !== 'object' || Array.isArray(result.failedStep))) error('invalid_metadata');
   for (const step of [...(result.recentSteps || []), ...(result.failedStep ? [result.failedStep] : [])]) {
-    if (!step || Object.keys(step).some(name => !['index', 'repetition', 'type', 'ok', 'durationMs', 'artifact', 'error', 'failureKind', 'httpStatus', 'retryAfterMs'].includes(name)))
+    if (!step || typeof step !== 'object' || Array.isArray(step) || Object.keys(step).some(name => !['index', 'repetition', 'type', 'ok', 'durationMs', 'error', 'failureKind', 'httpStatus', 'retryAfterMs'].includes(name)))
       error('invalid_metadata');
     if (!integer(step.index, 0, 1000) || typeof step.ok !== 'boolean' ||
         !['goto', 'click', 'fill', 'press', 'check', 'uncheck', 'hover', 'waitFor', 'assertText', 'assertURL', 'scroll', 'screenshot', 'setup'].includes(step.type)) error('invalid_metadata');
+    optional(step, 'repetition', value => integer(value, 1, 100));
+    optional(step, 'durationMs', value => integer(value, 0, 86400000));
+    optional(step, 'httpStatus', value => integer(value, 100, 599));
+    optional(step, 'retryAfterMs', value => integer(value, 0, 86400000));
     if (step.failureKind !== undefined && !FAILURE_KINDS.includes(step.failureKind) ||
         step.error !== undefined && ![...STEP_FAILURE_CODES, 'setup_failed'].includes(step.error)) error('invalid_metadata');
   }
   if (result.execution && Object.keys(result.execution).some(name => !['mode', 'forced', 'cleanup', 'tempCleanup', 'supervisorPid', 'workerPid', 'browserPids', 'workerCleanupFailed'].includes(name)))
     error('invalid_metadata');
+  if (result.execution !== undefined) {
+    const execution = result.execution;
+    if (!execution || typeof execution !== 'object' || Array.isArray(execution)) error('invalid_metadata');
+    optional(execution, 'mode', value => value === 'supervised');
+    optional(execution, 'forced', value => typeof value === 'boolean');
+    optional(execution, 'workerCleanupFailed', value => typeof value === 'boolean');
+    optional(execution, 'cleanup', value => ['terminated', 'failed'].includes(value));
+    optional(execution, 'tempCleanup', value => ['removed', 'failed', 'unknown', 'not-created'].includes(value));
+    for (const field of ['supervisorPid', 'workerPid']) optional(execution, field, value => integer(value, 2, 2147483647));
+    optional(execution, 'browserPids', value => Array.isArray(value) && value.length <= 4 && value.every(pid => integer(pid, 2, 2147483647)));
+  }
   if (result.reason !== undefined && !reasons.has(result.reason)) error('invalid_metadata');
   const encoded = JSON.stringify(result);
   if (Buffer.byteLength(encoded) > 32768) error('metadata_too_large');
