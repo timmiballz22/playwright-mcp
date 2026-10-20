@@ -135,3 +135,21 @@ test('validation snapshots actions before asynchronous launch', async () => {
   assert.equal(result.ok, true);
   assert.equal(state.url, 'https://example.com/');
 });
+
+test('screenshot capture requires operator approval for sensitive artifacts', async () => {
+  await assert.rejects(runWorkflow({ steps: [{ type: 'screenshot' }] }, makeFake()), /Sensitive artifact capture/);
+});
+
+test('workflow version and serialized size are bounded', () => {
+  assert.throws(() => validateWorkflow({ schemaVersion: 2, steps: [{ type: 'screenshot' }] }));
+  assert.doesNotThrow(() => validateWorkflow({ schemaVersion: 1, steps: [{ type: 'screenshot' }] }));
+  assert.throws(() => validateWorkflow({ steps: Array.from({ length: 200 }, () => ({ type: 'fill', selector: 'input', value: 'x'.repeat(10000) })) }));
+});
+
+test('accessible selectors validate exact shape and clone nested values', () => {
+  const selector = { role: 'button', name: 'Save' };
+  const result = validateWorkflow({ steps: [{ type: 'click', selector }] });
+  selector.name = 'Mutated';
+  assert.equal(result.steps[0].selector.name, 'Save');
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'click', selector: { role: 'button', name: 'Save', code: 'secret' } }] }));
+});

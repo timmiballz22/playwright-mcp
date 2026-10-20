@@ -13,6 +13,8 @@ function argsOf(argv) {
       args.workflow = argv[++i];
     else if (arg === '--allow-origin')
       args.origins.push(argv[++i]);
+    else if (arg === '--allow-sensitive-artifacts')
+      args.allowSensitiveArtifacts = true;
     else if (arg === '--artifacts')
       args.artifacts = argv[++i];
     else
@@ -34,6 +36,7 @@ async function main() {
   try {
     const result = await runWorkflow(input, {
       allowedOrigins: options.origins,
+      allowSensitiveArtifacts: options.allowSensitiveArtifacts === true,
       artifactsDir,
       signal: abort.signal,
     });

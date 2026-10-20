@@ -58,6 +58,7 @@ A JSON file specifies a bounded ordered workflow:
 
 ```json
 {
+  "schemaVersion": 1,
   "browser": "chromium",
   "iterations": 1,
   "timeoutMs": 120000,
@@ -74,7 +75,7 @@ A JSON file specifies a bounded ordered workflow:
 Run against your own local site:
 
 ```bash
-node local-batch/cli.mjs --workflow ./my-workflow.json --allow-origin http://127.0.0.1:3000
+node local-batch/cli.mjs --workflow ./my-workflow.json --allow-origin http://127.0.0.1:3000 --allow-sensitive-artifacts
 ```
 
 To opt in to a public origin:
@@ -144,3 +145,10 @@ the browser to prevent Playwright's redirect routing bypass. All redirects are
 currently rejected, including same-origin redirects. This is a compatibility
 restriction of the companion only; the upstream entrypoint is unchanged.
 DNS rebinding and system-wide egress isolation still require external controls.
+
+Screenshot capture is disabled unless the local operator sets
+`--allow-sensitive-artifacts` (CLI) or
+`PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS=1` (MCP environment). This approves
+capture of potentially sensitive page pixels; it does not perform secret masking.
+See [WORKFLOW_SCHEMA.md](WORKFLOW_SCHEMA.md) for v1 limits and exact accessible
+role/name, label, placeholder, test-id and text selectors.

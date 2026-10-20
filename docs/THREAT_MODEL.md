@@ -19,8 +19,9 @@ require external egress controls. An allowlisted host can itself be hostile.
 
 Errors omit raw browser messages, URL contents, assertion content and fill values.
 Reports still contain timing/action metadata and absolute artifact paths.
-Screenshots can contain credentials and page secrets: use only explicitly approved
-fixtures/data; masking and capture consent policy are incomplete release blockers.
+Screenshots can contain credentials and page secrets: capture is disabled unless
+the local operator opts in via CLI/environment. Use only approved fixtures/data;
+pixel masking remains unimplemented. Workflow input cannot enable capture.
 Directories are private and unique; there is no disk quota/retention controller.
 
 The original MCP endpoint remains upstream behavior, including optional privileged

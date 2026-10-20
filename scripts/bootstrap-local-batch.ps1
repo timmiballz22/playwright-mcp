@@ -10,14 +10,14 @@ if ($LASTEXITCODE -ne 0) { throw "Node.js 20 or newer is required." }
 Write-Host "Installing pinned dependencies..."
 npm ci
 if ($LASTEXITCODE -ne 0) { throw "npm ci failed." }
-Write-Host "Installing local Playwright Chromium..."
-npx playwright install chromium
+Write-Host "Installing local Playwright browsers..."
+npx playwright install chromium firefox webkit
 if ($LASTEXITCODE -ne 0) { throw "Browser installation failed." }
 
 $old = $env:RUN_BROWSER_TESTS
 try {
   $env:RUN_BROWSER_TESTS = "1"
-  node --test local-batch/runner.test.mjs local-batch/integration.test.mjs local-batch/mcp.test.mjs
+  npm run test:batch
   if ($LASTEXITCODE -ne 0) { throw "Browser integration tests failed." }
 } finally {
   $env:RUN_BROWSER_TESTS = $old

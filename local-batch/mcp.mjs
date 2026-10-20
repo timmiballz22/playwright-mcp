@@ -19,8 +19,13 @@ let busy = false;
 let activeAbort;
 const shutdown = () => activeAbort?.abort();
 server.onclose = shutdown;
-process.once('SIGINT', shutdown);
-process.once('SIGTERM', shutdown);
+const shutdownAndClose = () => {
+  shutdown();
+  void server.close().catch(() => {});
+};
+process.stdin.once('end', shutdownAndClose);
+process.once('SIGINT', shutdownAndClose);
+process.once('SIGTERM', shutdownAndClose);
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [{
@@ -31,6 +36,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       additionalProperties: false,
       required: ['steps'],
       properties: {
+        schemaVersion: { type: 'integer', enum: [1] },
         browser: { type: 'string', enum: ['chromium', 'firefox', 'webkit'] },
         iterations: { type: 'integer', minimum: 1, maximum: 100 },
         timeoutMs: { type: 'integer', minimum: 100, maximum: 180000 },
@@ -44,7 +50,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
             properties: {
               type: { type: 'string', enum: ['goto','click','fill','press','check',
                 'uncheck','hover','waitFor','assertText','assertURL','scroll','screenshot'] },
-              url: { type: 'string' }, selector: { type: 'string' },
+              url: { type: 'string' }, selector: { oneOf: [
+                { type: 'string', minLength: 1, maxLength: 500 },
+                { type: 'object', additionalProperties: false, required: ['role', 'name'], properties: { role: { type: 'string', minLength: 1, maxLength: 100 }, name: { type: 'string', minLength: 1, maxLength: 500 } } },
+                ...['testId', 'label', 'placeholder', 'text'].map(key => ({ type: 'object', additionalProperties: false, required: [key], properties: { [key]: { type: 'string', minLength: 1, maxLength: 500 } } })),
+              ] },
               value: { type: 'string' }, key: { type: 'string' },
               contains: { type: 'string' },
               deltaX: { type: 'integer' }, deltaY: { type: 'integer' },
@@ -68,7 +78,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
   if (extra.signal.aborted) abort();
   try {
     const result = await runWorkflow(request.params.arguments, {
-      allowedOrigins, artifactsDir, signal: activeAbort.signal,
+      allowedOrigins, artifactsDir, allowSensitiveArtifacts: process.env.PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS === '1', signal: activeAbort.signal,
     });
     const summary = await saveReport(result, artifactsDir);
     return { isError: !result.ok, content: [{ type: 'text', text: JSON.stringify(summary) }] };

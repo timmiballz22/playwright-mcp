@@ -20,11 +20,11 @@ test('real Chromium: navigation, 997 clicks / 1,000 actions, assertion, screensh
   const dir = await mkdtemp(path.join(os.tmpdir(), 'pw-batch-'));
   try {
     const steps = [{ type: 'goto', url: origin + '/' },
-      ...Array.from({ length: 997 }, () => ({ type: 'click', selector: '#add' })),
+      ...Array.from({ length: 997 }, () => ({ type: 'click', selector: { role: 'button', name: 'Add' } })),
       { type: 'assertText', selector: '#count', contains: '997' },
       { type: 'screenshot' }];
     const result = await runWorkflow({ steps, timeoutMs: 120000 },
-      { artifactsDir: dir, allowedOrigins: [origin] });
+      { artifactsDir: dir, allowedOrigins: [origin], allowSensitiveArtifacts: true });
     assert.equal(result.ok, true, JSON.stringify(result).slice(-1500));
     assert.equal(result.completed, 1000);
     assert.ok((await stat(result.results.at(-1).artifact)).size > 0);

@@ -31,10 +31,40 @@ function integer(value, label, min, max, fallback) {
   return value;
 }
 
+function validateSelector(selector) {
+  if (typeof selector === 'string') return asString(selector, 'selector', 500);
+  if (!selector || typeof selector !== 'object' || Array.isArray(selector))
+    throw new TypeError('Invalid selector');
+  if ('role' in selector) {
+    exactKeys(selector, ['role', 'name']);
+    asString(selector.role, 'role', 100);
+    asString(selector.name, 'name', 500);
+  } else {
+    const keys = Object.keys(selector);
+    if (keys.length !== 1 || !['testId', 'label', 'placeholder', 'text'].includes(keys[0]))
+      throw new TypeError('Invalid selector');
+    asString(selector[keys[0]], 'selector value', 500);
+  }
+  return { ...selector };
+}
+
+function resolveLocator(page, selector) {
+  if (typeof selector === 'string') return page.locator(selector);
+  if (selector.role) return page.getByRole(selector.role, { name: selector.name, exact: true });
+  if (selector.testId) return page.getByTestId(selector.testId);
+  if (selector.label) return page.getByLabel(selector.label, { exact: true });
+  if (selector.placeholder) return page.getByPlaceholder(selector.placeholder, { exact: true });
+  return page.getByText(selector.text, { exact: true });
+}
+
 export function validateWorkflow(workflow) {
   if (!workflow || typeof workflow !== 'object' || Array.isArray(workflow))
     throw new TypeError('Workflow must be an object');
-  exactKeys(workflow, ['browser', 'timeoutMs', 'actionTimeoutMs', 'iterations', 'steps']);
+  if (Buffer.byteLength(JSON.stringify(workflow), 'utf8') > 1048576)
+    throw new TypeError('Workflow exceeds 1 MiB');
+  if (workflow.schemaVersion !== undefined && workflow.schemaVersion !== 1)
+    throw new TypeError('Unsupported workflow schema version');
+  exactKeys(workflow, ['schemaVersion', 'browser', 'timeoutMs', 'actionTimeoutMs', 'iterations', 'steps']);
   if (!Array.isArray(workflow.steps) || workflow.steps.length === 0)
     throw new TypeError('Workflow requires a nonempty steps array');
   const iterations = integer(workflow.iterations, 'iterations', 1, MAX_ITERATIONS, 1);
@@ -50,7 +80,7 @@ export function validateWorkflow(workflow) {
       throw new TypeError('Invalid action type at step ' + i);
     exactKeys(step, ['type', ...FIELDS[step.type]]);
     if (SELECTOR_TYPES.has(step.type))
-      asString(step.selector, 'step ' + i + ' selector', 500);
+      validateSelector(step.selector);
     if (step.type === 'goto' || step.type === 'assertURL')
       asString(step.url, 'step ' + i + ' url', 2000);
     if (step.type === 'fill' && (typeof step.value !== 'string' || step.value.length > 10000))
@@ -63,7 +93,7 @@ export function validateWorkflow(workflow) {
       integer(step.deltaY, 'deltaY', -10000, 10000, 0);
       integer(step.deltaX, 'deltaX', -10000, 10000, 0);
     }
-    return { ...step };
+    return { ...step, ...(SELECTOR_TYPES.has(step.type) ? { selector: validateSelector(step.selector) } : {}) };
   });
   return { browser, timeoutMs, actionTimeoutMs, iterations, steps };
 }
@@ -90,9 +120,21 @@ function allowedAddress(raw, allowed) {
 }
 
 async function perform(page, step, index, artifactsDir) {
-  const locator = step.selector ? page.locator(step.selector) : undefined;
+  const locator = step.selector ? resolveLocator(page, step.selector) : undefined;
   switch (step.type) {
-    case 'goto': await page.goto(step.url, { waitUntil: 'domcontentloaded' }); break;
+    case 'goto': {
+      const response = await page.goto(step.url, { waitUntil: 'domcontentloaded' });
+      const status = response?.status();
+      if (Number.isInteger(status) && status >= 400 && status <= 599) {
+        const safeCode = status === 429 ? 'rate_limited' : status === 401 ? 'http_401' :
+          status === 403 ? 'http_403' : status === 404 ? 'http_404' : status >= 500 ? 'http_5xx' : 'http_4xx';
+        const rawRetryAfter = response.headers()['retry-after'];
+        const parsed = rawRetryAfter && /^\d+$/.test(rawRetryAfter) ? Number(rawRetryAfter) * 1000 : Date.parse(rawRetryAfter) - Date.now();
+        const retryAfterMs = Number.isFinite(parsed) && parsed >= 0 ? Math.ceil(parsed) : undefined;
+        throw Object.assign(new Error('HTTP navigation failed'), { safeCode, httpStatus: status, retryAfterMs });
+      }
+      break;
+    }
     case 'click': await locator.click(); break;
     case 'fill': await locator.fill(step.value); break;
     case 'press': await locator.press(step.key); break;
@@ -134,9 +176,12 @@ export async function runWorkflow(workflow, {
   allowedOrigins = [],
   artifactsDir = path.resolve('.local-batch-output'),
   signal,
+  allowSensitiveArtifacts = false,
 } = {}) {
   const spec = validateWorkflow(workflow);
   const allowed = parseOrigins(allowedOrigins);
+  if (spec.steps.some(step => step.type === 'screenshot') && allowSensitiveArtifacts !== true)
+    throw new TypeError('Sensitive artifact capture requires local operator approval');
   for (const step of spec.steps) {
     if ((step.type === 'goto' || step.type === 'assertURL') && !allowedAddress(step.url, allowed))
       throw new TypeError('Navigation origin is not approved; configure allowed origins locally');
@@ -223,10 +268,12 @@ export async function runWorkflow(workflow, {
           const metadata = await bounded(perform(page, step, index, artifactsDir));
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: true, durationMs: Math.round(performance.now() - start), ...metadata });
-        } catch {
+        } catch (error) {
+          const httpFailure = ['rate_limited', 'http_401', 'http_403', 'http_404', 'http_4xx', 'http_5xx'].includes(error?.safeCode);
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: false, durationMs: Math.round(performance.now() - start),
-            error: cancelled ? 'cancelled' : timedOut ? 'timeout' : 'action_failed' });
+            error: cancelled ? 'cancelled' : timedOut ? 'timeout' : httpFailure ? error.safeCode : 'action_failed',
+            ...(httpFailure ? { httpStatus: error.httpStatus, ...(error.retryAfterMs !== undefined ? { retryAfterMs: error.retryAfterMs } : {}) } : {}) });
           break outer;
         }
       }

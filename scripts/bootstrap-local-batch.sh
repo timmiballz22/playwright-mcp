@@ -13,8 +13,8 @@ node -e 'if (Number(process.versions.node.split(".")[0]) < 20) process.exit(1)' 
 }
 echo "Installing pinned dependencies..."
 npm ci
-echo "Installing local Playwright Chromium..."
-npx playwright install chromium
+echo "Installing local Playwright browsers..."
+npx playwright install chromium firefox webkit
 echo "Running mocked and real-browser QA..."
-RUN_BROWSER_TESTS=1 node --test local-batch/*.test.mjs
+npm run test:batch
 echo "Local batch tools ready. See docs/LOCAL_BATCH.md."

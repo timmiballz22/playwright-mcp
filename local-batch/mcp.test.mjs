@@ -26,7 +26,7 @@ test('local stdio MCP: handshake, tool list, rejection, browser workflow', {
     command: process.execPath,
     args: [path.join(root, 'local-batch/mcp.mjs')],
     cwd: root,
-    env: { ...process.env, PLAYWRIGHT_BATCH_ARTIFACTS_DIR: dir, PLAYWRIGHT_BATCH_ALLOWED_ORIGINS: new URL(url).origin },
+    env: { ...process.env, PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS: '1', PLAYWRIGHT_BATCH_ARTIFACTS_DIR: dir, PLAYWRIGHT_BATCH_ALLOWED_ORIGINS: new URL(url).origin },
     stderr: 'pipe',
   });
   const client = new Client({ name: 'local-batch-verification', version: '1.0.0' });

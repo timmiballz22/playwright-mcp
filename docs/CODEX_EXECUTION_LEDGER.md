@@ -2,7 +2,9 @@
 
 Updated 2026-10-20. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Tested implementation SHA will be recorded after committing this milestone.
+First tested implementation SHA: `a5a5a13` (use `git rev-parse a5a5a13` for full SHA).
+Second milestone in progress: sensitive-artifact policy, schema v1, accessible
+selectors, actual EOF/SIGTERM shutdown, concurrent screenshot fixtures.
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
@@ -14,12 +16,12 @@ Tested implementation SHA will be recorded after committing this milestone.
 | G05 RETRIES | NOT STARTED | route.fetch maxRetries:0 avoids automatic replay; no 429/503 policy | Implement tested Retry-After handling without unsafe replay |
 | G06 JOBS | IN PROGRESS | runner.test.mjs stalled launch deadline + late close; runner.mjs bounded cleanup | Worker isolation, durable IDs/queue/journal; process-tree kill; reporting deadline |
 | G07 SECURITY | FAILED | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
-| G08 STORAGE | IN PROGRESS | runner.mjs mkdtemp private per-run artifacts; report.mjs exclusive report write | Atomic artifacts, quotas, retention, 20-run concurrent screenshot test |
+| G08 STORAGE | IN PROGRESS | runner.mjs mkdtemp private per-run artifacts; report.mjs exclusive report write | Atomic artifacts, quotas, retention, retention quota test (20-run concurrent screenshot test now passed) |
 | G09 AUTH/PROFILES | NOT STARTED | Batch ephemeral only; upstream retains profile features | Reuse upstream isolation/profile APIs with project locks and tests |
 | G10 CROSS-BROWSER | BLOCKED | Chromium/Firefox browser security + wrapper tests pass; WebKit actual launch fails missing libraries | Install native dependencies through CI (local su unavailable) |
 | G11 CROSS-OS | IN PROGRESS | .github/workflows/{ci,local-batch}.yml native OS matrix configured | Inspect actual Windows/macOS/Linux results; queued != passed |
 | G12 PERFORMANCE | IN PROGRESS | scripts/soak-local.mjs; PERFORMANCE.md; evidence/soak*.txt | Process-tree RSS/FD/CPU measurement, latency/token/CLI comparison |
-| G13 ACCESSIBILITY/MOBILE | NOT STARTED | Original MCP preserves role-based click; batch CSS only | Versioned selector AST, accessible assertions, touch/media fixtures |
+| G13 ACCESSIBILITY/MOBILE | NOT STARTED | Original MCP preserves role-based click; batch role/name, testId, label, placeholder and text selectors added | Versioned selector AST, accessible assertions, touch/media fixtures |
 | G14 ADVANCED | NOT STARTED | 72 discovery contracts only; behavior not proved | Tabs/frames/dialog/upload/storage/tracing/video/PDF real tests |
 | G15 RELEASE SAFETY | IN PROGRESS | distribution.test.mjs, private package, publish-disabled.cjs; no registry publishing workflow | Release/evidence CI gate contract tests; registry ownership intentionally not asserted |
 | G16 DOCUMENTATION | IN PROGRESS | LOCAL_BATCH.md, BASELINE_AUDIT.md, THREAT_MODEL.md, PERFORMANCE.md | Complete schema/client/architecture/release docs against implemented behavior |
@@ -42,7 +44,7 @@ Tested implementation SHA will be recorded after committing this milestone.
 - RISK-009: Chromium/Firefox verified selectively; WebKit libraries unavailable locally.
 - RISK-010: blocked requests produce policy_blocked, not false workflow success.
 - RISK-011: unknown fields rejected, actions copied before async execution to prevent
-  mutation-after-validation URL bypass (test reproduced before fix). Versioned AST pending.
+  mutation-after-validation URL bypass (test reproduced before fix). Schema v1 and 1 MiB bound added; deeper AST/assertion semantics pending.
 - RISK-012: read-only workflow permissions, concurrency cancellation, timeouts and OS
   browser matrix added; actual green runs still required.
 - RISK-013: route.fetch/fulfill changes network semantics/cache; benchmarks incomplete.
@@ -76,3 +78,40 @@ API 403. These do not excuse unimplemented jobs/schema/security tests.
 NEXT ACTION: inspect CI; fix actual failures, then implement isolated worker job
 execution to enforce full lifecycle/process termination and durable status before
 adding wider workflow actions. Keep all gates incomplete until independently proved.
+
+## Milestone 2 — ongoing
+
+- Screenshot capture now disabled unless operator option allowSensitiveArtifacts
+  is true, CLI --allow-sensitive-artifacts or MCP environment
+  PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS=1. Workflow/page cannot enable it.
+- 20 real screenshots across paired concurrent Chromium runs passed uniqueness
+  and POSIX 0700 directory checks (artifacts.test.mjs). Retention still absent.
+- Actual EOF and SIGTERM during a hanging real browser navigation each failed
+  before fix (>10s no exit). SDK stdio transport does not handle stdin EOF itself.
+  Explicit EOF/signal server close + active abort fixed both: 2/2 passed under 1s.
+  Process-tree enumeration/forced-kill proof still outstanding.
+- Schema v1 (unversioned legacy treated as v1), 1 MiB serialized input cap, strict
+  role/name/testId/label/placeholder/text selectors, deep selector snapshot added.
+- CI first milestone: Linux/macOS wrapper and batch jobs succeeded when inspected;
+  Windows/Docker still running. No full green claim yet.
+- Removed redundant feat-branch push trigger: PR plus main push only; cancelled
+  duplicate push run 39474710658 deliberately (NOT a functional failure).
+
+Milestone 2 final local regression: 22 tests, 21 passed, 1 FAILED (WebKit could
+not launch: missing native libraries), 0 skipped/cancelled; see
+evidence/batch-milestone2.txt. Newly added HTTP fixture tests 401/403/404/429/500/503
+classification with one request each, seeded header/body canaries absent from
+results, and Retry-After metadata. No automatic retry/backoff scheduler yet.
+
+First CI run URLs:
+- https://github.com/timmiballz22/playwright-mcp/actions/runs/39474746024
+  Linux/macOS batch passed; Windows failed before tests because PowerShell
+  passed *.test.mjs literally to Node 20. Replaced wildcard invocation with
+  scripts/test-batch.mjs using explicit file enumeration (also bootstraps).
+- https://github.com/timmiballz22/playwright-mcp/actions/runs/39474746316
+  Linux/macOS wrapper and Docker passed when inspected; final status pending.
+- 39474710658 was intentionally cancelled as a duplicate push run, not a test failure.
+
+Native Linux/macOS CI on the first commit executed the real WebKit redirect
+fixture successfully; local WebKit remains unavailable. This is selective coverage,
+not complete G10 behavior acceptance. Draft PR: https://github.com/timmiballz22/playwright-mcp/pull/2.

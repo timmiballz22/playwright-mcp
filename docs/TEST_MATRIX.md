@@ -13,12 +13,12 @@ CODEX_ULTIMATE_MASTER_PROMPT.md; the ledger tracks G00–G18.
 | 9 | 100 fresh workflows with state reset; soak logs |
 | 10–11 | NOT TESTED; jobs/concurrent owner isolation not implemented |
 | 12 | Stalled launch deadline/late close tested with injection; real locator cancellation pending |
-| 13–16 | NOT TESTED comprehensively; lifecycle release blocker |
+| 13–16 | Active EOF/SIGTERM exit tested; crash/process-tree/deadline cases incomplete |
 | 17 | Invalid actions/unknown properties/limits tested; fuzz/oversize input pending |
 | 18–20 | Redirect SSRF + exact localhost origins + file/URL credentials negative tests; all encodings pending |
 | 21 | Upload absent from companion; upstream behavior still requires test |
 | 22–23 | WebSockets closed and service workers blocked by code; browser negative fixtures pending |
-| 24 | Unique run directory implementation; 20-run screenshots/retention NOT TESTED |
+| 24 | 20-run paired concurrent screenshots pass uniqueness/private-directory checks; retention absent |
 | 25 | Fake secret error scrubbed; screenshots not masked; NOT COMPLETE |
 | 26–27 | NOT IMPLEMENTED: status taxonomy and Retry-After handling |
 | 28–33 | CSS and upstream role click tested; remaining interaction/mobile/console scenarios NOT TESTED |

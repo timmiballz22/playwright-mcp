@@ -1,7 +1,7 @@
 name: Local batch QA
 on:
   push:
-    branches: [main, 'feat/**']
+    branches: [main]
   pull_request:
     branches: [main]
 permissions:
@@ -30,4 +30,4 @@ jobs:
       - name: Run mock and real browser tests
         env:
           RUN_BROWSER_TESTS: '1'
-        run: node --test local-batch/*.test.mjs
+        run: npm run test:batch

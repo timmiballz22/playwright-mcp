@@ -1,0 +1,46 @@
+✔ 20 real screenshots across concurrent runs have unique private directories (3722.1879ms)
+✔ active browser workflow terminates after eof (1288.722842ms)
+✔ active browser workflow terminates after SIGTERM (1407.549767ms)
+✔ source distribution cannot publish as Microsoft and includes runtime SDK (4.451713ms)
+✔ HTTP errors fail navigation without replaying requests or leaking headers (1825.205638ms)
+✔ real Chromium: navigation, 997 clicks / 1,000 actions, assertion, screenshot, cleanup (34925.913168ms)
+✔ local stdio MCP: handshake, tool list, rejection, browser workflow (4193.934024ms)
+✔ rejects unknown instructions, unbounded workloads and hostile origins (2.052352ms)
+✔ 100 ordered actions finish in a single batch with one browser launch (8.391798ms)
+✔ failures stop promptly, hide underlying sensitive errors and clean up (1.644402ms)
+✔ cancellation before starting avoids launching browser (0.428563ms)
+✔ checks target origins and reports assertion failure without page content (1.849989ms)
+✔ unknown localhost ports require exact operator origins (1.6267ms)
+✔ rejects extra workflow and action properties rather than ignoring policy (0.327684ms)
+✔ deadline includes a stalled launch and closes late browser (200.089618ms)
+✔ validation snapshots actions before asynchronous launch (1.400847ms)
+✔ screenshot capture requires operator approval for sensitive artifacts (0.585049ms)
+✔ workflow version and serialized size are bounded (9.024267ms)
+✔ accessible selectors validate exact shape and clone nested values (0.303535ms)
+✔ chromium: allowed origin cannot redirect to unapproved localhost port (458.261001ms)
+✔ firefox: allowed origin cannot redirect to unapproved localhost port (1567.55563ms)
+✖ webkit: allowed origin cannot redirect to unapproved localhost port (209.551039ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 21
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 38869.787154
+
+✖ failing tests:
+
+test at local-batch/security.test.mjs:11:3
+✖ webkit: allowed origin cannot redirect to unapproved localhost port (209.551039ms)
+  AssertionError [ERR_ASSERTION]: browser could not launch
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/security.test.mjs:23:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'setup',
+    expected: 'setup',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

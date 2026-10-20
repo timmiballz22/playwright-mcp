@@ -27,7 +27,7 @@
     "docker-rm": "docker rm playwright-mcp-dev",
     "docker-run": "docker run -it -p 8080:8080 --name playwright-mcp-dev playwright-mcp-dev:latest",
     "roll": "node roll.js",
-    "test:batch": "node --test local-batch/*.test.mjs"
+    "test:batch": "node scripts/test-batch.mjs"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -60,6 +60,8 @@
     "config.d.ts",
     "local-batch/*.mjs",
     "scripts/bootstrap-local-batch.*",
-    "docs/*.md"
+    "docs/*.md",
+    "scripts/*.mjs",
+    "scripts/*.cjs"
   ]
 }
