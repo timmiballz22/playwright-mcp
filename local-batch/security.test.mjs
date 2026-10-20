@@ -5,7 +5,7 @@ import { once } from 'node:events';
 import { mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { runWorkflow } from './runner.mjs';
+import { executeWorkflow } from './executor.mjs';
 
 for (const browser of ['chromium', 'firefox', 'webkit']) {
   test(`${browser}: allowed origin cannot redirect to unapproved localhost port`, { timeout: 30000 }, async () => {
@@ -17,12 +17,12 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
     const origin = `http://127.0.0.1:${allowed.address().port}`;
     const dir = await mkdtemp(path.join(os.tmpdir(), 'policy-'));
     try {
-      const result = await runWorkflow({ browser, steps: [{ type: 'goto', url: origin }] }, { allowedOrigins: [origin], artifactsDir: dir });
+      const result = await executeWorkflow({ browser, steps: [{ type: 'goto', url: origin }] }, { allowedOrigins: [origin], artifactsDir: dir });
       assert.equal(result.ok, false);
       // Setup failure does not prove enforcement in a real browser.
-      assert.notEqual(result.results[0]?.type, 'setup', 'browser could not launch');
+      assert.notEqual(result.failedStep?.type, 'setup', 'browser could not launch');
       assert.equal(hits, 0);
-      assert.doesNotMatch(JSON.stringify(result), /secret-canary/);
+      assert.equal(JSON.stringify(result).includes('secret-canary'), false, 'Page secret reached summary');
     } finally {
       allowed.close(); denied.close(); await rm(dir, { recursive: true, force: true });
     }

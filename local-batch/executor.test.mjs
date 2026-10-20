@@ -1,0 +1,89 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { spawn } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
+
+async function alive(pid) {
+  try {
+    process.kill(pid, 0);
+    if (process.platform === 'linux' && /\) Z /.test(await readFile(`/proc/${pid}/stat`, 'utf8'))) return false;
+    return true;
+  } catch { return false; }
+}
+async function assertStopped(pids) {
+  for (let i = 0; i < 40; i++) {
+    if (!(await Promise.all(pids.map(alive))).some(Boolean)) return;
+    await new Promise(resolve => setTimeout(resolve, 50));
+  }
+  assert.fail('An execution-owned process is still running');
+}
+
+for (const mode of ['hang', 'report-stall', 'crash']) {
+  test(`supervised ${mode}: bounded completion and owned process cleanup`, { timeout: 15000 }, async () => {
+    const { executeWorkflow } = await import('./executor.mjs');
+    const observed = [];
+    const unrelated = spawn(process.execPath, ['-e', 'setInterval(() => {}, 1000)'], { stdio: 'ignore' });
+    try {
+      const start = performance.now();
+      const result = await executeWorkflow({ timeoutMs: 2000, steps: [{ type: 'click', selector: 'button' }] }, {
+        workerModule: new URL(`./fixtures/${mode}-worker.mjs`, import.meta.url),
+        onEvent: event => { if (event.pid) observed.push(event.pid); },
+      });
+      assert.equal(result.ok, false);
+      assert.equal(result.reason, mode === 'crash' ? 'worker_crashed' : 'timeout');
+      assert.ok(performance.now() - start < 7000, 'Full execution did not finish within its bounded teardown ceiling');
+      assert.ok(observed.length >= 2, 'Worker and child ownership were not observed');
+      await assertStopped(observed);
+      assert.equal(await alive(unrelated.pid), true, 'Termination touched an unrelated sibling process');
+    } finally { unrelated.kill('SIGKILL'); }
+  });
+}
+
+test('pre-cancelled execution never starts a worker', async () => {
+  const { executeWorkflow } = await import('./executor.mjs');
+  const controller = new AbortController(); controller.abort();
+  const events = [];
+  const result = await executeWorkflow({ steps: [{ type: 'click', selector: 'button' }] }, { signal: controller.signal, onEvent: event => events.push(event) });
+  assert.equal(result.reason, 'cancelled');
+  assert.equal(events.length, 0);
+});
+
+test('cancel interrupts a worker that cannot service its abort listener', { timeout: 15000 }, async () => {
+  const { executeWorkflow } = await import('./executor.mjs');
+  const controller = new AbortController();
+  const observed = [];
+  const result = await executeWorkflow({ timeoutMs: 10000, steps: [{ type: 'click', selector: 'button' }] }, {
+    workerModule: new URL('./fixtures/hang-worker.mjs', import.meta.url), signal: controller.signal,
+    onEvent: event => { if (event.pid) observed.push(event.pid); if (event.type === 'ownedProcess') controller.abort(); },
+  });
+  assert.equal(result.reason, 'cancelled');
+  await assertStopped(observed);
+});
+
+test('supervisor crash cannot strand its worker or detached child', { timeout: 15000 }, async () => {
+  const { executeWorkflow } = await import('./executor.mjs');
+  const observed = [];
+  let supervisor;
+  const result = await executeWorkflow({ timeoutMs: 5000, steps: [{ type: 'click', selector: 'button' }] }, {
+    workerModule: new URL('./fixtures/hang-worker.mjs', import.meta.url),
+    onEvent: event => {
+      if (event.pid) observed.push(event.pid);
+      if (event.type === 'supervisorSpawned') supervisor = event.pid;
+      if (event.type === 'ownedProcess') process.kill(supervisor, 'SIGKILL');
+    },
+  });
+  assert.equal(result.reason, 'supervisor_failed');
+  await assertStopped(observed);
+});
+
+test('cancellation between precheck and supervisor startup does not start a worker', { timeout: 10000 }, async () => {
+  const { executeWorkflow } = await import('./executor.mjs');
+  const controller = new AbortController();
+  const events = [];
+  const result = await executeWorkflow({ timeoutMs: 5000, steps: [{ type: 'click', selector: 'button' }] }, {
+    signal: controller.signal, workerModule: new URL('./fixtures/hang-worker.mjs', import.meta.url),
+    onEvent: event => { events.push(event); if (event.type === 'supervisorSpawned') controller.abort(); },
+  });
+  assert.equal(result.reason, 'cancelled');
+  assert.equal(events.some(event => event.type === 'workerSpawned'), false, 'Cancellation was checked after work was already started');
+});

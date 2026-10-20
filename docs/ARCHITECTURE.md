@@ -5,10 +5,11 @@ its bundled backend. `cli.js` and `index.js` delegate to pinned playwright-core;
 its MCP/browser/profile/trace/video implementations remain upstream. The
 companion is ESM JS using the same Playwright engine and a runtime MCP SDK.
 
-Companion path: `mcp.mjs` or `cli.mjs` -> `runner.mjs` validation/policy/browser
-lifecycle -> `report.mjs` bounded model reply plus local JSON report. There is
-one synchronous active workflow per sidecar; concurrent calls receive a busy
-error. No HTTP listener or paid browser provider is required.
+Companion path: `mcp.mjs` or `cli.mjs` -> `executor.mjs` -> independent
+supervisor -> execution worker -> Playwright BrowserServer. Only the worker
+imports the browser runtime. A private loopback connection stays inside that
+execution; only owned process IDs reach the supervisor. One workflow is active
+per sidecar; concurrent calls receive a busy error.
 
 The operator configures exact origins, artifact base directory and sensitive
 capture approval. Tool JSON cannot modify these. Validation copies actions and
@@ -17,17 +18,23 @@ a context with service workers/downloads disabled, request policy, and a page.
 Requests are fetched without redirect following/retries; all redirect responses
 are aborted. WebSockets are closed. Any blocked request fails the workflow.
 
-Lifecycle timer covers browser import/launch/context/actions. Stop races active
-operations, closes owned context/browser, and closes resources that arrive late.
-Cleanup has a separate five-second ceiling per resource. MCP EOF/signals abort
-the active workflow and close transport. Process-tree hard termination, report
-write ceilings and crash-safe durable worker journals remain incomplete.
+The frontend and independent supervisor enforce a monotonic execution deadline,
+including browser setup, actions, report publication and worker exit. The
+supervisor reserves cleanup time and terminates owned processes when cooperative
+cancellation stalls. Parent IPC loss also triggers cleanup. Native process-tree
+termination is bounded separately; uncertain cleanup fails closed and blocks new
+MCP work. Direct source calls to `runWorkflow` retain their cooperative lifecycle
+and are not this supervised boundary. CLI file loading/parsing precedes it and
+still needs bounded ingestion.
 
-Artifacts use exclusively created private run directories. JSON reports use
-random IDs and exclusive writes, and return at most ten recent steps. There is
-no persistent job state machine, retention/quota controller, optional companion
-profile, resumable execution or automatic retry engine. Reuse upstream profiles
-and supported storage APIs when implementing those features.
+Each worker has a private execution directory and temporary browser directory.
+The supervisor removes temporary files after termination. Reports publish via
+exclusive temporary files and atomic rename, not a power-loss durable journal.
+Replies contain at most ten recent steps. Failed execution counts can be confirmed
+lower bounds; unsafe actions are never automatically replayed. There is no durable
+job state machine, retention/quota controller, persistent companion profile or
+resume engine. Worker V8 heap is capped at 256 MiB; browser RSS and response-body
+memory are not capped by that setting.
 
 Decision: option A (separate companion), with reusable runner entrypoint for CLI
 and MCP. A facade would add protocol delegation and capability maintenance before

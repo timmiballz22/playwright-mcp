@@ -26,5 +26,9 @@ Directories are private and unique; there is no disk quota/retention controller.
 
 The original MCP endpoint remains upstream behavior, including optional privileged
 features and its own trust model. Companion restrictions do not secure that endpoint.
-Durable jobs, hard process isolation, persistent companion profiles and an OS sandbox
-are not implemented. Do not expose either stdio process as a public service.
+Execution runs in a separate worker with an independent watchdog and scoped
+process termination. This is not an OS sandbox or browser RSS quota. Linux zombie
+processes await host reaping; simultaneous controller loss, uninterruptible kernel
+I/O and host-level failures require external supervision. CLI input ingestion still
+precedes this boundary. Durable jobs and persistent companion profiles remain
+unimplemented. Do not expose either stdio process as a public service.

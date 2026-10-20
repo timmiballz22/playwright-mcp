@@ -23,7 +23,7 @@ test('HTTP errors fail navigation without replaying requests or leaking headers'
       assert.equal(result.ok, false, `HTTP ${status} incorrectly succeeded`);
       assert.equal(result.results[0].httpStatus, status);
       assert.equal(hits.get(`/${status}`), 1);
-      assert.doesNotMatch(JSON.stringify(result), /canary/);
+      assert.equal(JSON.stringify(result).includes('canary'), false, 'HTTP response secret reached summary');
       if (status === 429) {
         assert.equal(result.results[0].error, 'rate_limited');
         assert.equal(result.results[0].retryAfterMs, 2000);

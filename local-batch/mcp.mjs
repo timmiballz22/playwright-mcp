@@ -5,8 +5,7 @@ import path from 'node:path';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
-import { runWorkflow } from './runner.mjs';
-import { saveReport } from './report.mjs';
+import { executeWorkflow } from './executor.mjs';
 
 const server = new Server({ name: 'local-playwright-batch', version: '0.1.0' }, {
   capabilities: { tools: {} },
@@ -16,6 +15,7 @@ const allowedOrigins = (process.env.PLAYWRIGHT_BATCH_ALLOWED_ORIGINS || '')
   .split(',').map(s => s.trim()).filter(Boolean);
 const artifactsDir = path.resolve(process.env.PLAYWRIGHT_BATCH_ARTIFACTS_DIR || '.local-batch-output');
 let busy = false;
+let cleanupBlocked = false;
 let activeAbort;
 const shutdown = () => activeAbort?.abort();
 server.onclose = shutdown;
@@ -70,6 +70,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
 server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
   if (request.params.name !== 'browser_run_batch')
     return { isError: true, content: [{ type: 'text', text: 'Unknown tool' }] };
+  if (cleanupBlocked)
+    return { isError: true, content: [{ type: 'text', text: 'Execution is blocked after uncertain process cleanup. Local operator intervention is required.' }] };
   if (busy)
     return { isError: true, content: [{ type: 'text', text: 'A batch is already running' }] };
   busy = true;
@@ -78,11 +80,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
   extra.signal.addEventListener('abort', abort, { once: true });
   if (extra.signal.aborted) abort();
   try {
-    const result = await runWorkflow(request.params.arguments, {
+    const summary = await executeWorkflow(request.params.arguments, {
       allowedOrigins, artifactsDir, allowSensitiveArtifacts: process.env.PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS === '1', signal: activeAbort.signal,
     });
-    const summary = await saveReport(result, artifactsDir);
-    return { isError: !result.ok, content: [{ type: 'text', text: JSON.stringify(summary) }] };
+    if (summary.execution?.cleanup === 'failed') cleanupBlocked = true;
+    return { isError: !summary.ok, content: [{ type: 'text', text: JSON.stringify(summary) }] };
   } catch (error) {
     // Do not expose secrets from malformed URLs, browser errors or arbitrary page text.
     return { isError: true, content: [{ type: 'text', text: 'Batch rejected or failed (' +

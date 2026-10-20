@@ -207,3 +207,38 @@ Still NOT RELEASE-READY: all remaining G00–G18 criteria apply. G04/G10/G15 hav
 the evidence above; other gates are partial or failed. NEXT ACTION remains isolated
 worker ownership/process/report deadlines, DNS/egress and byte/memory quotas;
 then durable jobs/queues, profiles/recovery and remaining acceptance work. No package publication or main merge.
+
+## Supervised execution candidate (native CI pending)
+
+This candidate replaces CLI/MCP in-process execution with an independent watchdog
+and execution worker. Public BrowserServer process ownership enables scoped
+termination without exposing its private loopback endpoint. Deadlines cover setup,
+actions, report publication and worker exit; cancellation, worker/supervisor crashes,
+CPU stalls, stalled reporting and abrupt frontend death have fault fixtures.
+Temporary browser directories are private and removed after termination. Atomic
+report publication prevents partial JSON after injected ENOSPC; completed actions
+are preserved as a lower bound and never automatically replayed. MCP blocks new
+work after uncertain cleanup. Direct raw runner calls retain cooperative semantics.
+
+Evidence under `docs/evidence/worker-*`:
+- Latest targeted lifecycle acceptance: 9 passed, 0 failed/skipped/cancelled.
+- Complete local batch suite: 38 tests, 35 passed, 3 failed, no skips/cancellations.
+  All three failures are WebKit setup due to missing host libraries in this
+  container; these are failures, not passes or evidence of native compatibility.
+- Node 22 subset: 9 passed (executor, report fault and MCP 1,000 operations).
+- Independently installed production package in a path containing spaces:
+  both endpoints completed real browser calls; original discovered 25 tools,
+  companion one. Lint and diff whitespace checks pass.
+- Preserved failing-before fixtures prove the report partial-write and startup
+  cancellation race before their fixes. New native Windows/macOS/Linux CI is
+  required before assigning compatibility evidence to this runtime candidate.
+
+Remaining boundaries: CLI file loading/parsing is outside the supervised budget;
+256 MiB is worker V8 heap, not total RSS; route.fetch buffers allowed responses;
+DNS/OS egress and disk/response quotas remain open. Process termination is not an
+OS sandbox and cannot promise recovery from kernel stalls or simultaneous host
+controller loss. Atomic rename is not a fsync-backed durable job journal. No
+queues, durable jobs or persistent companion profiles are implemented. G06/G07
+and the full mission remain incomplete; old 212-test evidence applies to 2321179.
+NEXT ACTION: native candidate CI, bounded CLI ingestion, then remaining egress,
+resource, durable-state and acceptance requirements. No publish or main merge.

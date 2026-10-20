@@ -2,8 +2,7 @@
 // Local-only batch CLI; no cloud service, HTTP listener or arbitrary code execution.
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { runWorkflow } from './runner.mjs';
-import { saveReport } from './report.mjs';
+import { executeWorkflow } from './executor.mjs';
 
 function argsOf(argv) {
   const args = { origins: [] };
@@ -34,15 +33,14 @@ async function main() {
   process.once('SIGINT', cancel);
   process.once('SIGTERM', cancel);
   try {
-    const result = await runWorkflow(input, {
+    const summary = await executeWorkflow(input, {
       allowedOrigins: options.origins,
       allowSensitiveArtifacts: options.allowSensitiveArtifacts === true,
       artifactsDir,
       signal: abort.signal,
     });
-    const summary = await saveReport(result, artifactsDir);
     process.stdout.write(JSON.stringify(summary, null, 2) + '\n');
-    if (!result.ok)
+    if (!summary.ok)
       process.exitCode = 1;
   } finally {
     process.removeListener('SIGINT', cancel);

@@ -189,6 +189,8 @@ export async function runWorkflow(workflow, {
   artifactsDir = path.resolve('.local-batch-output'),
   signal,
   allowSensitiveArtifacts = false,
+  onBrowserProcess,
+  onProgress,
 } = {}) {
   const spec = validateWorkflow(workflow);
   const allowed = parseOrigins(allowedOrigins);
@@ -203,6 +205,7 @@ export async function runWorkflow(workflow, {
 
   const started = performance.now();
   let browser;
+  let browserServer;
   let context;
   let cancelled = false;
   let timedOut = false;
@@ -219,6 +222,7 @@ export async function runWorkflow(workflow, {
     rejectStopped(new Error(reason));
     void context?.close().catch(() => {});
     void browser?.close().catch(() => {});
+    void browserServer?.close().catch(() => {});
   };
   const abortListener = () => stop('cancelled');
   signal?.addEventListener('abort', abortListener, { once: true });
@@ -230,10 +234,22 @@ export async function runWorkflow(workflow, {
     await bounded(mkdir(artifactsDir, { recursive: true, mode: 0o700 }));
     artifactsDir = await bounded(mkdtemp(path.join(artifactsDir, 'run-')));
     const playwright = suppliedPlaywright ?? await bounded(import('playwright'));
-    browser = await bounded(playwright[spec.browser].launch({ headless: true, timeout: Math.max(1, spec.timeoutMs - (performance.now() - started)) }).then(value => {
-      if (cancelled || timedOut) void value.close().catch(() => {});
-      return value;
-    }));
+    const launchOptions = { headless: true, timeout: Math.max(1, spec.timeoutMs - (performance.now() - started)) };
+    if (onBrowserProcess) {
+      // Public BrowserServer.process() gives the watchdog an owned PID. Its
+      // WebSocket endpoint is loopback-only, private, and never model-visible.
+      browserServer = await bounded(playwright[spec.browser].launchServer({ ...launchOptions, host: '127.0.0.1' }).then(server => {
+        onBrowserProcess(server.process().pid);
+        if (cancelled || timedOut) void server.kill().catch(() => {});
+        return server;
+      }));
+      browser = await bounded(playwright[spec.browser].connect(browserServer.wsEndpoint(), { timeout: launchOptions.timeout }));
+    } else {
+      browser = await bounded(playwright[spec.browser].launch(launchOptions).then(value => {
+        if (cancelled || timedOut) void value.close().catch(() => {});
+        return value;
+      }));
+    }
     context = await bounded(browser.newContext({ acceptDownloads: false, serviceWorkers: 'block' }).then(value => {
       if (cancelled || timedOut) void value.close().catch(() => {});
       return value;
@@ -280,6 +296,7 @@ export async function runWorkflow(workflow, {
           const metadata = await bounded(perform(page, step, index, artifactsDir));
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: true, durationMs: Math.round(performance.now() - start), ...metadata });
+          onProgress?.({ completed: results.length });
         } catch (error) {
           const httpFailure = ['rate_limited', 'http_401', 'http_403', 'http_404', 'http_4xx', 'http_5xx'].includes(error?.safeCode);
           results.push({ index, repetition: repetition + 1, type: step.type,
@@ -296,7 +313,7 @@ export async function runWorkflow(workflow, {
   } finally {
     if (timer) clearTimeout(timer);
     if (abortListener) signal?.removeEventListener('abort', abortListener);
-    for (const resource of [context, browser]) {
+    for (const resource of [context, browser, browserServer]) {
       let cleanupTimer;
       try {
         await Promise.race([resource?.close(), new Promise((_, reject) => { cleanupTimer = setTimeout(() => reject(new Error('cleanup_timeout')), 5000); })]);
