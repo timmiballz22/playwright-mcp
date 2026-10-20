@@ -1660,3 +1660,15 @@ http.createServer(async (req, res) => {
 
 
 <!--- End of tools generated section -->
+
+
+---
+
+## Community fork: local batch automation
+
+This repository is a fork of Microsoft's Playwright MCP. The original MCP server and its configuration remain unchanged. This fork adds an **optional, local-only** declarative batch runner and an independent stdio MCP sidecar for running many ordered browser interactions per tool call. No public server or external browser-agent credits are required.
+
+- [Local batch usage, safety restrictions and setup](docs/LOCAL_BATCH.md)
+- [Codex implementation and verification handoff](docs/CODEX_HANDOFF.md)
+
+**Limits:** This does not remove ChatGPT/Codex usage allowances or target website rate limits. The original Playwright MCP is maintained upstream, with core code now in the Microsoft Playwright monorepo.
