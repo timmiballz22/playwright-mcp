@@ -22,7 +22,7 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
       });
       assert.ok(owned.length, 'No real browser ownership was reported; launch did not succeed');
       assert.equal(result.ok, false);
-      assert.equal(result.reason, 'timeout');
+      assert.equal(result.reason, 'timeout', JSON.stringify(result));
       assert.equal(result.execution.cleanup, 'terminated');
       assert.ok(result.durationMs < 10000);
       assert.equal(result.execution.tempCleanup, 'removed');

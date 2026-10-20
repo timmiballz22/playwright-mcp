@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
 import { createInterface } from 'node:readline';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, rm, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -45,10 +45,23 @@ for (const stop of ['eof', 'SIGTERM']) {
         assert.equal(code, 0, `signal=${signal}`);
       }
       assert.ok(Date.now() - start < 10000);
+      // An abruptly killed Windows frontend exits before its independent
+      // supervisor finishes. Wait for that cleanup instead of deleting live
+      // browser profile files immediately after the frontend exit event.
+      let cleaned = false;
+      for (let attempt = 0; attempt < 100; attempt++) {
+        const workspaces = (await readdir(dir)).filter(name => name.startsWith('exec-'));
+        const temporaryExists = await Promise.all(workspaces.map(async name => {
+          try { await stat(path.join(dir, name, 'tmp')); return true; } catch (error) { if (error.code === 'ENOENT') return false; throw error; }
+        }));
+        if (!temporaryExists.some(Boolean)) { cleaned = true; break; }
+        await new Promise(resolve => setTimeout(resolve, 50));
+      }
+      assert.equal(cleaned, true, 'Supervisor did not remove temporary browser files');
     } finally {
       clearTimeout(timer); child.kill('SIGKILL'); lines.close();
       fixture.closeAllConnections(); fixture.close();
-      await rm(dir, { recursive: true, force: true });
+      await rm(dir, { recursive: true, force: true, maxRetries: 10, retryDelay: 100 });
     }
   });
 }

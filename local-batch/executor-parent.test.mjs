@@ -54,6 +54,6 @@ test('abrupt execution-host death terminates its supervisor, worker and real bro
   } finally {
     clearTimeout(startupTimer); child.kill('SIGKILL'); lines.close();
     fixture.closeAllConnections(); fixture.close();
-    await rm(dir, { recursive: true, force: true });
+    await rm(dir, { recursive: true, force: true, maxRetries: 10, retryDelay: 100 });
   }
 });

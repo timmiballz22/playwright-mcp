@@ -156,3 +156,12 @@ fresh installed-package real browser calls passed for both endpoints (58 files).
 Actual Codex app-server recheck on supervised source: both endpoints discovered,
 upstream navigation passed; one batch call completed 1,000 operations in 34.061s,
 zero model turns. Temporary configuration only. See worker-codex-followup evidence.
+
+Native CI at 37be5d0 completed: wrapper 44/44 on all three OSs, Docker 2/2,
+lint passed. Batch Linux 38/38; macOS 37/38 (WebKit early action_failed instead
+of timeout); Windows 35/38 (WebKit policy_blocked, and abrupt-host tests observed
+locked browser files). These failures remain failures. Follow-up adds diagnostics
+for the WebKit result, waits for independent supervisor cleanup after abrupt
+Windows frontend exit, and prevents final test-directory removal from masking
+an earlier assertion with EBUSY. Parent-death ownership assertions remain strict.
+No Windows resource-cleanup PASS is claimed from these failed tests.
