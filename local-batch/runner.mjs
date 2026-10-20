@@ -47,8 +47,8 @@ export function validateWorkflow(workflow) {
       asString(step.selector, 'step ' + i + ' selector', 500);
     if (step.type === 'goto' || step.type === 'assertURL')
       asString(step.url, 'step ' + i + ' url', 2000);
-    if (step.type === 'fill')
-      asString(step.value, 'step ' + i + ' value', 10000);
+    if (step.type === 'fill' && (typeof step.value !== 'string' || step.value.length > 10000))
+      throw new TypeError('step ' + i + ' value must be a string of at most 10000 characters');
     if (step.type === 'press')
       asString(step.key, 'step ' + i + ' key', 100);
     if (step.type === 'assertText')
@@ -149,7 +149,7 @@ export async function runWorkflow(workflow, {
   let abortListener;
   const results = [];
   try {
-    context = await browser.newContext({ acceptDownloads: false });
+    context = await browser.newContext({ acceptDownloads: false, serviceWorkers: 'block' });
     context.setDefaultTimeout(spec.actionTimeoutMs);
     context.setDefaultNavigationTimeout(Math.min(30000, spec.timeoutMs));
 
