@@ -79,7 +79,7 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
 
     await use(async options => {
       const cwd = testInfo.outputPath();
-      const args: string[] = mcpArgs ?? [];
+      const args: string[] = [...(mcpArgs ?? [])];
       if (mcpHeadless)
         args.push('--headless');
       if (mcpBrowser)

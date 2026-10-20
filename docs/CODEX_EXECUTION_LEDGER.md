@@ -150,3 +150,26 @@ Milestone 3 local acceptance: `node scripts/test-batch.mjs`: 26 tests,
 0 skipped/cancelled. `npm test -- --project=chromium --project=firefox --workers=2`:
 20 passed, 0 failed/skipped. Fresh production tarball verifies both handshakes.
 See evidence/{batch-third-final,upstream-third-final,production-third-final}.txt.
+
+## Milestone 4 — client test isolation
+
+Milestone 3 implementation SHA: `735ee47f9f70ca7f31997e54cb0a91b0a18ea1aa`.
+Additional regression found in tests/fixtures.ts: optional mcpArgs array was
+mutated by startClient, leaking the first client's storage capability into the
+next client. Reproduced via real two-client discovery before fix; cloned base
+arguments before appending per-client flags. tests/capabilities.spec.ts regression
+now passes; full local Chromium/Firefox wrapper run: 22 passed, 0 failed/skipped.
+
+Node 22 subset: npx --yes --package=node@22 node --test
+local-batch/runner.test.mjs local-batch/distribution.test.mjs local-batch/mcp.test.mjs
+— 16 passed, 0 failed/skipped/cancelled, including compact exact-counter real
+1,000-operation MCP call. See evidence/node22.txt. Native CI uses Node 20 and
+current results must be checked at the next commit; queued is not pass.
+
+Remaining security concern identified in review: route.fetch buffers response
+bodies; network-response byte quotas and browser process-tree memory caps are not
+implemented. Treat this as an additional resource-exhaustion release blocker.
+
+NEXT ACTION: inspect newest CI Windows/macOS/Linux results, diagnose failures;
+then build isolated worker jobs with durable metadata and full process/report
+deadlines. All remaining G00–G18 criteria still apply.

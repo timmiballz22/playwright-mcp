@@ -88,3 +88,13 @@ test('extended upstream capability schema contract', async ({ startClient, mcpBr
   const baseline = JSON.parse(fs.readFileSync(path.join(__dirname, `../docs/evidence/discovery-${browser}-extended.json`), 'utf8'));
   expect(tools).toEqual(baseline.tools);
 });
+
+test.describe('client argument isolation', () => {
+  test.use({ mcpArgs: [] });
+  test('one client capability override cannot leak into another client', async ({ startClient }) => {
+    const first = await startClient({ args: ['--caps=storage'] });
+    expect((await first.client.listTools()).tools.map(tool => tool.name)).toContain('browser_cookie_get');
+    const second = await startClient();
+    expect((await second.client.listTools()).tools.map(tool => tool.name)).not.toContain('browser_cookie_get');
+  });
+});

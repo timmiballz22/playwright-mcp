@@ -1,0 +1,32 @@
+
+> @timmiballz22/playwright-mcp-local@0.0.83 test
+> playwright test --project=chromium -g cannot leak
+
+
+Running 1 test using 1 worker
+
+(node:41236) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (690ms)
+
+
+  1) [chromium] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client 
+
+    Error: expect(received).not.toContain(expected) // indexOf
+
+    Expected value: not "browser_cookie_get"
+    Received array:     ["browser_close", "browser_resize", "browser_console_messages", "browser_cookie_list", "browser_cookie_get", "browser_cookie_set", "browser_cookie_delete", "browser_cookie_clear", "browser_handle_dialog", "browser_emulate_media", "browser_evaluate", "browser_file_upload", "browser_drop", "browser_find", "browser_fill_form", "browser_press_key", "browser_type", "browser_navigate", "browser_navigate_back", "browser_network_requests", "browser_network_request", "browser_run_code_unsafe", "browser_take_screenshot", "browser_snapshot", "browser_click", "browser_drag", "browser_hover", "browser_select_option", "browser_storage_state", "browser_set_storage_state", "browser_tabs", "browser_wait_for", "browser_localstorage_list", "browser_localstorage_get", "browser_localstorage_set", "browser_localstorage_delete", "browser_localstorage_clear", "browser_sessionstorage_list", "browser_sessionstorage_get", "browser_sessionstorage_set", "browser_sessionstorage_delete", "browser_sessionstorage_clear"]
+
+       96 |     expect((await first.client.listTools()).tools.map(tool => tool.name)).toContain('browser_cookie_get');
+       97 |     const second = await startClient();
+    >  98 |     expect((await second.client.listTools()).tools.map(tool => tool.name)).not.toContain('browser_cookie_get');
+          |                                                                                ^
+       99 |   });
+      100 | });
+      101 |
+        at /workspace/playwright-mcp/tests/capabilities.spec.ts:98:80
+
+    Error Context: test-results/capabilities-client-argume-9d6cd-ot-leak-into-another-client-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client 

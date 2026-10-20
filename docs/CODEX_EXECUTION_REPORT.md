@@ -3,7 +3,8 @@
 Branch: feat/local-production-hardening. Draft PR:
 https://github.com/timmiballz22/playwright-mcp/pull/2.
 Baseline 804bc7e; first hardening commit a5a5a13; second 32477dd.
-The next commit contains the latest repeated-action and behavior tests.
+Implementation commit: 735ee47f9f70ca7f31997e54cb0a91b0a18ea1aa.
+Follow-up test-only change fixes per-client argument isolation and records evidence.
 
 Implemented: production SDK/tarball/fork identity safeguards, disabled publication,
 exact operator origins, real redirect SSRF regression/fix, no redirect replay,
@@ -15,7 +16,7 @@ CI limits/matrix, 72-tool schema records and upstream behavior fixtures.
 
 Local commands and results (Linux, Node 24.19.0):
 - npm ci: passed; npm run lint and git diff --check: passed.
-- npm test -- --project=chromium --project=firefox --workers=2: 20 passed.
+- npm test -- --project=chromium --project=firefox --workers=2: 22 passed (latest isolation regression included).
 - node scripts/test-batch.mjs: 24 passed, 2 FAILED (WebKit native libraries),
   0 skipped/cancelled. Includes real compact stdio MCP 1,000-operation workflow.
 - node scripts/verify-package.mjs: independent omit-dev tarball install, 25 original
@@ -24,6 +25,7 @@ Local commands and results (Linux, Node 24.19.0):
   configured browser; discovery alone does not prove browser behavior.
 - node scripts/soak-local.mjs: 100 fresh successful workflows, 18.041s, runner RSS
   118.3–182.5 MB. GC diagnostic 29.770s, 118.3–130.7 MB. Not leak-free proof.
+- Node 22 unit/distribution/real MCP subset: 16 passed, 0 failed/skipped.
 - npm audit --omit=dev: zero advisories after compatible transitive updates.
 
 CI on a5a5a13: wrapper full native/Docker run passed (39474746316), batch Linux/
