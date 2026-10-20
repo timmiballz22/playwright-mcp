@@ -59,7 +59,7 @@ test('100 ordered actions finish in a single batch with one browser launch', asy
   assert.deepEqual(result.results.map(x => x.index), Array.from({ length: 100 }, (_, i) => i + 1));
   assert.equal(state.clicks, 100);
   assert.equal(state.closes, 1);
-  assert.equal(state.contextsClosed, 2 >= 1 ? 1 : 0);
+  assert.equal(state.contextsClosed, 1);
 });
 
 test('failures stop promptly, hide underlying sensitive errors and clean up', async () => {
