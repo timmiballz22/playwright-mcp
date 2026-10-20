@@ -8,7 +8,7 @@ import path from 'node:path';
 import { executeWorkflow } from './executor.mjs';
 
 for (const browser of ['chromium', 'firefox', 'webkit']) {
-  test(`supervised ${browser}: real browser deadline closes owned process`, { timeout: 20000 }, async () => {
+  test(`supervised ${browser}: real browser deadline closes owned process`, { timeout: 30000 }, async () => {
     const fixture = createServer((req, res) => {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end('<!doctype html><button>Ready</button>');
@@ -18,7 +18,7 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
     const dir = await mkdtemp(path.join(os.tmpdir(), 'executor-browser-'));
     const owned = [];
     try {
-      const result = await executeWorkflow({ browser, timeoutMs: 5000, actionTimeoutMs: 30000,
+      const result = await executeWorkflow({ browser, timeoutMs: 10000, actionTimeoutMs: 30000,
         steps: [{ type: 'goto', url: origin }, { type: 'waitFor', selector: '#never' }] }, {
         allowedOrigins: [origin], artifactsDir: dir,
         onEvent: event => { if (event.type === 'ownedProcess') owned.push(event.pid); },
@@ -27,7 +27,7 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
       assert.equal(result.ok, false);
       assert.equal(result.reason, 'timeout', JSON.stringify(result));
       assert.equal(result.execution.cleanup, 'terminated');
-      assert.ok(result.durationMs < 10000);
+      assert.ok(result.durationMs < 15000);
       assert.equal(result.execution.tempCleanup, 'removed');
       await assert.rejects(stat(path.join(dir, 'exec-' + result.runId, 'tmp')), { code: 'ENOENT' });
       for (const pid of owned) {

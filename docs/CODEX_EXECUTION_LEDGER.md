@@ -2,10 +2,12 @@
 
 Updated 2026-10-20. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Last complete native matrix: `2321179bf52f79abe7986c8d6a2b133c46f1da5a`,
-212 passed with zero failed/skipped/cancelled. New supervisor candidate `37be5d0`
-has local evidence below and native CI in progress; ingestion/routing follow-up
-adds runtime changes. Do not apply the old complete matrix to newer code.
+Latest executed matrix: `90414976ac8aff1627f58939fc467723c94b9946`,
+357 passed and 2 Firefox timing failures. All wrapper jobs and owned shutdown
+checks passed; batch matrix is FAILED. Last complete green matrix remains
+`2321179bf52f79abe7986c8d6a2b133c46f1da5a` (212 passed, no failed/skipped/cancelled).
+Current scheduling/interaction candidate needs native verification. All 45
+mandatory scenarios are mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
@@ -15,11 +17,11 @@ adds runtime changes. Do not apply the old complete matrix to newer code.
 | G03 FEATURE PARITY | IN PROGRESS | evidence/discovery-*.json: 25 default / 72 extended tools per configured browser; tests/capabilities.spec.ts | Add representative behavior tests for every capability group |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs + integration.test.mjs; evidence/codex-client-operator.txt: exact 1000 actions / 997 clicks | Extend real long workflow to other browsers |
 | G05 RETRIES | IN PROGRESS | route.fetch maxRetries:0 avoids automatic replay; no 429/503 policy | Implement tested Retry-After handling without unsafe replay |
-| G06 JOBS | IN PROGRESS | executor fault tests, independent worker/supervisor and real parent-death cleanup; native candidate CI pending | Durable IDs/queue/journal; native ownership proof and recovery |
+| G06 JOBS | IN PROGRESS | executor fault tests, independent worker/supervisor and real parent-death cleanup; 9041497 native owned shutdown proof; durable jobs absent | Durable IDs/queue/journal, leases and recovery |
 | G07 SECURITY | FAILED | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
 | G08 STORAGE | IN PROGRESS | runner.mjs mkdtemp private per-run artifacts; report.mjs exclusive report write | Atomic artifacts, quotas, retention and native Windows ACL evidence; 20-run uniqueness already passed |
 | G09 AUTH/PROFILES | NOT STARTED | Batch ephemeral only; upstream retains profile features | Reuse upstream isolation/profile APIs with project locks and tests |
-| G10 CROSS-BROWSER | VERIFIED PASS | CI at 2321179: Chromium/Firefox/WebKit positive batch + redirect fixtures, original Chrome/Chromium/Firefox/WebKit behavior on Linux/macOS/Windows; evidence/ci-final-*.json | Keep wider interaction coverage tracked in G13/G14; local container WebKit remains blocked |
+| G10 CROSS-BROWSER | IN PROGRESS | CI at 2321179: Chromium/Firefox/WebKit positive batch + redirect fixtures, original Chrome/Chromium/Firefox/WebKit behavior on Linux/macOS/Windows; evidence/ci-final-*.json | 9041497 Firefox timing failures require scheduling candidate verification; local container WebKit remains blocked |
 | G11 CROSS-OS | IN PROGRESS | Native CI green at 2321179; plain CLI + actual Codex operator smoke verified on Linux | Execute bootstrap scripts and batch CLI/Codex operator setup on native Windows/macOS |
 | G12 PERFORMANCE | IN PROGRESS | scripts/soak-local.mjs; PERFORMANCE.md; evidence/soak*.txt | Process-tree RSS/FD/CPU measurement, latency/token/CLI comparison |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | Original MCP preserves role-based click; batch role/name, testId, label, placeholder and text selectors added | Keyboard, mobile/touch/media assertions and selector behavior/negative fixtures |
@@ -353,3 +355,47 @@ The same candidate includes the independently reproduced oversized-stdin shutdow
 fix and next CI runs actual bootstrap scripts, plus complete Linux Node 22/24
 batch jobs alongside three native Node 20 jobs. This is validation expansion,
 not existing evidence of an LTS or bootstrap PASS.
+
+## Watchdog ownership verified; remaining native test timing failures
+
+9041497 native results: all five wrapper jobs passed (44 tests per OS, Docker 2,
+lint). Batch Ubuntu Node 20/22/24 each 45/45 through actual Bash bootstrap;
+macOS 44/45 (Firefox launch did not report ownership before the 5s fixture's
+cleanup reservation); Windows 44/45 (raw integration click hit its 5s action
+timeout after 11 completed operations). Total executed across these runs:
+357 passed, 2 failed, no test skips/cancellations; whole batch matrix FAILED.
+No registry publication or main merge. Cold-host timing remains an unresolved
+acceptance issue; it is not relabeled as a pass.
+
+All three OSs now pass EOF/SIGTERM, abrupt execution-host death with owned PIDs
+stopped and temporary directory removed, protocol oversize closure and worker
+fault tests. This confirms the Windows detached-supervisor correction against
+the previously failing resource assertions. Actual PowerShell/Bash bootstraps
+installed and ran the suite, but their overall results retain those two failures.
+
+Next candidate serializes test files on macOS/Windows to remove competing fault
+workers/browser loads; Linux retains concurrency two. The real deadline fixture
+uses an explicit 10s total budget with 30s locator timeout, verifies launch and
+owned termination, and retains a 15s observed ceiling. Production policy is not
+modified by these test settings. No test retries are introduced. Static test
+names and allowlisted cleanup receipts become immediate CI annotations so failures
+can be diagnosed while another OS job queues.
+
+New original-endpoint fixtures: prompts and no-dialog rejection; approved file
+upload, missing/outside-workspace paths and symlink/junction escape rejection;
+iframe targets and stale-frame references after navigation. Local Chromium and
+Firefox: four tests passed. The first stale-frame fixture had an accidental
+double-slash URL; failed-before log is preserved and canonical URL construction
+fixed it. Native Chrome/WebKit/Windows junction coverage remains pending.
+
+Actual Codex app-server on 9041497: original navigation plus one compact batch,
+1,000 operations in 33.906s, zero model turns. See worker-codex-9041497.txt.
+SCENARIO_MATRIX.md now maps all 45 mandatory scenarios without claiming missing
+jobs/profiles/quotas/mobile/network guarantees. NEXT ACTION: verify the scheduling
+candidate, then durable job ownership/state and outstanding security/resource work.
+
+Scheduling-candidate launcher verification: complete local 45-test run, 42 passed,
+3 failed (all WebKit missing-host-library setup), zero skips/cancellations. The
+launcher preserves failure exit status and complete UTF-8 output. Separate real
+Chromium/Firefox ten-second deadline fixtures: 2 passed. Original interaction
+fixtures: 4 passed, including symlink escape and stale frame negative cases.

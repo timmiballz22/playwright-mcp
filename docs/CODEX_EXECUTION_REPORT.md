@@ -242,3 +242,47 @@ The same candidate includes the independently reproduced oversized-stdin shutdow
 fix and next CI runs actual bootstrap scripts, plus complete Linux Node 22/24
 batch jobs alongside three native Node 20 jobs. This is validation expansion,
 not existing evidence of an LTS or bootstrap PASS.
+
+## Watchdog ownership verified; remaining native test timing failures
+
+9041497 native results: all five wrapper jobs passed (44 tests per OS, Docker 2,
+lint). Batch Ubuntu Node 20/22/24 each 45/45 through actual Bash bootstrap;
+macOS 44/45 (Firefox launch did not report ownership before the 5s fixture's
+cleanup reservation); Windows 44/45 (raw integration click hit its 5s action
+timeout after 11 completed operations). Total executed across these runs:
+357 passed, 2 failed, no test skips/cancellations; whole batch matrix FAILED.
+No registry publication or main merge. Cold-host timing remains an unresolved
+acceptance issue; it is not relabeled as a pass.
+
+All three OSs now pass EOF/SIGTERM, abrupt execution-host death with owned PIDs
+stopped and temporary directory removed, protocol oversize closure and worker
+fault tests. This confirms the Windows detached-supervisor correction against
+the previously failing resource assertions. Actual PowerShell/Bash bootstraps
+installed and ran the suite, but their overall results retain those two failures.
+
+Next candidate serializes test files on macOS/Windows to remove competing fault
+workers/browser loads; Linux retains concurrency two. The real deadline fixture
+uses an explicit 10s total budget with 30s locator timeout, verifies launch and
+owned termination, and retains a 15s observed ceiling. Production policy is not
+modified by these test settings. No test retries are introduced. Static test
+names and allowlisted cleanup receipts become immediate CI annotations so failures
+can be diagnosed while another OS job queues.
+
+New original-endpoint fixtures: prompts and no-dialog rejection; approved file
+upload, missing/outside-workspace paths and symlink/junction escape rejection;
+iframe targets and stale-frame references after navigation. Local Chromium and
+Firefox: four tests passed. The first stale-frame fixture had an accidental
+double-slash URL; failed-before log is preserved and canonical URL construction
+fixed it. Native Chrome/WebKit/Windows junction coverage remains pending.
+
+Actual Codex app-server on 9041497: original navigation plus one compact batch,
+1,000 operations in 33.906s, zero model turns. See worker-codex-9041497.txt.
+SCENARIO_MATRIX.md now maps all 45 mandatory scenarios without claiming missing
+jobs/profiles/quotas/mobile/network guarantees. NEXT ACTION: verify the scheduling
+candidate, then durable job ownership/state and outstanding security/resource work.
+
+Scheduling-candidate launcher verification: complete local 45-test run, 42 passed,
+3 failed (all WebKit missing-host-library setup), zero skips/cancellations. The
+launcher preserves failure exit status and complete UTF-8 output. Separate real
+Chromium/Firefox ten-second deadline fixtures: 2 passed. Original interaction
+fixtures: 4 passed, including symlink escape and stale frame negative cases.

@@ -33,3 +33,9 @@ operations in one positive batch tool call (four declared steps), 33,882ms.
 The counter is asserted exactly after 997 clicks; navigation and two assertions
 complete the 1,000 actions. No model turn was started in this protocol test; this
 is not a claim of zero model usage in normal conversational automation.
+
+The 100-run figures above use the direct raw runner before supervised execution;
+they do not measure current watchdog/worker overhead or prove current resource
+stability. Actual Codex app-server at 9041497 completed one 1,000-operation batch
+in 33,906ms with zero model turns. This remains a single sample with no transferred
+token measurement; supervised process-tree RSS/FD/CPU soak remains open.
