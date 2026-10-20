@@ -579,3 +579,19 @@ Failing-before tests showed the missing hook allowed fixture effects. Afterward:
 tests passed on Node 22, and gated real Chromium/Firefox positives passed (23
 actions, exact counter, PNG and report per browser). Lint/diff checks passed.
 Native hook/WebKit verification is pending; local WebKit remains unavailable.
+
+## Journal key hard-link rejection
+
+The managed-path negative test reproduced acceptance of an externally hard-linked
+32-byte journal key. Keys now require one link after a bounded 200ms publication
+window for a concurrent creator to remove its exclusive temporary name. Persistent
+extra links fail unsafe_store before database creation; the outside key is untouched.
+Eleven full journal tests pass on Node 24 and eleven on Node 22, including competing
+initialization. The first negative-test draft left an unexpectedly accepted journal
+open; its three owned test processes were explicitly stopped. The test now closes
+any unexpectedly accepted client before asserting failure, so the preserved before
+run terminates cleanly. Lint/diff checks pass; native verification is pending.
+
+Additional legacy compatibility check for worker admission: Node 20 selected three
+admission tests passed, eleven unmatched tests were reported skipped by that old
+test runner. This targeted selection is not a full 14-test Node 20 run.

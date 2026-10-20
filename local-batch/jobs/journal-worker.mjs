@@ -46,7 +46,15 @@ async function privateKey(directory) {
     catch (exception) { if (exception.code !== 'EEXIST') throw exception; }
     finally { await unlink(temporary); }
   }
-  if ((await assertPrivate(filename, false, true)).size !== 32) error('invalid_store_key');
+  let stat = await assertPrivate(filename, false, true);
+  // A competing creator may still be unlinking its exclusive temporary name.
+  // This permits that short publication window, never a persistent outside link.
+  for (let attempt = 0; stat.nlink !== 1 && attempt < 10; attempt++) {
+    await new Promise(resolve => setTimeout(resolve, 20));
+    stat = await assertPrivate(filename, false, true);
+  }
+  if (stat.nlink !== 1) error('unsafe_store');
+  if (stat.size !== 32) error('invalid_store_key');
   const file = await open(filename, constants.O_RDONLY | (constants.O_NOFOLLOW || 0));
   try { return await file.readFile(); } finally { await file.close(); }
 }

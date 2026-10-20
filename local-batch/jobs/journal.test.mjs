@@ -28,6 +28,14 @@ if (!supportsJournal) {
       await link(marker, path.join(directory, 'jobs.sqlite'));
       await assert.rejects(JobJournal.open({ directory, projectId: '5'.repeat(64), ownerId: 'owner' }), { code: 'unsafe_store' });
       assert.equal(await readFile(marker, 'utf8'), 'owned-fixture');
+      const keyRoot = path.join(root, 'key-managed'); await mkdir(keyRoot, { mode: 0o700 });
+      const outsideKey = path.join(root, 'foreign-key'); await writeFile(outsideKey, Buffer.alloc(32, 7), { mode: 0o600 });
+      await link(outsideKey, path.join(keyRoot, 'journal.key'));
+      await assert.rejects(JobJournal.open({ directory: keyRoot, projectId: '5'.repeat(64), ownerId: 'owner' })
+          .then(async unexpected => { await unexpected.close(); return undefined; }), { code: 'unsafe_store' });
+      assert.deepEqual(await readFile(outsideKey), Buffer.alloc(32, 7));
+      assert.deepEqual(await readdir(keyRoot), ['journal.key']);
+
     } finally { await rm(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
   });
 

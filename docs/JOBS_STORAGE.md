@@ -28,7 +28,9 @@ kill authority. Dead queued controllers become CRASHED without replay; uncertain
 active cleanup retains the project lease. This component alone cannot establish
 browser execution ownership or successful browser cleanup.
 
-Managed roots reject symlinks/junctions, database hard links and unrelated databases.
+Managed roots reject symlinks/junctions, persistent key/database hard links and
+unrelated databases. Key publication allows at most 200ms for an exclusive
+temporary publication link to disappear, then requires a single link.
 POSIX directories/files use private modes; Windows ACL enforcement and evidence
 remain open. A database marker and local key bind storage to the project before
 schema writes. Corrupt or foreign stores are rejected without replacement.
