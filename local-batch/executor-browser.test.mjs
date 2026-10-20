@@ -9,7 +9,10 @@ import { executeWorkflow } from './executor.mjs';
 
 for (const browser of ['chromium', 'firefox', 'webkit']) {
   test(`supervised ${browser}: real browser deadline closes owned process`, { timeout: 20000 }, async () => {
-    const fixture = createServer((req, res) => res.end('<button>Ready</button>'));
+    const fixture = createServer((req, res) => {
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end('<!doctype html><button>Ready</button>');
+    });
     fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
     const origin = `http://127.0.0.1:${fixture.address().port}`;
     const dir = await mkdtemp(path.join(os.tmpdir(), 'executor-browser-'));

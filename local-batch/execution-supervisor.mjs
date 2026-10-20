@@ -2,7 +2,7 @@
 import { fork } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { rm } from 'node:fs/promises';
+import { cleanupTemporaryDirectory } from './cleanup.mjs';
 import { terminateOwnedProcesses } from './process-tree.mjs';
 let worker;
 let packet;
@@ -29,8 +29,9 @@ async function finish(exitCode) {
   let cleaned = await terminateOwnedProcesses(worker.pid, [...browserPids], !workerExited);
   let tempCleanup = 'not-created';
   if (ownsWorkspace) {
-    try { await rm(path.join(workspaceRoot, 'tmp'), { recursive: true, force: true, maxRetries: 2, retryDelay: 10 }); tempCleanup = 'removed'; }
-    catch { cleaned = false; tempCleanup = 'failed'; }
+    const removed = await cleanupTemporaryDirectory(path.join(workspaceRoot, 'tmp'), Math.max(1, Math.min(2000, remaining())));
+    tempCleanup = removed ? 'removed' : 'failed';
+    if (!removed) cleaned = false;
   }
   const reason = !cleaned ? 'cleanup_failed' : stopReason ||
     (remaining() <= 0 ? 'timeout' : exitCode !== 0 ? 'worker_crashed' : candidate ? null : 'execution_failed');

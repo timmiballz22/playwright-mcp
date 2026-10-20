@@ -29,7 +29,8 @@ accepts only regular files and reads at most 1 MiB plus one sentinel byte.
 Filesystem latency is not covered by that deadline.
 
 Each worker has a private execution directory and temporary browser directory.
-The supervisor removes temporary files after termination. Reports publish via
+The supervisor removes temporary files after termination through a bounded cleanup
+child, with retries for transient Windows file locks. Reports publish via
 exclusive temporary files and atomic rename, not a power-loss durable journal.
 Replies contain at most ten recent steps. Failed execution counts can be confirmed
 lower bounds; unsafe actions are never automatically replayed. There is no durable

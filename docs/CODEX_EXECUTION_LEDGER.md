@@ -276,3 +276,23 @@ for the WebKit result, waits for independent supervisor cleanup after abrupt
 Windows frontend exit, and prevents final test-directory removal from masking
 an earlier assertion with EBUSY. Parent-death ownership assertions remain strict.
 No Windows resource-cleanup PASS is claimed from these failed tests.
+
+## Windows temporary-file cleanup follow-up (native verification pending)
+
+CI at fa45d3b: batch Linux 40/40, macOS 40/40; Windows 37/40, with the three
+failures preserved in worker-ci-second evidence. Wrapper all jobs passed again.
+Windows now exposes the actual residual temporary directory rather than masking
+it with final test teardown EBUSY. Tracked processes stopped, but cleanup left
+files behind. WebKit diagnostics identify an early goto failure, not a timeout.
+
+The new candidate moves temporary deletion into a bounded cleanup child with
+retry handling for transient Windows file locks; supervisor waits for child exit.
+A startup-deadline test proves an expired child cannot later remove the directory.
+The browser deadline fixture now explicitly serves text/html, matching the working
+integration fixture, instead of relying on MIME sniffing. This is not yet proof
+of the Windows WebKit failure's cause. Two real Chromium negative fixtures prove
+unapproved iframe and WebSocket destinations receive zero requests while workflow
+policy denial and cleanup are observed. Local lifecycle/security subset: 13 passed;
+cleanup subprocess test: 1 passed. Typed Chromium/Firefox deadline fixtures passed.
+New candidate native CI is required; Windows cleanup is still an open gate until
+it passes. Filesystem/kernel stalls remain subject to OS termination limitations.

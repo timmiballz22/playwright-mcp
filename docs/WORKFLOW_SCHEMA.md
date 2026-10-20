@@ -51,3 +51,13 @@ setup errors are scrubbed as setup_failed steps. HTTP navigation failures report
 httpStatus and safe codes http_401/http_403/http_404/http_4xx/http_5xx/rate_limited.
 A valid Retry-After header becomes retryAfterMs metadata without echoing headers.
 There is no automatic retry or durable cross-call backoff scheduler. Durable job IDs are not available.
+
+Supervised CLI/MCP replies also include `schemaVersion`, opaque `runId`, and
+`execution` cleanup metadata. An unsuccessful count has
+`completionCertainty: "confirmed_lower_bound"` and `retrySafe: false`: an action
+may have affected the site before its acknowledgement was lost. Do not replay it
+automatically. A successful count is exact. Pre-start cancellation has exact zero
+completion. Failure reasons can additionally include `worker_crashed`,
+`supervisor_failed` and `execution_failed` with a safe stage. Cleanup uncertainty
+blocks subsequent MCP work until the operator investigates. Process IDs are
+execution diagnostics, not accepted workflow parameters or cancellation authority.

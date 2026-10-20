@@ -13,6 +13,7 @@ test('closing a successful workflow with an outstanding allowed request is not a
   const fixture = createServer(async (req, res) => {
     if (req.url === '/poll') { ready(); return; }
     if (req.url === '/mark') { await pollStarted; res.end('ready'); return; }
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(`<script>fetch('/poll'); fetch('/mark').then(() => { document.body.innerHTML='<p id="ready">Ready</p>' })</script>`);
   });
   fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
