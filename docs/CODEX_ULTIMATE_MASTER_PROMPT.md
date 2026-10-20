@@ -686,3 +686,131 @@ The release package must include:
 Use actual tests, exact evidence, truthful labels and reliable engineering.
 
 **START WITH THE SOURCE AUDIT AND THE P0 FINDINGS. IMPLEMENT AND VERIFY IN THE SAME CODING SESSION. CONTINUE FIXING FAILURES UNTIL THE DEFINED GATES ARE SATISFIED OR A DOCUMENTED TECHNICAL BLOCKER PREVENTS THEM. DO NOT DECLARE THE PROJECT RELEASE-READY UNTIL EVIDENCE SUPPORTS IT.**
+
+
+---
+
+## 25. Exhaustive named upstream tool contract inventory (discovered from this fork's README)
+
+The following **72 unique browser_ tool names** were extracted directly from the README at the time of inspection. Some require optional capabilities and therefore MUST NOT be expected in every discovery response. Codex must validate the actual discovery set for each configuration and cover representative behavior for each family. This appendix is an inventory for engineering accountability, not a claim that every function is active by default.
+
+### Interactive browsing
+
+- browser_navigate
+- browser_navigate_back
+- browser_close
+- browser_tabs
+- browser_snapshot
+- browser_wait_for
+- browser_resize
+- browser_resume
+
+**Acceptance:** for each supported tool in this family, test positive and negative paths on local fixtures, verify the MCP schema, capability gate, browser compatibility, redaction and lifecycle effects. Do not replace source implementation with a mock.
+
+### Form, DOM and keyboard actions
+
+- browser_click
+- browser_fill_form
+- browser_type
+- browser_press_key
+- browser_select_option
+- browser_hover
+- browser_drag
+- browser_drop
+- browser_file_upload
+- browser_handle_dialog
+- browser_find
+- browser_generate_locator
+
+**Acceptance:** for each supported tool in this family, test positive and negative paths on local fixtures, verify the MCP schema, capability gate, browser compatibility, redaction and lifecycle effects. Do not replace source implementation with a mock.
+
+### Pointer and coordinate operations
+
+- browser_mouse_click_xy
+- browser_mouse_down
+- browser_mouse_drag_xy
+- browser_mouse_move_xy
+- browser_mouse_up
+- browser_mouse_wheel
+
+**Acceptance:** for each supported tool in this family, test positive and negative paths on local fixtures, verify the MCP schema, capability gate, browser compatibility, redaction and lifecycle effects. Do not replace source implementation with a mock.
+
+### Session state and cookies
+
+- browser_cookie_clear
+- browser_cookie_delete
+- browser_cookie_get
+- browser_cookie_list
+- browser_cookie_set
+- browser_localstorage_clear
+- browser_localstorage_delete
+- browser_localstorage_get
+- browser_localstorage_list
+- browser_localstorage_set
+- browser_sessionstorage_clear
+- browser_sessionstorage_delete
+- browser_sessionstorage_get
+- browser_sessionstorage_list
+- browser_sessionstorage_set
+- browser_set_storage_state
+- browser_storage_state
+
+**Acceptance:** for each supported tool in this family, test positive and negative paths on local fixtures, verify the MCP schema, capability gate, browser compatibility, redaction and lifecycle effects. Do not replace source implementation with a mock.
+
+### Network and routing
+
+- browser_network_request
+- browser_network_requests
+- browser_network_state_set
+- browser_route
+- browser_route_list
+- browser_unroute
+
+**Acceptance:** for each supported tool in this family, test positive and negative paths on local fixtures, verify the MCP schema, capability gate, browser compatibility, redaction and lifecycle effects. Do not replace source implementation with a mock.
+
+### Inspection, diagnostics and developer tools
+
+- browser_console_messages
+- browser_take_screenshot
+- browser_pdf_save
+- browser_get_config
+- browser_annotate
+- browser_highlight
+- browser_hide_highlight
+- browser_evaluate
+- browser_run_code_unsafe
+- browser_emulate_media
+
+**Acceptance:** for each supported tool in this family, test positive and negative paths on local fixtures, verify the MCP schema, capability gate, browser compatibility, redaction and lifecycle effects. Do not replace source implementation with a mock.
+
+### Tracing, recording and video
+
+- browser_start_recording
+- browser_start_tracing
+- browser_start_video
+- browser_stop_recording
+- browser_stop_tracing
+- browser_stop_video
+- browser_video_chapter
+- browser_video_hide_actions
+- browser_video_show_actions
+
+**Acceptance:** for each supported tool in this family, test positive and negative paths on local fixtures, verify the MCP schema, capability gate, browser compatibility, redaction and lifecycle effects. Do not replace source implementation with a mock.
+
+### Testing and verification
+
+- browser_verify_element_visible
+- browser_verify_list_visible
+- browser_verify_text_visible
+- browser_verify_value
+
+**Acceptance:** for each supported tool in this family, test positive and negative paths on local fixtures, verify the MCP schema, capability gate, browser compatibility, redaction and lifecycle effects. Do not replace source implementation with a mock.
+
+### Tool inventory acceptance
+
+- Store the baseline discovery outputs as versioned test fixtures by browser and capability flags.
+- Test original tool names and compatible parameter shapes across the fork changes.
+- Document mode-specific exposure: core, tab/input, testing, storage, network, video, PDF, vision, devtools, browser code and any experimental WebMCP features.
+- If README names differ from the executable pinned code, mark those discrepancies and resolve by code execution and upstream docs.
+- Do not enable privileged actions merely to make the tool count bigger.
+- Compare CLI + SKILLS and MCP feature coverage through real tests. Distinguish test coverage from marketing claims.
