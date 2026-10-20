@@ -87,3 +87,22 @@ test('cancellation between precheck and supervisor startup does not start a work
   assert.equal(result.reason, 'cancelled');
   assert.equal(events.some(event => event.type === 'workerSpawned'), false, 'Cancellation was checked after work was already started');
 });
+
+test('safe failure and lower-bound progress survive supervisor death without raw diagnostics', { timeout: 15000 }, async () => {
+  const { executeWorkflow } = await import('./executor.mjs');
+  const observed = [];
+  let supervisor;
+  const result = await executeWorkflow({ timeoutMs: 10000, steps: [{ type: 'click', selector: 'button', repeat: 4 }] }, {
+    workerModule: new URL('./fixtures/failure-stall-worker.mjs', import.meta.url),
+    onEvent: event => {
+      if (event.pid) observed.push(event.pid);
+      if (event.type === 'supervisorSpawned') supervisor = event.pid;
+      if (event.type === 'actionFailure') process.kill(supervisor, 'SIGKILL');
+    },
+  });
+  assert.equal(result.reason, 'supervisor_failed');
+  assert.equal(result.completed, 3);
+  assert.deepEqual(result.failedStep, { index: 4, type: 'click', ok: false, error: 'action_failed', failureKind: 'not_stable' });
+  assert.equal(JSON.stringify(result).includes('fake-worker-diagnostic-canary'), false);
+  await assertStopped(observed);
+});

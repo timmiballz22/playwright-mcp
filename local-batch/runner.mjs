@@ -3,6 +3,7 @@
 import { mkdir, mkdtemp } from 'node:fs/promises';
 import path from 'node:path';
 import { performance } from 'node:perf_hooks';
+import { classifyActionFailure } from './failure.mjs';
 
 export const MAX_STEPS = 1000;
 export const MAX_ITERATIONS = 100;
@@ -300,11 +301,13 @@ export async function runWorkflow(workflow, {
             ok: true, durationMs: Math.round(performance.now() - start), ...metadata });
           onProgress?.({ completed: results.length });
         } catch (error) {
-          try { onActionFailure?.(error, { index, type: step.type }); } catch {}
           const httpFailure = ['rate_limited', 'http_401', 'http_403', 'http_404', 'http_4xx', 'http_5xx'].includes(error?.safeCode);
+          const safeError = cancelled ? 'cancelled' : timedOut ? 'timeout' : httpFailure ? error.safeCode : 'action_failed';
+          const failureKind = cancelled || timedOut ? 'interrupted' : classifyActionFailure(error, step);
+          try { onActionFailure?.(error, { index, type: step.type, error: safeError, failureKind }); } catch {}
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: false, durationMs: Math.round(performance.now() - start),
-            error: cancelled ? 'cancelled' : timedOut ? 'timeout' : httpFailure ? error.safeCode : 'action_failed',
+            error: safeError, failureKind,
             ...(httpFailure ? { httpStatus: error.httpStatus, ...(error.retryAfterMs !== undefined ? { retryAfterMs: error.retryAfterMs } : {}) } : {}) });
           break outer;
         }

@@ -31,6 +31,7 @@ process.once('message', async packet => {
     const result = await runWorkflow(packet.workflow, { ...packet.options, artifactsDir: packet.workspaceRoot, signal: abort.signal,
       onBrowserProcess: pid => send({ type: 'ownedProcess', pid }),
       onProgress: event => { completed = event.completed; send({ type: 'progress', completed }); },
+      onActionFailure: (error, step) => send({ type: 'actionFailure', failedStep: { ...step, ok: false } }),
     });
     stage = 'report';
     summary = await saveReport({ schemaVersion: 1, runId: packet.runId, ...result }, packet.workspaceRoot);

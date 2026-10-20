@@ -425,3 +425,35 @@ real deadlines two and abrupt-parent audit one passed (20 total). Local WebKit
 host libraries remain unavailable. Windows CIM audit and the recurring raw
 Firefox failure still require native execution. No retry, timeout increase for
 the failing raw click, or successful release claim is introduced.
+
+## Supervised positive and descendant audit results; safe failure retention
+
+803cc88 native batch: Windows, macOS, Ubuntu Node 20 and Node 22 each 48/48;
+Ubuntu Node 24 47/48. All wrapper jobs passed again. The single failure was new
+supervised WebKit positive execution on Node 24: timeout at 19.065s with 12
+confirmed operations, cleanup terminated and temporary directory removed. Total
+397 passed, 1 failed, no test skips/cancellations. Windows raw Firefox did not
+reproduce its prior failure; the cause is still OPEN, not declared fixed.
+All new native process-tree audits and supervised positives on the other jobs
+passed. Windows CIM audits collect PID/parent metadata only and never kill anything.
+
+Next candidate serializes all batch files, including Linux, so deliberate CPU-stall
+faults cannot compete with interactive browser fixtures. Windows raw Firefox runs
+five fresh workflows sequentially; every iteration must pass before the next
+starts, with distinct screenshot paths. No failed workflow is retried. Five such
+raw Firefox workflows passed locally with an explicit test-only run-count setting.
+The positive supervised fixture now checks temporary files and OS descendants
+before asserting success, preserving cleanup proof even when execution fails.
+
+A fixed failureKind code is sent before teardown and retained if reporting,
+cleanup or the supervisor later stalls. Codes are selected from static enums;
+raw error text, selector and input values do not cross this IPC path. A fault
+fixture sends an extra fake-secret field and kills the supervisor after the
+failure: confirmed progress and the safe failure survive, the secret is omitted,
+and owned processes stop. Local unit/fault/report subset: 24 passed; fresh
+installed endpoint browser calls and lint passed. See safe-failure evidence.
+
+An uncommitted journal storage kernel is under local development in local-batch/jobs;
+it is not packaged, exposed through MCP or part of this candidate's job claims.
+Durable jobs remain unimplemented at the public endpoints. NEXT ACTION: native
+verification and continued journal crash/ownership testing, then API integration.

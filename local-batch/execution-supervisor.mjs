@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { cleanupTemporaryDirectory } from './cleanup.mjs';
 import { terminateOwnedProcesses } from './process-tree.mjs';
+import { FAILURE_KINDS, STEP_FAILURE_CODES } from './failure.mjs';
 let worker;
 let packet;
 let deadlineTimer;
@@ -14,6 +15,7 @@ let finishing = false;
 let workerExited = false;
 let forced = false;
 let completed = 0;
+let failedStep = null;
 let workspaceRoot;
 let ownsWorkspace = false;
 const browserPids = new Set();
@@ -36,7 +38,7 @@ async function finish(exitCode) {
   const reason = !cleaned ? 'cleanup_failed' : stopReason ||
     (remaining() <= 0 ? 'timeout' : exitCode !== 0 ? 'worker_crashed' : candidate ? null : 'execution_failed');
   const summary = reason ? { ok: false, reason, completed, total: packet.total,
-    recentSteps: [], failedStep: null, reportPath: null } : candidate;
+    recentSteps: [], failedStep, reportPath: null } : candidate;
   const response = { type: 'result', summary: { ...summary, execution: { mode: 'supervised', forced, cleanup: cleaned ? 'terminated' : 'failed', tempCleanup, supervisorPid: process.pid, workerPid: worker.pid, browserPids: [...browserPids] } } };
   if (process.connected) {
     process.send(response, () => { if (process.connected) process.disconnect(); });
@@ -73,6 +75,12 @@ process.on('message', message => {
     } else if (event.type === 'progress' && Number.isInteger(event.completed) && event.completed >= completed && event.completed <= packet.total) {
       completed = event.completed;
       if (completed % 25 === 0 || completed === packet.total) send({ type: 'progress', completed });
+    } else if (event.type === 'actionFailure' && Number.isInteger(event.failedStep?.index) && event.failedStep.index > 0 &&
+        event.failedStep.index <= packet.total && ['goto', 'click', 'fill', 'press', 'check', 'uncheck', 'hover', 'waitFor', 'assertText', 'assertURL', 'scroll', 'screenshot'].includes(event.failedStep.type) &&
+        FAILURE_KINDS.includes(event.failedStep.failureKind) && STEP_FAILURE_CODES.includes(event.failedStep.error)) {
+      failedStep = { index: event.failedStep.index, type: event.failedStep.type, ok: false,
+        error: event.failedStep.error, failureKind: event.failedStep.failureKind };
+      send({ type: 'actionFailure', failedStep, completed });
     } else if (event.type === 'result' && event.summary && typeof event.summary.ok === 'boolean') {
       candidate = event.summary;
       completed = Math.max(completed, candidate.completed || 0);

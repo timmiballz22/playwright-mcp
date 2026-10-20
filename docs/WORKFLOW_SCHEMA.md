@@ -61,3 +61,9 @@ completion. Failure reasons can additionally include `worker_crashed`,
 `supervisor_failed` and `execution_failed` with a safe stage. Cleanup uncertainty
 blocks subsequent MCP work until the operator investigates. Process IDs are
 execution diagnostics, not accepted workflow parameters or cancellation authority.
+
+Failed steps may include `failureKind`, a fixed diagnostic code such as
+`not_stable`, `pointer_intercepted`, `locator_timeout`, `target_closed`,
+`assertion_mismatch` or `unknown`. It is best-effort classification, never raw
+browser text or permission to replay an action. The last observed safe failure
+and confirmed progress are retained if later cleanup/reporting fails.

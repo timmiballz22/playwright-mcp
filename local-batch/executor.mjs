@@ -35,6 +35,7 @@ export async function executeWorkflow(input, {
     let stopReason;
     let lastCompleted = 0;
     let workerPid;
+    let failedStep = null;
     const ownedPids = new Set();
     const supervisor = fork(fileURLToPath(new URL('./execution-supervisor.mjs', import.meta.url)), [], {
       // Windows libuv kills non-detached children when the frontend exits.
@@ -60,7 +61,7 @@ export async function executeWorkflow(input, {
       if (settled || forcing) return;
       forcing = true;
       const cleaned = await terminateOwnedProcesses(supervisor.pid, [...ownedPids], supervisor.exitCode === null && supervisor.signalCode === null);
-      finish({ ...failure(cleaned ? reason : 'cleanup_failed'), completed: lastCompleted,
+      finish({ ...failure(cleaned ? reason : 'cleanup_failed'), completed: lastCompleted, failedStep,
         execution: { mode: 'supervised', forced: true, cleanup: cleaned ? 'terminated' : 'failed', tempCleanup: 'unknown', supervisorPid: supervisor.pid, workerPid, browserPids: [...ownedPids].filter(pid => pid !== workerPid) } });
     };
     const stop = reason => {
@@ -77,6 +78,11 @@ export async function executeWorkflow(input, {
         if (event.type === 'workerSpawned') workerPid = event.pid;
         if (event.pid) ownedPids.add(event.pid);
         if (event.type === 'progress') lastCompleted = event.completed;
+        if (event.type === 'actionFailure') {
+          failedStep = event.failedStep;
+          if (Number.isInteger(event.completed) && event.completed >= lastCompleted && event.completed <= total)
+            lastCompleted = event.completed;
+        }
         notify(event);
       }
     });
@@ -85,7 +91,7 @@ export async function executeWorkflow(input, {
       if (forcing) return;
       if (!candidate || code !== 0) {
         const cleaned = await terminateOwnedProcesses(workerPid || supervisor.pid, [...ownedPids].filter(pid => pid !== workerPid), Boolean(workerPid));
-        finish({ ...failure(cleaned ? (stopReason || 'supervisor_failed') : 'cleanup_failed'), completed: lastCompleted,
+        finish({ ...failure(cleaned ? (stopReason || 'supervisor_failed') : 'cleanup_failed'), completed: lastCompleted, failedStep,
           execution: { mode: 'supervised', forced: Boolean(workerPid), cleanup: cleaned ? 'terminated' : 'failed', tempCleanup: workerPid ? 'unknown' : 'not-created', supervisorPid: supervisor.pid, workerPid, browserPids: [...ownedPids].filter(pid => pid !== workerPid) } });
         return;
       }

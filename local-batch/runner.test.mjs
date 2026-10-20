@@ -1,6 +1,16 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { runWorkflow, validateWorkflow } from './runner.mjs';
+import { classifyActionFailure, FAILURE_KINDS } from './failure.mjs';
+
+test('failure classification returns fixed codes and never browser text', () => {
+  const failure = Object.assign(new Error('fake-diagnostic-secret element is not stable then overlay intercepts pointer events'), { name: 'TimeoutError' });
+  const kind = classifyActionFailure(failure, { type: 'click' });
+  assert.equal(kind, 'pointer_intercepted');
+  assert.equal(FAILURE_KINDS.includes(kind), true);
+  assert.equal(kind.includes('fake-diagnostic-secret'), false);
+  assert.equal(classifyActionFailure(new Error('Text assertion failed'), { type: 'assertText' }), 'assertion_mismatch');
+});
 
 function makeFake({ failAt = -1 } = {}) {
   const state = { clicks: 0, closes: 0, contextsClosed: 0, url: 'about:blank', routes: [] };
