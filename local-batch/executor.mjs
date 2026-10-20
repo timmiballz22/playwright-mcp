@@ -37,7 +37,9 @@ export async function executeWorkflow(input, {
     let workerPid;
     const ownedPids = new Set();
     const supervisor = fork(fileURLToPath(new URL('./execution-supervisor.mjs', import.meta.url)), [], {
-      stdio: ['ignore', 'ignore', 'ignore', 'ipc'], detached: process.platform !== 'win32', execArgv: [], windowsHide: true,
+      // Windows libuv kills non-detached children when the frontend exits.
+      // The watchdog must survive that exit to cancel workers and remove temp files.
+      stdio: ['ignore', 'ignore', 'ignore', 'ipc'], detached: true, execArgv: [], windowsHide: true,
     });
     const notify = event => { try { onEvent?.(event); } catch {} };
     notify({ type: 'supervisorSpawned', pid: supervisor.pid });

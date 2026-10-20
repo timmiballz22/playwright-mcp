@@ -18,7 +18,12 @@ let busy = false;
 let cleanupBlocked = false;
 let activeAbort;
 const shutdown = () => activeAbort?.abort();
-server.onclose = shutdown;
+server.onclose = () => {
+  shutdown();
+  // SDK buffer overflow closes its transport, but a still-open paused stdin
+  // pipe can keep this process alive. Workers retain their own cleanup handles.
+  process.stdin.destroy();
+};
 const shutdownAndClose = () => {
   shutdown();
   void server.close().catch(() => {});

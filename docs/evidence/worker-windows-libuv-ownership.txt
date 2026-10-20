@@ -1,0 +1,18 @@
+Inspected Node 20 bundled libuv source, v20.x commit d1ef63f84ccbcc8f2237e545ba6c91258c27bed0
+https://github.com/nodejs/node/blob/d1ef63f84ccbcc8f2237e545ba6c91258c27bed0/deps/uv/src/win/process.c
+
+  /* Create a job object and set it up to kill all contained processes when
+   * it's closed. Since this handle is made non-inheritable and we're not
+   * giving it to anyone, we're the only process holding a reference to it.
+   * That means that if this process exits it is closed and all the processes
+   * it contains are killed. All processes created with uv_spawn that are not
+   * spawned with the UV_PROCESS_DETACHED flag are assigned to this job.
+   *
+   * We're setting the JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK flag so only the
+   * processes that we explicitly add are affected, and *their* subprocesses
+   * are not. This ensures that our child processes are not limited in their
+   * ability to use job control on Windows versions that don't deal with
+
+
+Conclusion: supervisor must use detached:true on Windows to survive frontend death.
+Workers remain attached to supervisor. Native candidate test still required.

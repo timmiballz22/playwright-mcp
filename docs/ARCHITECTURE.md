@@ -6,7 +6,9 @@ its MCP/browser/profile/trace/video implementations remain upstream. The
 companion is ESM JS using the same Playwright engine and a runtime MCP SDK.
 
 Companion path: `mcp.mjs` or `cli.mjs` -> `executor.mjs` -> independent
-supervisor -> execution worker -> Playwright BrowserServer. Only the worker
+supervisor -> execution worker -> Playwright BrowserServer. The supervisor is
+detached on all platforms so Windows libuv parent-exit cleanup cannot kill it
+before it handles frontend IPC loss. Its own Windows children stay attached. Only the worker
 imports the browser runtime. A private loopback connection stays inside that
 execution; only owned process IDs reach the supervisor. One workflow is active
 per sidecar; concurrent calls receive a busy error.

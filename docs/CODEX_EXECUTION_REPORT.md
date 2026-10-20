@@ -204,3 +204,41 @@ fixtures print it on failure to distinguish absent completion from deletion erro
 It is diagnostic metadata, not a job journal. Local lifecycle subset: 11 passed;
 no new Windows PASS is claimed before native execution. JOBS_DESIGN.md records
 future durable-state invariants; durable jobs remain unimplemented.
+
+## Protocol closure and native bootstrap candidate
+
+Malformed JSON input followed by a valid ping passes without echoing a seeded
+canary. A new oversized-frame test failed before the change: the pinned SDK's
+10 MiB buffer guard closed its transport, but paused open stdin kept the companion
+alive. Transport closure now aborts active work and destroys stdin; owned worker
+cleanup remains awaited through its process handles, without process.exit.
+Afterward, five protocol/disconnect/parent-death tests passed, and both protocol
+tests passed on Node 22. Fresh installed endpoints passed real browser calls.
+The next native QA run will invoke the actual Bash/PowerShell bootstrap scripts,
+including pinned installation and the complete batch suite, instead of merely
+running an equivalent test command. Linux library provisioning remains a separate
+CI prerequisite. This does not certify native Codex operator interaction.
+
+## Windows watchdog survival defect identified
+
+At 1336a4b, Linux and macOS batch jobs each ran 43/43 successfully; Windows ran
+41/43, with abrupt SIGTERM/host-death temporary cleanup failures and no cleanup
+receipt. EOF and all three real browser deadline fixtures passed. To obtain the
+run archive while macOS was queued, cancellation was requested. macOS acquired a
+runner during that request and actually completed 43/43; overall batch run is
+CANCELLED, not green. Wrapper Linux/Windows/Docker/lint passed; macOS wrapper is
+CANCELLED. All outcomes and the failed Windows assertions are preserved.
+
+Root cause from Node 20's bundled libuv source: non-detached children enter a
+kill-on-parent-close Windows job object. The watchdog used detached:false on
+Windows, so frontend death killed it before it could clean files; larger cleanup
+budgets alone could not fix that. Source excerpt and exact upstream SHA are in
+worker-windows-libuv-ownership.txt. The new candidate makes only the supervisor
+detached on every platform; workers and cleanup children remain attached to their
+Windows supervisor. Local lifecycle/protocol subset: 12 passed. Native Windows
+survival remains pending; no all-OS or release PASS is claimed.
+
+The same candidate includes the independently reproduced oversized-stdin shutdown
+fix and next CI runs actual bootstrap scripts, plus complete Linux Node 22/24
+batch jobs alongside three native Node 20 jobs. This is validation expansion,
+not existing evidence of an LTS or bootstrap PASS.
