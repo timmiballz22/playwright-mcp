@@ -1,6 +1,7 @@
 # Durable job implementation contract
 
-This is the next implementation contract, not an implemented feature. The current
+This is the execution integration contract, not an implemented public feature.
+The internal metadata kernel is documented in [JOBS_STORAGE.md](JOBS_STORAGE.md). The current
 companion still exposes one synchronous batch tool. The supervised executor is
 its execution boundary; the raw runner must not become a background job boundary.
 

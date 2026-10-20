@@ -23,12 +23,13 @@ const npm = (args, cwd) => execFileSync(process.execPath, [npmCli, ...args], { c
 
 try {
   const [packed] = JSON.parse(npm(['pack', '--pack-destination', dir, '--json'], root));
-  for (const required of ['local-batch/mcp.mjs', 'local-batch/runner.mjs', 'local-batch/cli.mjs', 'local-batch/executor.mjs', 'local-batch/execution-supervisor.mjs', 'local-batch/execution-worker.mjs', 'local-batch/process-tree.mjs', 'local-batch/failure.mjs', 'local-batch/cleanup.mjs', 'local-batch/cleanup-worker.mjs', 'local-batch/workflow-file.mjs', 'scripts/bootstrap-local-batch.ps1', 'scripts/bootstrap-local-batch.sh']) {
+  for (const required of ['local-batch/mcp.mjs', 'local-batch/runner.mjs', 'local-batch/cli.mjs', 'local-batch/executor.mjs', 'local-batch/execution-supervisor.mjs', 'local-batch/execution-worker.mjs', 'local-batch/process-tree.mjs', 'local-batch/failure.mjs', 'local-batch/cleanup.mjs', 'local-batch/cleanup-worker.mjs', 'local-batch/workflow-file.mjs', 'local-batch/jobs/journal.mjs', 'local-batch/jobs/journal-worker.mjs', 'local-batch/jobs/journal-protocol.mjs', 'scripts/bootstrap-local-batch.ps1', 'scripts/bootstrap-local-batch.sh']) {
     if (!packed.files.some(f => f.path === required)) throw new Error(`Missing distribution entry: ${required}`);
   }
   await writeFile(path.join(dir, 'package.json'), '{"private":true}\n');
   npm(['install', '--omit=dev', '--ignore-scripts', path.join(dir, packed.filename)], dir);
   const target = path.join(dir, 'node_modules/@timmiballz22/playwright-mcp-local');
   process.stdout.write(execFileSync(process.execPath, ['scripts/production-smoke.mjs', target], { cwd: root, encoding: 'utf8' }));
+  process.stdout.write(execFileSync(process.execPath, ['scripts/production-journal-smoke.mjs', target], { cwd: root, encoding: 'utf8' }));
   console.log(JSON.stringify({ tarball: packed.filename, integrity: packed.integrity, fileCount: packed.files.length, production: true }));
 } finally { await rm(dir, { recursive: true, force: true }); }

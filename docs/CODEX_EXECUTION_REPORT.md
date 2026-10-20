@@ -375,3 +375,13 @@ ENOSPC report fault still fails correctly. Local combined unit/fault/report test
 27 passed; targeted executor/report subset 12 passed; real Chromium/Firefox
 supervised positives 2 passed; installed endpoints and lint passed. New native
 verification is required before assigning a complete matrix PASS.
+
+## Internal job journal component (native verification pending)
+
+Added the isolated SQLite metadata kernel described in [JOBS_STORAGE.md](JOBS_STORAGE.md).
+Nine local tests pass on Node 24 and nine on Node 22; installed production package
+smoke passes for both browser endpoints and journal owner isolation/cancellation.
+A dedicated native journal matrix now exercises Linux/macOS/Windows Node 22 and
+Linux Node 24. No public job API or durable browser scheduler is implemented by
+this change. G06 and the overall mission remain incomplete. Next: native evidence,
+then guardian-owned job execution and public job tools without replay.
