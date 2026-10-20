@@ -7,8 +7,11 @@ variables, scripts, shell, uploads or automatic action retries are supported.
 
 Top-level fields: `schemaVersion`, `browser` (chromium default, firefox, webkit),
 `steps` (nonempty), `iterations` (1–100, default 1), `timeoutMs` (100–180000,
-default 120000), `actionTimeoutMs` (100–30000, default 5000). Total
-steps × iterations cannot exceed 1,000. Action timeouts use Playwright auto-wait;
+default 120000), `actionTimeoutMs` (100–30000, default 5000). Each action accepts optional integer `repeat` (1–1000, default 1), an explicit
+ordered repeat, not an automatic retry. Sum of action repeats × iterations cannot
+exceed 1,000; bounds are checked before allocation. Example:
+`{"schemaVersion":1,"steps":[{"type":"click","selector":{"role":"button","name":"Add"},"repeat":1000}]}`
+performs 1,000 clicks on the existing page (navigation is a separate action). Action timeouts use Playwright auto-wait;
 assertText currently reads once and is NOT a retrying expect assertion.
 
 | Action type | Required fields | Meaning |
@@ -21,7 +24,7 @@ assertText currently reads once and is NOT a retrying expect assertion.
 | check / uncheck | selector | Set checkbox state |
 | hover | selector | Hover element |
 | waitFor | selector | Wait visible |
-| assertText | selector, contains | Case-sensitive substring, nonempty up to 2,000 |
+| assertText | selector, exactly one of contains / equals | Case-sensitive substring or exact complete text, up to 2,000; equals permits empty |
 | scroll | none | Optional integer deltaX/deltaY, ±10,000, default 0 |
 | screenshot | none | Viewport PNG; requires local sensitive-artifact opt-in |
 

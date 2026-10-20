@@ -35,7 +35,15 @@ for (const stop of ['eof', 'SIGTERM']) {
       const start = Date.now();
       if (stop === 'eof') child.stdin.end(); else child.kill(stop);
       const [code, signal] = await Promise.race([exited, new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Owned server did not exit after disconnect')), 10000); })]);
-      assert.equal(code, 0, `signal=${signal}`);
+      // Windows emulates kill(SIGTERM) by abrupt termination; it is not a
+      // catchable POSIX signal. EOF remains the graceful shutdown contract.
+      // https://nodejs.org/api/child_process.html#subprocesskillsignal
+      if (process.platform === 'win32' && stop === 'SIGTERM') {
+        assert.equal(signal, 'SIGTERM');
+        assert.equal(code, null);
+      } else {
+        assert.equal(code, 0, `signal=${signal}`);
+      }
       assert.ok(Date.now() - start < 10000);
     } finally {
       clearTimeout(timer); child.kill('SIGKILL'); lines.close();

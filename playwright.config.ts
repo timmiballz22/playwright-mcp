@@ -22,10 +22,15 @@ export default defineConfig<TestOptions>({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  workers: process.env.CI ? 2 : undefined,
+  workers: process.env.CI ? (process.platform === 'win32' ? 1 : 2) : undefined,
   reporter: 'list',
   projects: [
-    { name: 'chrome' },
+    { name: 'chrome', ...(process.platform === 'win32' ? {
+      // Native CI observed ~24s cold Chrome startup and a 5s stable-element
+      // timeout. Give this host/channel an explicit bounded test budget.
+      timeout: 60000,
+      use: { mcpArgs: ['--timeout-action=15000'] },
+    } : {}) },
     { name: 'chromium', use: { mcpBrowser: 'chromium' } },
     { name: 'firefox', use: { mcpBrowser: 'firefox' } },
     { name: 'webkit', use: { mcpBrowser: 'webkit' } },

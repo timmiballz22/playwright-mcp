@@ -24,7 +24,7 @@ CODEX_ULTIMATE_MASTER_PROMPT.md; the ledger tracks G00–G18.
 | 28–33 | CSS and upstream role click tested; remaining interaction/mobile/console scenarios NOT TESTED |
 | 34–36 | Ephemeral fresh state tested; persistent profile/reconnect/crash recovery NOT TESTED |
 | 37–38 | 100 sequential runs, runner RSS measured; process-tree caps/FD leak proof pending |
-| 39 | All 72 schemas discoverable; representative advanced behavior still NOT TESTED |
+| 39 | All 72 schemas discoverable; original cookies/localStorage/screenshot/trace/video/tabs/PDF behavior added, full advanced matrix incomplete |
 | 40 | Source uses stdio; actual OS listener enumeration NOT TESTED |
 | 41 | CLI implementation present; fresh disconnected CLI operator test pending |
 | 42 | MCP step results bounded to last 10; large DOM upstream snapshot behavior NOT TESTED |

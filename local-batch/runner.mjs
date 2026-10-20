@@ -10,7 +10,7 @@ const TYPES = new Set(['goto', 'click', 'fill', 'press', 'check', 'uncheck',
   'hover', 'waitFor', 'assertText', 'assertURL', 'scroll', 'screenshot']);
 const SELECTOR_TYPES = new Set(['click', 'fill', 'press', 'check', 'uncheck',
   'hover', 'waitFor', 'assertText']);
-const FIELDS = { goto: ['url'], assertURL: ['url'], click: ['selector'], fill: ['selector', 'value'], press: ['selector', 'key'], check: ['selector'], uncheck: ['selector'], hover: ['selector'], waitFor: ['selector'], assertText: ['selector', 'contains'], scroll: ['deltaX', 'deltaY'], screenshot: [] };
+const FIELDS = { goto: ['url'], assertURL: ['url'], click: ['selector'], fill: ['selector', 'value'], press: ['selector', 'key'], check: ['selector'], uncheck: ['selector'], hover: ['selector'], waitFor: ['selector'], assertText: ['selector', 'contains', 'equals'], scroll: ['deltaX', 'deltaY'], screenshot: [] };
 function exactKeys(object, keys) {
   if (Object.keys(object).some(key => !keys.includes(key)))
     throw new TypeError('Unknown property');
@@ -75,10 +75,15 @@ export function validateWorkflow(workflow) {
     throw new TypeError('Unsupported browser');
   const timeoutMs = integer(workflow.timeoutMs, 'timeoutMs', 100, MAX_DURATION_MS, 120000);
   const actionTimeoutMs = integer(workflow.actionTimeoutMs, 'actionTimeoutMs', 100, 30000, 5000);
-  const steps = workflow.steps.map((step, i) => {
+  let expandedCount = 0;
+  const steps = workflow.steps.flatMap((step, i) => {
     if (!step || typeof step !== 'object' || Array.isArray(step) || !TYPES.has(step.type))
       throw new TypeError('Invalid action type at step ' + i);
-    exactKeys(step, ['type', ...FIELDS[step.type]]);
+    exactKeys(step, ['type', 'repeat', ...FIELDS[step.type]]);
+    const repeat = integer(step.repeat, 'repeat', 1, MAX_STEPS, 1);
+    expandedCount += repeat;
+    if (expandedCount * iterations > MAX_STEPS)
+      throw new TypeError('Expanded workflow exceeds total action cap');
     if (SELECTOR_TYPES.has(step.type))
       validateSelector(step.selector);
     if (step.type === 'goto' || step.type === 'assertURL')
@@ -87,13 +92,20 @@ export function validateWorkflow(workflow) {
       throw new TypeError('step ' + i + ' value must be a string of at most 10000 characters');
     if (step.type === 'press')
       asString(step.key, 'step ' + i + ' key', 100);
-    if (step.type === 'assertText')
-      asString(step.contains, 'step ' + i + ' contains', 2000);
+    if (step.type === 'assertText') {
+      if (('contains' in step) === ('equals' in step))
+        throw new TypeError('Text assertion requires exactly one of contains or equals');
+      if ('contains' in step) asString(step.contains, 'contains', 2000);
+      else if (typeof step.equals !== 'string' || step.equals.length > 2000)
+        throw new TypeError('equals must be a string of at most 2000 characters');
+    }
     if (step.type === 'scroll') {
       integer(step.deltaY, 'deltaY', -10000, 10000, 0);
       integer(step.deltaX, 'deltaX', -10000, 10000, 0);
     }
-    return { ...step, ...(SELECTOR_TYPES.has(step.type) ? { selector: validateSelector(step.selector) } : {}) };
+    const copy = { ...step, ...(SELECTOR_TYPES.has(step.type) ? { selector: validateSelector(step.selector) } : {}) };
+    delete copy.repeat;
+    return Array.from({ length: repeat }, () => ({ ...copy }));
   });
   return { browser, timeoutMs, actionTimeoutMs, iterations, steps };
 }
@@ -144,7 +156,7 @@ async function perform(page, step, index, artifactsDir) {
     case 'waitFor': await locator.waitFor({ state: 'visible' }); break;
     case 'assertText': {
       const text = await locator.textContent();
-      if (!text?.includes(step.contains))
+      if ('equals' in step ? text !== step.equals : !text?.includes(step.contains))
         throw new Error('Text assertion failed');
       break;
     }

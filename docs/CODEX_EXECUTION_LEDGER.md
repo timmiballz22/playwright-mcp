@@ -115,3 +115,38 @@ First CI run URLs:
 Native Linux/macOS CI on the first commit executed the real WebKit redirect
 fixture successfully; local WebKit remains unavailable. This is selective coverage,
 not complete G10 behavior acceptance. Draft PR: https://github.com/timmiballz22/playwright-mcp/pull/2.
+
+## Milestone 3 — current work
+
+Code milestone 2 SHA: `32477dd9cdf62a3664ac9427149cec39b9b0a603`.
+Native CI on that SHA: Linux/macOS batch 22/22 passed; Windows 21/22 passed,
+with an invalid POSIX-only exit-code expectation for abrupt Windows SIGTERM.
+Fixed test to require signal SIGTERM/code null on Windows; EOF still requires
+exit zero on all systems. This proves bounded server exit, not process-tree cleanup.
+
+Wrapper matrix on same SHA: Linux/macOS/Docker passed; Windows 35/36 passed.
+Chrome cold startup took ~24s; first click exceeded default 5s stable-element
+wait. Added explicit Windows Chrome test budget: action 15s/test 60s, and one Windows CI browser worker to avoid competing
+cold branded Chrome launches. Linux/macOS retain two CI workers. Production
+defaults unchanged; cold Windows Chrome reliability remains an investigation item
+until fresh CI and repeated evidence. No automatic action retries added.
+
+- Original storage/cookies, screenshot PNG bytes, trace file existence, video WebM
+  bytes, tab management and Chromium PDF bytes now tested in tests/advanced.spec.ts.
+  Local Chromium/Firefox: 2 passed; native WebKit/Windows evidence pending.
+- Compact explicit per-action repeat is bounded before expansion; expanded total
+  remains <=1000. One real MCP tool call now executes 1000 operations using four
+  declared steps (997 clicks). Both counter fixtures now use exact text equality
+  rather than substring matching. This does not implement conditional control flow.
+- Batch positive navigation/click/assert/screenshot fixtures added for Firefox and
+  WebKit (20 clicks each); Chromium remains 1000 total operations.
+- Local WebKit workaround: extracted official Debian trixie packages into /tmp,
+  checked downloaded .deb SHA256 against HTTPS Packages index. Loader experiments
+  did not produce stable browser execution; temporary cache symlinks removed and
+  only experiment-owned processes terminated. Not a PASS; use native CI libraries.
+
+Milestone 3 local acceptance: `node scripts/test-batch.mjs`: 26 tests,
+24 passed, 2 failed (both actual WebKit launch environment failures),
+0 skipped/cancelled. `npm test -- --project=chromium --project=firefox --workers=2`:
+20 passed, 0 failed/skipped. Fresh production tarball verifies both handshakes.
+See evidence/{batch-third-final,upstream-third-final,production-third-final}.txt.

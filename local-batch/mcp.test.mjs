@@ -44,19 +44,19 @@ test('local stdio MCP: handshake, tool list, rejection, browser workflow', {
       name: 'browser_run_batch',
       arguments: { steps: [
         { type: 'goto', url },
-        ...Array.from({ length: 100 }, () => ({ type: 'click', selector: '#click' })),
-        { type: 'assertText', selector: '#n', contains: '100' },
+        { type: 'click', selector: { role: 'button', name: 'Click' }, repeat: 997 },
+        { type: 'assertText', selector: '#n', equals: '997' },
         { type: 'screenshot' },
       ] },
     }, undefined, { timeout: 120000 });
     assert.equal(response.isError, false, JSON.stringify(response).slice(0, 1500));
     const summary = JSON.parse(response.content[0].text);
     assert.equal(summary.ok, true);
-    assert.equal(summary.completed, 103);
+    assert.equal(summary.completed, 1000);
     assert.ok(summary.reportPath.startsWith(dir));
     assert.equal(summary.recentSteps.length, 10);
     const detail = JSON.parse(await readFile(summary.reportPath, 'utf8'));
-    assert.equal(detail.results.length, 103);
+    assert.equal(detail.results.length, 1000);
     assert.equal(detail.results.at(-1).type, 'screenshot');
   } finally {
     await client.close().catch(() => {});

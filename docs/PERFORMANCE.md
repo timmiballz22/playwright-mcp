@@ -20,3 +20,9 @@ Missing: upstream-versus-batch-versus-CLI/SKILLS comparison, transferred tokens,
 peak browser tree RSS, warm/cold distributions, mobile, artifact throughput,
 network restriction overhead versus approved nonrouting workloads, repeated
 reliability confidence intervals. G12 remains IN PROGRESS.
+
+Compact repeat example (same 997 role/name clicks plus goto/assert/screenshot):
+representative argument JSON is 60,952 UTF-8 bytes inline vs 209 with repeat.
+This is argument serialization size, not transferred MCP frame size or measured
+model tokens. A real MCP acceptance fixture uses the compact form and exact
+final count. See evidence/batch-third-final.txt for execution time.

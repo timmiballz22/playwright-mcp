@@ -153,3 +153,22 @@ test('accessible selectors validate exact shape and clone nested values', () => 
   assert.equal(result.steps[0].selector.name, 'Save');
   assert.throws(() => validateWorkflow({ steps: [{ type: 'click', selector: { role: 'button', name: 'Save', code: 'secret' } }] }));
 });
+
+test('explicit action repeats expand within the total action cap', async () => {
+  const fake = makeFake();
+  const result = await runWorkflow({ schemaVersion: 1, steps: [{ type: 'click', selector: 'button', repeat: 1000 }] }, fake);
+  assert.equal(result.completed, 1000);
+  assert.equal(fake.state.clicks, 1000);
+  assert.equal(fake.state.closes, 1);
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'click', selector: 'button', repeat: 600 }, { type: 'click', selector: 'button', repeat: 600 }] }));
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'click', selector: 'button', repeat: 0 }] }));
+  assert.throws(() => validateWorkflow({ iterations: 2, steps: [{ type: 'click', selector: 'button', repeat: 600 }] }));
+});
+
+test('text equality rejects duplicate counters and ambiguous expectations', async () => {
+  const fake = makeFake();
+  const result = await runWorkflow({ steps: [{ type: 'click', selector: 'button', repeat: 10 }, { type: 'assertText', selector: 'output', equals: '1' }] }, fake);
+  assert.equal(result.ok, false);
+  assert.equal(result.completed, 10);
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'assertText', selector: 'output', equals: '1', contains: '1' }] }));
+});

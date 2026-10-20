@@ -96,7 +96,7 @@ Supported steps: `goto`, `click`, `fill`, `press`, `check`,
 shell commands, file upload, persistent credentials, or arbitrary file URLs
 are exposed in this batch interface. Use the upstream MCP for other features.
 
-Limits: at most 1,000 total actions (`steps × iterations`), 100
+Limits: at most 1,000 total actions (`sum of action repeats × iterations`), 100
 iterations, 180s overall deadline, and 30s per-action timeout.
 Only one batch at a time per sidecar process. Every HTTP(S) origin, including each localhost port, must be explicitly
 allowed locally. Redirect responses and WebSockets currently fail closed.

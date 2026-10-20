@@ -1,0 +1,37 @@
+✔ rejects unknown instructions, unbounded workloads and hostile origins (2.048472ms)
+✔ 100 ordered actions finish in a single batch with one browser launch (9.879284ms)
+✔ failures stop promptly, hide underlying sensitive errors and clean up (1.889156ms)
+✔ cancellation before starting avoids launching browser (0.54253ms)
+✔ checks target origins and reports assertion failure without page content (1.714896ms)
+✔ unknown localhost ports require exact operator origins (1.776603ms)
+✔ rejects extra workflow and action properties rather than ignoring policy (0.303768ms)
+✔ deadline includes a stalled launch and closes late browser (201.267878ms)
+✔ validation snapshots actions before asynchronous launch (1.330132ms)
+✔ screenshot capture requires operator approval for sensitive artifacts (0.850624ms)
+✔ workflow version and serialized size are bounded (7.650648ms)
+✔ accessible selectors validate exact shape and clone nested values (0.200204ms)
+✖ explicit action repeats expand within the total action cap (0.242062ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 335.871886
+
+✖ failing tests:
+
+test at local-batch/runner.test.mjs:157:1
+✖ explicit action repeats expand within the total action cap (0.242062ms)
+  TypeError: Unknown property
+      at exactKeys (file:///workspace/playwright-mcp/local-batch/runner.mjs:16:11)
+      at file:///workspace/playwright-mcp/local-batch/runner.mjs:81:5
+      at Array.map (<anonymous>)
+      at validateWorkflow (file:///workspace/playwright-mcp/local-batch/runner.mjs:78:32)
+      at runWorkflow (file:///workspace/playwright-mcp/local-batch/runner.mjs:181:16)
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/runner.test.mjs:159:24)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
