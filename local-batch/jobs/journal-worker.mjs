@@ -292,7 +292,7 @@ const handlers = new Map([
   ['finish', data => transaction(() => {
     const row = owned(data.id); leaseFor(row, data.nonce);
     if (!terminal.has(data.state) || terminal.has(row.state) || !integer(data.completed, row.completed, row.total) ||
-        data.state === 'SUCCEEDED' && (row.state !== 'RUNNING' || data.completed !== row.total) ||
+        data.state === 'SUCCEEDED' && (row.state !== 'RUNNING' || data.completed !== row.total || row.cancel_requested || row.deadline_at <= Date.now()) ||
         typeof data.cleanupOk !== 'boolean') error('invalid_transition');
     const summary = validateSummary(data.summary, row, data.state, data.completed);
     const reason = data.reason ?? (data.state === 'CANCELLED' ? 'cancelled' : data.state === 'TIMED_OUT' ? 'timeout' : data.state === 'CRASHED' ? 'worker_crashed' : data.state === 'FAILED' ? 'execution_failed' : null);

@@ -93,6 +93,8 @@ if (!supportsJournal) {
       await journal.call('activate', { id: active.jobId, nonce });
       await journal.call('progress', { id: active.jobId, nonce, completed: 1 });
       assert.equal((await journal.call('cancel', { id: active.jobId })).state, 'RUNNING');
+      await assert.rejects(journal.call('finish', { id: active.jobId, nonce, state: 'SUCCEEDED', completed: 3, cleanupOk: true }), { code: 'invalid_transition' });
+      assert.equal((await journal.call('read', { id: active.jobId })).state, 'RUNNING');
       const finished = await journal.call('finish', { id: active.jobId, nonce, state: 'CANCELLED', completed: 1, cleanupOk: false });
       assert.equal(finished.operatorAttentionRequired, true);
       assert.equal(finished.retrySafe, false);
@@ -101,6 +103,24 @@ if (!supportsJournal) {
       assert.equal((await journal.call('recover')).cleanupBlocked, true);
       const next = await create();
       assert.deepEqual(await journal.call('reserve', { id: next.jobId, nonce: randomUUID() }), { acquired: false, reason: 'cleanup_blocked' });
+      assert.deepEqual(await journal.call('integrity'), { ok: true });
+    } finally { await journal?.close(); await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
+  });
+  test('a success mutation after the persisted deadline cannot commit or release the lease', { timeout: 10000 }, async () => {
+    const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-finish-deadline-'));
+    let journal;
+    try {
+      journal = await JobJournal.open({ directory, projectId: '9'.repeat(64), ownerId: 'owner',
+        workerModule: new URL('./fixtures/deadline-finish.mjs', import.meta.url) });
+      const job = await journal.call('create', { id: randomUUID(), requestKey: randomUUID(), workflowDigest: 'a'.repeat(64), total: 1, deadlineAt: Date.now() + 30000 });
+      const nonce = randomUUID();
+      await journal.call('reserve', { id: job.jobId, nonce });
+      await journal.call('activate', { id: job.jobId, nonce });
+      await assert.rejects(journal.call('finish', { id: job.jobId, nonce, state: 'SUCCEEDED', completed: 1, cleanupOk: true }), { code: 'invalid_transition' });
+      assert.equal((await journal.call('read', { id: job.jobId })).state, 'RUNNING');
+      const failed = await journal.call('finish', { id: job.jobId, nonce, state: 'TIMED_OUT', completed: 1, cleanupOk: true });
+      assert.equal(failed.state, 'TIMED_OUT');
+      assert.equal(failed.retrySafe, false);
       assert.deepEqual(await journal.call('integrity'), { ok: true });
     } finally { await journal?.close(); await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
   });

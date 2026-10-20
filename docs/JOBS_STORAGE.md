@@ -35,9 +35,11 @@ schema writes. Corrupt or foreign stores are rejected without replacement.
 The database has a 16 MiB page limit and bounded metadata, but this is not a full
 browser, artifact, WAL or disk quota system.
 
-Local verification: nine tests pass on Node 24 and Node 22, including killed
+Local verification: eleven tests pass on Node 24 and Node 22, including killed
 pre-commit rollback, competing initialization, owner isolation, lease fencing,
-secret metadata rejection and unchanged corrupt/foreign files. Native Windows
+secret metadata rejection, unchanged corrupt/foreign files, cancellation before
+activation, uncertain cleanup blocking and rejected late success after durable
+cancellation/deadline. Native Windows
 runs omit the POSIX-only mode test. Installed-package smoke verifies both existing
 browser endpoints plus journal creation, owner isolation and cancellation. Native
 CI results for this component are pending.

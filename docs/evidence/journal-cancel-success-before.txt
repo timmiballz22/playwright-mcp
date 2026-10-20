@@ -1,0 +1,35 @@
+✔ managed directory links and database hardlinks cannot modify another file (93.007297ms)
+✔ POSIX journal directory must exclude group and other access (40.255915ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (98.845277ms)
+✖ cancelled reservations never start and uncertain active cancellation keeps the project blocked (51.722548ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (68.452457ms)
+✔ killed transaction rolls back without a partial job or duplicate request (192.312175ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (123.830894ms)
+✔ corrupt journal is rejected without silently erasing the file (82.976501ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (45.113495ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (147.513148ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1005.424997
+
+✖ failing tests:
+
+test at local-batch/jobs/journal.test.mjs:67:3
+✖ cancelled reservations never start and uncertain active cancellation keeps the project blocked (51.722548ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal.test.mjs:96:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { code: 'invalid_transition' },
+    operator: 'rejects',
+    diff: 'simple'
+  }

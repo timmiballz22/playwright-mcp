@@ -415,3 +415,13 @@ temporary TOML override, exited before initialization and timed out in the old
 harness. Correcting that override and detecting early child exit produced the
 recorded pass. This was a harness correction, not an action retry. Evidence:
 [worker-codex-97f3c57.txt](evidence/worker-codex-97f3c57.txt).
+
+## Durable cancellation/deadline success fence
+
+A failing-before state test demonstrated SUCCEEDED could commit after a durable
+cancel intent. finish now rejects success when cancellation was requested or the
+stored deadline has passed. The caller must finish the appropriate failure state
+after cleanup; rejection does not silently release a lease. A trusted test-only
+clock fixture advances time at the finish command, proving deadline rejection
+without native scheduling sleeps. Eleven tests pass on Node 24 and Node 22; lint
+and diff checks pass. This remains a storage component, not a public jobs API.
