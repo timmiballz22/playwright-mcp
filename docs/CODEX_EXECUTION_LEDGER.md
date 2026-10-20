@@ -538,3 +538,27 @@ after cleanup; rejection does not silently release a lease. A trusted test-only
 clock fixture advances time at the finish command, proving deadline rejection
 without native scheduling sleeps. Eleven tests pass on Node 24 and Node 22; lint
 and diff checks pass. This remains a storage component, not a public jobs API.
+
+## Native candidate 5264cb6: 457 passed, one modal failure
+
+[Batch/journal CI](https://github.com/timmiballz22/playwright-mcp/actions/runs/39508650097)
+passed all nine jobs: 53 batch tests on Linux Node 20/22/24, macOS and Windows
+(265 passes), plus 9 journal tests on three POSIX jobs and 8 on Windows (35 passes).
+Windows supervised Chromium cleanup recovery passed, as did native resource audits.
+[Wrapper CI](https://github.com/timmiballz22/playwright-mcp/actions/runs/39508650033)
+passed Linux/Windows 52 each, macOS 51 with one failure, Docker 2 and lint. Total:
+457 passed, 1 failed; zero test skips/cancellations. The overall matrix is FAILED.
+
+macOS Chromium modal/upload exceeded its unchanged 30-second test budget and
+then reported connection closed during teardown. The log lacks the stalled call;
+this does not establish a product root cause or justify extending the budget.
+The test now uses named static stages, bounded per-tool steps (30s navigation to
+cover observed cold launch, 10s other calls), and no paths/input/raw stderr in
+new failure diagnostics. Its total budget is unchanged. Native macOS additionally
+requires three fresh complete Chromium modal workflows, all passing, no retries.
+Local Chromium/Firefox modal+frame checks: 4 passed. Native validation is pending.
+
+The individual-job log redirect was denied by this environment's network proxy.
+The completed workflow archive was accessible and supplied the preserved evidence.
+The durable result/cancellation/deadline hardening commits after 5264cb6 have only
+local Node 22/24 evidence until the next native run. Public jobs remain unfinished.

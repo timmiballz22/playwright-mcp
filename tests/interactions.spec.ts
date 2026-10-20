@@ -10,8 +10,20 @@ test('original dialogs and workspace file upload preserve modal behavior', async
     <input id="upload" type="file" onchange="document.querySelector('output').textContent=this.files[0].name+':'+this.files[0].size">
     <output>Empty</output>`, 'text/html');
   const { client } = await startClient({ args: ['--isolated'] });
+  let operation = 0;
+  const invoke = async (name: string, args: Record<string, unknown> = {}) => {
+    const index = ++operation;
+    return await test.step(`modal fixture ${index}: ${name}`, async () => {
+      try { return await client.callTool({ name, arguments: args }); }
+      catch (error) {
+        // Static fixture stage only: no paths, input values, responses or stderr.
+        console.error(JSON.stringify({ fixture: 'modal_upload', operation: index, tool: name, failed: true }));
+        throw error;
+      }
+    }, { timeout: name === 'browser_navigate' ? 30000 : 10000 });
+  };
   const call = async (name: string, args: Record<string, unknown> = {}) => {
-    const result = await client.callTool({ name, arguments: args });
+    const result = await invoke(name, args);
     expect(result.isError, JSON.stringify(result)).not.toBe(true);
     return result;
   };
@@ -20,7 +32,7 @@ test('original dialogs and workspace file upload preserve modal behavior', async
   await call('browser_click', { target: '#prompt' });
   await call('browser_handle_dialog', { accept: true, promptText: 'fixture-answer' });
   expect(text(await call('browser_snapshot'))).toContain('fixture-answer');
-  const noDialog = await client.callTool({ name: 'browser_handle_dialog', arguments: { accept: true } });
+  const noDialog = await invoke('browser_handle_dialog', { accept: true });
   expect(noDialog.isError).toBe(true);
 
   const upload = testInfo.outputPath('approved-fixture.txt');
@@ -29,24 +41,24 @@ test('original dialogs and workspace file upload preserve modal behavior', async
   await call('browser_file_upload', { paths: [upload] });
   expect(text(await call('browser_snapshot'))).toContain('approved-fixture.txt:13');
   await call('browser_click', { target: '#upload' });
-  const missing = await client.callTool({ name: 'browser_file_upload', arguments: { paths: [testInfo.outputPath('missing-fixture.txt')] } });
+  const missing = await invoke('browser_file_upload', { paths: [testInfo.outputPath('missing-fixture.txt')] });
   expect(missing.isError).toBe(true);
   // Clear any still-open chooser after the rejected fixture path.
-  await client.callTool({ name: 'browser_file_upload', arguments: {} });
+  await invoke('browser_file_upload');
   const link = testInfo.outputPath('escape-link');
   const outside = await fs.mkdtemp(path.join(os.tmpdir(), 'mcp-upload-outside-'));
   try {
     const outsideFile = path.join(outside, 'outside-fixture.txt');
     await fs.writeFile(outsideFile, 'owned outside fixture');
     await call('browser_click', { target: '#upload' });
-    const escaped = await client.callTool({ name: 'browser_file_upload', arguments: { paths: [outsideFile] } });
+    const escaped = await invoke('browser_file_upload', { paths: [outsideFile] });
     expect(escaped.isError).toBe(true);
-    await client.callTool({ name: 'browser_file_upload', arguments: {} });
+    await invoke('browser_file_upload');
     await fs.symlink(outside, link, process.platform === 'win32' ? 'junction' : 'dir');
     await call('browser_click', { target: '#upload' });
-    const linkedEscape = await client.callTool({ name: 'browser_file_upload', arguments: { paths: [path.join(link, 'outside-fixture.txt')] } });
+    const linkedEscape = await invoke('browser_file_upload', { paths: [path.join(link, 'outside-fixture.txt')] });
     expect(linkedEscape.isError).toBe(true);
-    await client.callTool({ name: 'browser_file_upload', arguments: {} });
+    await invoke('browser_file_upload');
   } finally {
     await fs.rm(link, { recursive: true, force: true });
     await fs.rm(outside, { recursive: true, force: true });

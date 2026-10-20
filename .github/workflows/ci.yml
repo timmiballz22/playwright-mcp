@@ -50,6 +50,9 @@ jobs:
       run: npm run build
     - name: Run playwright-mcp tests
       run: npm test
+    - name: Exercise three fresh macOS Chromium modal workflows
+      if: runner.os == 'macOS'
+      run: npx playwright test tests/interactions.spec.ts --project=chromium --grep="original dialogs" --repeat-each=3 --workers=2
 
   test_mcp_docker:
     timeout-minutes: 30
