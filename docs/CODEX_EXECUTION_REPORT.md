@@ -1,12 +1,11 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native candidate: `9e73a08445803c0588fde16794891e9f140af1c9`:
-483 passed and one strict Windows raw Firefox cleanup failure. All supervised
-lifecycle/admission, journal and wrapper cases passed. Last complete green remains
-`d71c91eb47815ff1945375cb735dc203cbb8daa7` (469 passed, all 14 jobs green).
-The internal guardian/diagnostics candidate needs native verification. Earlier
-intermittent failures remain recorded. Public job tools, queues, profiles and
-remaining master-spec gates are incomplete.
+Latest completed native candidate: `9a7bc1d27687360d74518c349279fd1309a53d5a`:
+535 passed, one cold Windows read-only process audit failure. All batch/bootstrap
+and wrapper jobs passed. No complete audit was obtained for the failed case.
+Last complete green remains `d71c91eb47815ff1945375cb735dc203cbb8daa7` (469).
+The bounded audit fix needs native verification. Public job tools/queue/controller,
+profiles and remaining master-spec gates are incomplete.
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
 
@@ -585,3 +584,31 @@ local fixture evidence; native and actual future controller SIGKILL proof remain
 The focused legacy Node 20 Firefox test also passes locally on Linux: one test,
 five fresh complete workflows, no retries/skips. The Windows source cleanup
 intermittency is not declared fixed.
+
+## Native 9a7bc1d: 535 passed, first cold Windows process audit failed
+
+[Batch/journal](https://github.com/timmiballz22/playwright-mcp/actions/runs/39514358223):
+all five batch/bootstrap jobs passed 59 tests each (295). Installed Node 22
+guardian execution, durable result/report lookup and owner isolation passed on
+all three OSes, plus Linux Node 24. Three POSIX component jobs passed 20 each;
+Windows component passed 18 of 19. Its guardian success case committed its result
+but the first read-only PowerShell CIM process snapshot failed under the 5s
+command guard (total case duration 6.362s). No complete audit was obtained for
+that case, so it remains FAILED, not assumed clean. Other lifecycle cases passed.
+[Wrapper](https://github.com/timmiballz22/playwright-mcp/actions/runs/39514358453):
+52 per native OS, three fresh macOS modal cases, Docker 2, focused Windows Node
+20 Firefox fixture (five fresh workflows) and lint all passed (162 tests).
+Total 535 passed, 1 failed, zero test skips/cancellations; 13/14 jobs successful.
+Raw Firefox cleanup failures did not recur on Windows Node 20 or 22; cause remains
+open. Last complete green still d71c91e (469).
+
+The test audit now requests only ProcessId/ParentProcessId and allows a bounded
+10s Windows cold CIM startup. It classifies timeout/output-limit/exit/spawn errors
+using fixed codes. It never substitutes an empty snapshot on error; all descendant
+assertions remain required. Production execution/cancellation/cleanup deadlines
+are unchanged. Native verification of this test-only change is required.
+
+Actual Codex CLI 0.163.0 app-server at exact 9a7bc1d: original endpoint 25 tools,
+batch endpoint one tool, original navigation and one 1,000-action batch passed
+in 33.952s, zero model turns, temporary per-process config only. Public job tools
+and queue/controller remain unfinished; this is not release readiness.

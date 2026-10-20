@@ -1,0 +1,248 @@
+test_mcp_docker	Run tests	﻿2026-10-20T23:23:03.9967936Z ##[group]Run # Used for the Docker tests to share the test-results folder with the container.
+test_mcp_docker	Run tests	2026-10-20T23:23:03.9968844Z [36;1m# Used for the Docker tests to share the test-results folder with the container.[0m
+test_mcp_docker	Run tests	2026-10-20T23:23:03.9969293Z [36;1mumask 0000[0m
+test_mcp_docker	Run tests	2026-10-20T23:23:03.9969570Z [36;1mnpm run test -- --project=chromium-docker[0m
+test_mcp_docker	Run tests	2026-10-20T23:23:04.0032786Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+test_mcp_docker	Run tests	2026-10-20T23:23:04.0033148Z env:
+test_mcp_docker	Run tests	2026-10-20T23:23:04.0033345Z   MCP_IN_DOCKER: 1
+test_mcp_docker	Run tests	2026-10-20T23:23:04.0033558Z ##[endgroup]
+test_mcp_docker	Run tests	2026-10-20T23:23:04.1194195Z 
+test_mcp_docker	Run tests	2026-10-20T23:23:04.1195318Z > @timmiballz22/playwright-mcp-local@0.0.83 test
+test_mcp_docker	Run tests	2026-10-20T23:23:04.1196190Z > playwright test --project=chromium-docker
+test_mcp_docker	Run tests	2026-10-20T23:23:04.1196492Z 
+test_mcp_docker	Run tests	2026-10-20T23:23:05.5320749Z 
+test_mcp_docker	Run tests	2026-10-20T23:23:05.5321666Z Running 2 tests using 2 workers
+test_mcp_docker	Run tests	2026-10-20T23:23:05.5322959Z 
+test_mcp_docker	Run tests	2026-10-20T23:23:07.9675104Z   ✓  1 [chromium-docker] › tests/core.spec.ts:19:5 › browser_navigate (1.5s)
+test_mcp_docker	Run tests	2026-10-20T23:23:08.5247994Z   ✓  2 [chromium-docker] › tests/click.spec.ts:19:5 › browser_click (2.1s)
+test_mcp_docker	Run tests	2026-10-20T23:23:08.5406975Z 
+test_mcp_docker	Run tests	2026-10-20T23:23:08.5412329Z   2 passed (3.7s)
+test (macos-15)	Run playwright-mcp tests	﻿2026-10-20T23:21:55.4657390Z ##[group]Run npm test
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:55.4657920Z [36;1mnpm test[0m
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:55.4705990Z shell: /bin/bash -e {0}
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:55.4706370Z ##[endgroup]
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:55.6833210Z 
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:55.6833830Z > @timmiballz22/playwright-mcp-local@0.0.83 test
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:55.6834270Z > playwright test
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:55.6834570Z 
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:57.4943250Z 
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:57.4943640Z Running 52 tests using 2 workers
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:57.4943980Z 
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:58.7850840Z   ✓   2 [chrome] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (520ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:59.5552340Z   ✓   3 [chrome] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (761ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:21:59.9433400Z   ✓   4 [chrome] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (378ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:00.3159270Z   ✓   5 [chrome] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (363ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:00.9053080Z   ✓   6 [chrome] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (574ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:02.4451490Z   ✓   7 [chrome] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.5s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:02.9615850Z   ✓   8 [chrome] › tests/cli.spec.ts:22:5 › install-browser --help (498ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:09.3964810Z   ✓   1 [chrome] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (11.1s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:10.8814530Z   ✓   9 [chrome] › tests/click.spec.ts:19:5 › browser_click (7.7s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:11.7173280Z   ✓  10 [chrome] › tests/core.spec.ts:19:5 › browser_navigate (2.2s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:17.0113910Z   ✓  12 [chrome] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (5.3s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:17.4890720Z   ✓  13 [chrome] › tests/library.spec.ts:20:5 › library can be used from CommonJS (417ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:17.9989510Z   ✓  11 [chrome] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (7.0s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:19.2571880Z   ✓  15 [chromium] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (515ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:19.7380470Z   ✓  16 [chromium] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (466ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:20.3917630Z   ✓  17 [chromium] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (555ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:21.7976370Z   ✓  18 [chromium] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (1.4s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:22.4654530Z   ✓  19 [chromium] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (655ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:23.6776910Z   ✓  20 [chromium] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.2s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:24.2329310Z   ✓  21 [chromium] › tests/cli.spec.ts:22:5 › install-browser --help (532ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:26.2162080Z   ✓  14 [chromium] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (7.7s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:27.8276470Z   ✓  22 [chromium] › tests/click.spec.ts:19:5 › browser_click (3.5s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:28.6490360Z   ✓  23 [chromium] › tests/core.spec.ts:19:5 › browser_navigate (2.4s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:35.2245190Z   ✓  25 [chromium] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (6.5s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:35.4793960Z   ✓  24 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (7.6s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:35.6005670Z   ✓  26 [chromium] › tests/library.spec.ts:20:5 › library can be used from CommonJS (336ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:36.7033140Z   ✓  28 [firefox] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (393ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:37.1648400Z   ✓  29 [firefox] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (450ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:37.9572190Z   ✓  30 [firefox] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (774ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:38.4260180Z   ✓  31 [firefox] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (454ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:39.2481340Z   ✓  32 [firefox] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (799ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:40.6514580Z   ✓  33 [firefox] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.4s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:41.1389290Z   ✓  34 [firefox] › tests/cli.spec.ts:22:5 › install-browser --help (457ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:45.0697800Z   ✓  27 [firefox] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (8.7s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:47.4821800Z   ✓  35 [firefox] › tests/click.spec.ts:19:5 › browser_click (6.3s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:49.5998780Z   ✓  36 [firefox] › tests/core.spec.ts:19:5 › browser_navigate (4.5s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:55.0379550Z   ✓  38 [firefox] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (5.4s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:55.2985080Z   ✓  37 [firefox] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (7.8s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:55.5782900Z   ✓  39 [firefox] › tests/library.spec.ts:20:5 › library can be used from CommonJS (515ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:56.9111300Z   ✓  41 [webkit] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (525ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:57.4405160Z   ✓  42 [webkit] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (503ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:57.9867390Z   ✓  43 [webkit] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (526ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:58.4046280Z   ✓  44 [webkit] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (407ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:22:58.8886100Z   ✓  45 [webkit] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (464ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:23:00.3226230Z   ✓  46 [webkit] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.4s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:23:00.8158670Z   ✓  47 [webkit] › tests/cli.spec.ts:22:5 › install-browser --help (432ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:23:03.7931140Z   ✓  48 [webkit] › tests/click.spec.ts:19:5 › browser_click (2.9s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:23:04.3277600Z   ✓  40 [webkit] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (7.9s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:23:06.5078640Z   ✓  49 [webkit] › tests/core.spec.ts:19:5 › browser_navigate (2.7s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:23:09.3912860Z   ✓  51 [webkit] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (2.8s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:23:09.8553090Z   ✓  52 [webkit] › tests/library.spec.ts:20:5 › library can be used from CommonJS (412ms)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:23:10.0515810Z   ✓  50 [webkit] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (5.7s)
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:23:10.0741680Z 
+test (macos-15)	Run playwright-mcp tests	2026-10-20T23:23:10.0842980Z   52 passed (1.2m)
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	﻿2026-10-20T23:23:10.1909400Z ##[group]Run npx playwright test tests/interactions.spec.ts --project=chromium --grep="original dialogs" --repeat-each=3 --workers=2
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	2026-10-20T23:23:10.1910360Z [36;1mnpx playwright test tests/interactions.spec.ts --project=chromium --grep="original dialogs" --repeat-each=3 --workers=2[0m
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	2026-10-20T23:23:10.2707530Z shell: /bin/bash -e {0}
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	2026-10-20T23:23:10.2707900Z ##[endgroup]
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	2026-10-20T23:23:12.2005740Z 
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	2026-10-20T23:23:12.2106810Z Running 3 tests using 2 workers
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	2026-10-20T23:23:12.2260120Z 
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	2026-10-20T23:23:22.9937710Z   ✓  1 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (9.8s)
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	2026-10-20T23:23:23.0055950Z   ✓  2 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (9.7s)
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	2026-10-20T23:23:29.9060370Z   ✓  3 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (6.0s)
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	2026-10-20T23:23:29.9368170Z 
+test (macos-15)	Exercise three fresh macOS Chromium modal workflows	2026-10-20T23:23:29.9672570Z   3 passed (18.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	﻿2026-10-20T23:21:37.7586018Z ##[group]Run npm test
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:37.7586326Z [36;1mnpm test[0m
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:37.7649156Z shell: /usr/bin/bash -e {0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:37.7649440Z ##[endgroup]
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:37.8822984Z 
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:37.8824403Z > @timmiballz22/playwright-mcp-local@0.0.83 test
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:37.8825126Z > playwright test
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:37.8825640Z 
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:39.2572569Z 
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:39.2573221Z Running 52 tests using 2 workers
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:39.2574952Z 
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:40.5774024Z   ✓   1 [chrome] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (471ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:41.0784898Z   ✓   3 [chrome] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (463ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:41.4831595Z   ✓   4 [chrome] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (387ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:41.8915218Z   ✓   5 [chrome] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (391ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:42.6237153Z   ✓   6 [chrome] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (705ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:43.5364933Z   ✓   7 [chrome] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (883ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:43.7820824Z   ✓   2 [chrome] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (3.7s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:44.0156727Z   ✓   8 [chrome] › tests/cli.spec.ts:22:5 › install-browser --help (462ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:45.3597103Z   ✓  10 [chrome] › tests/core.spec.ts:19:5 › browser_navigate (1.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:45.4797214Z   ✓   9 [chrome] › tests/click.spec.ts:19:5 › browser_click (1.7s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:47.6866213Z   ✓  12 [chrome] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (2.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:48.1174177Z   ✓  13 [chrome] › tests/library.spec.ts:20:5 › library can be used from CommonJS (415ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:49.7544058Z   ✓  11 [chrome] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:51.1872651Z   ✓  14 [chromium] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (2.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:51.2863757Z   ✓  15 [chromium] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (634ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:51.6755145Z   ✓  16 [chromium] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (456ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:51.7859939Z   ✓  17 [chromium] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (470ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:52.1529196Z   ✓  18 [chromium] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (454ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:52.3075254Z   ✓  19 [chromium] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (501ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:52.7862775Z   ✓  21 [chromium] › tests/cli.spec.ts:22:5 › install-browser --help (462ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:53.0828224Z   ✓  20 [chromium] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (911ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:54.4147696Z   ✓  23 [chromium] › tests/core.spec.ts:19:5 › browser_navigate (1.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:54.6932707Z   ✓  22 [chromium] › tests/click.spec.ts:19:5 › browser_click (1.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:56.8294656Z   ✓  25 [chromium] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (2.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:57.2261739Z   ✓  26 [chromium] › tests/library.spec.ts:20:5 › library can be used from CommonJS (379ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:21:58.6157725Z   ✓  24 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:00.1506551Z   ✓  28 [firefox] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (590ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:00.7189682Z   ✓  29 [firefox] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (540ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:01.1897749Z   ✓  30 [firefox] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (443ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:01.6664302Z   ✓  31 [firefox] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (456ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:02.2235244Z   ✓  32 [firefox] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (531ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:02.4522584Z   ✓  27 [firefox] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (4.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:02.9065982Z   ✓  34 [firefox] › tests/cli.spec.ts:22:5 › install-browser --help (429ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:03.1957962Z   ✓  33 [firefox] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (949ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:07.6373455Z   ✓  36 [firefox] › tests/core.spec.ts:19:5 › browser_navigate (4.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:08.4643297Z   ✓  35 [firefox] › tests/click.spec.ts:19:5 › browser_click (5.5s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:12.4322431Z   ✓  38 [firefox] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (3.9s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:12.8428364Z   ✓  39 [firefox] › tests/library.spec.ts:20:5 › library can be used from CommonJS (397ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:13.7493785Z   ✓  37 [firefox] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (6.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:15.0825840Z   ✓  41 [webkit] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (481ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:15.5285953Z   ✓  42 [webkit] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (420ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:15.9616550Z   ✓  43 [webkit] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (407ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:16.3671560Z   ✓  44 [webkit] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (386ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:16.7895766Z   ✓  45 [webkit] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (404ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:17.5964783Z   ✓  46 [webkit] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (790ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:17.9771555Z   ✓  47 [webkit] › tests/cli.spec.ts:22:5 › install-browser --help (364ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:20.2664992Z   ✓  48 [webkit] › tests/click.spec.ts:19:5 › browser_click (2.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:20.9881303Z   ✓  40 [webkit] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (7.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:21.4192733Z   ✓  49 [webkit] › tests/core.spec.ts:19:5 › browser_navigate (1.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:23.4129043Z   ✓  51 [webkit] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (2.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:23.8083368Z   ✓  52 [webkit] › tests/library.spec.ts:20:5 › library can be used from CommonJS (383ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:25.1118102Z   ✓  50 [webkit] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:25.1314369Z 
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-20T23:22:25.1321068Z   52 passed (46.5s)
+test (windows-latest)	Run playwright-mcp tests	﻿2026-10-20T23:24:28.6785643Z ##[group]Run npm test
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:28.6785913Z [36;1mnpm test[0m
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:28.6838768Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:28.6839177Z ##[endgroup]
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:29.0815866Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:29.0816567Z > @timmiballz22/playwright-mcp-local@0.0.83 test
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:29.0817070Z > playwright test
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:29.0817224Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:30.8026064Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:30.8026720Z Running 52 tests using 1 worker
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:30.8027522Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:38.1147109Z   ok  1 [chrome] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (6.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:38.4497910Z   ok  2 [chrome] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (315ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:38.7661861Z   ok  3 [chrome] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (308ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:39.1168607Z   ok  4 [chrome] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (343ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:39.4388668Z   ok  5 [chrome] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (314ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:39.7775219Z   ok  6 [chrome] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (330ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:40.4074566Z   ok  7 [chrome] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (622ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:40.7076794Z   ok  8 [chrome] › tests\cli.spec.ts:22:5 › install-browser --help (292ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:42.7225794Z   ok  9 [chrome] › tests\click.spec.ts:19:5 › browser_click (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:44.0428587Z   ok 10 [chrome] › tests\core.spec.ts:19:5 › browser_navigate (1.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:48.4347054Z   ok 11 [chrome] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:50.3544095Z   ok 12 [chrome] › tests\interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (1.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:50.7025018Z   ok 13 [chrome] › tests\library.spec.ts:20:5 › library can be used from CommonJS (333ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:54.1282181Z   ok 14 [chromium] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (2.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:54.4618065Z   ok 15 [chromium] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (313ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:54.7810343Z   ok 16 [chromium] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (311ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:55.1009303Z   ok 17 [chromium] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (312ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:55.4565866Z   ok 18 [chromium] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (346ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:55.8286702Z   ok 19 [chromium] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (362ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:56.5165446Z   ok 20 [chromium] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (680ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:56.8641376Z   ok 21 [chromium] › tests\cli.spec.ts:22:5 › install-browser --help (339ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:24:58.9065721Z   ok 22 [chromium] › tests\click.spec.ts:19:5 › browser_click (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:00.3999227Z   ok 23 [chromium] › tests\core.spec.ts:19:5 › browser_navigate (1.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:04.1875443Z   ok 24 [chromium] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (3.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:06.0397524Z   ok 25 [chromium] › tests\interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (1.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:06.3360559Z   ok 26 [chromium] › tests\library.spec.ts:20:5 › library can be used from CommonJS (289ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:16.0872250Z   ok 27 [firefox] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (9.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:16.4050461Z   ok 28 [firefox] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (301ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:16.7240110Z   ok 29 [firefox] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (310ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:17.0557394Z   ok 30 [firefox] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (325ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:17.3700998Z   ok 31 [firefox] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (307ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:17.6873116Z   ok 32 [firefox] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (308ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:18.5191752Z   ok 33 [firefox] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (824ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:18.8129558Z   ok 34 [firefox] › tests\cli.spec.ts:22:5 › install-browser --help (285ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:23.7249476Z   ok 35 [firefox] › tests\click.spec.ts:19:5 › browser_click (4.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:27.7347008Z   ok 36 [firefox] › tests\core.spec.ts:19:5 › browser_navigate (4.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:36.8617703Z   ok 37 [firefox] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (9.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:41.6653185Z   ok 38 [firefox] › tests\interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (4.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:41.9902783Z   ok 39 [firefox] › tests\library.spec.ts:20:5 › library can be used from CommonJS (297ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:44.2261234Z   ok 40 [webkit] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (1.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:44.5467896Z   ok 41 [webkit] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (301ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:44.8555459Z   ok 42 [webkit] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (300ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:45.1674959Z   ok 43 [webkit] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (305ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:45.4751305Z   ok 44 [webkit] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (300ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:45.7953060Z   ok 45 [webkit] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (312ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:46.3906758Z   ok 46 [webkit] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (588ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:46.6743734Z   ok 47 [webkit] › tests\cli.spec.ts:22:5 › install-browser --help (276ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:47.9845313Z   ok 48 [webkit] › tests\click.spec.ts:19:5 › browser_click (1.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:48.7396065Z   ok 49 [webkit] › tests\core.spec.ts:19:5 › browser_navigate (747ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:52.6738424Z   ok 50 [webkit] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (3.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:54.1121488Z   ok 51 [webkit] › tests\interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (1.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:54.4110565Z   ok 52 [webkit] › tests\library.spec.ts:20:5 › library can be used from CommonJS (292ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:54.4279522Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-20T23:25:54.4284258Z   52 passed (1.4m)
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	﻿2026-10-20T23:25:54.5323059Z ##[group]Run node --test local-batch/integration.test.mjs
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:25:54.5323424Z [36;1mnode --test local-batch/integration.test.mjs[0m
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:25:54.5372439Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:25:54.5372708Z env:
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:25:54.5372865Z   RUN_BROWSER_TESTS: 1
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:25:54.5373066Z   PLAYWRIGHT_BATCH_TEST_BROWSERS: firefox
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:25:54.5373259Z ##[endgroup]
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:25:54.7666452Z TAP version 13
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4106403Z # Subtest: real firefox: 5 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4112452Z ok 1 - real firefox: 5 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4113735Z   ---
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4113944Z   duration_ms: 41600.2088
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4114150Z   ...
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4250988Z 1..1
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4251858Z # tests 1
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4252638Z # suites 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4252940Z # pass 1
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4253524Z # fail 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4254080Z # cancelled 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4254907Z # skipped 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4255795Z # todo 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-20T23:26:36.4259772Z # duration_ms 41666.1972

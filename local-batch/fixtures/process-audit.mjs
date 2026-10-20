@@ -8,8 +8,18 @@ export async function ownedDescendants(roots) {
   let rows;
   if (process.platform === 'win32') {
     const executable = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
-    const script = 'Get-CimInstance Win32_Process | Select-Object ProcessId,ParentProcessId | ConvertTo-Json -Compress';
-    const { stdout } = await exec(executable, ['-NoProfile', '-NonInteractive', '-Command', script], { timeout: 5000, maxBuffer: 1048576, windowsHide: true });
+    const script = 'Get-CimInstance -ClassName Win32_Process -Property ProcessId,ParentProcessId | Select-Object ProcessId,ParentProcessId | ConvertTo-Json -Compress';
+    let stdout;
+    try {
+      // Native cold WMI startup exceeded the previous five-second test audit
+      // bound. This is read-only evidence collection, never execution cleanup.
+      ({ stdout } = await exec(executable, ['-NoProfile', '-NonInteractive', '-Command', script], { timeout: 10000, maxBuffer: 1048576, windowsHide: true }));
+    } catch (error) {
+      const kind = error.code === 'ERR_CHILD_PROCESS_STDIO_MAXBUFFER' ? 'output_limit' :
+        error.killed ? 'timeout' : Number.isInteger(error.code) ? 'exit_' + error.code :
+        ['ENOENT', 'EACCES'].includes(error.code) ? error.code.toLowerCase() : 'command_failed';
+      throw new Error('process_audit_windows_cim_' + kind);
+    }
     const parsed = JSON.parse(stdout);
     rows = (Array.isArray(parsed) ? parsed : [parsed]).map(row => ({ pid: Number(row.ProcessId), parent: Number(row.ParentProcessId) }));
   } else {
