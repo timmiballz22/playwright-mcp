@@ -4,9 +4,19 @@ on:
     branches: [main, 'feat/**']
   pull_request:
     branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   batch:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-15, windows-latest]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -15,7 +25,8 @@ jobs:
           node-version: '20'
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - run: node scripts/verify-package.mjs
+      - run: npx playwright install --with-deps chromium firefox webkit
       - name: Run mock and real browser tests
         env:
           RUN_BROWSER_TESTS: '1'

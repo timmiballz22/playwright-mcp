@@ -1,0 +1,22 @@
+# Measured local performance
+
+2026-10-20, Linux x64, Node 24.19.0, npm 11.9.0; pinned Playwright
+1.64.0-alpha-1790635538000, Chromium 155 managed headless browser.
+
+`RUN_BROWSER_TESTS=1 node --test local-batch/integration.test.mjs`:
+1,000 sequential real operations (goto + 997 clicks + DOM assertion + screenshot),
+37,713 ms test duration; 26.5 total operations/s. Security routing enabled.
+This is one sample, not median/p95 or a comparison to upstream/CLI.
+
+`node scripts/soak-local.mjs`: 100 fresh browser workflows, 18,041 ms,
+runner RSS min 118,349,824 / max 182,501,376 bytes. RSS increased; **no leak-free
+claim**. Browser process-tree RSS, file descriptors, handles and CPU not measured.
+A follow-up with `node --expose-gc scripts/soak-local.mjs` samples after explicit GC;
+see evidence/soak-gc.txt for actual results. This diagnostic does not replace
+normal production resource measurements. Site is local, workflows sequential,
+no model invocations, network caching bypassed by routing/fetch.
+
+Missing: upstream-versus-batch-versus-CLI/SKILLS comparison, transferred tokens,
+peak browser tree RSS, warm/cold distributions, mobile, artifact throughput,
+network restriction overhead versus approved nonrouting workloads, repeated
+reliability confidence intervals. G12 remains IN PROGRESS.

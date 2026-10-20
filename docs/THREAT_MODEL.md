@@ -1,0 +1,29 @@
+# Companion threat model
+
+Operator configuration is trusted. Workflow JSON, every page, redirects, selectors,
+input values and site responses are untrusted. Assets include local services,
+profiles, screenshots, filesystem and the model's context.
+
+The companion accepts no arbitrary JS, shell, file URL, upload, policy override or
+profile attachment. Exact HTTP(S) origins are configured by CLI/operator environment,
+including localhost host AND port. Credentials in URLs are denied. Unknown keys
+are rejected and validated actions are copied before asynchronous launch.
+
+A real fixture proved Playwright route.continue does not re-intercept redirects.
+Requests now use route.fetch(maxRedirects:0,maxRetries:0), and redirect responses
+are aborted before following them. All redirects currently fail closed. WebSockets
+are closed; service workers disabled. Any blocked request fails the workflow.
+This protects fixture-tested browser requests, not all OS traffic. DNS rebinding,
+proxies, browser background traffic and arbitrary compromised browser processes
+require external egress controls. An allowlisted host can itself be hostile.
+
+Errors omit raw browser messages, URL contents, assertion content and fill values.
+Reports still contain timing/action metadata and absolute artifact paths.
+Screenshots can contain credentials and page secrets: use only explicitly approved
+fixtures/data; masking and capture consent policy are incomplete release blockers.
+Directories are private and unique; there is no disk quota/retention controller.
+
+The original MCP endpoint remains upstream behavior, including optional privileged
+features and its own trust model. Companion restrictions do not secure that endpoint.
+Durable jobs, hard process isolation, persistent companion profiles and an OS sandbox
+are not implemented. Do not expose either stdio process as a public service.

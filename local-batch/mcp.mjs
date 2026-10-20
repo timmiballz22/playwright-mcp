@@ -16,11 +16,16 @@ const allowedOrigins = (process.env.PLAYWRIGHT_BATCH_ALLOWED_ORIGINS || '')
   .split(',').map(s => s.trim()).filter(Boolean);
 const artifactsDir = path.resolve(process.env.PLAYWRIGHT_BATCH_ARTIFACTS_DIR || '.local-batch-output');
 let busy = false;
+let activeAbort;
+const shutdown = () => activeAbort?.abort();
+server.onclose = shutdown;
+process.once('SIGINT', shutdown);
+process.once('SIGTERM', shutdown);
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [{
     name: 'browser_run_batch',
-    description: 'Run bounded, ordered local Playwright browser actions; only loopback or operator-configured origins. Returns concise summary and local report path. No arbitrary JavaScript or shell execution.',
+    description: 'Run bounded, ordered local Playwright browser actions; only exact operator-configured origins. Returns concise summary and local report path. No arbitrary JavaScript or shell execution.',
     inputSchema: {
       type: 'object',
       additionalProperties: false,
@@ -57,9 +62,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
   if (busy)
     return { isError: true, content: [{ type: 'text', text: 'A batch is already running' }] };
   busy = true;
+  activeAbort = new AbortController();
+  const abort = () => activeAbort?.abort();
+  extra.signal.addEventListener('abort', abort, { once: true });
+  if (extra.signal.aborted) abort();
   try {
     const result = await runWorkflow(request.params.arguments, {
-      allowedOrigins, artifactsDir, signal: extra.signal,
+      allowedOrigins, artifactsDir, signal: activeAbort.signal,
     });
     const summary = await saveReport(result, artifactsDir);
     return { isError: !result.ok, content: [{ type: 'text', text: JSON.stringify(summary) }] };
@@ -68,6 +77,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
     return { isError: true, content: [{ type: 'text', text: 'Batch rejected or failed (' +
       (error?.name || 'Error') + '). Check trusted local diagnostics.' }] };
   } finally {
+    extra.signal.removeEventListener('abort', abort);
+    activeAbort = undefined;
     busy = false;
   }
 });

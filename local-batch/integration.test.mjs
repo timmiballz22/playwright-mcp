@@ -7,7 +7,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { runWorkflow } from './runner.mjs';
 
-test('real Chromium: navigation, 100 clicks, assertion, screenshot, cleanup', {
+test('real Chromium: navigation, 997 clicks / 1,000 actions, assertion, screenshot, cleanup', {
   skip: process.env.RUN_BROWSER_TESTS !== '1' ? 'Set RUN_BROWSER_TESTS=1 with Playwright installed' : false,
 }, async () => {
   const server = createServer((_req, res) => {
@@ -20,13 +20,13 @@ test('real Chromium: navigation, 100 clicks, assertion, screenshot, cleanup', {
   const dir = await mkdtemp(path.join(os.tmpdir(), 'pw-batch-'));
   try {
     const steps = [{ type: 'goto', url: origin + '/' },
-      ...Array.from({ length: 100 }, () => ({ type: 'click', selector: '#add' })),
-      { type: 'assertText', selector: '#count', contains: '100' },
+      ...Array.from({ length: 997 }, () => ({ type: 'click', selector: '#add' })),
+      { type: 'assertText', selector: '#count', contains: '997' },
       { type: 'screenshot' }];
     const result = await runWorkflow({ steps, timeoutMs: 120000 },
-      { artifactsDir: dir });
+      { artifactsDir: dir, allowedOrigins: [origin] });
     assert.equal(result.ok, true, JSON.stringify(result).slice(-1500));
-    assert.equal(result.completed, 103);
+    assert.equal(result.completed, 1000);
     assert.ok((await stat(result.results.at(-1).artifact)).size > 0);
   } finally {
     server.close();

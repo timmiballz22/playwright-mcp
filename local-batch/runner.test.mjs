@@ -100,3 +100,38 @@ test('checks target origins and reports assertion failure without page content',
   assert.equal(state.routes.length, 1);
   assert.equal(state.closes, 1);
 });
+
+test('unknown localhost ports require exact operator origins', async () => {
+  const mock = makeFake();
+  for (const url of ['http://localhost:3456/', 'http://127.0.0.1:3456/', 'http://[::1]:3456/'])
+    await assert.rejects(runWorkflow({ steps: [{ type: 'goto', url }] }, mock));
+  const result = await runWorkflow({ steps: [{ type: 'goto', url: 'http://localhost:3456/' }] },
+    { ...mock, allowedOrigins: ['http://localhost:3456'] });
+  assert.equal(result.ok, true);
+});
+
+test('rejects extra workflow and action properties rather than ignoring policy', () => {
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'click', selector: 'button' }], allowedOrigins: ['http://localhost'] }));
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'click', selector: 'button', code: 'canary' }] }));
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'screenshot', value: 'canary' }] }));
+});
+
+test('deadline includes a stalled launch and closes late browser', async () => {
+  let closed = 0;
+  const result = await runWorkflow({ timeoutMs: 100, steps: [{ type: 'click', selector: 'button' }] }, {
+    playwright: { chromium: { launch: () => new Promise(resolve => setTimeout(() => resolve({ close: async () => { closed++; } }), 150)) } },
+  });
+  assert.equal(result.reason, 'timeout');
+  await new Promise(resolve => setTimeout(resolve, 100));
+  assert.equal(closed, 1);
+});
+
+test('validation snapshots actions before asynchronous launch', async () => {
+  const step = { type: 'goto', url: 'https://example.com/' };
+  const { state, playwright } = makeFake();
+  const pending = runWorkflow({ steps: [step] }, { playwright, allowedOrigins: ['https://example.com'] });
+  step.url = 'file:///etc/passwd';
+  const result = await pending;
+  assert.equal(result.ok, true);
+  assert.equal(state.url, 'https://example.com/');
+});

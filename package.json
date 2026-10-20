@@ -1,10 +1,10 @@
 {
-  "name": "@playwright/mcp",
+  "name": "@timmiballz22/playwright-mcp-local",
   "version": "0.0.83",
   "description": "Playwright Tools for MCP",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/microsoft/playwright-mcp.git"
+    "url": "git+https://github.com/timmiballz22/playwright-mcp.git"
   },
   "homepage": "https://playwright.dev",
   "engines": {
@@ -14,7 +14,6 @@
     "name": "Microsoft Corporation"
   },
   "license": "Apache-2.0",
-  "mcpName": "io.github.microsoft/playwright-mcp",
   "scripts": {
     "lint": "node update-readme.js",
     "test": "playwright test",
@@ -23,11 +22,12 @@
     "wtest": "playwright test --project=webkit",
     "dtest": "MCP_IN_DOCKER=1 playwright test --project=chromium-docker",
     "build": "echo OK",
-    "npm-publish": "npm run lint && npm run test && npm publish",
+    "npm-publish": "node scripts/publish-disabled.cjs",
     "docker-build": "docker build --no-cache -t playwright-mcp-dev:latest .",
     "docker-rm": "docker rm playwright-mcp-dev",
     "docker-run": "docker run -it -p 8080:8080 --name playwright-mcp-dev playwright-mcp-dev:latest",
-    "roll": "node roll.js"
+    "roll": "node roll.js",
+    "test:batch": "node --test local-batch/*.test.mjs"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -38,14 +38,28 @@
   },
   "dependencies": {
     "playwright": "1.64.0-alpha-1790635538000",
-    "playwright-core": "1.64.0-alpha-1790635538000"
+    "playwright-core": "1.64.0-alpha-1790635538000",
+    "@modelcontextprotocol/sdk": "^1.25.2"
   },
   "devDependencies": {
-    "@modelcontextprotocol/sdk": "^1.25.2",
     "@playwright/test": "1.64.0-alpha-1790635538000",
     "@types/node": "^24.3.0"
   },
   "bin": {
-    "playwright-mcp": "cli.js"
-  }
+    "playwright-mcp": "cli.js",
+    "playwright-batch": "local-batch/cli.mjs",
+    "playwright-batch-mcp": "local-batch/mcp.mjs"
+  },
+  "private": true,
+  "files": [
+    "README.md",
+    "LICENSE",
+    "cli.js",
+    "index.js",
+    "index.d.ts",
+    "config.d.ts",
+    "local-batch/*.mjs",
+    "scripts/bootstrap-local-batch.*",
+    "docs/*.md"
+  ]
 }

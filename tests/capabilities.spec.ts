@@ -15,6 +15,8 @@
  */
 
 import { test, expect } from './fixtures';
+import fs from 'node:fs';
+import path from 'node:path';
 
 test('test snapshot tool list', async ({ client }) => {
   const { tools } = await client.listTools();
@@ -76,4 +78,13 @@ test('support for legacy --vision option', async ({ startClient }) => {
   expect(toolNames).toContain('browser_mouse_move_xy');
   expect(toolNames).toContain('browser_mouse_click_xy');
   expect(toolNames).toContain('browser_mouse_drag_xy');
+});
+
+// Versioned discovery records contain schemas, not only operation names.
+test('extended upstream capability schema contract', async ({ startClient, mcpBrowser }) => {
+  const { client } = await startClient({ args: ['--caps=config,network,storage,devtools,vision,pdf,testing'] });
+  const { tools } = await client.listTools();
+  const browser = ['firefox', 'webkit'].includes(mcpBrowser!) ? mcpBrowser : 'chromium';
+  const baseline = JSON.parse(fs.readFileSync(path.join(__dirname, `../docs/evidence/discovery-${browser}-extended.json`), 'utf8'));
+  expect(tools).toEqual(baseline.tools);
 });

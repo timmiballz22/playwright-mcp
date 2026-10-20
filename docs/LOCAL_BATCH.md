@@ -48,9 +48,9 @@ args = ["/ABSOLUTE/PATH/playwright-mcp/local-batch/mcp.mjs"]
 ```
 
 No HTTP listener is opened by the sidecar. Both processes use standard I/O.
-The batch server requires the repository's full dependencies (`npm ci`):
-the MCP SDK is currently an upstream development dependency. A future Codex
-packaging pass should promote it to a runtime dependency before publishing.
+The SDK is a runtime dependency. Source installs and local tarballs support
+production dependency installs. This private fork cannot be published to npm.
+The upstream npm command above installs Microsoft's package, not this fork.
 
 ## Batch CLI
 
@@ -74,7 +74,7 @@ A JSON file specifies a bounded ordered workflow:
 Run against your own local site:
 
 ```bash
-node local-batch/cli.mjs --workflow ./my-workflow.json
+node local-batch/cli.mjs --workflow ./my-workflow.json --allow-origin http://127.0.0.1:3000
 ```
 
 To opt in to a public origin:
@@ -97,8 +97,9 @@ are exposed in this batch interface. Use the upstream MCP for other features.
 
 Limits: at most 1,000 total actions (`steps × iterations`), 100
 iterations, 180s overall deadline, and 30s per-action timeout.
-Only one batch at a time per sidecar process. Localhost over HTTP is allowed
-by default; other origins must be explicitly allowed locally.
+Only one batch at a time per sidecar process. Every HTTP(S) origin, including each localhost port, must be explicitly
+allowed locally. Redirect responses and WebSockets currently fail closed.
+Blocked dependencies make the workflow fail with `policy_blocked`.
 The browser blocks requests to non-allowed origins, including most third-party
 scripts, fonts and CDN assets. Allow them individually if required.
 
@@ -113,7 +114,7 @@ the workflow JSON, and reports as potentially sensitive.** Do not commit them.
 
 - This tool uses your local browser process and machine's network access:
   run only code you trust, and do not install untrusted dependencies.
-- Navigation allows localhost by default. The browser's page content is
+- Navigation requires explicit exact origins, including localhost ports. The browser's page content is
   untrusted, and the origin filter is not a general OS/network sandbox.
 - Strict subresource filtering improves determinism but may break sites
   relying on other domains or service workers. Browser contexts should
@@ -129,3 +130,17 @@ the workflow JSON, and reports as potentially sensitive.** Do not commit them.
   Playwright CLI + SKILLS, which upstream recommends over MCP in some cases.
 
 See [CODEX_HANDOFF.md](CODEX_HANDOFF.md) for the outstanding work.
+
+## Current hardening limits
+
+The lifecycle timer includes artifact setup, browser import, launch and actions.
+Cleanup has a separate five-second ceiling per resource. Report serialization
+and filesystem writes are not yet covered by a process-wide deadline. A late
+launch is closed; strict process-tree kill verification remains outstanding.
+Screenshots use an exclusively created per-run directory. There is no retention
+quota or guaranteed screenshot secret masking yet: capture only approved data.
+HTTP requests are fetched without automatic redirects/retries and fulfilled to
+the browser to prevent Playwright's redirect routing bypass. All redirects are
+currently rejected, including same-origin redirects. This is a compatibility
+restriction of the companion only; the upstream entrypoint is unchanged.
+DNS rebinding and system-wide egress isolation still require external controls.
