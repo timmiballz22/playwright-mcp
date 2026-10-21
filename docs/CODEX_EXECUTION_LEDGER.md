@@ -2,24 +2,24 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening; last pushed de9c924. Local artifact-receipt
-and retained-quota commits follow it (use git log for exact current SHA). Native58
-CI39654189022/batch39654188940 remain active; do not supersede them by pushing.
-Latest complete native57 at b62740e:1,601 reported passes/six failed tests plus
-separate macOS Codex954/1k timeout. Details and failed receipts retained below.
+Branch feat/local-production-hardening; last pushed de9c924. Native58 complete:
+CI39654189022 FAILURE437/3; batch39654188940 FAILURE1,197/6. Combined1,634 passes/
+nine failed tests; all three actual Codex clients complete1k/zero-model actions.
+All17 executed jobs conclude; functional_soak intentionally skipped, zero reported
+test skips/cancellations or job cancellations. All five173-file installs pass;
+components85/85 (Windows86) include the temporary-helper fix natively.
 
-Local candidate bounds artifact-helper receipts and adds512MiB default durable
-retained logical-byte admission before browser launch. Final runtime96/96 component
-cases each Node22/24; additional entry-boundary case makes final quota file9/9 each
-Node22/24,8/8 Node20 (SQLite case not registered). Fresh174-file production install,
-normal/linger death audits, lint and public jobs1k test2/2 Node22 pass. Private
-quota test/fault fixture excluded from package. Runtime/default quotas need native
-verification;97 component cases expected next matrix (Windows98), verify logs.
+Later local candidate bounds artifact-helper receipts and adds512MiB default
+durable retained logical-byte admission before browser launch. Final runtime96/96
+components each Node22/24,174-file install, normal/linger independent death audits,
+lint and public jobs1k test2/2 Node22 pass. Additional entry-boundary test makes
+quota file9/9 each Node22/24,8/8 Node20 (SQLite case not registered). Native58
+predates these changes; next matrix should verify97 components (Windows98).
 
-**Not release-ready. NEXT ACTION: capture complete native58, then push candidate.**
+**Not release-ready. NEXT ACTION: push candidate, inspect native59.**
 Managed reset, automatic retention/operator repair, hard OS resource bounds,
-graphical annotation and remaining feature acceptance stay open. Detailed
-phase-specific receipts and limitations below; earlier failures remain unresolved.
+graphical annotation and remaining feature acceptance stay open. All failed
+scopes and earlier ownership observations remain unresolved unless evidenced.
 
 ## Historical checkpoints
 
@@ -3802,3 +3802,34 @@ EOF cancellation, artifacts and bounded result-wait capacity. This is an SDK cli
 integration, not a Codex model turn or native cross-OS proof. Receipt
 retained-final-public-jobs1k-node22.txt. Package boundary receipt confirms174 files,
 quota runtime included, private quota test and stalled-scan fixture excluded.
+
+## Native58 at de9c924 — completed, not green
+
+Wrapper437/3: all three original host suites144/0, Docker2/0, macOS extra modal3/0.
+Separate Windows Node20 legacy Firefox3/3 fail during pointer actions: headless
+fresh1 completed7/23 at8; headed fresh6 completed2/23 at3; pipe fresh1 completed3/23
+at4. All pointer_action_timeout, no cleanup failures. Headed fixture counter2
+although only1 click was confirmed shows the failed click may have taken effect;
+never retry/reclassify from that lower bound. Helper.js teardown warnings remain
+noncausal observations, not a patch target.
+
+Batch1,197/6: Linux22/24 each173/0, Linux20 170/0, Windows171/2, macOS169/4.
+Windows Firefox HTTP privacy /500 times out after5 verified cases, no failed-step
+status/kind, completed0, cleanup terminated/removed, independent audit0. Firefox
+/429 positive retry times out with1 GET and0 completed. Both raw temp-layout probes
+subsequently pass10/10 (230 actions) with zero observed owned processes; healthy
+probes do not erase main failures or establish universal temp isolation causality.
+
+macOS Firefox approved-alias control completes4/4 but still times out, forced:true,
+known cleanup. Raw Chromium1k times out997 at998. Public jobs TIMED_OUT958 at959,
+forced:false, known cleanup/readable result/no operator attention. Batch MCP1k
+also times out986 with known cleanup. Counts remain failures after action progress.
+
+Actual Codex1k/zero-model all pass: Linux36.037s, Windows47.287s, macOS82.859s,
+independent observed owned0. Mac failure-only server-first comparison passes both:
+server81.925s, pipe113.371s, pipe owned handles1 captured/spawned/exited, both audit0.
+This reversal from native57 prevents a blanket pipe-performance/fix claim.
+All components85/86 and five173-file production installs pass; normal/linger death
+checks execute within their existing scope (Node20 lacks durable SQLite checks).
+Exact selected steps/counts/jobs: worker-ci-fiftyeighth-*. Later quota/artifact
+receipt candidate is locally verified only until native59 completes.

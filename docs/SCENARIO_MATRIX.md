@@ -1,8 +1,8 @@
 # Mandatory scenario evidence
 
-Current checkpoint: native57 at b62740e completed with1,601 reported passes/six
-failed tests plus separate macOS Codex954/1k timeout. Native58 at de9c924 remains
-active; its wrapper437/3 completed. Later local artifact-receipt and retained
+Current checkpoint: native58 at de9c924 completed with1,634 reported passes/nine
+failed tests. All three actual Codex1k clients and five173-file installs pass;
+wrapper437/3 and batch1,197/6 still fail. Later local artifact-receipt and retained
 quota changes are not assigned those native results. The local final runtime
 passes96 components each Node22/24,174-file installation and public jobs1k; the
 additional entry-boundary control passes9 quota cases Node22/24 (8 Node20).
