@@ -2969,3 +2969,12 @@ passes with169 packaged files, exact required worker modules and original/batch/
 jobs/profile/journal/controller-death smoke receipts. Guardian parent-death
 shutdown318ms and linger-close763ms both independently observe zero owned before
 replacement observation. Evidence: artifact-final-production-install.txt.
+
+Public screenshot ownership evidence reconciliation: jobs-screenshot-ownership
+passes all four native SQLite-capable batch lanes at5060ca4 (Linux22/24,
+Windows22, macOS22); Node20 correctly does not execute SQLite jobs. Stale native
+pending wording is corrected without changing wider reliability gates. The same
+two-owner real stdio test also passes Node22/24 locally with the new worker:
+scoped deletion preserves the other PNG, foreign status/cleanup deny, duplicate
+request does not replay, and post-close independent audits observe zero owned.
+Evidence: artifact-final-two-owner-node22/24.txt.
