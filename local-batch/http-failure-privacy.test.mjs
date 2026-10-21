@@ -6,7 +6,7 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { executeWorkflow } from './executor.mjs';
-import { ownedDescendants } from './fixtures/process-audit.mjs';
+import { ownedScopeDescendants } from './fixtures/process-audit.mjs';
 
 for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',')) {
   test(`real ${browser}: HTTP error codes and script exceptions keep response secrets out of reports`, { timeout: 120000 }, async () => {
@@ -24,7 +24,7 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
     server.listen(0, '127.0.0.1'); await once(server, 'listening');
     const origin = `http://127.0.0.1:${server.address().port}`;
     const directory = await mkdtemp(path.join(os.tmpdir(), 'http-privacy-'));
-    const owned = [];
+    const scopes = [];
     const sinceMs = Date.now();
     let verifiedCases = 0;
     let primaryFailure;
@@ -35,12 +35,22 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
       for (const [route, code] of [['/401', 'http_401'], ['/403', 'http_403'], ['/404', 'http_404'],
         ['/418', 'http_4xx'], ['/429', 'rate_limited'], ['/500', 'http_5xx'], ['/503', 'http_5xx'], ['/script', null]]) {
         currentRoute = route; primaryStage = 'execution'; outcome = null;
+        const scope = { roots: new Set(), identities: new Map() }; scopes.push(scope);
+        let startAuditFailure;
         const result = await executeWorkflow({ browser, timeoutMs: 15000, actionTimeoutMs: 3000,
           steps: [{ type: 'goto', url: `${origin}${route}?secret=${canaries[0]}` },
             { type: 'assertText', selector: '#script-ran', equals: canaries[2] }] }, {
           allowedOrigins: [origin], artifactsDir: directory,
-          onEvent: event => { if (event.pid) owned.push(event.pid); },
+          onEvent: event => { if (event.pid) scope.roots.add(event.pid); },
+          // The existing trusted start ACK holds supervisor/worker allocation
+          // before browser effects. Observe this owned lifetime independently;
+          // a later workflow cannot overwrite an earlier root incarnation.
+          beforeWorkerStart: async () => {
+            try { await ownedScopeDescendants([scope], { rememberLiveRoots: true }); }
+            catch (error) { startAuditFailure = error; throw error; }
+          },
         });
+        if (startAuditFailure) throw startAuditFailure;
         primaryStage = 'summary';
         outcome = { ok: result.ok, reason: result.reason, completed: result.completed,
           failureCode: result.failedStep?.error ?? null, failureKind: result.failedStep?.failureKind ?? null,
@@ -79,7 +89,7 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
       let auditReceipt = null;
       let auditFailure = null;
       try {
-        const survivors = await ownedDescendants(owned, { sinceMs, onReceipt: receipt => { auditReceipt = receipt; } });
+        const survivors = await ownedScopeDescendants(scopes, { sinceMs, onReceipt: receipt => { auditReceipt = receipt; } });
         assert.equal(survivors.length, 0, JSON.stringify({ fixture: 'http_privacy_ownership', verifiedCases, audit: auditReceipt }));
         audited = true;
       } catch (error) {
