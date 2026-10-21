@@ -23,7 +23,10 @@ test('original storage, screenshot, trace, video, tabs and Chromium PDF behavior
   expect((await fs.readFile(screenshot)).subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a');
   const video = testInfo.outputPath('parity.webm');
   await call('browser_start_video', { filename: video, fps: 10 });
+  await call('browser_video_chapter', { title: 'Owned chapter', description: 'Static fixture', duration: 100 });
+  await call('browser_video_show_actions', { duration: 100, position: 'top-right', cursor: 'none', style: { title: 'font-size: 14px', highlight: 'outline: 2px solid red' } });
   await call('browser_click', { element: 'Save button', target: 'e2' });
+  await call('browser_video_hide_actions');
   await call('browser_stop_video');
   expect((await fs.readFile(video)).subarray(0, 4).toString('hex')).toBe('1a45dfa3');
   await call('browser_tabs', { action: 'new', url: server.PREFIX });

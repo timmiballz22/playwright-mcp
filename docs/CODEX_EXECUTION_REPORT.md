@@ -1418,3 +1418,25 @@ https://github.com/actions/runner-images documents macos-15-intel(x64) and
 macos-15(arm64). Automatic lanes select the former; workflow_dispatch can select
 the latter. Same macOS version and test commands; architecture coverage is explicit.
 Arm64 remains an open current-candidate acceptance requirement, not a skipped PASS.
+
+
+## Original developer-tool positive behavior
+
+New local Chromium/Firefox fixtures pass6 cases(13.8s): persistent highlights
+change the PNG, target-specific and page-wide hide restore the exact static
+baseline bytes; owned pointer input produces a changed DOM and recorded action
+source; double-start and stop-without-recording fail explicitly. A strengthened
+recording-only rerun passes2 cases(4.9s), parsing the generated code fence and
+requiring an actual .click(...) rather than matching snapshot text. Existing media
+coverage now adds video chapter and action-overlay enable/disable calls while
+requiring valid PNG/WebM/trace and Chromium PDF outputs. No implementation change.
+Evidence: original-devtools-local.txt and original-recorded-code-local.txt.
+Native confirmation, interactive annotation and debugger-resume flows remain open.
+
+Current2359eba macOS Intel actual Codex primary job reached970 of1,000 actions
+before its unchanged120s workflow deadline: TIMED_OUT, available result, cleanup
+failed/temp removed and operator attention required. No guardian failure/exit
+hint was emitted. This is a real new native failure, not a completed1,000-action
+check; cleanup cause remains unknown until full logs/diagnostics are available.
+No timeout, assertion or cleanup status has been relaxed. macOS Intel components
+passed; full candidate run remains active.
