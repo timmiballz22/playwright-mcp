@@ -27,7 +27,18 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: ${{ matrix.node }}
-      - run: node --test --test-concurrency=1 local-batch/jobs/journal.test.mjs local-batch/jobs/guardian.test.mjs local-batch/jobs/workflow-snapshot.test.mjs local-batch/jobs/controller.test.mjs local-batch/jobs/contention.test.mjs local-batch/jobs/config.test.mjs local-batch/jobs/private-windows.test.mjs local-batch/jobs/artifact-cleanup.test.mjs local-batch/jobs/queue-clock.test.mjs scripts/ci-test-counts.test.mjs
+      - name: Run durable component tests
+        id: components
+        shell: bash
+        run: node --test --test-concurrency=1 local-batch/jobs/journal.test.mjs local-batch/jobs/guardian.test.mjs local-batch/jobs/workflow-snapshot.test.mjs local-batch/jobs/controller.test.mjs local-batch/jobs/contention.test.mjs local-batch/jobs/config.test.mjs local-batch/jobs/private-windows.test.mjs local-batch/jobs/artifact-cleanup.test.mjs local-batch/jobs/queue-clock.test.mjs scripts/ci-test-counts.test.mjs 2>&1 | tee component-tests.log
+      - name: Preserve failed component evidence
+        if: failure() && steps.components.outcome == 'failure'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: journal-tests-${{ matrix.os }}-node${{ matrix.node }}
+          path: component-tests.log
+          retention-days: 1
+          if-no-files-found: error
   batch:
     strategy:
       fail-fast: false

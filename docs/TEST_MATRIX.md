@@ -110,3 +110,12 @@ encoded-origin.test.mjs approves a localhost target for six browser-canonical
 aliases (normal, integer, hexadecimal, octal, shortened and percent-encoded),
 then repeats with that port denied: all fetches settle, denied effect count is
 zero, cleanup is verified. Local Chromium/Firefox pass; WebKit/native pending.
+
+locator-cancel.test.mjs starts a real Chromium locator wait and requires a
+private trusted witness that its promise is pending before host abort. It checks
+CANCELLED/one confirmed action, no retry safety claim, bounded cleanup and an
+independent process scan. Live-root creation-time evidence is recorded on
+Windows before cancellation. Local Linux passes; native new fixture is pending.
+Component CI now uses Bash pipefail with tee and uploads failed trusted component
+logs for one day, pinned upload-artifact v4.6.2. It preserves the test exit code
+and original assertions; public Windows bootstrap coverage remains PowerShell.
