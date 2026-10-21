@@ -119,3 +119,14 @@ Windows before cancellation. Local Linux passes; native new fixture is pending.
 Component CI now uses Bash pipefail with tee and uploads failed trusted component
 logs for one day, pinned upload-artifact v4.6.2. It preserves the test exit code
 and original assertions; public Windows bootstrap coverage remains PowerShell.
+
+The real crash fixture initially failed on local Node20: its early IPC listener
+consumed the start packet during dynamic worker import, so no workspace/witness
+was created. Both phase fixtures now statically import the worker and prepend
+the workspace witness before IPC delivery; entrypoint evaluation finishes before
+messages dispatch. Locator witness publication also uses exclusive temporary
+write plus rename after an observed empty-file race. Both real phase tests pass
+Node20/22/24 with original assertions and cleanup scans intact. Before/initial/
+after logs are preserved. These are trusted fixture fixes, not runtime policy or
+execution-deadline changes. Fresh131-file production snapshot at346044f passes
+all installed checks; later changes only fix trusted test-fixture setup.

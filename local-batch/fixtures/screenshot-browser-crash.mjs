@@ -3,8 +3,9 @@
 import { chromium } from 'playwright';
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import '../execution-worker.mjs';
 let workspace; let child;
-process.once('message', packet => { workspace = packet.workspaceRoot; });
+process.prependOnceListener('message', packet => { workspace = packet.workspaceRoot; });
 const launchServer = chromium.launchServer.bind(chromium);
 chromium.launchServer = async (...args) => {
   const server = await launchServer(...args); child = server.process(); return server;
@@ -34,4 +35,3 @@ chromium.connect = async (...args) => {
   };
   return browser;
 };
-await import('../execution-worker.mjs');

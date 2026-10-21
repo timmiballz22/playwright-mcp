@@ -1,9 +1,10 @@
 // Trusted phase witness only. Workflow JSON cannot select or configure it.
 import { chromium } from 'playwright';
-import { writeFile } from 'node:fs/promises';
+import { writeFile, rename } from 'node:fs/promises';
 import path from 'node:path';
+import '../execution-worker.mjs';
 let workspace;
-process.once('message', packet => { workspace = packet.workspaceRoot; });
+process.prependOnceListener('message', packet => { workspace = packet.workspaceRoot; });
 const connect = chromium.connect.bind(chromium);
 chromium.connect = async (...args) => {
   const browser = await connect(...args);
@@ -20,7 +21,9 @@ chromium.connect = async (...args) => {
           const wait = waitFor(...options); let settled = false;
           void wait.then(() => { settled = true; }, () => { settled = true; });
           await new Promise(resolve => setImmediate(resolve));
-          await writeFile(path.join(workspace, 'locator-phase-fixture.json'), JSON.stringify({ pending: !settled }), { flag: 'wx', mode: 0o600 });
+          const temporary = path.join(workspace, 'locator-phase-fixture.tmp');
+          await writeFile(temporary, JSON.stringify({ pending: !settled }), { flag: 'wx', mode: 0o600 });
+          await rename(temporary, path.join(workspace, 'locator-phase-fixture.json'));
           return wait;
         };
         return locator;
@@ -31,4 +34,3 @@ chromium.connect = async (...args) => {
   };
   return browser;
 };
-await import('../execution-worker.mjs');
