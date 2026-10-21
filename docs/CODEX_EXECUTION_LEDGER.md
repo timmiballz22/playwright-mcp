@@ -2,30 +2,30 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening; last pusheda2a8ac7. Native60 is active:
-CI39659786624 and batch39659786456. All four component jobs, all three actual Codex jobs and both previously failing
-Windows/macOS installed-package checks pass by conclusion; whole logs/counts
-pending. Windows/macOS main browser suites and wrapper remain active.
+Branch feat/local-production-hardening; last pusheda2a8ac7. Native60 complete:
+CI39659786624 FAILURE436/1; batch39659786456 FAILURE1,252/3 =>1,688 reported passes/
+four failed tests. All17 executed jobs conclude; one intentional soak skip, no
+reported test skips/cancellations or job cancellations. All five174-file installs,
+all components97/98 and all three actual Codex1k/zero-model clients pass.
 
-Latest complete native59:
-CI39657708430 FAILURE432/2; batch39657709427 FAILURE901/4. Combined1,333 reported
-passes/six failed tests PLUS two separate Windows/macOS installed-package failures.
-Their main browser suites are unexecuted. All17 executed jobs conclude; one
-intentional soak skip, no reported test skips/cancellations or job cancellations.
-All three actual Codex1k clients pass with zero observed owned processes.
+New quota/helper/host-path corrections have scoped native proof. Remaining failures:
+Windows original Firefox browser_close pending27.111s, raw Firefox fresh5 locator
+timeout at18 (completed17/23), positive /429 retry timeout0 with1 GET; macOS raw
+Chromium timeout982/1k at983. Healthy comparison runs do not erase these failures.
+Old Windows ownership uncertainty, managed reset, full/temporary resource bounds,
+automatic retention/repair and graphical/manual acceptance remain open.
 
-Local candidate moves live-browser quota recovery into the browser-installed suite,
-adds operator quota configuration and accepts checked normal host path aliases.
-Final components97/97 Node22/24 with no browsers, Node22 targeted16/16, Node24
-quota/browser13/13, fresh174-file install and both independent death audits pass.
-Overlapping Node20 group13/14 missed the1.5s stalled-scan witness; no budgets changed,
-CI-style isolated serialized14/14 passes. Preserve that setup sensitivity.
-HTTP fixture now retains fixed request/response/startup timings; no runtime change.
+Local next candidate adds only a read-only source-fixture process observation for
+that close stall, using actual SDK transport PID with lifetime scopes and pre/post
+PID checks. No signals, browser calls, filters or acceptance changes. Local resume
+Chromium/Firefox2/2 and lint pass; synthetic post-ack hold calibrates10→1 observed
+processes. It is not a native stall reproduction. Extra per-test phase diagnostic
+was redundant and removed; existing original_mcp_progress is authoritative.
 
-**Not release-ready. NEXT ACTION: inspect complete native60 logs and failures.**
-Native59 rejects normal Windows/macOS raw temp paths. Native60 Windows/macOS installation
-passes after the correction; final whole-matrix proof remains pending. Managed reset, automatic retention/repair,
-hard OS resource bounds, graphical annotation and browser reliability stay open.
+**Not release-ready. NEXT ACTION: push diagnostic candidate, inspect native61.**
+See exact phase/SHA receipts and prepared NATIVE_BROWSER_REPRODUCTIONS.md. Root
+causes in delegated engine shutdown/pointer latency are not established; no blind
+core patch, forced-click/retry or successful-close reclassification is justified.
 
 ## Historical checkpoints
 
@@ -196,25 +196,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native59 fully logged1,333/6 plus two install failures;25/72 discovery and six schemas | Final clean same-SHA whole acceptance |
-| G01 INSTALL | FAILED | native59 three Linux174-file installs pass, Windows/macOS internal controller fail; local checked host-path candidate174 pass | Native normal-temp path correction and operator walkthroughs |
-| G02 MCP | FAILED | native59 actual Codex1k all OS pass; earlier macOS deadline failures unresolved | Final candidate reliability within unchanged deadlines |
-| G03 FEATURE PARITY | IN PROGRESS | native59 wrapper432/2: macOS Chromium screenshot error and Windows Firefox large-DOM timeout; extra modal/legacy unexecuted | Interactive annotation/debugger and remaining negatives; diagnose native errors |
-| G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs,jobs-mcp.test.mjs; native8d661bf source batch/jobs1,000 all OSs; actual Codex macOS timeout/raw throughput stay G02/G10/G12 | Preserve exact action/DOM counters; broader browser reliability stays G10 |
-| G05 RETRIES | IN PROGRESS | native59 Linux retry scopes pass; Windows/macOS main unexecuted; native58 Firefox positive retry timeout retained | Final native reliability, preserve Retry-After and no POST replay |
-| G06 JOBS | FAILED | native59 component96/1 each (Windows97/1), browser-required positive case misplaced; actual Codex1k all OS pass | Native browser-free component correction, normal-temp install and reliability |
+| G00 BASELINE | IN PROGRESS | native60 fully logged1,688/4;25/72 discovery and six jobs schemas | Final clean same-SHA whole acceptance |
+| G01 INSTALL | VERIFIED PASS | native60 all five174-file production installs pass, including both formerly failing raw-temp controller checks | Preserve checked host paths and production packaging |
+| G02 MCP | IN PROGRESS | native60 actual Codex1k all OS pass/zero-model/observed owned0; earlier macOS latency failures retained | Final candidate and sustained reliability; no quota/token claims |
+| G03 FEATURE PARITY | IN PROGRESS | native60 wrapper436/1: Windows Firefox browser_close pending; macOS144+modal3 pass; Windows legacy unexecuted | Diagnose original close; interactive annotation/debugger and remaining negatives |
+| G04 BATCH | VERIFIED PASS | native60 public batch/jobs1k scopes and actual Codex1k all OS pass; raw/provider failures stay G05/G10 | Preserve strict counters and bounded failure handling |
+| G05 RETRIES | FAILED | native60 Windows Firefox /429 timeout0 with1 GET; cleanup terminated/removed; no replay | Diagnose positive retry latency within existing budgets |
+| G06 JOBS | FAILED | native60 components97/98 and public jobs1k all OS pass; old ownership uncertainty/operator repair remain open | Preserve fences; diagnose unresolved observations and recovery gaps |
 | G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | local512MiB retained admission, bounded helpers, host config/path checks and174-file install; native59 exposes raw-temp incompatibility | Native quota/path correction, automatic retention/operator repair, comprehensive bounds |
+| G08 STORAGE | FAILED | native60 retained-byte admission, helper receipts, host config/path cases and174-file installs pass | Full/temporary disk bounds, retention/repair and remaining storage acceptance |
 | G09 AUTH/PROFILES | FAILED | coalesced close14/14 Node20/22/24, real Chromium/Firefox parity2/2; native prior session restore | Managed profiles/reset, Windows ACLs and crash repair; annotation dashboard lifecycle separate |
-| G10 CROSS-BROWSER | FAILED | native59 original macOS Chromium screenshot/Windows Firefox DOM errors; both main browser suites unexecuted after install failure | Preserve strict counters/budgets and diagnose provider failures |
-| G11 CROSS-OS | FAILED | native59 Windows/macOS installed internal controller fails; all native component jobs fail misplaced browser case | Final candidate must pass whole native matrix |
+| G10 CROSS-BROWSER | FAILED | native60 Windows Firefox close/locator/retry failures and macOS raw Chromium982/1k timeout | Causal provider diagnosis; retain strict thresholds and no replay |
+| G11 CROSS-OS | FAILED | native60 all installs/components/Codex pass; Windows main2+wrapper1 and macOS main1 fail | Final whole native matrix required |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md; independent100-run resource soak and3 fresh samples/mode at1100e3c | Cross-OS/CLI-SKILLS repeated resource and token measurements remain; no billing claim |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-fiftyninth-*,retained-path-*,retained-config-*,http-timing-* | Keep phase/SHA, failed/inconclusive/unexecuted controls exact |
-| G18 CLEAN MERGE | FAILED | Draft PR2; native59 wrapper/batch failed; last full prior matrix d71c91e(14 jobs) | Resolve critical gaps; final whole green SHA before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-sixtieth-*,native60-original-close-progress.json,NATIVE_BROWSER_REPRODUCTIONS.md | Keep phase/SHA, observer calibration and unexecuted scopes exact |
+| G18 CLEAN MERGE | FAILED | Draft PR2; native60 wrapper/batch failed; last full prior matrix d71c91e(14 jobs) | Resolve critical gaps; whole green SHA before merge/release |
 
 ## Defects and risk register
 
@@ -3963,3 +3963,43 @@ Future diagnosis should reuse original_mcp_progress. Read-only pinned-core revie
 finds resume installs paused/close listeners before location validation; no debugger
 runTo/next/resume occurs for invalid location, and those listeners are not evidence
 of the close stall. No bundled-core patch or successful-close reclassification.
+
+## Native60 at a2a8ac7 — completed scoped corrections, four failures
+
+Wrapper436/1: Linux144, macOS144+modal3, Docker2 pass; Windows143/1 browser_close
+stall detailed in existing progress receipt. Legacy Windows step never executes.
+Batch1,252/3: Linux22/24 each174/0, Linux20 170/0, macOS173/1, Windows172/2;
+components97/97 Linux22/24/macOS,98/98 Windows. All five174-file installs pass,
+including internal controller raw-temp checks. Positive quota/dedup/recovery case
+executes in the browser suite; all browser-free controls execute in components.
+
+Windows raw Firefox headless fresh5 fails locator_timeout at18 with17/23 confirmed,
+no cleanup failure. Positive /429 retry times out0/1 after1 GET, forced:false,
+known terminated/removed cleanup. Both subsequent raw temp-layout comparisons
+pass10/10 (230 actions each), audit0; no causal temp-isolation or retry fix claim.
+macOS raw Chromium times out982/1k at983 in120.040s with no cleanup failure.
+Its failure-only server1k118.233s/pipe1k109.511s controls pass, both audit0; pipe
+owned handles captured/spawned/exited1. No default transport switch.
+
+Actual Codex1k/zero-model pass Linux35.383s, Windows39.023s, macOS97.598s, all
+observed owned0. Whole acceptance still fails. Exact logs/counts/conclusions:
+worker-ci-sixtieth-*. Healthy controls do not explain failed cases or old orphans.
+
+## Read-only original close process observation (local candidate)
+
+Shared progress already identifies the pending tool. The next missing evidence
+is owned-process state while that reply stalls. A source StartClient diagnostic
+now uses actual public StdioClientTransport.pid, one lifetime's roots/liveRoots/
+identity map and PID checks before/after the existing scoped read-only audit.
+All observed identities remain; no name/role/birth-window filter, numeric-PID
+signal, model field or cleanup authorization. Docker observation is unavailable.
+The resume fixture snapshots before close and once if it still awaits after5s;
+unavailable observation is fixed metadata, never a clean-process assertion. The
+original four MCP calls, success/error assertions and30s test budget are unchanged.
+
+Local Chromium/Firefox resume2/2 and lint/diff pass. A synthetic hold after an
+already acknowledged close (not an actual stalled MCP call) exercises the pending
+observer and records10→1 processes with transport root present. It calibrates the
+read-only observation and is not native teardown/reliability proof. Evidence
+original-close-observer-*. Native61 must verify the candidate. Reproduction packet
+is local only; no external issue or human message has been posted.

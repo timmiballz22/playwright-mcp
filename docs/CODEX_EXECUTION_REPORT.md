@@ -1,6 +1,24 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest native `c88171e`: **1,310 reported passes/six failed tests**, plus a
+Current verified runtime: `a2a8ac7`, native60 wrapper39659786624 and batch39659786456:
+**1,688 reported passes/four failed tests**. All five174-file production installs,
+all four component jobs97/98 and all actual Codex1k/zero-model clients pass. The
+cleanup/retained-quota/browser-free test and host-path corrections have scoped
+native proof. Windows original Firefox close acknowledgement, raw locator/retry
+latency and macOS raw Chromium1k timeout remain failed; no replay or budget change.
+
+The shared receipt identifies browser_close pending27.111s after navigation,
+expected resume validation error and snapshot returned. A redundant phase probe
+was removed. A later local read-only owned-process observer is calibrated but
+needs native61 proof; it cannot authorize cleanup. See CODEX_EXECUTION_LEDGER.md
+for exact final source/evidence phases and NATIVE_BROWSER_REPRODUCTIONS.md for
+prepared native cases. Managed reset, full/temporary resource bounds, operator
+repair and interactive/manual acceptance remain open. **Not release-ready.**
+
+The following records are historical checkpoints.
+
+
+Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a
 Windows production-install failure that prevents its main browser suite from
 running. Wrapper39627558701:431/3; batch39627558702:879/3 among executed tests.
 All17 executed jobs conclude; one functional-soak group intentionally skips;

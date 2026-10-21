@@ -23,6 +23,7 @@ import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { ListRootsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { TestServer } from './testserver/index';
+import { ownedScopeDescendants } from '../local-batch/fixtures/process-audit.mjs';
 import { trackToolProgress } from '../local-batch/fixtures/tool-progress.mjs';
 
 const originalToolNames = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/evidence/discovery-chromium-extended.json'), 'utf8')).tools.map((tool: { name: string }) => tool.name));
@@ -51,7 +52,7 @@ export type StartClient = (options?: {
   rootsResponseDelay?: number,
   extensionToken?: string,
   env?: Record<string, string>,
-}) => Promise<{ client: Client, stderr: () => string }>;
+}) => Promise<{ client: Client, stderr: () => string, observeOwnedProcesses: () => Promise<{ observedCount: number, transportRootMatches: number }> }>;
 
 
 type TestFixtures = {
@@ -117,7 +118,20 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
       clients.push(client);
       await client.connect(transport);
       await client.ping();
-      return { client, stderr: () => stderrBuffer };
+      let scope: { roots: Set<number>, liveRoots: Set<number>, identities: Map<number, string> } | undefined;
+      const observeOwnedProcesses = async () => {
+        if (mcpMode === 'docker' || !(transport instanceof StdioClientTransport)) throw new Error('source_observation_unavailable');
+        const pid = transport.pid;
+        if (!Number.isSafeInteger(pid) || !pid || pid <= 1) throw new Error('source_observation_unavailable');
+        scope ??= { roots: new Set([pid]), liveRoots: new Set([pid]), identities: new Map() };
+        if (!scope.liveRoots.has(pid)) throw new Error('source_transport_changed');
+        const observed = await ownedScopeDescendants([scope], { rememberLiveRoots: true });
+        if (transport.pid !== pid) throw new Error('source_transport_changed');
+        // Read-only diagnostic: all observed identities stay in this lifetime's
+        // scope. No name/role filter, PID signalling or cleanup authorization.
+        return { observedCount: observed.length, transportRootMatches: observed.includes(pid) ? 1 : 0 };
+      };
+      return { client, stderr: () => stderrBuffer, observeOwnedProcesses };
     });
 
     try {

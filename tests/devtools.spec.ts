@@ -75,7 +75,7 @@ test('original action recording captures owned pointer input and rejects invalid
 
 test('original resume rejects malformed source locations and leaves the session usable', async ({ startClient, server }) => {
   server.setContent('/', '<!doctype html><h1>Owned resume fixture</h1>', 'text/html');
-  const { client } = await startClient({ args: ['--isolated', '--caps=devtools'] });
+  const { client, observeOwnedProcesses } = await startClient({ args: ['--isolated', '--caps=devtools'] });
   expect((await client.callTool({ name: 'browser_navigate', arguments: { url: server.PREFIX } })).isError).not.toBe(true);
   const rejected = await client.callTool({ name: 'browser_resume', arguments: { location: 'owned.spec.ts:invalid' } });
   expect(rejected.isError).toBe(true);
@@ -83,5 +83,14 @@ test('original resume rejects malformed source locations and leaves the session 
   const snapshot = await client.callTool({ name: 'browser_snapshot', arguments: {} });
   expect(snapshot.isError).not.toBe(true);
   expect(JSON.stringify(snapshot.content)).toContain('Owned resume fixture');
-  expect((await client.callTool({ name: 'browser_close', arguments: {} })).isError).not.toBe(true);
+  const observeClose = async (phase: 'before' | 'pending') => {
+    try { console.log(JSON.stringify({ fixture: 'original_close_processes', phase, ...await observeOwnedProcesses() })); }
+    catch { console.log(JSON.stringify({ fixture: 'original_close_processes', phase, code: 'observation_unavailable' })); }
+  };
+  await observeClose('before');
+  let observation: Promise<void> | undefined;
+  const timer = setTimeout(() => { observation = observeClose('pending'); }, 5000);
+  try {
+    expect((await client.callTool({ name: 'browser_close', arguments: {} })).isError).not.toBe(true);
+  } finally { clearTimeout(timer); await observation; }
 });

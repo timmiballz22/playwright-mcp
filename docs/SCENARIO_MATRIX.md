@@ -1,11 +1,9 @@
 # Mandatory scenario evidence
 
-Current checkpoint: native59 at4cfaf68 reports1,333 passes/six failed tests,
-plus two separate Windows/macOS installed-package failures that prevent their main
-suites from running. All three actual Codex1k clients pass. Local browser-free
-component correction and normal-host-path handling pass97/97 Node22/24 components
-and174-file installation; native proof pending. Node20 overlapping stalled-scan
-witness miss remains failed/inconclusive despite isolated serialized success.
+Current checkpoint: native60 at a2a8ac7 reports1,688 passes/four failed tests.
+All five174-file installs, components97/98 and actual Codex1k all OS pass. Windows
+Firefox close/locator/retry failures and macOS raw1k timeout remain unresolved.
+Later source-only close-process observation has local calibration, native pending.
 See CODEX_EXECUTION_LEDGER.md for exact phase/SHA evidence and current blockers.
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a
