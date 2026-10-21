@@ -18,13 +18,24 @@ process.once('message', async packet => {
   const child = spawn(process.execPath, [fileURLToPath(new URL('./unreported-child.mjs', import.meta.url)), childControl], {
     detached: true, stdio: 'ignore', windowsHide: true,
   });
-  child.on('error', () => process.exit(43)); child.unref();
+  child.on('error', () => process.exit(43));
+  child.on('exit', () => { void writeFile(path.join(control, packet.runId + '.child-exited'), 'exited', { flag: 'wx', mode: 0o600 }).catch(() => process.exit(43)); });
+  child.unref();
+  if (process.env.PLAYWRIGHT_TEST_LIFETIME_COLLISION === '1')
+    await writeFile(path.join(control, packet.runId + '.identities.json'), 'preserve-factory-collision', { flag: 'wx', mode: 0o600 });
   const file = path.join(control, packet.runId + '.ready.json');
   await writeFile(file + '.tmp', JSON.stringify({ runId: packet.runId, workerPid: process.pid, browserPid: child.pid }), { flag: 'wx', mode: 0o600 });
   await rename(file + '.tmp', file);
   let busy = false;
   setInterval(async () => {
     if (busy) return; busy = true;
-    try { await access(path.join(control, packet.runId + '.release')); process.exit(42); } catch {} finally { busy = false; }
+    try {
+      await access(path.join(control, packet.runId + '.release'));
+      if (process.env.PLAYWRIGHT_TEST_LIFETIME_COLLISION !== '1') {
+        if (child.exitCode !== null || child.signalCode !== null) process.exit(45);
+        await writeFile(path.join(control, packet.runId + '.released-alive'), 'alive', { flag: 'wx', mode: 0o600 });
+      }
+      process.exit(42);
+    } catch {} finally { busy = false; }
   }, 20);
 });

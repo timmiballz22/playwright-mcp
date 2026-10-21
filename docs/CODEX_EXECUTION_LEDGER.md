@@ -4471,3 +4471,28 @@ of unconditional deletion. No new query, action, retry or timing allowance.
 Chromium/Firefox full throttling plus marked cancellation4/4 pass; lint/diff
 pass. navigation-cleanup-receipt24.txt. Native66 also adds3c077f3's live factory
 QA; native65 does not verify it. Historic ownership observations remain open.
+
+## Observer partial-capture teardown — local after24f0e84
+
+Review found a bug in the new source-only observer: after assigning runId but
+before marking capture consumed (for example an exclusive identities-file
+collision), close searched only unassigned entries. It failed before releasing
+the known gate. A seeded collision reproduces0/1, with release capability absent;
+test teardown still manually releases its own private capability and requests
+self-exit. The product supervisor deadline was never removed, but the observer
+must not rely on that backstop for normal test teardown.
+
+Close now accepts its matching already assigned runId as well as an unassigned
+entry; ambiguous lifetimes still fail. Existing collision bytes are preserved,
+exclusive creation still fails, the workflow is not replayed and no PID/lease
+authority is inferred. The model provides an actual child-handle exit receipt
+for the collision path and a live-after-observation receipt for the orphan path.
+These replace timing assumptions;15s workflow/30s test/20s orphan TTL remain.
+
+Initial corrected model2/2 each20/22/24, full components107/107 each22/24 before
+final handle-receipt strengthening. Final focused graph/model14/14 each20/22/24;
+current-protocol/old-lookup negative still0/1. Tested helper restored byte-for-byte
+after that negative run; hash recorded. Lint/diff pass. All edits are private QA
+actors/helper/test, excluded from the175-file runtime package; no product runtime
+change. Native66 does not contain this local correction. lifecycle-collision-*
+receipts (named lifetime-collision-*) preserve each phase.

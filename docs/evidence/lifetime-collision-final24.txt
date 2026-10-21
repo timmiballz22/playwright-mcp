@@ -1,0 +1,29 @@
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":3,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_orphan","detected":true,"cleanup":"failed"}
+{"fixture":"factory_lifetime_audit","phase":"self_exit","lifetimes":1,"observed":0}
+{"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+✔ live factory facts retain an owned orphan after its worker exits (990.347414ms)
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":3,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+{"fixture":"factory_lifetime_audit","phase":"collision_teardown","lifetimes":1,"observed":0}
+✔ capture publication failure still releases its assigned factory gate and preserves the collision (741.832902ms)
+✔ audit receipts describe reused IDs without hiding possible processes or exposing identities (1.950683ms)
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (1.187065ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (0.274487ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (0.599617ms)
+✔ live-root snapshots retain exited browser identities for the final orphan scan (0.199024ms)
+✔ CIM error phase keeps only exact fixed markers and never raw diagnostics (0.348373ms)
+✔ separate owned lifetimes retain old orphans when a new client reuses its PID (0.396801ms)
+✔ new client may reuse an earlier observed descendant without losing either orphan lineage (0.204094ms)
+✔ live controller anchors retain exited browser roots and reject changes within that lifetime (0.940609ms)
+✔ live anchor refresh preserves an old orphan before recording a new owned browser incarnation (0.301974ms)
+✔ historical PID links cannot rewrite a live controller identity before validation (0.262554ms)
+✔ legacy comparison preserves old candidates while scoped birth facts retain an owned orphan (0.380379ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1861.494637

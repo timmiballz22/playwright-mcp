@@ -103,7 +103,7 @@ export async function createLifetimeObserver(directory) {
     async close() {
       try {
         for (const record of await readyRecords()) {
-          if (!consumed.has(record.runId)) assign(record, entries.filter(entry => !entry.runId));
+          if (!consumed.has(record.runId)) assign(record, entries.filter(entry => !entry.runId || entry.runId === record.runId));
           await release(record.runId);
         }
         await Promise.allSettled(entries.map(entry => entry.pending));
