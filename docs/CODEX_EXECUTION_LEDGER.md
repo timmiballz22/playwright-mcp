@@ -2279,3 +2279,66 @@ Both Node22/24 guardian regressions pass: no browser effect, uncertain CRASHED
 recovery, operator attention and zero owned survivors. This does not establish
 which request caused the earlier native Windows failure. Evidence:
 journal-first-cause-concurrent-node*.txt and journal-first-cause-guardian-*.txt.
+
+
+## Native45 completed jobs and pending controlled transport/CIM probes
+
+Latest completed native `2272e93`: **1,140 reported test passes/two failures**,
+plus Windows installed-package process-audit failure and macOS actual-Codex
+acceptance failure. Wrapper39592625883:438/2; batch39592626077:702/0 across the
+suites that ran. All17 jobs concluded, none cancelled. The Windows main batch
+suite did not execute after installed-profile verification failed, so its cases
+are excluded; zero reported test skips does not imply that suite ran.
+
+All three original144-test host suites pass, Docker2/2 and macOS modal repeats3/3
+pass. Two counted failures are Windows Node20 raw Firefox headless/direct-pipe;
+headed passes this round, without establishing a cause for earlier mode failures.
+Linux/macOS main batch suites pass, including all-engine page burst/reused-slot
+controls, public durable page-limit failure/no replay/next lease, and journal
+metadata persistence. Installed Windows CLI/batch-MCP page-limit checks pass,
+then profile verification fails its independent10s CIM process audit. Cleanup
+confirmation is unavailable; subsequent installed/main batch checks are unexecuted.
+
+Actual Codex passes Linux35.215s and Windows38.613s (1,000 actions, zero model
+turns/owned survivors). macOS TIMED_OUT964 retains a readable result, terminated/
+removed cleanup, no journal failure hint and no operator attention. Earlier
+Windows journal availability failures remain unexplained; healthy repetition is
+not a fix. A new same-host raw Chromium BrowserServer/direct-pipe control is
+prepared for that macOS failure without changing production transport or120s
+workflow/5s action/180s receipt-watchdog bounds. Linux controls each pass1,000
+operations with zero owned survivors (33.821/33.789s), one non-statistical pair.
+
+Windows CIM evidence remains fail-closed. Pending instrumentation keeps the10s
+audit budget and identity/birth checks, emitting only fixed entered/query/
+projection/serialization/done phases. Cmdlet errors terminate the read-only helper
+instead of allowing partial evidence; no ACL, execution policy or kill authority
+changes. Phase/privacy/identity tests pass5 each Node20/22/24; native diagnosis
+remains pending. New guardian fault evidence separates first observer poll/read
+from causal timeout/resources, without browser admission or replay. **Not
+release-ready.** Evidence: worker-ci-fortyfifth-*, chromium-transport-control-*,
+windows-cim-phase-node*.txt and journal-first-cause-*.
+
+
+The shared raw diagnostic keeps the old diagnose-firefox-runner.mjs entry as an
+alias; Firefox private-first compatibility passes20 fresh runs/460 actions locally.
+The new --chromium-transport mode compares one1,000-operation fresh workflow per
+public transport, same static origin policy and action/deadline bounds. Both modes
+have independent periodic read-only descendant observation; only a still-live
+owned child tree can be terminated. Historical PID numbers are audit inputs only.
+The first local pipe adapter incorrectly left the public process callback enabled,
+which deliberately selects BrowserServer in the runner and failed before actions.
+Corrected test adapter omits that callback and relies on its owned-child observer;
+production transport/ownership behavior is unchanged. Before/after evidence stays
+recorded. A failure-only macOS Codex diagnostic step has its own7m CI ceiling
+inside the existing10m job, and does not promote a failed primary check.
+
+The complete local journal/guardian/diagnostic selection now passes24 tests on
+Node22, including concurrent reads and held resource admission. This is scoped
+fault verification, not an explanation of the earlier native Windows RPC loss.
+
+Fresh162-file production-only Node22 package verification passes with the shared
+raw diagnostic included and required by the distribution check. Installed CLI/
+MCP page budgets, profile diagnosis/contention/restore, jobs/controller/journal
+and regular/lingering parent-death smokes all pass. Windows PowerShell phase
+execution remains native-pending; local passing checks do not establish why CIM
+exceeded10s. Evidence: raw-runner-cim-production-final.txt.

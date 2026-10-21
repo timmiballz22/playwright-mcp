@@ -40,3 +40,11 @@ export function windowsOwnedProcesses(roots, rows, identities = new Map(), remem
   } while (owned.size !== previous);
   return rows.filter(row => owned.has(row.pid)).map(row => row.pid).sort((a, b) => a - b);
 }
+
+// Fixed progress labels only; discard raw PowerShell diagnostics and values.
+export function windowsCimFailurePhase(stderr) {
+  if (typeof stderr !== 'string') return 'unknown';
+  let phase = 'unknown';
+  for (const match of stderr.matchAll(/^PWMCP_AUDIT_PHASE=(entered|query|projection|serialization|done)\r?$/gm)) phase = match[1];
+  return phase;
+}

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { windowsOwnedProcesses } from './fixtures/windows-process-graph.mjs';
+import { windowsOwnedProcesses, windowsCimFailurePhase } from './fixtures/windows-process-graph.mjs';
 const time = value => '2026-10-21T00:00:00.' + String(value).padStart(7, '0') + 'Z';
 const row = (pid, parent, started) => ({ pid, parent, started: started === null ? null : time(started) });
 test('older processes with recycled parent IDs are excluded while real live descendants remain', () => {
@@ -31,4 +31,14 @@ test('live-root snapshots retain exited browser identities for the final orphan 
   assert.deepEqual(windowsOwnedProcesses([900], nextLaunch, identities, true), [900, 910]);
   assert.deepEqual(windowsOwnedProcesses([900, 901, 910], [row(902, 901, 120)], identities), [902]);
   assert.deepEqual(windowsOwnedProcesses([900, 901, 910], [], identities), []);
+});
+
+
+test('CIM error phase keeps only exact fixed markers and never raw diagnostics', () => {
+  assert.equal(windowsCimFailurePhase(undefined), 'unknown');
+  assert.equal(windowsCimFailurePhase('PWMCP_AUDIT_PHASE=query\nPWMCP_AUDIT_PHASE=projection\n'), 'projection');
+  assert.equal(windowsCimFailurePhase('private-canary PWMCP_AUDIT_PHASE=query'), 'unknown');
+  assert.equal(windowsCimFailurePhase('PWMCP_AUDIT_PHASE=private-canary'), 'unknown');
+  assert.equal(windowsCimFailurePhase('PWMCP_AUDIT_PHASE=entered\r\nPWMCP_AUDIT_PHASE=query\r\nprivate-canary'), 'query');
+  assert.equal(windowsCimFailurePhase('PWMCP_AUDIT_PHASE=serialization\nPWMCP_AUDIT_PHASE=done\n'), 'done');
 });

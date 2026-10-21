@@ -134,6 +134,11 @@ jobs:
         if: failure() && runner.os == 'Windows' && steps.codex.outcome == 'failure'
         shell: bash
         run: node scripts/diagnose-jobs-startup.mjs 2>&1 | tee sdk-startup.log
+      - name: Compare Chromium transports after macOS client timeout
+        if: failure() && runner.os == 'macOS' && steps.codex.outcome == 'failure'
+        timeout-minutes: 7
+        shell: bash
+        run: node scripts/diagnose-raw-runner.mjs --chromium-transport 2>&1 | tee chromium-transport.log
       - name: Preserve failed Codex client evidence
         if: failure() && steps.codex.outcome == 'failure'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -142,5 +147,6 @@ jobs:
           path: |
             codex-jobs.log
             sdk-startup.log
+            chromium-transport.log
           retention-days: 1
           if-no-files-found: error

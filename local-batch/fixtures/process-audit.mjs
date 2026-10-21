@@ -2,7 +2,7 @@
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
-import { windowsOwnedProcesses } from './windows-process-graph.mjs';
+import { windowsOwnedProcesses, windowsCimFailurePhase } from './windows-process-graph.mjs';
 const identities = new Map();
 const exec = promisify(execFile);
 export async function ownedDescendants(roots, { rememberLiveRoots = false } = {}) {
@@ -10,7 +10,16 @@ export async function ownedDescendants(roots, { rememberLiveRoots = false } = {}
   let rows;
   if (process.platform === 'win32') {
     const executable = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
-    const script = "Get-CimInstance -ClassName Win32_Process -Property ProcessId,ParentProcessId,CreationDate | Select-Object ProcessId,ParentProcessId,@{Name='Started';Expression={if ($_.CreationDate) {$_.CreationDate.ToUniversalTime().ToString('o')} else {$null}}} | ConvertTo-Json -Compress";
+    const script = String.raw`$ErrorActionPreference = 'Stop'
+[Console]::Error.WriteLine('PWMCP_AUDIT_PHASE=entered')
+[Console]::Error.WriteLine('PWMCP_AUDIT_PHASE=query')
+$processes = Get-CimInstance -ClassName Win32_Process -Property ProcessId,ParentProcessId,CreationDate
+[Console]::Error.WriteLine('PWMCP_AUDIT_PHASE=projection')
+$rows = $processes | Select-Object ProcessId,ParentProcessId,@{Name='Started';Expression={if ($_.CreationDate) {$_.CreationDate.ToUniversalTime().ToString('o')} else {$null}}}
+[Console]::Error.WriteLine('PWMCP_AUDIT_PHASE=serialization')
+$json = $rows | ConvertTo-Json -Compress
+[Console]::Error.WriteLine('PWMCP_AUDIT_PHASE=done')
+[Console]::Out.Write($json)`;
     let stdout;
     try {
       // Native cold WMI startup exceeded the previous five-second test audit
@@ -20,7 +29,7 @@ export async function ownedDescendants(roots, { rememberLiveRoots = false } = {}
       const kind = error.code === 'ERR_CHILD_PROCESS_STDIO_MAXBUFFER' ? 'output_limit' :
         error.killed ? 'timeout' : Number.isInteger(error.code) ? 'exit_' + error.code :
         ['ENOENT', 'EACCES'].includes(error.code) ? error.code.toLowerCase() : 'command_failed';
-      throw new Error('process_audit_windows_cim_' + kind);
+      throw new Error('process_audit_windows_cim_' + kind + '_phase_' + windowsCimFailurePhase(error.stderr));
     }
     const parsed = JSON.parse(stdout);
     rows = (Array.isArray(parsed) ? parsed : [parsed]).map(row => ({ pid: Number(row.ProcessId), parent: Number(row.ParentProcessId), started: row.Started }));

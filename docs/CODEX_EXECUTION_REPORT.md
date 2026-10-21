@@ -1,6 +1,41 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest native attempt `2d8fe7f` is **incomplete**: available summaries report
+Latest completed native `2272e93`: **1,140 reported test passes/two failures**,
+plus Windows installed-package process-audit failure and macOS actual-Codex
+acceptance failure. Wrapper39592625883:438/2; batch39592626077:702/0 across the
+suites that ran. All17 jobs concluded, none cancelled. The Windows main batch
+suite did not execute after installed-profile verification failed, so its cases
+are excluded; zero reported test skips does not imply that suite ran.
+
+All three original144-test host suites pass, Docker2/2 and macOS modal repeats3/3
+pass. Two counted failures are Windows Node20 raw Firefox headless/direct-pipe;
+headed passes this round, without establishing a cause for earlier mode failures.
+Linux/macOS main batch suites pass, including all-engine page burst/reused-slot
+controls, public durable page-limit failure/no replay/next lease, and journal
+metadata persistence. Installed Windows CLI/batch-MCP page-limit checks pass,
+then profile verification fails its independent10s CIM process audit. Cleanup
+confirmation is unavailable; subsequent installed/main batch checks are unexecuted.
+
+Actual Codex passes Linux35.215s and Windows38.613s (1,000 actions, zero model
+turns/owned survivors). macOS TIMED_OUT964 retains a readable result, terminated/
+removed cleanup, no journal failure hint and no operator attention. Earlier
+Windows journal availability failures remain unexplained; healthy repetition is
+not a fix. A new same-host raw Chromium BrowserServer/direct-pipe control is
+prepared for that macOS failure without changing production transport or120s
+workflow/5s action/180s receipt-watchdog bounds. Linux controls each pass1,000
+operations with zero owned survivors (33.821/33.789s), one non-statistical pair.
+
+Windows CIM evidence remains fail-closed. Pending instrumentation keeps the10s
+audit budget and identity/birth checks, emitting only fixed entered/query/
+projection/serialization/done phases. Cmdlet errors terminate the read-only helper
+instead of allowing partial evidence; no ACL, execution policy or kill authority
+changes. Phase/privacy/identity tests pass5 each Node20/22/24; native diagnosis
+remains pending. New guardian fault evidence separates first observer poll/read
+from causal timeout/resources, without browser admission or replay. **Not
+release-ready.** Evidence: worker-ci-fortyfifth-*, chromium-transport-control-*,
+windows-cim-phase-node*.txt and journal-first-cause-*.
+
+Previous native attempt `2d8fe7f` is **incomplete**: available summaries report
 **1,108 passed/six failed tests**, plus two failed actual-Codex acceptance jobs.
 Wrapper39587708648:439/1; batch39587708557:669/5 across available completed suites.
 Sixteen jobs completed; the remaining macOS Intel batch job exceeded its configured
