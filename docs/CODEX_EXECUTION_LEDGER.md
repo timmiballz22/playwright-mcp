@@ -167,25 +167,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 tool inventories,six schemas; native5060ca4 Linux144 pass; Windows143/1 and macOS143/1 | Preserve baseline/channel scope and verify final clean SHA |
-| G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs; native5060ca4 all five167-file production lanes pass; local169-file worker install | Verify final candidate natively and complete clean operator walkthroughs |
-| G02 MCP | IN PROGRESS | scripts/verify-codex-jobs.mjs; native5060ca4 all three actual clients pass; b355d2e macOS partial failure remains under review | Complete remaining malformed/concurrent/disconnect phase acceptance |
-| G03 FEATURE PARITY | FAILED | native5060ca4 Firefox popup (Windows) and trusted100 (macOS) failures; interactive/variant coverage incomplete | Complete remaining capability-specific positive/negative cases |
+| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 discovery,six jobs schemas; latest fully logged c88171e native53:1,310 passes/six failed tests plus Windows install failure | Verify final clean SHA; native54 status blocked by HTTP401 |
+| G01 INSTALL | FAILED | scripts/verify-package.mjs; local4153227 172-file production pass; native53 four installs pass, Windows init/rpc_timeout fails | Diagnose Windows initialization without raising2s watchdog; recover GitHub access |
+| G02 MCP | IN PROGRESS | scripts/verify-codex-jobs.mjs; native53 actual clients all3 pass1k/zero model/zero owned; prior macOS failure retained | Complete remaining malformed/concurrent/disconnect acceptance and final native candidate |
+| G03 FEATURE PARITY | FAILED | native53 Windows Firefox action-recording timeout; macOS screenshot and trusted100 failures;25/72 inventory preserved | Diagnose upstream runtime failures; finish capability-specific positive/negative coverage |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs,jobs-mcp.test.mjs; native8d661bf source batch/jobs1,000 all OSs; actual Codex macOS timeout/raw throughput stay G02/G10/G12 | Preserve exact action/DOM counters; broader browser reliability stays G10 |
-| G05 RETRIES | FAILED | navigation-retry-browser.test.mjs; native5060ca4 Windows Firefox retry positive fails; unsafe POST replay remains forbidden | Diagnose bounded navigation failure without enlarging deadlines |
-| G06 JOBS | FAILED | jobs/controller.mjs,guardian.mjs,journal.mjs; native six-tool/CLI,owner/dedup/cancel/reconnect; EOF/SIGKILL evidence | Resolve Windows ownership-audit contradictions; targeted birth/role receipt; complete phase/restart/resource acceptance |
+| G05 RETRIES | FAILED | navigation-retry-browser.test.mjs,http-navigation-response.test.mjs; native53 macOS Firefox429 still times out; Windows main unexecuted | Verify pending-DOM fix natively; diagnose remaining navigation failure without deadline growth |
+| G06 JOBS | FAILED | controller/guardian/journal; local4153227 components71/71 Node22/24, finite shutdown/IPC drain; native ownership contradictions remain | Verify shutdown fixes natively and resolve Windows ownership; post-terminal unknown journal fence is local only |
 | G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | screenshot-budget.mjs,private-windows.*,jobs/artifact-cleanup*.mjs; local age retention and independent worker; native protected ACLs/image budget | Verify worker/retention natively; cumulative quotas, scheduled retention and durable maintenance uncertainty remain |
+| G08 STORAGE | FAILED | artifact worker native52 allOS; local c4732d0 maintenance holder uncertainty and4153227 bounded shutdown;172-file install pass | Verify durable reservation/holder recovery natively; cumulative quotas, scheduling and operator repair remain |
 | G09 AUTH/PROFILES | FAILED | profile-guard.cjs,profile-lease.cjs; native all-engine ownership/session restore | Managed project profiles, Windows profile ACLs, reset/corruption/crash recovery |
-| G10 CROSS-BROWSER | FAILED | native5060ca4 Windows Firefox7 main failures; macOS raw Chromium/MCP test deadlines; prior ownership failures unexplained | Collect transport/routing controls; no force click/security flags/action replay |
-| G11 CROSS-OS | IN PROGRESS | native5060ca4 installed endpoints/actual Codex pass all OSs; complete acceptance still fails | Require complete green native acceptance; Firefox/throughput reliability remains G10 failure |
+| G10 CROSS-BROWSER | FAILED | native53 macOS raw1k/Firefox429 plus wrapper screenshot/trusted100; Windows main unexecuted after install failure | Diagnose retained failures; no forced actions, unsafe retry or deadline growth |
+| G11 CROSS-OS | FAILED | native53 actual Codex all3 pass, Windows installed journal smoke fails and main suite unexecuted | Restore authenticated CI access and require complete green final native acceptance |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md,scripts/soak-local.mjs; independent100-run Linux soak and client timings | Native/CLI/SKILLS/token comparison, complete resource observation |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,evidence/worker-ci-fiftieth-*,retention-*,artifact-*,codex-step-diagnostic-*; exact SHA/counts retained | Keep every gate/scenario tied to executed evidence; pending is not pass |
-| G18 CLEAN MERGE | FAILED | Draft PR2; last full green d71c91e (14 jobs), current17-job failures retained | Resolve critical gaps; require green complete final SHA before merge |
+| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md;worker-ci-fiftythird-*,maintenance-holder-*,journal-stop-*; native54 conclusions UNKNOWN | Keep current SHA/counts; recover GitHub access without credential bypass |
+| G18 CLEAN MERGE | FAILED | Draft PR2; last full green d71c91e(14 jobs); native53 failures retained; native54 unknown; local4153227 unpushed | Resolve critical gaps and require complete green final SHA; HTTP401 blocks push/CI inspection |
 
 ## Defects and risk register
 
@@ -3283,3 +3283,23 @@ CI39632536343 and Local Batch39632535660. Their conclusions are UNKNOWN here;
 local changes are not claimed natively verified. No credential bypass attempted.
 Release gates remain open, including prior native browser failures, Windows
 journal-init uncertainty, hard OS quotas and operator repair.
+
+
+## Preserve recovery primary failure through shutdown (after4153227, local)
+
+JobController.open previously replaced its recover failure if journal.close also
+threw. A two-case fault test first reports1pass/1fail. The fix preserves an
+AggregateError with primary cause and both errors, original fixed code/cause/verb,
+and exact false shutdown certainty from either error. Confirmed close rethrows
+the original error identity. Sanitized guardian projection excludes both seeded
+private message canaries. No retry, public schema or termination budget change.
+
+Final explicit component command in .github/workflows/local-batch.yml passes
+73/73 each on Linux Node22.23.3 and24.19, zero skips/cancellations, exit0. Fresh
+172-file production install exits0, including real browser endpoints, six jobs
+tools, journal kernel and both independent normal/linger controller-death checks.
+Lint/diff pass. Evidence controller-open-* includes the expected failing before
+control separately. Gate table now uses native53 and local4153227 evidence rather
+than stale native50 milestones; no failed gate promoted. HTTP401 still blocks
+native54 verification/push. NEXT ACTION: inspect remaining bounded MCP transport
+and profile/resource gaps locally; obtain authenticated final native acceptance.

@@ -23,7 +23,16 @@ export class JobController {
     try {
       const recovered = await journal.call('recover');
       return new JobController(journal, { ...config, instanceId: journal.instanceId }, executionOptions, onEvent, recovered.cleanupBlocked);
-    } catch (error) { await journal.close(); throw error; }
+    } catch (error) {
+      try { await journal.close(); }
+      catch (shutdown) {
+        throw Object.assign(new AggregateError([error, shutdown], 'Controller recovery and journal shutdown failed', { cause: error }), {
+          code: error.code, journalFailure: error.journalFailure, journalFailureCommand: error.journalFailureCommand,
+          ...((error.journalExitConfirmed === false || shutdown.journalExitConfirmed === false) ? { journalExitConfirmed: false } : {}),
+        });
+      }
+      throw error;
+    }
   }
 
   constructor(journal, config, execution, onEvent, blocked) {

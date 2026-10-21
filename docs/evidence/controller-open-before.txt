@@ -1,0 +1,33 @@
+✖ controller recovery failure remains primary if journal shutdown also fails (8.849756ms)
+✔ controller recovery failure identity is unchanged after confirmed journal shutdown (0.592271ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 133.816459
+
+✖ failing tests:
+
+test at local-batch/jobs/controller-open.test.mjs:7:1
+✖ controller recovery failure remains primary if journal shutdown also fails (8.849756ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(error instanceof AggregateError)
+  
+      at Object.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/controller-open.test.mjs:18:14)
+      at expectedException (node:assert:578:17)
+      at expectsError (node:assert:703:21)
+      at strict.rejects (node:assert:769:3)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/controller-open.test.mjs:17:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
