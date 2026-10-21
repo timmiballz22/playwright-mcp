@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: artifact cleanup drain: drained deadline and repeated-error controls
+ok 1 - artifact cleanup drain: drained deadline and repeated-error controls
+  ---
+  duration_ms: 14.2513
+  type: 'test'
+  ...
+# Subtest: artifact cleanup late: drained deadline and repeated-error controls
+ok 2 - artifact cleanup late: drained deadline and repeated-error controls
+  ---
+  duration_ms: 1.210963
+  type: 'test'
+  ...
+# Subtest: artifact cleanup error: drained deadline and repeated-error controls
+ok 3 - artifact cleanup error: drained deadline and repeated-error controls
+  ---
+  duration_ms: 2.714554
+  type: 'test'
+  ...
+# Subtest: bounded artifact worker previews, removes and preserves fixed safe errors
+ok 4 - bounded artifact worker previews, removes and preserves fixed safe errors
+  ---
+  duration_ms: 201.554208
+  type: 'test'
+  ...
+# Subtest: artifact worker before-result: independent deadline and natural-exit confirmation
+ok 5 - artifact worker before-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 760.242979
+  type: 'test'
+  ...
+# Subtest: artifact worker after-result: independent deadline and natural-exit confirmation
+ok 6 - artifact worker after-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 757.595207
+  type: 'test'
+  ...
+# Subtest: artifact worker invalid-result: independent deadline and natural-exit confirmation
+ok 7 - artifact worker invalid-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 82.916863
+  type: 'test'
+  ...
+# Subtest: artifact worker failed-result: independent deadline and natural-exit confirmation
+ok 8 - artifact worker failed-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 45.07957
+  type: 'test'
+  ...
+# Subtest: artifact worker signal-exit: independent deadline and natural-exit confirmation
+ok 9 - artifact worker signal-exit: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 42.471988
+  type: 'test'
+  ...
+# Subtest: an unconfirmed cleanup blocks further scopes in the same controller
+ok 10 - an unconfirmed cleanup blocks further scopes in the same controller
+  ---
+  duration_ms: 0.884386
+  type: 'test'
+  ...
+# Subtest: actual artifact worker exits after controller death while filesystem awaits
+ok 11 - actual artifact worker exits after controller death while filesystem awaits
+  ---
+  duration_ms: 403.871634
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2425.132527

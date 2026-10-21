@@ -1,0 +1,45 @@
+✖ artifact cleanup drain: drained deadline and repeated-error controls (3.946901ms)
+✖ artifact cleanup late: drained deadline and repeated-error controls (1.375709ms)
+✔ artifact cleanup error: drained deadline and repeated-error controls (6.510202ms)
+ℹ Error: A resource generated asynchronous activity after the test ended. This activity created the error "Error: private-cleanup-canary" which triggered an uncaughtException event, caught by the test runner.
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77.057891
+
+✖ failing tests:
+
+test at local-batch/jobs/artifact-cleanup-receipt.test.mjs:52:3
+✖ artifact cleanup drain: drained deadline and repeated-error controls (3.946901ms)
+  Error: cleanup_failed
+      at failure (file:///workspace/playwright-mcp/local-batch/jobs/artifact-cleanup-supervisor.mjs:3:39)
+      at finish (file:///workspace/playwright-mcp/local-batch/jobs/artifact-cleanup-supervisor.mjs:23:25)
+      at EventEmitter.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/artifact-cleanup-supervisor.mjs:55:95)
+      at Object.onceWrapper (node:events:631:26)
+      at EventEmitter.emit (node:events:509:28)
+      at file:///workspace/playwright-mcp/local-batch/jobs/artifact-cleanup-receipt.test.mjs:26:15
+      at node:internal/process/task_queues:151:7
+      at AsyncResource.runInAsyncScope (node:async_hooks:227:14)
+      at AsyncResource.runMicrotask (node:internal/process/task_queues:148:8) {
+    code: 'cleanup_failed'
+  }
+
+test at local-batch/jobs/artifact-cleanup-receipt.test.mjs:52:3
+✖ artifact cleanup late: drained deadline and repeated-error controls (1.375709ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async file:///workspace/playwright-mcp/local-batch/jobs/artifact-cleanup-receipt.test.mjs:56:9
+      at async withWorker (file:///workspace/playwright-mcp/local-batch/jobs/artifact-cleanup-receipt.test.mjs:41:9)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/artifact-cleanup-receipt.test.mjs:53:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { code: 'cleanup_timeout' },
+    operator: 'rejects',
+    diff: 'simple'
+  }

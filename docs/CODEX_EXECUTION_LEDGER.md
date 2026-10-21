@@ -3718,3 +3718,29 @@ Node22/24 and focused7/7 Node20 pass; production173 install and both normal/ling
 controller-death audits report zero observed owned processes. Lint/diff pass.
 Evidence temp-stop-* preserves before failures and final receipts separately.
 Native57 predates this change; cross-platform proof remains pending.
+
+Native57 source-only transport comparisons: macOS batch server977/1k timeout versus
+pipe1k/1k98.736s; Codex failure-only probe pipe1k/1k100.118s versus server963/1k
+timeout. Each pipe captured/spawned/exited one public-channel owned handle; all
+comparison audits observed zero owned processes. Windows private Firefox10/10
+(230 actions), inherited1 successful fresh run then next failed after4 actions
+(27 cumulative). This sample does not establish a universal pipe fix, Windows
+pipe safety or randomized transport performance. Diagnostics channel remains
+experimental and the default transport is unchanged.
+
+## Artifact cleanup receipt completion (local, follows de9c924)
+
+Three isolated controls reproduce exit-before-final-IPC rejection, late success
+before delayed timeout delivery, and a second error producing asynchronous uncaught
+activity. Before receipt records1/3 pass,2 failures plus uncaught activity, exit1;
+this is deliberately negative evidence. Artifact supervisor now drains close,
+checks a monotonic deadline, keeps repeated-error handling and records its failure
+before requesting kill (including synchronous confirmation). Unconfirmed kill
+retains cleanup_unconfirmed fencing. Existing5s operation/1s confirmation budgets,
+public schemas and stored-PID rules are unchanged.
+
+Final focused11/11 each Node22/24, isolated3/3 Node20, full components88/88 each
+Node22/24, lint/diff and fresh173-file production installation pass. Both independent
+normal/linger controller-death audits observe zero owned processes. Evidence
+artifact-receipt-*. Native58 at de9c924 predates this second fix; do not assign its
+results to the local candidate. Hold push until native58 complete.

@@ -24,17 +24,19 @@ export function cleanupJobArtifactsBounded(options, { workerModule = worker, tim
     };
     const stop = code => {
       if (settled || expired) return;
-      expired = true;
+      expired = true; clearTimeout(timer);
+      receipt = { ok: false, code };
       try { child.kill('SIGKILL'); } catch {}
+      if (settled) return;
       grace = setTimeout(() => {
         // An unconfirmed child is never reported as successful. Keep the fixed
         // failure visible and release event-loop references without PID reuse.
         if (child.connected) { try { child.disconnect(); } catch {} }
-        child.unref();
+        try { child.unref(); } catch {}
         finish('cleanup_unconfirmed');
       }, killGraceMs);
-      receipt = { ok: false, code };
     };
+    const deadline = performance.now() + timeoutMs;
     const timer = setTimeout(() => stop('cleanup_timeout'), timeoutMs);
     try {
       child = fork(workerModule, [], { stdio: ['ignore', 'ignore', 'ignore', 'ipc'],
@@ -48,10 +50,12 @@ export function cleanupJobArtifactsBounded(options, { workerModule = worker, tim
             typeof message.ok !== 'boolean') { stop('cleanup_failed'); return; }
         receipt = message; notify({ type: 'resultReceived' });
       });
-      child.once('error', () => { if (child.pid) stop('cleanup_failed'); else finish('cleanup_failed'); });
-      child.once('exit', (code, signal) => {
-        notify({ type: 'exited' });
+      child.on('error', () => { if (settled) return; if (child.pid) stop('cleanup_failed'); else finish('cleanup_failed'); });
+      child.once('exit', () => notify({ type: 'exited' }));
+      // close drains final IPC after the exit event.
+      child.once('close', (code, signal) => {
         if (expired) finish(receipt?.code ?? 'cleanup_failed');
+        else if (performance.now() > deadline) finish('cleanup_timeout');
         else if (!receipt || signal || receipt.ok && code !== 0 || !receipt.ok && code !== 1) finish('cleanup_failed');
         else finish(receipt.ok ? undefined : receipt.code);
       });
