@@ -4394,3 +4394,41 @@ pointer timeout, independent owned0. Those are two extra failed JSON probes,
 not counted tests. Full selected steps/jobs/counts: worker-ci-sixtyfourth-*.
 Native65 will include94fdfde QA and6a00a1b POSIX freeze correction; native64 does
 not verify those. Limited upstream context search made no causal match or change.
+
+## Live factory lifetime observation — local afterb4fa75c
+
+Native64 pair2 records133 candidates/rootBirths0/helperMatchedtrue; that historical
+observation remains unresolved. The screenshot test now holds actual public
+BrowserServer factory handles before context/actions, captures supervisor/worker/
+browser live roots together, then releases the same workflows. Windows must
+provide every root birth through the existing read-only scope auditor. This is
+verified factory identity, not an age-window/name/role filter. Every execution
+scope and descendant identity remains in the history through all20 executions.
+Existing PNG/hash/inode/report/count assertions,15s workflow and60s test ceilings
+stay unchanged; one live snapshot per pair and a final audit add observation cost.
+
+The source-only gate sets private TMP before importing Playwright, checks actual
+public child-handle liveness before/after observation, and uses exclusive atomic
+UUID receipts. The source helper never signals an observed PID or releases any
+lease. Failed acceptance/teardown preserve both errors and private fact/audit
+files. Unknown/missing live identities fail rather than certify empty ownership.
+
+A comparison hook uses the same Windows process-table rows to retain all legacy
+candidates/parent/birth rows alongside actual factory facts. It changes no matching
+algorithm or scoped result and performs no extra query. Nonmatching legacy rows
+are retained as comparison evidence, including bounded64KiB fixed-schema CI
+receipts when present; private snapshots preserve the full observation. No
+historical133/4-process observation is retroactively classified or cleared.
+
+Initial two-browser calibration passes on Linux Node24. Full20 screenshots pass
+Node24/22, retaining20 scopes and all prior assertions within unchanged60s.
+Controlled detached-child fault verifies new observer detects a real owned child
+after worker exit, then requests private self-exit and audits empty; runtime
+summary remains cleanup_failed/retrySafe:false. No stored-PID signal. Combined
+with older direct/durable controls5/5 Node22/24,3/3 Node20 (durable unregistered).
+An isolated no-node_modules source copy passes the new model test for component
+jobs. Pre-comparison-hook full components106/106 each22/24 pass. Final focused
+comparison/model13/13 each20/22/24 and final Node24 full screenshot case pass;
+lint/diff/175-file boundary pass, all new private actors/helper/test excluded.
+Windows actual birth capture and its latency cost remain native-unverified.
+Native65 b4fa75c does not include this QA observation change.

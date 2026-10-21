@@ -115,3 +115,17 @@ test('historical PID links cannot rewrite a live controller identity before vali
   assert.throws(() => windowsOwnedProcessScopes([scope], [row(901, 1, 110), row(900, 901, 300)], true), /root_birth_changed/);
   assert.equal(scope.identities.get(900), time(100));
 });
+
+test('legacy comparison preserves old candidates while scoped birth facts retain an owned orphan', async () => {
+  const { windowsLegacyComparison, windowsOwnedProcesses } = await import('./fixtures/windows-process-graph.mjs');
+  const rows = [
+    { pid: 101, parent: 100, started: '2026-10-21T00:00:01.0000000Z' },
+    { pid: 102, parent: 100, started: '2026-10-21T00:00:03.0000000Z' },
+  ];
+  const identities = new Map([[100, '2026-10-21T00:00:02.0000000Z']]);
+  const scoped = windowsOwnedProcesses([100], rows, identities);
+  assert.deepEqual(scoped, [102]);
+  const comparison = windowsLegacyComparison([100], rows, scoped);
+  assert.deepEqual(comparison.observed, [101, 102]); assert.deepEqual(comparison.legacyOnly, [101]);
+  assert.deepEqual(comparison.rows, rows); assert.deepEqual(scoped, [102]);
+});

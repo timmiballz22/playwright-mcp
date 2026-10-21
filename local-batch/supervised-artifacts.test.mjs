@@ -4,26 +4,22 @@ import { createHash } from 'node:crypto';
 import { mkdtemp, readFile, rm, stat } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { executeWorkflow } from './executor.mjs';
-import { ownedDescendants } from './fixtures/process-audit.mjs';
+import { createLifetimeObserver } from './jobs/fixtures/lifetime-observer.mjs';
 
 test('20 supervised concurrent screenshots keep unique reports and unchanged PNGs', { timeout: 60000 }, async t => {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'supervised-artifacts-'));
   const files = new Map();
   const reports = new Set();
-  let verified = false;
+  let verified = false; let primary;
+  const observer = await createLifetimeObserver(path.join(directory, 'factory-control'));
   const digest = bytes => createHash('sha256').update(bytes).digest('hex');
   try {
     for (let pair = 1; pair <= 10; pair++) {
-      const owned = [];
       const sinceMs = Date.now();
-      const outcomes = await Promise.allSettled([0, 1].map(() => executeWorkflow({ timeoutMs: 15000,
-        steps: [{ type: 'screenshot' }] }, { artifactsDir: directory, allowSensitiveArtifacts: true, signal: t.signal,
-        onEvent: event => { if (event.pid) owned.push(event.pid); },
+      const outcomes = await observer.run([0, 1].map(() => ({ workflow: { timeoutMs: 15000,
+        steps: [{ type: 'screenshot' }] }, options: { artifactsDir: directory, allowSensitiveArtifacts: true, signal: t.signal },
       })));
-      let auditReceipt = null;
-      const survivors = await ownedDescendants(owned, { sinceMs, onReceipt: receipt => { auditReceipt = receipt; } });
-      assert.equal(survivors.length, 0, JSON.stringify({ fixture: 'supervised_artifact_ownership', pair, audit: auditReceipt }));
+      await observer.audit('pair_' + pair, sinceMs);
       for (const outcome of outcomes) {
         if (outcome.status === 'rejected') throw outcome.reason;
         const result = outcome.value;
@@ -65,7 +61,10 @@ test('20 supervised concurrent screenshots keep unique reports and unchanged PNG
         original, 'A later execution changed or replaced an earlier PNG');
     }
     verified = true;
-  } finally {
+  } catch (error) { primary = error; throw error; }
+  finally {
+    try { await observer.close(); }
+    catch (error) { if (primary) throw new AggregateError([primary, error], 'Screenshot acceptance and lifetime audit failed'); throw error; }
     if (verified) await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
     else console.error('Supervised artifact fixture workspace preserved: acceptance or cleanup not confirmed');
   }

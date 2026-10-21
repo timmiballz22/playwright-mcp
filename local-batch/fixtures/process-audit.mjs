@@ -2,10 +2,10 @@
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
-import { windowsOwnedProcesses, windowsOwnedProcessScopes, windowsCimFailurePhase, windowsAuditReceipt } from './windows-process-graph.mjs';
+import { windowsOwnedProcesses, windowsOwnedProcessScopes, windowsCimFailurePhase, windowsAuditReceipt, windowsLegacyComparison } from './windows-process-graph.mjs';
 const identities = new Map();
 const exec = promisify(execFile);
-export async function ownedDescendants(roots, { rememberLiveRoots = false, onReceipt, sinceMs, identityScopes } = {}) {
+export async function ownedDescendants(roots, { rememberLiveRoots = false, onReceipt, sinceMs, identityScopes, compareLegacyRoots, onLegacyObservation } = {}) {
   const owned = new Set(roots.filter(pid => Number.isSafeInteger(pid) && pid > 1));
   let rows;
   if (process.platform === 'win32') {
@@ -37,6 +37,9 @@ $json = $rows | ConvertTo-Json -Compress
     const parsed = JSON.parse(stdout);
     rows = (Array.isArray(parsed) ? parsed : [parsed]).map(row => ({ pid: Number(row.ProcessId), parent: Number(row.ParentProcessId), started: row.Started }));
     const result = identityScopes ? windowsOwnedProcessScopes(identityScopes, rows, rememberLiveRoots) : windowsOwnedProcesses(roots, rows, identities, rememberLiveRoots);
+    if (compareLegacyRoots) {
+      try { onLegacyObservation?.(windowsLegacyComparison(compareLegacyRoots, rows, result)); } catch {}
+    }
     // Diagnostic only: a matching audit helper remains in the conservative
     // result. Never hide a possible orphan based on its role or PID reuse.
     try { onReceipt?.(windowsAuditReceipt([...owned], rows, result, helperPid, identityScopes ? new Map(identityScopes.flatMap(scope => [...scope.identities])) : identities, sinceMs)); } catch {}
