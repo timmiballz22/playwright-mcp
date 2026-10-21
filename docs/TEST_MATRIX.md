@@ -2,27 +2,31 @@
 
 [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md) is the current45-scenario map;
 [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) records exact candidates and
-commands. Latest completed native `4d61ebd`: **940 tests passed, two failed**, with zero
-executed-test skips/cancellations. Separate verification failures: Windows actual
-Codex startup and the Windows Firefox factor probe's audit caller. Wrapper run
-39556037829:268/1; batch run39556037572:672/1. Original cases: Linux/macOS88 each
-pass; Windows87 pass, named isolated-context creation times out. The conditional
-Windows Node20 legacy step did not run after that failure and has no PASS claim.
-Windows raw Firefox completes all23 actions but fails BrowserServer cleanup.
-Installed public MCP/CLI and the source six-tool1,000-action jobs harness pass again.
+commands. Latest completed native `57dca78`: **957 tests passed,12 failed**, with zero
+executed-test skips/cancellations. Wrapper39557792732:269/3; batch39557792776:688/9.
+Seven failures are Windows Firefox (three raw Node22 modes,429 retry fixture,
+three legacy Node20 modes). Five failures repeat one incorrect new audit-test
+expectation across browser jobs; the test is now corrected locally. Production
+graph code is unchanged. All88 original cases per OS, Docker, four41-test durable
+components, installed public endpoints and source1,000-action jobs pass. The
+500-valid/170-invalid workflow corpus passes natively on every configured OS.
 
-Windows Codex reports private_storage_unavailable and a failed handshake. Three
-fresh simultaneous SDK pairs pass on that same native job (1185/937/901ms), zero
-browser actions and zero active survivors. Linux/macOS actual Codex1,000-action
-checks pass in36.037s/74.738s, zero model turns/survivors. The factor probe incorrectly
-asked the strict auditor to register exited roots as live; its uncertainty is
-retained, with no native routing conclusion. The caller fix records live root
-identities at the browser-ready pause and uses remembered identities after exit.
-Next diagnostics compare the pinned Codex core environment and fixed helper failure
-categories, without permissions/ACL/timeout changes. The local browser-null fix
-and500-valid/170-invalid JSON corpus pass Node20/22/24, plus a fresh140-file
-production package. Current matrix17 jobs; last full green remains d71c91e (14).
-Full quotas/retention, profiles, egress, reliability and remaining gates stay open.
+Windows actual Codex and SDK core-environment control fail: filtered environment
+is sufficient to reproduce a10s PowerShell helper timeout; inherited controls pass.
+The smaller direct-helper reproducer needs no browser/Codex containment. Linux/
+macOS actual Codex1,000-action checks pass38.364s/119.327s, zero model turns/survivors.
+Corrected Firefox factor caller passes natively: four cases,400 clicks/20 fresh
+launches, zero survivors. These five-run controls include an audit pause and do
+not reproduce the strict ten-run failures; they prove neither a routing cause
+nor a production fix. Stable Playwright remains1.64.1; no stable upgrade is available.
+
+Local follow-ups fix atomic screenshot/report overwrite races and deletion of an
+unowned colliding report temporary file. Seven unit cases on Node20/24, three real
+Chromium failure/quota/CLI cases, the1,000-action jobs harness and fresh141-file
+production package pass. Corrected lifecycle graph suite passes4/4 on Node20/22/24.
+Next native candidate adds helper phase/system-module controls, preserving10s and
+all ACL/security checks. Matrix17 jobs; last full green d71c91e (14). Quotas,
+retention, profiles, egress and remaining reliability/acceptance gates stay open.
 
 The following table is historical and predates the durable controller, public
 preview, configured navigation retries and independent-observer soak. It is

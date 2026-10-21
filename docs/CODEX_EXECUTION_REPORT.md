@@ -1,26 +1,30 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `4d61ebd`: **940 tests passed, two failed**, with zero
-executed-test skips/cancellations. Separate verification failures: Windows actual
-Codex startup and the Windows Firefox factor probe's audit caller. Wrapper run
-39556037829:268/1; batch run39556037572:672/1. Original cases: Linux/macOS88 each
-pass; Windows87 pass, named isolated-context creation times out. The conditional
-Windows Node20 legacy step did not run after that failure and has no PASS claim.
-Windows raw Firefox completes all23 actions but fails BrowserServer cleanup.
-Installed public MCP/CLI and the source six-tool1,000-action jobs harness pass again.
+Latest completed native `57dca78`: **957 tests passed,12 failed**, with zero
+executed-test skips/cancellations. Wrapper39557792732:269/3; batch39557792776:688/9.
+Seven failures are Windows Firefox (three raw Node22 modes,429 retry fixture,
+three legacy Node20 modes). Five failures repeat one incorrect new audit-test
+expectation across browser jobs; the test is now corrected locally. Production
+graph code is unchanged. All88 original cases per OS, Docker, four41-test durable
+components, installed public endpoints and source1,000-action jobs pass. The
+500-valid/170-invalid workflow corpus passes natively on every configured OS.
 
-Windows Codex reports private_storage_unavailable and a failed handshake. Three
-fresh simultaneous SDK pairs pass on that same native job (1185/937/901ms), zero
-browser actions and zero active survivors. Linux/macOS actual Codex1,000-action
-checks pass in36.037s/74.738s, zero model turns/survivors. The factor probe incorrectly
-asked the strict auditor to register exited roots as live; its uncertainty is
-retained, with no native routing conclusion. The caller fix records live root
-identities at the browser-ready pause and uses remembered identities after exit.
-Next diagnostics compare the pinned Codex core environment and fixed helper failure
-categories, without permissions/ACL/timeout changes. The local browser-null fix
-and500-valid/170-invalid JSON corpus pass Node20/22/24, plus a fresh140-file
-production package. Current matrix17 jobs; last full green remains d71c91e (14).
-Full quotas/retention, profiles, egress, reliability and remaining gates stay open.
+Windows actual Codex and SDK core-environment control fail: filtered environment
+is sufficient to reproduce a10s PowerShell helper timeout; inherited controls pass.
+The smaller direct-helper reproducer needs no browser/Codex containment. Linux/
+macOS actual Codex1,000-action checks pass38.364s/119.327s, zero model turns/survivors.
+Corrected Firefox factor caller passes natively: four cases,400 clicks/20 fresh
+launches, zero survivors. These five-run controls include an audit pause and do
+not reproduce the strict ten-run failures; they prove neither a routing cause
+nor a production fix. Stable Playwright remains1.64.1; no stable upgrade is available.
+
+Local follow-ups fix atomic screenshot/report overwrite races and deletion of an
+unowned colliding report temporary file. Seven unit cases on Node20/24, three real
+Chromium failure/quota/CLI cases, the1,000-action jobs harness and fresh141-file
+production package pass. Corrected lifecycle graph suite passes4/4 on Node20/22/24.
+Next native candidate adds helper phase/system-module controls, preserving10s and
+all ACL/security checks. Matrix17 jobs; last full green d71c91e (14). Quotas,
+retention, profiles, egress and remaining reliability/acceptance gates stay open.
 
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
@@ -1117,3 +1121,22 @@ zero active survivors. The previous inherited native pairs had live clients at
 observation; their cleanup evidence stands. The failed native codex_core pair's
 old empty-root final scan is not independent cleanup proof and is not a PASS claim.
 Source:diagnose-jobs-startup.mjs; evidence:sdk-startup-retained-identities-local.txt.
+
+
+## Audit-test evidence correction and Native57dca78
+
+The new live-root lifecycle test expected [900,902,910] in a snapshot rooted only
+at live900. Process902 has exited parent901, so that snapshot correctly returns
+[900,910]. The final scan explicitly includes remembered901 and must still return
+[902], then [] after cleanup. Only the intermediate expected array changes; the
+production graph and final orphan assertion are unchanged.
+
+I failed to inspect the redirected local test outputs before claiming4 passes:
+the retained firefox-factor-audit-lifecycle-node20/24 records actually show3 pass/
+1 fail. Earlier prose asserting4 local passes is incorrect. Native57dca78 exposed
+that same incorrect expectation in all five browser jobs. This is not an engine
+regression and those failures remain recorded. Corrected explicit commands on
+Node20/22/24 each exit0 and show4 pass/0 fail/0 skip/cancel; see
+audit-lifecycle-corrected-node*.txt. Every underlying process-audit check remains
+strict. The positive native four-factor comparison is independent evidence of the
+caller correction; it does not resolve strict Firefox failures.
