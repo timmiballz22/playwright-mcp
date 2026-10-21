@@ -1,6 +1,35 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest native `7d97686`: batch39623605657 records **980 passes/one failure**,
+Latest native `c88171e`: **1,310 reported passes/six failed tests**, plus a
+Windows production-install failure that prevents its main browser suite from
+running. Wrapper39627558701:431/3; batch39627558702:879/3 among executed tests.
+All17 executed jobs conclude; one functional-soak group intentionally skips;
+zero reported test skips/cancellations and zero job cancellations.
+
+All three actual Codex1k/zero-model clients pass (Linux35.830s/macOS87.340s/
+Windows37.988s). Four171-file production installs pass; Windows fails its separate
+journal smoke on init/rpc_timeout under the unchanged2s watchdog. Its browser
+batch acceptance is unexecuted, not green. Windows journal61/1 fails the retention
+foreign-cursor control's current-instant cutoff before ownership validation;
+that test now uses a known-valid past cutoff, retaining future-cutoff rejection.
+
+Linux main20/22/24 passes160/159/159. macOS157/2 fails raw1k and Firefox retry
+navigation (one GET/timeout0); the HTTP status/privacy checks across all engines,
+durable HTTP metadata and separate-lifetime graph controls pass where executed.
+Windows original143/1 fails Firefox recording deadline; macOS142/2 fails Chromium
+screenshot protocol capture and Firefox trusted100 deadline. Full acceptance fails.
+
+Later local maintenance changes reserve the existing project journal lease before
+artifact work, release after confirmed exit and retain uncertainty/busy fencing
+across controllers and lost finalization. Old results/keys/timestamps/events stay.
+Local components65/65 each Node22/24, final real HTTP/two-owner controls, five
+receipt tests each Node20/22/24 and fresh172-file production installation pass.
+CI-only receipt formatting is moved out of journal startup dependencies; no
+Windows timeout cause is declared fixed. Native verification of these changes
+is pending. Operator repair, cumulative quotas, scheduling and remaining gates
+stay open. **Not release-ready.**
+
+Previous native `7d97686`: batch39623605657 records **980 passes/one failure**,
 zero reported test skips/cancellations. All three actual Codex1k clients and all
 five169-file production installs pass. Worker/retention components61/61 each
 (Windows62/62) validate hangs, natural-exit receipts and pending-filesystem EOF

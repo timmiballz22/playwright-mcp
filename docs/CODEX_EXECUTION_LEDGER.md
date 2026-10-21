@@ -3195,3 +3195,32 @@ install passes all original/batch/jobs/profile/journal/controller-death checks.
 Normal/linger parent-death probes174/745ms observe zero owned before replacement.
 This removes an unused runtime dependency, not proof of the Windows init cause.
 Lint/diff pass. Native validation of maintenance and this split is pending.
+
+## Native53: HTTP/lifetime controls validate where run; Windows install blocks main
+
+Atc88171e wrapper39627558701 reports431/3; batch39627558702 reports879/3 among
+executed tests. Total1,310 passes/six failed tests. Separately Windows production
+journal smoke fails init/rpc_timeout with the2s watchdog unchanged; its main
+browser acceptance never runs and is excluded from totals. All17 executed jobs
+conclude, one intentional functional-soak skip, zero reported test skips/cancels
+and job cancellations. Four171-file installs pass; Windows is not relabelled as
+installed success merely because earlier sub-smokes and actual Codex pass.
+
+Actual Codex all3 pass1k/zero-model/zero-owned: Linux35.830/macOS87.340/Windows
+37.988s. Linux main20/22/24 reports160/159/159 all pass. macOS157/2 fails raw1k
+(leading summary truncated; retained diagnostic index994 is not an invented
+completed count) and Firefox429 timeout0/one GET, clean terminated/removed cleanup.
+New main-HTTP pending-readiness controls, real status/privacy all3 engines,
+durable HTTP metadata and lifetime-scope cases pass where executed. Windows main
+is unavailable, so no Windows lifetime/HTTP runtime fix is claimed.
+
+Windows journal61/1 fails foreign retention cursor expected not_found but gets
+invalid_metadata before ownership at current-instant cutoff; known-valid past
+cutoff now selects the intended auth gate without relaxing runtime validation.
+Other journal lanes61/61 pass. Original Windows143/1 Firefox action-recording
+30s deadline; macOS142/2 Chromium screenshot Unable capture and trusted10030s
+deadline; Linux144/Docker2 pass. Extra legacy/modal steps do not run after primary
+failure. Selected logs/counts/job conclusions: worker-ci-fiftythird-*.
+Later maintenance fencing, setup sentinel and formatter split are outside this
+SHA. No timeout growth, process-role filter, unsafe action retry or green gate
+promotion follows from the healthy substeps.
