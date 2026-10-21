@@ -1,0 +1,30 @@
+✖ controller expires its queued input by monotonic elapsed time when wall deadline remains in the future (153.601803ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 233.64323
+
+✖ failing tests:
+
+test at local-batch/jobs/queue-clock.test.mjs:4:1
+✖ controller expires its queued input by monotonic elapsed time when wall deadline remains in the future (153.601803ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'QUEUED'
+  - 'TIMED_OUT'
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/queue-clock.test.mjs:21:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'QUEUED',
+    expected: 'TIMED_OUT',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

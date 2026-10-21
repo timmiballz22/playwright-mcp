@@ -1,0 +1,36 @@
+✔ bounded writer contention waits before one mutation without replay (617.348542ms)
+✔ internal job controller queue-success (650.063512ms)
+✔ internal job controller cancel-and-reconnect (431.35747ms)
+✔ internal job controller queue-pressure (742.066806ms)
+✔ internal job controller queue-expiry (746.608748ms)
+✔ internal job controller guardian-crash (665.058404ms)
+✔ internal job controller close-before-dequeue (204.011848ms)
+✔ internal job controller cancel-during-guardian-start (171.554276ms)
+✔ durable guardian success: cleanup and canonical journal outcome (352.843172ms)
+✔ durable guardian cancel: cleanup and canonical journal outcome (665.976152ms)
+✔ durable guardian disconnect: cleanup and canonical journal outcome (610.259168ms)
+✔ durable guardian crash: cleanup and canonical journal outcome (587.134887ms)
+✔ durable guardian mismatch: cleanup and canonical journal outcome (201.878037ms)
+✔ durable guardian admissionFailure: cleanup and canonical journal outcome (274.408053ms)
+✔ durable guardian preDisconnected: cleanup and canonical journal outcome (217.809251ms)
+✔ managed directory links and database hardlinks cannot modify another file (330.968508ms)
+✔ POSIX journal directory must exclude group and other access (37.313622ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (92.112904ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (56.565836ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (49.284601ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (64.938943ms)
+✔ killed transaction rolls back without a partial job or duplicate request (187.420511ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (123.990593ms)
+✔ corrupt journal is rejected without silently erasing the file (88.85243ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (46.912138ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (148.4442ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (134.5235ms)
+✔ controller expires its queued input by monotonic elapsed time when wall deadline remains in the future (152.672706ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8946.278211

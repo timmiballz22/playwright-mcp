@@ -3,7 +3,7 @@ export const COMMAND_FIELDS = new Map([
   ['create', ['id', 'requestKey', 'workflowDigest', 'total', 'deadlineAt', 'admitNew', 'requireCleanLease']],
   ['verify', ['id', 'workflowDigest']],
   ['read', ['id']], ['list', ['limit']], ['events', ['id']], ['result', ['id']], ['cancel', ['id']],
-  ['reserve', ['id', 'nonce']], ['activate', ['id', 'nonce']],
+  ['reserve', ['id', 'nonce', 'queueExpired']], ['activate', ['id', 'nonce']],
   ['progress', ['id', 'nonce', 'completed']], ['resources', ['id', 'nonce', 'workerPid', 'browserPid']],
   ['finish', ['id', 'nonce', 'state', 'completed', 'cleanupOk', 'summary', 'reason']],
   ['recover', []], ['integrity', []], ['close', []],

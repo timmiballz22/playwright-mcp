@@ -256,13 +256,14 @@ const handlers = new Map([
   ['reserve', data => transaction(() => {
     const row = owned(data.id);
     if (row.state !== 'QUEUED' || row.instance !== identity.instance) error('invalid_transition');
-    if (!uuid.test(data.nonce || '')) error('invalid_metadata');
+    if (!uuid.test(data.nonce || '') || data.queueExpired !== undefined && typeof data.queueExpired !== 'boolean') error('invalid_metadata');
     const lease = db.prepare('SELECT * FROM execution_lease WHERE singleton=1').get();
-    if (lease) return { acquired: false, reason: lease.uncertain ? 'cleanup_blocked' : 'project_busy' };
-    if (row.cancel_requested || row.deadline_at <= Date.now()) {
+    if (row.cancel_requested || row.deadline_at <= Date.now() || data.queueExpired === true) {
+      if (lease?.job_id === row.id) return { acquired: false, reason: lease.uncertain ? 'cleanup_blocked' : 'project_busy' };
       update(row, row.cancel_requested ? 'CANCELLED' : 'TIMED_OUT', 0, 'complete', row.cancel_requested ? 'cancelled' : 'queue_expired');
       return { acquired: false, reason: 'not_started' };
     }
+    if (lease) return { acquired: false, reason: lease.uncertain ? 'cleanup_blocked' : 'project_busy' };
     db.prepare('INSERT INTO execution_lease(singleton,job_id,nonce,instance,holder_pid) VALUES(1,?,?,?,?)')
       .run(row.id, data.nonce, identity.instance, identity.pid);
     update(row, 'QUEUED', 0, 'preparing');

@@ -1,0 +1,180 @@
+TAP version 13
+# Subtest: bounded writer contention waits before one mutation without replay
+ok 1 - bounded writer contention waits before one mutation without replay
+  ---
+  duration_ms: 632.325764
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-success
+ok 2 - internal job controller queue-success
+  ---
+  duration_ms: 888.614624
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-and-reconnect
+ok 3 - internal job controller cancel-and-reconnect
+  ---
+  duration_ms: 547.780679
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-pressure
+ok 4 - internal job controller queue-pressure
+  ---
+  duration_ms: 812.37455
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-expiry
+ok 5 - internal job controller queue-expiry
+  ---
+  duration_ms: 817.646407
+  type: 'test'
+  ...
+# Subtest: internal job controller guardian-crash
+ok 6 - internal job controller guardian-crash
+  ---
+  duration_ms: 720.040435
+  type: 'test'
+  ...
+# Subtest: internal job controller close-before-dequeue
+ok 7 - internal job controller close-before-dequeue
+  ---
+  duration_ms: 234.408106
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-during-guardian-start
+ok 8 - internal job controller cancel-during-guardian-start
+  ---
+  duration_ms: 194.029669
+  type: 'test'
+  ...
+# Subtest: durable guardian success: cleanup and canonical journal outcome
+ok 9 - durable guardian success: cleanup and canonical journal outcome
+  ---
+  duration_ms: 383.106356
+  type: 'test'
+  ...
+# Subtest: durable guardian cancel: cleanup and canonical journal outcome
+ok 10 - durable guardian cancel: cleanup and canonical journal outcome
+  ---
+  duration_ms: 659.827923
+  type: 'test'
+  ...
+# Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+ok 11 - durable guardian disconnect: cleanup and canonical journal outcome
+  ---
+  duration_ms: 575.561511
+  type: 'test'
+  ...
+# Subtest: durable guardian crash: cleanup and canonical journal outcome
+ok 12 - durable guardian crash: cleanup and canonical journal outcome
+  ---
+  duration_ms: 610.714037
+  type: 'test'
+  ...
+# Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+ok 13 - durable guardian mismatch: cleanup and canonical journal outcome
+  ---
+  duration_ms: 224.947195
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+ok 14 - durable guardian admissionFailure: cleanup and canonical journal outcome
+  ---
+  duration_ms: 293.524983
+  type: 'test'
+  ...
+# Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+ok 15 - durable guardian preDisconnected: cleanup and canonical journal outcome
+  ---
+  duration_ms: 224.337335
+  type: 'test'
+  ...
+# Subtest: managed directory links and database hardlinks cannot modify another file
+ok 16 - managed directory links and database hardlinks cannot modify another file
+  ---
+  duration_ms: 386.389894
+  type: 'test'
+  ...
+# Subtest: POSIX journal directory must exclude group and other access
+ok 17 - POSIX journal directory must exclude group and other access
+  ---
+  duration_ms: 63.930071
+  type: 'test'
+  ...
+# Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+ok 18 - a simulated reused PID cannot resume old work or clear uncertain active resources
+  ---
+  duration_ms: 119.587871
+  type: 'test'
+  ...
+# Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+ok 19 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+  ---
+  duration_ms: 70.155194
+  type: 'test'
+  ...
+# Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+ok 20 - a success mutation after the persisted deadline cannot commit or release the lease
+  ---
+  duration_ms: 64.856604
+  type: 'test'
+  ...
+# Subtest: competing writers initialize consistently and cannot overfill the project queue
+ok 21 - competing writers initialize consistently and cannot overfill the project queue
+  ---
+  duration_ms: 90.687877
+  type: 'test'
+  ...
+# Subtest: killed transaction rolls back without a partial job or duplicate request
+ok 22 - killed transaction rolls back without a partial job or duplicate request
+  ---
+  duration_ms: 214.81192
+  type: 'test'
+  ...
+# Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+ok 23 - reconnect marks a dead controller queued job crashed and never requeues its request
+  ---
+  duration_ms: 147.537234
+  type: 'test'
+  ...
+# Subtest: corrupt journal is rejected without silently erasing the file
+ok 24 - corrupt journal is rejected without silently erasing the file
+  ---
+  duration_ms: 112.500961
+  type: 'test'
+  ...
+# (node:206524) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: an unrelated SQLite file is rejected without changing its bytes
+ok 25 - an unrelated SQLite file is rejected without changing its bytes
+  ---
+  duration_ms: 56.27571
+  type: 'test'
+  ...
+# Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+ok 26 - journal preserves idempotency, owner isolation and a single project execution lease
+  ---
+  duration_ms: 187.31937
+  type: 'test'
+  ...
+# Subtest: monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+ok 27 - monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+  ---
+  duration_ms: 171.117865
+  type: 'test'
+  ...
+# Subtest: controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+ok 28 - controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+  ---
+  duration_ms: 151.85528
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9920.560002

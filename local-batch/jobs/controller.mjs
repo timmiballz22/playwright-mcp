@@ -51,6 +51,7 @@ export class JobController {
     if (this.closed) return Promise.reject(new JournalError('controller_closed'));
     if (this.pending >= 8) return Promise.reject(new JournalError('controller_busy'));
     const acceptedAt = Date.now();
+    const acceptedNs = process.hrtime.bigint();
     let snapshot;
     try { snapshot = captureWorkflow(input); validateExecutionPolicy(snapshot.spec, this.execution); }
     catch (error) { return Promise.reject(error); }
@@ -58,13 +59,14 @@ export class JobController {
       if (this.closed) throw new JournalError('controller_closed');
       const id = randomUUID();
       try {
+        await this.expireQueued();
         const recovered = await this.journal.call('recover');
         if (recovered.cleanupBlocked) this.blocked = true;
         const row = await this.journal.call('create', { id, requestKey, workflowDigest: snapshot.digest,
           admitNew: !this.blocked && this.inputs.size < 9, requireCleanLease: true, total: snapshot.spec.steps.length * snapshot.spec.iterations, deadlineAt: acceptedAt + snapshot.spec.timeoutMs });
         // Only the winning creator retains input. Duplicate/lost replies never
         // schedule a second execution, including across controller processes.
-        if (row.jobId === id && row.state === 'QUEUED') this.inputs.set(id, snapshot.workflow);
+        if (row.jobId === id && row.state === 'QUEUED') this.inputs.set(id, { workflow: snapshot.workflow, deadlineNs: acceptedNs + BigInt(snapshot.spec.timeoutMs) * 1000000n });
         this.schedule();
         return row;
       } catch (error) {
@@ -80,6 +82,7 @@ export class JobController {
     if (this.closed) return Promise.reject(new JournalError('controller_closed'));
     return this.serialize(async () => {
       try {
+        await this.expireQueued();
         if (['read', 'list', 'result'].includes(command) && (await this.journal.call('recover')).cleanupBlocked) this.blocked = true;
         return await this.journal.call(command, data);
       }
@@ -114,6 +117,17 @@ export class JobController {
     return row;
   }
 
+  async expireQueued() {
+    for (const [id, input] of this.inputs) {
+      if (id === this.active?.id || process.hrtime.bigint() < input.deadlineNs) continue;
+      const row = await this.journal.call('read', { id });
+      if (row.state === 'QUEUED') {
+        const stopped = await this.journal.call('reserve', { id, nonce: randomUUID(), queueExpired: true });
+        if (!stopped.acquired && stopped.reason === 'not_started') this.inputs.delete(id);
+      } else if (terminal.has(row.state)) this.inputs.delete(id);
+    }
+  }
+
   schedule(milliseconds = 0) {
     if (this.closed || this.blocked || this.active || this.timer || !this.inputs.size) return;
     this.timer = setTimeout(() => {
@@ -128,7 +142,10 @@ export class JobController {
 
   async pump() {
     if (this.closed || this.blocked || this.active || !this.inputs.size) return;
-    const [id, workflow] = this.inputs.entries().next().value;
+    await this.expireQueued();
+    if (!this.inputs.size) return;
+    const [id, input] = this.inputs.entries().next().value;
+    const { workflow, deadlineNs } = input;
     const row = await this.journal.call('read', { id });
     if (row.state !== 'QUEUED') { this.inputs.delete(id); this.schedule(); return; }
     const nonce = randomUUID();
@@ -191,7 +208,7 @@ export class JobController {
       if (!child.pid) exited();
       else if (child.connected) child.disconnect();
     });
-    child.send({ type: 'start', id, nonce, journal: this.config, workflow, execution: this.execution }, error => {
+    child.send({ type: 'start', id, nonce, journal: this.config, workflow, execution: this.execution, deadlineNs: String(deadlineNs) }, error => {
       if (error && child.connected) child.disconnect();
     });
   }

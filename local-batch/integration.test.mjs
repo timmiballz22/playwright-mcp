@@ -11,12 +11,12 @@ const browsers = (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefo
 if (!browsers.length || browsers.some(browser => !['chromium', 'firefox', 'webkit'].includes(browser)) || new Set(browsers).size !== browsers.length)
   throw new TypeError('Invalid test browser selection');
 for (const browser of browsers) {
-  // Retain headless acceptance and compare Windows' native headed path.
-  for (const mode of browser === 'firefox' && process.platform === 'win32' ? ['headless', 'headed'] : ['headless']) {
+  // Retain headless/headed acceptance and compare public pipe transport on Windows.
+  for (const mode of browser === 'firefox' && process.platform === 'win32' ? ['headless', 'headed', 'direct-pipe'] : browser === 'firefox' && process.env.PLAYWRIGHT_BATCH_TEST_FIREFOX_TRANSPORT_COMPARISON === '1' ? ['headless', 'direct-pipe'] : ['headless']) {
   const clicks = browser === 'chromium' ? 997 : 20;
   const freshRuns = browser === 'firefox' ? Number(process.env.PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS ?? (process.platform === 'win32' ? 5 : 1)) : 1;
   if (!Number.isInteger(freshRuns) || freshRuns < 1 || freshRuns > 20) throw new TypeError('Invalid test run count');
-  test(`real ${browser}${mode === 'headed' ? ' headed' : ''}: ${freshRuns} fresh runs, navigation, ${clicks} clicks, assertion, screenshot, cleanup`, {
+  test(`real ${browser}${mode === 'headless' ? '' : ' ' + mode}: ${freshRuns} fresh runs, navigation, ${clicks} clicks, assertion, screenshot, cleanup`, {
     skip: process.env.RUN_BROWSER_TESTS !== '1' ? 'Set RUN_BROWSER_TESTS=1 with Playwright installed' : false,
   }, async () => {
     const server = createServer((_req, res) => {
@@ -34,6 +34,10 @@ for (const browser of browsers) {
         launchServer: options => firefox.launchServer({ ...options, headless: false }),
         connect: (...args) => firefox.connect(...args),
       },
+    })) : mode === 'direct-pipe' ? await import('playwright').then(({ firefox }) => ({
+      // Trusted fixture adapter exercises the public pipe launch path without
+      // changing runtime defaults or inventing a browser process handle.
+      firefox: { launch: options => firefox.launch(options) },
     })) : undefined;
     try {
       const steps = [{ type: 'goto', url: origin + '/' },

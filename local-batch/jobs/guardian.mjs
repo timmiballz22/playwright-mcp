@@ -44,7 +44,7 @@ function safeSummary(summary) {
 }
 function outcome(summary, row) {
   if (row.cancelRequested || abort.signal.aborted) return { ...summary, ok: false, reason: 'cancelled', retrySafe: false };
-  if (Date.now() >= Date.parse(row.deadlineAt)) return { ...summary, ok: false, reason: 'timeout', retrySafe: false };
+  if (Date.now() >= Date.parse(row.deadlineAt) || packet.deadlineNs !== undefined && process.hrtime.bigint() >= BigInt(packet.deadlineNs)) return { ...summary, ok: false, reason: 'timeout', retrySafe: false };
   return summary;
 }
 function terminalState(summary) {
@@ -78,7 +78,8 @@ process.once('message', async message => {
       catch { journalFailed = true; stop(); }
       finally { pollBusy = false; }
     }, 150);
-    const remaining = Date.parse(row.deadlineAt) - Date.now();
+    if (packet.deadlineNs !== undefined && (typeof packet.deadlineNs !== 'string' || !/^[0-9]{1,30}$/.test(packet.deadlineNs))) throw new Error('invalid_deadline');
+    const remaining = Math.min(Date.parse(row.deadlineAt) - Date.now(), packet.deadlineNs === undefined ? Infinity : Number((BigInt(packet.deadlineNs) - process.hrtime.bigint()) / 1000000n));
     let summary;
     const preCancelled = abort.signal.aborted;
     if (remaining < 100) {

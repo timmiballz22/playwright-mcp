@@ -75,9 +75,13 @@ create actual owned Node child processes; they are not browser coverage.
 jobs (ten total actions) against source/fresh installed tarballs, checks duplicate
 and reconnect behavior, and audits owned process exit. The installed parent-death
 fixture now uses this controller before actual SIGKILL and lease/integrity checks.
-Current native acceptance for the controller is pending. The stored queue
-deadline uses wall-clock time; monotonic handling across system clock changes
-remains acceptance work. The execution supervisor retains its monotonic deadline.
+Native ee54674 passed controller and preview checks on Linux/macOS; Windows
+private storage remains unsupported and Firefox acceptance still fails. Persisted
+queue timestamps use wall-clock time for display and conservative recovery. Live
+controller submissions now also retain a monotonic deadline, expire unstarted
+queued inputs and pass the original deadline to the guardian so a backward clock
+change cannot extend execution. Forward clock changes can expire work early.
+This newer deadline change awaits native acceptance; no restart/resume is added.
 
 An optional POSIX start/status/result/cancel/list/cleanup MCP preview and trusted
 configuration now wrap this controller; see [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md).

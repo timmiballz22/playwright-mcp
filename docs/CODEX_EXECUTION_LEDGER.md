@@ -1118,3 +1118,47 @@ rejection before workflow open/state creation without canary-path disclosure.
 Node22 CLI argument plus real SIGTERM lifecycle tests pass2 tests. Evidence
 jobs-cli-node20.txt/jobs-cli-node22.txt. Native Windows negative storage checks
 remain separate from functional support.
+
+### 2026-10-21 — native preview results and monotonic queue deadline
+
+Native ee54674 completed640 passed/3 failed, zero test skips/cancellations.
+Batch39532223890:479/1; wrapper39532223909:161/2. All original wrapper
+contracts/tests passed. Windows Node22 headed Firefox fresh4 stalled click8 then
+context/server close; Node20 legacy headless fresh5 completed23/23 but context
+close timed out; Node20 headed fresh8 stalled click8 with cleanup complete.
+Headed is not a fix. Linux/macOS component, real1000-action jobs MCP and installed
+five-tool preview smokes passed; Windows explicitly rejected unsupported private
+storage before creating state. Six-tool cleanup/CLI were not in that candidate.
+See worker-ci-twentieth-* for selected logs and reporter-aware counts.
+
+Reproduced a queued-input timing gap with a fixture whose wall-clock deadline
+remains one hour in the future: after150ms, a100ms job incorrectly remained
+QUEUED. Controller now retains a monotonic deadline from submission, expires
+unstarted own queued inputs and passes its original deadline to the guardian.
+The guardian caps worker time by remaining monotonic time and rejects late success.
+Journal wall timestamps remain useful for display/conservative recovery; forward
+clock jumps can still cause early timeout, never extended execution. No replay.
+
+Expiry is an internal typed reserve flag, not a public tool argument. A real
+SQLite regression proves it cannot cross owner/creator boundaries or release a
+different active job's project lease. The queued record alone becomes TIMED_OUT
+with zero effects; invalid flag types are rejected. After fix28 journal/controller/
+guardian/contention/clock tests pass, zero failed/skipped/cancelled. Full clock
+injection across native OS processes remains acceptance work.
+After the deadline change, Node22 repeats all28 component tests successfully.
+Actual jobs MCP1000-action/cleanup suite plus CLI SIGTERM lifecycle pass2 tests;
+fresh107-file production package passes all original/batch/jobs/CLI/controller/
+guardian/storage and actual controller-SIGKILL cleanup checks. Evidence
+jobs-queue-clock-{before,after,node22,browser,installed}.txt.
+
+A new Windows-only fixture comparison additionally exercises real Firefox public
+launch/pipe transport through the existing trusted adapter API. Existing headless
+and headed BrowserServer checks remain. Production defaults, clicks, deadlines,
+assertions and retries are unchanged; no browser process handle is fabricated.
+This isolates transport as a hypothesis, not a claimed fix or substitute pass.
+Linux can opt into the same comparison with a test-only environment variable.
+Linux controlled transport comparison passed both test cases: ten fresh Firefox
+BrowserServer workflows and ten direct-pipe workflows, each navigation/20 clicks/
+assertion/PNG/cleanup under unchanged deadlines. This is Linux transport coverage,
+not a Windows fix. See firefox-pipe-comparison-linux.txt; new native candidate
+must retain all three Windows modes and failures rather than substitute a pass.
