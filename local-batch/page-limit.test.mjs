@@ -13,7 +13,9 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
     let nextHits = 0; const owned = [];
     const fixture = createServer((request, response) => {
       response.writeHead(200, { 'Content-Type': 'text/html' });
-      if (request.url.startsWith('/popup')) response.end('<!doctype html><script>opener.done()</script>');
+      if (request.url === '/popup-close') response.end('<!doctype html><script>opener.childStarted(window);window.close()</script>');
+      else if (request.url === '/reuse') response.end('<!doctype html><button onclick="document.querySelector(\'output\').id=\'pending\';window.open(\'/popup-close\')">Open and close</button><output>waiting</output><script>let n=0;window.childStarted=child=>{const check=()=>{if(child.closed){const output=document.querySelector("output");output.id="closed-"+(++n);output.textContent="closed:"+n}else requestAnimationFrame(check)};requestAnimationFrame(check)}</script>');
+      else if (request.url.startsWith('/popup')) response.end('<!doctype html><script>opener.done()</script>');
       else if (request.url === '/next') { nextHits++; response.end('next'); }
       else response.end('<!doctype html><button onclick="for(let i=0;i<3;i++)window.open(\'/popup?i=\'+i)">Open three</button><output>waiting</output><script>let pending=3;window.done=()=>{if(!--pending){document.querySelector("output").id="ready";document.querySelector("output").textContent="ready"}}</script>');
     });
@@ -38,6 +40,13 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
         assert.equal(result.execution.cleanup, 'terminated'); assert.equal(result.execution.tempCleanup, 'removed');
         assert.deepEqual(await ownedDescendants(owned), []);
       }
+      const reuse = await executeWorkflow({ browser, timeoutMs: 15000, steps: [
+        { type: 'goto', url: origin + '/reuse' },
+        ...[1, 2, 3].flatMap(index => [{ type: 'click', selector: 'button' }, { type: 'waitFor', selector: '#closed-' + index }, { type: 'assertText', selector: 'output', equals: 'closed:' + index }]),
+      ] }, { allowedOrigins: [origin], artifactsDir: directory, maxPages: 2, onEvent: event => { if (event.pid) owned.push(event.pid); } });
+      assert.equal(reuse.ok, true, JSON.stringify(reuse)); assert.equal(reuse.completed, 10);
+      assert.equal(reuse.execution.cleanup, 'terminated'); assert.equal(reuse.execution.tempCleanup, 'removed');
+      assert.equal(nextHits, 1); assert.deepEqual(await ownedDescendants(owned), []);
     } finally {
       let clean = false;
       try { assert.deepEqual(await ownedDescendants(owned), []); clean = true; }

@@ -2210,3 +2210,11 @@ tree RSS618,360,832 bytes; browser FD coverage remains partial (23 inaccessible
 process identities), not a full descriptor/resource quota proof. All configured
 thresholds pass, zero model turns. Evidence: page-budget-soak-100-node22.txt.
 Native/cross-OS soak and hard browser CPU/RAM/process quotas remain open.
+
+
+A further real positive control opens and closes three sequential popups under a
+two-page limit, requiring each closure before the next click. Chromium/Firefox
+Node22 both pass,10 operations each, verified cleanup and zero owned survivors.
+This checks that closed pages release observed slots rather than accumulating a
+lifetime page count. Burst rejection and the four-page positive control still
+pass in the same cases. Evidence: page-limit-reused-slots-node22.txt.
