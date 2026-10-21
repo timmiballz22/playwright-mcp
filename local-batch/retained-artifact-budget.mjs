@@ -8,6 +8,11 @@ export function validateRetainedArtifactLimit(value) {
   if (!Number.isSafeInteger(value) || value < 1 || value > 1073741824) throw new TypeError('Invalid retained artifact byte limit');
   return value;
 }
+export function parseRetainedArtifactLimit(value) {
+  if (value === undefined) return DEFAULT_RETAINED_ARTIFACT_BYTES;
+  if (typeof value !== 'string' || !/^\d{1,10}$/.test(value)) throw new TypeError('Invalid retained artifact byte limit');
+  return validateRetainedArtifactLimit(Number(value));
+}
 const failure = () => Object.assign(new Error('Retained artifact admission denied'), { code: 'ARTIFACT_STORAGE_LIMIT' });
 export async function checkRetainedArtifactBudget(base, limit, screenshotLimit) {
   validateRetainedArtifactLimit(limit);

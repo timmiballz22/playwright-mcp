@@ -83,7 +83,8 @@ existing permissions are rejected without repair. Keep owner/project settings
 stable to inspect persisted jobs across reconnects; no work is replayed.
 
 Jobs reserve retained artifact capacity before browser launch (512 MiB default per
-private owner/project directory). Insufficient capacity returns `resource_limit`
+private owner/project directory; operator environment
+`PLAYWRIGHT_JOBS_MAX_RETAINED_ARTIFACT_BYTES` accepts1–1073741824 bytes). Insufficient capacity returns `resource_limit`
 at workspace stage with zero completed actions. Existing files remain intact.
 Use explicit owner-authorized artifact cleanup/retention to make space; jobs do
 not automatically delete prior artifacts. See [JOBS_STORAGE.md](JOBS_STORAGE.md)

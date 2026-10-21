@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
-import { mkdtemp, readdir, rm } from 'node:fs/promises';
+import { mkdtemp, readdir, rm, realpath, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import { executeWorkflow } from './executor.mjs';
@@ -84,3 +84,32 @@ if (supportsJournal) test('durable report byte failure retains progress and dedu
     else console.error('Report quota job fixture preserved: acceptance not confirmed');
   }
 });
+
+// Requires the browser-installed suite, not the builtin-only component matrix.
+{
+const reserve = 8388608 + 16384;
+async function quotaFixture(body) {
+  const base = await realpath(await mkdtemp(path.join(os.tmpdir(), 'retained-budget-browser-')));
+  try { await body(base); } finally { await rm(base, { recursive: true, force: true }); }
+}
+if (supportsJournal) test('durable quota failure remains deduplicated and a later admitted job executes', { timeout: 30000 }, async () => quotaFixture(async base => {
+  const artifactsDir = path.join(base, 'artifacts'); await mkdir(artifactsDir, { mode: 0o700 });
+  const marker = path.join(artifactsDir, 'prior'); await writeFile(marker, 'prior');
+  const owned = [];
+  const controller = await JobController.open({ onEvent: event => { if (event.pid) owned.push(event.pid); }, journal: { directory: path.join(base, 'journal'), ownerId: randomUUID(), projectId: 'a'.repeat(64) },
+    execution: { artifactsDir, maxScreenshotBytes: 0, maxRetainedArtifactBytes: reserve + 4 } });
+  const workflow = { steps: [{ type: 'waitFor', selector: 'body' }] }; const key = randomUUID();
+  try {
+    const started = await controller.start(workflow, key);
+    const wait = async id => {
+      for (let i = 0; i < 200; i++) { const row = await controller.status(id); if (['FAILED', 'SUCCEEDED'].includes(row.state)) return row; await new Promise(r => setTimeout(r, 25)); }
+      assert.fail('Terminal job receipt missing');
+    };
+    const failed = await wait(started.jobId); assert.equal(failed.state, 'FAILED'); assert.equal(failed.completed, 0); assert.equal(failed.operatorAttentionRequired, false);
+    assert.equal((await controller.start(workflow, key)).jobId, started.jobId);
+    await rm(marker); // Explicit fixture-owner deletion; admission never prunes.
+    const next = await controller.start(workflow, randomUUID()); assert.equal((await wait(next.jobId)).state, 'SUCCEEDED');
+  } finally { await controller.close(); assert.deepEqual(await ownedDescendants(owned), []); }
+}));
+
+}

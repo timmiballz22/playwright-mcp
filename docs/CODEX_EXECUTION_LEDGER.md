@@ -3833,3 +3833,28 @@ All components85/86 and five173-file production installs pass; normal/linger dea
 checks execute within their existing scope (Node20 lacks durable SQLite checks).
 Exact selected steps/counts/jobs: worker-ci-fiftyeighth-*. Later quota/artifact
 receipt candidate is locally verified only until native59 completes.
+
+## Operator quota configuration and browser-free component correction (local)
+
+PLAYWRIGHT_JOBS_MAX_RETAINED_ARTIFACT_BYTES now accepts a trusted decimal integer
+1–1,073,741,824 (default536,870,912). Invalid/empty/noninteger/oversized values
+fail invalid_policy before namespace writes. Minimum/maximum/default and unchanged
+project identity are tested; workflow/MCP arguments cannot alter the host setting.
+Earlier retained-config-phase-* receipts precede the component-case move below.
+
+Native59 component annotations identify the new durable quota positive case on all
+four lanes. A local missing-browser control reproduces FAILED versus SUCCEEDED
+(exit1): the builtin-only component jobs deliberately install no browser binaries.
+The live-browser quota/dedup/recovery case is now in report-failure.test.mjs within
+the browser-installed suite, with independent owned-process audit after close.
+The case was moved, not removed/skipped or weakened. Full native59 logs still need
+inspection before assigning its exact failure cause or counts.
+
+Final local component command passes96/96 each Node22/24 with browser path explicitly
+set to a nonexistent private test location. The8 quota component cases pass without
+browsers. Browser/config/quota regressions15/15 Node22 and13/13 Node20 pass; Node24
+browser/config group7/7 passes (with quota component8/8 checked separately). Fresh
+174-file production install, normal/linger independent controller-death audits,
+lint/diff pass. Evidence retained-component-*,retained-config-* separates before,
+intermediate and final receipts. Expected next component96/97 (Windows), verify
+actual logs. Hold push until native59 completes; pending native work is not green.

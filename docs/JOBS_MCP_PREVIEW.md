@@ -30,6 +30,7 @@ Example UUIDs in setup snippets are placeholders, not shared registration IDs.
 | `PLAYWRIGHT_JOBS_ALLOW_MUTATIONS` | `0` by default. Set `1` only for approved writes. |
 | `PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS` | `0` by default. Set `1` to permit screenshots. |
 | `PLAYWRIGHT_JOBS_NAVIGATION_RETRIES` | Optional navigation retry count, 0–2. |
+| `PLAYWRIGHT_JOBS_MAX_RETAINED_ARTIFACT_BYTES` | Retained logical artifact admission budget, default 512 MiB; operator integer 1–1073741824. Each job must fit its full screenshot/report/diagnostic reservation. No automatic pruning or OS disk quota. |
 | `PLAYWRIGHT_JOBS_MAX_PAGES` | Observed open-page budget, default 8; operator integer 1–32. This is reactive, not an OS process/memory quota. |
 | `PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES` | Per-run screenshot payload budget, default 16 MiB; operator integer 0–268435456. This does not bound total disk or browser memory. |
 

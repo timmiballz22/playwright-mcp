@@ -141,7 +141,8 @@ delayed. No stored PID is signalled; malformed receipts and IPC errors fail clos
 
 Durable `JobController.open` execution now reserves retained artifact capacity before
 browser launch. The default per-owner artifact directory limit is 512 MiB of
-logical file bytes. Trusted source callers may set `execution.maxRetainedArtifactBytes`
+logical file bytes. Operators may set `PLAYWRIGHT_JOBS_MAX_RETAINED_ARTIFACT_BYTES`
+in the jobs CLI/MCP environment, or trusted source callers may set `execution.maxRetainedArtifactBytes`
 from 1 byte through 1 GiB; admission still requires enough capacity for the full
 configured screenshot budget, an 8 MiB report and 16 KiB diagnostic allowance.
 This setting is not a workflow/MCP argument. The scan rejects symlinks, hard-linked

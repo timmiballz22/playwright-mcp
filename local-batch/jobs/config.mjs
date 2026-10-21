@@ -1,3 +1,4 @@
+import { parseRetainedArtifactLimit } from '../retained-artifact-budget.mjs';
 // Trusted operator configuration only. Never derive authorization from tool JSON.
 import { lstat, mkdir, realpath } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -51,10 +52,11 @@ export async function resolveJobConfig({ env = process.env, cwd = process.cwd() 
   if (process.platform !== 'win32' && typeof process.getuid !== 'function') reject('unsupported_private_storage');
   const ownerId = env.PLAYWRIGHT_JOBS_OWNER_ID;
   if (typeof ownerId !== 'string' || !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(ownerId)) reject('invalid_owner');
-  let allowedOrigins; let navigationRetry; let maxScreenshotBytes; let maxPages;
+  let allowedOrigins; let navigationRetry; let maxScreenshotBytes; let maxPages; let maxRetainedArtifactBytes;
   const allowSensitiveArtifacts = flag(env, 'PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS');
   const readOnly = !flag(env, 'PLAYWRIGHT_JOBS_ALLOW_MUTATIONS');
   try {
+    maxRetainedArtifactBytes = parseRetainedArtifactLimit(env.PLAYWRIGHT_JOBS_MAX_RETAINED_ARTIFACT_BYTES);
     maxPages = parsePageLimit(env.PLAYWRIGHT_JOBS_MAX_PAGES);
     maxScreenshotBytes = parseScreenshotLimit(env.PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES);
     const origins = (env.PLAYWRIGHT_JOBS_ALLOWED_ORIGINS ?? '').split(',').map(value => value.trim()).filter(Boolean);
@@ -86,7 +88,7 @@ export async function resolveJobConfig({ env = process.env, cwd = process.cwd() 
       directory = await privateDirectory(path.join(projectStore, 'journal'));
       artifactsDir = await privateDirectory(path.join(projectStore, 'artifacts', hash(ownerId)));
     }
-    return { journal: { directory, projectId, ownerId }, execution: { allowedOrigins, artifactsDir, temporaryBase, readOnly, allowSensitiveArtifacts, navigationRetry, maxScreenshotBytes, maxPages } };
+    return { journal: { directory, projectId, ownerId }, execution: { allowedOrigins, artifactsDir, temporaryBase, readOnly, allowSensitiveArtifacts, navigationRetry, maxScreenshotBytes, maxPages, maxRetainedArtifactBytes } };
   } catch (error) {
     if (error instanceof JobConfigError) throw error;
     if (['unsafe_storage', 'private_storage_unavailable', 'unsupported_private_storage'].includes(error.code)) reject(error.code);

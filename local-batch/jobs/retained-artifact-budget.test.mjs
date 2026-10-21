@@ -5,12 +5,9 @@ import assert from 'node:assert/strict';
 import { mkdtemp, realpath, rm, writeFile, readFile, symlink, link, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
-import { randomUUID } from 'node:crypto';
 import { checkRetainedArtifactBudget, validateRetainedArtifactLimit } from '../retained-artifact-budget.mjs';
 import { executeWorkflow } from '../executor.mjs';
-import { JobController } from './controller.mjs';
 import { ownedDescendants } from '../fixtures/process-audit.mjs';
-import { supportsJournal } from './journal.mjs';
 const reserve = 8388608 + 16384;
 async function fixture(body) {
   const base = await realpath(await mkdtemp(path.join(os.tmpdir(), 'retained-budget-')));
@@ -42,25 +39,6 @@ test('real supervised admission denies before browser launch and preserves prior
   assert.equal(result.execution.cleanup, 'terminated'); assert.equal(events.some(e => e.type === 'ownedProcess'), false);
   assert.equal(await readFile(path.join(base, 'prior'), 'utf8'), 'prior');
 }));
-if (supportsJournal) test('durable quota failure remains deduplicated and a later admitted job executes', { timeout: 30000 }, async () => fixture(async base => {
-  const artifactsDir = path.join(base, 'artifacts'); await mkdir(artifactsDir, { mode: 0o700 });
-  const marker = path.join(artifactsDir, 'prior'); await writeFile(marker, 'prior');
-  const controller = await JobController.open({ journal: { directory: path.join(base, 'journal'), ownerId: randomUUID(), projectId: 'a'.repeat(64) },
-    execution: { artifactsDir, maxScreenshotBytes: 0, maxRetainedArtifactBytes: reserve + 4 } });
-  const workflow = { steps: [{ type: 'waitFor', selector: 'body' }] }; const key = randomUUID();
-  try {
-    const started = await controller.start(workflow, key);
-    const wait = async id => {
-      for (let i = 0; i < 200; i++) { const row = await controller.status(id); if (['FAILED', 'SUCCEEDED'].includes(row.state)) return row; await new Promise(r => setTimeout(r, 25)); }
-      assert.fail('Terminal job receipt missing');
-    };
-    const failed = await wait(started.jobId); assert.equal(failed.state, 'FAILED'); assert.equal(failed.completed, 0); assert.equal(failed.operatorAttentionRequired, false);
-    assert.equal((await controller.start(workflow, key)).jobId, started.jobId);
-    await rm(marker); // Explicit fixture-owner deletion; admission never prunes.
-    const next = await controller.start(workflow, randomUUID()); assert.equal((await wait(next.jobId)).state, 'SUCCEEDED');
-  } finally { await controller.close(); }
-}));
-
 test('a stalled retained scan stays inside the existing supervised workflow deadline', { timeout: 10000 }, async () => fixture(async base => {
   const owned = []; const events = []; const started = performance.now();
   const result = await executeWorkflow({ timeoutMs: 1500, steps: [{ type: 'waitFor', selector: 'body' }] }, {

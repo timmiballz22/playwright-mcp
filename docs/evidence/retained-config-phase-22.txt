@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: operator owner/project namespaces are stable, private and independent of tool data
+ok 1 - operator owner/project namespaces are stable, private and independent of tool data
+  ---
+  duration_ms: 72.917611
+  type: 'test'
+  ...
+# Subtest: untrusted symlinks and writable ancestors cannot redirect job storage writes
+ok 2 - untrusted symlinks and writable ancestors cannot redirect job storage writes
+  ---
+  duration_ms: 7.48819
+  type: 'test'
+  ...
+# Subtest: invalid owner/policy config is rejected before any storage creation
+ok 3 - invalid owner/policy config is rejected before any storage creation
+  ---
+  duration_ms: 2.776063
+  type: 'test'
+  ...
+# Subtest: retained admission accepts the exact reserved boundary and preserves prior bytes when full
+ok 4 - retained admission accepts the exact reserved boundary and preserves prior bytes when full
+  ---
+  duration_ms: 11.85934
+  type: 'test'
+  ...
+# Subtest: retained admission rejects symbolic entries without mutation
+ok 5 - retained admission rejects symbolic entries without mutation
+  ---
+  duration_ms: 4.703707
+  type: 'test'
+  ...
+# Subtest: retained admission rejects hard entries without mutation
+ok 6 - retained admission rejects hard entries without mutation
+  ---
+  duration_ms: 2.011401
+  type: 'test'
+  ...
+# Subtest: retained admission rejects depth entries without mutation
+ok 7 - retained admission rejects depth entries without mutation
+  ---
+  duration_ms: 7.241465
+  type: 'test'
+  ...
+# Subtest: retained limit rejects malformed trusted configuration
+ok 8 - retained limit rejects malformed trusted configuration
+  ---
+  duration_ms: 0.834221
+  type: 'test'
+  ...
+# Subtest: real supervised admission denies before browser launch and preserves prior artifacts
+ok 9 - real supervised admission denies before browser launch and preserves prior artifacts
+  ---
+  duration_ms: 114.534787
+  type: 'test'
+  ...
+# Subtest: durable quota failure remains deduplicated and a later admitted job executes
+ok 10 - durable quota failure remains deduplicated and a later admitted job executes
+  ---
+  duration_ms: 1248.983628
+  type: 'test'
+  ...
+# Subtest: a stalled retained scan stays inside the existing supervised workflow deadline
+ok 11 - a stalled retained scan stays inside the existing supervised workflow deadline
+  ---
+  duration_ms: 1662.813758
+  type: 'test'
+  ...
+# Subtest: retained inventory stops at its entry boundary and closes the directory iterator
+ok 12 - retained inventory stops at its entry boundary and closes the directory iterator
+  ---
+  duration_ms: 137.642963
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3464.144657
