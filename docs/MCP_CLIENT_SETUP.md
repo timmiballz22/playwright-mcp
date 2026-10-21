@@ -82,6 +82,13 @@ defaults to a private `~/.local/state/playwright-batch/jobs` directory; unsafe
 existing permissions are rejected without repair. Keep owner/project settings
 stable to inspect persisted jobs across reconnects; no work is replayed.
 
+Jobs reserve retained artifact capacity before browser launch (512 MiB default per
+private owner/project directory). Insufficient capacity returns `resource_limit`
+at workspace stage with zero completed actions. Existing files remain intact.
+Use explicit owner-authorized artifact cleanup/retention to make space; jobs do
+not automatically delete prior artifacts. See [JOBS_STORAGE.md](JOBS_STORAGE.md)
+for reservation overhead, trusted source configuration and quota limitations.
+
 Actual verified Linux source entrypoint:
 `/workspace/playwright-mcp/local-batch/jobs-mcp.mjs`, using Node at
 `/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node`.

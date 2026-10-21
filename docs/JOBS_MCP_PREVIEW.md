@@ -172,6 +172,13 @@ startup and the actual zero-turn client check. Waiting alone was not a fix.
 
 ## Operator artifact retention
 
+The private owner/project artifact directory has a 512 MiB retained logical-byte
+admission limit by default. Each job reserves its full screenshot allowance plus
+report/diagnostic capacity before browser launch. A capacity refusal returns
+`resource_limit` at workspace stage with zero completed actions, preserving prior
+files and the request-key result. Cleanup makes room for a new request key; it does
+not rerun an old failed key. See [JOBS_STORAGE.md](JOBS_STORAGE.md) for limits.
+
 The jobs CLI can preview old terminal artifacts without adding an MCP tool or a
 background service. Use the same trusted owner/project/storage environment as the
 registered jobs client:

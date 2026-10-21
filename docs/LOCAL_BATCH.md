@@ -148,8 +148,10 @@ successful worker report do not erase cancellation. An abort observed before the
 execution promise resolves also prevents a successful result.
 Worker V8 heap limits do not cap browser RSS. Reports use atomic publication;
 there is no durable job journal or automatic replay of uncertain actions.
-Screenshots use an exclusively created per-run directory. There is no retention
-quota or guaranteed screenshot secret masking yet: capture only approved data.
+Screenshots use an exclusively created per-run directory. This one-tool batch
+endpoint has no cumulative retention quota. The separate durable jobs endpoint
+reserves retained capacity (512 MiB default); see [JOBS_STORAGE.md](JOBS_STORAGE.md).
+Screenshot secret masking is not guaranteed: capture only approved data.
 HTTP requests are fetched without automatic redirects or driver retries and fulfilled to
 the browser to prevent Playwright's redirect routing bypass. All redirects are
 currently rejected, including same-origin redirects. This is a compatibility
