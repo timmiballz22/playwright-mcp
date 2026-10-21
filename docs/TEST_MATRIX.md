@@ -223,3 +223,15 @@ Windows native probe acceptance is pending; Linux syntax checks/YAML parse pass.
 Installed fixed receipts and probe cases emit GitHub annotations because this
 host's Azure artifact downloads returned403 (the artifacts uploaded successfully).
 No ACL, launch-policy, deadline or strict assertion is relaxed for diagnosis.
+
+Nativeb6a91b9:814 pass/two test fail (wrapper259/1,batch555/1), zero skips/
+cancellations plus Windows installed setup failure before browser tests. All84
+original cases per OS, Docker and all four durable component jobs pass. Held
+pointer/canvas/keyboard and large-DOM file/find/action are now native-proven.
+Windows fixed receipt: FAILED,completed0,action_failed,failedStepType setup,
+cleanup terminated,tempCleanup removed,operatorAttentionRequired false,navigations0.
+This supports the controlled layout experiment but does not prove its cause.
+Other failures: Windows raw Firefox headless and macOS synchronous1,000-action
+MCP deadline after944 confirmed actions. No deadlines or counts were relaxed.
+Failure artifact upload succeeded; Azure download from this host returned403.
+Fixed diagnostic annotations are added as an independently readable channel.

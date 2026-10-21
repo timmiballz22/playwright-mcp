@@ -1,14 +1,14 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Native585acae:782 tests pass/two fail, plus Windows installed public-job
-verification failure before its browser suite. All76 original tests per OS,
-Docker and four durable component jobs pass (Windows39). Public Windows jobs
-remain experimental: configuration passes but first installed job returns FAILED;
-cause unproven. Windows raw Firefox and macOS WebKit retry cancellation fail.
-Node20 phase setup fix passes natively; held-input/large-DOM and raw final-kill
-candidates await native proof. Last full green remains d71c91e(469). OPEN means
-inadequate proof; PARTIAL means required work remains.
+PASS. Nativeb6a91b9:814 passes/two failures plus Windows installed setup failure
+before browser tests. All84 original tests per OS, Docker and all four durable
+component jobs pass. Held-input and large-DOM file/find cases have native proof.
+Windows public job fails before navigation with verified cleanup; a controlled
+layout probe is pending. Windows raw Firefox and macOS1,000-action deadline after
+944 confirmed actions still fail. Exact deadlines/count assertions remain.
+Last full green remains d71c91e(469). OPEN means inadequate proof; PARTIAL means
+required work remains.
 
 | # | Scenario | Status and concrete evidence / gap |
 |---|---|---|
@@ -42,7 +42,7 @@ inadequate proof; PARTIAL means required work remains.
 | 28 | CSS/test-id/role-name locators | PARTIAL: validator/resolver tests, real role/name 997 clicks and label operator fixture; full real locator/ambiguity matrix remains. |
 | 29 | Dialog/popup/cross-frame behavior | PARTIAL: original dialog/frame and stale-target negatives passed native matrix at 9e73a08; earlier modal intermittency remains unexplained. Original popup list/select/interact/close/opener behavior passes local Chromium/Firefox; native all-engine fixture passed at ebdec88. |
 | 30 | Mobile touch/viewport/DPI | PARTIAL: local Chromium mobile viewport/DPI/actual touch and CSS-scale PNG390x844 pass; Firefox explicit desktop viewport plus touch passes. Native all-engine coverage passed at c7ae948; no physical mobile claim. |
-| 31 | Held/repeated keyboard/canvas input | PARTIAL: original ARIA labels, Tab focus order, Enter and Space activation pass local Chromium/Firefox. Local Chromium/Firefox held-pointer canvas pixel proof and repeated ArrowRight/Shift chord checks verify balanced key down/up, released modifiers and exact selection; native new fixture pending. |
+| 31 | Held/repeated keyboard/canvas input | PARTIAL: original ARIA labels, Tab focus order, Enter and Space activation pass local Chromium/Firefox. Local Chromium/Firefox held-pointer canvas pixel proof and repeated ArrowRight/Shift chord checks verify balanced key down/up, released modifiers and exact selection; native all-engine fixture passed at b6a91b9. |
 | 32 | Dark mode/reduced motion | PARTIAL: local original Chromium/Firefox CSS phenotype switches and resets for dark/light and reduce/no-preference pass. Native all-engine coverage passed at c7ae948. |
 | 33 | Bounded console/request errors | PARTIAL: companion suppresses page logs; original local Chromium/Firefox fixtures distinguish HTTP404 from JS exceptions, filter console severity and save20KiB+ logs through explicit filename with a short tool link. Default output/heap bounds and native new fixtures remain. |
 | 34 | Isolated storage + project persistence | PARTIAL: original persistent-cookie/localStorage restore, sessionStorage end, exclusive profile lock and independent directory isolation passed native all-engine c7ae948. Jobs persistent profiles and secure managed reset remain absent. |
@@ -53,7 +53,7 @@ inadequate proof; PARTIAL means required work remains.
 | 39 | Original screenshot/network/storage/PDF/video/trace | PARTIAL: PNG/PDF/WebM/trace/storage/tabs native behavior passed; network404 body/details, status200/404 listing, invalid filter and console file output pass local Chromium/Firefox; native new fixture and remaining negative capability coverage remain. |
 | 40 | Default stdio listener audit | PARTIAL: no public companion HTTP transport. Active supervised execution uses a private loopback BrowserServer protocol allowed by master section 0; Linux Node24 operator probe initializes all three stdio endpoints (25/1/6 tools), maps socket inodes only from four live owned processes, finds zero TCP/IPv6 TCP listeners and verifies zero owned processes after shutdown. Active browser protocol and native OS listener audits remain. |
 | 41 | Local CLI without connected model | Verified local 26-operation fixture, exact counter, report and canary absence; installed browsers/dependencies required. Not an OS air-gap audit. |
-| 42 | Large DOM bounded representation | PARTIAL: batch returns last ten metadata steps and no DOM; local Chromium/Firefox4,000-button fixture saves a full snapshot above64KiB while explicit file responses stay below4096 characters; bounded browser_find returns actionable references and confirms a real last-row click. This uses operator-selected snapshot-mode=none; default inline/heap bounds remain open and native new fixture is pending. |
+| 42 | Large DOM bounded representation | PARTIAL: batch returns last ten metadata steps and no DOM; local Chromium/Firefox4,000-button fixture saves a full snapshot above64KiB while explicit file responses stay below4096 characters; bounded browser_find returns actionable references and confirms a real last-row click. This uses operator-selected snapshot-mode=none; default inline/heap bounds remain open and native all-engine file/find fixture passed at b6a91b9. |
 | 43 | Repeated suites, explained flakiness | PARTIAL: failed runs preserved; latest c7ae948 has a Windows Firefox direct-pipe failure plus a Windows installed process-audit failure. macOS CLI alias fix and native profile guard pass. No full native resolution. |
 | 44 | Main/release blocked until evidence | PARTIAL: publishing disabled and PR remains draft; branch-protection API returned 403, enforcement not verified. No main merge. |
 | 45 | Documented setup with no global MCP config | PARTIAL: actual temporary-config Codex and installed paths with spaces; native Bash/PowerShell bootstraps pass at 5264cb6; native Codex operator walkthroughs remain incomplete. |

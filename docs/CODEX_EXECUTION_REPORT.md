@@ -1,23 +1,22 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `585acae`: **782 tests passed/two failed**, zero test
-skips/cancellations, plus Windows installed public-jobs verification failure before
-its browser suite. Wrapper39545681726:235/1; batch39545681727:547/1.
-All76 original tests per OS, Docker and all four durable component jobs pass,
-including39 Windows config/journal/ACL tests. Public Windows job configuration
-initializes, but its first installed job returns FAILED without an adequate old
-assertion receipt; cause is unproven. Current candidate preserves failed fixture
-data and adds fixed state/reason/setup/cleanup metadata plus early log artifacts.
-Node20 phase fixture race is fixed natively; locator cancellation passes on POSIX.
-Other failures: Windows raw Firefox headless cleanup/stall and macOS WebKit retry
-cancellation observed two GETs. The cancellation fixture now preserves its first
-abort timestamp; the strict single-hit assertion stays intact. A bounded final
-public BrowserServer.kill attempt is added after raw close failure, preserving
-cleanup failure and never promoting success. Six unit cases pass Node20/24 and
-two real Node22 browser cases pass. Held-pointer/canvas/keyboard and4,000-node
-file/find fixtures pass local Chromium/Firefox and await native confirmation.
-Last full green remains d71c91e. Full quotas/retention, public Windows acceptance,
-raw browser/retry reliability, managed profiles, egress and other gates remain.
+Latest completed native `b6a91b9`: **814 test passes/two failures**, zero test
+skips/cancellations, plus Windows installed public-job verification failure before
+its browser suite. Wrapper39547086316:259/1; batch39547086295:555/1.
+All84 original tests per OS, Docker and all four durable component jobs pass.
+Held-pointer/canvas/released modifiers and4,000-node file/find/action cases now
+have native all-engine proof. Windows first public job fails at setup before any
+navigation, with confirmed process/temp cleanup and no operator attention. Cause
+is still unproven; current candidate adds a cleanup-gated short/deep private-layout
+probe and API-readable fixed receipt annotations. Azure artifact uploads work,
+but this host cannot download their blobs (403); full completed logs remain usable.
+Other failures: Windows raw Firefox headless stall/cleanup and macOS1,000-action
+synchronous MCP deadline after944 confirmed actions. Deadlines/count assertions
+remain unchanged. Raw final owned-server kill and phase fixtures pass their
+native cases; named-tab-context state isolation passes local Chromium/Firefox and
+awaits native proof. Last full green remains d71c91e. Full quotas/retention, public
+Windows execution, raw/retry/performance reliability, managed profiles, egress
+and other gates remain open.
 
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
