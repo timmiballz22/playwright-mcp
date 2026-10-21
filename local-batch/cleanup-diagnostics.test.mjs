@@ -80,4 +80,6 @@ test('client step failure receipts retain fixed taxonomy without private step fi
   assert.equal(stepFailureDiagnostic(null), null); assert.equal(stepFailureDiagnostic([]), null);
   const http = stepFailureDiagnostic({ index: 1, type: 'goto', error: 'http_404', failureKind: 'http_failure', httpStatus: 404 });
   assert.equal(http.httpStatus, 404);
+  const setup = stepFailureDiagnostic({ index: 0, type: 'setup', error: 'setup_failed', message: canary });
+  assert.deepEqual(JSON.parse(JSON.stringify(setup)), { index: 0, type: 'setup', error: 'setup_failed', failureKind: 'unknown' });
 });

@@ -3135,3 +3135,13 @@ selection because installed system libraries remain unavailable; the full native
 matrix executes WebKit. Four boundary/parent-lifecycle tests also pass, including
 the seeded valid/mutated JSON corpus and parent-loss cleanup. No deadlines or
 allowlists change. Evidence: http-response-policy/boundary-regression-node24.txt.
+
+## Preserve the existing setup sentinel in fixed client diagnostics
+
+The new step projection rejected legitimate result metadata index0/type setup/
+setup_failed, reducing it to unknown. A seeded metadata control reproduces the
+loss (4/5 tests pass before). Projection now preserves exactly the existing
+setup sentinel and fixed code; this does not add setup as a workflow action or
+modify any input/tool schema. Invalid/raw values and message fields still do not
+copy. Five diagnostic tests pass each Node20/22/24. Source-only receipt change;
+no browser/run deadline changes. Evidence: setup-diagnostic-*.
