@@ -34,7 +34,7 @@ if (!supportsJournal || process.platform === 'win32') {
   };
   try {
     await client.connect(transport);
-    assert.equal((await client.listTools()).tools.length, 5);
+    assert.equal((await client.listTools()).tools.length, 6);
     const input = { requestKey: 'production-key', workflow: { steps: [{ type: 'goto', url: origin }, { type: 'assertText', selector: '#ready', equals: 'ready' }] } };
     const first = await call('start_workflow', input);
     assert.equal((await call('start_workflow', input)).jobId, first.jobId);
@@ -42,7 +42,12 @@ if (!supportsJournal || process.platform === 'win32') {
     assert.equal(result.ready, true); assert.equal(result.job.state, 'SUCCEEDED');
     assert.equal(result.result.completed, 2); assert.equal(result.result.reportPath, undefined);
     assert.equal(navigations, 1);
-    console.log(JSON.stringify({ entry: 'local-batch/jobs-mcp.mjs', handshake: true, toolCount: 5, realBrowser: 'chromium', completed: 2, duplicateExecuted: false, production: true }));
+    const preview = await call('cleanup_workflows', { jobIds: [first.jobId] });
+    assert.equal(preview.results[0].dryRun, true); assert.ok(preview.results[0].files >= 1);
+    assert.equal((await call('cleanup_workflows', { jobIds: [first.jobId], dryRun: false })).results[0].removed, true);
+    assert.equal((await call('start_workflow', input)).jobId, first.jobId);
+    assert.equal(navigations, 1);
+    console.log(JSON.stringify({ entry: 'local-batch/jobs-mcp.mjs', handshake: true, toolCount: 6, realBrowser: 'chromium', completed: 2, duplicateExecuted: false, production: true }));
   } finally {
     let clean = false;
     try {

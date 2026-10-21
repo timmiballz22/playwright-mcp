@@ -1,4 +1,4 @@
-// Internal trusted source API. Public MCP/CLI job configuration is not implemented.
+// Trusted controller; optional public MCP configuration lives in config.mjs.
 import { fork } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -7,6 +7,7 @@ import { JobJournal, JournalError } from './journal.mjs';
 import { captureWorkflow } from './workflow-snapshot.mjs';
 import { navigationRetryPolicy } from '../navigation-retry.mjs';
 import { validateExecutionPolicy } from '../policy.mjs';
+import { cleanupJobArtifacts } from './artifact-cleanup.mjs';
 const terminal = new Set(['SUCCEEDED', 'FAILED', 'CANCELLED', 'TIMED_OUT', 'CRASHED']);
 
 export class JobController {
@@ -88,6 +89,24 @@ export class JobController {
   status(id) { return this.request('read', { id }); }
   result(id) { return this.request('result', { id }); }
   list(limit = 20) { return this.request('list', { limit }); }
+  cleanup(id, dryRun = true) {
+    if (this.closed) return Promise.reject(new JournalError('controller_closed'));
+    if (typeof dryRun !== 'boolean') return Promise.reject(new JournalError('invalid_metadata'));
+    return this.serialize(async () => {
+      try {
+        const row = await this.journal.call('read', { id });
+        if (!terminal.has(row.state)) throw new JournalError('not_terminal');
+        if (row.operatorAttentionRequired) throw new JournalError('cleanup_blocked');
+        if (!row.resultAvailable) {
+          if (row.completionCertainty !== 'exact' || row.completed !== 0 || row.state === 'SUCCEEDED') throw new JournalError('cleanup_blocked');
+          return { dryRun, files: 0, bytes: 0, removed: false, alreadyAbsent: true };
+        }
+        const summary = await this.journal.call('result', { id });
+        if (!summary.runId && !summary.execution) return { dryRun, files: 0, bytes: 0, removed: false, alreadyAbsent: true };
+        return await cleanupJobArtifacts({ base: this.execution.artifactsDir, runId: summary.runId, dryRun });
+      } catch (error) { this.unavailable(error); throw error; }
+    });
+  }
   async cancel(id) {
     const row = await this.request('cancel', { id });
     if (terminal.has(row.state)) this.inputs.delete(id);

@@ -38,6 +38,7 @@ write sandbox. DNS rebinding and OS-level egress restrictions remain unfinished.
 | `get_workflow_result` | Returns bounded result and readiness; optional `waitMs` is 0–10000. Canceling this lookup does not cancel the job. |
 | `cancel_workflow` | Persists cancellation intent; cleanup precedes confirmed terminal completion. Repeated calls are safe. |
 | `list_workflows` | Returns up to 20 recent authorized records. |
+| `cleanup_workflows` | Previews artifacts for 1–10 unique `jobIds`; optional `dryRun: false` removes them. Only authorized terminal jobs with confirmed cleanup qualify. |
 
 Workflow syntax matches [LOCAL_BATCH.md](LOCAL_BATCH.md). Owner, project,
 origins, filesystem paths and permissions cannot be overridden by these tools.
@@ -52,6 +53,22 @@ retains the project lease and requires operator attention.
 Local acceptance covers an actual 1,000-action Chromium job, duplicate starts,
 foreign-owner denial, cancellation, EOF cancellation and reconnect without replay.
 Installed-package acceptance additionally exercises a real two-action job.
-Native acceptance for this new adapter is pending. Cleanup tools, job CLI commands,
+Native acceptance for this new adapter is pending. Job CLI commands,
 retention, full disk/browser quotas, profiles, Windows ACLs and the remaining
 master-prompt gates are unfinished. Do not prune journal records to reuse keys.
+
+Cleanup retains durable job records, request-key deduplication and safe result
+summaries; it does not free history capacity or make an old key reusable. Opaque
+report IDs in retained summaries do not guarantee a report file still exists.
+Each execution tree is fully scanned before mutation: at most 2,048 entries,
+eight directory levels and 512 MiB. Symlinks, hardlinked files, special files and
+foreign-owned entries fail closed. These are cleanup bounds, not enforced write
+quotas. Deletion uses individual unlink/rmdir operations, never recursive removal.
+
+Cleanup returns per-job outcomes and can partially complete across jobs or after
+an I/O error. Repeated calls safely continue or report an already absent scope.
+Canceling a cleanup request stops between jobs; a current bounded filesystem scan
+or deletion finishes first. It never kills processes, deletes journal records or
+attempts cleanup of uncertain executions. Local configuration and files must not
+be changed concurrently by another program running as the same OS user; this is
+not a filesystem isolation boundary against that user.

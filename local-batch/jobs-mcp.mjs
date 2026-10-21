@@ -16,9 +16,10 @@ const definitions = [
   { name: 'get_workflow_status', description: 'Read authorized job state, confirmed progress and safe milestones.', inputSchema: schema({ jobId: idSchema }, ['jobId']) },
   { name: 'get_workflow_result', description: 'Read bounded job result. Optional waitMs waits at most ten seconds. No replay or automatic resume.', inputSchema: schema({ jobId: idSchema, waitMs: { type: 'integer', minimum: 0, maximum: 10000 } }, ['jobId']) },
   { name: 'cancel_workflow', description: 'Persist cancellation intent for an authorized job. Terminal cancellation follows owned cleanup; repeated calls are safe.', inputSchema: schema({ jobId: idSchema }, ['jobId']) },
+  { name: 'cleanup_workflows', description: 'Preview or remove artifacts of up to ten authorized terminal jobs with confirmed cleanup. Dry run defaults true. Durable request keys and result summaries are retained. Per-job outcomes allow partial completion.', inputSchema: schema({ jobIds: { type: 'array', minItems: 1, maxItems: 10, uniqueItems: true, items: idSchema }, dryRun: { type: 'boolean', default: true } }, ['jobIds']) },
   { name: 'list_workflows', description: 'List at most twenty recent jobs for the configured local owner/project.', inputSchema: schema({ limit: { type: 'integer', minimum: 1, maximum: 20 } }, []) },
 ];
-const codes = new Set(['not_found', 'queue_full', 'history_full', 'idempotency_conflict', 'controller_busy', 'cleanup_blocked', 'journal_busy', 'journal_unavailable', 'storage_full', 'controller_closed', 'request_cancelled']);
+const codes = new Set(['not_found', 'queue_full', 'history_full', 'idempotency_conflict', 'controller_busy', 'cleanup_blocked', 'journal_busy', 'journal_unavailable', 'storage_full', 'controller_closed', 'request_cancelled', 'not_terminal', 'unsafe_artifacts', 'cleanup_limit']);
 const response = (value, isError = false) => ({ isError, content: [{ type: 'text', text: JSON.stringify(value) }] });
 const dto = job => ({ ...job, progressPercent: job.total ? Math.floor(job.completed / job.total * 100) : 0 });
 function argumentsOf(name, value) {
@@ -27,7 +28,8 @@ function argumentsOf(name, value) {
   const args = value ?? {};
   if (!args || typeof args !== 'object' || Array.isArray(args) || Object.keys(args).some(key => !Object.hasOwn(definition.inputSchema.properties, key)) || definition.inputSchema.required.some(key => !Object.hasOwn(args, key))) throw new TypeError('invalid_arguments');
   if (name === 'start_workflow' && (typeof args.requestKey !== 'string' || !args.requestKey.length || args.requestKey.length > 128)) throw new TypeError('invalid_arguments');
-  if (name !== 'start_workflow' && name !== 'list_workflows' && (typeof args.jobId !== 'string' || !new RegExp(idSchema.pattern).test(args.jobId))) throw Object.assign(new Error(), { code: 'not_found' });
+  if (name === 'cleanup_workflows' && (!Array.isArray(args.jobIds) || !args.jobIds.length || args.jobIds.length > 10 || new Set(args.jobIds).size !== args.jobIds.length || args.jobIds.some(id => typeof id !== 'string' || !new RegExp(idSchema.pattern).test(id)) || args.dryRun !== undefined && typeof args.dryRun !== 'boolean')) throw new TypeError('invalid_arguments');
+  if (name !== 'start_workflow' && name !== 'list_workflows' && name !== 'cleanup_workflows' && (typeof args.jobId !== 'string' || !new RegExp(idSchema.pattern).test(args.jobId))) throw Object.assign(new Error(), { code: 'not_found' });
   if (args.limit !== undefined && (!Number.isInteger(args.limit) || args.limit < 1 || args.limit > 20) || args.waitMs !== undefined && (!Number.isInteger(args.waitMs) || args.waitMs < 0 || args.waitMs > 10000)) throw new TypeError('invalid_arguments');
   return args;
 }
@@ -58,6 +60,15 @@ async function main() {
         const job = await controller.start(args.workflow, args.requestKey);
         if (extra.signal.aborted) await controller.cancel(job.jobId);
         return response(dto(await controller.status(job.jobId)));
+      }
+      if (name === 'cleanup_workflows') {
+        const results = [];
+        for (const jobId of args.jobIds) {
+          if (extra.signal.aborted) break;
+          try { results.push({ jobId, ok: true, ...await controller.cleanup(jobId, args.dryRun ?? true) }); }
+          catch (error) { results.push({ jobId, ok: false, code: codes.has(error?.code) ? error.code : 'cleanup_failed' }); }
+        }
+        return response({ results, interrupted: extra.signal.aborted });
       }
       if (name === 'get_workflow_status') return response(dto(await controller.status(args.jobId)));
       if (name === 'cancel_workflow') return response(dto(await controller.cancel(args.jobId)));

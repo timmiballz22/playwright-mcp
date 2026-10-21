@@ -1062,3 +1062,33 @@ owned processes, zero active afterward, terminal cancellation, released lease an
 journal integrity. Preview fixture cleanup now independently audits trusted process
 handles and preserves private directories if cleanup cannot be confirmed; HTTP
 fixtures close even when the audit fails. Evidence:jobs-preview-*.txt.
+
+### 2026-10-21 — bounded terminal artifact cleanup (native pending)
+
+Added sixth preview tool cleanup_workflows:1–10 authorized job IDs, dryRun true
+by default, explicit false removes only the execution scope from the persisted
+safe result. Active/uncertain jobs and expired results without proof of no start
+are refused before filesystem access. Existing records and keys remain durable;
+cleanup never authorizes process killing or workflow replay.
+
+A complete bounded tree scan precedes deletion (2048 entries/eight directory
+levels/512MiB); private canonical base, current ownership, no symlinks, hardlinks
+or special files. Individual unlink/rmdir only; no recursive rm. Per-job results
+allow honest partial completion/retry after an I/O error. Request cancellation
+stops between jobs, not during one filesystem operation. Same-UID concurrent
+filesystem mutation is outside this local trust boundary; full quotas/retention
+and uncertain-scope operator remediation remain unfinished.
+
+Before implementation the cleanup contract test failed missing-module. After:
+3 focused tests pass including preview/delete/repeat, unsafe links and bounds,
+and controller active/uncertain/expired-result guards. Live preview suite4 passes
+including exact1000 Chromium actions, foreign cleanup denial, active-job refusal,
+dry run, actual deletion and repeated deletion; the same key still returns the
+same durable job and1000-action summary afterward. Controller/guardian/cleanup
+regression17 passes. Fresh104-file installed package discovers6 preview tools,
+executes and cleans real Chromium artifacts without duplicate navigation, and
+passes original/batch/CLI/controller/guardian/storage/SIGKILL zero-active audits.
+No failures/skips/cancellations in these local suites. Evidence jobs-cleanup-*.
+Prior ee54674 native CI remains in progress; this change has no native claim yet.
+NEXT: finish native inspection and public jobs CLI; Windows ACL/profile/quota/
+egress and other master gates remain open. Full goal is not complete.

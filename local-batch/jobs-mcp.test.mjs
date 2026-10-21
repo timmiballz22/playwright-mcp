@@ -35,7 +35,7 @@ if (supportsJournal && process.platform !== 'win32') test('preview stdio jobs: d
   try {
     const client = await open();
     const discovery = await client.listTools();
-    assert.deepEqual(discovery.tools.map(tool => tool.name).sort(), ['start_workflow', 'get_workflow_status', 'get_workflow_result', 'cancel_workflow', 'list_workflows'].sort());
+    assert.deepEqual(discovery.tools.map(tool => tool.name).sort(), ['start_workflow', 'get_workflow_status', 'get_workflow_result', 'cancel_workflow', 'cleanup_workflows', 'list_workflows'].sort());
     const denied = await call(client, 'start_workflow', { requestKey: 'denied', workflow: { steps: [{ type: 'click', selector: 'button' }] } });
     assert.equal(denied.isError, true);
     assert.deepEqual((await call(client, 'list_workflows', {})).jobs, []);
@@ -47,7 +47,8 @@ if (supportsJournal && process.platform !== 'win32') test('preview stdio jobs: d
     let row;
     const end = performance.now() + 10000;
     do { row = await call(client, 'get_workflow_status', { jobId: first.jobId }); if (row.completed === 1) break; await new Promise(resolve => setTimeout(resolve, 25)); } while (performance.now() < end);
-    assert.equal(row.state, 'RUNNING'); assert.equal(row.completed, 1);
+    assert.equal(row.state, 'RUNNING');
+    assert.equal((await call(client, 'cleanup_workflows', { jobIds: [first.jobId], dryRun: false })).results[0].code, 'not_terminal'); assert.equal(row.completed, 1);
     const foreign = await open(randomUUID());
     assert.equal((await call(foreign, 'get_workflow_status', { jobId: first.jobId })).code, 'not_found');
     const queued = await call(client, 'start_workflow', { requestKey: 'queued', workflow });
@@ -89,6 +90,17 @@ if (supportsJournal && process.platform !== 'win32') test('preview stdio jobs: d
     assert.equal(largeResult.result.completed, 1000);
     assert.equal(largeResult.result.recentSteps.length, 10);
     assert.equal(largeResult.result.reportPath, undefined);
+    const preview = await call(writer, 'cleanup_workflows', { jobIds: [large.jobId] });
+    assert.equal(preview.results[0].ok, true); assert.equal(preview.results[0].dryRun, true); assert.ok(preview.results[0].files >= 1);
+    const cleaned = await call(writer, 'cleanup_workflows', { jobIds: [large.jobId], dryRun: false });
+    assert.equal(cleaned.results[0].removed, true);
+    assert.equal((await call(writer, 'cleanup_workflows', { jobIds: [large.jobId], dryRun: false })).results[0].alreadyAbsent, true);
+    assert.equal((await call(foreign, 'cleanup_workflows', { jobIds: [large.jobId], dryRun: false })).results[0].code, 'not_found');
+    assert.equal((await call(writer, 'start_workflow', { requestKey: '1000-actions', workflow: { timeoutMs: 120000, steps: [
+      { type: 'goto', url: origin }, { type: 'click', selector: { role: 'button', name: 'Add' }, repeat: 997 },
+      { type: 'assertText', selector: 'output', equals: '997' }, { type: 'assertURL', url: origin + '/' },
+    ] } })).jobId, large.jobId);
+    assert.equal((await call(writer, 'get_workflow_result', { jobId: large.jobId })).result.completed, 1000);
   } finally {
     await Promise.allSettled(clients.map(client => client.close()));
     let clean = false;
