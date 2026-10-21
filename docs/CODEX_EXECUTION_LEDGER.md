@@ -4241,3 +4241,8 @@ controller-death audits activeOwned0; source/runtime unchanged afterward.
 Lint/diff pass. unreported-real-worker-* retains both before receipts and final
 proof; production/native proof of the final runtime correction is scoped as
 above. Native verification remains pending.
+
+Production dependency advisory check at9471ee6: npm audit --omit=dev --json
+exits0, registry reports0 known advisories at every severity. Lockfile hash and
+exact metadata in runtime-audit-current.json. No dependency changes or automatic
+fixes. This advisory snapshot does not establish absence of code vulnerabilities.
