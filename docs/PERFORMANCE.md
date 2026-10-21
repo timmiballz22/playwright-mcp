@@ -55,3 +55,39 @@ collected. No access controls were changed. Evidence:
 evidence/supervised-soak-inprocess-rss-failed.txt and the earlier fail-closed
 permission discovery evidence/supervised-soak-proc-fd-denied.txt. These are scripted
 source-boundary measurements, not MCP or model-token comparisons.
+
+Separated-observer control, same source executor/alpha browser dependency, Linux
+and Node24.19.0, same 100 fresh Chromium workflows and unchanged thresholds:
+
+| Measurement | Observed |
+|---|---:|
+| Completed workflows / browser actions | 100 / 400 |
+| Total wall time, including instrumentation | 78,922ms |
+| Median / p95 supervised run duration | 728 / 807ms |
+| Subject frontend CPU | 384ms |
+| Observer CPU, excluding ps helper CPU | 4,839ms |
+| Sampled owned-tree CPU lower bound | 70,570ms |
+| Peak sampled summed owned-tree RSS | 551,383,040 bytes |
+| Peak sampled owned processes | 8 |
+| Subject descriptors, baseline / final | 24 / 24 |
+| Subject post-warmup median RSS growth | 1,310,720 bytes |
+| RSS / descriptor growth budgets | 33,554,432 bytes / 4 |
+| Active owned descendants after every run | 0 |
+
+The subject uses normal Node heap defaults with no forced GC. The same 32MiB
+RSS/4-descriptor thresholds now pass when profiler allocations are outside the
+measured frontend. This supports instrumentation contamination as the cause of
+the initial RSS failure; it does not erase that result or prove every workload
+leak-free. scripts/soak-supervised.mjs forks scripts/soak-subject.mjs, which waits
+for independent observer cleanup audits between runs. Both signal/disconnect
+paths are bounded; private diagnostic roots are retained on uncertain cleanup.
+
+Raw evidence: evidence/supervised-soak-separated-100.txt. Browser descriptor
+coverage remains partial (27 process identities denied), not PASS for full tree
+FD measurement. RSS sums double-count shared pages; 50ms sampling misses peaks
+and short-lived CPU. The observer adds overhead and its ps helpers are not included
+in the reported process CPU totals. Process audits exclude zombies; host-init
+reaping is distinct from active owned processes. This is Linux source execution,
+not an MCP, CLI/SKILLS, model-token, cross-OS or upgraded-driver benchmark. G12
+remains IN PROGRESS. The active driver dependency must be reidentified after any
+subsequent upgrade; these numbers describe the alpha engine baseline only.

@@ -1,0 +1,26 @@
+✖ internal job controller guardian-crash (662.264645ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 738.021574
+
+✖ failing tests:
+
+test at local-batch/jobs/controller.test.mjs:20:3
+✖ internal job controller guardian-crash (662.264645ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/controller.test.mjs:79:13)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { code: 'cleanup_blocked' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
