@@ -2,24 +2,25 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening; last pushed de9c924. Native58 complete:
-CI39654189022 FAILURE437/3; batch39654188940 FAILURE1,197/6. Combined1,634 passes/
-nine failed tests; all three actual Codex clients complete1k/zero-model actions.
-All17 executed jobs conclude; functional_soak intentionally skipped, zero reported
-test skips/cancellations or job cancellations. All five173-file installs pass;
-components85/85 (Windows86) include the temporary-helper fix natively.
+Branch feat/local-production-hardening; last pushed4cfaf68. Native59 complete:
+CI39657708430 FAILURE432/2; batch39657709427 FAILURE901/4. Combined1,333 reported
+passes/six failed tests PLUS two separate Windows/macOS installed-package failures.
+Their main browser suites are unexecuted. All17 executed jobs conclude; one
+intentional soak skip, no reported test skips/cancellations or job cancellations.
+All three actual Codex1k clients pass with zero observed owned processes.
 
-Later local candidate bounds artifact-helper receipts and adds512MiB default
-durable retained logical-byte admission before browser launch. Final runtime96/96
-components each Node22/24,174-file install, normal/linger independent death audits,
-lint and public jobs1k test2/2 Node22 pass. Additional entry-boundary test makes
-quota file9/9 each Node22/24,8/8 Node20 (SQLite case not registered). Native58
-predates these changes; next matrix should verify97 components (Windows98).
+Local candidate moves live-browser quota recovery into the browser-installed suite,
+adds operator quota configuration and accepts checked normal host path aliases.
+Final components97/97 Node22/24 with no browsers, Node22 targeted16/16, Node24
+quota/browser13/13, fresh174-file install and both independent death audits pass.
+Overlapping Node20 group13/14 missed the1.5s stalled-scan witness; no budgets changed,
+CI-style isolated serialized14/14 passes. Preserve that setup sensitivity.
+HTTP fixture now retains fixed request/response/startup timings; no runtime change.
 
-**Not release-ready. NEXT ACTION: push candidate, inspect native59.**
-Managed reset, automatic retention/operator repair, hard OS resource bounds,
-graphical annotation and remaining feature acceptance stay open. All failed
-scopes and earlier ownership observations remain unresolved unless evidenced.
+**Not release-ready. NEXT ACTION: push candidate and inspect native60.**
+Latest source remains incompatible with normal Windows/macOS raw temp paths until
+the proposed fix is natively verified. Managed reset, automatic retention/repair,
+hard OS resource bounds, graphical annotation and browser reliability stay open.
 
 ## Historical checkpoints
 
@@ -190,25 +191,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 discovery,six schemas; native57 fully logged1,601/6 plus macOS Codex954 timeout | Final clean same-SHA whole acceptance |
-| G01 INSTALL | IN PROGRESS | native57 all five173-file installs pass; local cleanup candidate fresh173 pass; prior intermittent install failures retained | Final native candidate and clean operator walkthroughs |
-| G02 MCP | FAILED | native57 actual Codex Linux/Windows1k pass, macOS954 timeout; bounded waits/wire tests pass | Diagnose native latency within existing deadlines; no model-token claim |
-| G03 FEATURE PARITY | IN PROGRESS | native57 wrapper435/2; macOS Firefox trusted/storage failures; modal step unexecuted,72 schemas; prior intermittent failures unresolved | Interactive annotation/debugger and remaining parameter/negative review |
+| G00 BASELINE | IN PROGRESS | native59 fully logged1,333/6 plus two install failures;25/72 discovery and six schemas | Final clean same-SHA whole acceptance |
+| G01 INSTALL | FAILED | native59 three Linux174-file installs pass, Windows/macOS internal controller fail; local checked host-path candidate174 pass | Native normal-temp path correction and operator walkthroughs |
+| G02 MCP | FAILED | native59 actual Codex1k all OS pass; earlier macOS deadline failures unresolved | Final candidate reliability within unchanged deadlines |
+| G03 FEATURE PARITY | IN PROGRESS | native59 wrapper432/2: macOS Chromium screenshot error and Windows Firefox large-DOM timeout; extra modal/legacy unexecuted | Interactive annotation/debugger and remaining negatives; diagnose native errors |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs,jobs-mcp.test.mjs; native8d661bf source batch/jobs1,000 all OSs; actual Codex macOS timeout/raw throughput stay G02/G10/G12 | Preserve exact action/DOM counters; broader browser reliability stays G10 |
-| G05 RETRIES | IN PROGRESS | native57 retry cases pass; prior Firefox/Chromium timeout controls retained; no POST replay | Establish final native reliability, preserve minimum Retry-After and deadlines |
-| G06 JOBS | FAILED | native57 components78/79 pass, macOS public jobs987/Codex954 timeout; local durable report-failure dedup proves POST once | Diagnose latency/old process observations; native anchor verification |
+| G05 RETRIES | IN PROGRESS | native59 Linux retry scopes pass; Windows/macOS main unexecuted; native58 Firefox positive retry timeout retained | Final native reliability, preserve Retry-After and no POST replay |
+| G06 JOBS | FAILED | native59 component96/1 each (Windows97/1), browser-required positive case misplaced; actual Codex1k all OS pass | Native browser-free component correction, normal-temp install and reliability |
 | G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | native57 report cap/maintenance cases pass; local bounded cleanup receipts and173-file install pass | Cumulative quota, scheduled retention/operator repair; native report cap |
+| G08 STORAGE | FAILED | local512MiB retained admission, bounded helpers, host config/path checks and174-file install; native59 exposes raw-temp incompatibility | Native quota/path correction, automatic retention/operator repair, comprehensive bounds |
 | G09 AUTH/PROFILES | FAILED | coalesced close14/14 Node20/22/24, real Chromium/Firefox parity2/2; native prior session restore | Managed profiles/reset, Windows ACLs and crash repair; annotation dashboard lifecycle separate |
-| G10 CROSS-BROWSER | FAILED | native57 Windows raw Firefox2 failures, macOS raw978/jobs987 deadlines and original Firefox2 failures | Diagnose runtime failures, keep actions/thresholds strict |
-| G11 CROSS-OS | FAILED | native57 five installs/all components pass; macOS original/Codex/main and Windows main fail | Complete green final native SHA required |
+| G10 CROSS-BROWSER | FAILED | native59 original macOS Chromium screenshot/Windows Firefox DOM errors; both main browser suites unexecuted after install failure | Preserve strict counters/budgets and diagnose provider failures |
+| G11 CROSS-OS | FAILED | native59 Windows/macOS installed internal controller fails; all native component jobs fail misplaced browser case | Final candidate must pass whole native matrix |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md; independent100-run resource soak and3 fresh samples/mode at1100e3c | Cross-OS/CLI-SKILLS repeated resource and token measurements remain; no billing claim |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,worker-ci-fiftyseventh-*,temp-stop-*,artifact-receipt-*,report-byte-* | Keep phase/SHA, truncated/unexecuted/negative controls exact |
-| G18 CLEAN MERGE | FAILED | Draft PR2; native57 wrapper/batch failed; native58 active at de9c924; last full prior gate matrix d71c91e(14 jobs) | Resolve critical gaps; final whole green SHA before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-fiftyninth-*,retained-path-*,retained-config-*,http-timing-* | Keep phase/SHA, failed/inconclusive/unexecuted controls exact |
+| G18 CLEAN MERGE | FAILED | Draft PR2; native59 wrapper/batch failed; last full prior matrix d71c91e(14 jobs) | Resolve critical gaps; final whole green SHA before merge/release |
 
 ## Defects and risk register
 
@@ -3905,3 +3906,26 @@ or assertion changed. After other local browser work exits, CI-style serialized
 Node20 group14/14 passes; this is scoped load isolation, not a source fix or reason
 to erase the earlier failure. Evidence retained-path-* preserves both runs.
 Next native components expected97/98, with positive quota case in browser suite.
+
+## Native59 at4cfaf68 — complete, not green
+
+Wrapper432/2: Linux144/0, macOS143/1, Windows143/1, Docker2/0. macOS original
+highlight capture fails Page.captureScreenshot (Unable to capture screenshot),
+not its paint/hide assertion. Windows original Firefox large-DOM snapshot file
+workflow exceeds30s at snapshot call and reports target closed. Extra macOS modal
+and Windows legacy steps are unexecuted after main failure; do not count them.
+
+Batch901/4: components96/1 Linux22/24/macOS and97/1 Windows. The sole failed case
+requires a real browser in intentionally browser-free jobs; local controlled
+absence reproduces it and the browser-suite move is tested, pending native proof.
+Linux main22/24 each173/0, Linux20 170/0. Three Linux174-file installs pass.
+Windows/macOS installs pass public jobs CLI/MCP then fail internal raw-temp
+controller smoke; their main browser suites never run. Two install failures are
+separate from failed unit counts. Local normal-path alias correction is proposed,
+not retrospectively counted as native success.
+
+Actual Codex1k/zero-model clients pass: Linux36.335s, Windows39.325s, macOS103.990s,
+all observed owned0. macOS install-failure transport comparison server times out990
+at120.026s, pipe1k99.467s with1 captured/spawned/exited owned handle; both audit0.
+No default transport change or blanket performance claim. Exact selected logs,
+counts and conclusions: worker-ci-fiftyninth-*.

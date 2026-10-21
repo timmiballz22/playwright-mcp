@@ -1,12 +1,12 @@
 # Mandatory scenario evidence
 
-Current checkpoint: native58 at de9c924 completed with1,634 reported passes/nine
-failed tests. All three actual Codex1k clients and five173-file installs pass;
-wrapper437/3 and batch1,197/6 still fail. Later local artifact-receipt and retained
-quota changes are not assigned those native results. The local final runtime
-passes96 components each Node22/24,174-file installation and public jobs1k; the
-additional entry-boundary control passes9 quota cases Node22/24 (8 Node20).
-See CODEX_EXECUTION_LEDGER.md for exact phase/SHA receipts and current blockers.
+Current checkpoint: native59 at4cfaf68 reports1,333 passes/six failed tests,
+plus two separate Windows/macOS installed-package failures that prevent their main
+suites from running. All three actual Codex1k clients pass. Local browser-free
+component correction and normal-host-path handling pass97/97 Node22/24 components
+and174-file installation; native proof pending. Node20 overlapping stalled-scan
+witness miss remains failed/inconclusive despite isolated serialized success.
+See CODEX_EXECUTION_LEDGER.md for exact phase/SHA evidence and current blockers.
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a
 Windows production-install failure that prevents its main browser suite from
