@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: known main GET 401 fails precisely even when document readiness never settles
+ok 1 - known main GET 401 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 9.606181
+  ...
+# Subtest: known main GET 403 fails precisely even when document readiness never settles
+ok 2 - known main GET 403 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 1.879068
+  ...
+# Subtest: known main GET 404 fails precisely even when document readiness never settles
+ok 3 - known main GET 404 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 2.254867
+  ...
+# Subtest: known main GET 429 fails precisely even when document readiness never settles
+ok 4 - known main GET 429 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 1.429084
+  ...
+# Subtest: known main GET 503 fails precisely even when document readiness never settles
+ok 5 - known main GET 503 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 2.559857
+  ...
+# Subtest: HTTP error outside the current main GET does not become its navigation failure ({"main":false})
+ok 6 - HTTP error outside the current main GET does not become its navigation failure ({"main":false})
+  ---
+  duration_ms: 1.972632
+  ...
+# Subtest: HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"})
+ok 7 - HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"})
+  ---
+  duration_ms: 3.586471
+  ...
+# Subtest: known HTTP failure waits for the configured retry attempts before failing without DOM readiness
+ok 8 - known HTTP failure waits for the configured retry attempts before failing without DOM readiness
+  ---
+  duration_ms: 355.322743
+  ...
+# Subtest: observed cancellation keeps precedence over a newly available HTTP failure
+ok 9 - observed cancellation keeps precedence over a newly available HTTP failure
+  ---
+  duration_ms: 2.922091
+  ...
+# Subtest: early HTTP known projection preserves timeout and fixed validated facts
+ok 10 - early HTTP known projection preserves timeout and fixed validated facts
+  ---
+  duration_ms: 2991.191714
+  ...
+# Subtest: early HTTP bad_status projection preserves timeout and fixed validated facts
+ok 11 - early HTTP bad_status projection preserves timeout and fixed validated facts
+  ---
+  duration_ms: 2983.845411
+  ...
+# Subtest: early HTTP bad_retry projection preserves timeout and fixed validated facts
+ok 12 - early HTTP bad_retry projection preserves timeout and fixed validated facts
+  ---
+  duration_ms: 2996.266968
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9524.229855

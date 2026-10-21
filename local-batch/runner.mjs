@@ -348,11 +348,11 @@ export async function runWorkflow(workflow, {
           const httpFailure = ['rate_limited', 'http_401', 'http_403', 'http_404', 'http_4xx', 'http_5xx'].includes(error?.safeCode);
           const safeError = cancelled ? 'cancelled' : timedOut ? 'timeout' : httpFailure ? error.safeCode : 'action_failed';
           const failureKind = resourceExceeded ? 'page_quota' : cancelled || timedOut ? 'interrupted' : classifyActionFailure(error, step);
-          try { onActionFailure?.(error, { index, type: step.type, error: safeError, failureKind }, page); } catch {}
+          const httpDetails = httpFailure ? { httpStatus: error.httpStatus, ...(error.retryAfterMs !== undefined ? { retryAfterMs: error.retryAfterMs } : {}) } : {};
+          try { onActionFailure?.(error, { index, type: step.type, error: safeError, failureKind, ...httpDetails }, page); } catch {}
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: false, durationMs: Math.round(performance.now() - start),
-            error: safeError, failureKind,
-            ...(httpFailure ? { httpStatus: error.httpStatus, ...(error.retryAfterMs !== undefined ? { retryAfterMs: error.retryAfterMs } : {}) } : {}) });
+            error: safeError, failureKind, ...httpDetails });
           break outer;
         }
       }

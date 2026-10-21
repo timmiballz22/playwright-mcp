@@ -108,3 +108,10 @@ handling. None of these observations grants permission to release an uncertain
 lease, retry a signal with broader authority, or replay workflow actions.
 `browser_ownership_unconfirmed` marks an unexpected worker exit with neither a
 final receipt nor any browser ownership receipt; cleanup stays failed.
+
+If an HTTP error is observed before cleanup/reporting exhausts the workflow budget,
+the overall result still returns `timeout`. Its early failed-step receipt retains
+the already observed `httpStatus` and bounded numeric `retryAfterMs`; the reason is
+not changed to a successful/HTTP-only outcome. Supervisor projection admits only
+navigation error statuses400–599 and integer delays0–86400000, discarding other
+fields and invalid types. These existing optional fields do not make retries safe.

@@ -4108,3 +4108,22 @@ fixed error class is added locally rather than guessing a missing-group fix.
 Failure-only pipe-first1k87.029s/server1k119.383s both pass with owned0, pipe handle
 1 captured/spawned/exited; they do not erase the failed client or imply a default
 transport switch. Full selected steps/counts/jobs: worker-ci-sixtyfirst-*.
+
+## Early HTTP facts during timeout — local correction after456a141
+
+Native61's Windows /403 failure supplied a safe typed step error before cleanup
+but lost its numeric status when the overall deadline won. The runner now adds
+the existing numeric HTTP fields to its early callback; the supervisor accepts
+only goto status400–599 and safe integer retry delay0–86400000. Unknown fields,
+string status/retry values and a fake secret are discarded. Timeout, zero
+confirmed actions and retrySafe:false retain their original precedence. No new
+report field names, retries, workflow deadlines or cleanup budgets are introduced.
+
+Before:4/10 pass,6 fail (five missing callback statuses and one missing IPC status).
+Intermediate:10/10 on Node24 before invalid-field cases were added. Final focused
+12/12 each Node20.20.2,22.23.3,24.19.0; final components102/102 each22/24, no skips
+or cancellations. Lint/diff checks pass. Fresh production installation passes all
+entrypoints, real Chromium and two controller-death audits with activeOwned0;
+tarball175 files. Private fault/test remain checkout-only. http-early-* receipts
+preserve the negative, intermediate and final phases. Native62 runs456a141 and
+does not include this change; cross-platform verification remains pending.

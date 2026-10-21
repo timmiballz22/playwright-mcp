@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: known main GET 401 fails precisely even when document readiness never settles
+ok 1 - known main GET 401 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 7.461973
+  type: 'test'
+  ...
+# Subtest: known main GET 403 fails precisely even when document readiness never settles
+ok 2 - known main GET 403 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 2.201849
+  type: 'test'
+  ...
+# Subtest: known main GET 404 fails precisely even when document readiness never settles
+ok 3 - known main GET 404 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 1.215152
+  type: 'test'
+  ...
+# Subtest: known main GET 429 fails precisely even when document readiness never settles
+ok 4 - known main GET 429 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 0.906056
+  type: 'test'
+  ...
+# Subtest: known main GET 503 fails precisely even when document readiness never settles
+ok 5 - known main GET 503 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 2.373184
+  type: 'test'
+  ...
+# Subtest: HTTP error outside the current main GET does not become its navigation failure ({"main":false})
+ok 6 - HTTP error outside the current main GET does not become its navigation failure ({"main":false})
+  ---
+  duration_ms: 3.266966
+  type: 'test'
+  ...
+# Subtest: HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"})
+ok 7 - HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"})
+  ---
+  duration_ms: 0.923288
+  type: 'test'
+  ...
+# Subtest: known HTTP failure waits for the configured retry attempts before failing without DOM readiness
+ok 8 - known HTTP failure waits for the configured retry attempts before failing without DOM readiness
+  ---
+  duration_ms: 349.80105
+  type: 'test'
+  ...
+# Subtest: observed cancellation keeps precedence over a newly available HTTP failure
+ok 9 - observed cancellation keeps precedence over a newly available HTTP failure
+  ---
+  duration_ms: 2.69873
+  type: 'test'
+  ...
+# Subtest: early HTTP known projection preserves timeout and fixed validated facts
+ok 10 - early HTTP known projection preserves timeout and fixed validated facts
+  ---
+  duration_ms: 2995.161094
+  type: 'test'
+  ...
+# Subtest: early HTTP bad_status projection preserves timeout and fixed validated facts
+ok 11 - early HTTP bad_status projection preserves timeout and fixed validated facts
+  ---
+  duration_ms: 2981.212886
+  type: 'test'
+  ...
+# Subtest: early HTTP bad_retry projection preserves timeout and fixed validated facts
+ok 12 - early HTTP bad_retry projection preserves timeout and fixed validated facts
+  ---
+  duration_ms: 3003.387489
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9476.664978

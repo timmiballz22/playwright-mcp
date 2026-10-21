@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const repository = fileURLToPath(new URL('../', import.meta.url));
 const files = new Set([
-  ...['journal', 'journal-stop', 'temporary-cleanup-stop', 'launch-ownership', 'artifact-cleanup-receipt', 'retained-artifact-budget', 'guardian', 'guardian-stop', 'guardian-diagnostic',
+  ...['journal', 'journal-stop', 'temporary-cleanup-stop', 'launch-ownership', 'http-early-metadata', 'artifact-cleanup-receipt', 'retained-artifact-budget', 'guardian', 'guardian-stop', 'guardian-diagnostic',
     'workflow-snapshot', 'controller', 'controller-open', 'contention', 'config',
     'private-windows', 'artifact-cleanup', 'artifact-cleanup-supervisor', 'retention',
     'maintenance', 'queue-clock', 'component-ci-reporter'].map(name => `local-batch/jobs/${name}.test.mjs`),

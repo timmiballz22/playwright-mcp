@@ -125,6 +125,11 @@ process.on('message', message => {
         FAILURE_KINDS.includes(event.failedStep.failureKind) && STEP_FAILURE_CODES.includes(event.failedStep.error)) {
       failedStep = { index: event.failedStep.index, type: event.failedStep.type, ok: false,
         error: event.failedStep.error, failureKind: event.failedStep.failureKind };
+      if (failedStep.type === 'goto' && Number.isInteger(event.failedStep.httpStatus) && event.failedStep.httpStatus >= 400 && event.failedStep.httpStatus <= 599) {
+        failedStep.httpStatus = event.failedStep.httpStatus;
+        if (Number.isSafeInteger(event.failedStep.retryAfterMs) && event.failedStep.retryAfterMs >= 0 && event.failedStep.retryAfterMs <= 86400000)
+          failedStep.retryAfterMs = event.failedStep.retryAfterMs;
+      }
       send({ type: 'actionFailure', failedStep, completed });
     } else if (event.type === 'result' && event.summary && typeof event.summary.ok === 'boolean') {
       candidate = event.summary;

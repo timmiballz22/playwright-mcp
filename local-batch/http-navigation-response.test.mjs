@@ -22,9 +22,10 @@ function fixture(status, { main = true, method = 'GET', pending = true, onFetch 
 
 for (const [status, code] of [[401, 'http_401'], [403, 'http_403'], [404, 'http_404'], [429, 'rate_limited'], [503, 'http_5xx']]) {
   test(`known main GET ${status} fails precisely even when document readiness never settles`, async () => {
-    const mock = fixture(status);
+    const mock = fixture(status); let earlyFailure;
     const result = await runWorkflow({ timeoutMs: 200, steps: [{ type: 'goto', url: 'http://127.0.0.1:4321/' }] },
-      { ...mock, allowedOrigins: ['http://127.0.0.1:4321'] });
+      { ...mock, allowedOrigins: ['http://127.0.0.1:4321'], onActionFailure: (_error, step) => { earlyFailure = step; } });
+    assert.equal(earlyFailure.httpStatus, status); assert.equal(earlyFailure.retryAfterMs, 0);
     assert.equal(result.reason, 'action_failed'); assert.equal(result.completed, 0);
     assert.equal(result.results[0].error, code); assert.equal(result.results[0].httpStatus, status);
     assert.equal(result.results[0].failureKind, 'http_failure');
