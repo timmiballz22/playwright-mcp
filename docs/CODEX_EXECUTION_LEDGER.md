@@ -1238,3 +1238,26 @@ cause here; no safe-mode, enterprise policy, sandbox or graphics workaround appl
 NEXT: native alias/parity/security verification; Windows driver/ACL/profile/quota/
 egress and other master gates remain open. Full goal incomplete; no publication
 or main merge.
+
+### 2026-10-21 — actual Codex jobs client, no model turns
+
+Added repeatable scripts/verify-codex-jobs.mjs. CodexCLI0.163.0 app-server with
+only temporary -c MCP configuration/ephemeral thread discovers all6 jobs tools.
+Primary start returns9ms; bounded result polls observe exactly1000 Chromium
+actions,997 real counter clicks and assertions. Duplicate keys never rerun;
+foreign registered owner gets not_found; dry-run/delete cleanup preserves keys.
+Separate actual active cancellation confirms1 action then CANCELLED without
+operator-attention uncertainty. Combined check35.623s,4 primary result polls,
+zero model turns/global config edits, zero active owned processes after client
+exit. Earlier primary-only pass34.164s retained; not a cross-OS/performance SLA.
+
+Script uses public app-server protocol, trusted owned child handles and bounded
+read-only process audit. It closes HTTP fixtures on failure and preserves private
+state if verification/cleanup is uncertain. Actual callback cleanup structure was
+tightened between the two runs; no runtime behavior change. Output now explicitly
+labels the cancellation job's separate confirmed count. Source method never
+starts a model turn; it is client/protocol acceptance, not agent delegation.
+Updated client setup to distinguish legacy batch from optional durable jobs and
+provide verified current Linux entrypoint paths. Native interactive Codex on
+Windows/macOS and remaining G00–G18 conditions stay open. Current pushed7e2c9cb
+native validation remains in progress; no release-ready claim.

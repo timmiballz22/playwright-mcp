@@ -53,7 +53,8 @@ retains the project lease and requires operator attention.
 Local acceptance covers an actual 1,000-action Chromium job, duplicate starts,
 foreign-owner denial, cancellation, EOF cancellation and reconnect without replay.
 Installed-package acceptance additionally exercises a real two-action job.
-Native acceptance for this new adapter is pending. Retention, full disk/browser quotas, profiles, Windows ACLs and the remaining
+Native Linux/macOS five-tool preview checks passed at ee54674; newer six-tool
+cleanup/CLI acceptance remains pending, including the macOS CLI alias fix. Retention, full disk/browser quotas, profiles, Windows ACLs and the remaining
 master-prompt gates are unfinished. Do not prune journal records to reuse keys.
 
 Cleanup retains durable job records, request-key deduplication and safe result
@@ -97,3 +98,10 @@ does not itself wait for terminal state. Cleanup defaults to dry run; `--delete`
 is explicit. Repeat `--job-id` for up to ten distinct cleanup targets. Request
 keys are required for start; generate a new key only for intentionally new work.
 Reusing a key still requires the workflow to pass the current operator policy.
+
+Actual CodexCLI0.163.0 app-server acceptance is repeatable with
+`node scripts/verify-codex-jobs.mjs /path/to/codex`. It discovers six tools and
+checks a1,000-action job, duplicate keys, owner isolation, terminal artifact cleanup
+and a separate active cancellation, with zero model turns and temporary config.
+See [MCP_CLIENT_SETUP.md](MCP_CLIENT_SETUP.md) and codex-jobs-client evidence for
+measured scope; this does not certify native conversational use.

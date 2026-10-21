@@ -49,9 +49,52 @@ Client/model quotas, machine limits and website rate limits still apply.
 
 For missing browsers install the matching pinned Playwright build from this
 checkout. For rejected requests inspect the locally configured origin list;
-do not let a page or model widen it automatically. Durable job IDs, reconnect
-execution and background daemon supervision are not available.
+do not let a page or model widen it automatically. The one-tool batch endpoint has no durable job IDs. The optional POSIX jobs
+preview below persists records; closing its controller cancels work, with no
+background daemon or automatic resume.
 
 The verified original endpoint explicitly selects managed Chromium. Without
 `--browser=chromium`, upstream defaults to branded Chrome, which may require a
 separate installation. Avoid assuming a managed Chromium download installs Chrome.
+
+## Optional POSIX jobs preview
+
+Node22.13+ is required. Windows startup fails closed until private ACL support
+exists. See [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md) for trusted configuration,
+default read-only policy, cancellation and bounded cleanup. A separate registered
+owner UUID identifies each local client; it is not same-OS-user authentication.
+
+```toml
+[mcp_servers.playwright_jobs]
+command = "node"
+args = ["/absolute/playwright-mcp/local-batch/jobs-mcp.mjs"]
+env = { PLAYWRIGHT_JOBS_OWNER_ID = "f2f119da-c36a-466a-af26-5fe8afcb0a65", PLAYWRIGHT_JOBS_PROJECT_DIR = "/absolute/approved-project", PLAYWRIGHT_JOBS_ALLOWED_ORIGINS = "http://127.0.0.1:3000" }
+```
+
+Replace paths/origin and generate a stable UUID for your registration; the UUID
+above illustrates format. Tool input cannot alter this configuration. Sensitive
+capture and browser mutation actions are disabled by default. Application state
+defaults to a private `~/.local/state/playwright-batch/jobs` directory; unsafe
+existing permissions are rejected without repair. Keep owner/project settings
+stable to inspect persisted jobs across reconnects; no work is replayed.
+
+Actual verified Linux source entrypoint:
+`/workspace/playwright-mcp/local-batch/jobs-mcp.mjs`, using Node at
+`/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node`.
+These paths describe this workspace, not another machine's installation.
+
+The repeatable real-client acceptance command is:
+
+```sh
+node scripts/verify-codex-jobs.mjs /opt/codex/bin/codex
+```
+
+Use your installed Codex executable (or omit the argument for PATH lookup). It
+serves an owned local fixture, uses temporary `-c` configuration and an ephemeral
+thread, starts no model turn, then audits cleanup. CodexCLI0.163.0 discovered all
+six tools, started the primary job in9ms, completed exactly1,000 actions through
+bounded result polls, denied a foreign owner and retained duplicate-key behavior
+after artifact deletion. A separate active job canceled after1 confirmed action.
+The combined check took35.623s and left zero active owned processes. It did not
+edit global MCP configuration. This is local Linux protocol evidence, not a native
+Windows/macOS conversational walkthrough, billing benchmark or release gate pass.
