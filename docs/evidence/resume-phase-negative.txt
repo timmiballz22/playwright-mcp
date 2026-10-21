@@ -1,0 +1,30 @@
+
+Running 1 test using 1 worker
+
+(node:690001) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"original_resume_failure","phase":"snapshot","confirmedCalls":3}
+{"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":3,"pending":0,"active":[],"recent":[{"tool":"browser_navigate","outcome":"returned","durationMs":454},{"tool":"browser_resume","outcome":"tool_error","durationMs":4},{"tool":"browser_snapshot","outcome":"returned","durationMs":15}]}]}
+  ✘  1 [chromium] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (880ms)
+
+
+  1) [chromium] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "forced_resume_phase_receipt"
+    Received string:    "[{\"type\":\"text\",\"text\":\"### Page\\n- Page URL: http://localhost:8907/\\n### Snapshot\\n```yaml\\n- heading \\\"Owned resume fixture\\\" [level=1] [ref=e2]\\n```\"}]"
+
+      89 |     const snapshot = await client.callTool({ name: 'browser_snapshot', arguments: {} });
+      90 |     confirmedCalls++; expect(snapshot.isError).not.toBe(true);
+    > 91 |     expect(JSON.stringify(snapshot.content)).toContain('forced_resume_phase_receipt');
+         |                                              ^
+      92 |     phase = 'close';
+      93 |     const closed = await client.callTool({ name: 'browser_close', arguments: {} });
+      94 |     confirmedCalls++; expect(closed.isError).not.toBe(true);
+        at /workspace/playwright-mcp/tests/devtools.spec.ts:91:46
+
+    Error Context: test-results/devtools-original-resume-r-79629-d-leaves-the-session-usable-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable 

@@ -2,7 +2,12 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening; last pushed4cfaf68. Native59 complete:
+Branch feat/local-production-hardening; last pusheda2a8ac7. Native60 is active:
+CI39659786624 and batch39659786456. All four component jobs, all three actual Codex jobs and both previously failing
+Windows/macOS installed-package checks pass by conclusion; whole logs/counts
+pending. Windows/macOS main browser suites and wrapper remain active.
+
+Latest complete native59:
 CI39657708430 FAILURE432/2; batch39657709427 FAILURE901/4. Combined1,333 reported
 passes/six failed tests PLUS two separate Windows/macOS installed-package failures.
 Their main browser suites are unexecuted. All17 executed jobs conclude; one
@@ -17,9 +22,9 @@ Overlapping Node20 group13/14 missed the1.5s stalled-scan witness; no budgets ch
 CI-style isolated serialized14/14 passes. Preserve that setup sensitivity.
 HTTP fixture now retains fixed request/response/startup timings; no runtime change.
 
-**Not release-ready. NEXT ACTION: push candidate and inspect native60.**
-Latest source remains incompatible with normal Windows/macOS raw temp paths until
-the proposed fix is natively verified. Managed reset, automatic retention/repair,
+**Not release-ready. NEXT ACTION: inspect complete native60 logs and failures.**
+Native59 rejects normal Windows/macOS raw temp paths. Native60 Windows/macOS installation
+passes after the correction; final whole-matrix proof remains pending. Managed reset, automatic retention/repair,
 hard OS resource bounds, graphical annotation and browser reliability stay open.
 
 ## Historical checkpoints
@@ -3929,3 +3934,20 @@ all observed owned0. macOS install-failure transport comparison server times out
 at120.026s, pipe1k99.467s with1 captured/spawned/exited owned handle; both audit0.
 No default transport change or blanket performance claim. Exact selected logs,
 counts and conclusions: worker-ci-fiftyninth-*.
+
+## Native60 wrapper failure and source-fixture phase receipt (local)
+
+Completed wrapper39659786624 at a2a8ac7 reports436/1: Linux144, macOS144 +extra
+modal3, Docker2 pass; Windows143/1 fails original Firefox malformed-resume session
+case at30s, followed by MCP connection closed. The old stack does not establish
+which of startup/navigation/invalid resume/snapshot/close stalled. Extra Windows
+legacy step is unexecuted after main failure. Batch39659786456 remains active.
+
+The resume test now emits only a fixed phase and confirmed-call count on failure,
+then rethrows the original error. All four original calls/assertions and budgets
+remain unchanged. Local Chromium/Firefox2/2 pass. Deliberately wrong snapshot
+assertion exits1 and yields exactly original_resume_failure/snapshot/3, proving
+receipt delivery without raw payload/error/location data in it. Negative receipt
+is not a passing browser workflow; no provider-fix claim. Lint/diff pass. Evidence
+resume-phase-*. This is test-only and follows a2a8ac7; hold push until native60
+batch concludes so its evidence is not cancelled or assigned a later SHA.
