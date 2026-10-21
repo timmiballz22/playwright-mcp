@@ -1,11 +1,10 @@
 # Mandatory scenario evidence
 
-Current checkpoint: native61 at4a614b3 reports1,686 passes/nine failed tests,
-plus macOS actual Codex FAILED964/1k with uncertain cleanup. Five175-file installs,
-components97/98 and standard original host144 suites pass. Remaining failure
-scopes stay open. Local unreported-browser fence correction has real controlled
-child before/after proof and99 components per Node22/24; native62 pending.
-See CODEX_EXECUTION_LEDGER.md for exact phases, uncertainty and failed controls.
+Current status and exact candidate evidence are maintained in
+[CODEX_EXECUTION_REPORT.md](CODEX_EXECUTION_REPORT.md) and the G00–G18 table in
+[CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md). Native62 is failed;
+native63 is incomplete and the later final-report ownership guard is local-only.
+Per-scenario historical proofs below do not imply final same-SHA acceptance.
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a
 Windows production-install failure that prevents its main browser suite from

@@ -2,30 +2,29 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening; last pushed4a614b3. Native61 complete:
-CI39664310949 FAILURE437/3; batch39664310932 FAILURE1,249/6 =>1,686 passes/nine
-failed tests PLUS separate macOS actual Codex FAILED964/1k with failed cleanup,
-operator attention and browser_group_signal_failed. Missing reported-PID hints
-lack identity verification and cannot certify cleanup. All17 executed jobs conclude;
-one intentional soak skip, zero reported test skips/cancellations or cancellations.
-All five175-file installs and components97/98 pass. Original standard host suites
-all144/0; extra legacy Windows Firefox0/3 fails. Twelve close baseline observations
-succeed; no pending sample occurs, so the old27.111s close stall is not resolved.
+Branch feat/local-production-hardening; last pushed d22b111. Local committed
+76b6bca adds final-launch-report ownership fencing after31376a9's private fetch
+witness. Working tree is being prepared with documentation updates only.
+Latest completed native62 at456a141: batch39670418950 1,266/13;
+wrapper39670419016 438/2 =>1,704 passes/15 failed tests, plus separate macOS
+actual Codex TIMED_OUT954/1k with known cleanup. All five175-file installs pass.
+Five old temp-ACK expectations and two Windows model failures are corrected at
+d22b111; independent Windows Firefox/macOS1k failures remain. Native63 atd22b111
+(batch39673986509, wrapper39673986586) is still running: all four components,
+Linux20/22/24 batch lanes and Linux/macOS actual Codex pass; full proof pending.
 
-Local P0 candidate corrects false cleanup after unexpected started-worker exit
-without final/browser receipt. Actual detached-child before controls0/2 demonstrate
-live unreported child despite terminated claim and released admission; corrected
-cleanup fails and durable fencing survives child self-exit/reopen. Worker IPC drains
-before natural-exit classification. Signal first-error class is fixed/redacted;
-8-entry journal cap remains unchanged. Final components99/99 each Node22/24,
-focused26 Node22/25 Node20, fresh175-file install and both independent death audits,
-public jobs1k2/2 and lint pass. Private fixtures excluded. Native proof pending.
+Local final-report guard: actual detached child remains alive after the actual
+worker publishes setup failure. Old guard returns action_failed/cleanup
+terminated; corrected guard retains failed cleanup and durable admission debt.
+Focused24/24 Node22/24,22/22 Node20; component104/104 Node22/24; fresh175-file
+production install, both controller-death audits and Chromium/Firefox regression
+pass. Exact phase limits and negative controls are appended below. Node20 does
+not register the two SQLite cases; never count those as durable acceptance.
 
-**Not release-ready. NEXT ACTION: push candidate and inspect native62.**
-Follow-ups: numeric known HTTP metadata lost in early failure projection; Windows
-screenshot audit4 possible orphans; WebKit cancellation second GET; unresolved
-provider/deadline and managed-profile/resource/manual acceptance gaps. Do not filter
-observed PIDs, release uncertain leases from hints, retry actions or raise budgets.
+**Not release-ready. NEXT ACTION: inspect completed native63, then push the next
+candidate without cancelling active matrices.** Windows possible-orphan provenance,
+WebKit second GET, provider/deadline, managed profiles, resource/manual gaps remain.
+No PID filtering, hint-based fence release, action replay or raised budgets.
 
 ## Historical checkpoints
 
@@ -196,25 +195,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native60 fully logged1,688/4;25/72 discovery and six jobs schemas | Final clean same-SHA whole acceptance |
-| G01 INSTALL | VERIFIED PASS | native60 all five174-file production installs pass, including both formerly failing raw-temp controller checks | Preserve checked host paths and production packaging |
-| G02 MCP | IN PROGRESS | native60 actual Codex1k all OS pass/zero-model/observed owned0; earlier macOS latency failures retained | Final candidate and sustained reliability; no quota/token claims |
-| G03 FEATURE PARITY | IN PROGRESS | native60 wrapper436/1: Windows Firefox browser_close pending; macOS144+modal3 pass; Windows legacy unexecuted | Diagnose original close; interactive annotation/debugger and remaining negatives |
-| G04 BATCH | VERIFIED PASS | native60 public batch/jobs1k scopes and actual Codex1k all OS pass; raw/provider failures stay G05/G10 | Preserve strict counters and bounded failure handling |
-| G05 RETRIES | FAILED | native60 Windows Firefox /429 timeout0 with1 GET; cleanup terminated/removed; no replay | Diagnose positive retry latency within existing budgets |
-| G06 JOBS | FAILED | native60 components97/98 and public jobs1k all OS pass; old ownership uncertainty/operator repair remain open | Preserve fences; diagnose unresolved observations and recovery gaps |
+| G00 BASELINE | IN PROGRESS | native62 fully logged1,704/15 plus separate Codex failure;25/72 discovery and six jobs schemas | Final clean same-SHA whole acceptance |
+| G01 INSTALL | IN PROGRESS | native62 five175-file production installs pass; local76b6bca runtime install/death audits pass | Native verification of latest runtime remains pending |
+| G02 MCP | FAILED | native62 actual Codex macOS timeout954/1k; native63 macOS passes but whole matrix pending | Final candidate and sustained reliability; no quota/token claims |
+| G03 FEATURE PARITY | IN PROGRESS | native62 wrapper438/2; standard host suites pass, Windows legacy Firefox two failures | Original close uncertainty, interactive annotation/debugger and remaining negatives |
+| G04 BATCH | FAILED | native62 macOS public jobs timeout971 and batch MCP timeout981; native63 incomplete | Preserve strict1k counters and budgets; diagnose throughput |
+| G05 RETRIES | FAILED | native61 WebKit second GET and native62 Windows Firefox retry timeout; local marked POST/GET witness plus negative replay control | Native marked-call proof; no positive retry latency relaxation |
+| G06 JOBS | FAILED | native63 components pass; local final-report unknown-child correction104/104 but native pending | Preserve debt; actual runtime native proof and managed recovery remain |
 | G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | native60 retained-byte admission, helper receipts, host config/path cases and174-file installs pass | Full/temporary disk bounds, retention/repair and remaining storage acceptance |
+| G08 STORAGE | FAILED | native62 retained-byte admission and five175-file installs pass; native61 screenshot audit four possible orphans unresolved | Full/temporary disk bounds, retention/repair and remaining storage acceptance |
 | G09 AUTH/PROFILES | FAILED | coalesced close14/14 Node20/22/24, real Chromium/Firefox parity2/2; native prior session restore | Managed profiles/reset, Windows ACLs and crash repair; annotation dashboard lifecycle separate |
-| G10 CROSS-BROWSER | FAILED | native60 Windows Firefox close/locator/retry failures and macOS raw Chromium982/1k timeout | Causal provider diagnosis; retain strict thresholds and no replay |
-| G11 CROSS-OS | FAILED | native60 all installs/components/Codex pass; Windows main2+wrapper1 and macOS main1 fail | Final whole native matrix required |
+| G10 CROSS-BROWSER | FAILED | native62 Windows Firefox click/retry and macOS Chromium1k deadlines; original close finding remains open | Causal provider diagnosis; strict thresholds and no replay |
+| G11 CROSS-OS | FAILED | native62 wrapper/batch failures; native63 Linux/component lanes pass, remaining jobs active | Final whole native matrix required |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md; independent100-run resource soak and3 fresh samples/mode at1100e3c | Cross-OS/CLI-SKILLS repeated resource and token measurements remain; no billing claim |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-sixtieth-*,native60-original-close-progress.json,NATIVE_BROWSER_REPRODUCTIONS.md | Keep phase/SHA, observer calibration and unexecuted scopes exact |
-| G18 CLEAN MERGE | FAILED | Draft PR2; native60 wrapper/batch failed; last full prior matrix d71c91e(14 jobs) | Resolve critical gaps; whole green SHA before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-sixtysecond-*, unreported-real-worker-*, marked-fetch-* and prepared reproductions | Keep phase/SHA and unexecuted scopes exact |
+| G18 CLEAN MERGE | FAILED | Draft PR2; native62 fails, native63 running, later runtime76b6bca local only | Resolve critical gaps; whole green SHA before merge/release |
 
 ## Defects and risk register
 
