@@ -2,32 +2,30 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening; last pushed4a614b3. Native61 is active:
-CI39664310949 and batch39664310932. All four components pass by conclusion;
-remaining native61 counts/close observations are pending. Latest complete native60:
-CI39659786624 FAILURE436/1; batch39659786456 FAILURE1,252/3 =>1,688 reported passes/
-four failed tests. All17 executed jobs conclude; one intentional soak skip, no
-reported test skips/cancellations or job cancellations. All five174-file installs,
-all components97/98 and all three actual Codex1k/zero-model clients pass.
+Branch feat/local-production-hardening; last pushed4a614b3. Native61 complete:
+CI39664310949 FAILURE437/3; batch39664310932 FAILURE1,249/6 =>1,686 passes/nine
+failed tests PLUS separate macOS actual Codex FAILED964/1k with failed cleanup,
+operator attention and browser_group_signal_failed. Missing reported-PID hints
+lack identity verification and cannot certify cleanup. All17 executed jobs conclude;
+one intentional soak skip, zero reported test skips/cancellations or cancellations.
+All five175-file installs and components97/98 pass. Original standard host suites
+all144/0; extra legacy Windows Firefox0/3 fails. Twelve close baseline observations
+succeed; no pending sample occurs, so the old27.111s close stall is not resolved.
 
-New quota/helper/host-path corrections have scoped native proof. Remaining failures:
-Windows original Firefox browser_close pending27.111s, raw Firefox fresh5 locator
-timeout at18 (completed17/23), positive /429 retry timeout0 with1 GET; macOS raw
-Chromium timeout982/1k at983. Healthy comparison runs do not erase these failures.
-Old Windows ownership uncertainty, managed reset, full/temporary resource bounds,
-automatic retention/repair and graphical/manual acceptance remain open.
+Local P0 candidate corrects false cleanup after unexpected started-worker exit
+without final/browser receipt. Actual detached-child before controls0/2 demonstrate
+live unreported child despite terminated claim and released admission; corrected
+cleanup fails and durable fencing survives child self-exit/reopen. Worker IPC drains
+before natural-exit classification. Signal first-error class is fixed/redacted;
+8-entry journal cap remains unchanged. Final components99/99 each Node22/24,
+focused26 Node22/25 Node20, fresh175-file install and both independent death audits,
+public jobs1k2/2 and lint pass. Private fixtures excluded. Native proof pending.
 
-Local next candidate adds only a read-only source-fixture process observation for
-that close stall, using actual SDK transport PID with lifetime scopes and pre/post
-PID checks. No signals, browser calls, filters or acceptance changes. Local resume
-Chromium/Firefox2/2 and lint pass; synthetic post-ack hold calibrates10→1 observed
-processes. It is not a native stall reproduction. Extra per-test phase diagnostic
-was redundant and removed; existing original_mcp_progress is authoritative.
-
-**Not release-ready. NEXT ACTION: inspect complete native61, then push retry-timing candidate.**
-See exact phase/SHA receipts and prepared NATIVE_BROWSER_REPRODUCTIONS.md. Root
-causes in delegated engine shutdown/pointer latency are not established; no blind
-core patch, forced-click/retry or successful-close reclassification is justified.
+**Not release-ready. NEXT ACTION: push candidate and inspect native62.**
+Follow-ups: numeric known HTTP metadata lost in early failure projection; Windows
+screenshot audit4 possible orphans; WebKit cancellation second GET; unresolved
+provider/deadline and managed-profile/resource/manual acceptance gaps. Do not filter
+observed PIDs, release uncertain leases from hints, retry actions or raise budgets.
 
 ## Historical checkpoints
 
@@ -4078,3 +4076,35 @@ macOS WebKit cancellation records a second /cancel GET218.767ms after the first,
 while parent abort is107.416ms. Distinguish in-flight/IPC timing from actual replay
 before changing assertions or policy; a controlled non-idempotent cancellation
 witness is needed. Exact native61 findings will be retained with full counts.
+
+## Native61 at4a614b3 — completed, not green
+
+Wrapper437/3: host suites144/0 each, Docker2, macOS modal3 pass. Windows legacy
+Node20 Firefox all fresh1 fail: headless20/23 at21 locator_timeout; headed10/23 at11
+pointer_action_timeout; pipe19/23 at20 locator_timeout. No cleanup failures in those
+receipts. The new original-close observation executes all12 baseline samples
+(Linux/Mac/Windows four engines), root matches1 and counts3–11; no pending sample.
+No observation_unavailable, but a healthy instrumented close is not a causal fix.
+
+Batch1,249/6: Linux22/24 each174/0, Linux20 170/0, Windows172/2, macOS170/4;
+components97/97 (Windows98). All five175-file installs pass. Windows HTTP /403
+has known http_403 step but overall timeout after cleanup; numeric status is absent
+in early IPC, first request/response10.477s, browser event4.073s, start audit507ms,
+independent owned0. Windows screenshot pair9 audit observes4 possible orphans:
+rootMatches0/helperMatchedfalse/old-birth count4. Preserve as unresolved; no age or
+role-based exclusion. Explicit per-factory lifetime provenance needs review.
+
+macOS raw Chromium times out988/1k at989; public jobs TIMED_OUT976 at977, batch
+MCP timeout989; both supervised results known terminated/removed. WebKit cancel
+case observes GET offsets0/218.767ms despite parent abort107.416ms, forced:true,
+known cleanup. Keep its strict1-GET assertion; distinguish in-flight/propagation
+from actual policy/driver replay with a controlled non-idempotent witness.
+
+Actual Codex macOS FAILED964 at965 with cleanup_failed/forced:true/attention:true,
+browser_group_signal_failed, no guardian/journal helper failures. Its reported-PID
+hint finds0 active/0 zombie/3 missing, identityVerified:false; never treat as proof
+or release the fence. The original signal helper already accepts ESRCH; a first
+fixed error class is added locally rather than guessing a missing-group fix.
+Failure-only pipe-first1k87.029s/server1k119.383s both pass with owned0, pipe handle
+1 captured/spawned/exited; they do not erase the failed client or imply a default
+transport switch. Full selected steps/counts/jobs: worker-ci-sixtyfirst-*.

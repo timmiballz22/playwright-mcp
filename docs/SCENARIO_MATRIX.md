@@ -1,10 +1,11 @@
 # Mandatory scenario evidence
 
-Current checkpoint: native60 at a2a8ac7 reports1,688 passes/four failed tests.
-All five174-file installs, components97/98 and actual Codex1k all OS pass. Windows
-Firefox close/locator/retry failures and macOS raw1k timeout remain unresolved.
-Later source-only close-process observation has local calibration, native pending.
-See CODEX_EXECUTION_LEDGER.md for exact phase/SHA evidence and current blockers.
+Current checkpoint: native61 at4a614b3 reports1,686 passes/nine failed tests,
+plus macOS actual Codex FAILED964/1k with uncertain cleanup. Five175-file installs,
+components97/98 and standard original host144 suites pass. Remaining failure
+scopes stay open. Local unreported-browser fence correction has real controlled
+child before/after proof and99 components per Node22/24; native62 pending.
+See CODEX_EXECUTION_LEDGER.md for exact phases, uncertainty and failed controls.
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a
 Windows production-install failure that prevents its main browser suite from

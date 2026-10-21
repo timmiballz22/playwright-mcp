@@ -1,0 +1,671 @@
+test_mcp_docker	Run tests	﻿2026-10-21T19:46:03.6253548Z ##[group]Run # Used for the Docker tests to share the test-results folder with the container.
+test_mcp_docker	Run tests	2026-10-21T19:46:03.6253901Z [36;1m# Used for the Docker tests to share the test-results folder with the container.[0m
+test_mcp_docker	Run tests	2026-10-21T19:46:03.6254124Z [36;1mumask 0000[0m
+test_mcp_docker	Run tests	2026-10-21T19:46:03.6254283Z [36;1mnpm run test -- --project=chromium-docker[0m
+test_mcp_docker	Run tests	2026-10-21T19:46:03.6295311Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+test_mcp_docker	Run tests	2026-10-21T19:46:03.6295494Z env:
+test_mcp_docker	Run tests	2026-10-21T19:46:03.6295640Z   MCP_IN_DOCKER: 1
+test_mcp_docker	Run tests	2026-10-21T19:46:03.6295868Z ##[endgroup]
+test_mcp_docker	Run tests	2026-10-21T19:46:03.6984485Z 
+test_mcp_docker	Run tests	2026-10-21T19:46:03.6984862Z > @timmiballz22/playwright-mcp-local@0.0.83 test
+test_mcp_docker	Run tests	2026-10-21T19:46:03.6985294Z > playwright test --project=chromium-docker
+test_mcp_docker	Run tests	2026-10-21T19:46:03.6985414Z 
+test_mcp_docker	Run tests	2026-10-21T19:46:04.9986035Z 
+test_mcp_docker	Run tests	2026-10-21T19:46:04.9986722Z Running 2 tests using 2 workers
+test_mcp_docker	Run tests	2026-10-21T19:46:04.9986973Z 
+test_mcp_docker	Run tests	2026-10-21T19:46:06.6453948Z   ✓  1 [chromium-docker] › tests/core.spec.ts:19:5 › browser_navigate (1.2s)
+test_mcp_docker	Run tests	2026-10-21T19:46:07.1560679Z   ✓  2 [chromium-docker] › tests/click.spec.ts:19:5 › browser_click (1.6s)
+test_mcp_docker	Run tests	2026-10-21T19:46:07.1709997Z 
+test_mcp_docker	Run tests	2026-10-21T19:46:07.1712716Z   2 passed (3.1s)
+test (macos-15-intel)	Run playwright-mcp tests	﻿2026-10-21T19:47:53.9438350Z ##[group]Run npm test 2>&1 | tee wrapper-tests.log
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:47:53.9439710Z [36;1mnpm test 2>&1 | tee wrapper-tests.log[0m
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:47:53.9504950Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:47:53.9505610Z ##[endgroup]
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:47:54.2918480Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:47:54.2919340Z > @timmiballz22/playwright-mcp-local@0.0.83 test
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:47:54.2936620Z > playwright test
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:47:54.2942440Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:47:59.2749780Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:47:59.2750690Z Running 144 tests using 2 workers
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:47:59.2751170Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:12.2536100Z   ✓    2 [chrome] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (11.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:12.4538710Z   ✓    1 [chrome] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (11.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:16.5548170Z   ✓    3 [chrome] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (4.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:23.8904960Z   ✓    4 [chrome] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (11.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:28.2794440Z   ✓    5 [chrome] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (11.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:29.8632770Z   ✓    7 [chrome] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (1.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:30.7023990Z   ✓    8 [chrome] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (793ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:31.7407790Z   ✓    9 [chrome] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (1.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:33.0133540Z   ✓   10 [chrome] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (1.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:33.7582360Z   ✓   11 [chrome] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (676ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:36.4883720Z   ✓   12 [chrome] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (2.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:37.7512400Z   ✓   13 [chrome] › tests/cli.spec.ts:22:5 › install-browser --help (1.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:42.5513710Z   ✓   14 [chrome] › tests/click.spec.ts:19:5 › browser_click (4.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:44.7102270Z   ✓    6 [chrome] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (20.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:46.2093290Z   ✓   15 [chrome] › tests/core.spec.ts:19:5 › browser_navigate (3.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:49.1098490Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:49.7127420Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:50.4173010Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:50.7192280Z {"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:50.9210410Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:52.1276490Z   ✓   16 [chrome] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (7.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:53.6294930Z   ✓   17 [chrome] › tests/devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (7.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:56.2561250Z {"fixture":"original_close_processes","phase":"before","observedCount":8,"transportRootMatches":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:48:56.9830320Z   ✓   18 [chrome] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (4.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:00.6449840Z   ✓   19 [chrome] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (6.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:07.4963500Z   ✓   20 [chrome] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (10.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:07.6988780Z   ✓   21 [chrome] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (7.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:13.2192040Z   ✓   23 [chrome] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (5.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:13.4199820Z   ✓   22 [chrome] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (5.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:18.5367360Z   ✓   25 [chrome] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (5.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:20.9851170Z   ✓   24 [chrome] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (7.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:22.5843710Z   ✓   27 [chrome] › tests/library.spec.ts:20:5 › library can be used from CommonJS (1.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:26.8752780Z   ✓   28 [chrome] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (4.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:27.0059030Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:27.1063810Z   ✓   26 [chrome] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (8.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:33.3640610Z   ✓   30 [chrome] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (6.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:37.4123090Z   ✓   29 [chrome] › tests/network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (10.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:40.2847620Z   ✓   32 [chrome] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (2.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:43.9103170Z   ✓   33 [chrome] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (3.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:47.7819510Z   ✓   34 [chrome] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (3.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:50.6690950Z   ✓   31 [chrome] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (17.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:55.1520540Z   ✓   36 [chrome] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (4.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:49:56.5613850Z   ✓   35 [chrome] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (8.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:02.7766080Z   ✓   37 [chromium] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (5.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:03.1472400Z   ✓   38 [chromium] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (5.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:06.4123050Z   ✓   39 [chromium] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (3.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:09.9986790Z   ✓   40 [chromium] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (6.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:12.7842640Z   ✓   41 [chromium] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (6.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:13.6324110Z   ✓   43 [chromium] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (862ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:14.2374530Z   ✓   44 [chromium] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (553ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:14.8176440Z   ✓   45 [chromium] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (599ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:15.4546270Z   ✓   46 [chromium] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (617ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:16.4274700Z   ✓   47 [chromium] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (957ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:17.5651510Z   ✓   48 [chromium] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:18.0423490Z   ✓   49 [chromium] › tests/cli.spec.ts:22:5 › install-browser --help (512ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:20.9474510Z   ✓   50 [chromium] › tests/click.spec.ts:19:5 › browser_click (2.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:23.3073270Z   ✓   51 [chromium] › tests/core.spec.ts:19:5 › browser_navigate (2.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:25.2315490Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:25.4049290Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:25.4805000Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:25.5810830Z   ✓   42 [chromium] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (15.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:25.6529450Z {"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:25.8575400Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:26.2430760Z   ✓   52 [chromium] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (2.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:30.2755900Z   ✓   53 [chromium] › tests/devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (4.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:30.3758090Z {"fixture":"original_close_processes","phase":"before","observedCount":8,"transportRootMatches":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:30.6483590Z   ✓   54 [chromium] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (4.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:34.2421960Z   ✓   55 [chromium] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (4.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:38.6311320Z   ✓   56 [chromium] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (7.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:38.7316380Z   ✓   57 [chromium] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (4.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:42.8044370Z   ✓   59 [chromium] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (4.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:43.2994620Z   ✓   58 [chromium] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (4.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:47.3097610Z   ✓   61 [chromium] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (4.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:49.4957020Z   ✓   60 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (6.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:50.5252840Z   ✓   63 [chromium] › tests/library.spec.ts:20:5 › library can be used from CommonJS (1.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:53.0291380Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:53.1294630Z   ✓   62 [chromium] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (5.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:53.4887560Z   ✓   64 [chromium] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (3.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:50:58.2141310Z   ✓   66 [chromium] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (4.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:01.8546090Z   ✓   65 [chromium] › tests/network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (8.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:04.0685450Z   ✓   68 [chromium] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (2.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:06.5272850Z   ✓   69 [chromium] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (2.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:09.4239000Z   ✓   70 [chromium] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (2.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:12.2025260Z   ✓   67 [chromium] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (13.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:16.0112230Z   ✓   72 [chromium] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (3.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:16.5296690Z   ✓   71 [chromium] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (7.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:28.3290560Z   ✓   74 [firefox] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (10.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:28.9798490Z   ✓   73 [firefox] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (11.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:36.5717760Z   ✓   75 [firefox] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (8.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:43.2764450Z   ✓   76 [firefox] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (14.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:54.0691220Z   ✓   77 [firefox] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (17.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:55.0940880Z   ✓   79 [firefox] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (1.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:55.9460730Z   ✓   80 [firefox] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (849ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:57.5067360Z   ✓   81 [firefox] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (1.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:58.5882770Z   ✓   82 [firefox] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (1.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:51:59.5045310Z   ✓   83 [firefox] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (888ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:01.1498780Z   ✓   84 [firefox] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:01.7231310Z   ✓   85 [firefox] › tests/cli.spec.ts:22:5 › install-browser --help (557ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:10.0780050Z   ✓   86 [firefox] › tests/click.spec.ts:19:5 › browser_click (8.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:12.5704530Z   ✓   78 [firefox] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (29.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:17.0071710Z   ✓   87 [firefox] › tests/core.spec.ts:19:5 › browser_navigate (6.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:19.5717080Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:19.8464650Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:20.0862540Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:20.4966050Z {"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:20.8137470Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:22.0414560Z   ✓   88 [firefox] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (9.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:25.8783040Z   ✓   89 [firefox] › tests/devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (8.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:29.5328650Z {"fixture":"original_close_processes","phase":"before","observedCount":6,"transportRootMatches":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:30.4989720Z   ✓   90 [firefox] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (8.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:36.5631070Z   ✓   91 [firefox] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (10.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:44.3262790Z   ✓   92 [firefox] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (13.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:44.8068720Z   ✓   93 [firefox] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (8.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:54.7036140Z   ✓   94 [firefox] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (10.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:52:56.0931970Z   ✓   95 [firefox] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (11.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:53:11.4166410Z   ✓   97 [firefox] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (15.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:53:13.7158580Z   ✓   96 [firefox] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (19.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:53:14.7225430Z   ✓   99 [firefox] › tests/library.spec.ts:20:5 › library can be used from CommonJS (953ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:53:24.4742180Z   ✓  100 [firefox] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (9.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:53:29.3006690Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:53:29.3628080Z   ✓   98 [firefox] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (17.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:53:37.5909020Z   ✓  102 [firefox] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (8.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:53:38.8941810Z   ✓  101 [firefox] › tests/network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (14.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:53:47.7571340Z   ✓  104 [firefox] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (8.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:53:57.2968460Z   ✓  105 [firefox] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (9.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:06.5846770Z   ✓  103 [firefox] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (28.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:09.0204250Z   ✓  106 [firefox] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (11.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:18.7538230Z   ✓  108 [firefox] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (9.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:26.7641590Z   ✓  107 [firefox] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (20.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:32.8526450Z   ✓  109 [webkit] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (11.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:34.0115480Z   ✓  110 [webkit] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (4.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:35.3479990Z   ✓  111 [webkit] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (2.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:40.3787880Z   ✓  112 [webkit] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (6.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:41.0905820Z   ✓  113 [webkit] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (5.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:41.6840250Z   ✓  115 [webkit] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (573ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:42.7885320Z   ✓  116 [webkit] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (1.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:43.4917880Z   ✓  117 [webkit] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (684ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:44.1754770Z   ✓  118 [webkit] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (671ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:44.8287620Z   ✓  119 [webkit] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (624ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:46.2158280Z   ✓  120 [webkit] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:46.9013660Z   ✓  121 [webkit] › tests/cli.spec.ts:22:5 › install-browser --help (666ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:50.2849750Z   ✓  122 [webkit] › tests/click.spec.ts:19:5 › browser_click (3.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:50.8750700Z   ✓  114 [webkit] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (10.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:52.5839710Z   ✓  123 [webkit] › tests/core.spec.ts:19:5 › browser_navigate (2.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:53.8416300Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:54.1345500Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:54.2929730Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:54.4168810Z {"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:54.5170960Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:54.7177600Z   ✓  124 [webkit] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (3.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:56.3750560Z   ✓  125 [webkit] › tests/devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (3.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:56.7939120Z {"fixture":"original_close_processes","phase":"before","observedCount":3,"transportRootMatches":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:54:56.8970270Z   ✓  126 [webkit] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (2.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:02.8846370Z   ✓  127 [webkit] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (6.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:07.0749390Z   ✓  128 [webkit] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (10.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:08.3998530Z   ✓  129 [webkit] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (5.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:09.9795110Z   ✓  130 [webkit] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (2.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:11.5888150Z   ✓  131 [webkit] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (3.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:16.0733580Z   ✓  133 [webkit] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (4.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:16.1739090Z   ✓  132 [webkit] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (6.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:17.0595040Z   ✓  135 [webkit] › tests/library.spec.ts:20:5 › library can be used from CommonJS (911ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:19.6700570Z   ✓  136 [webkit] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (2.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:22.0438980Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:22.0923760Z   ✓  134 [webkit] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (5.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:25.4282550Z   ✓  138 [webkit] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (3.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:27.1886650Z   ✓  137 [webkit] › tests/network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (7.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:29.8629030Z   ✓  140 [webkit] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (2.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:32.4559440Z   ✓  141 [webkit] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (2.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:33.6886090Z   ✓  139 [webkit] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (8.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:34.8249350Z   ✓  142 [webkit] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (2.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:37.8931910Z   ✓  144 [webkit] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (3.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:39.1916130Z   ✓  143 [webkit] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (5.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:39.2456340Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-21T19:55:39.2594830Z   144 passed (7.7m)
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	﻿2026-10-21T19:55:41.4996950Z ##[group]Run npx playwright test tests/interactions.spec.ts --project=chromium --grep="original dialogs" --repeat-each=3 --workers=2 2>&1 | tee modal-tests.log
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	2026-10-21T19:55:41.5000780Z [36;1mnpx playwright test tests/interactions.spec.ts --project=chromium --grep="original dialogs" --repeat-each=3 --workers=2 2>&1 | tee modal-tests.log[0m
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	2026-10-21T19:55:41.5280690Z shell: /bin/bash -e {0}
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	2026-10-21T19:55:41.5281830Z ##[endgroup]
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	2026-10-21T19:55:48.5914980Z 
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	2026-10-21T19:55:48.6054930Z Running 3 tests using 2 workers
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	2026-10-21T19:55:48.6107290Z 
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	2026-10-21T19:55:58.4707550Z   ✓  2 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (8.4s)
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	2026-10-21T19:55:58.5100810Z   ✓  1 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (8.4s)
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	2026-10-21T19:56:05.6149800Z   ✓  3 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (5.6s)
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	2026-10-21T19:56:05.6204710Z 
+test (macos-15-intel)	Exercise three fresh macOS Chromium modal workflows	2026-10-21T19:56:05.6433680Z   3 passed (19.7s)
+test (windows-latest)	Run playwright-mcp tests	﻿2026-10-21T19:49:58.5545342Z ##[group]Run npm test 2>&1 | tee wrapper-tests.log
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:49:58.5546162Z [36;1mnpm test 2>&1 | tee wrapper-tests.log[0m
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:49:58.5564536Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:49:58.5565030Z ##[endgroup]
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:49:59.7923256Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:49:59.7924019Z > @timmiballz22/playwright-mcp-local@0.0.83 test
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:49:59.7924468Z > playwright test
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:49:59.7924646Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:03.5201867Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:03.5202611Z Running 144 tests using 1 worker
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:03.5202905Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:18.2130683Z   ok   1 [chrome] › tests\accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (13.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:21.0309374Z   ok   2 [chrome] › tests\accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (2.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:23.1342758Z   ok   3 [chrome] › tests\accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (2.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:26.9513242Z   ok   4 [chrome] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (3.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:29.8331106Z   ok   5 [chrome] › tests\advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (2.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:35.4285358Z   ok   6 [chrome] › tests\advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (5.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:35.9523477Z   ok   7 [chrome] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (498ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:36.5075816Z   ok   8 [chrome] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (543ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:37.0315317Z   ok   9 [chrome] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (505ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:37.5854776Z   ok  10 [chrome] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (539ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:38.1258986Z   ok  11 [chrome] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (523ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:39.1427990Z   ok  12 [chrome] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (998ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:39.6190142Z   ok  13 [chrome] › tests\cli.spec.ts:22:5 › install-browser --help (463ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:41.6969199Z   ok  14 [chrome] › tests\click.spec.ts:19:5 › browser_click (2.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:43.1882041Z   ok  15 [chrome] › tests\core.spec.ts:19:5 › browser_navigate (1.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:44.5239325Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:44.6861582Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:44.8012097Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:44.9006343Z {"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:45.0340340Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:45.5727579Z   ok  16 [chrome] › tests\devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (2.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:47.9787451Z   ok  17 [chrome] › tests\devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (2.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:53.8067337Z {"fixture":"original_close_processes","phase":"before","observedCount":10,"transportRootMatches":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:54.2109773Z   ok  18 [chrome] › tests\devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (6.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:50:57.1881677Z   ok  19 [chrome] › tests\held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (3.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:02.9778601Z   ok  20 [chrome] › tests\input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (5.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:06.5869651Z   ok  21 [chrome] › tests\input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (3.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:09.5855904Z   ok  22 [chrome] › tests\input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (3.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:12.5504592Z   ok  23 [chrome] › tests\input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (2.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:16.8921027Z   ok  24 [chrome] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:19.1913030Z   ok  25 [chrome] › tests\interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (2.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:22.5302361Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:22.5468707Z   ok  26 [chrome] › tests\large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (3.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:23.0402074Z   ok  27 [chrome] › tests\library.spec.ts:20:5 › library can be used from CommonJS (474ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:25.0892843Z   ok  28 [chrome] › tests\network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:31.6925044Z   ok  29 [chrome] › tests\network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (6.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:34.2604719Z   ok  30 [chrome] › tests\popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (2.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:43.8766563Z   ok  31 [chrome] › tests\profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (9.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:45.9159421Z   ok  32 [chrome] › tests\storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:47.8875053Z   ok  33 [chrome] › tests\storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:49.8106904Z   ok  34 [chrome] › tests\storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (1.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:53.8465931Z   ok  35 [chrome] › tests\storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (4.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:51:57.8545599Z   ok  36 [chrome] › tests\testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (4.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:05.2401883Z   ok  37 [chromium] › tests\accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (6.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:07.5771110Z   ok  38 [chromium] › tests\accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (2.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:09.8039951Z   ok  39 [chromium] › tests\accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (2.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:12.9829052Z   ok  40 [chromium] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (3.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:15.8832446Z   ok  41 [chromium] › tests\advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (2.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:21.7933285Z   ok  42 [chromium] › tests\advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (5.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:22.3011656Z   ok  43 [chromium] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (498ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:22.8399441Z   ok  44 [chromium] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (520ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:23.4109523Z   ok  45 [chromium] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (544ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:23.9477339Z   ok  46 [chromium] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (500ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:24.4874167Z   ok  47 [chromium] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (522ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:25.4686937Z   ok  48 [chromium] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (957ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:25.9457146Z   ok  49 [chromium] › tests\cli.spec.ts:22:5 › install-browser --help (453ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:28.0063676Z   ok  50 [chromium] › tests\click.spec.ts:19:5 › browser_click (2.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:29.4823299Z   ok  51 [chromium] › tests\core.spec.ts:19:5 › browser_navigate (1.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:30.7788197Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:30.9058792Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:31.0050635Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:31.0908087Z {"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:31.1862550Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:31.7849444Z   ok  52 [chromium] › tests\devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (2.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:34.3565040Z   ok  53 [chromium] › tests\devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (2.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:36.1959507Z {"fixture":"original_close_processes","phase":"before","observedCount":11,"transportRootMatches":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:36.6608434Z   ok  54 [chromium] › tests\devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (2.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:39.0923421Z   ok  55 [chromium] › tests\held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (2.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:44.6958503Z   ok  56 [chromium] › tests\input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (5.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:47.8842712Z   ok  57 [chromium] › tests\input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (3.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:50.5060542Z   ok  58 [chromium] › tests\input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (2.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:53.0681377Z   ok  59 [chromium] › tests\input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (2.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:57.4225223Z   ok  60 [chromium] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:52:59.8672594Z   ok  61 [chromium] › tests\interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (2.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:03.7135220Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:03.7426509Z   ok  62 [chromium] › tests\large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (3.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:04.2352579Z   ok  63 [chromium] › tests\library.spec.ts:20:5 › library can be used from CommonJS (485ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:06.3420153Z   ok  64 [chromium] › tests\network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (2.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:13.1786809Z   ok  65 [chromium] › tests\network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (6.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:19.5962159Z   ok  66 [chromium] › tests\popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (6.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:30.2081637Z   ok  67 [chromium] › tests\profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (10.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:32.1465880Z   ok  68 [chromium] › tests\storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (1.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:34.6065335Z   ok  69 [chromium] › tests\storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (2.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:36.9177771Z   ok  70 [chromium] › tests\storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (2.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:44.1756825Z   ok  71 [chromium] › tests\storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (7.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:46.5952141Z   ok  72 [chromium] › tests\testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (2.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:53:57.5338661Z   ok  73 [firefox] › tests\accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (10.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:54:23.2313210Z   ok  74 [firefox] › tests\accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (25.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:54:42.5368816Z   ok  75 [firefox] › tests\accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (19.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:54:56.0425419Z   ok  76 [firefox] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (13.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:07.0065998Z   ok  77 [firefox] › tests\advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (10.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:21.1981044Z   ok  78 [firefox] › tests\advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (14.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:21.8164648Z   ok  79 [firefox] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (586ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:22.3720609Z   ok  80 [firefox] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (551ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:22.9457811Z   ok  81 [firefox] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (563ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:23.6904358Z   ok  82 [firefox] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (723ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:24.2783999Z   ok  83 [firefox] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (576ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:25.3426325Z   ok  84 [firefox] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:25.8169726Z   ok  85 [firefox] › tests\cli.spec.ts:22:5 › install-browser --help (459ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:30.1323738Z   ok  86 [firefox] › tests\click.spec.ts:19:5 › browser_click (4.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:33.9777151Z   ok  87 [firefox] › tests\core.spec.ts:19:5 › browser_navigate (3.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:37.5031944Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:37.8044670Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:37.9402643Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:38.0294395Z {"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:38.1221807Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:42.9025319Z   ok  88 [firefox] › tests\devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (8.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:51.4459819Z   ok  89 [firefox] › tests\devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (8.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:55.2258474Z {"fixture":"original_close_processes","phase":"before","observedCount":9,"transportRootMatches":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:55:59.1240430Z   ok  90 [firefox] › tests\devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (7.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:56:07.5750595Z   ok  91 [firefox] › tests\held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (8.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:56:18.7253903Z   ok  92 [firefox] › tests\input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (11.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:56:28.1988124Z   ok  93 [firefox] › tests\input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (9.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:56:36.1504333Z   ok  94 [firefox] › tests\input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (7.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:56:44.1613786Z   ok  95 [firefox] › tests\input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (8.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:56:54.2399845Z   ok  96 [firefox] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (10.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:57:02.4799410Z   ok  97 [firefox] › tests\interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (8.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:57:12.4970673Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:57:12.5142283Z   ok  98 [firefox] › tests\large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (10.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:57:13.0381340Z   ok  99 [firefox] › tests\library.spec.ts:20:5 › library can be used from CommonJS (497ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:57:21.7797137Z   ok 100 [firefox] › tests\network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (8.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:57:36.6411169Z   ok 101 [firefox] › tests\network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (14.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:57:46.1185129Z   ok 102 [firefox] › tests\popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (9.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:57:57.7544999Z   ok 103 [firefox] › tests\profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (11.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:58:01.9173276Z   ok 104 [firefox] › tests\storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (4.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:58:11.6123397Z   ok 105 [firefox] › tests\storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (9.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:58:21.0459449Z   ok 106 [firefox] › tests\storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (9.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:58:49.0728773Z   ok 107 [firefox] › tests\storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (28.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:01.9376798Z   ok 108 [firefox] › tests\testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (12.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:04.5553782Z   ok 109 [webkit] › tests\accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (1.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:06.2026808Z   ok 110 [webkit] › tests\accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (1.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:07.2124969Z   ok 111 [webkit] › tests\accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (983ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:09.9964913Z   ok 112 [webkit] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (2.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:11.8180355Z   ok 113 [webkit] › tests\advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (1.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:24.7005066Z   ok 114 [webkit] › tests\advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (12.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:25.2403773Z   ok 115 [webkit] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (509ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:25.7638869Z   ok 116 [webkit] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (519ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:26.2866216Z   ok 117 [webkit] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (498ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:26.7939277Z   ok 118 [webkit] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (495ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:27.3179880Z   ok 119 [webkit] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (512ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:28.3561946Z   ok 120 [webkit] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:28.8434153Z   ok 121 [webkit] › tests\cli.spec.ts:22:5 › install-browser --help (467ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:30.4573342Z   ok 122 [webkit] › tests\click.spec.ts:19:5 › browser_click (1.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:31.3843497Z   ok 123 [webkit] › tests\core.spec.ts:19:5 › browser_navigate (908ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:32.3581754Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:32.5174686Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:32.6190965Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:32.7382631Z {"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:32.8514154Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:32.9356333Z   ok 124 [webkit] › tests\devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (1.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:34.5085515Z   ok 125 [webkit] › tests\devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (1.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:35.8440005Z {"fixture":"original_close_processes","phase":"before","observedCount":9,"transportRootMatches":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:35.9341169Z   ok 126 [webkit] › tests\devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (1.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:37.6948092Z   ok 127 [webkit] › tests\held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (1.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:43.1058675Z   ok 128 [webkit] › tests\input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (5.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:46.2426010Z   ok 129 [webkit] › tests\input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (3.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:48.3608970Z   ok 130 [webkit] › tests\input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (2.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:50.4222412Z   ok 131 [webkit] › tests\input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (2.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:54.8949420Z   ok 132 [webkit] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T19:59:56.9062423Z   ok 133 [webkit] › tests\interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:00.4862529Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:00.5020476Z   ok 134 [webkit] › tests\large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (3.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:01.0107655Z   ok 135 [webkit] › tests\library.spec.ts:20:5 › library can be used from CommonJS (487ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:02.0409831Z   ok 136 [webkit] › tests\network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (1.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:08.3631437Z   ok 137 [webkit] › tests\network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (6.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:10.8792061Z   ok 138 [webkit] › tests\popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (2.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:14.8158801Z   ok 139 [webkit] › tests\profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (3.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:15.8349090Z   ok 140 [webkit] › tests\storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (995ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:16.8965884Z   ok 141 [webkit] › tests\storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (1.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:17.9168051Z   ok 142 [webkit] › tests\storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (1.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:20.1292240Z   ok 143 [webkit] › tests\storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (2.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:21.3825583Z   ok 144 [webkit] › tests\testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (1.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:21.3982425Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-21T20:00:21.3983272Z   144 passed (10.3m)
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	﻿2026-10-21T20:00:21.4880689Z ##[group]Run node --test local-batch/integration.test.mjs 2>&1 | tee legacy-firefox.log
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:21.4881461Z [36;1mnode --test local-batch/integration.test.mjs 2>&1 | tee legacy-firefox.log[0m
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:21.4893906Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:21.4894348Z env:
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:21.4894608Z   RUN_BROWSER_TESTS: 1
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:21.4894908Z   PLAYWRIGHT_BATCH_TEST_BROWSERS: firefox
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:21.4895407Z   PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS: 10
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:21.4895984Z ##[endgroup]
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:21.6202978Z TAP version 13
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4514664Z # ::error title=Raw browser workflow failure::{"fixture":"raw_browser_failure","browser":"firefox","mode":"headless","freshRun":1,"reason":"action_failed","completed":20,"total":23,"durationMs":13178,"actionsSucceeded":false,"cleanupFailureCount":0,"failedStep":{"index":21,"type":"click","error":"action_failed","failureKind":"locator_timeout"}}
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4673564Z # Subtest: real firefox: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4675606Z not ok 1 - real firefox: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4676461Z   ---
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4677074Z   duration_ms: 13770.2036
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4677894Z   location: 'D:\\a\\playwright-mcp\\playwright-mcp\\local-batch\\integration.test.mjs:20:3'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4678464Z   failureType: 'testCodeFailure'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4678939Z   error: |-
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4688479Z     {"freshRun":1,"result":{"ok":false,"reason":"action_failed","browser":"firefox","blockedRequests":0,"actionsSucceeded":false,"cleanupFailures":[],"completed":20,"total":23,"durationMs":13178,"results":[{"index":1,"repetition":1,"type":"goto","ok":true,"durationMs":789},{"index":2,"repetition":1,"type":"click","ok":true,"durationMs":169},{"index":3,"repetition":1,"type":"click","ok":true,"durationMs":87},{"index":4,"repetition":1,"type":"click","ok":true,"durationMs":233},{"index":5,"repetition":1,"type":"click","ok":true,"durationMs":73},{"index":6,"repetition":1,"type":"click","ok":true,"durationMs":62},{"index":7,"repetition":1,"type":"click","ok":true,"durationMs":80},{"index":8,"repetition":1,"type":"click","ok":true,"durationMs":78},{"index":9,"repetition":1,"type":"click","ok":true,"durationMs":63},{"index":10,"repetition":1,"type":"click","ok":true,"durationMs":77},{"index":11,"repetition":1,"type":"click","ok":true,"durationMs":79},{"index":12,"repetition":1,"type":"click","ok":true,"durationMs":65},{"index":13,"repetition":1,"type":"click","ok":true,"durationMs":61},{"index":14,"repetition":1,"type":"click","ok":true,"durationMs":62},{"index":15,"repetition":1,"type":"click","ok":true,"durationMs":63},{"index":16,"repetition":1,"type":"click","ok":true,"durationMs":48},{"index":17,"repetition":1,"type":"click","ok":true,"durationMs":63},{"index":18,"repetition":1,"type":"click","ok":true,"durationMs":63},{"index":19,"repetition":1,"type":"click","ok":true,"durationMs":94},{"index":20,"repetition":1,"type":"click","ok":true,"durationMs":79},{"index":21,"repetition":1,"type":"click","ok":false,"durationMs":5017,"error":"action_failed","failureKind":"locator_timeout"}]},"cleanupFailures":[],"diagnostic":{"index":21,"type":"click","error":"action_failed","failureKind":"locator_timeout","name":"TimeoutError","fixtureCallLog":"locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"add\">Add</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n","counterProbe":"timeout"},"browserLogs":"JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]\r\n\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n\nJavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]\r\n\n"}
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4699986Z     
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4700295Z     false !== true
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4700591Z     
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4700883Z   code: 'ERR_ASSERTION'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4701482Z   name: 'AssertionError'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4701811Z   expected: true
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4702104Z   actual: false
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4702403Z   operator: 'strictEqual'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4702762Z   stack: |-
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4703333Z     TestContext.<anonymous> (file:///D:/a/playwright-mcp/playwright-mcp/local-batch/integration.test.mjs:77:16)
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4704006Z     async Test.run (node:internal/test_runner/test:797:9)
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4704587Z     async Test.processPendingSubtests (node:internal/test_runner/test:526:7)
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:35.4705048Z   ...
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4323327Z # ::error title=Raw browser workflow failure::{"fixture":"raw_browser_failure","browser":"firefox","mode":"headed","freshRun":1,"reason":"action_failed","completed":10,"total":23,"durationMs":12967,"actionsSucceeded":false,"cleanupFailureCount":0,"failedStep":{"index":11,"type":"click","error":"action_failed","failureKind":"pointer_action_timeout"}}
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4332638Z # Subtest: real firefox headed: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4334596Z not ok 2 - real firefox headed: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4335747Z   ---
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4337358Z   duration_ms: 12972.6344
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4338103Z   location: 'D:\\a\\playwright-mcp\\playwright-mcp\\local-batch\\integration.test.mjs:20:3'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4339071Z   failureType: 'testCodeFailure'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4339699Z   error: |-
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4353004Z     {"freshRun":1,"result":{"ok":false,"reason":"action_failed","browser":"firefox","blockedRequests":0,"actionsSucceeded":false,"cleanupFailures":[],"completed":10,"total":23,"durationMs":12967,"results":[{"index":1,"repetition":1,"type":"goto","ok":true,"durationMs":845},{"index":2,"repetition":1,"type":"click","ok":true,"durationMs":221},{"index":3,"repetition":1,"type":"click","ok":true,"durationMs":247},{"index":4,"repetition":1,"type":"click","ok":true,"durationMs":93},{"index":5,"repetition":1,"type":"click","ok":true,"durationMs":111},{"index":6,"repetition":1,"type":"click","ok":true,"durationMs":94},{"index":7,"repetition":1,"type":"click","ok":true,"durationMs":94},{"index":8,"repetition":1,"type":"click","ok":true,"durationMs":95},{"index":9,"repetition":1,"type":"click","ok":true,"durationMs":79},{"index":10,"repetition":1,"type":"click","ok":true,"durationMs":94},{"index":11,"repetition":1,"type":"click","ok":false,"durationMs":5018,"error":"action_failed","failureKind":"pointer_action_timeout"}]},"cleanupFailures":[],"diagnostic":{"index":11,"type":"click","error":"action_failed","failureKind":"pointer_action_timeout","name":"TimeoutError","fixtureCallLog":"locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"add\">Add</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n","counterProbe":"timeout"},"browserLogs":"JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]\r\n\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n\nJavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]\r\n\n"}
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4361656Z     
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4362329Z     false !== true
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4362694Z     
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4362964Z   code: 'ERR_ASSERTION'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4363333Z   name: 'AssertionError'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4363792Z   expected: true
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4364171Z   actual: false
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4364571Z   operator: 'strictEqual'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4365034Z   stack: |-
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4365857Z     TestContext.<anonymous> (file:///D:/a/playwright-mcp/playwright-mcp/local-batch/integration.test.mjs:77:16)
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4366815Z     async Test.run (node:internal/test_runner/test:797:9)
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4367693Z     async Test.processPendingSubtests (node:internal/test_runner/test:526:7)
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:00:48.4368399Z   ...
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3861496Z # ::error title=Raw browser workflow failure::{"fixture":"raw_browser_failure","browser":"firefox","mode":"direct-pipe","freshRun":1,"reason":"action_failed","completed":19,"total":23,"durationMs":11954,"actionsSucceeded":false,"cleanupFailureCount":0,"failedStep":{"index":20,"type":"click","error":"action_failed","failureKind":"locator_timeout"}}
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3863259Z # Subtest: real firefox direct-pipe: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3864046Z not ok 3 - real firefox direct-pipe: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3864536Z   ---
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3864861Z   duration_ms: 11958.5838
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3865364Z   location: 'D:\\a\\playwright-mcp\\playwright-mcp\\local-batch\\integration.test.mjs:20:3'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3865883Z   failureType: 'testCodeFailure'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3866237Z   error: |-
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3872362Z     {"freshRun":1,"result":{"ok":false,"reason":"action_failed","browser":"firefox","blockedRequests":0,"actionsSucceeded":false,"cleanupFailures":[],"completed":19,"total":23,"durationMs":11954,"results":[{"index":1,"repetition":1,"type":"goto","ok":true,"durationMs":1026},{"index":2,"repetition":1,"type":"click","ok":true,"durationMs":129},{"index":3,"repetition":1,"type":"click","ok":true,"durationMs":71},{"index":4,"repetition":1,"type":"click","ok":true,"durationMs":234},{"index":5,"repetition":1,"type":"click","ok":true,"durationMs":63},{"index":6,"repetition":1,"type":"click","ok":true,"durationMs":64},{"index":7,"repetition":1,"type":"click","ok":true,"durationMs":62},{"index":8,"repetition":1,"type":"click","ok":true,"durationMs":77},{"index":9,"repetition":1,"type":"click","ok":true,"durationMs":49},{"index":10,"repetition":1,"type":"click","ok":true,"durationMs":81},{"index":11,"repetition":1,"type":"click","ok":true,"durationMs":59},{"index":12,"repetition":1,"type":"click","ok":true,"durationMs":77},{"index":13,"repetition":1,"type":"click","ok":true,"durationMs":63},{"index":14,"repetition":1,"type":"click","ok":true,"durationMs":49},{"index":15,"repetition":1,"type":"click","ok":true,"durationMs":76},{"index":16,"repetition":1,"type":"click","ok":true,"durationMs":63},{"index":17,"repetition":1,"type":"click","ok":true,"durationMs":63},{"index":18,"repetition":1,"type":"click","ok":true,"durationMs":63},{"index":19,"repetition":1,"type":"click","ok":true,"durationMs":63},{"index":20,"repetition":1,"type":"click","ok":false,"durationMs":5002,"error":"action_failed","failureKind":"locator_timeout"}]},"cleanupFailures":[],"diagnostic":{"index":20,"type":"click","error":"action_failed","failureKind":"locator_timeout","name":"TimeoutError","fixtureCallLog":"locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"add\">Add</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n","counterProbe":"timeout"}}
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3878563Z     
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3880221Z     false !== true
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3880496Z     
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3880758Z   code: 'ERR_ASSERTION'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3881051Z   name: 'AssertionError'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3881362Z   expected: true
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3881648Z   actual: false
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3881945Z   operator: 'strictEqual'
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3882274Z   stack: |-
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3882806Z     TestContext.<anonymous> (file:///D:/a/playwright-mcp/playwright-mcp/local-batch/integration.test.mjs:77:16)
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3883411Z     async Test.run (node:internal/test_runner/test:797:9)
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3883957Z     async Test.processPendingSubtests (node:internal/test_runner/test:526:7)
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.3884373Z   ...
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.4177775Z 1..3
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.4178273Z # tests 3
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.4178642Z # suites 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.4179490Z # pass 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.4179919Z # fail 3
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.4180249Z # cancelled 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.4180726Z # skipped 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.4181072Z # todo 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.4181727Z # duration_ms 38804.5976
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-21T20:01:00.4399054Z ##[error]Process completed with exit code 1.
+test (ubuntu-latest)	Run playwright-mcp tests	﻿2026-10-21T19:46:22.6429606Z ##[group]Run npm test 2>&1 | tee wrapper-tests.log
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:22.6429940Z [36;1mnpm test 2>&1 | tee wrapper-tests.log[0m
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:22.6478432Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:22.6478733Z ##[endgroup]
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:22.7426598Z 
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:22.7427361Z > @timmiballz22/playwright-mcp-local@0.0.83 test
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:22.7427882Z > playwright test
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:22.7428067Z 
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:25.5838110Z 
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:25.5838706Z Running 144 tests using 2 workers
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:25.5839330Z 
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:28.4739230Z   ✓    2 [chrome] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (2.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:28.4984329Z   ✓    1 [chrome] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (2.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:29.8361171Z   ✓    3 [chrome] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (1.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:31.7060383Z   ✓    4 [chrome] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (3.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:32.0248527Z   ✓    5 [chrome] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (2.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:32.5516017Z   ✓    7 [chrome] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (502ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:33.0026217Z   ✓    8 [chrome] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (426ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:33.3846793Z   ✓    9 [chrome] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (369ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:33.7296124Z   ✓   10 [chrome] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (332ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:34.1011849Z   ✓   11 [chrome] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (358ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:34.7852302Z   ✓   12 [chrome] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (669ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:35.0934783Z   ✓   13 [chrome] › tests/cli.spec.ts:22:5 › install-browser --help (296ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:36.5412406Z   ✓   14 [chrome] › tests/click.spec.ts:19:5 › browser_click (1.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:36.8237534Z   ✓    6 [chrome] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (5.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:37.5138280Z   ✓   15 [chrome] › tests/core.spec.ts:19:5 › browser_navigate (956ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:38.0380586Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:38.1420034Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:38.2670504Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:38.3737306Z {"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:38.5072743Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:38.7904240Z   ✓   16 [chrome] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (1.9s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:39.3196897Z   ✓   17 [chrome] › tests/devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (1.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:39.7157389Z {"fixture":"original_close_processes","phase":"before","observedCount":11,"transportRootMatches":1}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:39.8801586Z   ✓   18 [chrome] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (1.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:41.3944476Z   ✓   19 [chrome] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (2.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:44.0492006Z   ✓   21 [chrome] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (2.6s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:45.1965577Z   ✓   20 [chrome] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (5.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:46.0426549Z   ✓   22 [chrome] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (2.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:47.4945494Z   ✓   23 [chrome] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (2.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:49.1307592Z   ✓   25 [chrome] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (1.6s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:50.0442510Z   ✓   24 [chrome] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:50.4895509Z   ✓   27 [chrome] › tests/library.spec.ts:20:5 › library can be used from CommonJS (429ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:51.5360191Z   ✓   28 [chrome] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (1.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:52.1465449Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:52.1871951Z   ✓   26 [chrome] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (3.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:54.4200932Z   ✓   30 [chrome] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (2.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:57.9075194Z   ✓   29 [chrome] › tests/network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (6.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:46:59.4490662Z   ✓   32 [chrome] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (1.5s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:00.3498325Z   ✓   33 [chrome] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (891ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:01.5771169Z   ✓   34 [chrome] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (1.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:03.1332752Z   ✓   31 [chrome] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (8.7s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:04.5886161Z   ✓   35 [chrome] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (3.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:04.7319337Z   ✓   36 [chrome] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (1.6s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:07.1952520Z   ✓   37 [chromium] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (1.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:07.3441150Z   ✓   38 [chromium] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (1.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:08.5602882Z   ✓   39 [chromium] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (1.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:10.5658296Z   ✓   40 [chromium] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (3.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:10.6642456Z   ✓   41 [chromium] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (2.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:11.0750037Z   ✓   43 [chromium] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (390ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:11.6478805Z   ✓   44 [chromium] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (560ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:12.0284314Z   ✓   45 [chromium] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (368ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:12.3785317Z   ✓   46 [chromium] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (339ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:12.7476272Z   ✓   47 [chromium] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (353ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:13.4513893Z   ✓   48 [chromium] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (692ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:13.7743697Z   ✓   49 [chromium] › tests/cli.spec.ts:22:5 › install-browser --help (309ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:15.2140273Z   ✓   50 [chromium] › tests/click.spec.ts:19:5 › browser_click (1.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:15.8152401Z   ✓   42 [chromium] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (5.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:16.2879336Z   ✓   51 [chromium] › tests/core.spec.ts:19:5 › browser_navigate (1.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:16.9614004Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:17.1682176Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:17.2670270Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:17.3722254Z {"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:17.4751894Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:17.6551603Z   ✓   52 [chromium] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (1.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:18.3199963Z   ✓   53 [chromium] › tests/devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (2.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:18.6400713Z {"fixture":"original_close_processes","phase":"before","observedCount":10,"transportRootMatches":1}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:18.7781996Z   ✓   54 [chromium] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (1.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:20.1864661Z   ✓   55 [chromium] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (1.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:22.8043397Z   ✓   57 [chromium] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (2.6s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:24.0931631Z   ✓   56 [chromium] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (5.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:24.9412330Z   ✓   58 [chromium] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (2.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:26.1566115Z   ✓   59 [chromium] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (2.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:27.7938968Z   ✓   61 [chromium] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (1.6s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:28.8084104Z   ✓   60 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (3.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:29.2325889Z   ✓   63 [chromium] › tests/library.spec.ts:20:5 › library can be used from CommonJS (401ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:30.4050868Z   ✓   64 [chromium] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (1.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:30.9096554Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:30.9405199Z   ✓   62 [chromium] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (3.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:33.2227712Z   ✓   66 [chromium] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (2.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:36.5646197Z   ✓   65 [chromium] › tests/network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (6.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:37.4918903Z   ✓   68 [chromium] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (918ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:38.3837181Z   ✓   69 [chromium] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (883ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:39.6137739Z   ✓   70 [chromium] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (1.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:42.1931094Z   ✓   67 [chromium] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (8.9s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:42.4938861Z   ✓   71 [chromium] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (2.9s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:43.6181418Z   ✓   72 [chromium] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (1.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:46.8272037Z   ✓   73 [firefox] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (3.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:47.7517480Z   ✓   74 [firefox] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (3.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:49.6026728Z   ✓   75 [firefox] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (2.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:52.6887731Z   ✓   76 [firefox] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (4.9s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:54.0089443Z   ✓   77 [firefox] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (4.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:54.4524175Z   ✓   79 [firefox] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (423ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:54.8680013Z   ✓   80 [firefox] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (400ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:55.2691510Z   ✓   81 [firefox] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (384ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:55.6324441Z   ✓   82 [firefox] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (351ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:56.0300360Z   ✓   83 [firefox] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (382ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:56.7461110Z   ✓   84 [firefox] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (699ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:47:57.0840113Z   ✓   85 [firefox] › tests/cli.spec.ts:22:5 › install-browser --help (327ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:01.0030738Z   ✓   86 [firefox] › tests/click.spec.ts:19:5 › browser_click (3.9s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:01.2436329Z   ✓   78 [firefox] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (8.5s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:03.7771005Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:03.9389461Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:04.0649261Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:04.1454534Z {"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:04.2270151Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:04.2591015Z   ✓   87 [firefox] › tests/core.spec.ts:19:5 › browser_navigate (3.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:05.1311465Z   ✓   88 [firefox] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (3.9s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:07.3924402Z {"fixture":"original_close_processes","phase":"before","observedCount":7,"transportRootMatches":1}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:07.5451702Z   ✓   89 [firefox] › tests/devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (3.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:07.8059912Z   ✓   90 [firefox] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (2.7s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:11.1072705Z   ✓   91 [firefox] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (3.5s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:15.2828282Z   ✓   92 [firefox] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (7.5s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:15.4986178Z   ✓   93 [firefox] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (4.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:19.6370569Z   ✓   95 [firefox] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (4.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:19.6452273Z   ✓   94 [firefox] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (4.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:23.7171759Z   ✓   97 [firefox] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (4.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:25.3776860Z   ✓   96 [firefox] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (5.7s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:25.8295563Z   ✓   99 [firefox] › tests/library.spec.ts:20:5 › library can be used from CommonJS (438ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:28.7649347Z   ✓  100 [firefox] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (2.9s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:29.7731654Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:29.8171512Z   ✓   98 [firefox] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (6.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:33.6368341Z   ✓  102 [firefox] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (3.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:36.7180292Z   ✓  101 [firefox] › tests/network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (7.9s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:39.7067549Z   ✓  104 [firefox] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (3.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:42.2598687Z   ✓  103 [firefox] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (8.6s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:42.8867994Z   ✓  105 [firefox] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (3.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:45.1190094Z   ✓  106 [firefox] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (2.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:48.3436630Z   ✓  108 [firefox] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (3.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:49.5384588Z   ✓  107 [firefox] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (6.6s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:54.0141650Z   ✓  109 [webkit] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (4.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:54.9301433Z   ✓  110 [webkit] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (4.7s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:54.9325037Z   ✓  111 [webkit] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (888ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:57.1401861Z   ✓  112 [webkit] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (2.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:59.2745133Z   ✓  113 [webkit] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (4.3s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:48:59.6506476Z   ✓  115 [webkit] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (360ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:00.0309233Z   ✓  116 [webkit] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (365ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:00.4068508Z   ✓  117 [webkit] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (358ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:00.7872450Z   ✓  118 [webkit] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (366ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:01.1771583Z   ✓  119 [webkit] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (375ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:01.8721602Z   ✓  120 [webkit] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (677ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:01.9231072Z   ✓  114 [webkit] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (4.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:02.2274905Z   ✓  121 [webkit] › tests/cli.spec.ts:22:5 › install-browser --help (334ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:03.2834491Z   ✓  123 [webkit] › tests/core.spec.ts:19:5 › browser_navigate (1.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:03.5182970Z   ✓  122 [webkit] › tests/click.spec.ts:19:5 › browser_click (1.6s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:04.3441293Z {"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:04.5440683Z {"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:04.7140856Z {"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:05.1900742Z {"fixture":"highlight_region","phase":"highlighted-again","observations":5,"redPixels":512}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:05.3078941Z {"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:05.4110860Z   ✓  124 [webkit] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (2.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:05.6985142Z   ✓  125 [webkit] › tests/devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (2.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:06.3137071Z {"fixture":"original_close_processes","phase":"before","observedCount":5,"transportRootMatches":1}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:06.4412539Z   ✓  126 [webkit] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (1.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:07.6248269Z   ✓  127 [webkit] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (1.9s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:10.2303171Z   ✓  129 [webkit] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (2.6s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:11.4913616Z   ✓  128 [webkit] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (5.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:12.2583097Z   ✓  130 [webkit] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (2.0s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:13.4372420Z   ✓  131 [webkit] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (1.9s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:14.9885905Z   ✓  133 [webkit] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (1.5s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:16.0955595Z   ✓  132 [webkit] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (3.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:16.5144636Z   ✓  135 [webkit] › tests/library.spec.ts:20:5 › library can be used from CommonJS (406ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:17.5203103Z   ✓  136 [webkit] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (989ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:18.1386092Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:18.1627425Z   ✓  134 [webkit] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (3.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:20.2691517Z   ✓  138 [webkit] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (2.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:23.0312988Z   ✓  139 [webkit] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (2.8s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:23.6208523Z   ✓  137 [webkit] › tests/network-routing.spec.ts:4:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (6.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:23.9563240Z   ✓  140 [webkit] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (913ms)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:24.7601691Z   ✓  141 [webkit] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (1.1s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:25.1481180Z   ✓  142 [webkit] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (1.2s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:26.5245024Z   ✓  144 [webkit] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (1.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:27.1371228Z   ✓  143 [webkit] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (2.4s)
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:27.1629650Z 
+test (ubuntu-latest)	Run playwright-mcp tests	2026-10-21T19:49:27.1635492Z   144 passed (3.1m)

@@ -1,19 +1,20 @@
 # Execution report — verified milestone, incomplete mission
 
-Current verified runtime: `a2a8ac7`, native60 wrapper39659786624 and batch39659786456:
-**1,688 reported passes/four failed tests**. All five174-file production installs,
-all four component jobs97/98 and all actual Codex1k/zero-model clients pass. The
-cleanup/retained-quota/browser-free test and host-path corrections have scoped
-native proof. Windows original Firefox close acknowledgement, raw locator/retry
-latency and macOS raw Chromium1k timeout remain failed; no replay or budget change.
+Latest complete native61 at4a614b3: **1,686 reported passes/nine failed tests**,
+plus separate macOS actual-Codex FAILED964/1k with failed cleanup and operator
+attention. All five175-file production installs and components97/98 pass; all
+standard original host suites144/0 pass, legacy Windows Firefox0/3 fails. Windows
+HTTP/screenshot ownership and macOS raw/jobs/batch/cancel scopes fail. No PID hint
+or healthy comparison clears those failures. Not release-ready.
 
-The shared receipt identifies browser_close pending27.111s after navigation,
-expected resume validation error and snapshot returned. A redundant phase probe
-was removed. A later local read-only owned-process observer is calibrated but
-needs native61 proof; it cannot authorize cleanup. See CODEX_EXECUTION_LEDGER.md
-for exact final source/evidence phases and NATIVE_BROWSER_REPRODUCTIONS.md for
-prepared native cases. Managed reset, full/temporary resource bounds, operator
-repair and interactive/manual acceptance remain open. **Not release-ready.**
+Later local P0 correction has actual detached-child before/after evidence: an
+unexpected worker exit without final/browser receipt can no longer claim cleanup
+terminated or release durable admission. IPC is drained; the8-entry metadata cap
+remains fixed; safe first signal-error class preserves permission uncertainty.
+Local components99/99 Node22/24, focused26/25 Node22/20, fresh175-file install,
+normal/linger death audits and public jobs1k2/2 pass. Native62 proof pending.
+See CODEX_EXECUTION_LEDGER.md and NATIVE_BROWSER_REPRODUCTIONS.md for exact phases,
+blocked gates, observer perturbation, negative controls and follow-up cases.
 
 The following records are historical checkpoints.
 
