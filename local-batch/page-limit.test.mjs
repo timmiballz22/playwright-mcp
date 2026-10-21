@@ -10,7 +10,13 @@ import { ownedDescendants } from './fixtures/process-audit.mjs';
 
 for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',')) {
   test(`${browser}: operator page limit stops an approved popup burst without executing the next step`, { timeout: 45000 }, async () => {
-    let nextHits = 0; const owned = [];
+    let nextHits = 0; const owned = []; const sinceMs = Date.now();
+    let accepted = false; let primary;
+    const auditOwned = async phase => {
+      let receipt = null;
+      const observed = await ownedDescendants(owned, { sinceMs, onReceipt: value => { receipt = value; } });
+      assert.deepEqual(observed, [], JSON.stringify({ fixture: 'page_limit_ownership', browser, phase, audit: receipt }));
+    };
     const fixture = createServer((request, response) => {
       response.writeHead(200, { 'Content-Type': 'text/html' });
       if (request.url === '/popup-close') response.end('<!doctype html><script>opener.childStarted(window);window.close()</script>');
@@ -38,7 +44,7 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
         } else assert.equal(result.completed, 5);
         assert.equal(nextHits, 1, 'Only the successful positive control may execute the next navigation');
         assert.equal(result.execution.cleanup, 'terminated'); assert.equal(result.execution.tempCleanup, 'removed');
-        assert.deepEqual(await ownedDescendants(owned), []);
+        await auditOwned(maxPages === 4 ? 'quota_4' : 'quota_2');
       }
       const reuse = await executeWorkflow({ browser, timeoutMs: 15000, steps: [
         { type: 'goto', url: origin + '/reuse' },
@@ -46,11 +52,18 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
       ] }, { allowedOrigins: [origin], artifactsDir: directory, maxPages: 2, onEvent: event => { if (event.pid) owned.push(event.pid); } });
       assert.equal(reuse.ok, true, JSON.stringify(reuse)); assert.equal(reuse.completed, 10);
       assert.equal(reuse.execution.cleanup, 'terminated'); assert.equal(reuse.execution.tempCleanup, 'removed');
-      assert.equal(nextHits, 1); assert.deepEqual(await ownedDescendants(owned), []);
-    } finally {
+      assert.equal(nextHits, 1); await auditOwned('reuse');
+      accepted = true;
+    } catch (error) { primary = error; throw error; }
+    finally {
       let clean = false;
-      try { assert.deepEqual(await ownedDescendants(owned), []); clean = true; }
-      finally { fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve)); if (clean) await rm(directory, { recursive: true, force: true }); }
+      try { await auditOwned('teardown'); clean = true; }
+      catch (error) { if (primary) throw new AggregateError([primary, error], 'Page-limit acceptance and teardown failed'); throw error; }
+      finally {
+        fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
+        if (clean && accepted) await rm(directory, { recursive: true, force: true });
+        else console.error('Page-limit fixture workspace preserved: acceptance or cleanup not confirmed');
+      }
     }
   });
 }

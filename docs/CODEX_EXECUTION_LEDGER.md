@@ -2,7 +2,8 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening; last pushed d22b111. Latest completed
+Branch feat/local-production-hardening. Native64 runsbf71fa8 at batch39677472725
+and wrapper39677472730; full proof pending. Latest completed
 native63 atd22b111: batch39673986509 FAILURE1,281/10; wrapper39673986586
 SUCCESS440/0 =>1,721 reported passes/ten failed tests, plus two failed JSON
 comparison controls (macOS server997/1k and Windows private-temp Firefox5/10).
@@ -4298,3 +4299,34 @@ median RSS growth8,826,880<33,554,432-byte existing budget. Peak sampled summed
 RSS610,689,024, browser FD coverage partial with19 inaccessible identities; no
 hard OS resource quota or cross-OS/token claim. All existing thresholds pass,
 zero model turns. unreported-final-soak100-node22.txt. No budget changed.
+
+## Pre-readiness fixture diagnostics and page-audit preservation — local afterbf71fa8
+
+Native63 source controller-death fixture exits before readiness after2.55s, with
+stderr ignored and no known cause. The source/installed QA owner now sends at
+most fixed projected diagnostic fields over its existing IPC on startup errors,
+guardian failure or early terminal state. Verifier accepts two validated receipts,
+keeps stderr ignored, drains IPC after exit before reporting readiness failure,
+and includes only fixed diagnostic enums, state, exit code and signal. Existing
+15s readiness/10s shutdown and outer test deadlines are unchanged; failure stays
+failure. Neither journal startup nor runtime behavior is declared fixed.
+
+Seeded journal_unavailable/rpc_timeout/init startup fault with private error text
+fails the new regression before diagnostics (0/1), passes1/1 Node22/24 after;
+private text absent. Same test passes in an isolated source copy with no
+node_modules, appropriate for component jobs without browser installs. Normal
+and lingering real Chromium controller-death checks pass, independent owned0.
+Full components105/105 each Node22/24, no skips/cancellations; final lint/diff pass.
+Fresh175-file production installation passes all entrypoints and both real
+controller-death audits (owned0). guardian-ready-* records phases. The isolated
+copy precedes the later validation-stage label correction; its seeded journal
+startup path is unchanged.
+
+The page-limit fixture adds fixed receipts to its existing four process-table
+reads (quota4/quota2/reuse/teardown); sinceMs is diagnostic-only, no new query or
+matching/filter change. Every observed PID remains in the unchanged empty-array
+assertion. Failed acceptance now preserves the workspace even if later teardown
+observes empty, and dual errors preserve both primary and teardown failures.
+Chromium/Firefox2/2 local pass. This does not resolve native63's four processes
+or native61's screenshot observations; Windows/WebKit proof remains pending.
+Native64 does not contain these later QA diagnostics.

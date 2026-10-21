@@ -10,6 +10,7 @@ import assert from 'node:assert/strict';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 const target = process.argv[2] ?? fileURLToPath(new URL('..', import.meta.url));
 const { JobJournal, supportsJournal } = await import(pathToFileURL(path.join(target, 'local-batch/jobs/journal.mjs')).href);
+const { guardianDiagnostic } = await import(pathToFileURL(path.join(target, 'local-batch/jobs/guardian-diagnostic.mjs')).href);
 const { ownedDescendants } = await import(pathToFileURL(path.join(target, 'local-batch/fixtures/process-audit.mjs')).href);
 if (!supportsJournal) {
   process.stdout.write(JSON.stringify({ component: 'durable_guardian_parent_death', supported: false, requiredNode: '22.13+' }) + '\n');
@@ -17,10 +18,21 @@ if (!supportsJournal) {
 const root = await mkdtemp(path.join(os.tmpdir(), 'guardian-real-parent-death-'));
 const owner = fork(path.join(target, 'local-batch/fixtures/guardian-real-owner.mjs'), [root, ...(process.argv[3] === '--linger-journal-close' ? ['--linger-journal-close'] : [])], { stdio: ['ignore', 'pipe', 'ignore', 'ipc'], execArgv: [] });
 const ownerExit = once(owner, 'exit');
+const ownerFailures = [];
+owner.on('message', packet => {
+  if (packet?.type !== 'fixtureFailure' || ownerFailures.length >= 2) return;
+  ownerFailures.push({ diagnostic: guardianDiagnostic(packet.diagnostic, packet.diagnostic?.stage, packet.diagnostic?.command),
+    state: ['FAILED', 'CRASHED', 'CANCELLED', 'TIMED_OUT', 'SUCCEEDED'].includes(packet.state) ? packet.state : 'unknown' });
+});
+const readinessError = (code, exitCode = null, signal = 'none') => new Error(code + ': ' + JSON.stringify({
+  exitCode: Number.isInteger(exitCode) ? exitCode : null,
+  signal: ['SIGKILL', 'SIGTERM', 'SIGABRT', 'SIGSEGV', 'SIGINT'].includes(signal) ? signal : 'none',
+  failures: ownerFailures,
+}));
 const lines = createInterface({ input: owner.stdout });
 let journal; let timer; let observed = []; let safeToRemove = false;
 try {
-  const ready = await Promise.race([new Promise((resolve, reject) => lines.once('line', line => { try { resolve(JSON.parse(line)); } catch { reject(new Error('invalid_fixture_ready')); } })), new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('fixture_ready_timeout')), 15000); }), ownerExit.then(() => { throw new Error('fixture_exited_before_ready'); })]);
+  const ready = await Promise.race([new Promise((resolve, reject) => lines.once('line', line => { try { resolve(JSON.parse(line)); } catch { reject(new Error('invalid_fixture_ready')); } })), new Promise((_, reject) => { timer = setTimeout(() => reject(readinessError('fixture_ready_timeout')), 15000); }), ownerExit.then(async ([code, signal]) => { if (owner.connected) await once(owner, 'disconnect'); throw readinessError('fixture_exited_before_ready', code, signal); })]);
   clearTimeout(timer);
   observed = await ownedDescendants(ready.roots, { rememberLiveRoots: true });
   assert.ok(observed.length >= 5, 'Real execution ownership was not observed');
