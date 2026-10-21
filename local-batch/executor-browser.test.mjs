@@ -18,6 +18,7 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
     const origin = `http://127.0.0.1:${fixture.address().port}`;
     const dir = await mkdtemp(path.join(os.tmpdir(), 'executor-browser-'));
     const owned = [];
+    let verified = false;
     try {
       const result = await executeWorkflow({ browser, timeoutMs: 10000, actionTimeoutMs: 30000,
         steps: [{ type: 'goto', url: origin }, { type: 'waitFor', selector: '#never' }] }, {
@@ -49,8 +50,11 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
         } catch {}
         assert.equal(running, false, 'Owned browser remains running');
       }
+      verified = true;
     } finally {
-      fixture.closeAllConnections(); fixture.close(); await rm(dir, { recursive: true, force: true });
+      fixture.closeAllConnections(); fixture.close();
+      if (verified) await rm(dir, { recursive: true, force: true });
+      else console.error('Deadline fixture workspace preserved: acceptance or cleanup not confirmed');
     }
   });
 }

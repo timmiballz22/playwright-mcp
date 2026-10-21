@@ -2565,3 +2565,14 @@ deadline/cleanup checks pass2/2; form/retry selections pass2/2; graph/phase/priv
 checks pass5/5 each Node20/22/24. The documented promisified execFile child handle
 is confirmed locally on Node24. Lint passes. Windows receipt callback execution
 remains native-pending; no cleanup fix is claimed from these local passes.
+
+## Preserve failed deadline-fixture workspaces
+
+The source deadline fixture previously recursively removed its own workspace in
+finally even after an ownership/acceptance assertion failed. It now removes it
+only after every success/timeout/cleanup/audit assertion passes, otherwise emits
+a fixed preservation notice. This changes test evidence retention only, without
+filtering survivors, issuing additional kills or changing production cleanup.
+Local Chromium/Firefox real deadline cases pass2/2. The change is not in active
+8d661bf native runs and is held locally until those conclude. Evidence:
+deadline-fixture-retention-local.txt.
