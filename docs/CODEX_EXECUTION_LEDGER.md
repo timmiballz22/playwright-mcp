@@ -3406,3 +3406,31 @@ Native55 f03ad33 runs CI39639279738 and batch39639279780 are active: no push unt
 conclusions. MacOS components already conclude failure; full logs not yet exposed
 by gh run view while run active. NEXT ACTION inspect the actual failure rather
 than infer a timing or runtime cause; no deadline growth to make green.
+
+
+## Bounded concurrent result waits retain cancellation capacity (after a8f8353)
+
+The controller bounds queued journal operations, but those slots are released
+between a get_workflow_result call's polls. Thus arbitrarily many dormant waits
+could remain for up to10s each. A real SDK/SQLite five-wait control fails before
+the fix (zero busy instead of one). jobs-mcp.mjs now admits at most four positive
+waitMs calls per server. Excess gets existing fixed controller_busy; status,
+cancel and zero-wait reads do not consume wait slots. Finally releases on normal
+completion, unknown job or error/abort. No schema/deadline/SQLite migration,
+automatic retry or broad hard OS-memory quota claim. Docs explain this bound.
+
+Final targeted SDK case passes1/1 on Node22/24, no skips/cancellations: synthetic
+queued metadata (no browser execution), five simultaneous waits yield four
+cancelled-job results/one busy; cancel remains available, completed and not_found
+lookups both release slots for four fresh calls. The full Node24 endpoint file
+passes2/2 in44.503s, including real Chromium1k, owner isolation, dedup, cancellation,
+EOF/reconnect and independent process-scope audit. That full run precedes the
+last added not_found-slot assertion, which is verified by final targeted runs.
+Fresh Node22 production172 install exits0 with both independent parent-death
+receipts. Lint/diff pass; evidence jobs-wait-* separates before and final checks.
+
+Native55 is still active at f03ad33; this local change is not included and push is
+held. Ordinary run logs await completion; completed macOS job log API redirects
+returned403 (no workaround/retry). Check annotations only say exit1; no test
+identity/cause/count inferred. NEXT ACTION: inspect full native55 logs when
+available, diagnose actual component failure, then publish next reviewed candidate.

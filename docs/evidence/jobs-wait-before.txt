@@ -1,0 +1,30 @@
+Jobs wait-cap fixture preserved: acceptance not confirmed
+✖ preview stdio jobs: bounded result wait calls preserve cancellation capacity (583.274402ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 830.20283
+
+✖ failing tests:
+
+test at local-batch/jobs-mcp.test.mjs:174:22
+✖ preview stdio jobs: bounded result wait calls preserve cancellation capacity (583.274402ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs-mcp.test.mjs:198:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

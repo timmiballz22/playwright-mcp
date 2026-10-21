@@ -11,7 +11,7 @@ import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { resolveJobConfig } from './jobs/config.mjs';
-import { supportsJournal } from './jobs/journal.mjs';
+import { JobJournal, supportsJournal } from './jobs/journal.mjs';
 import { ownedScopeDescendants } from './fixtures/process-audit.mjs';
 const entry = fileURLToPath(new URL('./jobs-mcp.mjs', import.meta.url));
 if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect', { timeout: 180000 }, async t => {
@@ -168,5 +168,46 @@ if (!supportsJournal) test('preview endpoint rejects unsupported runtime before 
   } finally {
     if (child && child.exitCode === null && child.signalCode === null) { child.kill('SIGKILL'); await once(child, 'close'); }
     await rm(root, { recursive: true, force: true });
+  }
+});
+
+if (supportsJournal) test('preview stdio jobs: bounded result wait calls preserve cancellation capacity', { timeout: 30000 }, async t => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-wait-cap-'));
+  const env = { ...process.env, PLAYWRIGHT_JOBS_OWNER_ID: randomUUID(),
+    PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data'), PLAYWRIGHT_JOBS_PROJECT_DIR: root };
+  let journal; let client; let verified = false; let cancelTimer;
+  try {
+    const config = await resolveJobConfig({ env }); journal = await JobJournal.open(config.journal);
+    // Synthetic queued metadata only. No controller owns workflow input, so no
+    // browser is allocated; the actual SDK, endpoint and SQLite still execute.
+    const id = randomUUID();
+    await journal.call('create', { id, requestKey: 'wait-cap', workflowDigest: 'a'.repeat(64), total: 1, deadlineAt: Date.now() + 60000 });
+    client = new Client({ name: 'jobs-wait-cap', version: '1' });
+    await client.connect(new StdioClientTransport({ command: process.execPath, args: [entry], env, stderr: 'pipe' }));
+    const call = async (name, args) => {
+      const reply = await client.callTool({ name, arguments: args }, undefined, { signal: t.signal });
+      return { ...JSON.parse(reply.content[0].text), isError: reply.isError === true };
+    };
+    const waiting = Array.from({ length: 5 }, () => call('get_workflow_result', { jobId: id, waitMs: 2000 }));
+    // Cancellation remains a separate operation even when all wait slots fill.
+    const cancelled = new Promise((resolve, reject) => { cancelTimer = setTimeout(() => {
+      call('cancel_workflow', { jobId: id }).then(resolve, reject);
+    }, 50); });
+    const [results, cancellation] = await Promise.all([Promise.all(waiting), cancelled]);
+    assert.equal(cancellation.state, 'CANCELLED');
+    assert.equal(results.filter(result => result.code === 'controller_busy' && result.isError).length, 1);
+    assert.equal(results.filter(result => result.ready && result.job.state === 'CANCELLED' && !result.isError).length, 4);
+    const fresh = await Promise.all(Array.from({ length: 4 }, () => call('get_workflow_result', { jobId: id, waitMs: 1000 })));
+    assert.ok(fresh.every(result => result.ready && !result.isError), 'Settled waits release their slots');
+    const missing = await Promise.all(Array.from({ length: 4 }, () => call('get_workflow_result', { jobId: randomUUID(), waitMs: 1000 })));
+    assert.ok(missing.every(result => result.code === 'not_found' && result.isError));
+    const afterFailure = await Promise.all(Array.from({ length: 4 }, () => call('get_workflow_result', { jobId: id, waitMs: 1000 })));
+    assert.ok(afterFailure.every(result => result.ready && !result.isError), 'Failed lookups release their wait slots');
+    assert.equal((await call('list_workflows', {})).jobs.length, 1);
+    verified = true;
+  } finally {
+    clearTimeout(cancelTimer); await client?.close(); await journal?.close();
+    if (verified) await rm(root, { recursive: true, force: true });
+    else console.error('Jobs wait-cap fixture preserved: acceptance not confirmed');
   }
 });

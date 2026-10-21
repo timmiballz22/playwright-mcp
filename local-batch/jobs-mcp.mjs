@@ -43,6 +43,7 @@ async function main() {
     if (event.type === 'guardianExited') process.stderr.write(`Local job guardian exited (${event.code ?? 'unknown'}/${event.signal}).\n`);
   } });
   let closing;
+  let waitingResults = 0;
   const shutdown = () => {
     if (!closing) closing = (async () => {
       let failure;
@@ -86,14 +87,19 @@ async function main() {
       if (name === 'get_workflow_status') return response(dto(await controller.status(args.jobId)));
       if (name === 'cancel_workflow') return response(dto(await controller.cancel(args.jobId)));
       if (name === 'list_workflows') return response({ jobs: (await controller.list(args.limit ?? 20)).map(dto) });
-      const end = performance.now() + (args.waitMs ?? 0);
-      let job;
-      do {
-        job = await controller.status(args.jobId);
-        if (terminal.has(job.state) || performance.now() >= end) break;
-        await delay(Math.min(250, Math.max(1, end - performance.now())), undefined, { signal: extra.signal });
-      } while (true);
-      return response({ job: dto(job), ready: terminal.has(job.state), result: job.resultAvailable ? await controller.result(args.jobId) : null });
+      const waits = (args.waitMs ?? 0) > 0;
+      if (waits && waitingResults >= 4) throw Object.assign(new Error(), { code: 'controller_busy' });
+      if (waits) waitingResults++;
+      try {
+        const end = performance.now() + (args.waitMs ?? 0);
+        let job;
+        do {
+          job = await controller.status(args.jobId);
+          if (terminal.has(job.state) || performance.now() >= end) break;
+          await delay(Math.min(250, Math.max(1, end - performance.now())), undefined, { signal: extra.signal });
+        } while (true);
+        return response({ job: dto(job), ready: terminal.has(job.state), result: job.resultAvailable ? await controller.result(args.jobId) : null });
+      } finally { if (waits) waitingResults--; }
     } catch (error) {
       process.stderr.write(journalFailureLine(error));
       const code = error?.name === 'AbortError' ? 'request_cancelled' : error?.code === 'unknown_tool' ? 'unknown_tool' : codes.has(error?.code) ? error.code : 'invalid_workflow_or_arguments';

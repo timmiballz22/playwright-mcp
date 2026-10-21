@@ -50,7 +50,7 @@ write sandbox. DNS rebinding and OS-level egress restrictions remain unfinished.
 | --- | --- |
 | `start_workflow` | Accepts `workflow` and a 1–128 character `requestKey`; returns a durable job ID quickly. Same owner/project/key and workflow returns the existing record without replay. Changed workflow conflicts. |
 | `get_workflow_status` | Returns authorized state and confirmed progress for `jobId`. |
-| `get_workflow_result` | Returns bounded result and readiness; optional `waitMs` is 0–10000. Canceling this lookup does not cancel the job. |
+| `get_workflow_result` | Returns bounded result and readiness; optional `waitMs` is 0–10000. At most four calls with positive `waitMs` may wait concurrently per stdio server; excess calls return `controller_busy`. Status, cancellation and zero-wait reads do not consume those wait slots. Canceling this lookup does not cancel the job. |
 | `cancel_workflow` | Persists cancellation intent; cleanup precedes confirmed terminal completion. Repeated calls are safe. |
 | `list_workflows` | Returns up to 20 recent authorized records. |
 | `cleanup_workflows` | Previews artifacts for 1–10 unique `jobIds`; optional `dryRun: false` removes them. Only authorized terminal jobs with confirmed cleanup qualify. |
