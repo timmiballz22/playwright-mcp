@@ -31,10 +31,13 @@ status changes. Real POSIX group member is observed after its factory leader
 exits, then self-exits via private stop file. Final focused28/28 each Node20/22/24,
 lint, fresh175-file production and actual Linux Codex1k36.258s/model0/owned0 pass.
 This diagnostic is not in native68; natural Mac failed-cleanup integration remains
-unverified. Transient GitHub503 and workspace restart recovered.
+unverified. Later local routing fix disposes a returned response after fulfillment
+failure: real64KiB GET/POST cache witnesses,38/38 each Node20/22/24, browser6/6,
+components107/107, fresh175-file install and actual Codex1k35.950s pass. This
+runtime fix is not in native69. Resource soak is next. Transient GitHub503 and
+workspace restart recovered.
 
-**Not release-ready. NEXT ACTION: push native69 for group-hint native coverage;
-preserve permission uncertainty and Windows provider failures.**
+**Not release-ready. Native69 atbf53357 is active: batch39693863585 / CI39693863539. NEXT ACTION: inspect completed logs and group-hint compatibility.**
 
 ## Historical checkpoints
 
@@ -4727,3 +4730,65 @@ diagnostic196d253 is absent from this candidate. No Mac permission cause is
 declared fixed by healthy1k results. Exact selected steps/jobs/counts and raw
 comparisons: worker-ci-sixtyeighth-* and native68-*. A transient GitHub503 and
 workspace restart recovered without credential or access-control changes.
+
+## Native69 launched —bf533573aab38b19a4ec9d39b3c02d77eca43303
+
+Pushed only after both native68 matrices completed. Batch39693863585 and
+CI39693863539 are active; draft PR2 updated. Includes196d253 bounded group hint
+and all local verification receipts. No default transport/browser dependency/
+runtime deadline/cleanup classification changes. Both workflows must finish
+before any further push.
+
+Independent download audit confirms runner.mjs context already sets
+acceptDownloads:false. No duplicate implementation or redundant test added.
+Known route.fetch response buffering remains separately documented (earlier
+ledger checkpoints375/443 and current threat model); pinned core stores bodies
+in fetchResponses and exposes no maxResponseSize option. This is not a hard
+network-response/RSS quota. No route.continue fallback or unsupported memory
+claim introduced.
+
+### Native69 partial structured check annotation
+
+After Mac actual-client job completed, normal GitHub check-run annotation API
+reports primary TIMED_OUT870 at click871, reason timeout, forced:false, cleanup
+terminated/temp removed, attention:false; guardian/journal failure arrays empty.
+No failed-cleanup branch means cleanupGroupHint was not collected in this sample.
+This does not explain/clear native67 permission failure. Full workflow still
+active; no complete count or passing native69 acceptance inferred. Evidence:
+native69-macos-client-annotations.json (check metadata, no log redirect).
+
+## Local afterbf53357 — dispose returned responses on routing failure
+
+Found runner.mjs route.fetch response disposal skipped when subsequent
+route.fulfill throws: response was scoped inside try, so catch could only abort
+the request. Failed model before9/1 records fetched1/fulfilled1/aborted1/disposed0.
+Current per-route disposeResponse captures the actual returned response, clears
+its reference before await (one attempt), and catches routing-error release
+without replaying fetch or changing the existing policy failure. Normal response,
+HTTP typed error, retry backoff and failed-disposal behavior remain strict.
+
+Added real Playwright APIRequestContext response witnesses for GET/POST, fixed
+64KiB body. Source fake route injects fulfillment failure; real request context
+stays open. Old router leaves POST response.body readable (negative0/1, Missing
+expected rejection), corrected router makes body access reject as disposed.
+GET1/POST1 request counts and exactly one POST effect, one disposal, no replay.
+This tests actual response lifetime, not a full real-browser failure or hard
+response/RSS bound. Negative control restores runner byte-for-byte; SHA receipts
+in response-release-restoration.json. No source clones or wider signal changes.
+
+Focused commands: node --test --test-concurrency=1 http-navigation-response,
+navigation-retry, runner and cleanup-diagnostics test paths under local-batch.
+38/38 each Node20/22/24, zero failed/skipped/cancelled. Model disposal-rejection
+cases preserve HTTP503 classification and never retry release. Real Chromium/
+Firefox retry/marked-cancellation/redirect controls6/6 (WebKit excluded locally,
+not a pass). Final Node22 component suite107/107,39.595s; fresh175-file production
+entrypoint/profile/job/death checks pass, owned0 in both death modes. Lint and
+actual Codex positive check pending. Native69 does not contain this runtime fix.
+Receipts response-release-* retain negative/intermediate/final phases separately.
+
+Response-release final local positive check: actual Codex0.163/Node22 completes
+1,000 actions in35.950s, start19ms, four result calls, model0/owned0, dedup/foreign
+owner/active-cancel/terminal cleanup assertions pass. Lint0/diff check0. All
+commands in the serial validation chain returned0. Receipts response-release-
+codex22.txt and response-release-lint.txt. Next: commit this executable source,
+then the existing100-run resource soak on that commit; no threshold changes.

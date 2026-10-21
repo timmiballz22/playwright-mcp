@@ -278,12 +278,16 @@ export async function runWorkflow(workflow, {
       const isCurrentMainGet = () => navigation && navigation === currentNavigation &&
         request.method?.() === 'GET' && request.isNavigationRequest?.() &&
         request.frame?.() === page.mainFrame?.() && request.url() === navigation.url;
+      let response;
+      const disposeResponse = async () => {
+        const fetched = response; response = undefined;
+        if (fetched) await fetched.dispose();
+      };
       try {
         if (!allowedAddress(route.request().url(), allowed) || readOnly && !['GET', 'HEAD'].includes(route.request().method())) {
           blockedRequests++;
           return await route.abort('blockedbyclient');
         }
-        let response;
         for (let attempt = 0; ; attempt++) {
           if (closing || cancelled || timedOut || resourceExceeded) throw new Error('stopped');
           response = await route.fetch({ maxRedirects: 0, maxRetries: 0,
@@ -292,7 +296,7 @@ export async function runWorkflow(workflow, {
           const wait = eligible ? navigationRetryDelay(response.status(), response.headers()['retry-after'], attempt, retryPolicy) : null;
           const remaining = spec.timeoutMs - (performance.now() - started);
           if (wait === null || wait >= remaining) break;
-          await response.dispose();
+          await disposeResponse();
           await delay(wait, undefined, { signal: retryAbort.signal });
         }
         const failure = isCurrentMainGet() ? httpNavigationFailure(response) : null;
@@ -301,7 +305,7 @@ export async function runWorkflow(workflow, {
           // document readiness or replace its fixed status with a later timeout.
           navigation.reject(failure);
           await route.abort('failed').catch(() => {});
-          await response.dispose().catch(() => {});
+          await disposeResponse().catch(() => {});
           return;
         }
         if (response.status() >= 300 && response.status() < 400 && response.headers().location) {
@@ -310,10 +314,13 @@ export async function runWorkflow(workflow, {
         } else {
           await route.fulfill({ response });
         }
-        await response.dispose();
+        await disposeResponse();
       } catch {
         if (!closing) blockedRequests++;
         await route.abort('failed').catch(() => {});
+        // Fulfillment can fail after fetch allocated a retained response body.
+        // Release that actual response once; preserve the failure and never fetch again.
+        await disposeResponse().catch(() => {});
       }
     }));
     // No WebSocket transport is approved in this initial strict policy.

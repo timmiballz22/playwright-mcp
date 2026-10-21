@@ -29,10 +29,13 @@ status changes. Real POSIX group member is observed after its factory leader
 exits, then self-exits via private stop file. Final focused28/28 each Node20/22/24,
 lint, fresh175-file production and actual Linux Codex1k36.258s/model0/owned0 pass.
 This diagnostic is not in native68; natural Mac failed-cleanup integration remains
-unverified. Transient GitHub503 and workspace restart recovered.
+unverified. Later local routing fix disposes a returned response after fulfillment
+failure: real64KiB GET/POST cache witnesses,38/38 each Node20/22/24, browser6/6,
+components107/107, fresh175-file install and actual Codex1k35.950s pass. This
+runtime fix is not in native69. Resource soak is next. Transient GitHub503 and
+workspace restart recovered.
 
-**Not release-ready. NEXT ACTION: push native69 for group-hint native coverage;
-preserve permission uncertainty and Windows provider failures.**
+**Not release-ready. Native69 atbf53357 is active: batch39693863585 / CI39693863539. NEXT ACTION: inspect completed logs and group-hint compatibility.**
 
 Exact gate/source/phase evidence: CODEX_EXECUTION_LEDGER.md.
 

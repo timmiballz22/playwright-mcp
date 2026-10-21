@@ -1,0 +1,18 @@
+✔ known main GET 401 fails precisely even when document readiness never settles (7.313582ms)
+✔ known main GET 403 fails precisely even when document readiness never settles (1.844943ms)
+✔ known main GET 404 fails precisely even when document readiness never settles (1.543439ms)
+✔ known main GET 429 fails precisely even when document readiness never settles (1.191181ms)
+✔ known main GET 503 fails precisely even when document readiness never settles (1.505221ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"main":false}) (1.538255ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"}) (1.304049ms)
+✔ known HTTP failure waits for the configured retry attempts before failing without DOM readiness (333.411693ms)
+✔ observed cancellation keeps precedence over a newly available HTTP failure (1.771048ms)
+✔ failed fulfillment disposes its fetched response without replay or hiding the request failure (2.607613ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 425.122635

@@ -94,3 +94,9 @@ identity-unverified; leaders may have exited and IDs may have been reused. These
 read-only hints never authorize signaling, exclusion, lease release or clearing
 cleanup uncertainty. The bounded query emits no names/argv/environment/raw error
 text. This is diagnostic coverage, not an OS containment guarantee.
+
+Routed responses are explicitly disposed after fulfillment failure as well as
+normal fulfillment, typed HTTP failure and retry backoff. This fixes retention
+of a returned API response until context teardown; it neither caps bytes before
+route.fetch buffers them nor establishes a hard browser/process memory quota.
+Routing failures remain failures and do not trigger another request.

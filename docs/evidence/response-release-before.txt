@@ -1,0 +1,44 @@
+✔ known main GET 401 fails precisely even when document readiness never settles (8.152826ms)
+✔ known main GET 403 fails precisely even when document readiness never settles (2.196403ms)
+✔ known main GET 404 fails precisely even when document readiness never settles (1.176963ms)
+✔ known main GET 429 fails precisely even when document readiness never settles (0.989222ms)
+✔ known main GET 503 fails precisely even when document readiness never settles (1.130994ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"main":false}) (2.039982ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"}) (1.009157ms)
+✔ known HTTP failure waits for the configured retry attempts before failing without DOM readiness (356.323133ms)
+✔ observed cancellation keeps precedence over a newly available HTTP failure (1.508653ms)
+✖ failed fulfillment disposes its fetched response without replay or hiding the request failure (3.188654ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 452.545864
+
+✖ failing tests:
+
+test at local-batch/http-navigation-response.test.mjs:66:1
+✖ failed fulfillment disposes its fetched response without replay or hiding the request failure (3.188654ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      aborted: 1,
+  +   disposed: 0,
+  -   disposed: 1,
+      fetched: 1,
+      fulfilled: 1
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-navigation-response.test.mjs:72:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { fetched: 1, fulfilled: 1, aborted: 1, disposed: 0 },
+    expected: { fetched: 1, fulfilled: 1, aborted: 1, disposed: 1 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
