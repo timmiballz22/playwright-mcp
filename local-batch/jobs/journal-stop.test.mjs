@@ -17,6 +17,7 @@ async function withWorker(mode, body) {
       callback?.(null);
       if (closing) { child.emit('close'); return; }
       if (mode === 'silent') return;
+      if (mode === 'malformed') { child.emit('message', null); return; }
       child.emit('message', mode === 'busy' && packet.command === 'init'
         ? { id: packet.id, ok: false, code: 'journal_busy' }
         : { id: packet.id, ok: true, value: packet.command === 'init' ? { schemaVersion: 1 } : { closed: true } });
@@ -73,5 +74,15 @@ if (supportsJournal) test('busy initialization is not retried while its prior wo
     });
     assert.equal(children.length, 1, 'Only confirmed shutdown may permit a fresh init attempt');
     assert.equal(children[0].connected, false); assert.equal(children[0].unrefs, 1);
+  });
+});
+
+
+if (supportsJournal) test('malformed journal IPC fails pending init safely instead of throwing outside its promise', async () => {
+  await withWorker('malformed', async ({ watch, ceiling }) => {
+    await assert.rejects(ceiling(watch(JobJournal.open(config))), error => {
+      assert.equal(error.code, 'journal_unavailable'); assert.equal(error.journalFailure, 'invalid_response');
+      assert.equal(error.journalExitConfirmed, false); return true;
+    });
   });
 });

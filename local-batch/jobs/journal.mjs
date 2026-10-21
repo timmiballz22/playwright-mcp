@@ -55,6 +55,7 @@ export class JobJournal {
     this.exited = new Promise(resolve => this.child.once('close', () => { this.exitConfirmed = true; this.failAll('journal_unavailable', 'worker_exit'); resolve(); }));
     this.child.once('error', () => this.abort('worker_error'));
     this.child.on('message', message => {
+      if (!message || typeof message !== 'object' || Array.isArray(message)) { this.abort('invalid_response'); return; }
       if (message.type) { try { onEvent?.(message); } catch {} return; }
       const request = this.pending.get(message.id);
       if (!request) return;

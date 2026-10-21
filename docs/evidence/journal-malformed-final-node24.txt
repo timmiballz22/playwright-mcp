@@ -1,0 +1,29 @@
+✔ controller recovery failure remains primary if journal shutdown also fails (2.145664ms)
+✔ controller recovery failure identity is unchanged after confirmed journal shutdown (0.240123ms)
+✔ journal init timeout reports unconfirmed exit without waiting forever or losing first cause (5.512246ms)
+✔ journal closed receipt alone cannot confirm worker shutdown (4.12594ms)
+✔ busy initialization is not retried while its prior worker exit is unconfirmed (2.032531ms)
+✔ malformed journal IPC fails pending init safely instead of throwing outside its promise (2.518469ms)
+✔ unexpected journal worker exit remains distinct from an RPC timeout (100.702746ms)
+✔ malformed actual worker IPC is rejected and owned shutdown is confirmed (34.215489ms)
+✔ termination failure diagnostics persist without losing uncertain cleanup or releasing the lease (58.184029ms)
+✔ managed directory links and database hardlinks cannot modify another file (338.892907ms)
+✔ POSIX journal directory must exclude group and other access (42.788959ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (109.517409ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (69.338211ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (53.52763ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (62.193334ms)
+✔ killed transaction rolls back without a partial job or duplicate request (199.209182ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (147.663699ms)
+✔ corrupt journal is rejected without silently erasing the file (92.713222ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (48.644944ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (177.200071ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (165.464292ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1907.139705

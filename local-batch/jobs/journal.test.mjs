@@ -26,6 +26,12 @@ if (!supportsJournal) {
       assert.deepEqual(await journal.call('integrity'), { ok: true }); assert.deepEqual(await journal.call('list'), []);
     } finally { await journal?.close(); await rm(directory, { recursive: true, force: true }); }
   });
+  test('malformed actual worker IPC is rejected and owned shutdown is confirmed', async () => {
+    await assert.rejects(JobJournal.open({ workerModule: new URL('./fixtures/malformed-response.mjs', import.meta.url) }), error => {
+      assert.equal(error.code, 'journal_unavailable'); assert.equal(error.journalFailure, 'invalid_response');
+      assert.equal(error.journalExitConfirmed, true); return true;
+    });
+  });
   test('termination failure diagnostics persist without losing uncertain cleanup or releasing the lease', async () => {
     const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-termination-'));
     let journal;

@@ -1,0 +1,40 @@
+✔ journal init timeout reports unconfirmed exit without waiting forever or losing first cause (6.867398ms)
+✔ journal closed receipt alone cannot confirm worker shutdown (4.359875ms)
+✔ busy initialization is not retried while its prior worker exit is unconfirmed (3.431748ms)
+✖ malformed journal IPC fails pending init safely instead of throwing outside its promise (4.020254ms)
+ℹ Error: A resource generated asynchronous activity after the test ended. This activity created the error "TypeError: Cannot read properties of null (reading 'type')" which triggered an uncaughtException event, caught by the test runner.
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 94.731478
+
+✖ failing tests:
+
+test at local-batch/jobs/journal-stop.test.mjs:81:22
+✖ malformed journal IPC fails pending init safely instead of throwing outside its promise (4.020254ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'rpc_timeout'
+  - 'invalid_response'
+  
+      at Object.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal-stop.test.mjs:84:63)
+      at expectedException (node:assert:578:17)
+      at expectsError (node:assert:703:21)
+      at strict.rejects (node:assert:769:3)
+      at async file:///workspace/playwright-mcp/local-batch/jobs/journal-stop.test.mjs:83:5
+      at async withWorker (file:///workspace/playwright-mcp/local-batch/jobs/journal-stop.test.mjs:38:9)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal-stop.test.mjs:82:3)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'rpc_timeout',
+    expected: 'invalid_response',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

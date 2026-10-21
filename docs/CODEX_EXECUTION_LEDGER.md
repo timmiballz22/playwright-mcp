@@ -3434,3 +3434,28 @@ held. Ordinary run logs await completion; completed macOS job log API redirects
 returned403 (no workaround/retry). Check annotations only say exit1; no test
 identity/cause/count inferred. NEXT ACTION: inspect full native55 logs when
 available, diagnose actual component failure, then publish next reviewed candidate.
+
+
+## Malformed journal IPC fails closed without an uncaught exception (after ecccfa7)
+
+A private null-message fault caused an uncaught TypeError in journal.mjs and later
+misreported rpc_timeout. Before control:3pass/1fail plus retained uncaughtException
+receipt. The handler now rejects non-object/null/array envelopes via fixed
+invalid_response and bounded owned-handle abort. It does not trust an invalid
+message to authorize success, replay or PID actions; no raw payload is emitted.
+
+Both an unconfirmed synthetic handle and a real child sending null are covered.
+The real child allocates no browser/files/descendants; abort confirms its actual
+close. Targeted21/21 each Node22/24, then full explicit components75/75 each,
+zero skips/cancellations, exit0. Fresh Node22 production172 install exits0, including
+all installed endpoints and normal/linger owned shutdown checks. Lint/diff pass.
+Evidence journal-malformed-* retains the negative separately. New private fixture
+is checkout-only and is not added to the runtime tarball.
+
+Additional actual Codex0.163 source receipt before this IPC-envelope-only change:
+Linux Node24 six tools,1,000 actions,36.492s,start11ms,four result calls,zero model
+turns/zero observed owned processes, owner/dedup/cancel/terminal cleanup all pass.
+Evidence jobs-wait-codex-node24.txt. It validates the bounded-wait candidate and
+is not relabelled an installed/native final-candidate proof. Native55 still active
+at f03ad33; local commits held to avoid cancellation. NEXT ACTION remains inspect
+macOS component and browser failures when complete logs become available.
