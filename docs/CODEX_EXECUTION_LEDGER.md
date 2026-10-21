@@ -2906,3 +2906,10 @@ a1.5s test ceiling exits1 with one cancelled test (zero failed tests), aborted:t
 workflow receipt and preserved scope. These are intentional negative controls,
 not passing acceptance or independent proof of no orphan. Temporary fault specs
 are removed; receipts and artifact counts are retained in mcp-failure-retention-*.
+
+Native50 evidence reconciliation: all17 executed jobs conclude, one intentional
+soak job skip, zero job cancellations. The single TAP cancellation remains in
+its own counter. Large-DOM optimized witness passes12 host browser projects
+(macOS Firefox27.5s/30s unchanged ceiling). Supervised20-screenshot/report
+uniqueness/identity and zero-owned assertions pass all five native batch lanes.
+These establish their scoped acceptance at5060ca4, not overall reliability.

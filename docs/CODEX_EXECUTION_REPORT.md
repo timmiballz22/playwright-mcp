@@ -18,7 +18,7 @@ and one cancelled test (distinct from job cancellation). Both workflows finish
 with failure; this does not validate the later retention candidate. Detailed
 selected logs/counts are retained under worker-ci-fiftieth-*.
 
-Latest completed full native `b144c7d`: **1,337 reported passes/six failed
+Previous completed full native `b144c7d`: **1,337 reported passes/six failed
 tests**, plus macOS actual-Codex failure. Wrapper39609165296:434/3;
 batch39609165341:903/3. All17 executed jobs conclude; one soak job intentionally
 skips in full mode, no cancellations or reported test skips/cancels.

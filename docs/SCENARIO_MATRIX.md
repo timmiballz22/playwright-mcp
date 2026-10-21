@@ -1,20 +1,23 @@
 # Mandatory scenario evidence
 
-Latest completed full native `b144c7d`: **1,337 reported passes/six failed
-tests**, plus macOS actual-Codex TIMED_OUT971. Wrapper39609165296:434/3;
-batch39609165341:903/3. All17 executed jobs conclude; one soak job intentionally
-skips, no cancellations. Linux/Windows original144, Windows legacy Firefox3,
-all installed166-file packages and all journal lanes pass. macOS original
-screenshot/timeout and1,000-action throughput failures remain; Windows IPv6
-control fails before initial navigation completes. Earlier ownership failures
-remain unexplained even though this round's HTTP/privacy audits pass.
+Latest completed full native `5060ca4`: **1,334 reported passes/10 failed
+tests and one cancelled test**. Wrapper39614429492:432/2;
+batch39614429595:902/8 plus one TAP cancellation. All17 executed jobs conclude;
+one soak group intentionally skips, no job cancellation. All three actual Codex
+zero-model1,000-action clients and all five167-file production installs pass.
+Windows Firefox and macOS throughput failures remain; no release gate is promoted.
 
-Scoped100/600 proofs exist on Linux/macOS Intel at8d661bf and twice Windows at
-b144c7d(176.352/182.015s), fresh storage/zero observed owned per run. These are
-not a final same-SHA full green matrix, managed reset or resource bounds.
-A reduced-call large-DOM witness and supervised artifact identity check await
-native verification. See [execution report](CODEX_EXECUTION_REPORT.md).
-**Not release-ready.**
+The reduced-call large-DOM fixture passes all12 host browser projects, including
+macOS Firefox27.5s under the unchanged30s test limit. Supervised20-file screenshot/
+report identity checks pass all five native batch lanes with their owned-process
+audits. These scoped positives do not explain prior native failures.
+
+Pushed `b355d2e` adds age-based explicit operator retention; native CI is running.
+Local later commits add independent filesystem cleanup containment and preserve
+MCP assertion/deadline failure evidence. Components/negative controls and installed
+169-file package pass locally. Automatic scheduling, cumulative quotas, durable
+maintenance uncertainty and parent-death cleanup validation remain open.
+See [execution report](CODEX_EXECUTION_REPORT.md). **Not release-ready.**
 
 At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
@@ -164,7 +167,7 @@ acceptance remain open.
 | 21 | Upload symlink escape | PARTIAL: original upload outside/symlink/junction negatives passed all native browsers at 9e73a08; earlier macOS modal timeout remains unexplained. Companion has no upload action. |
 | 22 | Popup/iframe/WebSocket policy | PARTIAL: iframe and WebSocket zero-hit fixtures pass; popup approved/denied positive-control fixtures pass local Chromium/Firefox; native all-engine positive/negative cases pass at ebdec88. |
 | 23 | Service worker limitation | PARTIAL: dedicated Chromium fixture proves approved positive control registers and reaches its target; strict runtime requests neither worker script nor target, verifies cleanup. Native107076c passes all five batch lanes for Chromium; other engines and deliberate PWA operation remain open. |
-| 24 | 20-run artifact uniqueness + retention | PARTIAL: unique private artifacts and bounded dry-run/delete terminal cleanup pass locally, including unsafe-link/limit guards. Separate supervised20-screenshot/20-report concurrent-pair source proof passes Node20/22 with stable hashes/inodes/timestamps and zero observed owned per pair; native/actual concurrent clients remain pending. Host-controlled per-run screenshot payload budgets now pass scoped tests; total storage quotas and retention remain absent. |
+| 24 | 20-run artifact uniqueness + retention | PARTIAL: unique private artifacts and bounded dry-run/delete terminal cleanup pass locally, including unsafe-link/limit guards. Separate supervised20-screenshot/20-report concurrent-pair source proof passes Node20/22 with stable hashes/inodes/timestamps and zero observed owned per pair; native five-lane supervisor proof now passes at5060ca4; actual concurrent-client artifact proof remains pending. Host-controlled per-run screenshot payload budgets now pass scoped tests; explicit age-based operator retention passes locally atb355d2e; native validation, scheduled retention and cumulative storage quotas remain open. |
 | 25 | Input/header secret canaries | PARTIAL: fill/error/report/protocol canaries tested; real HTTP header/body/query and page-exception canaries stay out of summaries and saved reports on local Chromium/Firefox Node20/22/24. WebKit/native and all artifact channels remain. |
 | 26 | HTTP errors vs JS exceptions | PARTIAL: real Chromium/Firefox Node20/22/24 401/403/404/418/429/500/503 failures retain status/taxonomy without response secrets or default retries, and a200 page with a thrown script exception still passes explicit DOM assertions. WebKit/native and the broader exception matrix remain. |
 | 27 | Retry-After backoff + no unsafe replay | PARTIAL: configured GET-only 429/503 Retry-After backoff and no unsafe-action replay tests/installed smoke pass. Native Windows Firefox intermittency and the full retry taxonomy remain open. |

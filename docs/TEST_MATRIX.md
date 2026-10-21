@@ -1,20 +1,23 @@
 # Current acceptance coverage
 
-Latest completed full native `b144c7d`: **1,337 reported passes/six failed
-tests**, plus macOS actual-Codex TIMED_OUT971. Wrapper39609165296:434/3;
-batch39609165341:903/3. All17 executed jobs conclude; one soak job intentionally
-skips, no cancellations. Linux/Windows original144, Windows legacy Firefox3,
-all installed166-file packages and all journal lanes pass. macOS original
-screenshot/timeout and1,000-action throughput failures remain; Windows IPv6
-control fails before initial navigation completes. Earlier ownership failures
-remain unexplained even though this round's HTTP/privacy audits pass.
+Latest completed full native `5060ca4`: **1,334 reported passes/10 failed
+tests and one cancelled test**. Wrapper39614429492:432/2;
+batch39614429595:902/8 plus one TAP cancellation. All17 executed jobs conclude;
+one soak group intentionally skips, no job cancellation. All three actual Codex
+zero-model1,000-action clients and all five167-file production installs pass.
+Windows Firefox and macOS throughput failures remain; no release gate is promoted.
 
-Scoped100/600 proofs exist on Linux/macOS Intel at8d661bf and twice Windows at
-b144c7d(176.352/182.015s), fresh storage/zero observed owned per run. These are
-not a final same-SHA full green matrix, managed reset or resource bounds.
-A reduced-call large-DOM witness and supervised artifact identity check await
-native verification. See [execution report](CODEX_EXECUTION_REPORT.md).
-**Not release-ready.**
+The reduced-call large-DOM fixture passes all12 host browser projects, including
+macOS Firefox27.5s under the unchanged30s test limit. Supervised20-file screenshot/
+report identity checks pass all five native batch lanes with their owned-process
+audits. These scoped positives do not explain prior native failures.
+
+Pushed `b355d2e` adds age-based explicit operator retention; native CI is running.
+Local later commits add independent filesystem cleanup containment and preserve
+MCP assertion/deadline failure evidence. Components/negative controls and installed
+169-file package pass locally. Automatic scheduling, cumulative quotas, durable
+maintenance uncertainty and parent-death cleanup validation remain open.
+See [execution report](CODEX_EXECUTION_REPORT.md). **Not release-ready.**
 
 At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
@@ -167,7 +170,7 @@ CODEX_ULTIMATE_MASTER_PROMPT.md; the ledger tracks G00–G18.
 | 18–20 | Redirect SSRF + exact localhost origins + file/URL credentials negative tests; all encodings pending |
 | 21 | Upload absent from companion; upstream behavior still requires test |
 | 22–23 | WebSockets closed and service workers blocked by code; browser negative fixtures pending |
-| 24 | 20-run paired concurrent screenshots pass uniqueness/private-directory checks; retention absent |
+| 24 | 20-run supervised paired screenshots preserve hashes/identity on all five native lanes at5060ca4; explicit age pruning passes locally, native retention pending |
 | 25 | Fake secret error scrubbed; screenshots not masked; NOT COMPLETE |
 | 26–27 | NOT IMPLEMENTED: status taxonomy and Retry-After handling |
 | 28–33 | CSS and upstream role click tested; remaining interaction/mobile/console scenarios NOT TESTED |
