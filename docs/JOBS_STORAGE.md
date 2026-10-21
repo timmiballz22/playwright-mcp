@@ -166,9 +166,11 @@ with `/private` ownership/write permissions checked. This avoids rejecting the
 host's normal temporary directory without accepting caller-controlled links.
 The scan and path checks remain inside the existing execution deadline.
 
-An unexpected execution-worker exit before either a final receipt or a browser
-ownership receipt is not proof of an empty browser tree. The supervisor drains
-worker IPC before classifying natural exit and marks this case
+An execution-worker exit without a browser ownership receipt is not proof of
+an empty browser tree when its final receipt is absent or a browser launch was
+attempted. A final failure report cannot certify that a rejected launch allocated
+no child. The supervisor drains worker IPC before classifying natural exit and
+marks these cases
 `browser_ownership_unconfirmed`: cleanup fails, operator attention is retained and
 new admission remains fenced even if a later read-only PID hint finds nothing.
 This reports uncertainty; it does not claim to terminate an unreported child or

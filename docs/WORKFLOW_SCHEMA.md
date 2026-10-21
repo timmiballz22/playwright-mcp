@@ -106,8 +106,11 @@ failure category: `signal_permission_denied` (EPERM/EACCES),
 No raw error message/code is returned. ESRCH retains its existing already-gone
 handling. None of these observations grants permission to release an uncertain
 lease, retry a signal with broader authority, or replay workflow actions.
-`browser_ownership_unconfirmed` marks an unexpected worker exit with neither a
-final receipt nor any browser ownership receipt; cleanup stays failed.
+`browser_ownership_unconfirmed` marks a started worker exit without a browser
+ownership receipt when either its final report is absent or a launch attempt was
+observed. A final launch-failure report does not prove that no child was allocated;
+cleanup stays failed. Even a launch rejected before allocation can retain this
+conservative uncertainty when the public launch API supplies no ownership proof.
 
 If an HTTP error is observed before cleanup/reporting exhausts the workflow budget,
 the overall result still returns `timeout`. Its early failed-step receipt retains

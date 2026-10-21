@@ -17,6 +17,7 @@ let workerExited = false;
 let workerIpcDrained = false;
 let workerExitCode;
 let workerStarted = false;
+let browserLaunchStarted = false;
 let forced = false;
 let completed = 0;
 let failedStep = null;
@@ -36,13 +37,14 @@ async function finish(exitCode) {
   finishing = true;
   clearTimeout(deadlineTimer); clearTimeout(forceTimer);
   const terminationFailures = [];
-  const ownershipUnconfirmed = workerExited && workerStarted && !candidate && browserPids.size === 0;
+  const ownershipUnconfirmed = workerExited && workerStarted && browserPids.size === 0 && (!candidate || browserLaunchStarted);
   let cleaned = await terminateOwnedProcesses(worker.pid, [...browserPids], !workerExited, code => {
     if (terminationFailures.length < 8 && !terminationFailures.includes(code)) terminationFailures.push(code);
   });
   if (ownershipUnconfirmed) {
-    // An unexpected owner exit can precede its first browser PID receipt. An
-    // empty known-PID set cannot certify that no unreported child survived.
+    // Owner exit can precede its first browser PID receipt, even after a final
+    // launch-failure report. Neither that report nor an empty known-PID set
+    // certifies that no unreported child survived a launch attempt.
     cleaned = false; terminationFailures.push('browser_ownership_unconfirmed');
   }
   let tempCleanup = 'not-created';
@@ -115,6 +117,8 @@ process.on('message', message => {
     } else if (event.type === 'temporaryCreated' && ownsWorkspace) {
       ownsTemporary = true;
       if (worker.connected) worker.send({ type: 'temporaryReady' }, () => {});
+    } else if (event.type === 'browserLaunchStarted' && workerStarted) {
+      browserLaunchStarted = true;
     } else if (event.type === 'ownedProcess' && Number.isSafeInteger(event.pid) && event.pid > 1 && event.pid !== process.pid && event.pid !== process.ppid) {
       browserPids.add(event.pid); send(event);
     } else if (event.type === 'progress' && Number.isInteger(event.completed) && event.completed >= completed && event.completed <= packet.total) {

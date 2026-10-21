@@ -1,0 +1,56 @@
+✔ unexpected exit cannot certify an unreported live browser model as cleaned (800.125391ms)
+✔ unexpected exit unreported browser uncertainty retains durable admission fence after child self-exit (990.046264ms)
+Unreported launch fixture preserved: /tmp/unreported-launch-NRprqa
+✖ reported failure cannot certify an unreported live browser model as cleaned (707.141481ms)
+Unreported launch fixture preserved: /tmp/unreported-launch-j2ZuQt
+✖ reported failure unreported browser uncertainty retains durable admission fence after child self-exit (1083.184776ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3709.765723
+
+✖ failing tests:
+
+test at local-batch/jobs/launch-ownership.test.mjs:61:1
+✖ reported failure cannot certify an unreported live browser model as cleaned (707.141481ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'terminated'
+  - 'failed'
+  
+      at file:///workspace/playwright-mcp/local-batch/jobs/launch-ownership.test.mjs:65:10
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async controlled (file:///workspace/playwright-mcp/local-batch/jobs/launch-ownership.test.mjs:30:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'terminated',
+    expected: 'failed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/jobs/launch-ownership.test.mjs:69:22
+✖ reported failure unreported browser uncertainty retains durable admission fence after child self-exit (1083.184776ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at file:///workspace/playwright-mcp/local-batch/jobs/launch-ownership.test.mjs:77:10
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async controlled (file:///workspace/playwright-mcp/local-batch/jobs/launch-ownership.test.mjs:30:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

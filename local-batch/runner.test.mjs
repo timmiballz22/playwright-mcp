@@ -184,3 +184,14 @@ test('text equality rejects duplicate counters and ambiguous expectations', asyn
   assert.equal(result.completed, 10);
   assert.throws(() => validateWorkflow({ steps: [{ type: 'assertText', selector: 'output', equals: '1', contains: '1' }] }));
 });
+
+test('ownership launch phase precedes even a rejected public launch call', async () => {
+  const { playwright } = makeFake(); const phases = [];
+  playwright.chromium.launch = async () => { phases.push('launch'); throw new Error('private-launch-failure-canary'); };
+  const result = await runWorkflow({ steps: [{ type: 'click', selector: '#never' }] }, {
+    playwright, onBrowserLaunch: () => phases.push('ownership-pending'),
+  });
+  assert.deepEqual(phases, ['ownership-pending', 'launch']);
+  assert.equal(result.ok, false); assert.equal(result.completed, 0);
+  assert.equal(JSON.stringify(result).includes('canary'), false);
+});

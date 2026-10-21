@@ -39,6 +39,7 @@ process.once('message', async packet => {
     process.env.TMPDIR = tempDir; process.env.TEMP = tempDir; process.env.TMP = tempDir;
     stage = 'execution';
     const result = await runWorkflow(packet.workflow, { ...packet.options, artifactsDir: packet.workspaceRoot, signal: abort.signal,
+      onBrowserLaunch: () => send({ type: 'browserLaunchStarted' }),
       onBrowserProcess: pid => send({ type: 'ownedProcess', pid }),
       onProgress: event => { completed = event.completed; send({ type: 'progress', completed }); },
       onActionFailure: (error, step) => send({ type: 'actionFailure', failedStep: { ...step, ok: false } }),

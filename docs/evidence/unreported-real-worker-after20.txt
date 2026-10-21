@@ -1,0 +1,120 @@
+TAP version 13
+# Subtest: real browser uses a short external private temporary root and cancellation removes it
+ok 1 - real browser uses a short external private temporary root and cancellation removes it
+  ---
+  duration_ms: 1356.995219
+  ...
+# Subtest: unacknowledged external temporary collision is retained and cleanup fails closed
+ok 2 - unacknowledged external temporary collision is retained and cleanup fails closed
+  ---
+  duration_ms: 147.00235
+  ...
+# Subtest: worker crash after temporary ownership ACK removes only its owned external directory
+ok 3 - worker crash after temporary ownership ACK removes only its owned external directory
+  ---
+  duration_ms: 190.858965
+  ...
+# Subtest: actual worker final report cannot clear ownership after a rejected launch allocates a detached child
+ok 4 - actual worker final report cannot clear ownership after a rejected launch allocates a detached child
+  ---
+  duration_ms: 1265.376828
+  ...
+# Subtest: unexpected exit cannot certify an unreported live browser model as cleaned
+ok 5 - unexpected exit cannot certify an unreported live browser model as cleaned
+  ---
+  duration_ms: 849.942632
+  ...
+# Subtest: reported failure cannot certify an unreported live browser model as cleaned
+ok 6 - reported failure cannot certify an unreported live browser model as cleaned
+  ---
+  duration_ms: 930.432578
+  ...
+# Subtest: failure classification returns fixed codes and never browser text
+ok 7 - failure classification returns fixed codes and never browser text
+  ---
+  duration_ms: 1.336567
+  ...
+# Subtest: rejects unknown instructions, unbounded workloads and hostile origins
+ok 8 - rejects unknown instructions, unbounded workloads and hostile origins
+  ---
+  duration_ms: 3.136038
+  ...
+# Subtest: 100 ordered actions finish in a single batch with one browser launch
+ok 9 - 100 ordered actions finish in a single batch with one browser launch
+  ---
+  duration_ms: 9.788386
+  ...
+# Subtest: failures stop promptly, hide underlying sensitive errors and clean up
+ok 10 - failures stop promptly, hide underlying sensitive errors and clean up
+  ---
+  duration_ms: 3.496172
+  ...
+# Subtest: cancellation before starting avoids launching browser
+ok 11 - cancellation before starting avoids launching browser
+  ---
+  duration_ms: 1.153389
+  ...
+# Subtest: checks target origins and reports assertion failure without page content
+ok 12 - checks target origins and reports assertion failure without page content
+  ---
+  duration_ms: 3.008872
+  ...
+# Subtest: unknown localhost ports require exact operator origins
+ok 13 - unknown localhost ports require exact operator origins
+  ---
+  duration_ms: 4.622956
+  ...
+# Subtest: rejects extra workflow and action properties rather than ignoring policy
+ok 14 - rejects extra workflow and action properties rather than ignoring policy
+  ---
+  duration_ms: 0.24334
+  ...
+# Subtest: deadline includes a stalled launch and closes late browser
+ok 15 - deadline includes a stalled launch and closes late browser
+  ---
+  duration_ms: 201.781778
+  ...
+# Subtest: validation snapshots actions before asynchronous launch
+ok 16 - validation snapshots actions before asynchronous launch
+  ---
+  duration_ms: 1.512319
+  ...
+# Subtest: screenshot capture requires operator approval for sensitive artifacts
+ok 17 - screenshot capture requires operator approval for sensitive artifacts
+  ---
+  duration_ms: 0.654245
+  ...
+# Subtest: workflow version and serialized size are bounded
+ok 18 - workflow version and serialized size are bounded
+  ---
+  duration_ms: 10.221599
+  ...
+# Subtest: accessible selectors validate exact shape and clone nested values
+ok 19 - accessible selectors validate exact shape and clone nested values
+  ---
+  duration_ms: 0.277148
+  ...
+# Subtest: explicit action repeats expand within the total action cap
+ok 20 - explicit action repeats expand within the total action cap
+  ---
+  duration_ms: 19.544633
+  ...
+# Subtest: text equality rejects duplicate counters and ambiguous expectations
+ok 21 - text equality rejects duplicate counters and ambiguous expectations
+  ---
+  duration_ms: 5.022875
+  ...
+# Subtest: ownership launch phase precedes even a rejected public launch call
+ok 22 - ownership launch phase precedes even a rejected public launch call
+  ---
+  duration_ms: 3.779802
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5306.020162

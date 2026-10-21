@@ -182,6 +182,7 @@ export async function runWorkflow(workflow, {
   maxScreenshotBytes,
   maxPages,
   onBrowserProcess,
+  onBrowserLaunch, // Trusted ownership phase only, before any launch call.
   onProgress,
   navigationRetry, // Trusted operator opt-in for safe GET navigation only.
   onActionFailure, // Trusted source diagnostics only; never accepted in workflow JSON.
@@ -233,6 +234,7 @@ export async function runWorkflow(workflow, {
     artifactsDir = path.join(artifactsDir, 'run-' + randomUUID());
     await bounded(mkdir(artifactsDir, { mode: 0o700 }));
     const playwright = suppliedPlaywright ?? await bounded(import('playwright'));
+    onBrowserLaunch?.();
     const launchOptions = { headless: true, timeout: Math.max(1, spec.timeoutMs - (performance.now() - started)) };
     if (onBrowserProcess || typeof playwright[spec.browser].launchServer === 'function') {
       // Public BrowserServer.process() gives the watchdog an owned PID. Its

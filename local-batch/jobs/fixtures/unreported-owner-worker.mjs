@@ -16,6 +16,7 @@ process.once('message', async packet => {
     process.on('message', message => { if (message.type === 'temporaryReady') resolve(); });
     process.send({ type: 'temporaryCreated' });
   });
+  process.send({ type: 'browserLaunchStarted' });
   const child = fork(fileURLToPath(new URL('./unreported-child.mjs', import.meta.url)), [control], {
     detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'], windowsHide: true,
   });
@@ -25,6 +26,12 @@ process.once('message', async packet => {
   let busy = false;
   setInterval(async () => {
     if (busy) return; busy = true;
-    try { await access(path.join(control, 'crash-worker')); process.exit(42); } catch {} finally { busy = false; }
+    try {
+      await access(path.join(control, 'crash-worker'));
+      let report = false;
+      try { await access(path.join(control, 'report-failure')); report = true; } catch {}
+      if (report) process.send({ type: 'result', summary: { ok: false, reason: 'execution_failed', stage: 'execution', completed: 0, total: 1, recentSteps: [], failedStep: null, reportPath: null } }, () => process.exit(0));
+      else process.exit(42);
+    } catch {} finally { busy = false; }
   }, 20);
 });

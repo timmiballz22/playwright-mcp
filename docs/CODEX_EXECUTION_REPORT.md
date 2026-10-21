@@ -24,6 +24,13 @@ QA instrumentation, not a production replay fix or a resolution of native61's
 WebKit second GET. Exact phases and unchanged limits are recorded in
 CODEX_EXECUTION_LEDGER.md and NATIVE_BROWSER_REPRODUCTIONS.md.
 
+A further local P0 correction retains ownership uncertainty even after a final
+failure report when a launch attempt has no browser PID receipt. Actual worker
+before control returns action_failed/cleanup terminated while its child lives;
+after correction focused24/24 Node22/24,22/22 Node20 and components104/104 Node22/24
+pass. Fresh175-file installation and controller-death audits pass. This correction
+and the marked cancellation witness are not in native63; native proof is pending.
+
 The following records are historical checkpoints.
 
 

@@ -4193,3 +4193,52 @@ Final duplicate control still0/1; verified cleanup and primary count assertion
 retained. Lint/diff checks pass. marked-fetch-* receipts separate these phases.
 WebKit local host dependencies remain unavailable; no extra installation or
 privilege workaround is attempted. Native63 does not include this witness.
+
+## Final failure report cannot certify unknown launch ownership — local after31376a9
+
+A controlled detached child remains alive while its worker sends a final failure
+report and exits normally. The prior !candidate guard returned cleanup terminated
+and cleared durable operator attention. Initial before2/4; the same two cases
+still fail2/4 with the launch-start protocol wired but only the old guard restored.
+Both failed direct/durable cases first verify the actual surviving owned child.
+No test deadlines, TTLs, cleanup budgets or acceptance assertions change.
+
+The runner now calls a trusted ownership-phase observer immediately before any
+public launch call; the actual worker emits browserLaunchStarted over ordered
+IPC. After exit+disconnect are drained, a launch attempt without any browser PID
+receipt retains browser_ownership_unconfirmed even if a final failure report
+exists. Candidate reports from known pre-launch failures do not set this phase.
+An API rejection before allocation can conservatively leave debt: a failed public
+launch supplies no authoritative proof that it created no child. No PID-based
+recovery, broader kill, replay or default transport change is added.
+
+The private model sends the new phase before child allocation; both abrupt-exit
+and final-failure variants retain child/debt/dedup/new-key/reopen assertions.
+Runner test verifies phase-before-rejected-launch order and fixed safe output.
+Final focused23/23 each Node22/24; Node20 21/21 (two durable cases not registered
+on its unsupported SQLite runtime, not a durable PASS). Full components104/104
+each22/24, no failed/skipped/cancelled tests; lint/diff pass. The earlier7/7 receipt
+precedes the runner callback case. unreported-final-* preserves exact phases.
+Fresh production install and real-browser regression are still running;
+native63 d22b111 does not include this runtime correction or the marked witness.
+
+Actual-worker follow-up: rejected-launch-worker changes only the public launch
+adapter to allocate an unreported detached child then reject after the private
+control receipt. It imports the actual execution-worker after private TMP setup;
+the actual runner callback, IPC and report writer execute. The child has ignored
+stdio/no IPC and its spawn handle is unreferenced, so no fixture IPC accidentally
+keeps the worker alive. With only the old guard restored, live-child witness
+passes but actual result is action_failed/cleanup terminated/zero failures
+(0/1). After restoration of the new guard, both failed cleanup and the real
+worker's safe final setup-failure report are verified; canary excluded. Teardown
+requests child self-exit and independently audits empty; no stored PID signal.
+
+Expanded focused24/24 each Node22/24; Node20 22/22 (durable cases unregistered).
+Full component104/104 receipts precede this additional checkout-only browser
+fixture/test; component inputs/runtime are unchanged. Real Chromium/Firefox
+throttling plus marked cancellation4/4 pass after runtime correction. Fresh
+175-file production install passes before the last QA-only addition, both
+controller-death audits activeOwned0; source/runtime unchanged afterward.
+Lint/diff pass. unreported-real-worker-* retains both before receipts and final
+proof; production/native proof of the final runtime correction is scoped as
+above. Native verification remains pending.

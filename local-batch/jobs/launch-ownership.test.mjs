@@ -18,9 +18,10 @@ async function waitPid(file) {
   } while (performance.now() < end);
   assert.fail('Private fixture startup receipt missing');
 }
-async function controlled(body) {
+async function controlled(body, reportedFailure = false) {
   const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'unreported-launch-')));
   const control = path.join(root, 'control'); await mkdir(control, { mode: 0o700 });
+  if (reportedFailure) await writeFile(path.join(control, 'report-failure'), '', { flag: 'wx', mode: 0o600 });
   const previous = process.env.PLAYWRIGHT_TEST_UNREPORTED_CONTROL;
   process.env.PLAYWRIGHT_TEST_UNREPORTED_CONTROL = control;
   const scope = { roots: new Set(), identities: new Map() }; let close; let operation; let verified = false; let accepted = false;
@@ -56,15 +57,16 @@ async function controlled(body) {
     }
   }
 }
-test('unexpected exit cannot certify an unreported live browser model as cleaned', { timeout: 30000 }, async () => controlled(async ({ root, scope, onEvent, register, crash }) => {
+for (const reportedFailure of [false, true]) {
+test(`${reportedFailure ? 'reported failure' : 'unexpected exit'} cannot certify an unreported live browser model as cleaned`, { timeout: 30000 }, async () => controlled(async ({ root, scope, onEvent, register, crash }) => {
   const pending = executeWorkflow(workflow, { artifactsDir: path.join(root, 'artifacts'), workerModule, onEvent }); register(pending);
   const childPid = await crash(); const result = await pending;
   assert.ok((await ownedScopeDescendants([scope])).includes(childPid), 'Fault must preserve the unreported live-child witness');
   assert.equal(result.execution.cleanup, 'failed'); assert.equal(result.reason, 'cleanup_failed');
   assert.ok(result.execution.terminationFailures.includes('browser_ownership_unconfirmed'));
   assert.equal(result.completed, 0); assert.equal(result.retrySafe, false);
-}));
-if (supportsJournal) test('unreported browser uncertainty retains durable admission fence after child self-exit', { timeout: 30000 }, async () => controlled(async ({ root, scope, onEvent, register, crash, control }) => {
+}, reportedFailure));
+if (supportsJournal) test(`${reportedFailure ? 'reported failure' : 'unexpected exit'} unreported browser uncertainty retains durable admission fence after child self-exit`, { timeout: 30000 }, async () => controlled(async ({ root, scope, onEvent, register, crash, control }) => {
   const config = { journal: { directory: path.join(root, 'journal'), projectId: 'f'.repeat(64), ownerId: randomUUID() }, execution: { artifactsDir: path.join(root, 'artifacts'), workerModule }, onEvent };
   let controller = await JobController.open(config);
   register(undefined, async () => { if (controller) await controller.close(); });
@@ -78,4 +80,5 @@ if (supportsJournal) test('unreported browser uncertainty retains durable admiss
   await writeFile(path.join(control, 'stop-child'), '', { mode: 0o600 });
   await controller.close(); controller = await JobController.open(config);
   await assert.rejects(controller.start(workflow, randomUUID()), { code: 'cleanup_blocked' });
-}));
+}, reportedFailure));
+}
