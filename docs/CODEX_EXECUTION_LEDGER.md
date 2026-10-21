@@ -3127,3 +3127,11 @@ All actual test steps have ended. Waiting on inconsistent run bookkeeping is
 abandoned while preserving the failed/incomplete acceptance state; next source
 candidate may proceed. Native52 does not include the later lifetime-scope HTTP
 precision or jobs-MCP failure-preservation fixes. Evidence: worker-ci-fiftysecond-*.
+
+Additional local regression on c88171e: nine SELECTED Chromium/Firefox origin
+and lifecycle cases pass (redirect, IPv4/IPv6 aliases, iframe/WS no denied hits,
+outstanding allowed request close). WebKit cases are excluded from this local
+selection because installed system libraries remain unavailable; the full native
+matrix executes WebKit. Four boundary/parent-lifecycle tests also pass, including
+the seeded valid/mutated JSON corpus and parent-loss cleanup. No deadlines or
+allowlists change. Evidence: http-response-policy/boundary-regression-node24.txt.
