@@ -1,28 +1,28 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native64 at bf71fa8: **1,757 reported passes/seven failed tests**.
-Wrapper39677472730 is green440/0; batch39677472725 fails1,317/7. Two additional
-Windows Firefox comparison probes fail. All three actual Codex1k clients, five
-175-file installs and components104/105 pass. No reported test skips/cancellations;
-one intentional functional-soak job skip. **Not release-ready.**
+Latest completed native65 at b4fa75c: **1,625 reported passes/twelve failed tests**,
+plus Ubuntu wrapper browser-install failure. Batch39681280828:1,337/7;
+wrapper39681280843:288/5. Ubuntu original suite is unexecuted after TLS hostname
+mismatch; macOS modal step is unexecuted after host-suite failure. Zero reported
+test-level skips never promotes those scopes. Five175-file companion installs,
+components105/106 and all three actual Codex1k clients pass. **Not release-ready.**
 
-Windows failures include raw Firefox action/close timeouts, page reuse completing
-10 actions before timeout, and screenshot pair2 observing133 processes: helper
-matched, no root matches/birth identities,131 births before the observation window.
-No age/role/helper exclusion dismisses them. macOS raw953, public jobs959 and batch
-MCP978 miss1k deadlines. Historical close/screenshot/second-GET findings remain open.
+Native POSIX freeze and bounded readiness controls pass. macOS marked WebKit GET
+cancellation has one request but cleanup_failed with signal_permission_denied and
+browser_group_signal_failed; POST half unexecuted. Uncertainty stays fenced; no
+broader signal or missing-PID hint clears it. Mac raw980/jobs980/batch965 deadlines,
+Firefox retry cleanup, two original highlight captures and Windows raw/legacy
+Firefox cases fail. Historical133/4-process observations remain unresolved.
 
-The final-launch-report ownership guard now passes native model and actual-worker
-fault cases. All30 marked GET/committed-POST cancellation observations across15
-browser tests in five main lanes show one request/cancelled/known cleanup. These
-healthy controlled samples do not resolve the historical WebKit second GET.
-
-Later local94fdfde adds bounded readiness diagnostics and preserves page-audit
-failure evidence.6a00a1b requires successful SIGSTOP before worker ancestry/group
-operations: intercepted old missing-root freeze returns cleaned:true/group signal1;
-new controls retain failed cleanup without that signal.29/29 each Node20/22/24,
-105 component cases each22/24, real Chromium/Firefox deadlines2/2 and fresh175-file
-production/death audits pass. Native proof of these later changes is pending.
+Later local3c077f3 gates actual factory handles before screenshot effects, records
+live roots, retains all20 execution scopes and compares legacy/scoped candidates
+on the same snapshot without changing matching. Existing20 PNG/hash/inode/report
+assertions and15s/60s ceilings remain. Controlled owned orphan is detected after
+worker exit; private self-exit requests finish teardown. Full screenshots pass
+locally Node22/24; final focused13/13 each Node20/22/24, pre-comparison-hook
+components106/106 Node22/24 and175-file boundary pass. Windows birth capture and
+observation cost are native-unverified. Retry cleanup metadata/workspace follow-up
+passes4/4 local Chromium/Firefox cases. Next native proof is pending.
 Exact phases/receipts and G00–G18: CODEX_EXECUTION_LEDGER.md.
 
 The following records are historical checkpoints.

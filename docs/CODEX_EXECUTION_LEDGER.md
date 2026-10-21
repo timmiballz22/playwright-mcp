@@ -2,35 +2,33 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening. Latest completed native64 atbf71fa8:
-batch39677472725 FAILURE1,317/7; wrapper39677472730 SUCCESS440/0 =>1,757
-reported passes/seven failed tests, plus two failed Windows JSON comparisons.
-All17 executed jobs conclude, functional_soak intentionally skipped, zero reported
-test skips/cancellations or cancelled jobs. Five175-file installs and components
-104/105 pass. Actual Codex1k Linux36.136s/Windows38.314s/macOS81.072s, owned0,
-zero model turns. The final-launch-report guard and actual-worker fault now pass
-on native lanes. All30 marked GET/committed-POST observations across15 tests in
-five main lanes have one request, cancelled/known cleanup, forced:false. These
-samples do not resolve the old WebKit second GET.
+Branch feat/local-production-hardening. Latest completed native65 atb4fa75c:
+batch39681280828 FAILURE1,337/7; wrapper39681280843 FAILURE288/5 =>1,625 reported
+passes/twelve failed tests, plus Ubuntu wrapper install failure. Its original
+suite is unexecuted; macOS modal step also unexecuted after host-suite failure.
+Zero reported test skips/cancellations is not proof of those omitted scopes.
+All17 non-soak jobs conclude; functional_soak intentionally skipped. Five175-file
+companion installs, components105/106 and all actual Codex1k clients pass.
 
-Windows raw headless fresh8 fails6/23 with pointer timeout plus three cleanup
-timeouts; pipe fresh1 completes23/23 but context close times out. Firefox page
-reuse completes10 steps then overall timeout. Screenshot pair2 observes133
-processes: helperMatched:true,rootMatches0,rememberedBirths0,131 births before
-observation window. No age/role/name filter or helper exclusion dismisses this
-unresolved observation; exact root lifetime capture is needed. macOS raw953,
-public jobs959 and batch MCP978 miss1k deadlines. Original wrapper440/0 passes.
+POSIX confirmed-freeze controls and bounded readiness diagnostics pass native
+lanes. macOS marked WebKit GET cancellation has one request but cleanup_failed,
+forced:true, signal_permission_denied/browser_group_signal_failed. The POST half
+is unexecuted there. No broader signal or missing-PID hint clears uncertainty.
+Mac Firefox retry also reports failed cleanup but its old assertion drops detail;
+source receipt/failed-workspace preservation is added locally for the next run.
+Windows raw Firefox action/close, macOS raw980/jobs980/batch965, two original Mac
+highlight capture cases and three legacy Firefox cases fail. Ubuntu browser
+install fails ERR_TLS_CERT_ALTNAME_INVALID; no workaround or manual retry.
 
-Later local94fdfde preserves safe pre-ready causes and page-audit evidence;
-6a00a1b requires confirmed SIGSTOP before worker-tree/group operations. Intercepted
-old missing-root freeze returns cleaned:true/group signal1; new controls retain
-worker_stop_failed/cleaned:false/group signal0.29/29 each Node20/22/24,105 component
-cases each22/24, real Chromium/Firefox deadline2/2 and175-file production/death
-audits pass. No larger deadlines, broader signals or action replay. These later
-changes are not in native64 and need native65 verification.
+Later local3c077f3 captures actual live factory roots before screenshot effects,
+retains all20 execution scopes and compares legacy/scoped candidates on the same
+snapshot without changing matching. Legacy candidates and birth/parent facts
+remain explicit; no historical133/4-process observation is cleared. Local full
+20 screenshots and actual orphan negative controls pass; pre-comparison-hook
+components106/106 Node22/24, final focused13/13 Node20/22/24 and175-file boundary
+pass. Windows real birth capture/overhead remain native-unverified.
 
-**Not release-ready. NEXT ACTION: push native65 and capture precise source-only
-root lifetime evidence for the unresolved process observations.**
+**Not release-ready. NEXT ACTION: push native66 for source-only lifetime evidence.**
 
 ## Historical checkpoints
 
@@ -201,25 +199,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native64 logged1,757/7 plus two failed Windows comparisons;25/72 discovery/six jobs schemas | Final same-SHA whole acceptance |
-| G01 INSTALL | IN PROGRESS | native64 five175-file installs pass; later6a00a1b runtime local install/death audits pass | Native proof of latest runtime |
-| G02 MCP | IN PROGRESS | native64 all actual Codex1k clients pass; macOS batch MCP978 timeout | Sustained whole client acceptance |
-| G03 FEATURE PARITY | IN PROGRESS | native64 wrapper440/0 including legacy Firefox3/0; historical close issue unresolved | Interactive annotation/debugger and remaining negatives |
-| G04 BATCH | FAILED | native64 macOS raw953/public jobs959/batch MCP978 deadlines | Strict1k counters and budgets; causal throughput diagnosis |
-| G05 RETRIES | FAILED | native64 marked15 GET/15 committed POST controls pass; earlier WebKit second GET unresolved | Preserve controlled witness and no replay; remaining provider latency |
-| G06 JOBS | FAILED | native64 final-report ownership cases/components104/105 pass; local freeze correction105 components pending native | Precise ownership evidence and managed recovery; no hint-based release |
+| G00 BASELINE | IN PROGRESS | native65 logged1,625/12 plus Ubuntu install failure and unexecuted scopes | Final same-SHA whole acceptance |
+| G01 INSTALL | IN PROGRESS | five175-file companion installs pass; original Ubuntu install TLS hostname mismatch | Regular next-candidate verification; no TLS workaround/retry |
+| G02 MCP | IN PROGRESS | native65 actual Codex1k clients all pass, macOS batch MCP965 timeout | Sustained whole client acceptance |
+| G03 FEATURE PARITY | FAILED | native65 Mac highlight capture2 failures; Windows legacy3 failures; Ubuntu suite unexecuted | Keep strict original assertions; provider diagnosis and manual gaps |
+| G04 BATCH | FAILED | native65 macOS raw980/jobs980/batch965 deadlines | Strict counters and budgets; causal throughput diagnosis |
+| G05 RETRIES | FAILED | native65 WebKit one marked GET but cleanup_failed; POST half unexecuted | Preserve cancellation/permission uncertainty, no replay |
+| G06 JOBS | FAILED | native65 freeze/readiness controls105/106 pass; WebKit browser group signal_permission_denied | Preserve debt; managed recovery and exact ownership facts |
 | G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | native64 installs pass; screenshot audit133 processes, helper matched, root birth facts absent | Verified lifetime provenance; disk bounds and managed repair |
+| G08 STORAGE | FAILED | native64 screenshot133/old4 observations unresolved; new live factory QA local only | Native factory provenance; disk bounds and managed repair |
 | G09 AUTH/PROFILES | FAILED | coalesced close14/14 Node20/22/24, real Chromium/Firefox parity2/2; native prior session restore | Managed profiles/reset, Windows ACLs and crash repair; annotation dashboard lifecycle separate |
-| G10 CROSS-BROWSER | FAILED | native64 Windows Firefox action/close and macOS1k failures | Causal diagnosis; strict thresholds/no replay |
-| G11 CROSS-OS | FAILED | native64 wrapper green; Windows4 and macOS3 batch failures | Final whole native matrix required |
+| G10 CROSS-BROWSER | FAILED | native65 Windows Firefox close/input, Mac1k/highlight/cleanup failures | Causal diagnosis; strict thresholds/no replay |
+| G11 CROSS-OS | FAILED | native65 Windows2/Mac5 main failures; wrapper5 tests plus Ubuntu install failure | Final whole native matrix required |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md; independent100-run resource soak and3 fresh samples/mode at1100e3c | Cross-OS/CLI-SKILLS repeated resource and token measurements remain; no billing claim |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-sixtyfourth-*, native64-marked-cancellation-receipts.json, missing-freeze-* | Exact phases and verified lifetime capture |
-| G18 CLEAN MERGE | FAILED | Draft PR2; native64 batch failed and later helper correction local only | Resolve critical gaps; whole green SHA before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-sixtyfifth-*, native65-ubuntu-install-sanitized.txt, lifetime-* | Native same-snapshot lifetime/legacy evidence |
+| G18 CLEAN MERGE | FAILED | Draft PR2; native65 workflows fail; new QA local only | Resolve critical gaps; whole green SHA before merge/release |
 
 ## Defects and risk register
 
@@ -4432,3 +4430,44 @@ comparison/model13/13 each20/22/24 and final Node24 full screenshot case pass;
 lint/diff/175-file boundary pass, all new private actors/helper/test excluded.
 Windows actual birth capture and its latency cost remain native-unverified.
 Native65 b4fa75c does not include this QA observation change.
+
+## Native65 b4fa75c — completed failure; permission uncertainty retained
+
+Batch1,337/7; wrapper288/5 =>1,625 reported passes/twelve failed tests, plus
+original Ubuntu install failure. ERR_TLS_CERT_ALTNAME_INVALID reports CDN
+hostname/certificate alternative-name mismatch. No certificate bypass, alternate
+artifact fetch or manual retry. Ubuntu original suite unexecuted; Mac modal
+step unexecuted after main failure. All17 non-soak jobs conclude, functional_soak
+intentionally skipped, zero reported test-level skips/cancellations. Those zero
+counts never promote unexecuted scopes. Sanitized install receipt preserves
+error/certificate context with download URLs removed.
+
+Five175-file companion installs and components105/106 pass; main Linux22/24
+187/0 each,20 183/0, Windows177/2, Mac182/5. Actual Codex1k Linux36.327s,
+Windows38.192s,Mac82.849s, owned0/modelTurns0. Confirmed-freeze controls now pass
+native POSIX main lanes; readiness regression passes all component lanes.
+
+Windows headless raw fresh1 completes23/23 actions but server_timeout and
+server_kill_timeout,10.331s. Pipe fresh2 stops6/23 at7 locator timeout, context
+and browser close timeouts,17.276s. Private/inherited failure-only controls both
+10/10=230 pass/owned0, not a causal fix. Legacy Node20 all three modes fail:
+headless fresh1 12/23 at13 pointer timeout, headed fresh1 11/23 at12 locator
+timeout, pipe fresh3 13/23 at14 locator timeout; cleanup arrays empty there.
+
+Mac raw Chromium980 at981/1k,120.049s; jobs TIMED_OUT980 at981 forced:true,
+known cleanup/removal; batch MCP965 timeout known cleanup. Firefox retry case
+reports execution.cleanup failed before route outcome assertion; cause absent
+from old message. WebKit marked cancel GET:1 marked request/id1, abort101ms,
+cleanup_failed/forced:true, signal_permission_denied plus browser_group_signal_failed,
+temp removed. Preserve uncertainty and original failure; no more signals or
+hint-based release. POST half not executed. Two original highlight cases
+(Chrome/Chromium) fail Page.captureScreenshot before pixel assertions; standard
+Windows144/0, Mac142/2, Docker2/0. Failure-only Mac server1k116.506s/pipe1k112.528s
+pass/owned0, not a fix. Full selected steps/jobs/counts: worker-ci-sixtyfifth-*.
+
+Local follow-up adds fixed retry-cleanup receipt (scenario/reason/completed/
+failed step/execution/timing only) and preserves the failure workspace instead
+of unconditional deletion. No new query, action, retry or timing allowance.
+Chromium/Firefox full throttling plus marked cancellation4/4 pass; lint/diff
+pass. navigation-cleanup-receipt24.txt. Native66 also adds3c077f3's live factory
+QA; native65 does not verify it. Historic ownership observations remain open.

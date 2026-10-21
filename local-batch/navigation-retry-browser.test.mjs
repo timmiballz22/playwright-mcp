@@ -12,7 +12,7 @@ const policy = { maxRetries: 2, baseDelayMs: 100, maxDelayMs: 2000 };
 for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',')) {
 test(`real ${browser}: supervised navigation respects throttling and never replays form POST or over-cap waits`, async () => {
   const hits = new Map(); const times = new Map(); const finished = new Map();
-  let latestTiming;
+  let latestTiming; let accepted = false;
   const abort = new AbortController();
   let abortAt;
   const server = createServer((req, res) => {
@@ -49,7 +49,7 @@ test(`real ${browser}: supervised navigation respects throttling and never repla
       firstRequestMs: times.has(key) ? Math.round(times.get(key)[0] - started) : null,
       lastResponseFinishedMs: finished.has(key) ? Math.round(finished.get(key).at - started) : null };
     assert.equal(JSON.stringify(result).includes('canary'), false);
-    assert.equal(result.execution.cleanup, 'terminated');
+    assert.equal(result.execution.cleanup, 'terminated', JSON.stringify({ fixture: 'navigation_retry_cleanup', browser, scenario: new URL(route, origin).pathname, reason: result.reason, completed: result.completed, failedStep: result.failedStep, execution: result.execution, timing: latestTiming }));
     assert.equal(result.execution.tempCleanup, 'removed');
     return result;
   };
@@ -76,7 +76,12 @@ test(`real ${browser}: supervised navigation respects throttling and never repla
     assert.equal(form.ok, true, JSON.stringify({ route: '/form', reason: form.reason, completed: form.completed,
       failedStep: form.failedStep, execution: form.execution, postHits: hits.get('POST/submit') ?? 0 }));
     assert.equal(hits.get('POST/submit'), 1);
-  } finally { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); await rm(directory, { recursive: true, force: true }); }
+    accepted = true;
+  } finally {
+    server.closeAllConnections(); await new Promise(resolve => server.close(resolve));
+    if (accepted) await rm(directory, { recursive: true, force: true });
+    else console.error('Navigation retry fixture preserved: acceptance or cleanup not confirmed');
+  }
 });
 }
 
