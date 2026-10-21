@@ -7,7 +7,7 @@ New fixture additions have local Chromium/Firefox evidence and await native
 confirmation. All72 versioned schemas remain checked by capabilities.spec.ts.
 
 Interactive annotation/debugger-resume flows remain open. Other rows still need
-full negative/parameter/native review; fill_form slider variants, export overwrite
+full negative/parameter/native review; slider bounds/steps, export overwrite
 permissions/Windows ACLs, route alternatives and video frame content are examples.
 The original trusted-code/evaluate tools retain their documented expert trust.
 Companion workflows expose no code/file/network-policy injection fields.
@@ -23,7 +23,7 @@ Companion workflows expose no code/file/network-policy injection fields.
 | browser_cookie_set | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_cookie_delete | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_cookie_clear | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_resume | No automated behavior fixture | Interactive acceptance pending |
+| browser_resume | [devtools.spec.ts](../tests/devtools.spec.ts) | Malformed-location negative local proof only; successful interactive lifecycle pending |
 | browser_highlight | [devtools.spec.ts](../tests/devtools.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_hide_highlight | [devtools.spec.ts](../tests/devtools.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_annotate | No automated behavior fixture | Interactive acceptance pending |
@@ -86,3 +86,17 @@ Companion workflows expose no code/file/network-policy injection fields.
 | browser_sessionstorage_set | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_sessionstorage_delete | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_sessionstorage_clear | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
+
+
+Slider fixture: local Chromium/Firefox each verify value7 and its real input event,
+then invalid text returns a tool error after HTML range sanitization changes the
+value to5. This is non-atomic original behavior, not a safe-retry signal. Pinned
+core sets input.value before comparing the sanitized value and throwing Malformed
+value. No upstream implementation is changed. Initial incorrect state-preservation
+expectation failed2/2; corrected contract passes2/2. Native WebKit/host evidence
+remains pending. See original-slider-nonatomic-before.txt/original-slider-local.txt.
+
+Malformed browser_resume source locations return an explicit error and preserve
+a usable session: local Chromium/Firefox2/2. This negative call does not prove
+step/resume/breakpoint behavior or close the interactive acceptance gate.
+Evidence: original-resume-negative-local.txt.

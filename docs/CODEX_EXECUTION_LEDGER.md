@@ -2012,3 +2012,20 @@ pass2/2; native confirmation remains pending. Read-only profile diagnosis passes
 nine tests each on Node20/22/24 and a155-file production-only install; native
 confirmation of this new command remains pending. Evidence: worker-ci-fortysecond-*,
 highlight-region-local.txt and profile-doctor-*. **Not release-ready.**
+
+
+## Original slider error semantics
+
+Public browser_fill_form slider value7 and its input event pass local Chromium/
+Firefox. Invalid text returns an error after the range control sanitizes itself
+to midpoint5. Initial tests incorrectly assumed error meant no mutation:2/2 fail.
+Pinned core explicitly assigns input.value before checking exact value equality
+and throwing Malformed value; the corrected fixture documents this non-atomic
+contract and passes2/2. No runtime adaptation, replay or hidden repair is added.
+Evidence: original-slider-nonatomic-before.txt and original-slider-local.txt.
+Native confirmation is pending; this work follows running candidate08e434a.
+
+Malformed browser_resume location negative paths pass local Chromium/Firefox2/2,
+including a subsequent real snapshot and close. Successful interactive stepping/
+resume and annotation submission remain open. No dashboard or daemon is spawned
+by this negative case. Evidence: original-resume-negative-local.txt.

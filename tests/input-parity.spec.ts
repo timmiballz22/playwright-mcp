@@ -79,3 +79,18 @@ test('original coordinate drag paints a held canvas stroke and wheel scrolls the
   expect(evaluated(await call('browser_evaluate', { function: '() => scrollY > 0' }))).toBe(true);
   await call('browser_close');
 });
+
+
+test('original form slider fills and exposes non-atomic invalid-value failure', async ({ startClient, server }) => {
+  server.setContent('/', `<!doctype html><input id="slider" type="range" min="0" max="10" step="1" value="2" aria-label="Owned slider" oninput="document.querySelector('output').textContent=this.value"><output>waiting</output>`, 'text/html');
+  const { client } = await startClient({ args: ['--isolated'] }); const call = tools(client);
+  await call('browser_navigate', { url: server.PREFIX });
+  await call('browser_fill_form', { fields: [{ name: 'Owned slider', target: '#slider', type: 'slider', value: '7' }] });
+  expect(evaluated(await call('browser_evaluate', { function: "() => ({value:document.querySelector('#slider').value,eventValue:document.querySelector('output').textContent})" }))).toEqual({ value: '7', eventValue: '7' });
+  const rejected = await client.callTool({ name: 'browser_fill_form', arguments: { fields: [{ name: 'Owned slider', target: '#slider', type: 'slider', value: 'invalid-number' }] } });
+  expect(rejected.isError).toBe(true);
+  expect(evaluated(await call('browser_evaluate', { function: "() => document.querySelector('#slider').value" }))).toBe('5');
+  // HTML range sanitization occurred before the tool reported failure. Do not
+  // describe original form errors as transactional or automatically replay them.
+  await call('browser_close');
+});
