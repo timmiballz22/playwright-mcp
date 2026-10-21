@@ -65,3 +65,9 @@ by current SID plus canonical project. Public MCP/CLI configuration integration
 and installed-package checks are newly enabled on Windows and await native
 acceptance. Private-storage uncertainty still fails closed; local DOS drives only.
 No administrator privileges, global ACL changes or execution-policy override.
+
+Native585acae passes Windows configuration/ACL components (39 checks in the
+component job), but the first installed public MCP job returns terminal FAILED
+before CLI coverage runs. Its cause is unproven because the old assertion omitted
+the reason. Windows public execution is not certified; fixed diagnostics and
+failure artifacts are being added. No ACL check is relaxed to address this.

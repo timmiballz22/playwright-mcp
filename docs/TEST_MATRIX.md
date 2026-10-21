@@ -196,3 +196,14 @@ The retry cancellation fixture now records only its first abort timer, so an
 unexpected second request cannot overwrite the original abort timestamp. Its
 strict single-hit assertion is retained; the new macOS WebKit failure remains
 unresolved pending further evidence.
+
+Native585acae:782 test passes/two failures (wrapper235/1,batch547/1), zero test
+skips/cancellations, plus Windows installed public-job verification failure before
+browser tests. Windows39 component checks pass, including configuration/ACLs.
+Initial installed job is terminal FAILED; old assertion has no reason, so cause
+is unproven. New fixed receipt and failure artifacts are prepared. Node20 crash
+fixture and POSIX locator witness pass natively. Remaining test failures: Windows
+raw Firefox headless fresh7 with8 completed actions/context+server timeouts;
+macOS WebKit cancellation sees GET offsets0/124ms with overwritten abort226ms.
+First-abort recording is fixed; single-hit assertion remains and runtime cause is
+not claimed. All76 original tests per OS, Docker and other components pass.

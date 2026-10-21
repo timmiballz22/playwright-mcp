@@ -136,3 +136,9 @@ UNC/device paths, reparse points and unsafe existing grants fail closed. Existin
 ACLs are never repaired. Current SID plus canonical project determines the shared
 journal namespace; owner UUID hashes separate artifact directories. The public
 Windows integration is experimental pending installed/MCP/CLI native checks.
+
+Native585acae passes Windows configuration/ACL components (39 checks in the
+component job), but the first installed public MCP job returns terminal FAILED
+before CLI coverage runs. Its cause is unproven because the old assertion omitted
+the reason. Windows public execution is not certified; fixed diagnostics and
+failure artifacts are being added. No ACL check is relaxed to address this.

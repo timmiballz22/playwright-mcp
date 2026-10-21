@@ -44,7 +44,7 @@ if (!supportsJournal) {
     const first = await call('start_workflow', input);
     assert.equal((await call('start_workflow', input)).jobId, first.jobId);
     const result = await call('get_workflow_result', { jobId: first.jobId, waitMs: 10000 });
-    const receipt = JSON.stringify({ phase: 'initial_job', ready: result.ready, state: result.job?.state, completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup });
+    const receipt = JSON.stringify({ phase: 'initial_job', ready: result.ready, state: result.job?.state, operatorAttentionRequired: result.job?.operatorAttentionRequired, completed: result.result?.completed, reason: result.result?.reason, stage: result.result?.stage, failedStepType: result.result?.failedStep?.type, failureKind: result.result?.failedStep?.failureKind, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup, navigations });
     assert.equal(result.ready, true, receipt); assert.equal(result.job.state, 'SUCCEEDED', receipt);
     assert.equal(result.result.completed, 2); assert.equal(result.result.reportPath, undefined);
     assert.equal(navigations, 1);

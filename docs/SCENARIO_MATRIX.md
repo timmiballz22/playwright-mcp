@@ -1,14 +1,14 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Nativeebdec88:870 passed/seven failed; all76 original tests per OS,
-Docker and installed packages pass. Independent Windows ACL tests pass; public
-Windows job integration is a new experimental candidate. Popup/encoded-origin/
-frozen-page cases pass natively; Node20 screenshot fixture startup failed and
-is fixed locally on20/22/24. Windows journal/raw browser failures remain. Prior
-macOS1,000-action timeout remains recorded even though it passed this run with
-unchanged deadlines. Last full green remains d71c91e(469). OPEN means inadequate
-proof; PARTIAL means required work remains.
+PASS. Native585acae:782 tests pass/two fail, plus Windows installed public-job
+verification failure before its browser suite. All76 original tests per OS,
+Docker and four durable component jobs pass (Windows39). Public Windows jobs
+remain experimental: configuration passes but first installed job returns FAILED;
+cause unproven. Windows raw Firefox and macOS WebKit retry cancellation fail.
+Node20 phase setup fix passes natively; held-input/large-DOM and raw final-kill
+candidates await native proof. Last full green remains d71c91e(469). OPEN means
+inadequate proof; PARTIAL means required work remains.
 
 | # | Scenario | Status and concrete evidence / gap |
 |---|---|---|

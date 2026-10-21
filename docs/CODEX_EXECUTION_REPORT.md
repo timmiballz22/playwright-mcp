@@ -1,23 +1,23 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `ebdec88`: **870 passed/seven failed**, zero test
-skips/cancellations. Wrapper39544130801:235/1; batch39544130732:635/6.
-All76 original-tool tests per OS, Docker and installed packages pass, including
-new popup/network/console cases. New popup origin policy, encoded localhost
-aliases and frozen-page deadline cases pass natively. Both independent Windows
-ACL tests now pass (private SID/System inheritance, widened-ACL and junction
-rejection). Current candidate wires that helper into Windows job configuration;
-public endpoint integration is experimental and awaits native acceptance.
-Failures: Windows guardian journal watchdog; concurrent raw Chromium screenshot
-server close; four Firefox cases across Node20/22; Node20 screenshot-crash fixture
-startup race. That fixture failure reproduces locally and is fixed by static
-worker import; both phase tests now pass Node20/22/24. A locator witness write
-race is also fixed with atomic publication. macOS1,000-action MCP passed without
-changing its deadline; the previous timeout remains recorded as an unresolved
-performance observation. Windows journal watchdog errors now retain only the
-fixed internal command for diagnosis; no RPC budget or retries changed.
-Last full green remains d71c91e. Full quotas/retention, Windows driver and public
-jobs acceptance, managed profile recovery, DNS/OS egress and other gates remain.
+Latest completed native `585acae`: **782 tests passed/two failed**, zero test
+skips/cancellations, plus Windows installed public-jobs verification failure before
+its browser suite. Wrapper39545681726:235/1; batch39545681727:547/1.
+All76 original tests per OS, Docker and all four durable component jobs pass,
+including39 Windows config/journal/ACL tests. Public Windows job configuration
+initializes, but its first installed job returns FAILED without an adequate old
+assertion receipt; cause is unproven. Current candidate preserves failed fixture
+data and adds fixed state/reason/setup/cleanup metadata plus early log artifacts.
+Node20 phase fixture race is fixed natively; locator cancellation passes on POSIX.
+Other failures: Windows raw Firefox headless cleanup/stall and macOS WebKit retry
+cancellation observed two GETs. The cancellation fixture now preserves its first
+abort timestamp; the strict single-hit assertion stays intact. A bounded final
+public BrowserServer.kill attempt is added after raw close failure, preserving
+cleanup failure and never promoting success. Six unit cases pass Node20/24 and
+two real Node22 browser cases pass. Held-pointer/canvas/keyboard and4,000-node
+file/find fixtures pass local Chromium/Firefox and await native confirmation.
+Last full green remains d71c91e. Full quotas/retention, public Windows acceptance,
+raw browser/retry reliability, managed profiles, egress and other gates remain.
 
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
