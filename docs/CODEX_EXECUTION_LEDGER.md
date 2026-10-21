@@ -1092,3 +1092,24 @@ No failures/skips/cancellations in these local suites. Evidence jobs-cleanup-*.
 Prior ee54674 native CI remains in progress; this change has no native claim yet.
 NEXT: finish native inspection and public jobs CLI; Windows ACL/profile/quota/
 egress and other master gates remain open. Full goal is not complete.
+
+### 2026-10-21 — foreground jobs CLI preview (native pending)
+
+Added playwright-jobs start/status/result/cancel/list/cleanup using the same private
+operator configuration, scoped controller and safe metadata. Start requires a key
+and bounded regular workflow file, emits accepted JSON, then remains foreground
+until terminal state. No background daemon is implied. SIGINT/SIGTERM persist
+cancel intent and close owned execution; result waits<=10sec and cleanup defaults
+to preview with explicit --delete. No untrusted policy/owner/path overrides.
+
+Before implementation the CLI argument contract failed missing-module; afterward
+7 validation/config/cleanup tests pass. Actual running Chromium SIGTERM test passes:
+completed1 action, terminal CANCELLED, foreground exit1, zero active owned processes.
+Fresh106-file production tarball passes real CLI two-action execution, duplicate
+start without extra navigation, status/result/list, dry-run/delete and CLI cancel
+of an active MCP job. Original25-tool/batch/legacyCLI,6-tool jobs MCP, internal
+controller/guardian/storage and actual SIGKILL cleanup checks remain passing.
+Evidence jobs-cli-*.txt; no native acceptance claimed yet. Earlier ee54674 native
+runs remain active; do not cancel them by pushing this candidate prematurely.
+NEXT: inspect native preview results; Windows ACLs, profiles, full quotas/retention,
+egress and other master gates remain open. Full goal remains incomplete.

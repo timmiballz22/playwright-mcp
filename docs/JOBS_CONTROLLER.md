@@ -81,6 +81,6 @@ remains acceptance work. The execution supervisor retains its monotonic deadline
 
 An optional POSIX start/status/result/cancel/list/cleanup MCP preview and trusted
 configuration now wrap this controller; see [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md).
-Job CLI commands, retention/artifact cleanup, disk/browser quotas,
+The foreground jobs CLI also uses this controller. Retention, disk/browser quotas,
 profiles and remaining security acceptance are unfinished. G06/G08 do not pass from this
 component. The controller installs no daemon; machine shutdown stops execution.

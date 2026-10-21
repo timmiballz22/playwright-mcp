@@ -53,8 +53,7 @@ retains the project lease and requires operator attention.
 Local acceptance covers an actual 1,000-action Chromium job, duplicate starts,
 foreign-owner denial, cancellation, EOF cancellation and reconnect without replay.
 Installed-package acceptance additionally exercises a real two-action job.
-Native acceptance for this new adapter is pending. Job CLI commands,
-retention, full disk/browser quotas, profiles, Windows ACLs and the remaining
+Native acceptance for this new adapter is pending. Retention, full disk/browser quotas, profiles, Windows ACLs and the remaining
 master-prompt gates are unfinished. Do not prune journal records to reuse keys.
 
 Cleanup retains durable job records, request-key deduplication and safe result
@@ -72,3 +71,29 @@ or deletion finishes first. It never kills processes, deletes journal records or
 attempts cleanup of uncertain executions. Local configuration and files must not
 be changed concurrently by another program running as the same OS user; this is
 not a filesystem isolation boundary against that user.
+
+## Foreground jobs CLI preview
+
+`playwright-jobs` uses the same trusted environment, private journal and runtime/
+platform restrictions. It writes newline-delimited JSON; errors use fixed codes
+without echoing workflow inputs or private paths.
+
+```sh
+playwright-jobs start --workflow workflow.json --request-key my-stable-key
+playwright-jobs status --job-id JOB_UUID
+playwright-jobs result --job-id JOB_UUID --wait-ms 10000
+playwright-jobs cancel --job-id JOB_UUID
+playwright-jobs list --limit 20
+playwright-jobs cleanup --job-id JOB_UUID
+playwright-jobs cleanup --job-id JOB_UUID --delete
+```
+
+`start` first emits an accepted record, then remains in the foreground until its
+terminal result. SIGINT/SIGTERM persist cancellation intent and wait for bounded
+owned cleanup. Closing or killing it does not install or detach a background
+service. Non-success terminal states return exit code 1. Other commands emit one
+JSON record. Result waits are bounded to ten seconds; cancel persists intent but
+does not itself wait for terminal state. Cleanup defaults to dry run; `--delete`
+is explicit. Repeat `--job-id` for up to ten distinct cleanup targets. Request
+keys are required for start; generate a new key only for intentionally new work.
+Reusing a key still requires the workflow to pass the current operator policy.
