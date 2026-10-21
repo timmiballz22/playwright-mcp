@@ -3,7 +3,7 @@
 Updated 2026-10-21. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
 Latest retrieved native batch matrix: `4bf7d770dfd5d22bc3a059a8bf54d1beb8ee9244`:
-388 passed, one Windows raw Firefox pointer-action timeout; component jobs passed.
+306 recorded passes, one Windows raw Firefox pointer-action timeout; component jobs passed.
 Wrapper evidence for run 39518437744 could not be retrieved after GitHub API
 credentials began returning HTTP 401. No combined total is asserted for this run.
 Last complete green remains d71c91e (469). The failed input-delay experiment is
@@ -755,9 +755,9 @@ Public job tools/controller and remaining master gates remain unfinished.
 
 ## Rejected input experiment and shared browser ownership candidate (2026-10-21)
 
-Native batch run 39518437734 at 4bf7d77 completed with 388 passed, one failed,
-zero skipped/cancelled: five batch jobs total 309 passed/one failed; four journal
-jobs total 79 passed. Windows Node 22 Firefox failed fresh run 9 at action 6
+Native batch run 39518437734 at 4bf7d77 completed with eight successful jobs and one failed job. Available logs record
+306 passed/one failed, zero skipped/cancelled; Linux Node 24 batch and journal
+summary lines are absent from the retrieved log, so the full total is unverified. Windows Node 22 Firefox failed fresh run 9 at action 6
 (completed 5/23), pointer_action_timeout after 5003ms. Visibility, stability and
 scroll checks passed; the bounded counter probe also timed out (500ms).
 cleanupFailures was empty. Thus delay=1 did not establish a fix and is reverted.
