@@ -91,3 +91,34 @@ jobs:
             batch-tests.log
           retention-days: 1
           if-no-files-found: error
+
+  codex_client:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-15, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Install pinned optional Codex verification client
+        shell: bash
+        run: npm install --prefix "$RUNNER_TEMP/codex-cli" --ignore-scripts --no-package-lock --no-audit --no-fund @openai/codex@0.163.0
+      - name: Exercise actual Codex jobs client with zero model turns
+        id: codex
+        shell: bash
+        run: node scripts/verify-codex-jobs.mjs "$RUNNER_TEMP/codex-cli/node_modules/@openai/codex/bin/codex.js" 2>&1 | tee codex-jobs.log
+      - name: Preserve failed Codex client evidence
+        if: failure() && steps.codex.outcome == 'failure'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: codex-jobs-${{ matrix.os }}
+          path: codex-jobs.log
+          retention-days: 1
+          if-no-files-found: error

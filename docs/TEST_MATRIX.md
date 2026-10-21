@@ -266,3 +266,14 @@ mkdtemp outcome as a fixed notice, then requires one successful fake-browser
 launch/action and a UUID directory. Native proof is pending. Local21 runner/
 ownership and seven real-temp/quota/config cases pass; fresh137-file package
 passes. No action/deadline assertion is relaxed.
+
+Actual Codex Node-launcher probe: pinned@openai/codex0.163.0 installed under a
+private temporary tooling prefix with scripts disabled; no runtime dependency or
+global config change. Actual app-server6-tool1,000-action/duplicate/owner/cleanup/
+cancel verification passes locally in35.436s,start8ms,four polls,cancelled after1,
+zero model turns and zero owned survivors. This verifies the JS launcher path
+needed on Windows without invoking a .cmd shell shim. Client errors expose only
+fixed RPC method/numeric code and safe job receipts. Native22 OS jobs are added
+with the same ephemeral workspace-write thread and no turn/start/sampling calls.
+The configured total matrix becomes17 jobs; previous full green d71c91e was14.
+Native Codex client acceptance is pending, not a conversational-model walkthrough.

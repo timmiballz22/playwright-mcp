@@ -98,3 +98,10 @@ after artifact deletion. A separate active job canceled after1 confirmed action.
 The combined check took35.623s and left zero active owned processes. It did not
 edit global MCP configuration. This is local Linux protocol evidence, not a native
 Windows/macOS conversational walkthrough, billing benchmark or release gate pass.
+
+The optional actual-client verification script accepts a Codex native executable
+or its installed `bin/codex.js` launcher as its first argument. The launcher uses
+Node directly, including Windows, with temporary `-c` MCP registration and an
+ephemeral workspace-write thread. No model turn or global configuration write.
+Pinned0.163.0 Node-launcher Linux verification passes; new native CI jobs await
+acceptance. This does not certify a conversational model or remove model quotas.
