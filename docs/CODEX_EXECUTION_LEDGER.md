@@ -2978,3 +2978,36 @@ two-owner real stdio test also passes Node22/24 locally with the new worker:
 scoped deletion preserves the other PNG, foreign status/cleanup deny, duplicate
 request does not replay, and post-close independent audits observe zero owned.
 Evidence: artifact-final-two-owner-node22/24.txt.
+
+## Native51: retention validates; full acceptance fails
+
+Atb355d2e wrapper39620265619 reports432/2; batch39620265718 reports939/5.
+Total1,371 passes/seven failed tests, plus macOS actual-Codex FAILED/action_failed
+at1 with readable result and terminated/removed cleanup, no attention/journal
+failure. Linux/Windows actual Codex1k pass35.728/38.752s. All native retention
+components53/53 (Windows54) and all five167-file installed packages pass, including
+fresh-report preservation. Native source CLI retention parser also passes.
+
+Original Linux144 passes; Windows143/1 Firefox highlight pending11.578s at30s
+ceiling; macOS143/1 Chrome screenshot protocol Unable capture. Extra modal/legacy
+steps do not execute after primary failure. Docker2 test passes; all13 Docker
+steps including Complete job succeed, but GitHub job status remains in_progress/
+null after wrapper run completed/failure. This is unresolved provider metadata,
+not a claimed successful job conclusion. No active test step remains; proceeding
+to the next candidate does not discard this incomplete job-status evidence.
+
+Windows main143/3: Firefox HTTP404 expected but cancelled (navigation timeout,
+zero completed, independent zero-owned audit), Firefox429 one GET then timeout,
+and jobs MCP new writer open fails conservative process_audit_windows_identity_
+unavailable_root_birth_changed before its1k suite portion executes. No process
+is hidden and no birth mismatch is declared benign without identity evidence.
+macOS main144/2: raw1k deadline (leading summary is truncated; completed count not
+inferred) and MCP timeout984, lower-bound report, clean cleanup. No test cancelled
+this round. One functional-soak group intentionally skips; all other reported
+job conclusions except Docker are complete, zero job cancellations.
+
+Windows private/inherited raw Firefox controls both10/10; macOS reversed Codex
+pipe62.726/server87.829s and batch server117.798/pipe103.212s both1k/zero-owned.
+These healthy controls do not explain the earlier failures. Selected logs/counts
+and exact job-state snapshots: worker-ci-fiftyfirst-*. Local later worker/receipt
+changes remain outside this SHA and await native verification.

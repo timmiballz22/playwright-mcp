@@ -1,22 +1,28 @@
 # Mandatory scenario evidence
 
-Latest completed full native `5060ca4`: **1,334 reported passes/10 failed
-tests and one cancelled test**. Wrapper39614429492:432/2;
-batch39614429595:902/8 plus one TAP cancellation. All17 executed jobs conclude;
-one soak group intentionally skips, no job cancellation. All three actual Codex
-zero-model1,000-action clients and all five167-file production installs pass.
-Windows Firefox and macOS throughput failures remain; no release gate is promoted.
+Latest native `b355d2e`: **1,371 reported passes/seven failed tests**, plus
+macOS actual-Codex failure. Wrapper39620265619:432/2;
+batch39620265718:939/5. Zero reported test skips/cancellations; one soak job
+intentionally skips. All execution steps conclude. GitHub reports the wrapper
+run completed/failure while Docker job conclusion stays null/in_progress despite
+all its test and teardown steps passing; that job inconsistency is retained.
 
-The reduced-call large-DOM fixture passes all12 host browser projects, including
-macOS Firefox27.5s under the unchanged30s test limit. Supervised20-file screenshot/
-report identity checks pass all five native batch lanes with their owned-process
-audits. These scoped positives do not explain prior native failures.
+Retention components pass all native lanes (53 each Linux22/24/macOS22,
+54 Windows22); all five167-file production installs pass fresh-report retention.
+Linux original144 passes. Windows original143/1 fails Firefox highlight timeout;
+macOS143/1 fails Chrome screenshot protocol capture. Windows main143/3 fails
+Firefox HTTP404/429 navigation and an ownership-audit root-birth mismatch during
+new client startup. macOS144/2 fails raw1,000 throughput and MCP deadline at984.
+Actual Codex Linux/Windows pass35.728/38.752s; macOS FAILED/action_failed after
+one action has readable result and clean terminated/removed cleanup. No cause is
+inferred from later healthy transport/temp controls.
 
-Pushed `b355d2e` adds age-based explicit operator retention; native CI is running.
-Local later commits add independent filesystem cleanup containment and preserve
-MCP assertion/deadline failure evidence. Components/negative controls and installed
-169-file package pass locally. Automatic scheduling, cumulative quotas, durable
-maintenance uncertainty and parent-death cleanup validation remain open.
+Later local commits add independent artifact cleanup, fixed step diagnostics and
+MCP failure evidence preservation. Final local jobs components61/61 each
+Node22/24, Node20 boundaries17/17, fresh169-file production install, real Codex
+1,000/zero-model/zero-owned and two-owner scoped cleanup pass. Native execution
+of those later changes is pending. Full acceptance remains failed.
+
 See [execution report](CODEX_EXECUTION_REPORT.md). **Not release-ready.**
 
 At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported

@@ -1,30 +1,27 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `5060ca4`: **1,334 reported passes,10 failed tests and
-one cancelled test**. Wrapper39614429492:432/2; batch39614429595:902/8 plus one
-TAP cancellation. All17 executed jobs conclude, one intentional soak job skip,
-zero job cancellations. All three actual Codex clients and five167-file
-production installs pass; Windows Firefox/macOS timing failures remain.
+Latest native `b355d2e`: **1,371 reported passes/seven failed tests**, plus
+macOS actual-Codex failure. Wrapper39620265619:432/2;
+batch39620265718:939/5. Zero reported test skips/cancellations; one soak job
+intentionally skips. All execution steps conclude. GitHub reports the wrapper
+run completed/failure while Docker job conclusion stays null/in_progress despite
+all its test and teardown steps passing; that job inconsistency is retained.
 
-Large-DOM witness passes all12 host browser projects. Supervised20-artifact
-identity checks pass all five native batch lanes. These are scoped positives;
-full native acceptance remains failed.
+Retention components pass all native lanes (53 each Linux22/24/macOS22,
+54 Windows22); all five167-file production installs pass fresh-report retention.
+Linux original144 passes. Windows original143/1 fails Firefox highlight timeout;
+macOS143/1 fails Chrome screenshot protocol capture. Windows main143/3 fails
+Firefox HTTP404/429 navigation and an ownership-audit root-birth mismatch during
+new client startup. macOS144/2 fails raw1,000 throughput and MCP deadline at984.
+Actual Codex Linux/Windows pass35.728/38.752s; macOS FAILED/action_failed after
+one action has readable result and clean terminated/removed cleanup. No cause is
+inferred from later healthy transport/temp controls.
 
-Pushed retention `b355d2e` requires age/explicit delete, defaults to preview,
-pages old owner/project terminal jobs and preserves results/request keys. Its
-native CI is running; journal component and Linux batch lanes pass so far.
-The macOS actual-Codex lane fails after one completed action; full native results
-are pending. No final totals are inferred from partial annotations.
-
-Later local commits contain artifact filesystem work in an independent worker,
-require natural exit after a valid receipt, preserve MCP test failure artifacts
-and add fixed failed-step classification to actual-Codex receipts. Final full
-jobs components61/61 each Node22/24, Node20 boundaries17/17; fresh169-file
-production-only installation passes; zero test skips or
-cancellations. Real local Codex1,000-action probe passes38.343s/zero model turns
-and zero observed owned survivors. Controlled negative tests fail/cancel as
-intended and retain their evidence. Linux Node20/22/24 worker-parent-loss tests
-pass during a simulated filesystem stall.
+Later local commits add independent artifact cleanup, fixed step diagnostics and
+MCP failure evidence preservation. Final local jobs components61/61 each
+Node22/24, Node20 boundaries17/17, fresh169-file production install, real Codex
+1,000/zero-model/zero-owned and two-owner scoped cleanup pass. Native execution
+of those later changes is pending. Full acceptance remains failed.
 
 Native worker validation, durable cross-controller maintenance uncertainty,
 automatic retention/cumulative quotas, managed profiles, stronger egress and
