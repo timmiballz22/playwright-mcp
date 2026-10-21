@@ -1088,3 +1088,21 @@ as documented in LOCAL_BATCH.md. Unsupported filesystems fail closed. Normal
 completion leaves a single private final name; crashes during the brief two-link
 window can require conservative operator cleanup. This does not implement full
 project/browser/profile disk quotas or retention. Native acceptance is pending.
+
+
+## Native57dca78 partial: filtered environment reproduces helper timeout
+
+Windows check annotations establish: actual Codex helper failure kind timeout;
+fresh inherited SDK pairs connect2/2 in974/2472/879ms and direct helper succeeds.
+The codex_core environment pair connects0/2 in10289ms, startup code
+private_storage_unavailable; the separate direct helper also times out. This
+reproduces the failure without Codex containment or a browser. It does not yet
+identify the missing runtime dependency. The browser matrix is still running.
+
+Next diagnostic instruments only its own copy of the packaged helper with fixed
+entered/storage/base_ready/serialization phase markers. It compares unchanged
+core environment with a helper-child-only PSModulePath pointing at the installed
+system PowerShell Modules directory. Actual Codex configuration, production helper,
+permissions, execution policy and10s helper deadline are unchanged. This is a
+controlled hypothesis test, not a claimed native fix. Output includes only fixed
+phase/category/variant metadata; raw helper stdout/stderr is never printed.

@@ -47,20 +47,30 @@ for (const mode of process.platform === 'win32' ? ['inherited', 'codex_core'] : 
     if (process.platform === 'win32' && iteration === 1) {
       const script = await readFile(new URL('../local-batch/jobs/private-windows.ps1', import.meta.url), 'utf8');
       const executable = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
-      let helper;
-      try {
-        const result = await promisify(execFile)(executable, ['-NoProfile', '-NonInteractive', '-Command', script], { timeout: 10000, maxBuffer: 65536, windowsHide: true, env: {
-          ...(mode === 'codex_core' ? coreEnv : process.env), PLAYWRIGHT_PRIVATE_BASE: path.join(directory, 'helper-control'),
-          PLAYWRIGHT_PRIVATE_PROJECT: directory, PLAYWRIGHT_PRIVATE_OWNER_HASH: createHash('sha256').update(randomUUID()).digest('hex'),
-        } });
-        let valid = false; try { valid = JSON.parse(result.stdout).ok === true; } catch {}
-        helper = { kind: valid ? 'success' : 'invalid_output' };
-      } catch (error) {
-        const kind = windowsHelperFailureKind(error);
-        helper = { kind, ...(Number.isInteger(error.code) ? { exitCode: error.code } : {}) };
+      // Instrument only this owned diagnostic copy, never the production helper.
+      const traced = script.replace("$ErrorActionPreference = 'Stop'", "$ErrorActionPreference = 'Stop';[Console]::Error.WriteLine('helper_phase:entered')")
+        .replace('$base = Ensure-PrivateDirectory', "[Console]::Error.WriteLine('helper_phase:storage');$base = Ensure-PrivateDirectory")
+        .replace('$project = Ensure-PrivateDirectory', "[Console]::Error.WriteLine('helper_phase:base_ready');$project = Ensure-PrivateDirectory")
+        .replace('[Console]::WriteLine((@{ok=$true;', "[Console]::Error.WriteLine('helper_phase:serialization');[Console]::WriteLine((@{ok=$true;");
+      const phasesOf = value => [...new Set([...String(value ?? '').matchAll(/helper_phase:(entered|storage|base_ready|serialization)/g)].map(match => match[1]))];
+      for (const variant of mode === 'codex_core' ? ['unchanged', 'system_modules'] : ['unchanged']) {
+        let helper;
+        try {
+          const result = await promisify(execFile)(executable, ['-NoProfile', '-NonInteractive', '-Command', traced], { timeout: 10000, maxBuffer: 65536, windowsHide: true, env: {
+            ...(mode === 'codex_core' ? coreEnv : process.env),
+            ...(variant === 'system_modules' ? { PSModulePath: path.join(path.dirname(executable), 'Modules') } : {}),
+            PLAYWRIGHT_PRIVATE_BASE: path.join(directory, 'helper-control-' + variant),
+            PLAYWRIGHT_PRIVATE_PROJECT: directory, PLAYWRIGHT_PRIVATE_OWNER_HASH: createHash('sha256').update(randomUUID()).digest('hex'),
+          } });
+          let valid = false; try { valid = JSON.parse(result.stdout).ok === true; } catch {}
+          helper = { kind: valid ? 'success' : 'invalid_output', phases: phasesOf(result.stderr) };
+        } catch (error) {
+          const kind = windowsHelperFailureKind(error);
+          helper = { kind, phases: phasesOf(error.stderr), ...(Number.isInteger(error.code) ? { exitCode: error.code } : {}) };
+        }
+        console.log(JSON.stringify({ os: process.platform, mode, variant, helper }));
+        if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Windows helper control::' + JSON.stringify({ mode, variant, helper }));
       }
-      console.log(JSON.stringify({ os: process.platform, mode, helper }));
-      if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Windows helper control::' + JSON.stringify({ mode, helper }));
     }
     assert.equal(receipt.connected, 2, 'Fresh simultaneous SDK startup failed'); verified = true;
   } finally {
