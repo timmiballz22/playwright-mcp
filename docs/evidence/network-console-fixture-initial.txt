@@ -1,0 +1,44 @@
+
+Running 2 tests using 1 worker
+
+(node:241471) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (4ms)
+(node:241483) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [firefox] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (4ms)
+
+
+  1) [chromium] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output 
+
+    TypeError: server.setRoute is not a function
+
+      4 |
+      5 | test('original network status/details and console filtering preserve explicit file output', async ({ startClient, server }, testInfo) => {
+    > 6 |   server.setRoute('/api/good', (_request, response) => { response.writeHead(200, { 'Content-Type': 'text/plain' }); response.end('fixture-response-body'); });
+        |          ^
+      7 |   server.setRoute('/api/missing', (_request, response) => { response.writeHead(404, { 'Content-Type': 'text/plain' }); response.end('fixture-missing-body'); });
+      8 |   server.setContent('/', `<!doctype html><title>Network console fixture</title><output>Waiting</output><script>
+      9 |     Promise.all([fetch('/api/good'),fetch('/api/missing')]).then(()=>{
+        at /workspace/playwright-mcp/tests/network-console.spec.ts:6:10
+
+    Error Context: test-results/network-console-original-n-cedfa-eserve-explicit-file-output-chromium/error-context.md
+
+  2) [firefox] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output 
+
+    TypeError: server.setRoute is not a function
+
+      4 |
+      5 | test('original network status/details and console filtering preserve explicit file output', async ({ startClient, server }, testInfo) => {
+    > 6 |   server.setRoute('/api/good', (_request, response) => { response.writeHead(200, { 'Content-Type': 'text/plain' }); response.end('fixture-response-body'); });
+        |          ^
+      7 |   server.setRoute('/api/missing', (_request, response) => { response.writeHead(404, { 'Content-Type': 'text/plain' }); response.end('fixture-missing-body'); });
+      8 |   server.setContent('/', `<!doctype html><title>Network console fixture</title><output>Waiting</output><script>
+      9 |     Promise.all([fetch('/api/good'),fetch('/api/missing')]).then(()=>{
+        at /workspace/playwright-mcp/tests/network-console.spec.ts:6:10
+
+    Error Context: test-results/network-console-original-n-cedfa-eserve-explicit-file-output-firefox/error-context.md
+
+  2 failed
+    [chromium] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output 
+    [firefox] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output 

@@ -77,3 +77,10 @@ requires a real pending Chromium screenshot and successful scoped child-handle
 termination, action failure without image/temp publication, supervisor cleanup
 and an independent zero-survivor scan. This is a trusted fault fixture, not a new
 workflow capability. Local Node22/24 evidence does not establish native Windows.
+
+network-console.spec.ts passes local Chromium/Firefox: HTTP200/404 request
+listing,404 response-body details, invalid-regex error, console severity filtering
+including a real uncaught JS exception, and explicit20KiB+ console file output
+with a response below4096 characters. It does not assert default console bounds.
+The first fixture attempt used nonexistent setRoute; that test-authoring failure
+is preserved, then corrected to this repository's route API.
