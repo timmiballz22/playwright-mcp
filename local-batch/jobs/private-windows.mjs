@@ -1,5 +1,5 @@
-// Unwired native ACL prototype. Public Windows jobs remain unsupported until
-// native tests validate this helper and the configuration integration separately.
+// Native owner/System ACL storage. Independent native helper tests pass;
+// public configuration integration has separate acceptance coverage.
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { readFile, realpath } from 'node:fs/promises';

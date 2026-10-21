@@ -74,7 +74,11 @@ export class JobJournal {
 
   failAll(code) {
     this.closed = true;
-    for (const request of this.pending.values()) { clearTimeout(request.timer); request.reject(new JournalError(code)); }
+    for (const request of this.pending.values()) {
+      clearTimeout(request.timer);
+      const error = new JournalError(code); error.command = request.command;
+      request.reject(error);
+    }
     this.pending.clear();
   }
 

@@ -11,7 +11,7 @@ test('jobs CLI validates bounded commands without accepting operator policy over
 });
 
 const { supportsJournal } = await import('./jobs/journal.mjs');
-if (!supportsJournal || process.platform === 'win32') test('jobs CLI rejects unsupported execution before opening workflow or creating state', async () => {
+if (!supportsJournal) test('jobs CLI rejects unsupported execution before opening workflow or creating state', async () => {
   const { execFile } = await import('node:child_process');
   const { promisify } = await import('node:util');
   const { mkdtemp, readdir, rm } = await import('node:fs/promises');
@@ -24,7 +24,7 @@ if (!supportsJournal || process.platform === 'win32') test('jobs CLI rejects uns
       timeout: 5000, env: { ...process.env, PLAYWRIGHT_JOBS_OWNER_ID: randomUUID(), PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data') },
     }), error => {
       assert.equal(error.code, 1); assert.equal(error.stdout, '');
-      assert.ok(error.stderr.includes(supportsJournal ? 'unsupported_private_storage' : 'unsupported_runtime'));
+      assert.ok(error.stderr.includes('unsupported_runtime'));
       assert.equal(error.stderr.includes('fake-path-canary'), false); return true;
     });
     assert.deepEqual(await readdir(root), []);

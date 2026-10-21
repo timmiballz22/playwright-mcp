@@ -1,11 +1,11 @@
 # Internal durable journal storage
 
 The SQLite journal in `local-batch/jobs/` stores bounded durable metadata.
-The separate POSIX jobs MCP and foreground CLI now expose scheduling, status,
+The separate jobs MCP and foreground CLI now expose scheduling, status,
 result, cancel, list and bounded terminal artifact cleanup; the synchronous
 companion still exposes one batch tool. See [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md)
 and [JOBS_CONTROLLER.md](JOBS_CONTROLLER.md). These scoped endpoints do not make
-the durable jobs gate complete: Windows private storage, full retention and
+the durable jobs gate complete: Windows public integration acceptance, full retention and
 recovery operator flows remain unfinished.
 
 The journal requires Node 22.13 or newer and runs SQLite in a bounded child process.
@@ -32,8 +32,8 @@ browser execution ownership or successful browser cleanup.
 Managed roots reject symlinks/junctions, persistent key/database hard links and
 unrelated databases. Key publication allows at most 200ms for an exclusive
 temporary publication link to disappear, then requires a single link.
-POSIX directories/files use private modes; Windows ACL enforcement and evidence
-remain open. A database marker and local key bind storage to the project before
+POSIX directories/files use private modes; the Windows helper creates protected
+owner/System DACLs at creation and rejects unsafe existing directories. A database marker and local key bind storage to the project before
 schema writes. Corrupt or foreign stores are rejected without replacement.
 The database has a 16 MiB page limit and bounded metadata, but this is not a full
 browser, artifact, WAL or disk quota system.
@@ -45,7 +45,7 @@ activation, uncertain cleanup blocking and rejected late success after durable
 cancellation/deadline. Native Windows
 runs omit the POSIX-only mode test. Installed-package smoke verifies both existing
 browser endpoints plus journal creation, owner isolation and cancellation. Native
-c7ae948 core journal/controller component suites passed on all three OSs; the new Windows ACL prototype has separate pending acceptance.
+c7ae948 core journal/controller component suites passed on all three OSs; the Windows ACL helper positive/negative tests pass natively at ebdec88, with public integration still pending.
 
 Live recovery now performs a read-only preflight. If no unstarted record expired
 and all recorded holders/controllers remain live, it returns without a write lock.
@@ -57,10 +57,11 @@ afterward while the writer still holds the lock. Internal error diagnostics now
 include only the fixed command verb, never its arguments. This reduces needless
 poll contention; it is not proof that all native journal_busy causes are resolved.
 
-The Windows private-storage helper (`private-windows.mjs`/`.ps1`) is an
-**unwired prototype**. It uses Windows PowerShell/.NET Framework to create
-protected owner/System DACLs at directory creation, rejects reparse points and
-unsafe existing grants without repairing them, and namespaces by current SID
-and canonical project. Native CI independently inspects ACLs and tests widened
-ACL/junction rejection. Until that evidence and configuration integration pass,
-public Windows startup continues to reject `unsupported_private_storage`.
+The Windows private-storage helper (`private-windows.mjs`/`.ps1`) is now wired
+into experimental public job configuration after independent native ebdec88 tests
+passed. It creates protected owner/System DACLs at directory creation, rejects
+reparse points and unsafe existing grants without repairing them, and namespaces
+by current SID plus canonical project. Public MCP/CLI configuration integration
+and installed-package checks are newly enabled on Windows and await native
+acceptance. Private-storage uncertainty still fails closed; local DOS drives only.
+No administrator privileges, global ACL changes or execution-policy override.

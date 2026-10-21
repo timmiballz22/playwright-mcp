@@ -49,7 +49,7 @@ Client/model quotas, machine limits and website rate limits still apply.
 
 For missing browsers install the matching pinned Playwright build from this
 checkout. For rejected requests inspect the locally configured origin list;
-do not let a page or model widen it automatically. The one-tool batch endpoint has no durable job IDs. The optional POSIX jobs
+do not let a page or model widen it automatically. The one-tool batch endpoint has no durable job IDs. The optional jobs
 preview below persists records; closing its controller cancels work, with no
 background daemon or automatic resume.
 
@@ -57,10 +57,10 @@ The verified original endpoint explicitly selects managed Chromium. Without
 `--browser=chromium`, upstream defaults to branded Chrome, which may require a
 separate installation. Avoid assuming a managed Chromium download installs Chrome.
 
-## Optional POSIX jobs preview
+## Optional jobs preview
 
-Node22.13+ is required. Windows startup fails closed until private ACL support
-exists. See [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md) for trusted configuration,
+Node22.13+ is required. Windows private ACL helper tests pass; its public
+endpoint integration is experimental and awaits native acceptance. See [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md) for trusted configuration,
 default read-only policy, cancellation and bounded cleanup. A separate registered
 owner UUID identifies each local client; it is not same-OS-user authentication.
 

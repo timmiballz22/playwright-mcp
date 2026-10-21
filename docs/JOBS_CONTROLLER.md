@@ -9,8 +9,9 @@ silently substitutes for the SQLite journal.
 configuration. `journal` contains directory, projectId and ownerId; `execution`
 contains the existing supervised executor settings. The caller must establish
 the canonical project namespace, local owner and private storage location.
-These values cannot come from future model tool arguments or visited pages.
-Windows ACL enforcement remains open in the storage kernel. Do not treat this
+These values cannot come from model tool arguments or visited pages.
+Windows ACL helper tests now pass natively; public configuration integration has
+separate pending native acceptance. Do not treat this
 internal API as a completed authorization/configuration layer.
 
 Methods:
@@ -83,7 +84,7 @@ queued inputs and pass the original deadline to the guardian so a backward clock
 change cannot extend execution. Forward clock changes can expire work early.
 This newer deadline change awaits native acceptance; no restart/resume is added.
 
-An optional POSIX start/status/result/cancel/list/cleanup MCP preview and trusted
+An optional start/status/result/cancel/list/cleanup MCP preview and trusted
 configuration now wrap this controller; see [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md).
 The foreground jobs CLI also uses this controller. Retention, disk/browser quotas,
 profiles and remaining security acceptance are unfinished. G06/G08 do not pass from this

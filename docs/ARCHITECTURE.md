@@ -40,11 +40,12 @@ The supervisor removes temporary files after termination through a bounded clean
 child, with retries for transient Windows file locks. Reports publish via
 exclusive temporary files and atomic rename, not a power-loss durable journal.
 Replies contain at most ten recent steps. Failed execution counts can be confirmed
-lower bounds; unsafe actions are never automatically replayed. An optional POSIX jobs MCP/foreground CLI preview wraps the durable metadata
+lower bounds; unsafe actions are never automatically replayed. An optional jobs MCP/foreground CLI preview wraps the durable metadata
 journal, bounded controller and trusted guardian. It provides start/status/result/
 cancel/list and bounded terminal artifact cleanup; default browser policy is
 read-only. It requires Node22.13+ and private operator configuration. Windows
-startup fails closed pending ACL enforcement. Retention/full quotas, persistent
+configuration uses the independently native-tested ACL helper; experimental public
+endpoint integration awaits native acceptance. Retention/full quotas, persistent
 companion profiles and resume remain unfinished. Worker V8 heap is capped at 256 MiB; browser RSS and response-body
 memory are not capped by that setting.
 
@@ -53,7 +54,8 @@ and MCP. A facade would add protocol delegation and capability maintenance befor
 showing measurable benefit. The baseline used a pinned alpha. A targeted dependency upgrade to stable 1.64.1
 preserves all discovered tool names, with documented optional schema additions.
 Native c7ae948 original feature/profile fixtures pass across all engines/OSs,
-while complete acceptance still fails on Windows Firefox and installed auditing.
+while complete acceptance still fails on Windows raw browsers/journal and phase
+fixture startup; installed auditing passes.
 No repository merge or backend copy was introduced.
 Historical decision: pinned alpha and
 current monorepo differ; retain exact versions until compatibility is proved.

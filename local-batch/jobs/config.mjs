@@ -5,6 +5,7 @@ import path from 'node:path';
 import os from 'node:os';
 import { parseOrigins } from '../policy.mjs';
 import { parseScreenshotLimit } from '../screenshot-budget.mjs';
+import { prepareWindowsJobDirectories } from './private-windows.mjs';
 import { navigationRetryPolicy } from '../navigation-retry.mjs';
 export class JobConfigError extends Error {
   constructor(code) { super(code); this.name = 'JobConfigError'; this.code = code; }
@@ -46,7 +47,7 @@ async function privateDirectory(target) {
   return current;
 }
 export async function resolveJobConfig({ env = process.env, cwd = process.cwd() } = {}) {
-  if (process.platform === 'win32' || typeof process.getuid !== 'function') reject('unsupported_private_storage');
+  if (process.platform !== 'win32' && typeof process.getuid !== 'function') reject('unsupported_private_storage');
   const ownerId = env.PLAYWRIGHT_JOBS_OWNER_ID;
   if (typeof ownerId !== 'string' || !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(ownerId)) reject('invalid_owner');
   let allowedOrigins; let navigationRetry; let maxScreenshotBytes;
@@ -68,16 +69,25 @@ export async function resolveJobConfig({ env = process.env, cwd = process.cwd() 
   let projectRoot;
   try { projectRoot = await realpath(project); if (!(await lstat(projectRoot)).isDirectory()) reject('invalid_project'); }
   catch { reject('invalid_project'); }
-  const projectId = hash(process.getuid() + ':' + projectRoot);
-  const base = path.resolve(projectRoot, providedBase ?? path.join(os.homedir(), '.local', 'state', 'playwright-batch', 'jobs'));
+  const defaultBase = process.platform === 'win32'
+    ? path.join(os.homedir(), 'AppData', 'Local', 'playwright-batch', 'jobs')
+    : path.join(os.homedir(), '.local', 'state', 'playwright-batch', 'jobs');
+  const base = path.resolve(projectRoot, providedBase ?? defaultBase);
   try {
-    const canonicalBase = await privateDirectory(base);
-    const projectStore = await privateDirectory(path.join(canonicalBase, 'projects', projectId));
-    const directory = await privateDirectory(path.join(projectStore, 'journal'));
-    const artifactsDir = await privateDirectory(path.join(projectStore, 'artifacts', hash(ownerId)));
+    let projectId; let directory; let artifactsDir;
+    if (process.platform === 'win32') {
+      ({ projectId, directory, artifactsDir } = await prepareWindowsJobDirectories({ base, projectRoot, ownerHash: hash(ownerId) }));
+    } else {
+      projectId = hash(process.getuid() + ':' + projectRoot);
+      const canonicalBase = await privateDirectory(base);
+      const projectStore = await privateDirectory(path.join(canonicalBase, 'projects', projectId));
+      directory = await privateDirectory(path.join(projectStore, 'journal'));
+      artifactsDir = await privateDirectory(path.join(projectStore, 'artifacts', hash(ownerId)));
+    }
     return { journal: { directory, projectId, ownerId }, execution: { allowedOrigins, artifactsDir, readOnly, allowSensitiveArtifacts, navigationRetry, maxScreenshotBytes } };
   } catch (error) {
     if (error instanceof JobConfigError) throw error;
+    if (['unsafe_storage', 'private_storage_unavailable', 'unsupported_private_storage'].includes(error.code)) reject(error.code);
     reject('storage_unavailable');
   }
 }

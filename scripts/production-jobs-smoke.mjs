@@ -13,8 +13,8 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 const target = path.resolve(process.argv[2]);
 const { supportsJournal } = await import(pathToFileURL(path.join(target, 'local-batch/jobs/journal.mjs')));
-if (!supportsJournal || process.platform === 'win32') {
-  console.log(JSON.stringify({ entry: 'local-batch/jobs-mcp.mjs', supported: false, reason: supportsJournal ? 'private_acl_unverified' : 'requires_node_22_13' }));
+if (!supportsJournal) {
+  console.log(JSON.stringify({ entry: 'local-batch/jobs-mcp.mjs', supported: false, reason: 'requires_node_22_13' }));
 } else {
   const { ownedDescendants } = await import(pathToFileURL(path.join(target, 'local-batch/fixtures/process-audit.mjs')));
   const root = await mkdtemp(path.join(os.tmpdir(), 'production-jobs-'));
@@ -38,6 +38,7 @@ if (!supportsJournal || process.platform === 'win32') {
   let cliFailed = false;
   try {
     await client.connect(transport);
+    await ownedDescendants([transport.pid], { rememberLiveRoots: true });
     assert.equal((await client.listTools()).tools.length, 6);
     const input = { requestKey: 'production-key', workflow: { steps: [{ type: 'goto', url: origin }, { type: 'assertText', selector: '#ready', equals: 'ready' }] } };
     const first = await call('start_workflow', input);

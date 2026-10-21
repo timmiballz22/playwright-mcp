@@ -2,23 +2,24 @@
 
 Updated 2026-10-21. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest completed native `9e1371e`: **807 passed/six failed**, zero test
-skips/cancellations. Wrapper39542770264:210/2; batch39542770274:597/4.
-All68 original tests per OS, Docker2/2 and installed production package checks
-passed. Creation-time process identity tracking fixes the previously failing
-Windows installed profile audit without dropping orphan checks. Three failures
-remain in Windows raw Firefox fresh-browser loops (Node20 headless/headed and
-Node22 headless); direct pipe passed this run but failed earlier. macOS synchronous
-1,000-action MCP hit its unchanged deadline after987 confirmed actions; its raw
-1,000-action fixture passed in113.5s. Two Windows ACL tests failed in the separate
-Get-Acl inspector's module loading, after helper creation/namespace calls succeeded.
-The test inspector now uses public .NET ACL APIs directly, without changing any
-execution policy or runtime ACL checks; native proof remains pending and Windows
-public jobs stay disabled. New popup/encoded-origin positive controls, original
-network/console behavior, real screenshot crash and frozen-page deadline fixtures
-pass scoped Linux checks and await native confirmation. Last full green remains
-d71c91e. Full quotas/retention, Windows driver/ACLs, managed profile recovery,
-DNS/OS egress and other gates still block release.
+Latest completed native `ebdec88`: **870 passed/seven failed**, zero test
+skips/cancellations. Wrapper39544130801:235/1; batch39544130732:635/6.
+All76 original-tool tests per OS, Docker and installed packages pass, including
+new popup/network/console cases. New popup origin policy, encoded localhost
+aliases and frozen-page deadline cases pass natively. Both independent Windows
+ACL tests now pass (private SID/System inheritance, widened-ACL and junction
+rejection). Current candidate wires that helper into Windows job configuration;
+public endpoint integration is experimental and awaits native acceptance.
+Failures: Windows guardian journal watchdog; concurrent raw Chromium screenshot
+server close; four Firefox cases across Node20/22; Node20 screenshot-crash fixture
+startup race. That fixture failure reproduces locally and is fixed by static
+worker import; both phase tests now pass Node20/22/24. A locator witness write
+race is also fixed with atomic publication. macOS1,000-action MCP passed without
+changing its deadline; the previous timeout remains recorded as an unresolved
+performance observation. Windows journal watchdog errors now retain only the
+fixed internal command for diagnosis; no RPC budget or retries changed.
+Last full green remains d71c91e. Full quotas/retention, Windows driver and public
+jobs acceptance, managed profile recovery, DNS/OS egress and other gates remain.
 
 All 45 mandatory scenarios are
 mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).

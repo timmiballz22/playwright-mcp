@@ -1,7 +1,9 @@
 # Optional local jobs MCP preview
 
-This stdio preview requires Node 22.13+ and POSIX private storage. Windows startup
-fails closed until native ACL enforcement is implemented. It is not release-ready.
+This stdio preview requires Node22.13+ and private local storage. POSIX uses
+private modes; the experimental Windows configuration now uses protected
+owner/System DACLs. Its helper passed native acceptance at ebdec88, while public
+Windows endpoint integration awaits its own native checks. It is not release-ready.
 The original MCP endpoint and one-tool batch endpoint remain available.
 
 Register `playwright-jobs-mcp` (or `node local-batch/jobs-mcp.mjs`) with trusted
@@ -53,9 +55,10 @@ retains the project lease and requires operator attention.
 Local acceptance covers an actual 1,000-action Chromium job, duplicate starts,
 foreign-owner denial, cancellation, EOF cancellation and reconnect without replay.
 Installed-package acceptance additionally exercises a real two-action job.
-Native Linux/macOS five-tool preview checks passed at ee54674; newer six-tool
-cleanup/CLI acceptance remains pending, including the macOS CLI alias fix. Retention, full disk/browser quotas, profiles, Windows ACLs and the remaining
-master-prompt gates are unfinished. Do not prune journal records to reuse keys.
+Native Linux/macOS six-tool cleanup/CLI and installed package checks passed at
+ebdec88. Windows ACL helper positive/negative checks passed; public endpoint
+integration is a new candidate, not certified Windows support. Retention, full
+disk/browser quotas, managed profiles and other master-prompt gates remain open. Do not prune journal records to reuse keys.
 
 Cleanup retains durable job records, request-key deduplication and safe result
 summaries; it does not free history capacity or make an old key reusable. Opaque
@@ -124,3 +127,12 @@ This bounds screenshot payload bytes, not browser memory, response bodies,
 filesystem block overhead, reports, cleanup diagnostics, history or cumulative
 project storage. Capturing the PNG buffer happens before checking its size. Full
 write quotas, retention, OS resource controls and power-loss durability remain open.
+
+Windows configuration requires local DOS-drive paths and Windows PowerShell5.1/
+.NET Framework, invoked without profiles, elevation or execution-policy overrides.
+Default storage is `%USERPROFILE%/AppData/Local/playwright-batch/jobs`; an explicit
+`PLAYWRIGHT_JOBS_DATA_DIR` must pass the same ancestor and final-DACL checks.
+UNC/device paths, reparse points and unsafe existing grants fail closed. Existing
+ACLs are never repaired. Current SID plus canonical project determines the shared
+journal namespace; owner UUID hashes separate artifact directories. The public
+Windows integration is experimental pending installed/MCP/CLI native checks.

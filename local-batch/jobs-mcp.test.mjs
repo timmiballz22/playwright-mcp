@@ -14,7 +14,7 @@ import { resolveJobConfig } from './jobs/config.mjs';
 import { supportsJournal } from './jobs/journal.mjs';
 import { ownedDescendants } from './fixtures/process-audit.mjs';
 const entry = fileURLToPath(new URL('./jobs-mcp.mjs', import.meta.url));
-if (supportsJournal && process.platform !== 'win32') test('preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect', { timeout: 180000 }, async () => {
+if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect', { timeout: 180000 }, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-mcp-'));
   const owner = randomUUID(); const clients = []; const roots = []; let observed = [];
   const server = createServer((_request, response) => { response.writeHead(200, { 'Content-Type': 'text/html' }); response.end('<div id="ready">ready</div><button>Add</button><output>0</output><script>let n=0;document.querySelector("button").onclick=()=>document.querySelector("output").textContent=String(++n)</script>'); });
@@ -25,7 +25,9 @@ if (supportsJournal && process.platform !== 'win32') test('preview stdio jobs: d
     const transport = new StdioClientTransport({ command: process.execPath, args: [entry], stderr: 'pipe', env: {
       ...process.env, PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: mutations ? '1' : '0', PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS: maxScreenshotBytes === undefined ? '0' : '1', PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES: String(maxScreenshotBytes ?? 16777216), PLAYWRIGHT_JOBS_OWNER_ID: ownerId, PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data'), PLAYWRIGHT_JOBS_PROJECT_DIR: root, PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: origin,
     } });
-    await client.connect(transport); roots.push(transport.pid); clients.push(client); return client;
+    await client.connect(transport); roots.push(transport.pid); clients.push(client);
+    observed.push(...await ownedDescendants([transport.pid], { rememberLiveRoots: true }));
+    return client;
   }
   async function call(client, name, args) {
     const reply = await client.callTool({ name, arguments: args });
@@ -131,7 +133,7 @@ if (supportsJournal && process.platform !== 'win32') test('preview stdio jobs: d
   }
 });
 
-if (!supportsJournal || process.platform === 'win32') test('preview endpoint rejects unsupported runtime/private-storage platform before creating state', { timeout: 10000 }, async context => {
+if (!supportsJournal) test('preview endpoint rejects unsupported runtime before creating state', { timeout: 10000 }, async context => {
   const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-unsupported-'));
   let child;
   try {
@@ -142,7 +144,7 @@ if (!supportsJournal || process.platform === 'win32') test('preview endpoint rej
     child.stdout.on('data', chunk => { stdout += chunk; }); child.stderr.on('data', chunk => { stderr += chunk; });
     const [code] = await once(child, 'close');
     assert.equal(code, 1); assert.equal(stdout, '');
-    assert.ok(stderr.includes(supportsJournal ? 'unsupported_private_storage' : 'unsupported_runtime'));
+    assert.ok(stderr.includes('unsupported_runtime'));
     assert.deepEqual(await readdir(root), []);
   } finally {
     if (child && child.exitCode === null && child.signalCode === null) { child.kill('SIGKILL'); await once(child, 'close'); }

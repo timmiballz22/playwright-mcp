@@ -145,3 +145,25 @@ verifies zero listeners plus zero owned processes after shutdown. Source Node24
 passes (four owned Node processes). No global config, model turn or browser work.
 It is not an active-browser, UDP, macOS or Windows socket audit; inaccessible
 owned FD metadata fails instead of being treated as an empty result.
+
+Nativeebdec88:870 pass/seven fail (wrapper235/1, batch635/6), zero test skips/
+cancellations. All76 original tests per OS, Docker and installed packages pass.
+Windows ACL helper positive/negative assertions pass independently. Component
+failure is guardian journal_unavailable after its2s watchdog, not ACL failure;
+command metadata is added to watchdog errors for diagnosis without budget/retry
+changes. Other failures: Windows raw concurrent Chromium server close, four
+Firefox cases, and Node20 crash-fixture missing witness (exact local reproduction
+and static-import fix retained). macOS96 batch tests pass, including1,000-action
+MCP with unchanged deadlines. Original popup/network/console and companion
+popup/alias/frozen-page fixtures now have native proof.
+
+Windows integration candidate: resolveJobConfig now uses the independently
+native-tested SID/System ACL helper instead of unconditional rejection. Common
+namespace/policy tests and a Windows junction-config negative exercise that
+boundary; source public jobs and fresh installed MCP/CLI tests are enabled on
+Windows. POSIX15 config/journal checks and six public/CLI/config cases pass,
+including exact1,000-action workflow; Node20 six cases retain unsupported-job
+runtime refusal before workflow/state writes. Fresh132-file production package
+passes locally. Windows public integration awaits native acceptance. POSIX SIGTERM
+handler tests remain POSIX-specific; Windows forced process termination is not
+claimed to deliver the same completion event.

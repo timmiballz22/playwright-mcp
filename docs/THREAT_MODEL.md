@@ -32,7 +32,7 @@ process termination. This is not an OS sandbox or browser RSS quota. Linux zombi
 processes await host reaping; simultaneous controller loss, uninterruptible kernel
 I/O and host-level failures require external supervision. CLI input ingestion still
 precedes this boundary. Optional POSIX jobs MCP/CLI persist owner-scoped records and cancel on controller
-exit without replay. Windows private job storage and persistent companion profiles
+exit without replay. Windows public job acceptance and persistent companion profiles
 remain unfinished. Do not expose either stdio process as a public service.
 
 Operator-enabled navigation retries are restricted to the current explicit goto's

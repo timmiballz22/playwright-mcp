@@ -36,7 +36,7 @@ export function parseJobArguments(argv) {
   if (command === 'start' && (!result.workflow || !result.requestKey) || ['status', 'result', 'cancel'].includes(command) && !result.jobId || command === 'cleanup' && (!result.jobIds.length || result.jobIds.length > 10 || new Set(result.jobIds).size !== result.jobIds.length)) invalid();
   return result;
 }
-const safeCodes = new Set(['not_found', 'not_terminal', 'cleanup_blocked', 'cleanup_limit', 'unsafe_artifacts', 'queue_full', 'history_full', 'idempotency_conflict', 'controller_busy', 'journal_busy', 'journal_unavailable', 'storage_full', 'request_cancelled', 'wait_expired', 'unsupported_runtime', 'unsupported_private_storage', 'invalid_owner', 'invalid_policy', 'invalid_storage', 'invalid_project', 'unsafe_storage']);
+const safeCodes = new Set(['not_found', 'not_terminal', 'cleanup_blocked', 'cleanup_limit', 'unsafe_artifacts', 'queue_full', 'history_full', 'idempotency_conflict', 'controller_busy', 'journal_busy', 'journal_unavailable', 'storage_full', 'request_cancelled', 'wait_expired', 'unsupported_runtime', 'unsupported_private_storage', 'private_storage_unavailable', 'invalid_owner', 'invalid_policy', 'invalid_storage', 'invalid_project', 'unsafe_storage']);
 const safeCode = error => safeCodes.has(error?.code) ? error.code : 'jobs_failed';
 const emit = value => process.stdout.write(JSON.stringify(value) + '\n');
 async function main() {

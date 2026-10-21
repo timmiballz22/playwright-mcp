@@ -1,0 +1,23 @@
+✔ operator owner/project namespaces are stable, private and independent of tool data (20.870721ms)
+✔ untrusted symlinks and writable ancestors cannot redirect job storage writes (7.216291ms)
+✔ invalid owner/policy config is rejected before any storage creation (2.630824ms)
+✔ managed directory links and database hardlinks cannot modify another file (373.403119ms)
+✔ POSIX journal directory must exclude group and other access (44.140923ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (109.397192ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (68.41561ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (50.719377ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (72.743568ms)
+✔ killed transaction rolls back without a partial job or duplicate request (197.150857ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (162.874808ms)
+✔ corrupt journal is rejected without silently erasing the file (91.175885ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (49.672131ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (184.10656ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (159.092485ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1715.864717
