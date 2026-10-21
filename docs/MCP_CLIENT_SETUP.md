@@ -115,3 +115,10 @@ storage-state exports remain0600 even when the parent uses0022. Existing files
 retain their prior permissions; export sensitive state to a fresh private path.
 This mask does not establish Windows ACLs. Embedding the library leaves the host's
 process mask unchanged; the embedding application owns its file permissions.
+
+
+For POSIX Docker bind mounts, run the container with the host reader's numeric
+UID/GID (`--user "$(id -u):$(id -g)"`) and choose a writable private workspace/profile
+inside that mount. Fresh0077 files belong to that identity; changing permissions
+to make exports world-readable is not required. The image's default user is
+unchanged. The next native Docker run will verify this mapping.

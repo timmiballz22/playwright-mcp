@@ -188,7 +188,12 @@ async function createTransport(args: string[], cwd: string, mcpMode: TestOptions
   if (mcpMode === 'docker') {
     const relCwd = path.relative(test.info().project.outputDir, cwd);
     const dockerCwd = path.posix.join('/app/test-results', relCwd.split(path.sep).join('/'));
-    const dockerArgs = ['run', '--rm', '-i', '--network=host', '-v', `${test.info().project.outputDir}:/app/test-results`, '-w', dockerCwd];
+    const dockerArgs = ['run', '--rm', '-i', '--network=host', '-v', `${test.info().project.outputDir}:/app/test-results`, '-w', dockerCwd,
+      '-e', `PWMCP_PROFILES_DIR_FOR_TEST=${path.posix.join(dockerCwd, 'ms-playwright')}`];
+    // Bind-mounted private files must belong to the client reading them. Keep
+    // CLI 0077 privacy; never make credential/snapshot artifacts world-readable.
+    if (typeof process.getuid === 'function' && typeof process.getgid === 'function')
+      dockerArgs.push('--user', `${process.getuid()}:${process.getgid()}`);
     const transport = new StdioClientTransport({
       command: 'docker',
       args: [...dockerArgs, 'playwright-mcp-dev:latest', ...args],
@@ -270,7 +275,9 @@ function parseResponse(response: any, cwd: string) {
     if (match) {
       try {
         snapshot = fs.readFileSync(path.resolve(cwd, match[1]), 'utf-8');
-      } catch {
+      } catch (error) {
+        const code = (error as NodeJS.ErrnoException).code;
+        throw new Error(`Snapshot link could not be read (${['EACCES', 'ENOENT', 'EPERM'].includes(code ?? '') ? code : 'read_failed'}).`);
       }
     } else {
       snapshot = snapshotSection.replace(/^```yaml\n?/, '').replace(/\n?```$/, '');

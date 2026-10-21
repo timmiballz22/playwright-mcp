@@ -1,6 +1,34 @@
 # Mandatory scenario evidence
 
-Latest completed native `2ff0c15`: **758 tests passed/six failed**, zero test
+Latest completed native `2359eba`: **1,085 tests passed/five failed**, zero test
+skips/cancellations and all17 jobs completed. Wrapper39575041636:349/4;
+batch39575042201:736/1. Failures: two Docker snapshot-link reads; macOS Intel
+Firefox trusted100-click/large-DOM tests(each30s test timeout); Windows public
+jobs test's process-audit identity error after its1,000-action/cleanup/dedup checks
+succeeded. New source screenshots and all new original storage/network/config/
+testing cases pass natively, including fresh POSIX export permissions under0022.
+Installed148-file packages pass every OS lane. All Windows Firefox raw and legacy
+cases pass this time; reliability is not declared fixed from one healthy run.
+
+Actual Codex1,000-action checks pass Windows37.754s(start22ms)/Linux36.541s,
+zero model turns/owned survivors. macOS Intel instead confirms970 actions before
+the unchanged120s deadline: TIMED_OUT, cleanup failed/temp removed, operator
+attention required. No guardian failure hint; cleanup cause remains unknown.
+Windows inherited/private temp probes both pass10 fresh runs/230 actions each,
+zero survivors. This does not isolate a temp-storage cause.
+
+Next candidate maps Docker test UID/GID to the host reader while retaining0077
+CLI privacy, makes snapshot-read errors explicit, and adds fixed audit-reason
+labels without changing identity guards. Local browser snapshot checks2/2 and
+Windows graph regressions4/4 on Node20/22/24 pass; actual Docker verification is
+native-only because the local image build is blocked by registry TLS trust.
+The CI batch envelope becomes30min to allow cold installation/full strict suite/
+bounded failure diagnostics; workflow/action/cleanup deadlines stay unchanged.
+Source evidence: worker-ci-fortieth-*; new tool fixtures await native confirmation.
+**Not release-ready.**
+
+
+Previous completed native `2ff0c15`: **758 tests passed/six failed**, zero test
 skips/cancellations, **four macOS arm64 jobs cancelled before execution** because
 GitHub could not acquire hosted runners. Counts exclude that missing platform;
 this is not comparable full coverage to earlier totals. Wrapper39572164280:187/2;

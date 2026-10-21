@@ -1,6 +1,34 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `2ff0c15`: **758 tests passed/six failed**, zero test
+Latest completed native `2359eba`: **1,085 tests passed/five failed**, zero test
+skips/cancellations and all17 jobs completed. Wrapper39575041636:349/4;
+batch39575042201:736/1. Failures: two Docker snapshot-link reads; macOS Intel
+Firefox trusted100-click/large-DOM tests(each30s test timeout); Windows public
+jobs test's process-audit identity error after its1,000-action/cleanup/dedup checks
+succeeded. New source screenshots and all new original storage/network/config/
+testing cases pass natively, including fresh POSIX export permissions under0022.
+Installed148-file packages pass every OS lane. All Windows Firefox raw and legacy
+cases pass this time; reliability is not declared fixed from one healthy run.
+
+Actual Codex1,000-action checks pass Windows37.754s(start22ms)/Linux36.541s,
+zero model turns/owned survivors. macOS Intel instead confirms970 actions before
+the unchanged120s deadline: TIMED_OUT, cleanup failed/temp removed, operator
+attention required. No guardian failure hint; cleanup cause remains unknown.
+Windows inherited/private temp probes both pass10 fresh runs/230 actions each,
+zero survivors. This does not isolate a temp-storage cause.
+
+Next candidate maps Docker test UID/GID to the host reader while retaining0077
+CLI privacy, makes snapshot-read errors explicit, and adds fixed audit-reason
+labels without changing identity guards. Local browser snapshot checks2/2 and
+Windows graph regressions4/4 on Node20/22/24 pass; actual Docker verification is
+native-only because the local image build is blocked by registry TLS trust.
+The CI batch envelope becomes30min to allow cold installation/full strict suite/
+bounded failure diagnostics; workflow/action/cleanup deadlines stay unchanged.
+Source evidence: worker-ci-fortieth-*; new tool fixtures await native confirmation.
+**Not release-ready.**
+
+
+Previous completed native `2ff0c15`: **758 tests passed/six failed**, zero test
 skips/cancellations, **four macOS arm64 jobs cancelled before execution** because
 GitHub could not acquire hosted runners. Counts exclude that missing platform;
 this is not comparable full coverage to earlier totals. Wrapper39572164280:187/2;
@@ -1468,3 +1496,30 @@ privacy/adversarial and real-own-process checks pass2 tests each on Node20/22/24
 pack dry run includes the helper, and the required-entry verifier checks it.
 This is added to diagnose macOS Intel's cleanup failure, not a production fix.
 Evidence: process-state-hint-node*.txt.
+
+
+## Docker private-artifact reader alignment and audit diagnostics
+
+After standalone CLI0077 hardening, native Docker navigation succeeds but host
+snapshot parsing yields no snapshot in both smoke cases. The fixture silently
+swallowed file-read errors while the image writes as its default node identity.
+The Docker test transport now passes host UID/GID and puts its test profile in the
+same owned bind-mounted workspace. It keeps artifact permissions private and uses the host identity; the production
+image user and host HOME remain unchanged. Snapshot-link read failures
+now report a fixed error code instead of an empty parsed snapshot. Local original
+Chromium navigation/click2 tests pass(3.6s); actual container verification remains
+pending native CI because the local registry TLS build limitation persists.
+
+Windows public jobs test completed1,000 actions, explicit artifact cleanup and
+dedup checks, then failed when capturing a newly connected quota-test endpoint's
+process identity. The existing generic error does not identify which guard fired.
+The read-only graph now distinguishes root_missing/root_birth_missing/
+root_birth_changed/root_birth_reversed/descendant_birth_missing with fixed labels.
+Every prior guard and conservative orphan rule remains intact; no unknown identity
+is accepted or treated as empty. Four graph tests pass on Node20/22/24, including
+new exact missing/changed classifications. This is diagnostic-only, not a PID-reuse
+root-cause claim. Evidence: windows-audit-reasons-node*.txt.
+
+The batch CI job envelope increases20 to30min for cold browser downloads plus the
+growing strict suite and bounded failure probes. Individual workflow/action/RPC/
+startup/cleanup limits remain unchanged, and prior failures remain failures.

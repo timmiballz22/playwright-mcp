@@ -15,6 +15,8 @@ test('reused root identity excludes its replacement but still reports earlier su
   assert.deepEqual(windowsOwnedProcesses([900], [row(900, 1, 200), row(902, 900, 250)], identities), []);
 });
 test('missing identity is uncertainty, while unknown legacy roots never hide potential orphans', () => {
+  assert.throws(() => windowsOwnedProcesses([900], [], new Map(), true), { message: 'process_audit_windows_identity_unavailable_root_missing' });
+  assert.throws(() => windowsOwnedProcesses([900], [row(900, 1, 200)], new Map([[900, time(100)]]), true), { message: 'process_audit_windows_identity_unavailable_root_birth_changed' });
   assert.throws(() => windowsOwnedProcesses([900], [row(900, 1, null)], new Map(), true), /identity_unavailable/);
   assert.throws(() => windowsOwnedProcesses([900], [row(900, 1, 90)], new Map([[900, time(100)]])), /identity_unavailable/);
   assert.deepEqual(windowsOwnedProcesses([900], [row(901, 900, null)]), [901]);
