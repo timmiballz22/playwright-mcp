@@ -1,4 +1,4 @@
-import { stepFailureDiagnostic } from '../scripts/step-failure-diagnostic.mjs';
+import { stepFailureDiagnostic, rawWorkflowFailureDiagnostic } from '../scripts/step-failure-diagnostic.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, rm } from 'node:fs/promises';
@@ -82,4 +82,20 @@ test('client step failure receipts retain fixed taxonomy without private step fi
   assert.equal(http.httpStatus, 404);
   const setup = stepFailureDiagnostic({ index: 0, type: 'setup', error: 'setup_failed', message: canary });
   assert.deepEqual(JSON.parse(JSON.stringify(setup)), { index: 0, type: 'setup', error: 'setup_failed', failureKind: 'unknown' });
+});
+
+
+test('raw workflow diagnostic keeps completion counters outside long traces without reflecting private data', () => {
+  const canary = 'private-raw-receipt-canary';
+  const safe = rawWorkflowFailureDiagnostic({ ok: false, reason: 'timeout', completed: 971, total: 1000, durationMs: 120001,
+    actionsSucceeded: false, cleanupFailures: [canary], rawError: canary, selector: canary },
+  { index: 972, type: 'click', error: 'timeout', failureKind: 'interrupted', url: canary, value: canary, message: canary },
+  { browser: 'chromium', mode: 'headless', freshRun: 1 });
+  assert.equal(safe.completed, 971); assert.equal(safe.total, 1000); assert.equal(safe.cleanupFailureCount, 1);
+  assert.deepEqual(JSON.parse(JSON.stringify(safe.failedStep)), { index: 972, type: 'click', error: 'timeout', failureKind: 'interrupted' });
+  assert.equal(JSON.stringify(safe).includes(canary), false);
+  const bad = rawWorkflowFailureDiagnostic({ ok: false, reason: canary, completed: -1, total: 1001, durationMs: Infinity,
+    actionsSucceeded: canary, cleanupFailures: canary }, { type: canary, error: canary }, { browser: canary, mode: canary, freshRun: canary });
+  assert.equal(JSON.stringify(bad).includes(canary), false); assert.equal(bad.completed, undefined); assert.equal(bad.total, undefined);
+  assert.equal(rawWorkflowFailureDiagnostic({ ok: true }), null); assert.equal(rawWorkflowFailureDiagnostic(null), null);
 });

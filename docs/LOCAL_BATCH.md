@@ -183,6 +183,14 @@ report writing. An exceeded budget yields fixed `artifact_quota` failure
 kind and preserves earlier confirmed actions. This is screenshot payload storage
 only, not total directory/retention/browser-memory quota or pixel redaction.
 
+Atomic JSON reports have a separate fixed8 MiB UTF-8 ceiling, including formatting
+and the final newline. Oversized reports are rejected before the writer creates
+its directory or temporary/final files. A supervised report failure returns the
+fixed report stage with completed progress and retrySafe:false; it does not replay
+already executed actions. The ceiling bounds report file bytes. Serialization
+memory, cumulative retained storage and filesystem metadata remain separate limits.
+
+
 
 The companion's observed open-page limit defaults to8 per workflow (main page
 included). Set CLI `--max-pages N`, batch MCP `PLAYWRIGHT_BATCH_MAX_PAGES`, or jobs

@@ -68,8 +68,20 @@ export function windowsAuditReceipt(roots, rows, observed, helperPid, identities
 export function windowsOwnedProcessScopes(scopes, rows, rememberLiveRoots = false) {
   const result = new Set();
   for (const scope of scopes) {
-    const observed = windowsOwnedProcesses([...scope.roots], rows, scope.identities, rememberLiveRoots);
-    for (const pid of observed) { scope.roots.add(pid); result.add(pid); }
+    // A long-lived controller can have exited historical browser roots. Preserve
+    // those lineages before refreshing descendants through its live anchor.
+    if (rememberLiveRoots && scope.liveRoots) {
+      const validated = new Map(scope.identities);
+      const current = windowsOwnedProcesses([...scope.liveRoots], rows, validated, true);
+      const historical = windowsOwnedProcesses([...scope.roots], rows, scope.identities);
+      for (const pid of historical) { scope.roots.add(pid); result.add(pid); }
+      for (const pid of current) {
+        scope.identities.set(pid, validated.get(pid)); scope.roots.add(pid); result.add(pid);
+      }
+    } else {
+      const observed = windowsOwnedProcesses([...scope.roots], rows, scope.identities, rememberLiveRoots);
+      for (const pid of observed) { scope.roots.add(pid); result.add(pid); }
+    }
   }
   return [...result].sort((a, b) => a - b);
 }

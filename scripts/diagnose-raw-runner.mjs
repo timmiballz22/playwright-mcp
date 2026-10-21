@@ -9,7 +9,7 @@ import path from 'node:path';
 import os from 'node:os';
 import assert from 'node:assert/strict';
 import { runWorkflow } from '../local-batch/runner.mjs';
-import { ownedDescendants } from '../local-batch/fixtures/process-audit.mjs';
+import { ownedScopeDescendants } from '../local-batch/fixtures/process-audit.mjs';
 import { terminateOwnedProcesses } from '../local-batch/process-tree.mjs';
 const send = value => { if (process.connected) process.send(value, () => {}); };
 if (process.argv[2] === '--owned-child') {
@@ -87,15 +87,21 @@ if (process.argv[2] === '--owned-child') {
       void terminateOwnedProcesses(current.pid, [], true).catch(() => {});
   };
   process.once('SIGINT', cancel); process.once('SIGTERM', cancel);
+  const scopes = [];
   for (const mode of modeOrder) {
     if (interrupted) throw new Error('Exact runner diagnostic cancelled');
     const directory = await mkdtemp(path.join(os.tmpdir(), (chromiumTransport ? 'chromium-transport-' : 'ff-runner-') + mode + '-'));
     const child = fork(fileURLToPath(import.meta.url), ['--owned-child', mode, directory], { detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
     current = child;
-    const closed = once(child, 'close').catch(() => []); const browsers = []; let observed = []; let auditFailure = false;
+    const closed = once(child, 'close').catch(() => []); const browsers = []; let auditFailure = false;
+    const scope = { roots: new Set([child.pid]), liveRoots: new Set([child.pid]), identities: new Map() }; scopes.push(scope);
     let audit = Promise.resolve(); let auditing = false; let resolveReceipt;
     const received = new Promise(resolve => { resolveReceipt = resolve; });
-    const snapshot = async () => { observed.push(...await ownedDescendants([child.pid], { rememberLiveRoots: true })); };
+    const snapshot = async () => {
+      assert.ok(child.exitCode === null && child.signalCode === null, 'Owned diagnostic controller exited before observation');
+      await ownedScopeDescendants([scope], { rememberLiveRoots: true });
+      assert.ok(child.exitCode === null && child.signalCode === null, 'Owned diagnostic controller exited during observation');
+    };
     const sample = () => {
       if (!auditing) {
         auditing = true;
@@ -124,7 +130,9 @@ if (process.argv[2] === '--owned-child') {
       receipt = await Promise.race([received, closed.then(() => null), new Promise(resolve => { timer = setTimeout(() => resolve(null), 180000); })]);
       clearTimeout(timer); clearInterval(auditTimer); await audit;
       if (child.exitCode === null && child.signalCode === null) await snapshot();
-      const before = await ownedDescendants([child.pid, ...browsers, ...observed]);
+      // Keep never-observed reported roots conservative; no birth/role filter.
+      for (const pid of browsers) scope.roots.add(pid);
+      const before = await ownedScopeDescendants(scopes);
       const residual = before.filter(pid => pid !== child.pid);
       if (!receipt || residual.length || auditFailure) {
         // Historical numeric browser PIDs carry no termination authority after
@@ -135,8 +143,8 @@ if (process.argv[2] === '--owned-child') {
       await Promise.race([closed, new Promise(resolve => { closeTimer = setTimeout(resolve, 3000); })]); clearTimeout(closeTimer);
       if (child.exitCode === null && child.signalCode === null) await terminateOwnedProcesses(child.pid, [], true);
       const end = performance.now() + 10000;
-      let remaining = await ownedDescendants([child.pid, ...browsers, ...observed]);
-      while (remaining.length && performance.now() < end) { await new Promise(resolve => setTimeout(resolve, 100)); remaining = await ownedDescendants([child.pid, ...browsers, ...observed]); }
+      let remaining = await ownedScopeDescendants(scopes);
+      while (remaining.length && performance.now() < end) { await new Promise(resolve => setTimeout(resolve, 100)); remaining = await ownedScopeDescendants(scopes); }
       assert.deepEqual(remaining, [], 'Exact runner diagnostic cleanup uncertain');
       assert.equal(auditFailure, false, 'Exact runner process identity uncertain'); clean = true;
       const result = { os: process.platform, mode, comparisonOrder: modeOrder, position: modeOrder.indexOf(mode) + 1, privateTempRoot: mode === 'private', ...(receipt ?? { ok: false, reason: interrupted ? 'operator_cancelled' : 'independent_deadline_or_exit' }), residualProcessesBeforeForce: residual.length, activeOwnedProcesses: 0 };

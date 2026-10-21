@@ -2,31 +2,28 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Runtime source1100e3c; later changes are CI/tests/documentation. Branch
-feat/local-production-hardening; last pushed f03ad33. Use git status/log for the
-current local SHA. Latest fully logged native55 at f03ad33:1,535 passes/nine failed
-tests PLUS macOS actual Codex TIMED_OUT950. All17 executed jobs conclude; one
-intentional functional-soak skip, no reported test skips/cancellations or job
-cancellations. CI39639279738 and batch39639279780 both conclude failure. All five
-172-file production installs pass; prior intermittent install failures unexplained.
+Branch feat/local-production-hardening; last pushed f81f720. Current local report
+byte-ceiling/diagnostic candidate follows6a2263a; use git log/status for current
+SHA. Latest fully logged native56 at f81f720: wrapper SUCCESS440/0 and batch
+FAILURE1,127/4 =>1,567 passes/four failed tests, PLUS macOS Codex TIMED_OUT960/1k.
+All17 executed jobs conclude; one intentional functional-soak skip, zero reported
+test skips/cancellations or job cancellations. CI39643412147/batch39643412200.
 
-MacOS components72/1 (unsafe-mode negative gets init/rpc_timeout instead of expected
-unsafe_store); unchanged security assertion/2s RPC budget. Windows WebKit HTTP
-privacy1 observed root with zero birth identities plus Chromium429 timeout; MacOS
-original Firefox3 failures and Windows Node20 Firefox3 legacy failures. Linux/
-Windows actual Codex pass; MacOS950 timeout with clean known cleanup remains fail.
-Exact tests/counts/controls below in Native55 section and worker-ci-fiftyfifth-*.
+All native components78/78 (Windows79) and five173-file installs pass. Remaining
+Windows Firefox headless/pipe and macOS raw/public-jobs1k fail. HTTP scope/owned
+audits pass this round without filters; earlier orphan observations remain unknown.
+Windows inherited failure-only probe root_birth_changed has no final receipt.
 
-Local next candidate: component command78/78 each Node22/24 with sanitized early
-annotations; fresh173-file production install pass; separate observed HTTP
-lifetimes10/10 Chromium/Firefox+graph Node22/24. Earlier runtime75/75 components,
-public jobs1k and bounded result waits, actual Linux Codex1k36.492s, profile14/14
-Node20/22/24+Chromium/Firefox parity2/2 and3 interface samples/mode are phase-scoped
-below. None of these later local changes are in native55. Authentication works.
+Local candidate:8MiB report byte cap verified on Node20/22/24, real POST faults,
+durable FAILED/progress/dedup and empty owned audit; components78/78 Node22/24,
+fresh173-file production install pass. Raw scoped controllers/live-anchor rules
+and fixed counter receipts verified by17 pure cases per Node20/22/24 and real raw
+controls. Experimental Node child-process channel ownership evidence is source-only;
+no default transport change. Detailed phase-specific receipts/limitations below.
 
-**Not release-ready. NEXT ACTION: push next candidate after native55 conclusions,
-then diagnose its actual failures.** No managed reset, cumulative quota, hard OS
-resource bounds, graphical annotation or complete remaining feature acceptance.
+**Not release-ready. NEXT ACTION: push candidate after native56 completion, then
+inspect native57 actual failures.** Managed reset, cumulative quotas, hard OS
+resource bounds, graphical annotation and remaining feature acceptance stay open.
 
 ## Historical checkpoints
 
@@ -197,25 +194,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 discovery,six jobs schemas; native55 f03ad33 fully logged1,535/9 plus macOS actual-Codex failure | Final clean same-SHA acceptance; next candidate pending |
-| G01 INSTALL | FAILED | local173-file install pass; native55 all five172-file installs pass, earlier intermittent failures unresolved | Diagnose macOS installed failure; Windows native53 init uncertainty not explained by later success |
-| G02 MCP | IN PROGRESS | native54 actual Codex all3 pass1k; local wait-cap/SDK and36.492s Codex proof; protocol malformed/oversize both endpoints pass | Final native candidate; remaining concurrent/disconnect acceptance |
-| G03 FEATURE PARITY | FAILED | native54 Windows original144+legacy3 pass, macOS142/2 screenshot/storage failures;72 schemas preserved | Diagnose native failures; graphical annotation and successful debugger lifecycle pending |
+| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 discovery,six schemas; native56 fully logged1,567/4 plus macOS Codex960 timeout | Final clean same-SHA whole acceptance |
+| G01 INSTALL | IN PROGRESS | native56 all five173-file installs pass; local report-byte candidate fresh173 pass; prior intermittent install failures retained | Final native candidate and clean operator walkthroughs |
+| G02 MCP | FAILED | native56 actual Codex Linux/Windows1k pass, macOS960 timeout; bounded waits/wire tests pass | Diagnose native latency within existing deadlines; no model-token claim |
+| G03 FEATURE PARITY | IN PROGRESS | native56 original440/0 total (all host144 suites+legacy/modal/Docker),72 schemas; prior intermittent failures unresolved | Interactive annotation/debugger and remaining parameter/negative review |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs,jobs-mcp.test.mjs; native8d661bf source batch/jobs1,000 all OSs; actual Codex macOS timeout/raw throughput stay G02/G10/G12 | Preserve exact action/DOM counters; broader browser reliability stays G10 |
-| G05 RETRIES | FAILED | native54 Windows Firefox429 timeout completed0/hits2; positive localhost control also times out | Diagnose transport/readiness within unchanged deadlines; no unsafe retry |
-| G06 JOBS | FAILED | local1100e3c components75/75 Node22/24, bounded wait/IPC/close; native55 macOS mode test hits init/rpc_timeout | Diagnose init timeout; Windows observed-root uncertainty and durable post-terminal journal fence remain open |
+| G05 RETRIES | IN PROGRESS | native56 retry cases pass; prior Firefox/Chromium timeout controls retained; no POST replay | Establish final native reliability, preserve minimum Retry-After and deadlines |
+| G06 JOBS | FAILED | native56 components78/79 pass, macOS public jobs974/Codex960 timeout; local durable report-failure dedup proves POST once | Diagnose latency/old process observations; native anchor verification |
 | G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | native54 maintenance reservation65/65 all journal lanes (Windows66); local dead-holder recovery and172-file install pass | Verify later fixes natively; cumulative quotas, scheduling and operator repair remain |
+| G08 STORAGE | FAILED | native56 maintenance/kernel cases pass; local8MiB report cap and exact byte/no-replay tests;173-file install pass | Cumulative quota, scheduled retention/operator repair; native report cap |
 | G09 AUTH/PROFILES | FAILED | coalesced close14/14 Node20/22/24, real Chromium/Firefox parity2/2; native prior session restore | Managed profiles/reset, Windows ACLs and crash repair; annotation dashboard lifecycle separate |
-| G10 CROSS-BROWSER | FAILED | native55 Windows WebKit audit/Chromium429 failures, legacy Firefox3, macOS original Firefox3 and Codex950 timeout | Verify scoped audits natively; fix real browser failures without forced actions or deadline growth |
-| G11 CROSS-OS | FAILED | native55 five installs pass, macOS Codex and components fail; cross-OS acceptance incomplete | Complete green final native SHA required |
+| G10 CROSS-BROWSER | FAILED | native56 Windows raw Firefox2 failures and macOS raw/jobs1k deadlines; all original host suites pass | Diagnose runtime failures, keep actions/thresholds strict |
+| G11 CROSS-OS | FAILED | native56 five installs/all components/original host suites pass; macOS Codex+main and Windows main fail | Complete green final native SHA required |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md; independent100-run resource soak and3 fresh samples/mode at1100e3c | Cross-OS/CLI-SKILLS repeated resource and token measurements remain; no billing claim |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,worker-ci-fiftyfourth-*,journal-malformed-*,jobs-wait-*,interface-repeat-* | Inspect native55 and keep phase/SHA/executed-vs-unexecuted counts exact |
-| G18 CLEAN MERGE | FAILED | Draft PR2; last full green d71c91e(14 jobs); native55 failures; unpushed local followups | Resolve critical gaps; final complete green SHA before merge or release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,worker-ci-fiftysixth-*,report-byte-*,raw-anchor-*,interface-repeat-* | Keep phase/SHA, truncated/unexecuted/negative controls exact |
+| G18 CLEAN MERGE | FAILED | Draft PR2; native56 wrapper green440 but batch failed; last full prior gate matrix d71c91e(14 jobs) | Resolve critical gaps; final whole green SHA before merge/release |
 
 ## Defects and risk register
 
@@ -3611,3 +3608,89 @@ at f81f720, which excludes this experiment. Its four component job conclusions
 are success so far (full test counts pending logs); no init-timeout fix inferred.
 NEXT ACTION: inspect native56; obtain native proof before considering any runtime
 transport change, retain all strict deadlines and earlier orphan uncertainty.
+
+
+## Native56 fully logged at f81f720
+
+Wrapper CI39643412147 SUCCESS:440/0, including all3 host144-case suites,
+Windows legacy Firefox3 and macOS modal3 plus Docker2. Batch39643412200 FAILURE:
+1,127/4; combined1,567 passes/four failed tests, zero test skips/cancellations.
+Separately macOS actual Codex times out960/1k (step961 interrupted), readable
+result/terminated+removed cleanup/no operator attention. Linux35.258s and Windows
+38.064s actual Codex1k pass/zero-model/zero-owned. All17 executed jobs conclude,
+one intentional functional_soak job skip, no job cancellations. Five173-file
+production installs pass. Previous intermittent original/install failures are
+not causally fixed merely because these lanes now pass.
+
+Components78/78 Linux22/24/macOS,79/79 Windows pass, including strict unsafe-mode
+rejection, malformed IPC, maintenance recovery and fixed-location reporter. No
+init watchdog/permissions assertion changed to get this result. Main Linux22/24
+164/0 each,20:162/0. Windows162/2: Firefox headless fresh1 fails click19 after
+completed18/23, locator_timeout; pipe fresh1 click9/completed8, pointer timeout.
+Headed mode and all new HTTP lifetime/ownership cases pass; prior unexplained
+root observations remain unresolved, not relabelled false positives.
+
+MacOS162/2: raw Chromium1k times out (leading result header truncated; diagnostic
+index972 retained, completed count NOT inferred); public jobs1k times out974,
+step975 interrupted, known clean termination/temp removal. Result-wait bound case
+passes on all SQLite lanes. Source helper/probe exact counters are separate tests.
+Failure-only Mac batch server-first controls both pass1k:118.170s server,
+111.001s pipe. Codex pipe-first controls pipe106.998s pass, server120.115s fails
+997/1k; both zero observed owned. No transport cure or late-success promotion.
+Windows private temp raw10/10 (230 actions) passes; inherited comparison aborts
+with root_birth_changed before a final receipt. No inherited count invented.
+Evidence worker-ci-fiftysixth-*.
+
+## Report publication8MiB ceiling (local candidate after6a2263a)
+
+report.mjs previously had no byte ceiling. Two before controls fail (three prior
+publication cases pass). Serialized UTF-8 including pretty formatting/newline is
+now checked against8MiB BEFORE directory/temp/final creation. Exact-limit succeeds,
+one byte over and multibyte8MiB+format reject with fixed REPORT_BYTE_LIMIT. Atomic
+exclusive/no-overwrite, private permissions and earlier history remain unchanged.
+This bounds report file bytes, not serialization memory, total storage or OS usage.
+
+Final report/fault cases8/8 Node22/24,7/7 Node20, no skips/cancels. Real browser
+faults exercise partial write and oversized serialization AFTER5 confirmed actions,
+including exactly one POST, no corrupt report and no replay. Durable source job
+fault on Node22/24 retains FAILED/report-stage/completed3, retrySafe:false; same
+request key deduplicates, POST+navigation each once, controller closes and independent
+owned audit is empty. Fault worker is checkout-only. Existing supervised envelope
+stays execution_failed/report; no public schema or new model-controlled policy.
+A25-case executor/report regression also passes during this change; it predates
+the final durable/cleanup assertions, which final focused receipts cover.
+
+Full components78/78 each Node22/24 pass after the report writer change. Fresh
+Node22 production173 install passes with all installed endpoints/private profile
+and both normal/linger controller-death receipts; lint/diff pass. Logs report-byte-*
+separate two expected-before failures, phase-specific regressions and final passes.
+Cumulative project quotas/automatic retention/repair stay open; G08 not promoted.
+
+## Raw comparison lifetime anchors and untruncated counters (local)
+
+The raw comparison reused one process-global identity map for new owned controller
+lifetimes. Native56 inherited root_birth_changed exposes that ambiguity; precise
+PID provenance is not available, so no claim that its observed identity was benign.
+Each actual fork handle now gets a separate scope; before/after every snapshot its
+exit/signal state must still be live. Historical scopes remain unioned at shutdown.
+
+An optional liveRoots set on the source-only Windows scope helper validates live
+anchors against a copied identity map before refreshing shared metadata. Historical
+ranges are preserved before merging current descendants. Three pure cases cover
+exited browser roots, reused browser PID with old+new descendants, and a historical
+PID link attempting to overwrite the live anchor. Changed/missing live controller
+identity still throws; no name/role/time-window filter or production kill change.
+Existing8 graph controls plus3 anchors and6 diagnostic cases pass17/17 each on
+Node20/22/24. Raw two-mode1k controls exit0 Node22/24 with empty independent audits;
+last refinement affects the in-memory Windows-only branch (covered by pure tests),
+not the exercised POSIX query. Native proof pending. Evidence raw-lifetime-*,raw-anchor-*.
+
+The longer raw fixture diagnostic truncates at11k characters, losing its leading
+completion counter as native53/56 demonstrate. New rawWorkflowFailureDiagnostic
+emits small fixed enum/numeric fields before that trace; selectors/URL/value/raw
+error/cleanup strings are excluded. Deliberate full997-click wrong-counter control
+exits1 as expected and preserves completed998/total1k in a separate GHA receipt.
+This is a negative control, not another passing1k workflow. No actions replayed,
+forced or omitted, no timing budget changed. Evidence raw-receipt-negative-*.
+NEXT ACTION: push this reviewed candidate after complete56 conclusions, inspect
+native57, diagnose browser latency/failures and remaining resource/profile gates.

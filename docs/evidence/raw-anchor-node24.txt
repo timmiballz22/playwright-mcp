@@ -1,0 +1,25 @@
+✔ cooperative context cleanup timeout retains fixed stage and stays failed (27.102284ms)
+✔ cooperative context cleanup error retains fixed stage and stays failed (3.252789ms)
+✔ untrusted Retry-After hints cannot exceed bounded durable result metadata (8.33435ms)
+✔ all three close failures plus final server kill failure remain bounded fixed metadata (2.153427ms)
+✔ client step failure receipts retain fixed taxonomy without private step fields (0.508811ms)
+✔ raw workflow diagnostic keeps completion counters outside long traces without reflecting private data (0.330842ms)
+✔ audit receipts describe reused IDs without hiding possible processes or exposing identities (1.833454ms)
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (1.016476ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (0.319913ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (0.617128ms)
+✔ live-root snapshots retain exited browser identities for the final orphan scan (0.311108ms)
+✔ CIM error phase keeps only exact fixed markers and never raw diagnostics (0.376495ms)
+✔ separate owned lifetimes retain old orphans when a new client reuses its PID (0.469435ms)
+✔ new client may reuse an earlier observed descendant without losing either orphan lineage (0.198447ms)
+✔ live controller anchors retain exited browser roots and reject changes within that lifetime (0.328272ms)
+✔ live anchor refresh preserves an old orphan before recording a new owned browser incarnation (0.325222ms)
+✔ historical PID links cannot rewrite a live controller identity before validation (0.196376ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 167.142505

@@ -53,3 +53,29 @@ test('exclusive temporary-name collision preserves the file this report did not 
     assert.deepEqual(await readdir(directory), [path.basename(temporary)]);
   } finally { mock.restoreAll(); syncBuiltinESMExports(); await rm(directory, { recursive: true, force: true }); }
 });
+
+test('report UTF-8 byte ceiling rejects oversized data before creating its output directory', async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'report-byte-limit-'));
+  const directory = path.join(root, 'not-created');
+  try {
+    // UTF-8 bytes, not JS character count: this text alone consumes8MiB.
+    await assert.rejects(saveReport({ ok: true, results: [], note: 'é'.repeat(4 * 1024 * 1024) }, directory), error => {
+      assert.equal(error.code, 'REPORT_BYTE_LIMIT');
+      assert.equal(error.message.includes('é'), false); return true;
+    });
+    assert.deepEqual(await readdir(root), []);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test('report exact byte ceiling includes JSON formatting and final newline', async () => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'report-byte-boundary-'));
+  try {
+    const result = { ok: true, results: [], note: '' };
+    const overhead = Buffer.byteLength(JSON.stringify(result, null, 2) + '\n');
+    result.note = 'a'.repeat(8 * 1024 * 1024 - overhead);
+    const summary = await saveReport(result, directory);
+    assert.equal((await stat(summary.reportPath)).size, 8 * 1024 * 1024);
+    await assert.rejects(saveReport({ ...result, note: result.note + 'a' }, directory), { code: 'REPORT_BYTE_LIMIT' });
+    assert.deepEqual(await readdir(directory), [path.basename(summary.reportPath)]);
+  } finally { await rm(directory, { recursive: true, force: true }); }
+});

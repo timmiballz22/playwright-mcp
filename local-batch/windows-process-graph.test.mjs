@@ -90,3 +90,28 @@ test('new client may reuse an earlier observed descendant without losing either 
   assert.deepEqual(windowsOwnedProcessScopes([earlier, later], unrelatedReplacement), [902, 903],
     'Both earlier owned branches survive; a later unrelated incarnation is not promoted to owned');
 });
+
+
+test('live controller anchors retain exited browser roots and reject changes within that lifetime', () => {
+  const scope = { roots: new Set([900]), liveRoots: new Set([900]), identities: new Map() };
+  windowsOwnedProcessScopes([scope], [row(900, 1, 100), row(901, 900, 110)], true);
+  assert.deepEqual(windowsOwnedProcessScopes([scope], [row(900, 1, 100), row(902, 901, 120), row(910, 900, 200)], true), [900, 902, 910]);
+  assert.throws(() => windowsOwnedProcessScopes([scope], [row(900, 1, 300), row(902, 901, 120)], true), /root_birth_changed/);
+  assert.throws(() => windowsOwnedProcessScopes([scope], [row(902, 901, 120)], true), /root_missing/);
+});
+
+test('live anchor refresh preserves an old orphan before recording a new owned browser incarnation', () => {
+  const scope = { roots: new Set([900]), liveRoots: new Set([900]), identities: new Map() };
+  windowsOwnedProcessScopes([scope], [row(900, 1, 100), row(901, 900, 110)], true);
+  const reused = [row(900, 1, 100), row(901, 900, 200), row(902, 901, 150), row(903, 901, 250)];
+  assert.deepEqual(windowsOwnedProcessScopes([scope], reused, true), [900, 901, 902, 903]);
+  assert.deepEqual(windowsOwnedProcessScopes([scope], [row(900, 1, 100), row(902, 901, 150), row(903, 901, 250)], true), [900, 902, 903]);
+});
+
+
+test('historical PID links cannot rewrite a live controller identity before validation', () => {
+  const scope = { roots: new Set([900]), liveRoots: new Set([900]), identities: new Map() };
+  windowsOwnedProcessScopes([scope], [row(900, 1, 100), row(901, 900, 110)], true);
+  assert.throws(() => windowsOwnedProcessScopes([scope], [row(901, 1, 110), row(900, 901, 300)], true), /root_birth_changed/);
+  assert.equal(scope.identities.get(900), time(100));
+});

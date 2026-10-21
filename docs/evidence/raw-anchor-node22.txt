@@ -1,0 +1,112 @@
+TAP version 13
+# Subtest: cooperative context cleanup timeout retains fixed stage and stays failed
+ok 1 - cooperative context cleanup timeout retains fixed stage and stays failed
+  ---
+  duration_ms: 28.708661
+  type: 'test'
+  ...
+# Subtest: cooperative context cleanup error retains fixed stage and stays failed
+ok 2 - cooperative context cleanup error retains fixed stage and stays failed
+  ---
+  duration_ms: 3.111675
+  type: 'test'
+  ...
+# Subtest: untrusted Retry-After hints cannot exceed bounded durable result metadata
+ok 3 - untrusted Retry-After hints cannot exceed bounded durable result metadata
+  ---
+  duration_ms: 7.796996
+  type: 'test'
+  ...
+# Subtest: all three close failures plus final server kill failure remain bounded fixed metadata
+ok 4 - all three close failures plus final server kill failure remain bounded fixed metadata
+  ---
+  duration_ms: 3.361502
+  type: 'test'
+  ...
+# Subtest: client step failure receipts retain fixed taxonomy without private step fields
+ok 5 - client step failure receipts retain fixed taxonomy without private step fields
+  ---
+  duration_ms: 0.557521
+  type: 'test'
+  ...
+# Subtest: raw workflow diagnostic keeps completion counters outside long traces without reflecting private data
+ok 6 - raw workflow diagnostic keeps completion counters outside long traces without reflecting private data
+  ---
+  duration_ms: 0.335401
+  type: 'test'
+  ...
+# Subtest: audit receipts describe reused IDs without hiding possible processes or exposing identities
+ok 7 - audit receipts describe reused IDs without hiding possible processes or exposing identities
+  ---
+  duration_ms: 1.72518
+  type: 'test'
+  ...
+# Subtest: older processes with recycled parent IDs are excluded while real live descendants remain
+ok 8 - older processes with recycled parent IDs are excluded while real live descendants remain
+  ---
+  duration_ms: 1.118104
+  type: 'test'
+  ...
+# Subtest: reused root identity excludes its replacement but still reports earlier surviving children
+ok 9 - reused root identity excludes its replacement but still reports earlier surviving children
+  ---
+  duration_ms: 0.178722
+  type: 'test'
+  ...
+# Subtest: missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+ok 10 - missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+  ---
+  duration_ms: 0.638247
+  type: 'test'
+  ...
+# Subtest: live-root snapshots retain exited browser identities for the final orphan scan
+ok 11 - live-root snapshots retain exited browser identities for the final orphan scan
+  ---
+  duration_ms: 0.18412
+  type: 'test'
+  ...
+# Subtest: CIM error phase keeps only exact fixed markers and never raw diagnostics
+ok 12 - CIM error phase keeps only exact fixed markers and never raw diagnostics
+  ---
+  duration_ms: 0.287209
+  type: 'test'
+  ...
+# Subtest: separate owned lifetimes retain old orphans when a new client reuses its PID
+ok 13 - separate owned lifetimes retain old orphans when a new client reuses its PID
+  ---
+  duration_ms: 0.598845
+  type: 'test'
+  ...
+# Subtest: new client may reuse an earlier observed descendant without losing either orphan lineage
+ok 14 - new client may reuse an earlier observed descendant without losing either orphan lineage
+  ---
+  duration_ms: 0.180788
+  type: 'test'
+  ...
+# Subtest: live controller anchors retain exited browser roots and reject changes within that lifetime
+ok 15 - live controller anchors retain exited browser roots and reject changes within that lifetime
+  ---
+  duration_ms: 0.413245
+  type: 'test'
+  ...
+# Subtest: live anchor refresh preserves an old orphan before recording a new owned browser incarnation
+ok 16 - live anchor refresh preserves an old orphan before recording a new owned browser incarnation
+  ---
+  duration_ms: 0.361988
+  type: 'test'
+  ...
+# Subtest: historical PID links cannot rewrite a live controller identity before validation
+ok 17 - historical PID links cannot rewrite a live controller identity before validation
+  ---
+  duration_ms: 0.205424
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 164.081481

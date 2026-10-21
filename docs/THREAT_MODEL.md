@@ -30,7 +30,7 @@ runs in a separate bounded worker; unconfirmed exit fails and blocks this
 controller. The newer local candidate reserves the project journal lease before
 cleanup and retains it on uncertainty, fencing other controllers; native
 validation is pending. It does not implement automatic operator repair or an OS
-resource quota. Host-controlled screenshot payload budgets default to16MiB per run; browser image-buffer memory, report sizes, total storage and retention remain unbounded by that limit.
+resource quota. Host-controlled screenshot payload budgets default to16MiB per run; browser image-buffer memory, total storage and retention remain unbounded by that limit. Atomic JSON reports separately reject more than8MiB UTF-8 before filesystem publication, including formatting/newline. Serialization memory is not bounded by that byte check.
 
 The original MCP endpoint remains upstream behavior, including optional privileged
 features and its own trust model. Companion restrictions do not secure that endpoint.

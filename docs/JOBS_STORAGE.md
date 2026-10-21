@@ -121,3 +121,11 @@ not add a durable cross-controller lease for a post-completion journal helper;
 that residual limitation and manual recovery remain open. The jobs MCP shutdown
 still closes its transport when controller close fails and emits fixed stderr
 metadata only. Public tool schemas and action/RPC deadlines are unchanged.
+
+
+The shared atomic report writer rejects serialized UTF-8 larger than8MiB before
+creating output names. Source API error code is REPORT_BYTE_LIMIT; supervised
+execution retains its existing execution_failed/report-stage envelope, completed
+counts and retrySafe:false without replay. Exact-limit reports remain valid.
+The limit includes pretty-print formatting/newline and does not establish total
+project disk, browser memory or serialization-heap quotas.

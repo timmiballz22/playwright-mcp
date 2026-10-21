@@ -1,0 +1,33 @@
+✔ cleanup reserve cancellation is not erased by a late successful worker report (3264.644081ms)
+✔ late cancellation after supervisor result preserves success outcome (123.321864ms)
+✔ late cancellation after supervisor result preserves blocked outcome (120.843891ms)
+✔ late cancellation after supervisor result preserves action outcome (119.141227ms)
+✔ supervised hang: bounded completion and owned process cleanup (1918.03813ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1917.470662ms)
+✔ supervised crash: bounded completion and owned process cleanup (92.654842ms)
+✔ pre-cancelled execution never starts a worker (1.69277ms)
+✔ cancel interrupts a worker that cannot service its abort listener (450.439183ms)
+✔ supervisor crash cannot strand its worker or detached child (276.280366ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (38.268841ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (295.073204ms)
+✔ verified cleanup recovery preserves success action outcome (124.321064ms)
+✔ verified cleanup recovery preserves blocked action outcome (151.936218ms)
+✔ verified cleanup recovery preserves action action outcome (124.664491ms)
+✔ failed durable admission cannot start worker actions (71.637337ms)
+✔ stalled durable admission cannot evade watchdog deadline or start late (1611.185936ms)
+✔ successful durable admission precedes owned worker effects (139.761673ms)
+✔ partial write: report failure preserves completed actions and publishes no corrupt JSON (702.661278ms)
+✔ byte ceiling: report failure preserves completed actions and publishes no corrupt JSON (744.608766ms)
+✔ a report target created during its temporary write is never replaced (10.173844ms)
+✔ published report is complete and its returned step summary remains bounded (4.664392ms)
+✔ exclusive temporary-name collision preserves the file this report did not create (3.209853ms)
+✔ report UTF-8 byte ceiling rejects oversized data before creating its output directory (15.078429ms)
+✔ report exact byte ceiling includes JSON formatting and final newline (69.428857ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12595.473726

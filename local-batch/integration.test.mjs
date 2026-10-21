@@ -6,6 +6,7 @@ import { mkdtemp, rm, stat } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { runWorkflow } from './runner.mjs';
+import { rawWorkflowFailureDiagnostic } from '../scripts/step-failure-diagnostic.mjs';
 
 const browsers = (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',');
 if (!browsers.length || browsers.some(browser => !['chromium', 'firefox', 'webkit'].includes(browser)) || new Set(browsers).size !== browsers.length)
@@ -69,6 +70,10 @@ for (const browser of browsers) {
             },
           });
         if (probe) await probe;
+        if (!result.ok) {
+          const receipt = rawWorkflowFailureDiagnostic(result, diagnostic, { browser, mode, freshRun: freshRun + 1 });
+          console.error((process.env.GITHUB_ACTIONS === 'true' ? '::error title=Raw browser workflow failure::' : '') + JSON.stringify(receipt));
+        }
         assert.equal(result.ok, true, JSON.stringify({ freshRun: freshRun + 1, result, cleanupFailures: result.cleanupFailures, diagnostic, ...(browserLogs ? { browserLogs } : {}) }).slice(-11000));
         assert.equal(result.completed, clicks + 3);
         const artifact = result.results.at(-1).artifact;
