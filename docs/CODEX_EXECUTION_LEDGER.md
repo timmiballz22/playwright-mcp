@@ -3935,15 +3935,15 @@ at120.026s, pipe1k99.467s with1 captured/spawned/exited owned handle; both audit
 No default transport change or blanket performance claim. Exact selected logs,
 counts and conclusions: worker-ci-fiftyninth-*.
 
-## Native60 wrapper failure and source-fixture phase receipt (local)
+## Native60 wrapper failure and superseded phase experiment (local)
 
 Completed wrapper39659786624 at a2a8ac7 reports436/1: Linux144, macOS144 +extra
 modal3, Docker2 pass; Windows143/1 fails original Firefox malformed-resume session
-case at30s, followed by MCP connection closed. The old stack does not establish
-which of startup/navigation/invalid resume/snapshot/close stalled. Extra Windows
+case at30s, followed by MCP connection closed. The exception stack alone does not establish which call stalled; the existing
+shared progress receipt below does identify it. Extra Windows
 legacy step is unexecuted after main failure. Batch39659786456 remains active.
 
-The resume test now emits only a fixed phase and confirmed-call count on failure,
+A local diagnostic experiment added a fixed phase and confirmed-call count on failure,
 then rethrows the original error. All four original calls/assertions and budgets
 remain unchanged. Local Chromium/Firefox2/2 pass. Deliberately wrong snapshot
 assertion exits1 and yields exactly original_resume_failure/snapshot/3, proving
@@ -3951,3 +3951,15 @@ receipt delivery without raw payload/error/location data in it. Negative receipt
 is not a passing browser workflow; no provider-fix claim. Lint/diff pass. Evidence
 resume-phase-*. This is test-only and follows a2a8ac7; hold push until native60
 batch concludes so its evidence is not cancelled or assigned a later SHA.
+
+The shared trackToolProgress fixture already records the needed pending operation.
+Native60 receipt: browser_navigate returned2,573ms; malformed browser_resume returned
+expected tool_error1ms; browser_snapshot returned24ms; browser_close still pending
+27,111ms when the30s test deadline closes the client. This is a close failure, not
+failed resume validation. The redundant per-test phase modification has been
+removed, restoring tests/devtools.spec.ts exactly to a2a8ac7. Its experimental
+positive/negative receipts above remain historical controls, not final-source proof.
+Future diagnosis should reuse original_mcp_progress. Read-only pinned-core review
+finds resume installs paused/close listeners before location validation; no debugger
+runTo/next/resume occurs for invalid location, and those listeners are not evidence
+of the close stall. No bundled-core patch or successful-close reclassification.

@@ -75,27 +75,13 @@ test('original action recording captures owned pointer input and rejects invalid
 
 test('original resume rejects malformed source locations and leaves the session usable', async ({ startClient, server }) => {
   server.setContent('/', '<!doctype html><h1>Owned resume fixture</h1>', 'text/html');
-  let phase = 'startup'; let confirmedCalls = 0;
-  try {
-    const { client } = await startClient({ args: ['--isolated', '--caps=devtools'] });
-    phase = 'navigation';
-    const navigation = await client.callTool({ name: 'browser_navigate', arguments: { url: server.PREFIX } });
-    confirmedCalls++; expect(navigation.isError).not.toBe(true);
-    phase = 'invalid_resume';
-    const rejected = await client.callTool({ name: 'browser_resume', arguments: { location: 'owned.spec.ts:invalid' } });
-    confirmedCalls++; expect(rejected.isError).toBe(true);
-    expect(rejected.content).toEqual(expect.arrayContaining([expect.objectContaining({ type: 'text', text: expect.stringContaining('Invalid location') })]));
-    phase = 'snapshot';
-    const snapshot = await client.callTool({ name: 'browser_snapshot', arguments: {} });
-    confirmedCalls++; expect(snapshot.isError).not.toBe(true);
-    expect(JSON.stringify(snapshot.content)).toContain('Owned resume fixture');
-    phase = 'close';
-    const closed = await client.callTool({ name: 'browser_close', arguments: {} });
-    confirmedCalls++; expect(closed.isError).not.toBe(true);
-  } catch (error) {
-    // Fixed source-fixture fields only; preserve the original rejection and all
-    // assertions, with no extra client request or timeout/retry behavior.
-    console.error(JSON.stringify({ fixture: 'original_resume_failure', phase, confirmedCalls }));
-    throw error;
-  }
+  const { client } = await startClient({ args: ['--isolated', '--caps=devtools'] });
+  expect((await client.callTool({ name: 'browser_navigate', arguments: { url: server.PREFIX } })).isError).not.toBe(true);
+  const rejected = await client.callTool({ name: 'browser_resume', arguments: { location: 'owned.spec.ts:invalid' } });
+  expect(rejected.isError).toBe(true);
+  expect(rejected.content).toEqual(expect.arrayContaining([expect.objectContaining({ type: 'text', text: expect.stringContaining('Invalid location') })]));
+  const snapshot = await client.callTool({ name: 'browser_snapshot', arguments: {} });
+  expect(snapshot.isError).not.toBe(true);
+  expect(JSON.stringify(snapshot.content)).toContain('Owned resume fixture');
+  expect((await client.callTool({ name: 'browser_close', arguments: {} })).isError).not.toBe(true);
 });
