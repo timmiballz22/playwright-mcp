@@ -137,3 +137,11 @@ exit3 fixture through tee (exit3 preserved); native PowerShell bootstrap still
 throws on failed commands before its pipeline can succeed. YAML parses locally;
 native artifact upload remains pending. Only trusted local test output is
 captured, retained for one day, with upload-artifact pinned to v4.6.2.
+
+Optional Linux Node22.13+ probe: `node scripts/verify-stdio-listeners.mjs [package]`.
+It initializes original/batch/jobs stdio without browser work, discovers25/1/6
+tools, maps TCP/TCP6 LISTEN socket inodes only from live owned process FDs and
+verifies zero listeners plus zero owned processes after shutdown. Source Node24
+passes (four owned Node processes). No global config, model turn or browser work.
+It is not an active-browser, UDP, macOS or Windows socket audit; inaccessible
+owned FD metadata fails instead of being treated as an empty result.
