@@ -1,29 +1,28 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `fd17363`: **988 tests passed,seven failed**, zero test
-skips/cancellations. Wrapper39562165760:269/3; batch39562165945:719/4. All failures
-are Windows Firefox (three raw Node22 modes,429 fixture,three legacy Node20 modes).
-All88 original cases per OS, Docker, Linux/macOS41-test and Windows42-test durable
-components, installed public endpoints, artifact ownership/race regressions and
-source1,000-action jobs pass. The known Windows filtered-environment startup failure is fixed.
+Latest completed native `fd9d074`: **1,002 tests passed,five failed**, zero test
+skips/cancellations. Wrapper39564493704:282/2; batch39564493658:720/3. All five
+failures are Windows Firefox: raw Node22 headless/headed,429 fixture,and two
+legacy Node20 modes. All92 original cases per OS pass, including100 fast clicks
+through the preserved upstream trusted-code tool on every native engine. Docker,
+all durable components, installed endpoints and source1,000-action jobs pass.
 
-Actual Codex0.163.0 jobs verification now passes on all three OSs: Windows38.064s
-(start47ms,four result calls), Linux35.865s,macOS74.728s. Each verifies six tools,
-1,000 actions,owner isolation,deduplication,active cancellation and zero surviving
-owned processes, with zero model turns. Framework JSON serialization resolves
-the Windows filtered-environment timeout with unchanged ACLs and10s bound. Native
-Unicode/private-ACL checks pass. Failure-only filtered SDK controls did not run
-after the actual client passed; they are not counted as additional passes.
+Actual Codex six-tool1,000-action/owner/dedup/cancel/cleanup checks pass again:
+Windows37.871s(start24ms),Linux35.718s,macOS72.735s, zero model turns/survivors.
+Framework JSON startup remains fixed. Primitive four-factor Firefox controls
+again pass400 clicks/20 launches; they do not reproduce strict ten-run failures.
+The next failure-only probe invokes the actual raw runner for ten fresh runs each
+with logging off/on, no per-browser audit ACK pause, private temporary storage,
+and independent ownership/cleanup checks. Local two-case460-action controls and
+Linux operator-SIGTERM cleanup pass; native execution is pending.
 
-Four instrumented Firefox controls again pass400 clicks/20 launches, but strict
-ten-run failures remain unexplained. A new delegated trusted-code100-click test
-passes local Chromium/Firefox and awaits native execution. The balanced Linux
-benchmark shows upstream trusted-code and declarative batch each use one MCP
-call; its trusted-code reply is smaller. Single-sample timings are5.340s/4.803s,
-versus55.116s for102 interactive calls and4.453s for fork CLI, including audited
-shutdown. Tokens/resources/official CLI+SKILLS remain unmeasured. Matrix17 jobs;
-last full green d71c91e (14). Quotas,retention,profiles,egress,reliability and
-remaining acceptance still block release.
+Minimum runtime work: Node22.13.0 components41/41 and fresh142-file production
+package pass after fixing two test-fixture IPC listeners; Node24 components41/41
+also pass. A separate guard defect advertised support on Node23.0 without SQLite;
+local fix rejects early23.x before writes(4 tests) and Node23.4 components41/41
+pass. These follow-ups are not yet natively verified. Matrix17 jobs; last full
+green d71c91e (14). Quotas,retention,profiles,egress,reliability and remaining
+acceptance remain open.
 
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
@@ -1207,3 +1206,30 @@ suite passes. These are isolated tooling binaries from the temporary npx cache,
 not a changed system runtime/dependency/lockfile or a recommendation of an older
 release. Node22.13 minimum production proof remains as recorded above.
 Evidence:node23-availability-before,node23-unsupported-fixed,node23-flagfree-*.
+
+
+## Matching raw runner while preserving independent process evidence
+
+The new diagnose-firefox-runner.mjs invokes production runWorkflow directly with
+identical23-action workflows, ten fresh runs per logger mode,120s workflow/5s action
+bounds and unchanged strict origin/SW/WS policy. Every failed run stops that case;
+there is no action replay. Only the initial ownership handshake waits, before any
+browser exists. Public BrowserServer PID events trigger asynchronous read-only
+snapshots without a per-browser ACK or delay. A private temporary base contains
+its browser profiles/artifacts (a documented difference from the raw integration
+fixture). Independent observation still adds VM load; this is not an uninstrumented
+or causal proof. Local private-temp plain/logged cases each pass10 runs/230 actions,
+zero residual/surviving owned processes. The passing logged case records the Gecko
+removeProgressListener error, proving that message alone is insufficient to explain
+failure. Logging-off does not collect that message and makes no absence claim.
+
+The parent enforces180s per case plus bounded audits/termination, holds its known
+controller alive through the last identity snapshot, and never uses historical
+browser PID numbers as kill authority. Only its live fork tree is force-terminated;
+read-only historical identities remain in final orphan scans. Unknown cleanup
+stops comparison and retains private fixtures. A local operator SIGTERM during
+observed browser startup exits1 with zero active survivors among5 observed owned
+processes; native Windows signal semantics are not inferred from that POSIX test.
+The native failure-only step replaces repeating the already-proven primitive
+control; the strict original failing tests remain unchanged. Workflow YAML/syntax
+and diff checks pass. Native matching-runner results are pending.

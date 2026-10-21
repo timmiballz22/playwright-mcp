@@ -2,30 +2,29 @@
 
 [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md) is the current45-scenario map;
 [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) records exact candidates and
-commands. Latest completed native `fd17363`: **988 tests passed,seven failed**, zero test
-skips/cancellations. Wrapper39562165760:269/3; batch39562165945:719/4. All failures
-are Windows Firefox (three raw Node22 modes,429 fixture,three legacy Node20 modes).
-All88 original cases per OS, Docker, Linux/macOS41-test and Windows42-test durable
-components, installed public endpoints, artifact ownership/race regressions and
-source1,000-action jobs pass. No critical startup failure remains reproduced.
+commands. Latest completed native `fd9d074`: **1,002 tests passed,five failed**, zero test
+skips/cancellations. Wrapper39564493704:282/2; batch39564493658:720/3. All five
+failures are Windows Firefox: raw Node22 headless/headed,429 fixture,and two
+legacy Node20 modes. All92 original cases per OS pass, including100 fast clicks
+through the preserved upstream trusted-code tool on every native engine. Docker,
+all durable components, installed endpoints and source1,000-action jobs pass.
 
-Actual Codex0.163.0 jobs verification now passes on all three OSs: Windows38.064s
-(start47ms,four result calls), Linux35.865s,macOS74.728s. Each verifies six tools,
-1,000 actions,owner isolation,deduplication,active cancellation and zero surviving
-owned processes, with zero model turns. Framework JSON serialization resolves
-the Windows filtered-environment timeout with unchanged ACLs and10s bound. Native
-Unicode/private-ACL checks pass. Failure-only filtered SDK controls did not run
-after the actual client passed; they are not counted as additional passes.
+Actual Codex six-tool1,000-action/owner/dedup/cancel/cleanup checks pass again:
+Windows37.871s(start24ms),Linux35.718s,macOS72.735s, zero model turns/survivors.
+Framework JSON startup remains fixed. Primitive four-factor Firefox controls
+again pass400 clicks/20 launches; they do not reproduce strict ten-run failures.
+The next failure-only probe invokes the actual raw runner for ten fresh runs each
+with logging off/on, no per-browser audit ACK pause, private temporary storage,
+and independent ownership/cleanup checks. Local two-case460-action controls and
+Linux operator-SIGTERM cleanup pass; native execution is pending.
 
-Four instrumented Firefox controls again pass400 clicks/20 launches, but strict
-ten-run failures remain unexplained. A new delegated trusted-code100-click test
-passes local Chromium/Firefox and awaits native execution. The balanced Linux
-benchmark shows upstream trusted-code and declarative batch each use one MCP
-call; its trusted-code reply is smaller. Single-sample timings are5.340s/4.803s,
-versus55.116s for102 interactive calls and4.453s for fork CLI, including audited
-shutdown. Tokens/resources/official CLI+SKILLS remain unmeasured. Matrix17 jobs;
-last full green d71c91e (14). Quotas,retention,profiles,egress,reliability and
-remaining acceptance still block release.
+Minimum runtime work: Node22.13.0 components41/41 and fresh142-file production
+package pass after fixing two test-fixture IPC listeners; Node24 components41/41
+also pass. A separate guard defect advertised support on Node23.0 without SQLite;
+local fix rejects early23.x before writes(4 tests) and Node23.4 components41/41
+pass. These follow-ups are not yet natively verified. Matrix17 jobs; last full
+green d71c91e (14). Quotas,retention,profiles,egress,reliability and remaining
+acceptance remain open.
 
 The following table is historical and predates the durable controller, public
 preview, configured navigation retries and independent-observer soak. It is
