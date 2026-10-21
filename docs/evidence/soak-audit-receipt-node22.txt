@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: audit receipts describe reused IDs without hiding possible processes or exposing identities
+ok 1 - audit receipts describe reused IDs without hiding possible processes or exposing identities
+  ---
+  duration_ms: 2.144287
+  type: 'test'
+  ...
+# Subtest: older processes with recycled parent IDs are excluded while real live descendants remain
+ok 2 - older processes with recycled parent IDs are excluded while real live descendants remain
+  ---
+  duration_ms: 0.272327
+  type: 'test'
+  ...
+# Subtest: reused root identity excludes its replacement but still reports earlier surviving children
+ok 3 - reused root identity excludes its replacement but still reports earlier surviving children
+  ---
+  duration_ms: 1.078222
+  type: 'test'
+  ...
+# Subtest: missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+ok 4 - missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+  ---
+  duration_ms: 1.275638
+  type: 'test'
+  ...
+# Subtest: live-root snapshots retain exited browser identities for the final orphan scan
+ok 5 - live-root snapshots retain exited browser identities for the final orphan scan
+  ---
+  duration_ms: 0.213985
+  type: 'test'
+  ...
+# Subtest: CIM error phase keeps only exact fixed markers and never raw diagnostics
+ok 6 - CIM error phase keeps only exact fixed markers and never raw diagnostics
+  ---
+  duration_ms: 0.306316
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 101.58065

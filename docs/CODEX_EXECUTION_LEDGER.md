@@ -2582,3 +2582,35 @@ configured GET-only retries, already-executed public Windows acceptance and the
 still-open cleanup failure accurately. The jobs environment table includes the
 implemented page and screenshot limits with their real scope/defaults. These
 are documentation corrections, not new quota or production behavior.
+
+## First native portable functional soak and targeted Windows receipt
+
+Separate native functional soak `8d661bf`, run39604975576: Linux100/600
+passes91.053s; macOS Intel100/600 passes233.655s, each with fresh cookie/localStorage
+and zero owned processes after every run. Windows emits50-run/300-action verified
+receipt, then fails an ownership audit with four observed processes and preserves
+its workspace. The exact failing run/roles/births are absent; no100-run Windows
+pass is claimed. Three functional jobs execute, two pass/one fails; three primary
+job groups intentionally skip in this mode, none cancel. This is separate scoped
+acceptance, not a complete native matrix or CPU/RAM/FD/handle gate. Evidence:
+portable-native-first.txt and portable-native-first-summary.json.
+
+The soak now requests the same fixed role receipt as the deadline fixture and
+records its run, completed count and fixed result/cleanup labels on an audit
+failure. A diagnostic-only observation-window count says how many matched process
+births predate the caller's wall-clock start; unknown births are counted. These
+counts never filter ownership or imply PID reuse/cleanup success. Birth-clock
+relationships are evidence for follow-up, not an identity replacement.
+
+A pure regression models a legacy root ID reused by the audit helper and its
+older child: both remain observed without remembered identity; receipt exposes
+only fixed counts/booleans, no IDs/command/birth strings. With an independently
+remembered root birth, the existing graph excludes only the replacement and
+preserves the earlier child. This proves diagnostic behavior, not the cause of
+the native failure. Six graph/phase/privacy tests pass each Node20/22/24. Local
+updated functional20/120 passes21.970s. Windows callbacks remain native-pending.
+
+An optional functional_soak_windows_only input selects a single Windows job for
+follow-up, avoiding duplication of Linux/macOS completed100-run checks. Default
+three-OS behavior is unchanged. YAML/condition structure parses and lint passes.
+These changes are held locally while the8d661bf full native matrix runs.

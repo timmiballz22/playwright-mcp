@@ -19,6 +19,7 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
     const dir = await mkdtemp(path.join(os.tmpdir(), 'executor-browser-'));
     const owned = [];
     let verified = false;
+    const sinceMs = Date.now();
     try {
       const result = await executeWorkflow({ browser, timeoutMs: 10000, actionTimeoutMs: 30000,
         steps: [{ type: 'goto', url: origin }, { type: 'waitFor', selector: '#never' }] }, {
@@ -34,6 +35,7 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
       await assert.rejects(stat(path.join(dir, 'exec-' + result.runId, 'tmp')), { code: 'ENOENT' });
       let auditReceipt = null;
       const survivors = await ownedDescendants([result.execution.supervisorPid, result.execution.workerPid, ...owned], {
+        sinceMs,
         onReceipt: receipt => { auditReceipt = receipt; },
       });
       assert.deepEqual(survivors, [], JSON.stringify({ failure: 'owned_process_after_cleanup', audit: auditReceipt,

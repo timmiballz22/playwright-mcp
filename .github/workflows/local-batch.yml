@@ -6,6 +6,10 @@ on:
         description: Run only the three-OS 100-run functional soak
         type: boolean
         default: false
+      functional_soak_windows_only:
+        description: Limit the functional soak to Windows follow-up diagnosis
+        type: boolean
+        default: false
       macos_runner:
         description: Native macOS runner architecture
         type: choice
@@ -57,7 +61,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, "${{ inputs.macos_runner || 'macos-15-intel' }}", windows-latest]
+        os: ${{ inputs.functional_soak_windows_only && fromJSON('["windows-latest"]') || fromJSON(format('["ubuntu-latest","{0}","windows-latest"]', inputs.macos_runner || 'macos-15-intel')) }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     steps:

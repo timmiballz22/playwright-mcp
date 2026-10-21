@@ -248,3 +248,13 @@ jobs are separate functional acceptance, not a green full native matrix.
 Local Node22 functional100/600:109.293s, zero owned after every run and storage
 freshness verified. Subject RSS71,315,456–108,998,656B includes audit allocations,
 with no leak threshold conclusion. See evidence/portable-soak-100-node22.txt.
+
+Separate native functional soak `8d661bf`, run39604975576: Linux100/600
+passes91.053s; macOS Intel100/600 passes233.655s, each with fresh cookie/localStorage
+and zero owned processes after every run. Windows emits50-run/300-action verified
+receipt, then fails an ownership audit with four observed processes and preserves
+its workspace. The exact failing run/roles/births are absent; no100-run Windows
+pass is claimed. Three functional jobs execute, two pass/one fails; three primary
+job groups intentionally skip in this mode, none cancel. This is separate scoped
+acceptance, not a complete native matrix or CPU/RAM/FD/handle gate. Evidence:
+portable-native-first.txt and portable-native-first-summary.json.

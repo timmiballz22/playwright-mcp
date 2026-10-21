@@ -48,3 +48,16 @@ export function windowsCimFailurePhase(stderr) {
   for (const match of stderr.matchAll(/^PWMCP_AUDIT_PHASE=(entered|query|projection|serialization|done)\r?$/gm)) phase = match[1];
   return phase;
 }
+
+// Fixed diagnostic counts only. Never use this receipt to filter ownership.
+export function windowsAuditReceipt(roots, rows, observed, helperPid, identities, sinceMs) {
+  const rootSet = new Set(roots);
+  const observedSet = new Set(observed);
+  const matches = rows.filter(row => observedSet.has(row.pid));
+  return { observedCount: observed.length,
+    auditHelperMatched: Number.isSafeInteger(helperPid) && observedSet.has(helperPid),
+    rootMatches: observed.filter(pid => rootSet.has(pid)).length,
+    rememberedRootBirths: [...rootSet].filter(pid => identities.has(pid)).length,
+    birthsBeforeObservationWindow: Number.isFinite(sinceMs) ? matches.filter(row => valid(row.started) && Date.parse(row.started) < sinceMs).length : null,
+    missingObservedBirths: matches.filter(row => !valid(row.started)).length };
+}

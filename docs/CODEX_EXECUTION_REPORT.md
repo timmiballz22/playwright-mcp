@@ -42,6 +42,16 @@ functional soak (100 runs/600 actions in109.293s, zero owned after every run and
 fresh cookie/localStorage). A manual three-OS soak-only lane is prepared. These
 are scoped checks, not full resource bounds, managed profile reset or native PASS.
 
+Separate native functional soak `8d661bf`, run39604975576: Linux100/600
+passes91.053s; macOS Intel100/600 passes233.655s, each with fresh cookie/localStorage
+and zero owned processes after every run. Windows emits50-run/300-action verified
+receipt, then fails an ownership audit with four observed processes and preserves
+its workspace. The exact failing run/roles/births are absent; no100-run Windows
+pass is claimed. Three functional jobs execute, two pass/one fails; three primary
+job groups intentionally skip in this mode, none cancel. This is separate scoped
+acceptance, not a complete native matrix or CPU/RAM/FD/handle gate. Evidence:
+portable-native-first.txt and portable-native-first-summary.json.
+
 Previous native attempt `2d8fe7f` is **incomplete**: available summaries report
 **1,108 passed/six failed tests**, plus two failed actual-Codex acceptance jobs.
 Wrapper39587708648:439/1; batch39587708557:669/5 across available completed suites.

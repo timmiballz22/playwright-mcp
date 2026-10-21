@@ -2,10 +2,10 @@
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
-import { windowsOwnedProcesses, windowsCimFailurePhase } from './windows-process-graph.mjs';
+import { windowsOwnedProcesses, windowsCimFailurePhase, windowsAuditReceipt } from './windows-process-graph.mjs';
 const identities = new Map();
 const exec = promisify(execFile);
-export async function ownedDescendants(roots, { rememberLiveRoots = false, onReceipt } = {}) {
+export async function ownedDescendants(roots, { rememberLiveRoots = false, onReceipt, sinceMs } = {}) {
   const owned = new Set(roots.filter(pid => Number.isSafeInteger(pid) && pid > 1));
   let rows;
   if (process.platform === 'win32') {
@@ -39,9 +39,7 @@ $json = $rows | ConvertTo-Json -Compress
     const result = windowsOwnedProcesses(roots, rows, identities, rememberLiveRoots);
     // Diagnostic only: a matching audit helper remains in the conservative
     // result. Never hide a possible orphan based on its role or PID reuse.
-    try { onReceipt?.({ observedCount: result.length, auditHelperMatched: Number.isSafeInteger(helperPid) && result.includes(helperPid),
-      rootMatches: result.filter(pid => owned.has(pid)).length,
-      rememberedRootBirths: [...owned].filter(pid => identities.has(pid)).length }); } catch {}
+    try { onReceipt?.(windowsAuditReceipt([...owned], rows, result, helperPid, identities, sinceMs)); } catch {}
     return result;
   } else {
     const { stdout } = await exec('/bin/ps', ['-A', '-o', 'pid=,ppid=,pgid=,stat='], { timeout: 2000, maxBuffer: 1048576 });

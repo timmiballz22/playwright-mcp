@@ -31,6 +31,7 @@ let verifiedRuns = 0;
 try {
   for (let run = 1; run <= count; run++) {
     const owned = [];
+    const sinceMs = Date.now();
     safeToRemove = false;
     const result = await executeWorkflow({ timeoutMs: 15000, steps: [
       { type: 'goto', url: origin }, { type: 'assertText', selector: 'button', equals: 'fresh' },
@@ -39,7 +40,13 @@ try {
     ] }, { artifactsDir: dir, allowedOrigins: [origin], signal: abort.signal,
       onEvent: event => { if (event.pid) owned.push(event.pid); },
     });
-    assert.deepEqual(await ownedDescendants(owned), [], 'Owned process survived execution');
+    let auditReceipt = null;
+    const survivors = await ownedDescendants(owned, { sinceMs, onReceipt: receipt => { auditReceipt = receipt; } });
+    assert.deepEqual(survivors, [], JSON.stringify({ fixture: 'portable_soak_ownership', run,
+      completed: result.completed, ok: result.ok, reason: result.reason, audit: auditReceipt,
+      supervisorMatched: survivors.includes(result.execution?.supervisorPid), workerMatched: survivors.includes(result.execution?.workerPid),
+      browserRootsMatched: (result.execution?.browserPids ?? []).filter(pid => survivors.includes(pid)).length,
+      cleanup: result.execution?.cleanup, tempCleanup: result.execution?.tempCleanup }));
     safeToRemove = result.execution?.cleanup === 'terminated' && result.execution.tempCleanup === 'removed';
     assert.equal(result.ok, true, JSON.stringify({ run, reason: result.reason, completed: result.completed, execution: result.execution }));
     assert.equal(result.completed, 6);

@@ -1,8 +1,27 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { windowsOwnedProcesses, windowsCimFailurePhase } from './fixtures/windows-process-graph.mjs';
+import { windowsOwnedProcesses, windowsCimFailurePhase, windowsAuditReceipt } from './fixtures/windows-process-graph.mjs';
 const time = value => '2026-10-21T00:00:00.' + String(value).padStart(7, '0') + 'Z';
 const row = (pid, parent, started) => ({ pid, parent, started: started === null ? null : time(started) });
+test('audit receipts describe reused IDs without hiding possible processes or exposing identities', () => {
+  const rows = [{ pid: 900, parent: 1, started: '2026-10-21T00:00:02.0000000Z', command: 'fake-audit-private-canary' },
+    { pid: 901, parent: 900, started: '2026-10-21T00:00:01.0000000Z' }];
+  const identities = new Map();
+  const observed = windowsOwnedProcesses([900], rows, identities);
+  assert.deepEqual(observed, [900, 901], 'Unknown legacy roots must remain conservative');
+  const receipt = windowsAuditReceipt([900], rows, observed, 900, identities, Date.parse('2026-10-21T00:00:01.500Z'));
+  assert.deepEqual(receipt, { observedCount: 2, auditHelperMatched: true, rootMatches: 1,
+    rememberedRootBirths: 0, birthsBeforeObservationWindow: 1, missingObservedBirths: 0 });
+  for (const secret of ['900', '901', '2026', 'fake-audit-private-canary']) assert.equal(JSON.stringify(receipt).includes(secret), false);
+  assert.deepEqual(observed, [900, 901], 'Diagnostics must not filter the ownership result');
+  identities.set(900, '2026-10-21T00:00:00.0000000Z');
+  const precise = windowsOwnedProcesses([900], rows, identities);
+  assert.deepEqual(precise, [901], 'Known birth excludes only the replacement, preserving an older child');
+  assert.deepEqual(windowsAuditReceipt([900], rows, precise, 900, identities), {
+    observedCount: 1, auditHelperMatched: false, rootMatches: 0, rememberedRootBirths: 1,
+    birthsBeforeObservationWindow: null, missingObservedBirths: 0,
+  });
+});
 test('older processes with recycled parent IDs are excluded while real live descendants remain', () => {
   const identities = new Map();
   const rows = [row(900, 1, 100), row(100, 900, 10), row(901, 900, 110), row(902, 901, 120)];
