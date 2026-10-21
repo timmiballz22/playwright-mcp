@@ -69,6 +69,7 @@ function recoveryDecision(row, lease) {
 }
 const recoveryRows = () => db.prepare("SELECT * FROM jobs WHERE state IN ('CREATED','VALIDATING','QUEUED','RUNNING') LIMIT 64").all();
 const recoveryLease = row => db.prepare('SELECT * FROM execution_lease WHERE job_id=?').get(row.id);
+const maintenanceLease = () => db.prepare("SELECT l.* FROM execution_lease l JOIN jobs j ON j.id=l.job_id WHERE l.nonce GLOB 'cleanup:*' AND j.state IN ('SUCCEEDED','FAILED','CANCELLED','TIMED_OUT','CRASHED')").get();
 const cleanupBlocked = () => Boolean(db.prepare('SELECT uncertain FROM execution_lease WHERE singleton=1').get()?.uncertain);
 
 function transaction(callback) {
@@ -238,6 +239,8 @@ const handlers = new Map([
     const fingerprint = mac('workflow:' + data.workflowDigest);
     const existing = db.prepare('SELECT * FROM jobs WHERE owner=? AND request_key=?').get(identity.owner, requestKey);
     if (existing) { if (existing.fingerprint !== fingerprint) error('idempotency_conflict'); return dto(existing); }
+    const maintenance = maintenanceLease();
+    if (maintenance) error(maintenance.uncertain ? 'cleanup_blocked' : 'controller_busy');
     if (data.requireCleanLease && db.prepare('SELECT uncertain FROM execution_lease WHERE singleton=1').get()?.uncertain) error('cleanup_blocked');
     if (data.admitNew === false) error('queue_full');
     if (db.prepare("SELECT COUNT(*) AS count FROM jobs WHERE state='QUEUED'").get().count >= 8) error('queue_full');
@@ -273,6 +276,35 @@ const handlers = new Map([
       .all(identity.owner, data.beforeMs, after?.updated_at ?? null, after?.updated_at ?? 0, after?.updated_at ?? 0, after?.id ?? '', limit + 1);
     return { jobs: rows.slice(0, limit).map(dto), hasMore: rows.length > limit };
   }],
+  ['cleanup_reserve', data => transaction(() => {
+    const row = owned(data.id);
+    if (!terminal.has(row.state)) error('not_terminal');
+    if (!uuid.test(data.nonce || '')) error('invalid_metadata');
+    if (row.uncertain) error('cleanup_blocked');
+    const lease = db.prepare('SELECT * FROM execution_lease WHERE singleton=1').get();
+    if (lease) error(lease.uncertain ? 'cleanup_blocked' : 'controller_busy');
+    db.prepare('INSERT INTO execution_lease(singleton,job_id,nonce,instance,holder_pid) VALUES(1,?,?,?,?)')
+      .run(row.id, 'cleanup:' + data.nonce, identity.instance, identity.pid);
+    return { acquired: true };
+  })],
+  ['cleanup_release', data => transaction(() => {
+    const row = owned(data.id);
+    if (!uuid.test(data.nonce || '')) error('invalid_metadata');
+    if (!terminal.has(row.state)) error('not_terminal');
+    const lease = leaseFor(row, 'cleanup:' + data.nonce);
+    if (lease.uncertain || row.uncertain) error('cleanup_blocked');
+    db.prepare('DELETE FROM execution_lease WHERE singleton=1').run();
+    return { released: true };
+  })],
+  ['cleanup_uncertain', data => transaction(() => {
+    const row = owned(data.id);
+    if (!uuid.test(data.nonce || '')) error('invalid_metadata');
+    if (!terminal.has(row.state)) error('not_terminal');
+    leaseFor(row, 'cleanup:' + data.nonce);
+    db.prepare('UPDATE execution_lease SET uncertain=1 WHERE singleton=1').run();
+    db.prepare('UPDATE jobs SET uncertain=1 WHERE id=?').run(row.id);
+    return { cleanupBlocked: true };
+  })],
   ['events', data => {
     const row = owned(data.id);
     return db.prepare('SELECT revision,state,stage,completed,created_at AS createdAt FROM events WHERE job_id=? ORDER BY revision').all(row.id);

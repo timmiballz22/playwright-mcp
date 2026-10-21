@@ -3145,3 +3145,34 @@ setup sentinel and fixed code; this does not add setup as a workflow action or
 modify any input/tool schema. Invalid/raw values and message fields still do not
 copy. Five diagnostic tests pass each Node20/22/24. Source-only receipt change;
 no browser/run deadline changes. Evidence: setup-diagnostic-*.
+
+## Durable project reservation for artifact maintenance (local candidate)
+
+Before: two new kernel cases fail unsupported_command, and a missing-exit control
+shows another controller is not blocked (despite the original local latch).
+Added three fixed private RPCs using the existing singleton execution lease with
+an internal cleanup purpose marker/private nonce. The kernel reserves only an
+owned confirmed terminal row with no active lease, fences new admissions, allows
+existing-key dedup without replay, releases only matching confirmed maintenance,
+and marks unconfirmed cleanup uncertain without rewriting execution history.
+Foreign actor/owner, wrong nonce, nonterminal and repeated reservation reject.
+A purpose marker distinguishes an existing uncertain execution lease; regression
+found and fixed that compatibility distinction. No table/schema migration; version1.
+
+Controller reserves before worker filesystem access. Confirmed exit releases the
+reservation even on a failed file operation; unconfirmed exit retains durable
+uncertainty and blocks more work. If finalization RPC fails, held reservation
+still fences other controllers and primary+RPC errors aggregate without replay.
+A crash/lost acknowledgement can strand a busy reservation; no persisted-PID
+kill/automatic release or completed operator-repair flow is introduced.
+
+Node22/24 full components64/64 each before the added lost-finalization control.
+Final four lease/fault cases pass Node24; Node22 six targeted cases include all
+four plus real durableHTTP and two-owner screenshot cleanup. Fault replaces ONLY
+the artifact ChildProcess in the test, with no OS PID signal, and shortens its
+private timers; it does not prove an uninterruptible kernel can be killed. Both
+uncertainty-marked and mark-not-acknowledged branches fence a second controller.
+Original results/keys remain, timestamps/events stable, nonces/paths not public.
+Fresh171-file production-only install and lint/diff checks pass. Existing six MCP
+input schemas remain unchanged. Native validation is pending beyond c88171e.
+Evidence: maintenance-*. Earlier native process/HTTP failures remain open.

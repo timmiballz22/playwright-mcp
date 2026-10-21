@@ -207,8 +207,16 @@ budget and up to one second to confirm forced exit. A valid receipt and natural
 worker exit are both required for success. A timeout can leave partial deletion;
 inspect the fixed error and preview before retrying. Unconfirmed exit reports
 `cleanup_unconfirmed`, stops this retention page and blocks further cleanup/new
-jobs in this controller. That diagnostic is not a durable maintenance lease;
-a Linux Node20/22/24 fault check verifies worker EOF exit during a simulated
-filesystem stall. Native parent-death containment and cross-controller uncertainty
-still need validation.
+jobs. Cleanup first reserves the existing singleton project lease; an active
+execution or another cleanup returns busy before filesystem work. New admissions
+return busy during confirmed maintenance. Only confirmed worker exit releases
+the reservation; unconfirmed exit marks the durable lease/job uncertain, so the
+block survives another controller or restart. Results and request keys stay.
+If uncertainty finalization cannot be acknowledged, admissions remain busy under
+the held reservation; busy does not confirm worker cleanup. A crash before
+finalization also leaves the reservation held; there is no
+PID-based automatic release. Recovery/operator repair remains separate work.
+The local simulated missing-exit test verifies persistence, while native
+validation of this reservation change is pending. Earlier native worker EOF
+checks cover a simulated async filesystem stall, not an uninterruptible kernel.
 No changed browser/action/test deadline or OS disk quota is implied.

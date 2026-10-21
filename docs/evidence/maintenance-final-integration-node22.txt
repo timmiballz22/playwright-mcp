@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: durable real HTTP failures preserve status, privacy and deduplication after artifact cleanup
+ok 1 - durable real HTTP failures preserve status, privacy and deduplication after artifact cleanup
+  ---
+  duration_ms: 3097.082455
+  type: 'test'
+  ...
+# Subtest: two public owners queue screenshots and cleanup cannot delete the other owner artifact
+ok 2 - two public owners queue screenshots and cleanup cannot delete the other owner artifact
+  ---
+  duration_ms: 3413.676301
+  type: 'test'
+  ...
+# Subtest: terminal cleanup reservation fences new admissions and other actors without changing history
+ok 3 - terminal cleanup reservation fences new admissions and other actors without changing history
+  ---
+  duration_ms: 222.416265
+  type: 'test'
+  ...
+# Subtest: unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release
+ok 4 - unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release
+  ---
+  duration_ms: 129.520797
+  type: 'test'
+  ...
+# Subtest: unconfirmed artifact worker is fenced durably from another controller
+ok 5 - unconfirmed artifact worker is fenced durably from another controller
+  ---
+  duration_ms: 245.024547
+  type: 'test'
+  ...
+# Subtest: unconfirmed artifact worker is fenced durably from another controller after lost finalization
+ok 6 - unconfirmed artifact worker is fenced durably from another controller after lost finalization
+  ---
+  duration_ms: 251.348361
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7707.472297

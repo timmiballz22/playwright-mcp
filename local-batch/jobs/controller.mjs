@@ -113,7 +113,23 @@ export class JobController {
         }
         const summary = await this.journal.call('result', { id });
         if (!summary.runId && !summary.execution) return { dryRun, files: 0, bytes: 0, removed: false, alreadyAbsent: true };
-        return await cleanupJobArtifacts({ base: this.execution.artifactsDir, runId: summary.runId, dryRun });
+        const nonce = randomUUID();
+        await this.journal.call('cleanup_reserve', { id, nonce });
+        let outcome; let failure;
+        try { outcome = await cleanupJobArtifacts({ base: this.execution.artifactsDir, runId: summary.runId, dryRun }); }
+        catch (error) { failure = error; }
+        if (failure?.code === 'cleanup_unconfirmed') { this.blocked = true; this.cleanupUnconfirmed = true; }
+        try { await this.journal.call(failure?.code === 'cleanup_unconfirmed' ? 'cleanup_uncertain' : 'cleanup_release', { id, nonce }); }
+        catch (error) {
+          // The durable reservation remains if acknowledgement is lost. Never
+          // replay a cleanup mutation or release it from a different actor.
+          this.blocked = true;
+          if (failure) throw Object.assign(new AggregateError([failure, error], 'Cleanup and journal finalization failed', { cause: failure }),
+            { code: error.code, journalFailure: error.journalFailure, journalFailureCommand: error.journalFailureCommand });
+          throw error;
+        }
+        if (failure) throw failure;
+        return outcome;
       } catch (error) { if (error?.code === 'cleanup_unconfirmed') { this.blocked = true; this.cleanupUnconfirmed = true; } this.unavailable(error); throw error; }
     });
   }

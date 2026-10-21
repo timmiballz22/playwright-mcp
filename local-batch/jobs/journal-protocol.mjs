@@ -5,6 +5,7 @@ export const COMMAND_FIELDS = new Map([
   ['verify', ['id', 'workflowDigest']],
   ['read', ['id']], ['list', ['limit']], ['events', ['id']], ['result', ['id']], ['cancel', ['id']],
   ['retention', ['beforeMs', 'limit', 'afterId']],
+  ['cleanup_reserve', ['id', 'nonce']], ['cleanup_release', ['id', 'nonce']], ['cleanup_uncertain', ['id', 'nonce']],
   ['reserve', ['id', 'nonce', 'queueExpired']], ['activate', ['id', 'nonce']],
   ['progress', ['id', 'nonce', 'completed']], ['resources', ['id', 'nonce', 'workerPid', 'browserPid']],
   ['finish', ['id', 'nonce', 'state', 'completed', 'cleanupOk', 'summary', 'reason']],

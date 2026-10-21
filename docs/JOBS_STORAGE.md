@@ -90,3 +90,13 @@ stable terminal updated_at/id. The SQLite schema remains version1; no record,
 event or idempotency key is deleted. See JOBS_MCP_PREVIEW.md for continuation,
 interruption and limits. This is artifact retention control, not cumulative disk
 quota or history compaction.
+
+Terminal artifact cleanup also uses the existing singleton execution lease with a
+fixed internal purpose marker and private nonce. Three fixed RPC commands reserve,
+release after confirmed exit, or retain uncertainty. This adds no table/schema
+migration: user_version remains1. Terminal job timestamps/events/results/request
+keys stay stable; uncertainty changes only its dedicated flag. Admissions are
+busy during a cleanup and blocked after unconfirmed termination. Older readers
+still cannot reserve execution while the singleton lease is held. No process is
+killed or lease released from persisted PIDs. A lost finalization acknowledgement
+can conservatively strand the reservation; operator recovery remains unfinished.

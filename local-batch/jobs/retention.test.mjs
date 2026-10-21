@@ -26,6 +26,7 @@ test('retention preview/delete rechecks age and preserves fresh or uncertain art
     if (command === 'retention') return { jobs: ids.map(jobId => ({ jobId, updatedAt: old })), hasMore: false };
     const index = ids.indexOf(data.id); assert.ok(index >= 0);
     if (command === 'read') return rows[index];
+    if (['cleanup_reserve', 'cleanup_release'].includes(command)) { assert.equal(index, 0); return {}; }
     assert.equal(command, 'result'); assert.equal(index, 0, 'Unsafe/newly fresh rows must stop before reading their execution scope');
     return { runId: runs[index] };
   } };
@@ -69,6 +70,7 @@ test('retention interruption completes one authorized scope and preserves the co
     if (command === 'retention') return { jobs: ids.map(jobId => ({ jobId })), hasMore: false };
     assert.equal(data.id, ids[0], 'Interruption must stop before opening the second scope');
     if (command === 'read') return { state: 'SUCCEEDED', updatedAt: old, resultAvailable: true };
+    if (['cleanup_reserve', 'cleanup_release'].includes(command)) return {};
     assert.equal(command, 'result'); abort.abort(); return { runId: runs[0] };
   } }, {}, { artifactsDir: base });
   try {
