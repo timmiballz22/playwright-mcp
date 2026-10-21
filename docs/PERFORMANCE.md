@@ -1,5 +1,7 @@
 # Measured local performance
 
+Latest repeated comparison: [three fresh interface samples at1100e3c](#three-fresh-interface-samples-at1100e3c). Earlier measurements below retain their original runtime and scope.
+
 2026-10-20, Linux x64, Node 24.19.0, npm 11.9.0; pinned Playwright
 1.64.0-alpha-1790635538000, Chromium 155 managed headless browser.
 
