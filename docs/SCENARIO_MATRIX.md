@@ -1,6 +1,14 @@
 # Mandatory scenario evidence
 
-Latest native `c88171e`: **1,310 reported passes/six failed tests**, plus a
+Current checkpoint: native57 at b62740e completed with1,601 reported passes/six
+failed tests plus separate macOS Codex954/1k timeout. Native58 at de9c924 remains
+active; its wrapper437/3 completed. Later local artifact-receipt and retained
+quota changes are not assigned those native results. The local final runtime
+passes96 components each Node22/24,174-file installation and public jobs1k; the
+additional entry-boundary control passes9 quota cases Node22/24 (8 Node20).
+See CODEX_EXECUTION_LEDGER.md for exact phase/SHA receipts and current blockers.
+
+Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a
 Windows production-install failure that prevents its main browser suite from
 running. Wrapper39627558701:431/3; batch39627558702:879/3 among executed tests.
 All17 executed jobs conclude; one functional-soak group intentionally skips;
@@ -224,7 +232,7 @@ acceptance remain open.
 | 21 | Upload symlink escape | PARTIAL: original upload outside/symlink/junction negatives passed all native browsers at 9e73a08; earlier macOS modal timeout remains unexplained. Companion has no upload action. |
 | 22 | Popup/iframe/WebSocket policy | PARTIAL: iframe and WebSocket zero-hit fixtures pass; popup approved/denied positive-control fixtures pass local Chromium/Firefox; native all-engine positive/negative cases pass at ebdec88. |
 | 23 | Service worker limitation | PARTIAL: dedicated Chromium fixture proves approved positive control registers and reaches its target; strict runtime requests neither worker script nor target, verifies cleanup. Native107076c passes all five batch lanes for Chromium; other engines and deliberate PWA operation remain open. |
-| 24 | 20-run artifact uniqueness + retention | PARTIAL: unique private artifacts and bounded dry-run/delete terminal cleanup pass locally, including unsafe-link/limit guards. Separate supervised20-screenshot/20-report concurrent-pair source proof passes Node20/22 with stable hashes/inodes/timestamps and zero observed owned per pair; native five-lane supervisor proof now passes at5060ca4; two concurrent public-owner clients also pass all four native SQLite-capable lanes at5060ca4. Host-controlled per-run screenshot payload budgets now pass scoped tests; explicit age-based operator retention passes locally atb355d2e; native validation, scheduled retention and cumulative storage quotas remain open. |
+| 24 | 20-run artifact uniqueness + retention | PARTIAL: unique private artifacts and bounded dry-run/delete terminal cleanup pass locally, including unsafe-link/limit guards. Separate supervised20-screenshot/20-report concurrent-pair source proof passes Node20/22 with stable hashes/inodes/timestamps and zero observed owned per pair; native five-lane supervisor proof now passes at5060ca4; two concurrent public-owner clients also pass all four native SQLite-capable lanes at5060ca4. Host-controlled per-run screenshot payload budgets now pass scoped tests; explicit age-based operator retention passes locally atb355d2e; age-retention checks have native scoped passes. Local512MiB default durable retained-byte admission, exact boundary, unsafe-entry guards, dedup and bounded stalled-scan proof pass; native quota verification, scheduled retention and comprehensive storage quotas remain open. |
 | 25 | Input/header secret canaries | PARTIAL: fill/error/report/protocol canaries tested; real HTTP header/body/query and page-exception canaries stay out of summaries and saved reports on local Chromium/Firefox Node20/22/24. WebKit/native and all artifact channels remain. |
 | 26 | HTTP errors vs JS exceptions | PARTIAL: real Chromium/Firefox Node20/22/24 401/403/404/418/429/500/503 failures retain status/taxonomy without response secrets or default retries, and a200 page with a thrown script exception still passes explicit DOM assertions. WebKit/native and the broader exception matrix remain. |
 | 27 | Retry-After backoff + no unsafe replay | PARTIAL: configured GET-only 429/503 Retry-After backoff and no unsafe-action replay tests/installed smoke pass. Native Windows Firefox intermittency and the full retry taxonomy remain open. |

@@ -104,3 +104,12 @@ See [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md) for exact optional jobs configura
 foreground cancellation, cleanup bounds and remaining limitations. Job submissions
 carry a monotonic deadline through queueing and guardian startup; persisted wall
 timestamps support display and conservative recovery without replay.
+
+Durable execution now reserves retained capacity before browser launch under the
+project lease:512MiB default per private owner/project directory, accounting for
+full screenshot/report/diagnostic allowance. The inventory runs in the supervised
+worker deadline and refuses unsafe/oversized/deep/over-entry trees without pruning.
+This local candidate has installed/public1k proof; native cross-OS verification
+is pending. See JOBS_STORAGE.md for source configuration and residual same-user
+writer, temporary-disk and physical-allocation limitations. Automatic retention
+and full resource quotas remain unfinished.
