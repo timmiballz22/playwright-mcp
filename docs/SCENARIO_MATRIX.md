@@ -2,8 +2,8 @@
 
 Current status and exact candidate evidence are maintained in
 [CODEX_EXECUTION_REPORT.md](CODEX_EXECUTION_REPORT.md) and the G00–G18 table in
-[CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md). Native62 is failed;
-native63 is incomplete and the later final-report ownership guard is local-only.
+[CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md). Native63 is failed;
+the later final-report ownership guard and marked fetch witness are local-only.
 Per-scenario historical proofs below do not imply final same-SHA acceptance.
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a

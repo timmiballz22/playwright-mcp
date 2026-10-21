@@ -1,35 +1,30 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native62 at456a141: **1,704 reported passes/15 failed tests**,
-plus separate macOS actual-Codex timeout954/1k with known cleanup. All five175-file
-production installs pass. Five failures are stale temp-ACK crash expectations;
-two Windows ownership cases lose their live-child witness because non-detached
-Node children die with the parent through libuv job control. Windows Firefox and
-macOS1k failures remain. Prior native61 possible-orphan and second-GET findings
-remain unresolved despite healthy later samples. Not release-ready.
+Latest completed native63 atd22b111: **1,721 reported passes/ten failed tests**.
+Wrapper39673986586 is green440/0; batch39673986509 fails1,281/10. Separately,
+macOS server comparison and Windows private-temp comparison fail. All three
+actual Codex1k clients, five175-file installs and components102/103 pass. No
+reported test skips/cancellations; intentional functional-soak job skipped.
 
-Current pushed d22b111 corrects the private fault model to an explicitly detached
-child everywhere; live-child/fence/reopen assertions and budgets remain intact.
-The temp-ACK case now requires cleanup uncertainty while preserving owned temp
-removal. It also retains validated early HTTP numeric facts when overall timeout
-wins. Local components102/102 Node22/24 and fresh175-file production install pass.
-Native63 batch39673986509/wrapper39673986586 is running; all four component jobs
-pass, full browser/client verification pending. No successful component job
-establishes full native acceptance.
+Windows failures include Firefox positive origin control and input/retry
+deadlines, controller fixture exit before readiness (cause unavailable), and
+four processes observed after WebKit page-limit execution. macOS raw Chromium970
+and batch MCP959 miss1k deadlines. Earlier screenshot/close/second-GET findings
+remain open. Healthy later probes do not causally resolve them. **Not release-ready.**
 
-Later local-only cancellation witness marks each public route.fetch call and
-commits a private POST before withholding the response. Chromium/Firefox checks
-pass; deliberate duplicate-POST negative control fails on count2. This is source
-QA instrumentation, not a production replay fix or a resolution of native61's
-WebKit second GET. Exact phases and unchanged limits are recorded in
-CODEX_EXECUTION_LEDGER.md and NATIVE_BROWSER_REPRODUCTIONS.md.
+Later local76b6bca runtime keeps ownership uncertain after a final failure report
+if a launch attempt has no browser PID receipt. Actual-worker before control
+returns action_failed/cleanup terminated with live child; corrected guard retains
+failed cleanup and durable debt. Focused24/24 Node22/24,22/22 Node20, components
+104/104 Node22/24, fresh175-file production install and death audits pass. A new
+Linux100-cycle/600-action soak passes all unchanged thresholds, every owned audit
+empty, FD24→24, RSS growth8,826,880<32MiB; browser FD visibility remains partial.
 
-A further local P0 correction retains ownership uncertainty even after a final
-failure report when a launch attempt has no browser PID receipt. Actual worker
-before control returns action_failed/cleanup terminated while its child lives;
-after correction focused24/24 Node22/24,22/22 Node20 and components104/104 Node22/24
-pass. Fresh175-file installation and controller-death audits pass. This correction
-and the marked cancellation witness are not in native63; native proof is pending.
+The local marked-fetch witness observes each public fetch call and a committed
+private POST with no response. Chromium/Firefox pass; deliberate duplicate-POST
+control fails on count2. No production replay fix or default transport change is
+claimed. Neither this witness nor76b6bca is in native63; next native verification
+is pending. Exact phases/receipts and G00–G18: CODEX_EXECUTION_LEDGER.md.
 
 The following records are historical checkpoints.
 
