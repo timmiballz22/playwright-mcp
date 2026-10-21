@@ -7,9 +7,10 @@ skips, no cancellations. All144 original tests/host, all installed166-file
 packages and journal lanes pass. Windows legacy Firefox, browser cleanup/retry/
 HTTP privacy audits and macOS raw1,000-action throughput remain unresolved.
 
-Separate scoped native soak: Linux/macOS Intel100/600 passes; Windows emits50-run/
-300-action receipt then fails a four-process ownership audit. No full Windows
-soak, cleanup resolution, resource bounds or release gate is promoted. Targeted
+Separate scoped native soak: Linux/macOS Intel100/600 passes; the initial Windows run
+fails after its50-run receipt, then b144c7d Windows-only100/600 passes176.352s.
+The prior four-process observation remains unexplained; no cleanup resolution,
+resource bound or release gate is promoted. Targeted
 Windows role/birth receipts and HTTP double-failure preservation await native
 verification. See [execution report](CODEX_EXECUTION_REPORT.md). **Not release-ready.**
 

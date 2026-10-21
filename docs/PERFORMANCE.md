@@ -265,3 +265,13 @@ preserves ordinary PR coverage. The failure-only Codex transport control now
 runs direct pipe first; the batch control keeps BrowserServer first. Local
 reversed-order controls pass34.109/33.964s,1,000 operations each/zero owned.
 This is no macOS transport fix or hard resource-bound acceptance.
+
+Subsequent Windows-only scoped soak `b144c7d`, run39609200840, passes100
+runs/600 actions in176.352s, fresh cookie/localStorage and zero observed owned
+processes after every run. One job executes/passes, three primary job groups
+intentionally skip, none cancel. The observation list and ownership graph are
+unchanged; this healthy repetition does not explain the earlier four-process
+failure. Cross-OS functional100-run proofs now exist at8d661bf(Linux/macOS Intel)
+andb144c7d(Windows), not one full green final SHA or complete resource gate.
+Elapsed functional time includes different OS audit costs, not only browser work.
+Evidence: portable-native-windows-second*.

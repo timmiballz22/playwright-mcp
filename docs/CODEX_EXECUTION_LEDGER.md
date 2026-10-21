@@ -7,9 +7,10 @@ skips, no cancellations. All144 original tests/host, all installed166-file
 packages and journal lanes pass. Windows legacy Firefox, browser cleanup/retry/
 HTTP privacy audits and macOS raw1,000-action throughput remain unresolved.
 
-Separate scoped native soak: Linux/macOS Intel100/600 passes; Windows emits50-run/
-300-action receipt then fails a four-process ownership audit. No full Windows
-soak, cleanup resolution, resource bounds or release gate is promoted. Targeted
+Separate scoped native soak: Linux/macOS Intel100/600 passes; the initial Windows run
+fails after its50-run receipt, then b144c7d Windows-only100/600 passes176.352s.
+The prior four-process observation remains unexplained; no cleanup resolution,
+resource bound or release gate is promoted. Targeted
 Windows role/birth receipts and HTTP double-failure preservation await native
 verification. See [execution report](CODEX_EXECUTION_REPORT.md). **Not release-ready.**
 
@@ -2692,3 +2693,38 @@ Operator setup, jobs preview, architecture and original-tool index now point to
 native8d661bf scoped evidence rather than calling already-executed endpoint
 integration unverified. They retain experimental status and the open Windows
 ownership/macOS throughput failures. No parity or release gate is promoted.
+
+## Supervised concurrent artifact identity proof
+
+A separate source-API fixture runs20 fresh screenshot executions in ten concurrent
+pairs through the production supervisor, without replacing the failing raw-runner
+artifact fixture. Both members settle before independent per-pair process audits;
+test cancellation reaches both executions. Each result must report exact one-action
+completion, terminated/removed cleanup, distinct worker report and PNG path inside
+the owned artifact base, a valid PNG header and single file link. POSIX file/report
+modes600 and image-directory700 are checked; no new Windows ACL claim is made.
+
+After all20, each image retains its SHA256, device/inode and modification/change
+times, detecting later replacement or alteration. Failed acceptance preserves the
+private fixture root; only fully verified success removes it. Local Node20/22
+each pass one full test with20 executions, zero observed owned after every pair.
+This is source-API proof, not actual concurrent stdio clients, Windows/macOS
+verification or a fix for raw BrowserServer close. Evidence:
+supervised-artifacts-node20.txt and supervised-artifacts-node22.txt.
+
+## Subsequent Windows functional100-run proof
+
+Subsequent Windows-only scoped soak `b144c7d`, run39609200840, passes100
+runs/600 actions in176.352s, fresh cookie/localStorage and zero observed owned
+processes after every run. One job executes/passes, three primary job groups
+intentionally skip, none cancel. The observation list and ownership graph are
+unchanged; this healthy repetition does not explain the earlier four-process
+failure. Cross-OS functional100-run proofs now exist at8d661bf(Linux/macOS Intel)
+andb144c7d(Windows), not one full green final SHA or complete resource gate.
+Elapsed functional time includes different OS audit costs, not only browser work.
+Evidence: portable-native-windows-second*.
+
+The separate supervised artifact test passes on Node20/22 with20 concurrent-pair
+executions each;167-file dry pack contains the extra QA fixture. The last full
+native166-file production install covers unchanged runtime entry points. New
+artifact identity checks remain Windows/macOS/native-pending; lint passes.

@@ -23,7 +23,7 @@ supervised Firefox positive clicks, Firefox HTTP privacy timeout, WebKit HTTP
 privacy final ownership audit(four processes) and Firefox429 retry timeout after
 two GET hits. The deadline audit happens to pass this round, so its fixed role
 receipt does not explain the prior process observation. No process is filtered,
-no cleanup claim is promoted and no Windows100-run pass is established. Reversed
+no cleanup claim is promoted and that candidate does not establish a Windows100-run pass. Reversed
 Firefox temp controls both pass10/10 and zero final owned processes; healthy
 repetitions still provide no temp workaround.
 
@@ -52,6 +52,16 @@ late-abort action/policy controls (18 executor tests each Node), and a portable
 functional soak (100 runs/600 actions in109.293s, zero owned after every run and
 fresh cookie/localStorage). A manual three-OS soak-only lane is prepared. These
 are scoped checks, not full resource bounds, managed profile reset or native PASS.
+
+Subsequent Windows-only scoped soak `b144c7d`, run39609200840, passes100
+runs/600 actions in176.352s, fresh cookie/localStorage and zero observed owned
+processes after every run. One job executes/passes, three primary job groups
+intentionally skip, none cancel. The observation list and ownership graph are
+unchanged; this healthy repetition does not explain the earlier four-process
+failure. Cross-OS functional100-run proofs now exist at8d661bf(Linux/macOS Intel)
+andb144c7d(Windows), not one full green final SHA or complete resource gate.
+Elapsed functional time includes different OS audit costs, not only browser work.
+Evidence: portable-native-windows-second*.
 
 Separate native functional soak `8d661bf`, run39604975576: Linux100/600
 passes91.053s; macOS Intel100/600 passes233.655s, each with fresh cookie/localStorage
