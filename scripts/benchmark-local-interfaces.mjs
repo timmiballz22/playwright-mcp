@@ -5,6 +5,7 @@ import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 import { createServer } from 'node:http';
 import { once } from 'node:events';
 import { execFile } from 'node:child_process';
+import { createRequire } from 'node:module';
 import { mkdtemp, writeFile, readFile, realpath, stat, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -23,7 +24,7 @@ const workflow = { timeoutMs: 120000, steps: [{ type: 'goto', url: origin },
   { type: 'click', selector: { role: 'button', name: 'Add' }, repeat: 100 },
   { type: 'assertText', selector: 'output', equals: '100' }, { type: 'assertURL', url: origin + '/' }] };
 const bytes = value => Buffer.byteLength(JSON.stringify(value));
-const playwrightVersion = JSON.parse(await readFile(new URL('../node_modules/playwright/package.json', import.meta.url), 'utf8')).version;
+const playwrightVersion = createRequire(import.meta.url)('playwright/package.json').version;
 const results = []; let verified = false;
 async function stopped(roots) {
   const end = performance.now() + 10000;

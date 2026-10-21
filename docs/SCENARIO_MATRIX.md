@@ -1,31 +1,30 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Latest completed native `57dca78`: **957 tests passed,12 failed**, with zero
-executed-test skips/cancellations. Wrapper39557792732:269/3; batch39557792776:688/9.
-Seven failures are Windows Firefox (three raw Node22 modes,429 retry fixture,
-three legacy Node20 modes). Five failures repeat one incorrect new audit-test
-expectation across browser jobs; the test is now corrected locally. Production
-graph code is unchanged. All88 original cases per OS, Docker, four41-test durable
-components, installed public endpoints and source1,000-action jobs pass. The
-500-valid/170-invalid workflow corpus passes natively on every configured OS.
+PASS. Latest completed native `a3eccc0`: **989 tests passed,five failed**, zero test
+skips/cancellations. Wrapper39559878537:270/2; batch39559878521:719/3. All five
+failures are Windows Firefox: raw Node22 headless/direct-pipe,429 retry fixture,
+and two legacy Node20 modes. Every original case passes (88 per OS), Docker and
+all four41-test durable components pass. The corrected graph test, seeded workflow
+corpus, atomic artifact collision/ownership tests, installed packages and source
+six-tool1,000-action jobs pass on all configured native OSs.
 
-Windows actual Codex and SDK core-environment control fail: filtered environment
-is sufficient to reproduce a10s PowerShell helper timeout; inherited controls pass.
-The smaller direct-helper reproducer needs no browser/Codex containment. Linux/
-macOS actual Codex1,000-action checks pass38.364s/119.327s, zero model turns/survivors.
-Corrected Firefox factor caller passes natively: four cases,400 clicks/20 fresh
-launches, zero survivors. These five-run controls include an audit pause and do
-not reproduce the strict ten-run failures; they prove neither a routing cause
-nor a production fix. Stable Playwright remains1.64.1; no stable upgrade is available.
+Windows actual Codex and the restricted SDK/helper control still fail at final
+ConvertTo-Json serialization after10s. Native fixed phase markers locate the
+stall; system-module-path selection alone fails too. Linux/macOS actual Codex
+pass1,000 actions/cancel/owner/dedup in36.554s/68.586s with zero model turns and
+zero survivors. The four Firefox controls again pass400 clicks/20 fresh launches,
+zero survivors, without reproducing strict ten-run failures. Instrumentation and
+pacing differ; no causal or production reliability fix is claimed.
 
-Local follow-ups fix atomic screenshot/report overwrite races and deletion of an
-unowned colliding report temporary file. Seven unit cases on Node20/24, three real
-Chromium failure/quota/CLI cases, the1,000-action jobs harness and fresh141-file
-production package pass. Corrected lifecycle graph suite passes4/4 on Node20/22/24.
-Next native candidate adds helper phase/system-module controls, preserving10s and
-all ACL/security checks. Matrix17 jobs; last full green d71c91e (14). Quotas,
-retention, profiles, egress and remaining reliability/acceptance gates stay open.
+The next candidate replaces only PowerShell cmdlet serialization with standard
+.NET Framework JSON serialization, retaining all ACL checks and10s deadline.
+Unicode/private-ACL and actual restricted-client confirmation remain pending.
+A Linux interface benchmark verifies100 clicks: original102 MCP calls/54.877s,
+batch1 call/4.765s, fork CLI0 MCP calls/4.442s, through audited shutdown. One sample,
+JSON payload bytes only; model tokens/resources/official CLI+SKILLS unmeasured.
+Current matrix17 jobs; last full green remains d71c91e (14). Quotas/retention,
+profiles, egress, Firefox/client reliability and remaining gates remain open.
 
 | # | Scenario | Status and concrete evidence / gap |
 |---|---|---|
