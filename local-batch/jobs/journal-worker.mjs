@@ -70,6 +70,10 @@ function recoveryDecision(row, lease) {
 const recoveryRows = () => db.prepare("SELECT * FROM jobs WHERE state IN ('CREATED','VALIDATING','QUEUED','RUNNING') LIMIT 64").all();
 const recoveryLease = row => db.prepare('SELECT * FROM execution_lease WHERE job_id=?').get(row.id);
 const maintenanceLease = () => db.prepare("SELECT l.* FROM execution_lease l JOIN jobs j ON j.id=l.job_id WHERE l.nonce GLOB 'cleanup:*' AND j.state IN ('SUCCEEDED','FAILED','CANCELLED','TIMED_OUT','CRASHED')").get();
+const staleMaintenance = () => {
+  const lease = maintenanceLease();
+  return lease && !lease.uncertain && !live(lease.holder_pid) ? lease : null;
+};
 const cleanupBlocked = () => Boolean(db.prepare('SELECT uncertain FROM execution_lease WHERE singleton=1').get()?.uncertain);
 
 function transaction(callback) {
@@ -384,9 +388,17 @@ const handlers = new Map([
   ['recover', () => {
     // Polls with no state change must not contend with durable writers. This
     // read-only preflight grants no lease and never schedules execution.
-    if (!recoveryRows().some(row => recoveryDecision(row, recoveryLease(row)))) return { recovered: 0, cleanupBlocked: cleanupBlocked() };
+    if (!staleMaintenance() && !recoveryRows().some(row => recoveryDecision(row, recoveryLease(row)))) return { recovered: 0, cleanupBlocked: cleanupBlocked() };
     return transaction(() => {
     let recovered = 0;
+    const maintenance = staleMaintenance();
+    if (maintenance) {
+      // A dead holder is not authority to release or kill its old resources.
+      // Retain the reservation and surface uncertainty without replay.
+      db.prepare('UPDATE execution_lease SET uncertain=1 WHERE singleton=1').run();
+      db.prepare('UPDATE jobs SET uncertain=1 WHERE id=?').run(maintenance.job_id);
+      recovered++;
+    }
     // A possible mutation is re-read and rechecked under the write transaction.
     for (const row of recoveryRows()) {
       const lease = recoveryLease(row);

@@ -1,0 +1,34 @@
+✔ terminal cleanup reservation fences new admissions and other actors without changing history (171.523726ms)
+✔ unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release (105.11884ms)
+✔ unconfirmed artifact worker is fenced durably from another controller (198.91295ms)
+✔ unconfirmed artifact worker is fenced durably from another controller after lost finalization (199.406101ms)
+Maintenance holder-death fixture preserved: recovery not verified
+✖ dead maintenance holder becomes uncertain without releasing its reservation or execution history (185.988647ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 951.613536
+
+✖ failing tests:
+
+test at local-batch/jobs/maintenance.test.mjs:127:22
+✖ dead maintenance holder becomes uncertain without releasing its reservation or execution history (185.988647ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/maintenance.test.mjs:148:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

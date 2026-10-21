@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import childProcess from 'node:child_process';
-import { EventEmitter } from 'node:events';
+import { EventEmitter, once } from 'node:events';
 import { syncBuiltinESMExports } from 'node:module';
 import { JobController } from './controller.mjs';
 import { resolveJobConfig } from './config.mjs';
@@ -120,5 +120,45 @@ if (supportsJournal) for (const loseFinalization of [false, true]) test(`unconfi
     await observer?.close(); await controller?.close(); await journal?.close();
     if (verified) await rm(root, { recursive: true, force: true });
     else console.error('Maintenance fixture preserved: durable fence not verified');
+  }
+});
+
+
+if (supportsJournal) test('dead maintenance holder becomes uncertain without releasing its reservation or execution history', { timeout: 30000 }, async t => {
+  const directory = await realpath(await mkdtemp(path.join(os.tmpdir(), 'maintenance-owner-death-')));
+  let journal; let holder; let verified = false;
+  try {
+    const config = { directory, projectId: 'f'.repeat(64), ownerId: randomUUID() };
+    journal = await JobJournal.open(config); const record = await completed(journal); const nonce = randomUUID();
+    const before = await journal.call('read', { id: record.id }); const events = await journal.call('events', { id: record.id });
+    await journal.close(); journal = undefined;
+    const program = path.join(directory, 'holder.mjs');
+    await writeFile(program, `import { JobJournal } from ${JSON.stringify(new URL('./journal.mjs', import.meta.url).href)};
+const journal = await JobJournal.open(${JSON.stringify(config)});
+await journal.call('cleanup_reserve', ${JSON.stringify({ id: record.id, nonce })});
+process.on('message', () => {});
+process.send({held:true});`);
+    holder = childProcess.fork(program, [], { stdio: ['ignore', 'ignore', 'ignore', 'ipc'], execArgv: [], windowsHide: true });
+    const ready = await Promise.race([once(holder, 'message', { signal: t.signal }),
+      once(holder, 'exit').then(() => { throw new Error('Maintenance holder exited before reservation acknowledgement'); })]);
+    assert.equal(ready[0].held, true);
+    journal = await JobJournal.open(config);
+    assert.equal((await journal.call('recover')).cleanupBlocked, false, 'Live maintenance is busy, not a permanently blocked observer');
+    const exited = once(holder, 'exit'); holder.kill('SIGKILL'); await exited;
+    assert.equal((await journal.call('recover')).cleanupBlocked, true);
+    const after = await journal.call('read', { id: record.id });
+    assert.equal(after.operatorAttentionRequired, true); assert.equal(after.state, before.state);
+    assert.equal(after.updatedAt, before.updatedAt); assert.equal(after.completed, before.completed);
+    assert.deepEqual(await journal.call('events', { id: record.id }), events);
+    await assert.rejects(journal.call('create', { ...record.input, id: randomUUID(), requestKey: 'after-death' }), { code: 'cleanup_blocked' });
+    assert.equal((await journal.call('create', record.input)).jobId, record.id);
+    verified = true;
+  } finally {
+    if (holder?.pid && holder.exitCode === null && holder.signalCode === null) {
+      const exited = once(holder, 'exit'); holder.kill('SIGKILL'); await exited;
+    }
+    await journal?.close();
+    if (verified) await rm(directory, { recursive: true, force: true });
+    else console.error('Maintenance holder-death fixture preserved: recovery not verified');
   }
 });

@@ -3224,3 +3224,22 @@ failure. Selected logs/counts/job conclusions: worker-ci-fiftythird-*.
 Later maintenance fencing, setup sentinel and formatter split are outside this
 SHA. No timeout growth, process-role filter, unsafe action retry or green gate
 promotion follows from the healthy substeps.
+
+## Dead artifact-maintenance holder recovery (local, after43de15b)
+
+A new actual child-owner control reserves maintenance then dies via its owned
+ChildProcess handle. Before the fix, recovery leaves cleanupBlocked:false.
+Recovery now uses a read-only stale-maintenance preflight, rechecks under the
+write transaction, and marks lease/job uncertain WITHOUT releasing it or changing
+past state/completed/timestamps/events. Live maintenance stays busy without a
+sticky uncertainty flag. Existing-key admission deduplicates, new work blocks.
+PID presence/reuse/access uncertainty cannot grant release; no stored PID is
+signalled. A reused/live PID may conservatively keep busy instead of being
+classified dead. Manual repair and hard OS resource quotas remain open.
+
+Five targeted cases pass on Node22/24; full components66/66 each, zero skips/
+cancellations. Fresh172-file production install passes after the recovery change;
+normal/linger controller-death cleanup receipts remain retained. The child-owner
+case proves interrupted reservation handling, not an uninterruptible filesystem
+process. Native verification remains pending beyond active43de15b. Evidence:
+maintenance-holder-*. The before-control intentionally fails and is not a pass.

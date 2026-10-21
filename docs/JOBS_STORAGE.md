@@ -100,3 +100,9 @@ busy during a cleanup and blocked after unconfirmed termination. Older readers
 still cannot reserve execution while the singleton lease is held. No process is
 killed or lease released from persisted PIDs. A lost finalization acknowledgement
 can conservatively strand the reservation; operator recovery remains unfinished.
+
+Recovery additionally marks a maintenance reservation uncertain when its holder
+is observed dead, retaining the lease and the original execution metadata. Live
+or ambiguously reused holder PIDs keep the busy reservation; presence is never
+authority to release it, and no persisted PID is killed. This improves diagnosis,
+not automatic operator repair.
