@@ -1,0 +1,90 @@
+TAP version 13
+# Subtest: supervised hang: bounded completion and owned process cleanup
+ok 1 - supervised hang: bounded completion and owned process cleanup
+  ---
+  duration_ms: 1872.932215
+  ...
+# Subtest: supervised report-stall: bounded completion and owned process cleanup
+ok 2 - supervised report-stall: bounded completion and owned process cleanup
+  ---
+  duration_ms: 1861.122559
+  ...
+# Subtest: supervised crash: bounded completion and owned process cleanup
+ok 3 - supervised crash: bounded completion and owned process cleanup
+  ---
+  duration_ms: 157.131148
+  ...
+# Subtest: pre-cancelled execution never starts a worker
+ok 4 - pre-cancelled execution never starts a worker
+  ---
+  duration_ms: 0.467773
+  ...
+# Subtest: cancel interrupts a worker that cannot service its abort listener
+ok 5 - cancel interrupts a worker that cannot service its abort listener
+  ---
+  duration_ms: 434.007285
+  ...
+# Subtest: supervisor crash cannot strand its worker or detached child
+ok 6 - supervisor crash cannot strand its worker or detached child
+  ---
+  duration_ms: 234.258059
+  ...
+# Subtest: cancellation between precheck and supervisor startup does not start a worker
+ok 7 - cancellation between precheck and supervisor startup does not start a worker
+  ---
+  duration_ms: 56.618547
+  ...
+# Subtest: safe failure and lower-bound progress survive supervisor death without raw diagnostics
+ok 8 - safe failure and lower-bound progress survive supervisor death without raw diagnostics
+  ---
+  duration_ms: 261.698816
+  ...
+# Subtest: verified cleanup recovery preserves success action outcome
+ok 9 - verified cleanup recovery preserves success action outcome
+  ---
+  duration_ms: 223.097504
+  ...
+# Subtest: verified cleanup recovery preserves blocked action outcome
+ok 10 - verified cleanup recovery preserves blocked action outcome
+  ---
+  duration_ms: 210.352644
+  ...
+# Subtest: verified cleanup recovery preserves action action outcome
+ok 11 - verified cleanup recovery preserves action action outcome
+  ---
+  duration_ms: 229.819682
+  ...
+# Subtest: failed durable admission cannot start worker actions
+ok 12 - failed durable admission cannot start worker actions
+  ---
+  duration_ms: 130.690966
+  ...
+# Subtest: stalled durable admission cannot evade watchdog deadline or start late
+ok 13 - stalled durable admission cannot evade watchdog deadline or start late
+  ---
+  duration_ms: 1612.310283
+  ...
+# Subtest: successful durable admission precedes owned worker effects
+ok 14 - successful durable admission precedes owned worker effects
+  ---
+  duration_ms: 210.57062
+  ...
+# Subtest: invalid termination roots remain rejected and emit only a fixed diagnostic
+ok 15 - invalid termination roots remain rejected and emit only a fixed diagnostic
+  ---
+  duration_ms: 1.651039
+  ...
+# Subtest: diagnostic callback preserves bounded termination of an actually owned fork
+ok 16 - diagnostic callback preserves bounded termination of an actually owned fork
+  ---
+  duration_ms: 462.21727
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7570.956708

@@ -33,7 +33,10 @@ async function finish(exitCode) {
   if (finishing) return;
   finishing = true;
   clearTimeout(deadlineTimer); clearTimeout(forceTimer);
-  let cleaned = await terminateOwnedProcesses(worker.pid, [...browserPids], !workerExited);
+  const terminationFailures = [];
+  let cleaned = await terminateOwnedProcesses(worker.pid, [...browserPids], !workerExited, code => {
+    if (terminationFailures.length < 8 && !terminationFailures.includes(code)) terminationFailures.push(code);
+  });
   let tempCleanup = 'not-created';
   if (externalTemporary && !ownsTemporary) {
     // A collision or crash before the creation ACK never grants deletion rights.
@@ -62,7 +65,7 @@ async function finish(exitCode) {
     summary = { ...candidate, ok: actionsConfirmed && candidate.blockedRequests === 0,
       reason: candidate.blockedRequests ? 'policy_blocked' : actionsConfirmed ? null : 'action_failed' };
   }
-  const response = { type: 'result', summary: { ...summary, execution: { mode: 'supervised', forced, cleanup: cleaned ? 'terminated' : 'failed', tempCleanup, supervisorPid: process.pid, workerPid: worker.pid, browserPids: [...browserPids], ...(workerCleanupFailed ? { workerCleanupFailed: true } : {}) } } };
+  const response = { type: 'result', summary: { ...summary, execution: { mode: 'supervised', forced, cleanup: cleaned ? 'terminated' : 'failed', tempCleanup, supervisorPid: process.pid, workerPid: worker.pid, browserPids: [...browserPids], ...(workerCleanupFailed ? { workerCleanupFailed: true } : {}), ...(terminationFailures.length ? { terminationFailures } : {}) } } };
   if (process.connected) {
     process.send(response, () => { if (process.connected) process.disconnect(); });
   }

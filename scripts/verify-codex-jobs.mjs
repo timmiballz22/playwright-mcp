@@ -14,7 +14,7 @@ import assert from 'node:assert/strict';
 import { supportsJournal } from '../local-batch/jobs/journal.mjs';
 import { ownedDescendants } from '../local-batch/fixtures/process-audit.mjs';
 import { reportedProcessStateHint } from '../local-batch/fixtures/process-state-hint.mjs';
-import { terminateOwnedProcesses } from '../local-batch/process-tree.mjs';
+import { terminateOwnedProcesses, TERMINATION_FAILURE_CODES } from '../local-batch/process-tree.mjs';
 if (!supportsJournal) throw new Error('Unsupported jobs preview runtime/platform');
 const root = fileURLToPath(new URL('../', import.meta.url));
 const codex = process.argv[2] ?? 'codex';
@@ -126,7 +126,7 @@ try {
   let result; let resultCalls = 0; const end = performance.now() + 130000;
   do { resultCalls++; result = await call('get_workflow_result', { jobId: first.jobId, waitMs: 10000 }); } while (!result.ready && performance.now() < end);
   const cleanupProcessHint = result.result?.execution?.cleanup === 'failed' ? await reportedProcessStateHint([result.result.execution.supervisorPid, result.result.execution.workerPid, ...(Array.isArray(result.result.execution.browserPids) ? result.result.execution.browserPids : [])]) : undefined;
-  const receipt = JSON.stringify({ phase: 'codex_primary_job', state: result.job?.state, jobReason: result.job?.reason, jobStage: result.job?.stage, jobCompleted: result.job?.completed, resultAvailable: !!result.result, operatorAttentionRequired: result.job?.operatorAttentionRequired, guardianFailures: [...guardianFailures], guardianExits: [...guardianExits], forced: result.result?.execution?.forced, workerCleanupFailed: result.result?.execution?.workerCleanupFailed, cleanupProcessHint, completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup });
+  const receipt = JSON.stringify({ phase: 'codex_primary_job', state: result.job?.state, jobReason: result.job?.reason, jobStage: result.job?.stage, jobCompleted: result.job?.completed, resultAvailable: !!result.result, operatorAttentionRequired: result.job?.operatorAttentionRequired, guardianFailures: [...guardianFailures], guardianExits: [...guardianExits], forced: result.result?.execution?.forced, workerCleanupFailed: result.result?.execution?.workerCleanupFailed, cleanupProcessHint, terminationFailures: Array.isArray(result.result?.execution?.terminationFailures) ? result.result.execution.terminationFailures.filter(code => TERMINATION_FAILURE_CODES.includes(code)).slice(0, 8) : undefined, completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup });
   if (process.env.GITHUB_ACTIONS === 'true' && result.job?.state !== 'SUCCEEDED') console.error('::error title=Codex jobs receipt::' + receipt.replaceAll('%', '%25').replaceAll('\r', '%0D').replaceAll('\n', '%0A'));
   assert.equal(result.job.state, 'SUCCEEDED', receipt); assert.equal(result.result.completed, 1000);
   assert.equal(result.result.recentSteps.length, 10); assert.equal(result.result.reportPath, undefined);

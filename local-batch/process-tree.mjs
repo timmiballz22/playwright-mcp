@@ -5,14 +5,17 @@ import { promisify } from 'node:util';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 const exec = promisify(execFile);
+export const TERMINATION_FAILURE_CODES = Object.freeze(['invalid_root', 'windows_taskkill_failed', 'worker_stop_failed', 'enumeration_failed', 'descendant_signal_failed', 'browser_group_signal_failed', 'worker_group_signal_failed', 'wait_timeout']);
 const validPid = pid => Number.isSafeInteger(pid) && pid > 1 && pid !== process.pid;
 function signal(pid, name) {
   try { process.kill(pid, name); return true; }
   catch (error) { return error.code === 'ESRCH'; }
 }
 
-export async function terminateOwnedProcesses(rootPid, browserPids = [], rootRunning = true) {
-  if (!validPid(rootPid)) return false;
+export async function terminateOwnedProcesses(rootPid, browserPids = [], rootRunning = true, onDiagnostic) {
+  const note = code => { try { onDiagnostic?.(code); } catch {} };
+  const checked = (ok, code) => { if (!ok) note(code); return ok; };
+  if (!validPid(rootPid)) { note('invalid_root'); return false; }
   const owned = new Set(browserPids.filter(validPid));
   const verify = new Set(owned);
   if (rootRunning) verify.add(rootPid);
@@ -25,17 +28,17 @@ export async function terminateOwnedProcesses(rootPid, browserPids = [], rootRun
       try {
         await exec(path.join(process.env.SystemRoot || 'C:\Windows', 'System32', 'taskkill.exe'), ['/PID', String(pid), '/T', '/F'], { timeout: commandTimeout(), windowsHide: true, maxBuffer: 65536 });
       } catch {
-        try { process.kill(pid, 0); ok = false; } catch { /* already gone */ }
+        try { process.kill(pid, 0); ok = false; note('windows_taskkill_failed'); } catch { /* already gone */ }
       }
     }
-    return (await waitStopped(verify, end)) && ok;
+    return checked(await waitStopped(verify, end), 'wait_timeout') && ok;
   }
   const groups = new Set(owned);
   const individual = new Set();
   if (rootRunning) {
     // Freeze the worker before enumerating launch-time children. Playwright
     // creates its own detached browser groups (pinned processLauncher).
-    ok = signal(rootPid, 'SIGSTOP') && ok;
+    ok = checked(signal(rootPid, 'SIGSTOP'), 'worker_stop_failed') && ok;
     groups.add(rootPid); // our fork is detached, so its PGID is its PID
     try {
       const { stdout } = await exec('/bin/ps', ['-A', '-o', 'pid=,ppid=,pgid='], { timeout: commandTimeout(), maxBuffer: 1048576 });
@@ -53,12 +56,12 @@ export async function terminateOwnedProcesses(rootPid, browserPids = [], rootRun
         if (descendants.has(pgid)) groups.add(pgid);
         else individual.add(pid); // never kill an unrelated containing group
       }
-    } catch { ok = false; }
+    } catch { ok = false; note('enumeration_failed'); }
   }
-  for (const pid of individual) ok = signal(pid, 'SIGKILL') && ok;
-  for (const pid of [...groups].filter(pid => pid !== rootPid)) ok = signal(-pid, 'SIGKILL') && ok;
-  if (rootRunning) ok = signal(-rootPid, 'SIGKILL') && ok;
-  return (await waitStopped(verify, end)) && ok;
+  for (const pid of individual) ok = checked(signal(pid, 'SIGKILL'), 'descendant_signal_failed') && ok;
+  for (const pid of [...groups].filter(pid => pid !== rootPid)) ok = checked(signal(-pid, 'SIGKILL'), 'browser_group_signal_failed') && ok;
+  if (rootRunning) ok = checked(signal(-rootPid, 'SIGKILL'), 'worker_group_signal_failed') && ok;
+  return checked(await waitStopped(verify, end), 'wait_timeout') && ok;
 }
 
 async function waitStopped(pids, end) {
