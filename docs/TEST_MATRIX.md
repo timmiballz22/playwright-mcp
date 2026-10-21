@@ -130,3 +130,10 @@ Node20/22/24 with original assertions and cleanup scans intact. Before/initial/
 after logs are preserved. These are trusted fixture fixes, not runtime policy or
 execution-deadline changes. Fresh131-file production snapshot at346044f passes
 all installed checks; later changes only fix trusted test-fixture setup.
+
+Failure artifact capture now covers batch bootstrap and original-wrapper test
+steps as well as durable components. Bash pipefail was checked with a controlled
+exit3 fixture through tee (exit3 preserved); native PowerShell bootstrap still
+throws on failed commands before its pipeline can succeed. YAML parses locally;
+native artifact upload remains pending. Only trusted local test output is
+captured, retained for one day, with upload-artifact pinned to v4.6.2.
