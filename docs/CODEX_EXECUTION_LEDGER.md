@@ -2478,3 +2478,15 @@ failed run even when cleanup succeeded; the100-run process had already loaded
 the previous success path. The final guard is checked separately by the20-run
 success and controlled SIGTERM failure. Lint and YAML parse/condition checks pass;
 no new YAML dependency was installed (Node yaml unavailable; Python parser used).
+
+## Navigation fragment retry control
+
+Inspection confirms the runner already removes fragments from the current main
+navigation URL before comparing it to an HTTP request. A suspected mismatch was
+not reproduced; no runtime fix is made. The real retry fixture now exercises a
+fresh429-to200 route with an owned fragment, requiring exactly two GETs and the
+same bounded backoff, alongside the existing429/503, cancellation, exhausted,
+over-cap and no-POST-replay controls. Local Node24 Chromium passes; source code
+already handled this case. This does not explain native429 lifecycle timeouts.
+Node22 Chromium/Firefox full retry selections also pass2/2, including the new
+fragment control. Native and WebKit remain pending; no causal fix is claimed.

@@ -40,13 +40,13 @@ test(`real ${browser}: supervised navigation respects throttling and never repla
     return result;
   };
   try {
-    for (const route of ['/429', '/503']) {
+    for (const route of ['/429', '/503', '/fragment#owned-fragment']) {
       const result = await run(route);
       assert.equal(result.ok, true, JSON.stringify({ route, reason: result.reason,
         completed: result.completed, failedStep: result.failedStep, execution: result.execution,
-        hits: hits.get('GET' + route) }));
-      assert.equal(hits.get('GET' + route), 2);
-      const [first, second] = times.get('GET' + route);
+        hits: hits.get('GET' + new URL(route, origin).pathname) }));
+      assert.equal(hits.get('GET' + new URL(route, origin).pathname), 2);
+      const [first, second] = times.get('GET' + new URL(route, origin).pathname);
       assert.ok(second - first >= (route === '/429' ? 990 : 90));
     }
     const cap = await run('/cap'); assert.equal(cap.ok, false); assert.equal(cap.failedStep.httpStatus, 429);
