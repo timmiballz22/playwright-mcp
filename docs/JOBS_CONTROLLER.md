@@ -79,7 +79,8 @@ Current native acceptance for the controller is pending. The stored queue
 deadline uses wall-clock time; monotonic handling across system clock changes
 remains acceptance work. The execution supervisor retains its monotonic deadline.
 
-Public start/status/result/cancel/list/cleanup schemas and frontends, canonical
-operator configuration, retention/artifact cleanup, disk/browser quotas, profiles
-and remaining security acceptance are unfinished. G06/G08 do not pass from this
+An optional POSIX start/status/result/cancel/list MCP preview and trusted
+configuration now wrap this controller; see [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md).
+Cleanup tools, job CLI commands, retention/artifact cleanup, disk/browser quotas,
+profiles and remaining security acceptance are unfinished. G06/G08 do not pass from this
 component. The controller installs no daemon; machine shutdown stops execution.

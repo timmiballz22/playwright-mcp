@@ -1674,3 +1674,7 @@ This repository is a fork of Microsoft's Playwright MCP. The original MCP server
 - [Codex implementation and verification handoff](docs/CODEX_HANDOFF.md)
 
 **Limits:** This does not remove ChatGPT/Codex usage allowances or target website rate limits. The original Playwright MCP is maintained upstream, with core code now in the Microsoft Playwright monorepo.
+
+The optional [local jobs MCP preview](docs/JOBS_MCP_PREVIEW.md) provides durable
+start/status/result/cancel/list tools on POSIX with Node 22.13+. Native acceptance
+is pending; Windows ACLs, cleanup tooling and other release gates remain open.

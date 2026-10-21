@@ -1023,3 +1023,42 @@ CLI/MCP retain the independent supervisor and temporary cleanup verification.
 NEXT: inspect headed/headless native evidence and lock-wait regression, diagnose
 remaining driver shutdown/action stalls, then continue public job/configuration,
 retention/profile/security gates. Full goal remains incomplete.
+
+### 2026-10-21 — optional POSIX jobs MCP preview (native pending)
+
+Native candidate4ed6429 finished618 passed/3 failed, zero test skips/cancellations.
+Batch39530163977:458/2; wrapper39530163988:160/1. Windows Firefox
+headless fresh8 stalled action13 then context/server cleanup; headed fresh1
+completed23/23 but server cleanup timed out. Headed is not a resolution.
+Windows Chrome original modal workflow timed out in browser_close at10sec.
+All four component jobs passed the bounded journal-lock fixture. Selected logs
+and reporter-aware counts are preserved in worker-ci-nineteenth-* evidence.
+
+Added an optional five-tool stdio jobs preview, private POSIX operator config,
+project-shared leases/owner-scoped records, default read-only action/network policy,
+and installed-package smoke. Node22.13+ required; Windows rejects startup until
+ACL enforcement exists. No daemon, replay or resume. Cleanup tool and jobs CLI
+remain unfinished. Tool input cannot change trusted origins, owner or permissions.
+Default GET/HEAD restriction does not prove server-side semantic read-only behavior.
+
+Local preview tests:5 passed, no skips/failures, including a real1000-action
+Chromium job, duplicate/conflicting starts, foreign-owner denial, queued/active
+cancellation, EOF cancellation and reconnect. Mutation actions reject before any
+worker starts; automatic POST is blocked before its effect. Explicit mutation
+opt-in permits the control request. Config checks reject unsafe directories and
+invalid owner/policy before storage creation. Node20 rejects unsupported runtime
+before state creation (one test passed). Shared existing workflow schema retained.
+First confirmed action now emits a progress milestone before the existing25-action
+cadence, fixing stale progress on short jobs without per-action MCP calls.
+Broader local regression:66 passed, zero failed/skipped/cancelled, covering original
+one-tool1000-action MCP, executor admission/crash/cleanup receipts, controller,
+journal, guardian, ownership, workflow validation and input bounds.
+See JOBS_MCP_PREVIEW.md for exact configuration and unresolved gates. Full mission
+remains incomplete; no release-ready claim, publication or main merge.
+Fresh installed103-file production package also passed original25-tool navigation,
+batch endpoint/CLI, new five-tool jobs real Chromium duplicate execution control,
+internal controller/guardian/storage and actual controller SIGKILL with12 observed
+owned processes, zero active afterward, terminal cancellation, released lease and
+journal integrity. Preview fixture cleanup now independently audits trusted process
+handles and preserves private directories if cleanup cannot be confirmed; HTTP
+fixtures close even when the audit fails. Evidence:jobs-preview-*.txt.

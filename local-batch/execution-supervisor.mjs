@@ -93,7 +93,7 @@ process.on('message', message => {
       browserPids.add(event.pid); send(event);
     } else if (event.type === 'progress' && Number.isInteger(event.completed) && event.completed >= completed && event.completed <= packet.total) {
       completed = event.completed;
-      if (completed % 25 === 0 || completed === packet.total) send({ type: 'progress', completed });
+      if (completed === 1 || completed % 25 === 0 || completed === packet.total) send({ type: 'progress', completed });
     } else if (event.type === 'actionFailure' && Number.isInteger(event.failedStep?.index) && event.failedStep.index > 0 &&
         event.failedStep.index <= packet.total && ['goto', 'click', 'fill', 'press', 'check', 'uncheck', 'hover', 'waitFor', 'assertText', 'assertURL', 'scroll', 'screenshot'].includes(event.failedStep.type) &&
         FAILURE_KINDS.includes(event.failedStep.failureKind) && STEP_FAILURE_CODES.includes(event.failedStep.error)) {

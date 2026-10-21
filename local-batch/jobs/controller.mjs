@@ -6,6 +6,7 @@ import path from 'node:path';
 import { JobJournal, JournalError } from './journal.mjs';
 import { captureWorkflow } from './workflow-snapshot.mjs';
 import { navigationRetryPolicy } from '../navigation-retry.mjs';
+import { validateExecutionPolicy } from '../policy.mjs';
 const terminal = new Set(['SUCCEEDED', 'FAILED', 'CANCELLED', 'TIMED_OUT', 'CRASHED']);
 
 export class JobController {
@@ -50,7 +51,7 @@ export class JobController {
     if (this.pending >= 8) return Promise.reject(new JournalError('controller_busy'));
     const acceptedAt = Date.now();
     let snapshot;
-    try { snapshot = captureWorkflow(input); }
+    try { snapshot = captureWorkflow(input); validateExecutionPolicy(snapshot.spec, this.execution); }
     catch (error) { return Promise.reject(error); }
     return this.serialize(async () => {
       if (this.closed) throw new JournalError('controller_closed');

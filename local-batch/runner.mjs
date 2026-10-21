@@ -3,6 +3,7 @@
 import { mkdir, mkdtemp } from 'node:fs/promises';
 import path from 'node:path';
 import { performance } from 'node:perf_hooks';
+import { allowedAddress, validateExecutionPolicy } from './policy.mjs';
 import { classifyActionFailure } from './failure.mjs';
 import { navigationRetryPolicy, navigationRetryDelay, parseRetryAfter } from './navigation-retry.mjs';
 import { setTimeout as delay } from 'node:timers/promises';
@@ -113,27 +114,6 @@ export function validateWorkflow(workflow) {
   return { browser, timeoutMs, actionTimeoutMs, iterations, steps };
 }
 
-function parseOrigins(allowedOrigins) {
-  if (!Array.isArray(allowedOrigins))
-    throw new TypeError('allowedOrigins must be an array');
-  return new Set(allowedOrigins.map(origin => {
-    const parsed = new URL(origin);
-    if (!['https:', 'http:'].includes(parsed.protocol) ||
-        parsed.username || parsed.password || parsed.pathname !== '/' ||
-        parsed.search || parsed.hash)
-      throw new TypeError('Allowed origins must be exact http(s) origins');
-    return parsed.origin;
-  }));
-}
-
-function allowedAddress(raw, allowed) {
-  let url;
-  try { url = new URL(raw); } catch { return false; }
-  if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password)
-    return false;
-  return allowed.has(url.origin);
-}
-
 async function perform(page, step, index, artifactsDir) {
   const locator = step.selector ? resolveLocator(page, step.selector) : undefined;
   switch (step.type) {
@@ -192,20 +172,15 @@ export async function runWorkflow(workflow, {
   artifactsDir = path.resolve('.local-batch-output'),
   signal,
   allowSensitiveArtifacts = false,
+  readOnly = false,
   onBrowserProcess,
   onProgress,
   navigationRetry, // Trusted operator opt-in for safe GET navigation only.
   onActionFailure, // Trusted source diagnostics only; never accepted in workflow JSON.
 } = {}) {
   const spec = validateWorkflow(workflow);
-  const allowed = parseOrigins(allowedOrigins);
+  const allowed = validateExecutionPolicy(spec, { allowedOrigins, allowSensitiveArtifacts, readOnly });
   const retryPolicy = navigationRetryPolicy(navigationRetry);
-  if (spec.steps.some(step => step.type === 'screenshot') && allowSensitiveArtifacts !== true)
-    throw new TypeError('Sensitive artifact capture requires local operator approval');
-  for (const step of spec.steps) {
-    if ((step.type === 'goto' || step.type === 'assertURL') && !allowedAddress(step.url, allowed))
-      throw new TypeError('Navigation origin is not approved; configure allowed origins locally');
-  }
   if (signal?.aborted)
     return { ok: false, reason: 'cancelled', completed: 0, results: [] };
 
@@ -275,7 +250,7 @@ export async function runWorkflow(workflow, {
     // redirect method/body/cookie semantics have a separately verified executor.
     await bounded(context.route('**/*', async route => {
       try {
-        if (!allowedAddress(route.request().url(), allowed)) {
+        if (!allowedAddress(route.request().url(), allowed) || readOnly && !['GET', 'HEAD'].includes(route.request().method())) {
           blockedRequests++;
           return await route.abort('blockedbyclient');
         }
