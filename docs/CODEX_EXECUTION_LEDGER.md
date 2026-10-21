@@ -2889,3 +2889,20 @@ actual Codex clients complete1k (Linux40.395s/Windows37.813s/macOS85.549s), zero
 model turns and zero observed owned processes. All five167-file production
 installs pass. Full workflows failed; these healthy substeps do not explain the
 recurrent native Firefox/macOS timing and ownership observations.
+
+## Preserve cancelled MCP acceptance evidence
+
+Native50's macOS 120s MCP test cancelled before a useful summary, then removed
+its workspace. The test now forwards its AbortSignal to the SDK workflow call,
+keeps the existing120s ceilings/1,000-action assertions, emits only fixed
+stage/outcome/abort/close metadata and preserves failed artifacts. Primary and
+close failures remain distinct via AggregateError. Successful runs still remove
+the fixture workspace. This changes test evidence/lifecycle, not browser timing.
+
+Real local1,000-action acceptance passes (34.835s total test process). Private
+10-action controlled wrong-counter assertion fails as intended, emits summary
+with confirmed cleanup, and preserves report. A private stalled response under
+a1.5s test ceiling exits1 with one cancelled test (zero failed tests), aborted:true
+workflow receipt and preserved scope. These are intentional negative controls,
+not passing acceptance or independent proof of no orphan. Temporary fault specs
+are removed; receipts and artifact counts are retained in mcp-failure-retention-*.

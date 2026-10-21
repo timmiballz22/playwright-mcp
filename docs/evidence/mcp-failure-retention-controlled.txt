@@ -1,0 +1,30 @@
+{"fixture":"batch_mcp_workspace_preserved","stage":"summary","outcome":{"ok":true,"reason":null,"completed":10,"cleanup":"terminated","tempCleanup":"removed"},"aborted":false,"primaryFailed":true,"closeFailed":false}
+✖ local stdio MCP: handshake, tool list, rejection, browser workflow (1538.269443ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1800.335161
+
+✖ failing tests:
+
+test at local-batch/mcp-retention-fault.tmp.mjs:14:1
+✖ local stdio MCP: handshake, tool list, rejection, browser workflow (1538.269443ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  10 !== 11
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/mcp-retention-fault.tmp.mjs:62:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 10,
+    expected: 11,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
