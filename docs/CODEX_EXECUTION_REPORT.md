@@ -1,6 +1,35 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `107076c`: **1,165 tests passed/nine failed**, zero
+Latest completed native `08e434a`: **1,196 tests passed/five failed**, plus a
+separate failed actual-Codex acceptance job on macOS Intel. Zero reported test
+skips/cancellations; all17 jobs completed. Wrapper39585522873:414/2;
+batch39585522979:782/3. Original136-test host suites all pass, Docker2/2 and
+macOS modal repeats3/3 pass. Highlight pixels/hide restoration now pass all native
+host browser projects. Read-only profile diagnosis, persistent profile and normal/
+lingering controller-death installed-package checks pass all five batch lanes.
+
+Five test failures: Windows Node20 raw Firefox headless fresh7 and headed fresh8
+stall after8 confirmed actions with context close timeout; direct-pipe10 passes.
+macOS Chromium1,000-action cases time out with raw992, durable jobs989 and batch
+MCP992 confirmed. Durable/MCP cleanup is terminated/removed, and the durable
+result stays available without operator attention. Windows Node22 batch is clean;
+this does not establish a cause for legacy/earlier Firefox failures.
+
+Actual Codex passes Linux35.445s and Windows38.991s (1,000 actions, zero model turns/
+owned survivors). macOS instead becomes CRASHED after925 confirmed actions:
+finish/invalid_metadata/finish, result unavailable and operator attention true.
+Two producer/validator defects are reproduced and fixed locally: bounded
+terminationFailures was rejected, and four cooperative close/kill failures exceeded
+the journal's old three-entry shape. Fixed schemas accept only known bounded
+codes, retain failed results and block uncertain leases.36 checks each Node22/24,
+16 Node20 executor/termination checks, four cleanup checks each Node20/22/24 and a
+fresh157-file production-only package pass. These are result-preservation fixes;
+underlying native timeout/cleanup failures remain open. New cache control and
+slider/resume negatives also await native confirmation. Evidence:
+worker-ci-fortythird-*, journal-cleanup-metadata-* and routing-cache-*. **Not
+release-ready.**
+
+Previous completed native `107076c`: **1,165 tests passed/nine failed**, zero
 reported test skips/cancellations; all17 jobs completed. Wrapper39582244429:
 408/5; batch39582244422:757/4. Docker's two cases now pass with host-UID mapping
 and owned private XDG config/cache directories. Installed production-package
@@ -24,7 +53,7 @@ nine tests each on Node20/22/24 and a155-file production-only install; native
 confirmation of this new command remains pending. Evidence: worker-ci-fortysecond-*,
 highlight-region-local.txt and profile-doctor-*. **Not release-ready.**
 
-While native08e434a remains running, its macOS Codex failure reports
+During native08e434a, its macOS Codex failure reports
 finish/invalid_metadata after925 actions. A deterministic SQLite RPC regression
 reproduces the supervisor terminationFailures field being rejected by journal
 validation. The pending fix accepts only eight fixed bounded codes, preserves
