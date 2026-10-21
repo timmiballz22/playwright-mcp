@@ -61,3 +61,15 @@ export function windowsAuditReceipt(roots, rows, observed, helperPid, identities
     birthsBeforeObservationWindow: Number.isFinite(sinceMs) ? matches.filter(row => valid(row.started) && Date.parse(row.started) < sinceMs).length : null,
     missingObservedBirths: matches.filter(row => !valid(row.started)).length };
 }
+
+// Each trusted child lifetime gets a separate identity map. Union observations
+// across lifetimes so registering a new owned incarnation cannot erase older
+// orphan ancestry or turn its birth mismatch into an ignored process.
+export function windowsOwnedProcessScopes(scopes, rows, rememberLiveRoots = false) {
+  const result = new Set();
+  for (const scope of scopes) {
+    const observed = windowsOwnedProcesses([...scope.roots], rows, scope.identities, rememberLiveRoots);
+    for (const pid of observed) { scope.roots.add(pid); result.add(pid); }
+  }
+  return [...result].sort((a, b) => a - b);
+}

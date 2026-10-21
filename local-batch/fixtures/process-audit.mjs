@@ -2,10 +2,10 @@
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
-import { windowsOwnedProcesses, windowsCimFailurePhase, windowsAuditReceipt } from './windows-process-graph.mjs';
+import { windowsOwnedProcesses, windowsOwnedProcessScopes, windowsCimFailurePhase, windowsAuditReceipt } from './windows-process-graph.mjs';
 const identities = new Map();
 const exec = promisify(execFile);
-export async function ownedDescendants(roots, { rememberLiveRoots = false, onReceipt, sinceMs } = {}) {
+export async function ownedDescendants(roots, { rememberLiveRoots = false, onReceipt, sinceMs, identityScopes } = {}) {
   const owned = new Set(roots.filter(pid => Number.isSafeInteger(pid) && pid > 1));
   let rows;
   if (process.platform === 'win32') {
@@ -36,10 +36,10 @@ $json = $rows | ConvertTo-Json -Compress
     }
     const parsed = JSON.parse(stdout);
     rows = (Array.isArray(parsed) ? parsed : [parsed]).map(row => ({ pid: Number(row.ProcessId), parent: Number(row.ParentProcessId), started: row.Started }));
-    const result = windowsOwnedProcesses(roots, rows, identities, rememberLiveRoots);
+    const result = identityScopes ? windowsOwnedProcessScopes(identityScopes, rows, rememberLiveRoots) : windowsOwnedProcesses(roots, rows, identities, rememberLiveRoots);
     // Diagnostic only: a matching audit helper remains in the conservative
     // result. Never hide a possible orphan based on its role or PID reuse.
-    try { onReceipt?.(windowsAuditReceipt([...owned], rows, result, helperPid, identities, sinceMs)); } catch {}
+    try { onReceipt?.(windowsAuditReceipt([...owned], rows, result, helperPid, identityScopes ? new Map(identityScopes.flatMap(scope => [...scope.identities])) : identities, sinceMs)); } catch {}
     return result;
   } else {
     const { stdout } = await exec('/bin/ps', ['-A', '-o', 'pid=,ppid=,pgid=,stat='], { timeout: 2000, maxBuffer: 1048576 });
@@ -48,10 +48,23 @@ $json = $rows | ConvertTo-Json -Compress
       return { pid: Number(pid), parent: Number(parent), group: Number(group), zombie: state?.startsWith('Z') };
     });
   }
-  let previous;
-  do {
-    previous = owned.size;
-    for (const row of rows) if (owned.has(row.parent) || owned.has(row.group)) owned.add(row.pid);
-  } while (previous !== owned.size);
-  return rows.filter(row => owned.has(row.pid) && !row.zombie).map(row => row.pid).sort((a, b) => a - b);
+  const collect = roots => {
+    const descendants = new Set(roots); let previous;
+    do {
+      previous = descendants.size;
+      for (const row of rows) if (descendants.has(row.parent) || descendants.has(row.group)) descendants.add(row.pid);
+    } while (descendants.size !== previous);
+    return rows.filter(row => descendants.has(row.pid) && !row.zombie).map(row => row.pid);
+  };
+  if (identityScopes) {
+    const all = new Set();
+    for (const scope of identityScopes) for (const pid of collect(scope.roots)) { scope.roots.add(pid); all.add(pid); }
+    return [...all].sort((a, b) => a - b);
+  }
+  return collect(owned).sort((a, b) => a - b);
+}
+
+// Source-only test ownership ledger. One process-table read covers every scope.
+export function ownedScopeDescendants(scopes, options = {}) {
+  return ownedDescendants([...new Set(scopes.flatMap(scope => [...scope.roots]))], { ...options, identityScopes: scopes });
 }

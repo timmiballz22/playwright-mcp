@@ -1,0 +1,17 @@
+✔ preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect (44006.863735ms)
+✔ audit receipts describe reused IDs without hiding possible processes or exposing identities (2.234101ms)
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (0.266002ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (3.873436ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (0.686245ms)
+✔ live-root snapshots retain exited browser identities for the final orphan scan (0.254817ms)
+✔ CIM error phase keeps only exact fixed markers and never raw diagnostics (0.507935ms)
+✔ separate owned lifetimes retain old orphans when a new client reuses its PID (0.448373ms)
+✔ new client may reuse an earlier observed descendant without losing either orphan lineage (0.184774ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 44701.446054

@@ -3011,3 +3011,28 @@ pipe62.726/server87.829s and batch server117.798/pipe103.212s both1k/zero-owned.
 These healthy controls do not explain the earlier failures. Selected logs/counts
 and exact job-state snapshots: worker-ci-fiftyfirst-*. Local later worker/receipt
 changes remain outside this SHA and await native verification.
+
+## Separate test ownership identities by client lifetime (local candidate)
+
+Native51's Windows jobs MCP failure occurs at open(owner,true), before its1k job:
+registering a fresh writer against one shared PID→birth map sees a different birth
+from a prior observed root/descendant. The conservative error remains valid for
+one lifetime; treating every new owned client as that same lifetime is ambiguous.
+Added per-client identity scopes and unioned observations from one process-table
+snapshot. Old scopes/roots/descendants are retained through the final scan.
+New scope registration records the actual transport PID during start and requires
+that transport still be live after the identity observation. No process is
+filtered by helper role/name or merely because it predates a test window.
+
+Pure cases reproduce the previous shared-map mismatch and verify two separately
+owned incarnations include BOTH earlier orphans and new descendants, including
+reuse of an old descendant ID. A changed birth inside one scope still throws;
+later unrelated reuse is not promoted to owned and old orphans remain. Existing
+single-scope graph rules and default callers stay intact. These are read-only
+test helpers, not browser termination/PID permission changes.
+
+Node20 graph8/8; Node22/24 graph+real jobs MCP9/9 each (including1k, dedup, foreign
+owner denial, active/queued cancellation, EOF/reconnect and screenshot quota).
+Default helper adapter/parent-loss tests8/8 also pass. Lint/diff pass. No native
+fix is claimed yet; source is local while7d97686 native worker CI runs. Receipts:
+scoped-process-audit-*. Earlier unexplained ownership observations remain open.

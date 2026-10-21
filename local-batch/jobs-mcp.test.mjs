@@ -12,11 +12,11 @@ import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { resolveJobConfig } from './jobs/config.mjs';
 import { supportsJournal } from './jobs/journal.mjs';
-import { ownedDescendants } from './fixtures/process-audit.mjs';
+import { ownedScopeDescendants } from './fixtures/process-audit.mjs';
 const entry = fileURLToPath(new URL('./jobs-mcp.mjs', import.meta.url));
 if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect', { timeout: 180000 }, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-mcp-'));
-  const owner = randomUUID(); const clients = []; const roots = []; let observed = [];
+  const owner = randomUUID(); const clients = []; const scopes = [];
   const server = createServer((_request, response) => { response.writeHead(200, { 'Content-Type': 'text/html' }); response.end('<div id="ready">ready</div><button>Add</button><output>0</output><script>let n=0;document.querySelector("button").onclick=()=>document.querySelector("output").textContent=String(++n)</script>'); });
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   const origin = `http://127.0.0.1:${server.address().port}`;
@@ -25,8 +25,16 @@ if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission,
     const transport = new StdioClientTransport({ command: process.execPath, args: [entry], stderr: 'pipe', env: {
       ...process.env, PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: mutations ? '1' : '0', PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS: maxScreenshotBytes === undefined ? '0' : '1', PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES: String(maxScreenshotBytes ?? 16777216), PLAYWRIGHT_JOBS_OWNER_ID: ownerId, PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data'), PLAYWRIGHT_JOBS_PROJECT_DIR: root, PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: origin,
     } });
-    await client.connect(transport); roots.push(transport.pid); clients.push(client);
-    observed.push(...await ownedDescendants([transport.pid], { rememberLiveRoots: true }));
+    clients.push(client);
+    const start = transport.start.bind(transport);
+    transport.start = async () => {
+      await start();
+      const pid = transport.pid;
+      const scope = { roots: new Set([pid]), identities: new Map() }; scopes.push(scope);
+      await ownedScopeDescendants([scope], { rememberLiveRoots: true });
+      assert.equal(transport.pid, pid, 'Owned client exited during initial identity observation');
+    };
+    await client.connect(transport);
     return client;
   }
   async function call(client, name, args) {
@@ -59,7 +67,7 @@ if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission,
     assert.equal(cancelled.state, 'CANCELLED'); assert.equal(cancelled.completed, 0);
     const emptyResult = await call(client, 'get_workflow_result', { jobId: queued.jobId });
     assert.equal(emptyResult.ready, true); assert.equal(emptyResult.result, null);
-    observed = await ownedDescendants(roots);
+    await ownedScopeDescendants(scopes);
     await call(client, 'cancel_workflow', { jobId: first.jobId });
     const result = await call(client, 'get_workflow_result', { jobId: first.jobId, waitMs: 10000 });
     assert.equal(result.ready, true); assert.equal(result.job.state, 'CANCELLED');
@@ -74,7 +82,7 @@ if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission,
     const eofEnd = performance.now() + 10000;
     do { row = await call(restarted, 'get_workflow_status', { jobId: eofJob.jobId }); if (row.completed === 1) break; await new Promise(resolve => setTimeout(resolve, 25)); } while (performance.now() < eofEnd);
     assert.equal(row.state, 'RUNNING');
-    observed.push(...await ownedDescendants(roots));
+    await ownedScopeDescendants(scopes);
     await restarted.close();
     const observer = await open();
     const eofResult = await call(observer, 'get_workflow_result', { jobId: eofJob.jobId, waitMs: 10000 });
@@ -123,8 +131,8 @@ if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission,
     let clean = false;
     try {
       const end = performance.now() + 10000;
-      while ((await ownedDescendants([...roots, ...observed])).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 50));
-      assert.deepEqual(await ownedDescendants([...roots, ...observed]), []);
+      while ((await ownedScopeDescendants(scopes)).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 50));
+      assert.deepEqual(await ownedScopeDescendants(scopes), []);
       clean = true;
     } finally {
       server.closeAllConnections(); await new Promise(resolve => server.close(resolve));
