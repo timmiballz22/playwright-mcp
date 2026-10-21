@@ -12,50 +12,40 @@ import { ownedDescendants } from '../local-batch/fixtures/process-audit.mjs';
 import { terminateOwnedProcesses } from '../local-batch/process-tree.mjs';
 const send = value => { if (process.connected) process.send(value, () => {}); };
 if (process.argv[2] === '--owned-child') {
-  const logging = process.argv[3] === 'logged'; const directory = process.argv[4];
+  const privateTempRoot = process.argv[3] === 'private'; const directory = process.argv[4];
   const fixture = createServer((_request, response) => {
     response.writeHead(200, { 'Content-Type': 'text/html' });
     response.end('<!doctype html><title>Local Fixture</title><button id="add">Add</button><output id="count">0</output><script>let n=0;document.querySelector("#add").onclick=()=>{document.querySelector("#count").textContent=String(++n)}</script>');
   });
   fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
   const origin = `http://127.0.0.1:${fixture.address().port}`;
-  const temporary = path.join(directory, 'tmp'); await mkdir(temporary, { mode: 0o700 });
-  process.env.TMPDIR = temporary; process.env.TEMP = temporary; process.env.TMP = temporary;
-  const { firefox } = await import('playwright'); let log = '';
-  const record = value => { log = (log + String(value) + '\n').slice(-4096); };
-  const logger = { isEnabled: name => name === 'browser', log: (_name, _severity, value) => record(value) };
-  const provider = { firefox: {
-    launchServer: async options => {
-      const server = await firefox.launchServer({ ...options, ...(logging ? { logger } : {}) });
-      if (logging) server.process().stderr?.on('data', record);
-      return server;
-    },
-    connect: (...args) => firefox.connect(...args),
-  } };
+  if (privateTempRoot) {
+    const temporary = path.join(directory, 'tmp'); await mkdir(temporary, { mode: 0o700 });
+    process.env.TMPDIR = temporary; process.env.TEMP = temporary; process.env.TMP = temporary;
+  }
+  const { firefox } = await import('playwright');
   // Only this initial handshake waits for the audit, before any browser exists.
   const start = once(process, 'message'); send({ type: 'ready' }); await start;
   let successfulRuns = 0; let confirmedActions = 0; let last;
   try {
     for (let iteration = 0; iteration < 10; iteration++) {
-      log = '';
       const result = await runWorkflow({ browser: 'firefox', schemaVersion: 1, timeoutMs: 120000, steps: [
         { type: 'goto', url: origin + '/' }, ...Array.from({ length: 20 }, () => ({ type: 'click', selector: { role: 'button', name: 'Add' } })),
         { type: 'assertText', selector: '#count', equals: '20' }, { type: 'screenshot' },
-      ] }, { artifactsDir: directory, allowedOrigins: [origin], allowSensitiveArtifacts: true, playwright: provider,
+      ] }, { artifactsDir: directory, allowedOrigins: [origin], allowSensitiveArtifacts: true, playwright: { firefox },
         onBrowserProcess: pid => send({ type: 'browser', pid }),
       });
       confirmedActions += result.completed;
       const failure = result.results.find(step => !step.ok);
       last = { ok: result.ok, reason: result.reason, completed: result.completed, total: result.total, actionsSucceeded: result.actionsSucceeded,
-        cleanupFailures: result.cleanupFailures, durationMs: result.durationMs, failureKind: failure?.failureKind,
-        geckoProgressListenerError: log.includes('removeProgressListener') };
+        cleanupFailures: result.cleanupFailures, durationMs: result.durationMs, failureKind: failure?.failureKind };
       if (!result.ok) break; // Never retry a failed action/run.
       assert.equal(result.completed, 23); successfulRuns++;
     }
   } catch { last = { ok: false, reason: 'fixture_failed' }; }
   // Keep the owned controller alive until its final identity snapshot is taken.
   const finish = once(process, 'message');
-  send({ type: 'receipt', value: { logging, requiredFreshRuns: 10, successfulRuns, confirmedActions, ok: successfulRuns === 10, last } });
+  send({ type: 'receipt', value: { logging: false, privateTempRoot, requiredFreshRuns: 10, successfulRuns, confirmedActions, ok: successfulRuns === 10, last } });
   await finish;
   fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
   process.disconnect();
@@ -67,7 +57,7 @@ if (process.argv[2] === '--owned-child') {
       void terminateOwnedProcesses(current.pid, [], true).catch(() => {});
   };
   process.once('SIGINT', cancel); process.once('SIGTERM', cancel);
-  for (const mode of ['plain', 'logged']) {
+  for (const mode of ['inherited', 'private']) {
     if (interrupted) throw new Error('Exact runner diagnostic cancelled');
     const directory = await mkdtemp(path.join(os.tmpdir(), 'ff-runner-' + mode + '-'));
     const child = fork(fileURLToPath(import.meta.url), ['--owned-child', mode, directory], { detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
@@ -107,7 +97,7 @@ if (process.argv[2] === '--owned-child') {
       while (remaining.length && performance.now() < end) { await new Promise(resolve => setTimeout(resolve, 100)); remaining = await ownedDescendants([child.pid, ...browsers, ...observed]); }
       assert.deepEqual(remaining, [], 'Exact runner diagnostic cleanup uncertain');
       assert.equal(auditFailure, false, 'Exact runner process identity uncertain'); clean = true;
-      const result = { os: process.platform, mode, privateTempRoot: true, ...(receipt ?? { ok: false, reason: interrupted ? 'operator_cancelled' : 'independent_deadline_or_exit' }), residualProcessesBeforeForce: residual.length, activeOwnedProcesses: 0 };
+      const result = { os: process.platform, mode, privateTempRoot: mode === 'private', ...(receipt ?? { ok: false, reason: interrupted ? 'operator_cancelled' : 'independent_deadline_or_exit' }), residualProcessesBeforeForce: residual.length, activeOwnedProcesses: 0 };
       if (residual.length) result.ok = false;
       console.log(JSON.stringify(result));
       if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Firefox exact runner::' + JSON.stringify(result));

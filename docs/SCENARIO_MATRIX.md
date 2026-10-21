@@ -1,6 +1,29 @@
 # Mandatory scenario evidence
 
-Latest completed native `94d7cd4`: **999 tests passed/five failed**, zero test
+Latest completed native `2ff0c15`: **758 tests passed/six failed**, zero test
+skips/cancellations, **four macOS arm64 jobs cancelled before execution** because
+GitHub could not acquire hosted runners. Counts exclude that missing platform;
+this is not comparable full coverage to earlier totals. Wrapper39572164280:187/2;
+batch39572164479:571/4. Failures remain Windows Firefox: three raw modes,429 case,
+and two legacy Node20 modes. All92 original cases pass on both completed OS lanes;
+installed146-file packages/components and witnessed slow-navigation checks pass
+on Linux/Windows. macOS has no current-candidate result.
+
+Actual Codex1,000-action checks pass Windows39.366s(start27ms)/Linux35.536s,
+zero model turns/owned survivors. The prior94d7cd4 Windows CRASHED job remains
+unexplained, not declared fixed. Private-temp raw Firefox probes again pass ten
+fresh runs each with logging off/on,460 actions total, zero owned survivors;
+removeProgressListener still occurs on the passing logged case. Next controlled
+probe compares inherited/private temp with logging off in both. Local both cases
+pass10 fresh runs/230 actions each; no cause is established.
+
+Next native candidate uses documented macOS15 Intel runners for automatic lanes,
+retains arm64 as a manual workflow input, and records that fresh arm64 verification
+remains open. No macOS test is removed. Evidence: worker-ci-thirtyninth-* and
+native39-macos-runner-capacity.json. **Not release-ready.**
+
+
+Previous completed native `94d7cd4`: **999 tests passed/five failed**, zero test
 skips/cancellations. Wrapper39568334026:278/3; batch39568334110:721/2. All five
 test failures are Windows Firefox: original iframe/large-DOM/network-console
 cases, supervised20-click workflow and429 navigation. Separately, Windows actual

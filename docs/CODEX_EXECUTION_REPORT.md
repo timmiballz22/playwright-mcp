@@ -1,6 +1,29 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `94d7cd4`: **999 tests passed/five failed**, zero test
+Latest completed native `2ff0c15`: **758 tests passed/six failed**, zero test
+skips/cancellations, **four macOS arm64 jobs cancelled before execution** because
+GitHub could not acquire hosted runners. Counts exclude that missing platform;
+this is not comparable full coverage to earlier totals. Wrapper39572164280:187/2;
+batch39572164479:571/4. Failures remain Windows Firefox: three raw modes,429 case,
+and two legacy Node20 modes. All92 original cases pass on both completed OS lanes;
+installed146-file packages/components and witnessed slow-navigation checks pass
+on Linux/Windows. macOS has no current-candidate result.
+
+Actual Codex1,000-action checks pass Windows39.366s(start27ms)/Linux35.536s,
+zero model turns/owned survivors. The prior94d7cd4 Windows CRASHED job remains
+unexplained, not declared fixed. Private-temp raw Firefox probes again pass ten
+fresh runs each with logging off/on,460 actions total, zero owned survivors;
+removeProgressListener still occurs on the passing logged case. Next controlled
+probe compares inherited/private temp with logging off in both. Local both cases
+pass10 fresh runs/230 actions each; no cause is established.
+
+Next native candidate uses documented macOS15 Intel runners for automatic lanes,
+retains arm64 as a manual workflow input, and records that fresh arm64 verification
+remains open. No macOS test is removed. Evidence: worker-ci-thirtyninth-* and
+native39-macos-runner-capacity.json. **Not release-ready.**
+
+
+Previous completed native `94d7cd4`: **999 tests passed/five failed**, zero test
 skips/cancellations. Wrapper39568334026:278/3; batch39568334110:721/2. All five
 test failures are Windows Firefox: original iframe/large-DOM/network-console
 cases, supervised20-click workflow and429 navigation. Separately, Windows actual
@@ -1361,3 +1384,37 @@ locator expectation assumed semantic rewriting; pinned upstream correctly return
 locator('#name') for the supplied CSS selector. The test now checks that contract;
 no upstream implementation changed. Evidence: original-network-routing-* and
 original-testing-capabilities-* under evidence/. Native confirmation remains pending.
+
+
+## Standalone original CLI creation-mask hardening
+
+A fake storage-state export under this workspace's0077 umask initially produced
+0600 files, but a new negative control inherits the common0022 mask and proves
+the delegated writer creates0644 fresh exports. The standalone CLI now sets its
+own POSIX creation mask to0077 before loading the backend. Twelve combined real
+Chromium/Firefox storage/network/testing cases pass(25.0s), including an explicit
+0022-inherited export/restore case requiring0600. The test restores its own worker
+mask in finally. Saved cookies/localStorage restore into a fresh client, replace
+pre-existing values, and exclude sessionStorage. Static dummy values only.
+
+The library import preserves its host's0022 mask(verified separately). This scoped
+CLI fix does not repair pre-existing file modes, establish Windows export ACLs,
+or secure arbitrary embedding hosts. Those remain documented privacy requirements;
+no capability is removed and the delegated tool schemas stay unchanged. Evidence:
+storage-state-permissive-mask-before.txt and private-cli-expanded-capabilities.txt.
+
+## Next Firefox factor and macOS runner capacity
+
+After two native private-temp logging comparisons passed while strict raw tests
+failed, diagnose-firefox-runner.mjs now holds logging off and compares inherited
+versus private browser temp storage. Both retain the exact ten fresh23-action
+workflows, deadline/policy, ownership audits and no replay. Local Node22 both pass
+230 actions each, zero owned survivors; evidence firefox-temp-factor-local.jsonl.
+This is diagnostic-only; production temp/policy/timeout behavior is unchanged.
+
+All four queued macOS arm64 lanes in native2ff0c15 were cancelled with GitHub's
+"job was not acquired"/capacity annotations before running steps. Official
+https://github.com/actions/runner-images documents macos-15-intel(x64) and
+macos-15(arm64). Automatic lanes select the former; workflow_dispatch can select
+the latter. Same macOS version and test commands; architecture coverage is explicit.
+Arm64 remains an open current-candidate acceptance requirement, not a skipped PASS.

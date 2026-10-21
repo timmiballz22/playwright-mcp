@@ -1,5 +1,13 @@
 name: Local batch QA
 on:
+  workflow_dispatch:
+    inputs:
+      macos_runner:
+        description: Native macOS runner architecture
+        type: choice
+        required: true
+        default: macos-15-intel
+        options: [macos-15-intel, macos-15]
   push:
     branches: [main]
   pull_request:
@@ -15,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-15, windows-latest]
+        os: [ubuntu-latest, "${{ inputs.macos_runner || 'macos-15-intel' }}", windows-latest]
         node: ['22']
         include:
           - os: ubuntu-latest
@@ -30,7 +38,7 @@ jobs:
       - name: Run durable component tests
         id: components
         shell: bash
-        run: node --test --test-concurrency=1 local-batch/jobs/journal.test.mjs local-batch/jobs/guardian.test.mjs local-batch/jobs/workflow-snapshot.test.mjs local-batch/jobs/controller.test.mjs local-batch/jobs/contention.test.mjs local-batch/jobs/config.test.mjs local-batch/jobs/private-windows.test.mjs local-batch/jobs/artifact-cleanup.test.mjs local-batch/jobs/queue-clock.test.mjs scripts/ci-test-counts.test.mjs 2>&1 | tee component-tests.log
+        run: node --test --test-concurrency=1 local-batch/jobs/journal.test.mjs local-batch/jobs/guardian.test.mjs local-batch/jobs/guardian-diagnostic.test.mjs local-batch/jobs/workflow-snapshot.test.mjs local-batch/jobs/controller.test.mjs local-batch/jobs/contention.test.mjs local-batch/jobs/config.test.mjs local-batch/jobs/private-windows.test.mjs local-batch/jobs/artifact-cleanup.test.mjs local-batch/jobs/queue-clock.test.mjs scripts/ci-test-counts.test.mjs 2>&1 | tee component-tests.log
       - name: Preserve failed component evidence
         if: failure() && steps.components.outcome == 'failure'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -43,7 +51,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-15, windows-latest]
+        os: [ubuntu-latest, "${{ inputs.macos_runner || 'macos-15-intel' }}", windows-latest]
         node: ['22']
         include:
           - os: ubuntu-latest
@@ -80,7 +88,7 @@ jobs:
         run: ./scripts/bootstrap-local-batch.ps1 2>&1 | Tee-Object -FilePath batch-tests.log
         env:
           PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS: '10'
-      - name: Compare ten fresh raw Firefox runs with and without logging
+      - name: Compare ten fresh raw Firefox runs with inherited and private temp
         if: failure() && runner.os == 'Windows' && steps.batch_windows.outcome == 'failure'
         timeout-minutes: 11
         shell: bash
@@ -102,7 +110,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-15, windows-latest]
+        os: [ubuntu-latest, "${{ inputs.macos_runner || 'macos-15-intel' }}", windows-latest]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     steps:
