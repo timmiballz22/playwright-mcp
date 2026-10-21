@@ -36,6 +36,7 @@ test('20 supervised concurrent screenshots keep unique reports and unchanged PNG
         assert.equal(reports.has(result.reportPath), false);
         reports.add(result.reportPath);
         const report = JSON.parse(await readFile(result.reportPath, 'utf8'));
+        assert.equal(report.runId, result.runId);
         assert.equal(report.results.length, 1);
         assert.equal(report.results[0].ok, true);
         const file = report.results[0].artifact;
@@ -56,6 +57,8 @@ test('20 supervised concurrent screenshots keep unique reports and unchanged PNG
     }
     assert.equal(files.size, 20);
     assert.equal(reports.size, 20);
+    assert.equal(new Set([...files.keys()].map(file => path.dirname(file))).size, 20);
+    assert.equal(new Set([...reports].map(file => path.dirname(file))).size, 20);
     for (const [file, original] of files) {
       const entry = await stat(file, { bigint: true });
       assert.deepEqual({ digest: digest(await readFile(file)), dev: entry.dev, ino: entry.ino, mtimeNs: entry.mtimeNs, ctimeNs: entry.ctimeNs },

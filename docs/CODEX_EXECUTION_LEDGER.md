@@ -2738,3 +2738,10 @@ our static one-page counter has neither reported trigger, so the shared line
 cannot establish the cause. No dependency change or browser workaround follows
 from these reports. No upstream message/issue is posted. Evidence:
 firefox-upstream-review.json.
+
+The artifact fixture additionally requires20 distinct image directories,20
+distinct report directories and matching report/result run IDs. The expanded
+Node22 case passes with20 executions; this is the final local directory-identity
+selection, not native evidence. A further same-SHA Windows-only repro attempt
+(run39611530150) is queued to seek the prior ownership observation with fixed
+metadata; no code or deadline changed and no new result is inferred from queueing.
