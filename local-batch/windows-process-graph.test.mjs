@@ -20,3 +20,13 @@ test('missing identity is uncertainty, while unknown legacy roots never hide pot
   assert.deepEqual(windowsOwnedProcesses([900], [row(901, 900, null)]), [901]);
   assert.throws(() => windowsOwnedProcesses([900], [row(900, 1, 100), row(901, 900, null)], new Map(), true), /identity_unavailable/);
 });
+
+test('live-root snapshots retain exited browser identities for the final orphan scan', () => {
+  const identities = new Map();
+  windowsOwnedProcesses([900], [row(900, 1, 100), row(901, 900, 110), row(902, 901, 120)], identities, true);
+  const nextLaunch = [row(900, 1, 100), row(902, 901, 120), row(910, 900, 200)];
+  assert.throws(() => windowsOwnedProcesses([900, 901], nextLaunch, identities, true), /identity_unavailable/);
+  assert.deepEqual(windowsOwnedProcesses([900], nextLaunch, identities, true), [900, 902, 910]);
+  assert.deepEqual(windowsOwnedProcesses([900, 901, 910], [row(902, 901, 120)], identities), [902]);
+  assert.deepEqual(windowsOwnedProcesses([900, 901, 910], [], identities), []);
+});

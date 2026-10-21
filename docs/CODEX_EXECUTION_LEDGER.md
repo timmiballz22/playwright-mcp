@@ -2,49 +2,52 @@
 
 Updated 2026-10-21. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest completed native `2f87026`: **939 tests passed/six failed**, zero test
-skips/cancellations, plus Windows actual-Codex discovery failure. Wrapper39554479797:
-270/2; batch39554479785:669/4. All88 original tests per OS, Docker, four durable
-component jobs and installed public MCP/CLI jobs checks pass. Windows source
-six-tool1,000-action jobs passes again. Failures are Windows Firefox: four raw
-loops (Node20 headed/pipe and Node22 headless/headed), supervised429 navigation
-and popup settlement. Their shared cause is unproven. Linux/macOS actual Codex
-zero-model-turn checks pass in36.893s/112.042s. Windows tools remain empty after48
-read-only polls within20s; readiness waiting alone does not fix it.
+Latest completed native `4d61ebd`: **940 tests passed, two failed**, with zero
+executed-test skips/cancellations. Separate verification failures: Windows actual
+Codex startup and the Windows Firefox factor probe's audit caller. Wrapper run
+39556037829:268/1; batch run39556037572:672/1. Original cases: Linux/macOS88 each
+pass; Windows87 pass, named isolated-context creation times out. The conditional
+Windows Node20 legacy step did not run after that failure and has no PASS claim.
+Windows raw Firefox completes all23 actions but fails BrowserServer cleanup.
+Installed public MCP/CLI and the source six-tool1,000-action jobs harness pass again.
 
-Next diagnostics consume fixed startup-status notifications and narrowly enabled
-private stderr logging, plus a fresh simultaneous SDK startup control. A separate
-static-fixture Firefox probe compares transport/routing without altering production
-policy. Local client, SDK controls and both Node20/24 Firefox factor matrices pass.
-All original failures remain recorded; no action replay, force click, sandbox or
-timeout relaxation is introduced. Last full green remains d71c91e (14 jobs);
-current matrix has17. Full quotas/retention, managed profiles, egress and remaining
-reliability/acceptance gates still block release.
+Windows Codex reports private_storage_unavailable and a failed handshake. Three
+fresh simultaneous SDK pairs pass on that same native job (1185/937/901ms), zero
+browser actions and zero active survivors. Linux/macOS actual Codex1,000-action
+checks pass in36.037s/74.738s, zero model turns/survivors. The factor probe incorrectly
+asked the strict auditor to register exited roots as live; its uncertainty is
+retained, with no native routing conclusion. The caller fix records live root
+identities at the browser-ready pause and uses remembered identities after exit.
+Next diagnostics compare the pinned Codex core environment and fixed helper failure
+categories, without permissions/ACL/timeout changes. The local browser-null fix
+and500-valid/170-invalid JSON corpus pass Node20/22/24, plus a fresh140-file
+production package. Current matrix17 jobs; last full green remains d71c91e (14).
+Full quotas/retention, profiles, egress, reliability and remaining gates stay open.
 
 All 45 mandatory scenarios are
 mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | NOT-TESTED | BASELINE_AUDIT.md; original managed-Chromium baseline 8/8 and six unchanged schemas; default local Chrome still absent | Preserve channel/OS baseline limitations; extend original native baseline evidence |
-| G01 INSTALL | NOT-TESTED | Native6fffa27 installed packages pass all OSs; fresh137-file local snapshot passes | Complete fresh operator installation and remaining acceptance scenarios |
-| G02 MCP | NOT-TESTED | Actual Codex6-tool jobs client,1,000 actions, active cancel and zero owned processes; original25/batch1 contracts | Complete remaining malformed/concurrent/resource phase cases on all OSs |
-| G03 FEATURE PARITY | NOT-TESTED | 25/72 names and six schemas retained; storage/media/profile/ARIA/touch and advanced scoped behaviors | Verify every remaining capability group and native guard compatibility |
-| G04 BATCH | PASS | local-batch/mcp.test.mjs + integration.test.mjs; evidence/codex-client-operator.txt: exact 1000 actions / 997 clicks | Extend real long workflow to other browsers |
-| G05 RETRIES | NOT-TESTED | Operator-only bounded GET goto 429/503 policy; real Chromium/Firefox no-POST-replay tests | Native retry coverage, fairness and bounded metrics |
-| G06 JOBS | NOT-TESTED | Native all-OS six-tool MCP/foreground CLI; idempotent journal/FIFO/guardian; EOF/SIGTERM/SIGKILL and monotonic deadline evidence | Windows actual Codex discovery, full phase faults, retention and restart acceptance |
-| G07 SECURITY | FAIL | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
-| G08 STORAGE | FAIL | Private run/artifact metadata, atomic reports, bounded dry-run terminal cleanup | Complete cumulative quotas/retention; native Windows protected ACL components pass |
-| G09 AUTH/PROFILES | FAIL | Public-API lease guard rejects contention and restores persistent storage in native all-engine c7 tests | Managed project profiles, ACLs, corruption/reset/crash recovery |
-| G10 CROSS-BROWSER | FAIL | Native7e2 Windows raw Firefox still fails headless/headed; direct pipe previously failed too | Diagnose original driver stalls; retain strict tests and unsupported local WebKit limitation |
-| G11 CROSS-OS | FAIL | Native original/batch/jobs package installs verified; POSIX jobs/browser fixtures pass | Windows jobs ACLs, complete green native suites and native actual Codex walkthroughs |
-| G12 PERFORMANCE | NOT-TESTED | scripts/soak-local.mjs; PERFORMANCE.md; evidence/soak*.txt | 100-run observed Linux source soak now measured; native/CLI/token comparison and full FD coverage remain |
-| G13 ACCESSIBILITY/MOBILE | NOT-TESTED | Local ARIA keyboard, responsive390x844 CSS PNG, touch and media reset cases pass; native touch passed all engines | Native explicit-tabindex/media fixtures pass all engines; extend held keyboard/canvas/accessibility matrix |
-| G14 ADVANCED | NOT-TESTED | 72 contracts; native original storage/screenshot/trace/video/tabs/Chromium PDF behavior passed; tests/advanced.spec.ts | Frames/dialog/upload/network tools and remaining advanced positive/negative cases |
-| G15 RELEASE SAFETY | PASS | distribution.test.mjs, private package, publish-disabled.cjs; no registry publishing workflow | Keep publication disabled; registry ownership and a future authorized release remain separate |
-| G16 DOCUMENTATION | NOT-TESTED | LOCAL_BATCH.md, BASELINE_AUDIT.md, THREAT_MODEL.md, PERFORMANCE.md | Finish examples/feature docs as jobs/profiles mature; operator walkthroughs on all OSs |
-| G17 AUDIT EVIDENCE | NOT-TESTED | This ledger + evidence logs + test scripts | Keep tested SHA/CI evidence current; complete all 45 scenarios |
-| G18 CLEAN MERGE | FAIL | Draft PR only; last full green d71c91e; newer native failures retained | Resolve critical gaps and require full green at exact final SHA before any merge |
+| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 tool inventories,six schemas; Native2f87026 all88 original cases/OS | Preserve baseline/channel scope and verify final clean SHA |
+| G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs; Native2f87026 all-OS installs; cd419d8 fresh140-file Node22 production smoke | Verify final candidate natively and complete clean operator walkthroughs |
+| G02 MCP | FAILED | scripts/verify-codex-jobs.mjs; Linux/macOS1,000-action checks pass; native4d61ebd Windows startup private_storage_unavailable | Diagnose helper failure under actual Codex; retain exact six-tool contract |
+| G03 FEATURE PARITY | FAILED | Native4d61ebd Windows named-context timeout;25/72 names,six schemas; tests/interactions.spec.ts,advanced.spec.ts,network-console.spec.ts,held-input.spec.ts;88 original cases/OS | Complete remaining capability-specific positive/negative cases |
+| G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs,jobs-mcp.test.mjs; Native2f87026 exact1,000 Chromium actions/997 clicks all OSs | Preserve exact action/DOM counters; broader browser reliability stays G10 |
+| G05 RETRIES | FAILED | navigation-retry-browser.test.mjs; Native2f87026 Windows Firefox429 case times out after2 GET hits; unsafe POST not replayed | Diagnose bounded navigation failure without enlarging deadlines |
+| G06 JOBS | IN PROGRESS | jobs/controller.mjs,guardian.mjs,journal.mjs; native six-tool/CLI,owner/dedup/cancel/reconnect; EOF/SIGKILL evidence | Finish phase faults, restart/resource acceptance and Windows actual client |
+| G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
+| G08 STORAGE | FAILED | screenshot-budget.mjs,jobs/cleanup.mjs,private-windows.*; native protected ACLs and16MiB image payload budget | Complete cumulative disk quotas/retention; image budget is not browser/profile cap |
+| G09 AUTH/PROFILES | FAILED | profile-guard.cjs,profile-lease.cjs; native all-engine ownership/session restore | Managed project profiles, Windows profile ACLs, reset/corruption/crash recovery |
+| G10 CROSS-BROWSER | FAILED | Native2f87026 six Windows Firefox failures across raw loops/retry/popup | Collect transport/routing controls; no force click/security flags/action replay |
+| G11 CROSS-OS | FAILED | native installed original/batch/jobs pass all OSs; actual Codex Windows helper startup fails | Restore actual Windows Codex startup and require green native suites |
+| G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md,scripts/soak-local.mjs; independent100-run Linux soak and client timings | Native/CLI/SKILLS/token comparison, complete resource observation |
+| G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
+| G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
+| G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
+| G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
+| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,evidence/worker-ci-thirtysecond-*,validation-property-*; exact SHA/counts retained | Keep every gate/scenario tied to executed evidence; pending is not pass |
+| G18 CLEAN MERGE | FAILED | Draft PR2; last full green d71c91e (14 jobs), current17-job failures retained | Resolve critical gaps; require green complete final SHA before merge |
 
 ## Defects and risk register
 
@@ -1390,3 +1393,30 @@ package passes real original/batch/jobs MCP, batch/jobs CLI, profile isolation,
 deduplication, cancellation, guardian/journal and controller-SIGKILL cleanup with
 zero active owned processes. No skip/cancellation. Evidence:validation-property-*
 and null-browser-production-local.txt. Native verification of this fix is pending.
+
+
+## Native4d61ebd startup diagnosis (browser matrix still running)
+
+The Windows actual Codex check now reports startup status failed, fixed category
+handshake_failed, startup code private_storage_unavailable, one discovery poll,
+zero tools. Three fresh simultaneous inherited-environment SDK pairs in the same
+native job pass. Therefore readiness waiting alone is not the fix, and a general
+concurrent-start failure is not reproduced by that control. No authentication or
+sandbox permission change is indicated by this evidence.
+
+Pinned Codex rmcp-client/utils.rs and protocol/shell_environment.rs at
+rust-v0.163.0 define a restricted Windows core environment. The next SDK control
+compares inherited versus exactly that core variable-name set, each with fresh
+stores, plus direct packaged PowerShell-helper controls. It never widens the
+actual Codex environment, changes ACLs, repairs storage, bypasses execution policy
+or warms/restarts the failed server. The helper now emits a fixed stderr process
+category on failure (missing/denied spawn, output limit, timeout, nonzero exit,
+unknown spawn failure or invalid JSON), preserving private_storage_unavailable
+as its public code. No raw command, paths, values or helper output is emitted.
+The Codex probe records only known fixed categories in its private-buffer parser.
+
+Local Node24 and20 helper/configuration suites each pass5 tests; the diagnostic
+SDK inherited control passes3 fresh pairs on Node22 (349/293/306ms), zero actions
+and zero survivors. Windows filtered-environment/actual-helper confirmation is
+pending. Failure-only factor/startup metadata now has fixed GitHub annotations,
+without weakening any original failing check.

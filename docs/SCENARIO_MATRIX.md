@@ -1,13 +1,27 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Native2f87026:939 tests pass/six Windows Firefox tests fail, plus Windows
-actual-Codex discovery failure after48 polls. All88 original cases per OS, Docker,
-four durable components and installed public MCP/CLI/source1,000-action jobs
-checks pass. Actual Codex Linux/macOS passes with zero model turns. New fixed
-startup/SDK controls and Firefox transport/routing diagnostics await native proof.
-Last full green remains d71c91e (14 jobs); current matrix has17. OPEN means
-inadequate proof; PARTIAL means required work remains.
+PASS. Latest completed native `4d61ebd`: **940 tests passed, two failed**, with zero
+executed-test skips/cancellations. Separate verification failures: Windows actual
+Codex startup and the Windows Firefox factor probe's audit caller. Wrapper run
+39556037829:268/1; batch run39556037572:672/1. Original cases: Linux/macOS88 each
+pass; Windows87 pass, named isolated-context creation times out. The conditional
+Windows Node20 legacy step did not run after that failure and has no PASS claim.
+Windows raw Firefox completes all23 actions but fails BrowserServer cleanup.
+Installed public MCP/CLI and the source six-tool1,000-action jobs harness pass again.
+
+Windows Codex reports private_storage_unavailable and a failed handshake. Three
+fresh simultaneous SDK pairs pass on that same native job (1185/937/901ms), zero
+browser actions and zero active survivors. Linux/macOS actual Codex1,000-action
+checks pass in36.037s/74.738s, zero model turns/survivors. The factor probe incorrectly
+asked the strict auditor to register exited roots as live; its uncertainty is
+retained, with no native routing conclusion. The caller fix records live root
+identities at the browser-ready pause and uses remembered identities after exit.
+Next diagnostics compare the pinned Codex core environment and fixed helper failure
+categories, without permissions/ACL/timeout changes. The local browser-null fix
+and500-valid/170-invalid JSON corpus pass Node20/22/24, plus a fresh140-file
+production package. Current matrix17 jobs; last full green remains d71c91e (14).
+Full quotas/retention, profiles, egress, reliability and remaining gates stay open.
 
 | # | Scenario | Status and concrete evidence / gap |
 |---|---|---|

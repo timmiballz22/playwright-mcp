@@ -2,16 +2,22 @@
 // No browser action, global config change, client restart or warmed Codex store.
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
-import { mkdtemp, rm } from 'node:fs/promises';
-import { randomUUID } from 'node:crypto';
+import { mkdtemp, rm, readFile } from 'node:fs/promises';
+import { randomUUID, createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import os from 'node:os';
 import assert from 'node:assert/strict';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+import { windowsHelperFailureKind } from '../local-batch/jobs/private-windows.mjs';
 import { ownedDescendants } from '../local-batch/fixtures/process-audit.mjs';
 const entry = fileURLToPath(new URL('../local-batch/jobs-mcp.mjs', import.meta.url));
 const expected = ['start_workflow', 'get_workflow_status', 'get_workflow_result', 'cancel_workflow', 'list_workflows', 'cleanup_workflows'].sort();
-for (let iteration = 1; iteration <= 3; iteration++) {
+// Pinned Codex0.163.0 WINDOWS_CORE_ENV_VARS, not a widened client environment.
+const coreNames = new Set(['PATH', 'PATHEXT', 'SHELL', 'COMSPEC', 'SYSTEMROOT', 'WINDIR', 'SYSTEMDRIVE', 'USERNAME', 'USERDOMAIN', 'USERPROFILE', 'HOMEDRIVE', 'HOMEPATH', 'PROGRAMFILES', 'PROGRAMFILES(X86)', 'PROGRAMW6432', 'PROGRAMDATA', 'LOCALAPPDATA', 'APPDATA', 'TEMP', 'TMP', 'TMPDIR', 'POWERSHELL', 'PWSH']);
+const coreEnv = Object.fromEntries(Object.entries(process.env).filter(([name]) => coreNames.has(name.toUpperCase())));
+for (const mode of process.platform === 'win32' ? ['inherited', 'codex_core'] : ['inherited']) for (let iteration = 1; iteration <= 3; iteration++) {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'sdk-jobs-startup-'));
   const clients = []; const transports = []; const startupCodes = new Set();
   let observed = []; let verified = false; const started = performance.now();
@@ -19,7 +25,7 @@ for (let iteration = 1; iteration <= 3; iteration++) {
     const outcomes = await Promise.allSettled([0, 1].map(async index => {
       const client = new Client({ name: 'simultaneous-startup-control', version: '1.0.0' }); clients.push(client);
       const transport = new StdioClientTransport({ command: process.execPath, args: [entry], cwd: directory, stderr: 'pipe', env: {
-        ...process.env, PLAYWRIGHT_JOBS_OWNER_ID: randomUUID(), PLAYWRIGHT_JOBS_DATA_DIR: path.join(directory, 'state'),
+        ...(mode === 'codex_core' ? coreEnv : process.env), PLAYWRIGHT_JOBS_OWNER_ID: randomUUID(), PLAYWRIGHT_JOBS_DATA_DIR: path.join(directory, 'state'),
         PLAYWRIGHT_JOBS_PROJECT_DIR: directory, PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: '', PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: '0', PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS: '0',
       } });
       transports.push(transport); let tail = '';
@@ -34,9 +40,28 @@ for (let iteration = 1; iteration <= 3; iteration++) {
       assert.notEqual(empty.isError, true); assert.deepEqual(JSON.parse(empty.content[0].text).jobs, []);
       return { index, tools: tools.length };
     }));
-    const receipt = { os: process.platform, iteration, clients: 2, connected: outcomes.filter(item => item.status === 'fulfilled').length,
+    const receipt = { os: process.platform, mode, iteration, clients: 2, connected: outcomes.filter(item => item.status === 'fulfilled').length,
       durationMs: Math.round(performance.now() - started), startupCodes: [...startupCodes].sort(), browserActions: 0 };
     console.log(JSON.stringify(receipt));
+    if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=SDK startup control::' + JSON.stringify(receipt));
+    if (process.platform === 'win32' && iteration === 1) {
+      const script = await readFile(new URL('../local-batch/jobs/private-windows.ps1', import.meta.url), 'utf8');
+      const executable = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
+      let helper;
+      try {
+        const result = await promisify(execFile)(executable, ['-NoProfile', '-NonInteractive', '-Command', script], { timeout: 10000, maxBuffer: 65536, windowsHide: true, env: {
+          ...(mode === 'codex_core' ? coreEnv : process.env), PLAYWRIGHT_PRIVATE_BASE: path.join(directory, 'helper-control'),
+          PLAYWRIGHT_PRIVATE_PROJECT: directory, PLAYWRIGHT_PRIVATE_OWNER_HASH: createHash('sha256').update(randomUUID()).digest('hex'),
+        } });
+        let valid = false; try { valid = JSON.parse(result.stdout).ok === true; } catch {}
+        helper = { kind: valid ? 'success' : 'invalid_output' };
+      } catch (error) {
+        const kind = windowsHelperFailureKind(error);
+        helper = { kind, ...(Number.isInteger(error.code) ? { exitCode: error.code } : {}) };
+      }
+      console.log(JSON.stringify({ os: process.platform, mode, helper }));
+      if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Windows helper control::' + JSON.stringify({ mode, helper }));
+    }
     assert.equal(receipt.connected, 2, 'Fresh simultaneous SDK startup failed'); verified = true;
   } finally {
     const roots = transports.map(transport => transport.pid).filter(Number.isSafeInteger);
@@ -45,7 +70,7 @@ for (let iteration = 1; iteration <= 3; iteration++) {
     const end = performance.now() + 10000;
     while ((await ownedDescendants([...roots, ...observed])).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 100));
     assert.deepEqual(await ownedDescendants([...roots, ...observed]), []);
-    console.log(JSON.stringify({ iteration, activeOwnedProcesses: 0 }));
+    console.log(JSON.stringify({ mode, iteration, activeOwnedProcesses: 0 }));
     if (verified) await rm(directory, { recursive: true, force: true });
   }
 }

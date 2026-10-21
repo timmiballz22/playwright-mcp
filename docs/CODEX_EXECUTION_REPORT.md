@@ -1,23 +1,26 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `2f87026`: **939 tests passed/six failed**, zero test
-skips/cancellations, plus Windows actual-Codex discovery failure. Wrapper39554479797:
-270/2; batch39554479785:669/4. All88 original tests per OS, Docker, four durable
-component jobs and installed public MCP/CLI jobs checks pass. Windows source
-six-tool1,000-action jobs passes again. Failures are Windows Firefox: four raw
-loops (Node20 headed/pipe and Node22 headless/headed), supervised429 navigation
-and popup settlement. Their shared cause is unproven. Linux/macOS actual Codex
-zero-model-turn checks pass in36.893s/112.042s. Windows tools remain empty after48
-read-only polls within20s; readiness waiting alone does not fix it.
+Latest completed native `4d61ebd`: **940 tests passed, two failed**, with zero
+executed-test skips/cancellations. Separate verification failures: Windows actual
+Codex startup and the Windows Firefox factor probe's audit caller. Wrapper run
+39556037829:268/1; batch run39556037572:672/1. Original cases: Linux/macOS88 each
+pass; Windows87 pass, named isolated-context creation times out. The conditional
+Windows Node20 legacy step did not run after that failure and has no PASS claim.
+Windows raw Firefox completes all23 actions but fails BrowserServer cleanup.
+Installed public MCP/CLI and the source six-tool1,000-action jobs harness pass again.
 
-Next diagnostics consume fixed startup-status notifications and narrowly enabled
-private stderr logging, plus a fresh simultaneous SDK startup control. A separate
-static-fixture Firefox probe compares transport/routing without altering production
-policy. Local client, SDK controls and both Node20/24 Firefox factor matrices pass.
-All original failures remain recorded; no action replay, force click, sandbox or
-timeout relaxation is introduced. Last full green remains d71c91e (14 jobs);
-current matrix has17. Full quotas/retention, managed profiles, egress and remaining
-reliability/acceptance gates still block release.
+Windows Codex reports private_storage_unavailable and a failed handshake. Three
+fresh simultaneous SDK pairs pass on that same native job (1185/937/901ms), zero
+browser actions and zero active survivors. Linux/macOS actual Codex1,000-action
+checks pass in36.037s/74.738s, zero model turns/survivors. The factor probe incorrectly
+asked the strict auditor to register exited roots as live; its uncertainty is
+retained, with no native routing conclusion. The caller fix records live root
+identities at the browser-ready pause and uses remembered identities after exit.
+Next diagnostics compare the pinned Codex core environment and fixed helper failure
+categories, without permissions/ACL/timeout changes. The local browser-null fix
+and500-valid/170-invalid JSON corpus pass Node20/22/24, plus a fresh140-file
+production package. Current matrix17 jobs; last full green remains d71c91e (14).
+Full quotas/retention, profiles, egress, reliability and remaining gates stay open.
 
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
@@ -998,3 +1001,56 @@ package passes real original/batch/jobs MCP, batch/jobs CLI, profile isolation,
 deduplication, cancellation, guardian/journal and controller-SIGKILL cleanup with
 zero active owned processes. No skip/cancellation. Evidence:validation-property-*
 and null-browser-production-local.txt. Native verification of this fix is pending.
+
+
+## Native4d61ebd startup diagnosis (browser matrix still running)
+
+The Windows actual Codex check now reports startup status failed, fixed category
+handshake_failed, startup code private_storage_unavailable, one discovery poll,
+zero tools. Three fresh simultaneous inherited-environment SDK pairs in the same
+native job pass. Therefore readiness waiting alone is not the fix, and a general
+concurrent-start failure is not reproduced by that control. No authentication or
+sandbox permission change is indicated by this evidence.
+
+Pinned Codex rmcp-client/utils.rs and protocol/shell_environment.rs at
+rust-v0.163.0 define a restricted Windows core environment. The next SDK control
+compares inherited versus exactly that core variable-name set, each with fresh
+stores, plus direct packaged PowerShell-helper controls. It never widens the
+actual Codex environment, changes ACLs, repairs storage, bypasses execution policy
+or warms/restarts the failed server. The helper now emits a fixed stderr process
+category on failure (missing/denied spawn, output limit, timeout, nonzero exit,
+unknown spawn failure or invalid JSON), preserving private_storage_unavailable
+as its public code. No raw command, paths, values or helper output is emitted.
+The Codex probe records only known fixed categories in its private-buffer parser.
+
+Local Node24 and20 helper/configuration suites each pass5 tests; the diagnostic
+SDK inherited control passes3 fresh pairs on Node22 (349/293/306ms), zero actions
+and zero survivors. Windows filtered-environment/actual-helper confirmation is
+pending. Failure-only factor/startup metadata now has fixed GitHub annotations,
+without weakening any original failing check.
+
+
+## Native4d61ebd complete and audit caller correction
+
+See worker-ci-thirtythird-selected.log/counts.jsonl:940 test passes/two failures,
+zero executed-test skips/cancellations, plus actual Windows Codex startup and
+factor-diagnostic audit failures. The Windows original named-context call times
+out at browser_tabs new alpha; target closed is observed during timeout teardown.
+This is retained as a feature-test failure, not attributed to routing. The legacy
+Node20 step is conditionally omitted, not verified. Raw headless Firefox completes
+all23 actions but BrowserServer.close exceeds its bound; it remains cleanup_failed.
+
+The factor caller incorrectly passed previously exited browser PIDs and then the
+exited controller to rememberLiveRoots:true. The strict graph intentionally rejects
+that claim. It now records only the live controller root while the fixture waits
+for its browser-ready ACK; recursive discovery retains browser identities. Final
+scans use those remembered identities without claiming exited roots are live.
+No graph ownership, PID-reuse or uncertainty check is relaxed. Four graph tests
+pass on Node20/24, including a live-to-exited browser with a surviving orphan that
+must remain visible. Corrected local Node24 full comparison passes all4 cases,
+400 clicks/20 launches, zero active survivors; native caller proof is pending.
+
+Final finite-corpus checks additionally assert all12 action kinds were generated
+and normalized actions preserve their exact input values; cases remain500 valid/
+170 invalid. Node20/24 runner+corpus18 each pass; Node22 helper/config/corpus/file/
+snapshot11 pass. Native confirmation of this candidate is pending.

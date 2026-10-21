@@ -2,92 +2,92 @@ TAP version 13
 # Subtest: failure classification returns fixed codes and never browser text
 ok 1 - failure classification returns fixed codes and never browser text
   ---
-  duration_ms: 1.051283
+  duration_ms: 1.71134
   ...
 # Subtest: rejects unknown instructions, unbounded workloads and hostile origins
 ok 2 - rejects unknown instructions, unbounded workloads and hostile origins
   ---
-  duration_ms: 1.817676
+  duration_ms: 2.675086
   ...
 # Subtest: 100 ordered actions finish in a single batch with one browser launch
 ok 3 - 100 ordered actions finish in a single batch with one browser launch
   ---
-  duration_ms: 14.123198
+  duration_ms: 14.365119
   ...
 # Subtest: failures stop promptly, hide underlying sensitive errors and clean up
 ok 4 - failures stop promptly, hide underlying sensitive errors and clean up
   ---
-  duration_ms: 3.352223
+  duration_ms: 7.188812
   ...
 # Subtest: cancellation before starting avoids launching browser
 ok 5 - cancellation before starting avoids launching browser
   ---
-  duration_ms: 0.297928
+  duration_ms: 2.68843
   ...
 # Subtest: checks target origins and reports assertion failure without page content
 ok 6 - checks target origins and reports assertion failure without page content
   ---
-  duration_ms: 7.3326
+  duration_ms: 2.504639
   ...
 # Subtest: unknown localhost ports require exact operator origins
 ok 7 - unknown localhost ports require exact operator origins
   ---
-  duration_ms: 4.398841
+  duration_ms: 17.893952
   ...
 # Subtest: rejects extra workflow and action properties rather than ignoring policy
 ok 8 - rejects extra workflow and action properties rather than ignoring policy
   ---
-  duration_ms: 0.295243
+  duration_ms: 0.395895
   ...
 # Subtest: deadline includes a stalled launch and closes late browser
 ok 9 - deadline includes a stalled launch and closes late browser
   ---
-  duration_ms: 201.706613
+  duration_ms: 199.874196
   ...
 # Subtest: validation snapshots actions before asynchronous launch
 ok 10 - validation snapshots actions before asynchronous launch
   ---
-  duration_ms: 1.569746
+  duration_ms: 2.037949
   ...
 # Subtest: screenshot capture requires operator approval for sensitive artifacts
 ok 11 - screenshot capture requires operator approval for sensitive artifacts
   ---
-  duration_ms: 0.516919
+  duration_ms: 0.592066
   ...
 # Subtest: workflow version and serialized size are bounded
 ok 12 - workflow version and serialized size are bounded
   ---
-  duration_ms: 8.112263
+  duration_ms: 11.118934
   ...
 # Subtest: accessible selectors validate exact shape and clone nested values
 ok 13 - accessible selectors validate exact shape and clone nested values
   ---
-  duration_ms: 0.216046
+  duration_ms: 0.223985
   ...
 # Subtest: explicit action repeats expand within the total action cap
 ok 14 - explicit action repeats expand within the total action cap
   ---
-  duration_ms: 16.707497
+  duration_ms: 16.450978
   ...
 # Subtest: text equality rejects duplicate counters and ambiguous expectations
 ok 15 - text equality rejects duplicate counters and ambiguous expectations
   ---
-  duration_ms: 9.954884
+  duration_ms: 4.762731
   ...
 # Subtest: explicit null browser is rejected consistently with the public schema
 ok 16 - explicit null browser is rejected consistently with the public schema
   ---
-  duration_ms: 1.739
+  duration_ms: 2.503332
   ...
 # Subtest: seeded valid workflows preserve action bounds and Unicode without changing input
 ok 17 - seeded valid workflows preserve action bounds and Unicode without changing input
   ---
-  duration_ms: 33.758261
+  duration_ms: 49.444258
   ...
 # Subtest: JSON mutation corpus rejects unknown fields, wrong types and expansion overflow
 ok 18 - JSON mutation corpus rejects unknown fields, wrong types and expansion overflow
   ---
-  duration_ms: 5.488136
+  duration_ms: 2.990831
   ...
 1..18
 # tests 18
@@ -97,4 +97,4 @@ ok 18 - JSON mutation corpus rejects unknown fields, wrong types and expansion o
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 388.464388
+# duration_ms 434.350813

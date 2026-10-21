@@ -12,10 +12,11 @@ test('seeded valid workflows preserve action bounds and Unicode without changing
   let seed = 0x4d435031;
   const random = max => { seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5; return (seed >>> 0) % max; };
   const types = ['goto', 'assertURL', 'click', 'fill', 'press', 'check', 'uncheck', 'hover', 'waitFor', 'assertText', 'scroll', 'screenshot'];
+  const seenTypes = new Set();
   const strings = ['button', 'مرحبا', '日本語', 'e\u0301', '😀', '\u202Elabel'];
   for (let sample = 0; sample < 500; sample++) {
     const iterations = random(100) + 1; const repeat = random(Math.floor(1000 / iterations)) + 1;
-    const type = types[random(types.length)]; const text = strings[random(strings.length)];
+    const type = types[random(types.length)]; seenTypes.add(type); const text = strings[random(strings.length)];
     const step = { type, repeat };
     if (['goto', 'assertURL'].includes(type)) step.url = 'http://127.0.0.1:12345/';
     else if (type === 'scroll') { step.deltaX = random(20001) - 10000; step.deltaY = random(20001) - 10000; }
@@ -30,8 +31,10 @@ test('seeded valid workflows preserve action bounds and Unicode without changing
     assert.equal(JSON.stringify(input), encoded);
     assert.equal(result.steps.length, repeat); assert.equal(result.iterations, iterations);
     assert.ok(result.steps.length * result.iterations <= 1000);
-    for (const action of result.steps) { assert.equal(action.type, type); assert.equal(Object.hasOwn(action, 'repeat'), false); }
+    const expected = { ...step }; delete expected.repeat;
+    for (const action of result.steps) assert.deepEqual(action, expected);
   }
+  assert.deepEqual([...seenTypes].sort(), [...types].sort());
 });
 
 test('JSON mutation corpus rejects unknown fields, wrong types and expansion overflow', () => {
@@ -50,5 +53,5 @@ test('JSON mutation corpus rejects unknown fields, wrong types and expansion ove
   for (const repeat of [null, false, '1', 0, -1, 0.1, 1001]) reject({ steps: [{ ...base.steps[0], repeat }] });
   for (let iterations = 2; iterations <= 100; iterations++)
     reject({ iterations, steps: [{ ...base.steps[0], repeat: Math.floor(1000 / iterations) + 1 }] });
-  assert.ok(cases >= 160);
+  assert.equal(cases, 170);
 });

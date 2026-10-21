@@ -74,7 +74,7 @@ if (process.argv[2] === '--owned-fixture-child') {
         if (message.receipt) receipt ??= message.receipt;
         if (message.browserReady) {
           try {
-            observed.push(...await ownedDescendants([child.pid, ...browsers], { rememberLiveRoots: true }));
+            observed.push(...await ownedDescendants([child.pid], { rememberLiveRoots: true }));
             if (child.connected) child.send({ ready: true });
           } catch {
             auditFailure = true;
@@ -86,7 +86,7 @@ if (process.argv[2] === '--owned-fixture-child') {
       let timer;
       const exited = await Promise.race([closed.then(() => true), new Promise(resolve => { timer = setTimeout(() => resolve(false), 120000); })]);
       clearTimeout(timer);
-      observed.push(...await ownedDescendants([child.pid, ...browsers], { rememberLiveRoots: true }));
+      observed.push(...await ownedDescendants([child.pid, ...browsers]));
       if (!exited) await terminateOwnedProcesses(child.pid, browsers, true);
       let remaining = await ownedDescendants([child.pid, ...browsers, ...observed]);
       const end = performance.now() + 5000;
@@ -99,6 +99,7 @@ if (process.argv[2] === '--owned-fixture-child') {
       const result = { os: process.platform, transport, routing, ...(receipt ?? { ok: false, error: 'missing_receipt' }),
         ...(!exited ? { ok: false, independentDeadline: true } : child.exitCode !== 0 ? { ok: false } : {}), activeOwnedProcesses: 0 };
       results.push(result); console.log(JSON.stringify(result));
+      if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Firefox fixture factor::' + JSON.stringify(result));
     } finally {
       if (child.exitCode === null && child.signalCode === null)
         await terminateOwnedProcesses(child.pid, browsers, true);

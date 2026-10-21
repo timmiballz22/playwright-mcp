@@ -40,7 +40,7 @@ const child = spawn(codexCommand, [...codexArguments, 'app-server', '--stdio', '
 });
 const closed = once(child, 'close').catch(() => []);
 // Keep raw client diagnostics private; emit only our fixed startup code format.
-const startupCodes = new Set(); const startupStates = new Map(); let stderrTail = '';
+const startupCodes = new Set(); const helperFailures = new Set(); const startupStates = new Map(); let stderrTail = '';
 const startupCategory = value => {
   if (typeof value !== 'string') return undefined;
   if (/Local jobs startup failed \([a-z_]{1,40}\)/.test(value)) return 'jobs_startup_rejected';
@@ -53,6 +53,7 @@ const startupCategory = value => {
 child.stderr.on('data', chunk => {
   stderrTail = (stderrTail + chunk.toString()).slice(-4096);
   for (const match of stderrTail.matchAll(/Local jobs startup failed \(([a-z_]{1,40})\)/g)) startupCodes.add(match[1]);
+  for (const match of stderrTail.matchAll(/Local private storage helper failed \((spawn_missing|spawn_denied|output_limit|timeout|nonzero_exit|spawn_failed|invalid_output)\)/g)) helperFailures.add(match[1]);
 });
 const lines = createInterface({ input: child.stdout });
 const pending = new Map(); let next = 1; let observed = [];
@@ -103,7 +104,7 @@ try {
       if (tools.length || startupCodes.size || ['failed', 'cancelled'].includes(startupStates.get(name)?.status) || performance.now() >= discoveryEnd) break;
       await new Promise(resolve => setTimeout(resolve, 200));
     } while (polls < 100);
-    const diagnostic = JSON.stringify({ server: name, tools: tools.length, polls, startup: startupStates.get(name), startupCodes: [...startupCodes].sort() });
+    const diagnostic = JSON.stringify({ server: name, tools: tools.length, polls, startup: startupStates.get(name), startupCodes: [...startupCodes].sort(), helperFailures: [...helperFailures].sort() });
     if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Codex tool discovery::' + diagnostic);
     assert.deepEqual(tools, expectedTools, diagnostic);
   }

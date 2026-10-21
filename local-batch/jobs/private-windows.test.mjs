@@ -7,7 +7,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import os from 'node:os';
 import path from 'node:path';
 import { runWorkflow } from '../runner.mjs';
-import { prepareWindowsJobDirectories } from './private-windows.mjs';
+import { prepareWindowsJobDirectories, windowsHelperFailureKind } from './private-windows.mjs';
 const hash = value => createHash('sha256').update(value).digest('hex');
 const powershell = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
 async function inspect(directory, widen = false) {
@@ -77,3 +77,13 @@ else {
     } finally { await rm(root, { recursive: true, force: true }); }
   });
 }
+
+
+test('Windows helper failure diagnostics contain only fixed process categories', () => {
+  for (const [error, expected] of [
+    [{ code: 'ENOENT', message: 'fake-secret-path' }, 'spawn_missing'],
+    [{ code: 'EACCES' }, 'spawn_denied'], [{ code: 'ERR_CHILD_PROCESS_STDIO_MAXBUFFER' }, 'output_limit'],
+    [{ killed: true }, 'timeout'], [{ code: 1 }, 'nonzero_exit'],
+    [{ code: 'fake-secret-path', stdout: 'fake-secret-value' }, 'spawn_failed'], [undefined, 'spawn_failed'],
+  ]) assert.equal(windowsHelperFailureKind(error), expected);
+});

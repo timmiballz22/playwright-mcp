@@ -2,12 +2,27 @@
 
 [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md) is the current45-scenario map;
 [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) records exact candidates and
-commands. Latest completed native2f87026:939 test passes/six Windows Firefox
-failures, plus Windows actual-Codex discovery failure after48 bounded polls.
-Windows installed public MCP/CLI and source1,000-action jobs pass again; actual
-Codex Linux/macOS passes with zero model turns. Full quotas/retention, profiles,
-egress and complete acceptance remain open. See the final section for exact run
-IDs and scope. No release-ready claim follows from these scoped passes.
+commands. Latest completed native `4d61ebd`: **940 tests passed, two failed**, with zero
+executed-test skips/cancellations. Separate verification failures: Windows actual
+Codex startup and the Windows Firefox factor probe's audit caller. Wrapper run
+39556037829:268/1; batch run39556037572:672/1. Original cases: Linux/macOS88 each
+pass; Windows87 pass, named isolated-context creation times out. The conditional
+Windows Node20 legacy step did not run after that failure and has no PASS claim.
+Windows raw Firefox completes all23 actions but fails BrowserServer cleanup.
+Installed public MCP/CLI and the source six-tool1,000-action jobs harness pass again.
+
+Windows Codex reports private_storage_unavailable and a failed handshake. Three
+fresh simultaneous SDK pairs pass on that same native job (1185/937/901ms), zero
+browser actions and zero active survivors. Linux/macOS actual Codex1,000-action
+checks pass in36.037s/74.738s, zero model turns/survivors. The factor probe incorrectly
+asked the strict auditor to register exited roots as live; its uncertainty is
+retained, with no native routing conclusion. The caller fix records live root
+identities at the browser-ready pause and uses remembered identities after exit.
+Next diagnostics compare the pinned Codex core environment and fixed helper failure
+categories, without permissions/ACL/timeout changes. The local browser-null fix
+and500-valid/170-invalid JSON corpus pass Node20/22/24, plus a fresh140-file
+production package. Current matrix17 jobs; last full green remains d71c91e (14).
+Full quotas/retention, profiles, egress, reliability and remaining gates stay open.
 
 The following table is historical and predates the durable controller, public
 preview, configured navigation retries and independent-observer soak. It is

@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: operator owner/project namespaces are stable, private and independent of tool data
+ok 1 - operator owner/project namespaces are stable, private and independent of tool data
+  ---
+  duration_ms: 47.215536
+  type: 'test'
+  ...
+# Subtest: untrusted symlinks and writable ancestors cannot redirect job storage writes
+ok 2 - untrusted symlinks and writable ancestors cannot redirect job storage writes
+  ---
+  duration_ms: 6.713117
+  type: 'test'
+  ...
+# Subtest: invalid owner/policy config is rejected before any storage creation
+ok 3 - invalid owner/policy config is rejected before any storage creation
+  ---
+  duration_ms: 3.037959
+  type: 'test'
+  ...
+# Subtest: Windows ACL helper rejects a non-Windows host without creating storage
+ok 4 - Windows ACL helper rejects a non-Windows host without creating storage
+  ---
+  duration_ms: 1.191065
+  type: 'test'
+  ...
+# Subtest: Windows helper failure diagnostics contain only fixed process categories
+ok 5 - Windows helper failure diagnostics contain only fixed process categories
+  ---
+  duration_ms: 0.247374
+  type: 'test'
+  ...
+# Subtest: workflow identity ignores object key order, defaults and equivalent repeat expansion
+ok 6 - workflow identity ignores object key order, defaults and equivalent repeat expansion
+  ---
+  duration_ms: 1.582933
+  type: 'test'
+  ...
+# Subtest: captured workflow input cannot change after submission and oversized or unknown data is rejected
+ok 7 - captured workflow input cannot change after submission and oversized or unknown data is rejected
+  ---
+  duration_ms: 6.570702
+  type: 'test'
+  ...
+# Subtest: explicit null browser is rejected consistently with the public schema
+ok 8 - explicit null browser is rejected consistently with the public schema
+  ---
+  duration_ms: 1.500975
+  type: 'test'
+  ...
+# Subtest: seeded valid workflows preserve action bounds and Unicode without changing input
+ok 9 - seeded valid workflows preserve action bounds and Unicode without changing input
+  ---
+  duration_ms: 29.360398
+  type: 'test'
+  ...
+# Subtest: JSON mutation corpus rejects unknown fields, wrong types and expansion overflow
+ok 10 - JSON mutation corpus rejects unknown fields, wrong types and expansion overflow
+  ---
+  duration_ms: 2.106808
+  type: 'test'
+  ...
+# Subtest: file ingestion accepts UTF-8 BOM and rejects oversized, invalid UTF-8 and non-files
+ok 11 - file ingestion accepts UTF-8 BOM and rejects oversized, invalid UTF-8 and non-files
+  ---
+  duration_ms: 18.191118
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 439.028861

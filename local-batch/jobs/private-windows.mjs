@@ -6,6 +6,11 @@ import { readFile, realpath } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 const execute = promisify(execFile);
+export function windowsHelperFailureKind(error) {
+  return error?.code === 'ENOENT' ? 'spawn_missing' : error?.code === 'EACCES' ? 'spawn_denied' :
+    error?.code === 'ERR_CHILD_PROCESS_STDIO_MAXBUFFER' ? 'output_limit' : error?.killed ? 'timeout' :
+      Number.isInteger(error?.code) ? 'nonzero_exit' : 'spawn_failed';
+}
 const fail = code => { throw Object.assign(new Error(code), { code }); };
 export async function prepareWindowsJobDirectories({ base, projectRoot, ownerHash } = {}) {
   if (process.platform !== 'win32') fail('unsupported_private_storage');
@@ -21,10 +26,15 @@ export async function prepareWindowsJobDirectories({ base, projectRoot, ownerHas
   } catch (error) {
     try { if (JSON.parse(error.stdout).code === 'unsafe_storage') fail('unsafe_storage'); }
     catch (parsed) { if (parsed.code === 'unsafe_storage') throw parsed; }
+    // Fixed local stderr only: no raw command, path, environment or helper output.
+    process.stderr.write('Local private storage helper failed (' + windowsHelperFailureKind(error) + ').\n');
     fail('private_storage_unavailable');
   }
   let value;
-  try { value = JSON.parse(stdout); } catch { fail('private_storage_unavailable'); }
+  try { value = JSON.parse(stdout); } catch {
+    process.stderr.write('Local private storage helper failed (invalid_output).\n');
+    fail('private_storage_unavailable');
+  }
   if (!value || typeof value !== 'object' || Array.isArray(value) || typeof value.ownerSid !== 'string') fail('unsafe_storage');
   const expected = createHash('sha256').update(value.ownerSid + ':' + projectRoot).digest('hex');
   if (value.ok !== true || !/^S-1-[0-9-]+$/.test(value.ownerSid ?? '') || value.projectId !== expected || typeof value.directory !== 'string' || typeof value.artifactsDir !== 'string') fail('unsafe_storage');
