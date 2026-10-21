@@ -31,8 +31,7 @@ adds no production change and needs native/WebKit verification. Final543c14f
 Node22 components107/107 also pass locally. Transient GitHub401 and exec-server
 disconnect recovered; neither is a current blocker.
 
-**Not release-ready. NEXT ACTION: push native68 for slider variant coverage;
-preserve macOS permission uncertainty and native provider failures.**
+**Not release-ready. Native68 at4f50caa is active: batch39691283754 / CI39691283722. NEXT ACTION: inspect completed logs; preserve cleanup uncertainty.**
 
 Exact gate/source/phase evidence: CODEX_EXECUTION_LEDGER.md.
 

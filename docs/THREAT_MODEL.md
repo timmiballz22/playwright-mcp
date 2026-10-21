@@ -87,3 +87,10 @@ is test cleanup, not product termination proof. OS-atomic process containment an
 kernel-uninterruptible cases remain outside this user-space guarantee. Signal
 failures retain their existing category plus at most one fixed first-error class;
 raw error codes/messages are excluded and absence/permission hints never clear debt.
+
+The source Codex verification script can collect failure-only POSIX process-group
+counts after cleanup fails. Numeric group IDs and UID/state counts are explicitly
+identity-unverified; leaders may have exited and IDs may have been reused. These
+read-only hints never authorize signaling, exclusion, lease release or clearing
+cleanup uncertainty. The bounded query emits no names/argv/environment/raw error
+text. This is diagnostic coverage, not an OS containment guarantee.

@@ -33,8 +33,7 @@ adds no production change and needs native/WebKit verification. Final543c14f
 Node22 components107/107 also pass locally. Transient GitHub401 and exec-server
 disconnect recovered; neither is a current blocker.
 
-**Not release-ready. NEXT ACTION: push native68 for slider variant coverage;
-preserve macOS permission uncertainty and native provider failures.**
+**Not release-ready. Native68 at4f50caa is active: batch39691283754 / CI39691283722. NEXT ACTION: inspect completed logs; preserve cleanup uncertainty.**
 
 ## Historical checkpoints
 
@@ -4634,3 +4633,63 @@ deadlines with page/context closed. Keep assertions unchanged. Original144 each
 Linux/Windows, Docker2 and Windows legacy3 pass. These healthy samples do not
 resolve historical close/input/capture findings. Source/evidence and remaining
 G00–G18 remain open; no release or merge.
+
+## Native68 launched —4f50caafb9a7077813b92f3df0a08a9cadfc492d
+
+Pushed after both native67 workflows completed. Batch39691283754 and
+CI39691283722 started; draft PR2 rewritten around final implementation/current
+evidence, remains draft. No runtime/dependency/budget/transport change in this
+candidate. Added original slider boundary/step contract test, local2/2 +lint.
+
+Reviewed process-tree.mjs termination and execution-supervisor.mjs factory PID
+flow for the Mac permission result. The fixed class establishes permission
+denial during a browser-group signal; it does not identify the underlying OS
+cause. Confirmed worker freeze remains required for worker ancestry authority.
+There is no evidence authorizing broader signals, elevated retry, PID-hint
+clearance, ignored EPERM, or a default pipe switch. No speculative runtime patch
+applied. Both native68 workflows must finish before further push.
+
+## Local after4f50caa — bounded group-membership failure hint
+
+Native67 Mac actual cleanup returned signal_permission_denied/browser_group_
+signal_failed while all reported PIDs were missing. Existing PID-only hint does
+not observe members whose original group leader exited. Added read-only
+reportedProcessGroupHint in fixtures/process-state-hint.mjs and a failure-only
+cleanupGroupHint field in scripts/verify-codex-jobs.mjs. One additional ps query
+is bounded1s/1MiB/16,384 rows; output is at most16 reported-group count records.
+The existing PID query and group query run concurrently only after failed cleanup.
+No argv, names, environment, raw errors or raw snapshot is emitted. Counts compare
+effective UID but never classify ownership; identityVerified:false is mandatory.
+All candidates remain; no signal, retry, matching, durable state or runtime
+deadline changes. Empty groups cannot clear debt. Native67 cannot be retrofilled.
+
+Before implementation, two new contract cases fail (missing function). Added real
+POSIX factory-leader exit witness: actual detached Node leader spawns existing
+20s-TTL controlled child in its group and exits. PID-only hint confirms leader
+missing; group hint observes one live same-UID member with no leader. Child
+receives only private stop-file self-exit, bounded8s confirmation; never a PID
+signal. Actual factory parent handle is the sole fallback signal target. Fixture
+retains private control directory on uncertain cleanup. No browser dependency.
+
+Initial5/5 each Node20/22/24 and focused28/28 each pass. Final parser compatibility
+accepts a PID0 kernel row and traced/parked process states without counting them
+as owned. Final28/28 each Node20/22/24, zero failures/skips/cancellations, lint0
+and diff check pass. Initial fresh175-file production install passes all
+entrypoints/profile/job/death checks; final package/client verification pending.
+Receipts group-hint-{before,after24,real*,focused*,final*,production22}.txt. This
+change is local, not in native68. Native macOS group query compatibility remains
+unverified until a native run; diagnosis is not a fix for native67 EPERM.
+
+### Group-hint final verification phase
+
+Added explicit UTF-8 byte and16,384-row refusal controls plus17-group metadata
+rejection. Final bounds phase remains28/28 each Node20/22/24, zero failed/skipped/
+cancelled (group-hint-bounds*.txt). Final fresh175-file production install passes
+all entrypoints/profile/job/normal+linger controller-death checks; both death
+audits activeOwnedProcesses0. Actual Codex0.163 with final verifier on Node22
+completes1,000 actions in36.258s, start19ms, four result calls, modelTurns0,
+activeOwnedProcesses0, correct dedup/foreign-owner/cancel/terminal cleanup.
+Receipts group-hint-production-final22.txt and group-hint-codex-positive22.txt.
+This validates positive verifier behavior, not a natural failed-cleanup report.
+A later group snapshot cannot establish group membership at the failed signal
+time; no prior Mac failure is explained or cleared by this addition.
