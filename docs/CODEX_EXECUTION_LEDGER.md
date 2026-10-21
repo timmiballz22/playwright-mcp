@@ -3062,3 +3062,20 @@ all HTTP codes, script200, exact GET hits/backoff/fragment, cap/exhaust/cancel a
 no POST replay. Fresh170-file production-only install passes; lint/diff pass.
 Native WebKit/Windows/macOS validation remains pending. No native failure is
 called fixed solely from these controls. Evidence: http-navigation-response-*.
+
+## Durable HTTP classification through SQLite and artifact deletion
+
+New real Chromium controller acceptance admits401/404/503 workflows, verifies
+FAILED/completed0/no attention and the persisted fixed HTTP code/kind/status,
+checks seeded query/header/body data is absent from result metadata, deletes the
+authorized artifacts, then re-reads the durable status and resubmits the same
+request. Each route is requested once; the original job ID remains and no action
+replays. Controller close must confirm its own cleanup; no new independent
+process-ownership claim is made by this test.
+
+Local Node22/24 each1/1 pass (three browser jobs per test). Failed acceptance or
+close preserves the fixture; primary+close errors aggregate. SQLite unsupported
+Node20 does not execute this test. The extra QA file increases dry pack170→171;
+required runtime/new QA entries are verified. The prior170-file fresh install
+already covers the unchanged runtime. Native durable HTTP and scope-union tests
+remain pending beyond the active7d97686 candidate. Evidence: durable-http-failure-*.
