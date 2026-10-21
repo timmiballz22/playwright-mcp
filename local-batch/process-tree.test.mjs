@@ -22,3 +22,16 @@ test('diagnostic callback preserves bounded termination of an actually owned for
     assert.deepEqual(await ownedDescendants([child.pid, ...observed]), []);
   } finally { if (child.exitCode === null && child.signalCode === null) { child.kill('SIGKILL'); await exited; } }
 });
+
+if (process.platform !== 'win32') for (const [errorCode, detail] of [['EPERM', 'signal_permission_denied'], ['EINVAL', 'signal_invalid_argument'], ['PRIVATE_CANARY', 'signal_unknown_error'], ['ESRCH', null]]) {
+  test(`POSIX signal diagnostic retains fixed ${detail ?? 'already-gone'} result without raw errors`, async () => {
+    const original = process.kill; const events = [];
+    process.kill = (_pid, name) => { throw Object.assign(new Error('private-signal-error-canary'), { code: name === 0 ? 'ESRCH' : errorCode }); };
+    try {
+      const ok = await terminateOwnedProcesses(2147483646, [2147483647], false, code => events.push(code));
+      assert.equal(ok, detail === null);
+      assert.deepEqual(events, detail === null ? [] : [detail, 'browser_group_signal_failed']);
+      assert.equal(JSON.stringify(events).includes('canary'), false);
+    } finally { process.kill = original; }
+  });
+}

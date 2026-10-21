@@ -98,3 +98,13 @@ or remaining execution budget, the response fails without retry. Waiting is
 cancelable and shares the execution deadline. The trusted source API additionally
 accepts navigationRetry with maxRetries (0–2), baseDelayMs (100–10000), and
 maxDelayMs (at least baseDelayMs and at most 30000). None are workflow fields.
+
+Termination diagnostics retain an eight-entry maximum independently of the error
+code inventory. At most one first signal-error class supplements the existing
+failure category: `signal_permission_denied` (EPERM/EACCES),
+`signal_invalid_argument` (EINVAL), or `signal_unknown_error` (other failures).
+No raw error message/code is returned. ESRCH retains its existing already-gone
+handling. None of these observations grants permission to release an uncertain
+lease, retry a signal with broader authority, or replay workflow actions.
+`browser_ownership_unconfirmed` marks an unexpected worker exit with neither a
+final receipt nor any browser ownership receipt; cleanup stays failed.

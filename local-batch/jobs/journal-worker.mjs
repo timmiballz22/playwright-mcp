@@ -165,7 +165,7 @@ function validateSummary(value, row, state, completed) {
     optional(execution, 'mode', value => value === 'supervised');
     optional(execution, 'forced', value => typeof value === 'boolean');
     optional(execution, 'workerCleanupFailed', value => typeof value === 'boolean');
-    optional(execution, 'terminationFailures', value => Array.isArray(value) && value.length <= TERMINATION_FAILURE_CODES.length && value.every(code => TERMINATION_FAILURE_CODES.includes(code)));
+    optional(execution, 'terminationFailures', value => Array.isArray(value) && value.length <= 8 && value.every(code => TERMINATION_FAILURE_CODES.includes(code)));
     optional(execution, 'cleanup', value => ['terminated', 'failed'].includes(value));
     optional(execution, 'tempCleanup', value => ['removed', 'failed', 'unknown', 'not-created'].includes(value));
     for (const field of ['supervisorPid', 'workerPid']) optional(execution, field, value => integer(value, 2, 2147483647));

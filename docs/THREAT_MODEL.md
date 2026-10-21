@@ -78,3 +78,12 @@ the full screenshot allowance, report ceiling and diagnostic allowance, retainin
 prior files on refusal. This does not prevent same-user external writers or bound
 temporary browser data, physical disk allocation or other artifact directories.
 Custom trusted source callers must serialize any shared directory across leases.
+
+Execution-worker exit with no final/browser receipt cannot certify that no child
+was allocated. The supervisor drains exit plus IPC disconnect and retains unknown
+browser ownership as failed cleanup and a durable fence. A controlled detached-child
+fault demonstrates the former false-cleanup case; its private fixture self-exit
+is test cleanup, not product termination proof. OS-atomic process containment and
+kernel-uninterruptible cases remain outside this user-space guarantee. Signal
+failures retain their existing category plus at most one fixed first-error class;
+raw error codes/messages are excluded and absence/permission hints never clear debt.

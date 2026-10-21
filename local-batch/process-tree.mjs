@@ -7,13 +7,19 @@ import path from 'node:path';
 const exec = promisify(execFile);
 export { TERMINATION_FAILURE_CODES } from './failure.mjs';
 const validPid = pid => Number.isSafeInteger(pid) && pid > 1 && pid !== process.pid;
-function signal(pid, name) {
+function signal(pid, name, onFailure) {
   try { process.kill(pid, name); return true; }
-  catch (error) { return error.code === 'ESRCH'; }
+  catch (error) { if (error?.code === 'ESRCH') return true; onFailure?.(error?.code); return false; }
 }
 
 export async function terminateOwnedProcesses(rootPid, browserPids = [], rootRunning = true, onDiagnostic) {
   const note = code => { try { onDiagnostic?.(code); } catch {} };
+  let signalDetailReported = false;
+  const ownedSignal = (pid, name) => signal(pid, name, code => {
+    if (signalDetailReported) return;
+    signalDetailReported = true;
+    note(['EPERM', 'EACCES'].includes(code) ? 'signal_permission_denied' : code === 'EINVAL' ? 'signal_invalid_argument' : 'signal_unknown_error');
+  });
   const checked = (ok, code) => { if (!ok) note(code); return ok; };
   if (!validPid(rootPid)) { note('invalid_root'); return false; }
   const owned = new Set(browserPids.filter(validPid));
@@ -38,7 +44,7 @@ export async function terminateOwnedProcesses(rootPid, browserPids = [], rootRun
   if (rootRunning) {
     // Freeze the worker before enumerating launch-time children. Playwright
     // creates its own detached browser groups (pinned processLauncher).
-    ok = checked(signal(rootPid, 'SIGSTOP'), 'worker_stop_failed') && ok;
+    ok = checked(ownedSignal(rootPid, 'SIGSTOP'), 'worker_stop_failed') && ok;
     groups.add(rootPid); // our fork is detached, so its PGID is its PID
     try {
       const { stdout } = await exec('/bin/ps', ['-A', '-o', 'pid=,ppid=,pgid='], { timeout: commandTimeout(), maxBuffer: 1048576 });
@@ -58,9 +64,9 @@ export async function terminateOwnedProcesses(rootPid, browserPids = [], rootRun
       }
     } catch { ok = false; note('enumeration_failed'); }
   }
-  for (const pid of individual) ok = checked(signal(pid, 'SIGKILL'), 'descendant_signal_failed') && ok;
-  for (const pid of [...groups].filter(pid => pid !== rootPid)) ok = checked(signal(-pid, 'SIGKILL'), 'browser_group_signal_failed') && ok;
-  if (rootRunning) ok = checked(signal(-rootPid, 'SIGKILL'), 'worker_group_signal_failed') && ok;
+  for (const pid of individual) ok = checked(ownedSignal(pid, 'SIGKILL'), 'descendant_signal_failed') && ok;
+  for (const pid of [...groups].filter(pid => pid !== rootPid)) ok = checked(ownedSignal(-pid, 'SIGKILL'), 'browser_group_signal_failed') && ok;
+  if (rootRunning) ok = checked(ownedSignal(-rootPid, 'SIGKILL'), 'worker_group_signal_failed') && ok;
   return checked(await waitStopped(verify, end), 'wait_timeout') && ok;
 }
 

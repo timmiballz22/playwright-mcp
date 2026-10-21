@@ -14,6 +14,8 @@ let stopReason;
 let candidate;
 let finishing = false;
 let workerExited = false;
+let workerIpcDrained = false;
+let workerExitCode;
 let workerStarted = false;
 let forced = false;
 let completed = 0;
@@ -34,9 +36,15 @@ async function finish(exitCode) {
   finishing = true;
   clearTimeout(deadlineTimer); clearTimeout(forceTimer);
   const terminationFailures = [];
+  const ownershipUnconfirmed = workerExited && workerStarted && !candidate && browserPids.size === 0;
   let cleaned = await terminateOwnedProcesses(worker.pid, [...browserPids], !workerExited, code => {
     if (terminationFailures.length < 8 && !terminationFailures.includes(code)) terminationFailures.push(code);
   });
+  if (ownershipUnconfirmed) {
+    // An unexpected owner exit can precede its first browser PID receipt. An
+    // empty known-PID set cannot certify that no unreported child survived.
+    cleaned = false; terminationFailures.push('browser_ownership_unconfirmed');
+  }
   let tempCleanup = 'not-created';
   if (externalTemporary && !ownsTemporary) {
     // A collision or crash before the creation ACK never grants deletion rights.
@@ -123,8 +131,11 @@ process.on('message', message => {
       completed = Math.max(completed, candidate.completed || 0);
     }
   });
-  worker.once('error', () => { stopReason = 'worker_crashed'; void force(); });
-  worker.once('exit', code => { workerExited = true; void finish(code); });
+  worker.on('error', () => { if (finishing) return; stopReason ??= 'worker_crashed'; void force(); });
+  workerIpcDrained = !worker.connected;
+  const finishDrained = () => { if (workerExited && workerIpcDrained) void finish(workerExitCode); };
+  worker.once('exit', code => { workerExited = true; workerExitCode = code; finishDrained(); });
+  worker.once('disconnect', () => { workerIpcDrained = true; finishDrained(); });
   // Reserve part of the same deadline for cancellation, process termination and
   // reporting. A stalled report or even a stalled event loop cannot evade this.
   const reserve = process.platform === 'win32' ? Math.min(3000, Math.max(20, packet.timeoutMs / 2)) : Math.min(1000, Math.max(20, packet.timeoutMs / 5));

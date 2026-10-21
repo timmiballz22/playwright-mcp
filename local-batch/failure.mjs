@@ -1,4 +1,4 @@
-export const TERMINATION_FAILURE_CODES = Object.freeze(['invalid_root', 'windows_taskkill_failed', 'worker_stop_failed', 'enumeration_failed', 'descendant_signal_failed', 'browser_group_signal_failed', 'worker_group_signal_failed', 'wait_timeout']);
+export const TERMINATION_FAILURE_CODES = Object.freeze(['invalid_root', 'windows_taskkill_failed', 'worker_stop_failed', 'enumeration_failed', 'descendant_signal_failed', 'browser_group_signal_failed', 'worker_group_signal_failed', 'wait_timeout', 'browser_ownership_unconfirmed', 'signal_permission_denied', 'signal_invalid_argument', 'signal_unknown_error']);
 export const FAILURE_KINDS = Object.freeze(['interrupted', 'http_failure', 'assertion_mismatch',
   'not_visible', 'not_enabled', 'not_stable', 'detached', 'pointer_intercepted',
   'locator_timeout', 'pointer_action_timeout', 'navigation_timeout', 'target_closed', 'ambiguous_locator', 'invalid_selector', 'artifact_quota', 'page_quota', 'unknown']);

@@ -4029,3 +4029,52 @@ The original close-process observer's initial audit also consumes time and may
 change interleavings. A healthy instrumented case cannot be called a fix for the
 prior close stall. Pending observation is read-only diagnostic coverage, not an
 all-processes-exited assertion or authority to release any lease.
+
+## Unexpected worker exit before ownership receipt — local P0 correction
+
+An actual detached-child fault reproduces a false-cleanup case: the execution
+worker allocates a child, deliberately withholds its browser ownership receipt,
+then exits. Independent live-worker ancestry first confirms the child belongs to
+that fixture, and it remains observed after the supervisor reports terminated.
+Before controls0/2 fail: raw cleanup falsely says terminated; durable job does not
+require operator attention. Fixture cleanup requests self-exit through its private
+file, never signals a PID from a file/table; child has a20s self-exit failsafe.
+This is a controlled process model, not an actual browser/kernel containment proof.
+
+Supervisor now drains both worker exit and IPC disconnect before natural-exit
+classification, handles repeated error events without replacing first cause, and
+marks started-worker exit with no final/browser receipt browser_ownership_unconfirmed.
+Cleanup fails, completed remains a lower bound, retrySafe:false, and durable
+admission stays fenced across duplicate keys, child self-exit and controller reopen.
+The fix does not claim to kill an unreported child or release debt from a PID hint.
+Normal forced/live-root termination strategy and all action budgets remain unchanged.
+
+Signal diagnostics retain the original category plus at most one first fixed
+permission/invalid-argument/unknown error class. ESRCH already meant gone and is
+unchanged; no raw errno/message, new signal, retry, privilege change or broader
+kill target. Native61 group failure remains unexplained until the class is observed.
+Four POSIX controls cover fixed classes/redaction and ESRCH semantics; fake signal
+handles never call OS kill. Before taxonomy controls3/6 fail, kept separately.
+
+Adding enum members initially exposed a journal bound coupled to enum length:
+first full components98/99 accepts an invalid9-entry list. That run is retained;
+validation now explicitly preserves the old8-entry cap, without changing its
+rejection assertion. Valid new diagnostics persist with uncertainty and lease debt.
+
+Final full components99/99 each Node22/24, focused26/26 Node22 and25/25 Node20,
+lint/diff and fresh175-file production install pass. Both independent normal/linger
+controller-death audits observe owned0. Public jobs1k integration2/2 Node22 passes.
+Earlier26/26 Node24 guard/signal/executor receipt precedes only the journal cap
+correction; final99-component receipt covers that correction. Private fault files
+and test are excluded from the175-file package. launch-ownership-*,signal-detail-*
+evidence separates before, intermediate and final phases. Native62 proof pending.
+
+Native61 also exposes follow-up work: Windows HTTP /403 is known at the step but
+its numeric status is dropped from the early action-failure IPC projection when
+overall deadline wins; event timings show first request10.477s in a15s workflow.
+A Windows screenshot-pair audit observes4 possible orphans (rootMatches0, births
+before observation window4); do not filter them by age/role/name or call resolved.
+macOS WebKit cancellation records a second /cancel GET218.767ms after the first,
+while parent abort is107.416ms. Distinguish in-flight/IPC timing from actual replay
+before changing assertions or policy; a controlled non-idempotent cancellation
+witness is needed. Exact native61 findings will be retained with full counts.

@@ -165,3 +165,11 @@ user symlinks/junctions are rejected. On macOS only the root-owned immutable
 with `/private` ownership/write permissions checked. This avoids rejecting the
 host's normal temporary directory without accepting caller-controlled links.
 The scan and path checks remain inside the existing execution deadline.
+
+An unexpected execution-worker exit before either a final receipt or a browser
+ownership receipt is not proof of an empty browser tree. The supervisor drains
+worker IPC before classifying natural exit and marks this case
+`browser_ownership_unconfirmed`: cleanup fails, operator attention is retained and
+new admission remains fenced even if a later read-only PID hint finds nothing.
+This reports uncertainty; it does not claim to terminate an unreported child or
+authorize killing a PID recovered from storage. Exact-key results still deduplicate.

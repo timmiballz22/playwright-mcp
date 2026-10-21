@@ -1,0 +1,52 @@
+✖ unexpected exit cannot certify an unreported live browser model as cleaned (729.377382ms)
+✖ unreported browser uncertainty retains durable admission fence after child self-exit (880.031786ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1686.239922
+
+✖ failing tests:
+
+test at local-batch/jobs/launch-ownership.test.mjs:58:1
+✖ unexpected exit cannot certify an unreported live browser model as cleaned (729.377382ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'terminated'
+  - 'failed'
+  
+      at file:///workspace/playwright-mcp/local-batch/jobs/launch-ownership.test.mjs:62:10
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async controlled (file:///workspace/playwright-mcp/local-batch/jobs/launch-ownership.test.mjs:29:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'terminated',
+    expected: 'failed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/jobs/launch-ownership.test.mjs:66:22
+✖ unreported browser uncertainty retains durable admission fence after child self-exit (880.031786ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at file:///workspace/playwright-mcp/local-batch/jobs/launch-ownership.test.mjs:74:10
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async controlled (file:///workspace/playwright-mcp/local-batch/jobs/launch-ownership.test.mjs:29:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

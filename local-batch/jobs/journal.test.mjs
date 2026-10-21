@@ -43,7 +43,7 @@ if (!supportsJournal) {
       await journal.call('activate', { id, nonce });
       const summary = { ok: false, reason: 'cleanup_failed', completed: 0, total: 1,
         cleanupFailures: ['context_timeout', 'browser_timeout', 'server_timeout', 'server_kill_timeout'],
-        execution: { mode: 'supervised', forced: true, cleanup: 'failed', tempCleanup: 'removed', terminationFailures: ['wait_timeout'] } };
+        execution: { mode: 'supervised', forced: true, cleanup: 'failed', tempCleanup: 'removed', terminationFailures: ['wait_timeout', 'signal_permission_denied', 'browser_group_signal_failed'] } };
       for (const invalid of [['fake-private-diagnostic-canary'], Array(9).fill('wait_timeout'), [42], 'wait_timeout'])
         await assert.rejects(journal.call('finish', { id, nonce, state: 'FAILED', completed: 0, cleanupOk: false,
           summary: { ...summary, execution: { ...summary.execution, terminationFailures: invalid } } }), { code: 'invalid_metadata' });
