@@ -187,3 +187,12 @@ Windows Firefox stalls or replace the independent executor watchdog.
 Installed jobs smoke now preserves failed private fixture data after verified
 cleanup and reports only fixed phase/state/reason/cleanup receipt fields on its
 first-result assertions. No workflow/page content is added to diagnostics.
+
+large-dom.spec.ts passes local Chromium/Firefox:4,000 buttons, full snapshot file
+above64KiB, navigation/file/click replies below4096 characters, bounded find
+below8192 and a real action on the last matched reference. Operator explicitly
+selects snapshot-mode=none; this is not a default inline snapshot or heap quota.
+The retry cancellation fixture now records only its first abort timer, so an
+unexpected second request cannot overwrite the original abort timestamp. Its
+strict single-hit assertion is retained; the new macOS WebKit failure remains
+unresolved pending further evidence.
