@@ -1,3 +1,4 @@
+import { guardianDiagnostic } from './guardian-diagnostic.mjs';
 // Trusted controller; optional public MCP configuration lives in config.mjs.
 import { fork } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
@@ -170,13 +171,15 @@ export class JobController {
     this.active = active;
     this.notify({ type: 'guardianSpawned', jobId: id, pid: child.pid });
     child.on('message', event => {
+      if (event?.type === 'failed') this.notify({ type: 'guardianFailed', diagnostic: guardianDiagnostic(event.diagnostic, event.diagnostic?.stage, event.diagnostic?.command) });
       if (['supervisorSpawned', 'workerSpawned', 'ownedProcess'].includes(event?.type) && Number.isInteger(event.pid) && event.pid > 1)
         this.notify({ type: event.type, jobId: id, pid: event.pid });
     });
     let handled = false;
-    const exited = () => {
+    const exited = (code, signal) => {
       if (handled) return;
       handled = true;
+      if (code !== 0) this.notify({ type: 'guardianExited', code: Number.isInteger(code) ? code : null, signal: ['SIGKILL', 'SIGTERM', 'SIGABRT', 'SIGSEGV', 'SIGINT'].includes(signal) ? signal : 'none' });
       // Cleanup/results are authoritative only after the owned guardian exits.
       // Do not trust a complete message as permission to launch another browser.
       const finalize = async () => {

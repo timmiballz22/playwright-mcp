@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { guardianDiagnosticLine } from './jobs/guardian-diagnostic.mjs';
 // Optional preview stdio endpoint. No daemon, HTTP listener or untrusted code.
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
@@ -37,7 +38,10 @@ async function main() {
   if (!supportsJournal) throw Object.assign(new Error(), { code: 'unsupported_runtime' });
   const config = await resolveJobConfig();
   const server = new Server({ name: 'local-playwright-jobs-preview', version: '0.1.0' }, { capabilities: { tools: {} } });
-  const controller = await JobController.open(config);
+  const controller = await JobController.open({ ...config, onEvent: event => {
+    if (event.type === 'guardianFailed') process.stderr.write(guardianDiagnosticLine(event.diagnostic));
+    if (event.type === 'guardianExited') process.stderr.write(`Local job guardian exited (${event.code ?? 'unknown'}/${event.signal}).\n`);
+  } });
   let closing;
   const shutdown = () => {
     if (!closing) closing = (async () => {

@@ -1,5 +1,6 @@
 // Trusted internal process protocol, never a model-selected module or public tool.
 import path from 'node:path';
+import { guardianDiagnostic } from './guardian-diagnostic.mjs';
 import { JobJournal } from './journal.mjs';
 import { executeWorkflow } from '../executor.mjs';
 import { captureWorkflow } from './workflow-snapshot.mjs';
@@ -11,6 +12,8 @@ let pollBusy = false;
 let writes = Promise.resolve();
 let journalFailed = false;
 let cancelQueued = false;
+let stage = 'validation';
+let failureHint;
 const send = value => { if (process.connected) { try { process.send(value, () => {}); } catch {} } };
 const stop = () => {
   abort.abort();
@@ -24,7 +27,7 @@ process.once('disconnect', stop);
 process.once('SIGTERM', stop);
 function write(command, data) {
   const pending = writes.then(() => journal.call(command, data));
-  writes = pending.catch(() => { journalFailed = true; stop(); });
+  writes = pending.catch(error => { failureHint ??= guardianDiagnostic(error, 'write', command); journalFailed = true; stop(); });
   return pending;
 }
 function safeSummary(summary) {
@@ -62,12 +65,16 @@ process.once('message', async message => {
   if (!process.connected) abort.abort();
   try {
     const { workflow, spec, digest } = captureWorkflow(packet.workflow);
+    stage = 'journal_open';
     journal = await JobJournal.open(packet.journal);
     const fields = { id: packet.id, nonce: packet.nonce };
+    stage = 'verify';
     await journal.call('verify', { id: packet.id, workflowDigest: digest });
     if (abort.signal.aborted) await journal.call('cancel', { id: packet.id });
+    stage = 'read';
     let row = await journal.call('read', { id: packet.id });
     if (row.total !== spec.steps.length * spec.iterations) throw new Error('invalid_metadata');
+    stage = 'activate';
     row = await journal.call('activate', fields);
     if (row.state !== 'RUNNING') { send({ type: 'complete', job: row }); return; }
     send({ type: 'activated', job: row, pid: process.pid });
@@ -75,11 +82,12 @@ process.once('message', async message => {
       if (pollBusy || journalFailed) return;
       pollBusy = true;
       try { if ((await journal.call('read', { id: packet.id })).cancelRequested) stop(); }
-      catch { journalFailed = true; stop(); }
+      catch (error) { failureHint ??= guardianDiagnostic(error, 'poll', 'read'); journalFailed = true; stop(); }
       finally { pollBusy = false; }
     }, 150);
     if (packet.deadlineNs !== undefined && (typeof packet.deadlineNs !== 'string' || !/^[0-9]{1,30}$/.test(packet.deadlineNs))) throw new Error('invalid_deadline');
     const remaining = Math.min(Date.parse(row.deadlineAt) - Date.now(), packet.deadlineNs === undefined ? Infinity : Number((BigInt(packet.deadlineNs) - process.hrtime.bigint()) / 1000000n));
+    stage = 'execution';
     let summary;
     const preCancelled = abort.signal.aborted;
     if (remaining < 100) {
@@ -98,9 +106,12 @@ process.once('message', async message => {
       });
     }
     clearInterval(polling);
+    stage = 'drain';
     await writes;
     if (journalFailed) throw new Error('journal_unavailable');
+    stage = 'read';
     row = await journal.call('read', { id: packet.id });
+    stage = 'summary';
     summary = safeSummary(outcome(summary, row));
     const cleanupOk = remaining < 100 || preCancelled || summary.execution?.cleanup === 'terminated' &&
       ['removed', 'not-created'].includes(summary.execution.tempCleanup);
@@ -109,6 +120,7 @@ process.once('message', async message => {
     // unavailable/ambiguous mutation is ever retried and no action is replayed.
     for (let attempt = 0; ; attempt++) {
       try {
+        stage = 'finish';
         row = await journal.call('finish', { ...fields, state: terminalState(summary), completed: summary.completed,
           cleanupOk, summary, reason: summary.reason ?? null });
         break;
@@ -120,10 +132,10 @@ process.once('message', async message => {
       }
     }
     send({ type: 'complete', job: row });
-  } catch {
+  } catch (error) {
     // Unknown persistence outcome retains the lease for conservative recovery.
     // Browser ownership stays with executeWorkflow until its cleanup has returned.
-    send({ type: 'failed', code: 'guardian_failed' });
+    send({ type: 'failed', code: 'guardian_failed', diagnostic: failureHint ?? guardianDiagnostic(error, stage, error?.command) });
     process.exitCode = 1;
   } finally {
     clearInterval(polling);

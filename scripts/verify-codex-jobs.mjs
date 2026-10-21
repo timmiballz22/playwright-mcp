@@ -40,6 +40,7 @@ const child = spawn(codexCommand, [...codexArguments, 'app-server', '--stdio', '
 });
 const closed = once(child, 'close').catch(() => []);
 // Keep raw client diagnostics private; emit only our fixed startup code format.
+const guardianFailures = new Set(); const guardianExits = new Set();
 const startupCodes = new Set(); const helperFailures = new Set(); const startupStates = new Map(); let stderrTail = '';
 const startupCategory = value => {
   if (typeof value !== 'string') return undefined;
@@ -52,6 +53,8 @@ const startupCategory = value => {
 };
 child.stderr.on('data', chunk => {
   stderrTail = (stderrTail + chunk.toString()).slice(-4096);
+  for (const match of stderrTail.matchAll(/Local job guardian failed \(([a-z_]+)\/([a-z_]+)\/([a-z_]+)\)/g)) guardianFailures.add(match.slice(1).join('/'));
+  for (const match of stderrTail.matchAll(/Local job guardian exited \((unknown|-?[0-9]+)\/(none|SIGKILL|SIGTERM|SIGABRT|SIGSEGV|SIGINT)\)/g)) guardianExits.add(match.slice(1).join('/'));
   for (const match of stderrTail.matchAll(/Local jobs startup failed \(([a-z_]{1,40})\)/g)) startupCodes.add(match[1]);
   for (const match of stderrTail.matchAll(/Local private storage helper failed \((spawn_missing|spawn_denied|output_limit|timeout|nonzero_exit|spawn_failed|invalid_output)\)/g)) helperFailures.add(match[1]);
 });
@@ -121,7 +124,7 @@ try {
   assert.equal(foreign.isError, true); assert.equal(JSON.parse(foreign.content[0].text).code, 'not_found');
   let result; let resultCalls = 0; const end = performance.now() + 130000;
   do { resultCalls++; result = await call('get_workflow_result', { jobId: first.jobId, waitMs: 10000 }); } while (!result.ready && performance.now() < end);
-  const receipt = JSON.stringify({ phase: 'codex_primary_job', state: result.job?.state, completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup });
+  const receipt = JSON.stringify({ phase: 'codex_primary_job', state: result.job?.state, jobReason: result.job?.reason, jobStage: result.job?.stage, jobCompleted: result.job?.completed, resultAvailable: !!result.result, operatorAttentionRequired: result.job?.operatorAttentionRequired, guardianFailures: [...guardianFailures], guardianExits: [...guardianExits], completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup });
   if (process.env.GITHUB_ACTIONS === 'true' && result.job?.state !== 'SUCCEEDED') console.error('::error title=Codex jobs receipt::' + receipt.replaceAll('%', '%25').replaceAll('\r', '%0D').replaceAll('\n', '%0A'));
   assert.equal(result.job.state, 'SUCCEEDED', receipt); assert.equal(result.result.completed, 1000);
   assert.equal(result.result.recentSteps.length, 10); assert.equal(result.result.reportPath, undefined);

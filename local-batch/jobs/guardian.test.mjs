@@ -32,7 +32,9 @@ if (supportsJournal) {
         exited = once(child, 'exit');
         context.signal.addEventListener('abort', () => child?.kill('SIGKILL'), { once: true });
         let acted = false;
+        let diagnostic;
         child.on('message', event => {
+          if (event.type === 'failed') diagnostic = event.diagnostic;
           if (event.pid) owned.push(event.pid);
           if (event.type !== 'ownedProcess' || acted) return;
           acted = true;
@@ -57,6 +59,7 @@ if (supportsJournal) {
           return;
         }
         if (mode === 'admissionFailure') {
+          assert.deepEqual(diagnostic, { stage: 'write', code: 'storage_full', command: 'resources' });
           assert.equal(code, 1);
           assert.equal(acted, false, 'Resource persistence failed after worker effects started');
           await journal.call('recover');

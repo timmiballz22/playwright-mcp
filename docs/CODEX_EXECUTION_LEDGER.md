@@ -2,6 +2,28 @@
 
 Updated 2026-10-21. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
+
+Current native candidate `94d7cd4`: Windows actual Codex job119116003342
+reached ready with six tools, then its primary job ended CRASHED without a result.
+All inherited/filtered SDK and direct helper controls passed. This is a new
+post-startup failure; the framework serialization fix remains independently
+verified. Cause remains unknown. Subsequent GitHub access returned HTTP401 Bad
+credentials, so final counts/logs for batch39568334110 and CI39568334026 could
+not be retrieved; neither run is declared complete or successful here.
+
+Local diagnostic follow-up records fixed guardian stage/error/command and abnormal
+exit code/signal through trusted IPC and endpoint stderr, plus bounded job receipt
+metadata. It never prints raw exceptions, paths, workflow values or environment;
+no deadlines, retries, lease rules or state transitions changed. A resource-write
+storage_full fixture verifies the first failure metadata before any worker effects.
+Local Node24 targeted tests16/16 and actual Codex0.163.0 six-tool1,000-action check
+pass (35.922s, start10ms, zero model turns/owned survivors). Evidence:
+`evidence/guardian-diagnostic-local-tests.log` and
+`evidence/guardian-diagnostic-local-codex.json`. Syntax checks and generated-doc
+lint pass. An initial misplaced import before the endpoint shebang caused one
+local test failure; corrected before the successful rerun. This diagnostic change
+has not been validated on Windows and does not fix or close the native crash.
+
 Latest completed native `fd9d074`: **1,002 tests passed,five failed**, zero test
 skips/cancellations. Wrapper39564493704:282/2; batch39564493658:720/3. All five
 failures are Windows Firefox: raw Node22 headless/headed,429 fixture,and two
