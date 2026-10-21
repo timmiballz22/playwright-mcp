@@ -1,22 +1,34 @@
 # Execution report — verified milestone, incomplete mission
 
-Local unpushed cleanup candidate adds an independent artifact worker, five-second
-budget plus one-second kill confirmation and fixed receipts. Positive IPC alone
-cannot succeed without natural worker exit. Node22/24 full jobs components59/59
-before the final guard; final CLI/retention/worker boundaries17/17 each. A fresh
-169-file production install passes. Native execution, parent-death handling and
-durable cross-controller maintenance uncertainty remain unverified/open.
+Latest completed native `5060ca4`: **1,334 reported passes,10 failed tests and
+one cancelled test**. Wrapper39614429492:432/2; batch39614429595:902/8 plus one
+TAP cancellation. All17 executed jobs conclude, one intentional soak job skip,
+zero job cancellations. All three actual Codex clients and five167-file
+production installs pass; Windows Firefox/macOS timing failures remain.
 
-New local candidate adds explicit age-based operator artifact pruning, dry-run
-by default, bounded owner/project pagination and preserved results/request keys.
-Node22/24 components each56/56; Node20 boundaries9/9; fresh167-file production
-install and lint pass. Native retention execution remains pending. Full quotas,
-scheduled retention and wall-clock artifact cleanup containment remain open.
+Large-DOM witness passes all12 host browser projects. Supervised20-artifact
+identity checks pass all five native batch lanes. These are scoped positives;
+full native acceptance remains failed.
 
-Latest completed native5060ca4: wrapper432 pass/2 fail; batch902 pass/8 fail
-and one cancelled test (distinct from job cancellation). Both workflows finish
-with failure; this does not validate the later retention candidate. Detailed
-selected logs/counts are retained under worker-ci-fiftieth-*.
+Pushed retention `b355d2e` requires age/explicit delete, defaults to preview,
+pages old owner/project terminal jobs and preserves results/request keys. Its
+native CI is running; journal component and Linux batch lanes pass so far.
+The macOS actual-Codex lane fails after one completed action; full native results
+are pending. No final totals are inferred from partial annotations.
+
+Later local commits contain artifact filesystem work in an independent worker,
+require natural exit after a valid receipt, preserve MCP test failure artifacts
+and add fixed failed-step classification to actual-Codex receipts. Final full
+jobs components61/61 each Node22/24, Node20 boundaries17/17; fresh169-file
+production-only installation passes; zero test skips or
+cancellations. Real local Codex1,000-action probe passes38.343s/zero model turns
+and zero observed owned survivors. Controlled negative tests fail/cancel as
+intended and retain their evidence. Linux Node20/22/24 worker-parent-loss tests
+pass during a simulated filesystem stall.
+
+Native worker validation, durable cross-controller maintenance uncertainty,
+automatic retention/cumulative quotas, managed profiles, stronger egress and
+remaining acceptance gates stay open. This remains a draft, **not release-ready**.
 
 Previous completed full native `b144c7d`: **1,337 reported passes/six failed
 tests**, plus macOS actual-Codex failure. Wrapper39609165296:434/3;

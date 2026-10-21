@@ -1,0 +1,95 @@
+TAP version 13
+# Subtest: cooperative context cleanup timeout retains fixed stage and stays failed
+ok 1 - cooperative context cleanup timeout retains fixed stage and stays failed
+  ---
+  duration_ms: 80.385229
+  ...
+# Subtest: cooperative context cleanup error retains fixed stage and stays failed
+ok 2 - cooperative context cleanup error retains fixed stage and stays failed
+  ---
+  duration_ms: 4.452797
+  ...
+# Subtest: untrusted Retry-After hints cannot exceed bounded durable result metadata
+ok 3 - untrusted Retry-After hints cannot exceed bounded durable result metadata
+  ---
+  duration_ms: 17.734675
+  ...
+# Subtest: all three close failures plus final server kill failure remain bounded fixed metadata
+ok 4 - all three close failures plus final server kill failure remain bounded fixed metadata
+  ---
+  duration_ms: 7.843367
+  ...
+# Subtest: client step failure receipts retain fixed taxonomy without private step fields
+ok 5 - client step failure receipts retain fixed taxonomy without private step fields
+  ---
+  duration_ms: 0.762479
+  ...
+# Subtest: jobs CLI validates bounded commands without accepting operator policy overrides
+ok 6 - jobs CLI validates bounded commands without accepting operator policy overrides
+  ---
+  duration_ms: 34.236042
+  ...
+# Subtest: retention CLI previews bounded age pages and requires explicit deletion
+ok 7 - retention CLI previews bounded age pages and requires explicit deletion
+  ---
+  duration_ms: 1.367875
+  ...
+# Subtest: jobs CLI rejects unsupported execution before opening workflow or creating state
+ok 8 - jobs CLI rejects unsupported execution before opening workflow or creating state
+  ---
+  duration_ms: 338.77242
+  ...
+# Subtest: jobs CLI executes through a symlinked installation path instead of silently exiting zero
+ok 9 - jobs CLI executes through a symlinked installation path instead of silently exiting zero
+  ---
+  duration_ms: 362.916351
+  ...
+# Subtest: bounded artifact worker previews, removes and preserves fixed safe errors
+ok 10 - bounded artifact worker previews, removes and preserves fixed safe errors
+  ---
+  duration_ms: 603.877962
+  ...
+# Subtest: artifact worker before-result: independent deadline and natural-exit confirmation
+ok 11 - artifact worker before-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 787.476913
+  ...
+# Subtest: artifact worker after-result: independent deadline and natural-exit confirmation
+ok 12 - artifact worker after-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 796.238722
+  ...
+# Subtest: artifact worker invalid-result: independent deadline and natural-exit confirmation
+ok 13 - artifact worker invalid-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 119.845357
+  ...
+# Subtest: artifact worker failed-result: independent deadline and natural-exit confirmation
+ok 14 - artifact worker failed-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 183.934791
+  ...
+# Subtest: artifact worker signal-exit: independent deadline and natural-exit confirmation
+ok 15 - artifact worker signal-exit: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 155.763133
+  ...
+# Subtest: an unconfirmed cleanup blocks further scopes in the same controller
+ok 16 - an unconfirmed cleanup blocks further scopes in the same controller
+  ---
+  duration_ms: 1.362387
+  ...
+# Subtest: actual artifact worker exits after controller death while filesystem awaits
+ok 17 - actual artifact worker exits after controller death while filesystem awaits
+  ---
+  duration_ms: 682.543657
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3832.726539

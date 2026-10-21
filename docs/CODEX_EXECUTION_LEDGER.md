@@ -167,24 +167,24 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 tool inventories,six schemas; nativeb144c7d Linux/Windows144 pass; macOS141/3, Windows legacy3 pass | Preserve baseline/channel scope and verify final clean SHA |
-| G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs; native8d661bf all five166-file production lanes pass | Verify final candidate natively and complete clean operator walkthroughs |
-| G02 MCP | IN PROGRESS | scripts/verify-codex-jobs.mjs; nativeb144c7d Linux/Windows actual clients pass; macOS TIMED_OUT971 | Complete remaining malformed/concurrent/disconnect phase acceptance |
-| G03 FEATURE PARITY | FAILED | nativeb144c7d macOS screenshot protocol/Firefox close/find timeouts; interactive/variant coverage incomplete | Complete remaining capability-specific positive/negative cases |
+| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 tool inventories,six schemas; native5060ca4 Linux144 pass; Windows143/1 and macOS143/1 | Preserve baseline/channel scope and verify final clean SHA |
+| G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs; native5060ca4 all five167-file production lanes pass; local169-file worker install | Verify final candidate natively and complete clean operator walkthroughs |
+| G02 MCP | IN PROGRESS | scripts/verify-codex-jobs.mjs; native5060ca4 all three actual clients pass; b355d2e macOS partial failure remains under review | Complete remaining malformed/concurrent/disconnect phase acceptance |
+| G03 FEATURE PARITY | FAILED | native5060ca4 Firefox popup (Windows) and trusted100 (macOS) failures; interactive/variant coverage incomplete | Complete remaining capability-specific positive/negative cases |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs,jobs-mcp.test.mjs; native8d661bf source batch/jobs1,000 all OSs; actual Codex macOS timeout/raw throughput stay G02/G10/G12 | Preserve exact action/DOM counters; broader browser reliability stays G10 |
-| G05 RETRIES | FAILED | navigation-retry-browser.test.mjs; native8d661bf Windows Firefox429 case times out after2 GET hits; unsafe POST not replayed | Diagnose bounded navigation failure without enlarging deadlines |
+| G05 RETRIES | FAILED | navigation-retry-browser.test.mjs; native5060ca4 Windows Firefox retry positive fails; unsafe POST replay remains forbidden | Diagnose bounded navigation failure without enlarging deadlines |
 | G06 JOBS | FAILED | jobs/controller.mjs,guardian.mjs,journal.mjs; native six-tool/CLI,owner/dedup/cancel/reconnect; EOF/SIGKILL evidence | Resolve Windows ownership-audit contradictions; targeted birth/role receipt; complete phase/restart/resource acceptance |
 | G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | screenshot-budget.mjs,jobs/artifact-cleanup.mjs,private-windows.*; native protected ACLs and16MiB image payload budget | Complete cumulative disk quotas/retention; image budget is not browser/profile cap |
+| G08 STORAGE | FAILED | screenshot-budget.mjs,private-windows.*,jobs/artifact-cleanup*.mjs; local age retention and independent worker; native protected ACLs/image budget | Verify worker/retention natively; cumulative quotas, scheduled retention and durable maintenance uncertainty remain |
 | G09 AUTH/PROFILES | FAILED | profile-guard.cjs,profile-lease.cjs; native all-engine ownership/session restore | Managed project profiles, Windows profile ACLs, reset/corruption/crash recovery |
-| G10 CROSS-BROWSER | FAILED | native8d661bf Windows legacy Firefox, Chromium cleanup/WebKit ownership and macOS raw Chromium failures | Collect transport/routing controls; no force click/security flags/action replay |
-| G11 CROSS-OS | IN PROGRESS | native8d661bf installed endpoints pass all OSs; actual Codex macOS timeout remains | Require complete green native acceptance; Firefox/throughput reliability remains G10 failure |
+| G10 CROSS-BROWSER | FAILED | native5060ca4 Windows Firefox7 main failures; macOS raw Chromium/MCP test deadlines; prior ownership failures unexplained | Collect transport/routing controls; no force click/security flags/action replay |
+| G11 CROSS-OS | IN PROGRESS | native5060ca4 installed endpoints/actual Codex pass all OSs; complete acceptance still fails | Require complete green native acceptance; Firefox/throughput reliability remains G10 failure |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md,scripts/soak-local.mjs; independent100-run Linux soak and client timings | Native/CLI/SKILLS/token comparison, complete resource observation |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,evidence/worker-ci-fortyninth-*,late-cancel-*,validation-property-*; exact SHA/counts retained | Keep every gate/scenario tied to executed evidence; pending is not pass |
+| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,evidence/worker-ci-fiftieth-*,retention-*,artifact-*,codex-step-diagnostic-*; exact SHA/counts retained | Keep every gate/scenario tied to executed evidence; pending is not pass |
 | G18 CLEAN MERGE | FAILED | Draft PR2; last full green d71c91e (14 jobs), current17-job failures retained | Resolve critical gaps; require green complete final SHA before merge |
 
 ## Defects and risk register
@@ -2947,3 +2947,25 @@ exits1 after navigation: fixed receipt identifies index2/click/action_failed/
 locator_timeout5004ms, readable result and terminated/removed cleanup. Existing
 failure artifacts remain. Temporary fault script removed; lint/diff checks pass.
 Native failure cause is not inferred from the synthetic control.
+
+## Pinned Firefox progress-listener source review
+
+Read-only official v1.64.1 Juggler source confirms Helper.js82 is a teardown
+closure. PageTarget.dispose catches/dumps errors there when the linked browser is
+already half-destroyed; FrameTree.dispose also removes listeners without that
+catch. Helper.js is byte-identical at inspected upstream main. Thus the native
+error may be a teardown symptom; its line alone does not prove the cause of the
+earlier locator/pointer/navigation stalls. No binary patch, ignored browser error,
+dependency swap or deadline change follows from this evidence. Exact source URLs,
+refs and hashes: firefox-progress-listener-source-review.json.
+
+Final source consolidation after diagnostic dependency update: full jobs
+components61/61 each Node22/24, Node20 CLI/worker/diagnostic boundaries17/17,
+zero failures/skips/cancellations. Receipts: artifact-final-*. The controlled
+negative receipts are kept separately and are not counted as passing tests.
+
+Final fresh production-only installation after all runtime/diagnostic changes
+passes with169 packaged files, exact required worker modules and original/batch/
+jobs/profile/journal/controller-death smoke receipts. Guardian parent-death
+shutdown318ms and linger-close763ms both independently observe zero owned before
+replacement observation. Evidence: artifact-final-production-install.txt.
