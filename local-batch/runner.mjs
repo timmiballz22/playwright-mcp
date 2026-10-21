@@ -336,7 +336,19 @@ export async function runWorkflow(workflow, {
       const timeoutError = new Error('cleanup_timeout');
       try {
         await Promise.race([resource?.close(), new Promise((_, reject) => { cleanupTimer = setTimeout(() => reject(timeoutError), 5000); })]);
-      } catch (error) { cleanupFailed = true; cleanupFailures.push(name + (error === timeoutError ? '_timeout' : '_error')); }
+      } catch (error) {
+        cleanupFailed = true; cleanupFailures.push(name + (error === timeoutError ? '_timeout' : '_error'));
+        if (name === 'server' && typeof resource?.kill === 'function') {
+          // Only this run's public BrowserServer handle carries kill authority.
+          // Preserve the close failure even if this final bounded attempt works.
+          let killTimer;
+          const killTimeout = new Error('cleanup_timeout');
+          try {
+            await Promise.race([resource.kill(), new Promise((_, reject) => { killTimer = setTimeout(() => reject(killTimeout), 1000); })]);
+          } catch (error) { cleanupFailures.push(error === killTimeout ? 'server_kill_timeout' : 'server_kill_error'); }
+          finally { clearTimeout(killTimer); }
+        }
+      }
       finally { clearTimeout(cleanupTimer); }
     }
   }

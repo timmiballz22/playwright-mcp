@@ -62,3 +62,22 @@ test('late server ownership is stopped even when a trusted observer throws', asy
     assert.equal(JSON.stringify(result).includes('fake-late-private-canary'), false);
   } finally { await rm(directory, { recursive: true, force: true }); }
 });
+
+for (const stalledKill of [false, true]) test(`raw close timeout makes one bounded owned-server kill attempt while retaining cleanup failure (${stalledKill ? 'stalled kill' : 'closed'})`, { timeout: 10000 }, async () => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'owned-close-fallback-'));
+  let kills = 0;
+  const context = { setDefaultTimeout() {}, setDefaultNavigationTimeout() {}, route: async () => {}, newPage: async () => ({ locator: () => ({ click: async () => {} }) }), close: async () => {} };
+  const browser = { newContext: async () => context, close: async () => {} };
+  const server = { process: () => ({ pid: 999999 }), wsEndpoint: () => 'ws://127.0.0.1/owned-fixture', close: () => new Promise(() => {}), kill: () => { kills++; return stalledKill ? new Promise(() => {}) : Promise.resolve(); } };
+  try {
+    const started = performance.now();
+    const result = await runWorkflow({ steps: [{ type: 'click', selector: 'button' }] }, { artifactsDir: directory,
+      playwright: { chromium: { launchServer: async () => server, connect: async () => browser } },
+    });
+    assert.equal(kills, 1, 'Owned BrowserServer must receive a last kill attempt');
+    assert.equal(result.ok, false); assert.equal(result.reason, 'cleanup_failed');
+    assert.equal(result.completed, 1);
+    assert.deepEqual(result.cleanupFailures, stalledKill ? ['server_timeout', 'server_kill_timeout'] : ['server_timeout']);
+    assert.ok(performance.now() - started < 8000, 'Final kill must not turn cleanup into an unbounded wait');
+  } finally { await rm(directory, { recursive: true, force: true }); }
+});

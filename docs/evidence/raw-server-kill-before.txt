@@ -1,0 +1,28 @@
+✖ raw close timeout makes one bounded owned-server kill attempt while retaining cleanup failure (5013.441592ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5080.700913
+
+✖ failing tests:
+
+test at local-batch/browser-ownership.test.mjs:66:1
+✖ raw close timeout makes one bounded owned-server kill attempt while retaining cleanup failure (5013.441592ms)
+  AssertionError [ERR_ASSERTION]: Owned BrowserServer must receive a last kill attempt
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/browser-ownership.test.mjs:76:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -175,3 +175,15 @@ four keydowns/four keyups, zero held keys and exact selection2–3. Native new
 fixture is pending. Installed-package failures are also prepared for failure-only
 log artifacts, so early startup failures can be inspected before a whole matrix
 completes; native upload acceptance remains pending.
+
+Raw runner close fallback: controlled hanging BrowserServer.close previously
+returns cleanup failure with zero kill attempts; it now tries that exact owned
+public server handle once, with a1s bound. Six ownership/failure tests pass
+Node24/20, including a never-settling kill. Original server_timeout is retained
+and success is never inferred from the fallback; no action replay or RPC budget
+change. Two real Node22 Chromium/Firefox raw fixtures pass afterward. This limits
+resource carryover after an already failed raw source run; it does not diagnose
+Windows Firefox stalls or replace the independent executor watchdog.
+Installed jobs smoke now preserves failed private fixture data after verified
+cleanup and reports only fixed phase/state/reason/cleanup receipt fields on its
+first-result assertions. No workflow/page content is added to diagnostics.

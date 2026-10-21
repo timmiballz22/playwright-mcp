@@ -35,7 +35,7 @@ if (!supportsJournal) {
     const response = await client.callTool({ name, arguments: args });
     assert.notEqual(response.isError, true, 'Production jobs tool failed'); return JSON.parse(response.content[0].text);
   };
-  let cliFailed = false;
+  let cliFailed = false; let verified = false;
   try {
     await client.connect(transport);
     await ownedDescendants([transport.pid], { rememberLiveRoots: true });
@@ -44,7 +44,8 @@ if (!supportsJournal) {
     const first = await call('start_workflow', input);
     assert.equal((await call('start_workflow', input)).jobId, first.jobId);
     const result = await call('get_workflow_result', { jobId: first.jobId, waitMs: 10000 });
-    assert.equal(result.ready, true); assert.equal(result.job.state, 'SUCCEEDED');
+    const receipt = JSON.stringify({ phase: 'initial_job', ready: result.ready, state: result.job?.state, completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup });
+    assert.equal(result.ready, true, receipt); assert.equal(result.job.state, 'SUCCEEDED', receipt);
     assert.equal(result.result.completed, 2); assert.equal(result.result.reportPath, undefined);
     assert.equal(navigations, 1);
     const preview = await call('cleanup_workflows', { jobIds: [first.jobId] });
@@ -76,6 +77,7 @@ if (!supportsJournal) {
     assert.equal(running.state, 'RUNNING'); assert.equal(running.completed, 1);
     assert.equal((await cli(['cancel', '--job-id', cancelJob.jobId]))[0].cancelRequested, true);
     assert.equal((await call('get_workflow_result', { jobId: cancelJob.jobId, waitMs: 10000 })).job.state, 'CANCELLED');
+    verified = true;
     console.log(JSON.stringify({ entry: 'local-batch/jobs-cli.mjs', production: true, realBrowser: 'chromium', completed: 2, duplicateExecuted: false, statusResultListCleanup: true, activeCancel: true }));
     console.log(JSON.stringify({ entry: 'local-batch/jobs-mcp.mjs', handshake: true, toolCount: 6, realBrowser: 'chromium', completed: 2, duplicateExecuted: false, production: true }));
   } finally {
@@ -86,7 +88,7 @@ if (!supportsJournal) {
       const end = performance.now() + 10000;
       while ((await ownedDescendants(observed)).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 50));
       assert.deepEqual(await ownedDescendants(observed), []);
-      clean = !cliFailed;
+      clean = !cliFailed && verified;
     } finally {
       await client.close().catch(() => {});
       server.closeAllConnections(); await new Promise(resolve => server.close(resolve));
