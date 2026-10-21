@@ -3102,3 +3102,28 @@ on Node22 exits1 with one cancelled test, zero failed tests, aborted:true, prima
 retained, clean closes and independent audit confirmed. Temporary fault specs are
 removed. These negative controls are not counted as passing acceptance. Evidence:
 jobs-mcp-failure-retention-*. Native verification remains pending after7d97686.
+
+## Native52: independent artifact worker validates; acceptance still fails
+
+At7d97686 batch39623605657 reports980/1, no test skips/cancellations. Every native
+worker/retention component passes61 (Windows62), including CPU hangs before/after
+positive receipt, fixed errors, sibling survival and actual worker EOF with a
+pending filesystem promise. All five169-file installed packages and actual Codex
+Linux36.799s/macOS119.677s/Windows38.236s pass1k/zero model/zero observed owned.
+macOS main147/0, Linux20 148/0 and22/24 each147/0; Windows146/1 fails Firefox429
+atcompleted1/two GET hits, null failedStep and timeout while lifecycle finishes;
+termination/temp removal confirm. Do not promote this late result to success or
+call earlier browser failures fixed from this round's healthy cases.
+
+Wrapper39623605723 has all five jobs concluded (Linux/Windows/Docker/lint pass,
+macOS fail), but REST and attempt1 run metadata stays in_progress/null. Force-
+cancel returns409/not in progress, so no cancellation occurs. Wrapper logs remain
+unavailable; no wrapper or combined test totals are invented. Fixed progress
+annotations show slow storage-state/find/close/trusted-code phases, not a final
+failure count. Batch Linux22 and journal24 also retain null job conclusions
+although all steps including Complete job pass; exact snapshots are retained.
+
+All actual test steps have ended. Waiting on inconsistent run bookkeeping is
+abandoned while preserving the failed/incomplete acceptance state; next source
+candidate may proceed. Native52 does not include the later lifetime-scope HTTP
+precision or jobs-MCP failure-preservation fixes. Evidence: worker-ci-fiftysecond-*.

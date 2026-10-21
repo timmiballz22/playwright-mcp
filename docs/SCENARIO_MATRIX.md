@@ -1,6 +1,28 @@
 # Mandatory scenario evidence
 
-Latest native `b355d2e`: **1,371 reported passes/seven failed tests**, plus
+Latest native `7d97686`: batch39623605657 records **980 passes/one failure**,
+zero reported test skips/cancellations. All three actual Codex1k clients and all
+five169-file production installs pass. Worker/retention components61/61 each
+(Windows62/62) validate hangs, natural-exit receipts and pending-filesystem EOF
+on all native OS lanes. Windows Firefox retry navigation completes one action
+with two GET hits, then the lifecycle deadline returns timeout with clean
+termination/removal; no success promotion is allowed.
+
+Wrapper39623605723 job conclusions: Linux/Windows/Docker/lint pass, macOS fails.
+Its run metadata remains in_progress/null although all five jobs conclude;
+force-cancel returns409 because it says the run is not in progress. No cancel
+occurs. Full wrapper logs/totals remain unavailable and are not inferred from
+annotations. Fixed tool-progress receipts and exact state snapshots are retained.
+This is incomplete full-matrix evidence, not release acceptance.
+
+Local later commits separate test audit lifetimes without dropping old orphans,
+classify final main-GET HTTP errors before DOM readiness, verify those failures
+through SQLite/dedup after artifact deletion, and preserve jobs-MCP assertion/
+close/audit/cancellation evidence. These pass their local controls; fresh170-file
+runtime installation passes and a171-file dry pack includes the added QA fixture.
+Native verification of these later changes is pending.
+
+Previous fully logged native `b355d2e`: **1,371 reported passes/seven failed tests**, plus
 macOS actual-Codex failure. Wrapper39620265619:432/2;
 batch39620265718:939/5. Zero reported test skips/cancellations; one soak job
 intentionally skips. All execution steps conclude. GitHub reports the wrapper
