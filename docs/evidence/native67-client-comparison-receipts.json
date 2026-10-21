@@ -1,0 +1,184 @@
+[
+  {
+    "job": "codex_client (ubuntu-latest)",
+    "step": "Exercise actual Codex jobs client with zero model turns",
+    "data": {
+      "client": "codex-cli 0.163.0",
+      "os": "linux",
+      "launcher": "node",
+      "tools": 6,
+      "completed": 1000,
+      "startMs": 10,
+      "resultCalls": 4,
+      "durationMs": 35584,
+      "duplicateExecuted": false,
+      "foreignOwnerDenied": true,
+      "terminalCleanup": true,
+      "activeCancel": true,
+      "cancelledJobCompleted": 1,
+      "modelTurns": 0,
+      "temporaryConfigOnly": true,
+      "activeOwnedProcesses": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "step": "Compare ten fresh raw Firefox runs with inherited and private temp",
+    "data": {
+      "os": "win32",
+      "mode": "private",
+      "comparisonOrder": [
+        "private",
+        "inherited"
+      ],
+      "position": 1,
+      "privateTempRoot": true,
+      "logging": false,
+      "browser": "firefox",
+      "transport": "browser_server",
+      "requiredFreshRuns": 10,
+      "successfulRuns": 1,
+      "confirmedActions": 46,
+      "ok": false,
+      "last": {
+        "ok": false,
+        "reason": "cleanup_failed",
+        "completed": 23,
+        "total": 23,
+        "actionsSucceeded": true,
+        "cleanupFailures": [
+          "context_timeout"
+        ],
+        "durationMs": 13074
+      },
+      "residualProcessesBeforeForce": 0,
+      "activeOwnedProcesses": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "step": "Compare ten fresh raw Firefox runs with inherited and private temp",
+    "data": {
+      "os": "win32",
+      "mode": "inherited",
+      "comparisonOrder": [
+        "private",
+        "inherited"
+      ],
+      "position": 2,
+      "privateTempRoot": false,
+      "logging": false,
+      "browser": "firefox",
+      "transport": "browser_server",
+      "requiredFreshRuns": 10,
+      "successfulRuns": 0,
+      "confirmedActions": 17,
+      "ok": false,
+      "last": {
+        "ok": false,
+        "reason": "action_failed",
+        "completed": 17,
+        "total": 23,
+        "actionsSucceeded": false,
+        "cleanupFailures": [],
+        "durationMs": 10546,
+        "failureKind": "locator_timeout",
+        "failureCode": "action_failed",
+        "failedStepType": "click"
+      },
+      "residualProcessesBeforeForce": 0,
+      "activeOwnedProcesses": 0
+    }
+  },
+  {
+    "job": "codex_client (macos-15-intel)",
+    "step": "Compare Chromium transports after macOS client timeout",
+    "data": {
+      "os": "darwin",
+      "mode": "direct-pipe",
+      "comparisonOrder": [
+        "direct-pipe",
+        "server"
+      ],
+      "position": 1,
+      "privateTempRoot": false,
+      "logging": false,
+      "browser": "chromium",
+      "transport": "direct_pipe",
+      "requiredFreshRuns": 1,
+      "successfulRuns": 1,
+      "confirmedActions": 1000,
+      "ok": true,
+      "handleReceipt": {
+        "capturedOwnedHandles": 1,
+        "spawnedOwnedHandles": 1,
+        "exitedOwnedHandles": 1
+      },
+      "last": {
+        "ok": true,
+        "reason": null,
+        "completed": 1000,
+        "total": 1000,
+        "actionsSucceeded": true,
+        "cleanupFailures": [],
+        "durationMs": 102856
+      },
+      "residualProcessesBeforeForce": 0,
+      "activeOwnedProcesses": 0
+    }
+  },
+  {
+    "job": "codex_client (macos-15-intel)",
+    "step": "Compare Chromium transports after macOS client timeout",
+    "data": {
+      "os": "darwin",
+      "mode": "server",
+      "comparisonOrder": [
+        "direct-pipe",
+        "server"
+      ],
+      "position": 2,
+      "privateTempRoot": false,
+      "logging": false,
+      "browser": "chromium",
+      "transport": "browser_server",
+      "requiredFreshRuns": 1,
+      "successfulRuns": 1,
+      "confirmedActions": 1000,
+      "ok": true,
+      "last": {
+        "ok": true,
+        "reason": null,
+        "completed": 1000,
+        "total": 1000,
+        "actionsSucceeded": true,
+        "cleanupFailures": [],
+        "durationMs": 118779
+      },
+      "residualProcessesBeforeForce": 0,
+      "activeOwnedProcesses": 0
+    }
+  },
+  {
+    "job": "codex_client (windows-latest)",
+    "step": "Exercise actual Codex jobs client with zero model turns",
+    "data": {
+      "client": "codex-cli 0.163.0",
+      "os": "win32",
+      "launcher": "node",
+      "tools": 6,
+      "completed": 1000,
+      "startMs": 24,
+      "resultCalls": 4,
+      "durationMs": 38482,
+      "duplicateExecuted": false,
+      "foreignOwnerDenied": true,
+      "terminalCleanup": true,
+      "activeCancel": true,
+      "cancelledJobCompleted": 1,
+      "modelTurns": 0,
+      "temporaryConfigOnly": true,
+      "activeOwnedProcesses": 0
+    }
+  }
+]

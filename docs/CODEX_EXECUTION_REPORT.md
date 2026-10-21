@@ -1,34 +1,40 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native66 at24f0e84:
-batch39685019051 FAILURE1,350/3; wrapper39685018785 FAILURE432/2 =>1,782 reported
-passes/five failed tests, plus separate macOS actual-Codex TIMED_OUT968/1k.
-All17 non-soak jobs conclude; functional_soak intentionally skipped. Windows
-legacy and macOS modal steps are unexecuted after main-suite failures. Zero TAP
-skips/cancellations does not establish those omitted scopes. Five175-file
-production installs and components106/107 pass.
+Latest completed native67 at543c14f:
+batch39688989440 FAILURE1,359/3; CI39688989356 FAILURE434/3 =>1,793 reported
+passes/six failed tests, plus separate macOS actual-Codex FAILED968/1k with
+cleanup_failed/operatorAttentionRequired:true, forced:true and
+signal_permission_denied/browser_group_signal_failed. Missing PID hints are
+identity-unverified and never clear this uncertainty. All17 non-soak jobs
+conclude; functional_soak intentionally skipped. Mac modal step is unexecuted.
+Zero TAP skips/cancellations is not proof of that omitted scope.
 
-All five real20-screenshot fixtures pass unchanged assertions and60s ceiling,
-retaining all20 factory scopes through teardown. Windows captures six verified
-live root births per pair. Same-snapshot legacy differences retain all candidates;
-replacement PID births are explicit, but one current parent row is missing.
-No universal ancestry proof or retrospective clearance of historical133/four
-observations follows. Linux/Windows actual Codex1k pass; macOS times out968 with
-known cleanup. Mac raw979 and Windows raw headless/direct-pipe fixtures fail;
-original Mac screenshot capture and Windows Firefox connection-close also fail.
-Healthy diagnostic comparisons do not establish a causal fix.
+Five175-file production installs and components107/108 pass. All five real20-
+screenshot fixtures retain all20 live factory scopes and pass unchanged checks;
+Windows captures six births per pair. Collision teardown now passes all four
+native component lanes. Windows pair7 retains legacy candidates9272/1784:
+actual audit-helper handle PID9272 has a different birth from captured factory
+PID9272; child1784 was born after that replacement. No helper exclusion or matching
+change occurs. Historical133/four and native66 missing ancestry stay unclassified.
 
-Local2066647 fixes private observation teardown after identity-publication EEXIST,
-preserving the original error and releasing the assigned gate. Final focused
-controls pass14/14 each Node20/22/24. Next diagnostic projection retains current
-root rows and actual query-helper constructor PID without filtering candidates,
-changing matching, adding queries or granting signal authority. Focused15/15
-each Node20/22/24 and lint pass. These local changes are not verified by native66.
-Historical permission/TLS failures remain preserved; no bypass or retry.
+All Linux main lanes and Mac189/189 pass; Windows178/3 fails raw headless close,
+headed input and supervised Firefox429 deadline. Original Linux144/Windows144,
+Docker2 and Windows legacy3 pass; Mac141/3 fails Chrome click actionability,
+Firefox large-DOM lookup and restored-session navigation. Linux/Windows actual
+Codex1k pass35.584/38.482s/model0/owned0; Mac968 remains failed cleanup. Mac
+failure-only pipe1k102.856s/server1k118.779s both pass/audit0; Windows temp
+comparisons both fail. Healthy controls are not causal fixes.
 
-**Not release-ready. NEXT ACTION: push native67 for local teardown/diagnostic verification.**
+Local after543c14f: original slider boundary/step test passes actual MCP on
+Chromium/Firefox2/2; lint passes. It preserves non-atomic invalid-value behavior,
+adds no production change and needs native/WebKit verification. Final543c14f
+Node22 components107/107 also pass locally. Transient GitHub401 and exec-server
+disconnect recovered; neither is a current blocker.
 
-Exact phases and G00–G18: CODEX_EXECUTION_LEDGER.md.
+**Not release-ready. NEXT ACTION: push native68 for slider variant coverage;
+preserve macOS permission uncertainty and native provider failures.**
+
+Exact gate/source/phase evidence: CODEX_EXECUTION_LEDGER.md.
 
 The following records are historical checkpoints.
 

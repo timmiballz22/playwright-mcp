@@ -2,9 +2,9 @@
 
 Current status and exact candidate evidence are maintained in
 [CODEX_EXECUTION_REPORT.md](CODEX_EXECUTION_REPORT.md) and the G00–G18 table in
-[CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md). Native66 failed;
-all five live-factory screenshot fixtures pass, while local teardown/diagnostic
-changes await next-candidate verification.
+[CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md). Native67 failed;
+all five live-factory screenshot fixtures and collision teardown controls pass.
+Local slider boundary/step coverage awaits next-candidate native verification.
 Per-scenario historical proofs below do not imply final same-SHA acceptance.
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a

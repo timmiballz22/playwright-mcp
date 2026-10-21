@@ -2,33 +2,39 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening. Latest completed native66 at24f0e84:
-batch39685019051 FAILURE1,350/3; wrapper39685018785 FAILURE432/2 =>1,782 reported
-passes/five failed tests, plus separate macOS actual-Codex TIMED_OUT968/1k.
-All17 non-soak jobs conclude; functional_soak intentionally skipped. Windows
-legacy and macOS modal steps are unexecuted after main-suite failures. Zero TAP
-skips/cancellations does not establish those omitted scopes. Five175-file
-production installs and components106/107 pass.
+Branch feat/local-production-hardening. Latest completed native67 at543c14f:
+batch39688989440 FAILURE1,359/3; CI39688989356 FAILURE434/3 =>1,793 reported
+passes/six failed tests, plus separate macOS actual-Codex FAILED968/1k with
+cleanup_failed/operatorAttentionRequired:true, forced:true and
+signal_permission_denied/browser_group_signal_failed. Missing PID hints are
+identity-unverified and never clear this uncertainty. All17 non-soak jobs
+conclude; functional_soak intentionally skipped. Mac modal step is unexecuted.
+Zero TAP skips/cancellations is not proof of that omitted scope.
 
-All five real20-screenshot fixtures pass unchanged assertions and60s ceiling,
-retaining all20 factory scopes through teardown. Windows captures six verified
-live root births per pair. Same-snapshot legacy differences retain all candidates;
-replacement PID births are explicit, but one current parent row is missing.
-No universal ancestry proof or retrospective clearance of historical133/four
-observations follows. Linux/Windows actual Codex1k pass; macOS times out968 with
-known cleanup. Mac raw979 and Windows raw headless/direct-pipe fixtures fail;
-original Mac screenshot capture and Windows Firefox connection-close also fail.
-Healthy diagnostic comparisons do not establish a causal fix.
+Five175-file production installs and components107/108 pass. All five real20-
+screenshot fixtures retain all20 live factory scopes and pass unchanged checks;
+Windows captures six births per pair. Collision teardown now passes all four
+native component lanes. Windows pair7 retains legacy candidates9272/1784:
+actual audit-helper handle PID9272 has a different birth from captured factory
+PID9272; child1784 was born after that replacement. No helper exclusion or matching
+change occurs. Historical133/four and native66 missing ancestry stay unclassified.
 
-Local2066647 fixes private observation teardown after identity-publication EEXIST,
-preserving the original error and releasing the assigned gate. Final focused
-controls pass14/14 each Node20/22/24. Next diagnostic projection retains current
-root rows and actual query-helper constructor PID without filtering candidates,
-changing matching, adding queries or granting signal authority. Focused15/15
-each Node20/22/24 and lint pass. These local changes are not verified by native66.
-Historical permission/TLS failures remain preserved; no bypass or retry.
+All Linux main lanes and Mac189/189 pass; Windows178/3 fails raw headless close,
+headed input and supervised Firefox429 deadline. Original Linux144/Windows144,
+Docker2 and Windows legacy3 pass; Mac141/3 fails Chrome click actionability,
+Firefox large-DOM lookup and restored-session navigation. Linux/Windows actual
+Codex1k pass35.584/38.482s/model0/owned0; Mac968 remains failed cleanup. Mac
+failure-only pipe1k102.856s/server1k118.779s both pass/audit0; Windows temp
+comparisons both fail. Healthy controls are not causal fixes.
 
-**Not release-ready. NEXT ACTION: push native67 for local teardown/diagnostic verification.**
+Local after543c14f: original slider boundary/step test passes actual MCP on
+Chromium/Firefox2/2; lint passes. It preserves non-atomic invalid-value behavior,
+adds no production change and needs native/WebKit verification. Final543c14f
+Node22 components107/107 also pass locally. Transient GitHub401 and exec-server
+disconnect recovered; neither is a current blocker.
+
+**Not release-ready. NEXT ACTION: push native68 for slider variant coverage;
+preserve macOS permission uncertainty and native provider failures.**
 
 ## Historical checkpoints
 
@@ -199,25 +205,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native66 logged1,782/5 plus Mac actual client timeout and unexecuted scopes | Final same-SHA whole acceptance |
-| G01 INSTALL | IN PROGRESS | native66 five175-file production installs pass; historical TLS failure preserved | Regular next-candidate verification; no TLS workaround/retry |
-| G02 MCP | IN PROGRESS | native66 Linux/Windows actual Codex1k pass; Mac TIMED_OUT968 | Sustained whole client acceptance |
-| G03 FEATURE PARITY | FAILED | native66 Mac capture and Windows connection-close fail; legacy/modal unexecuted | Keep strict original assertions; provider diagnosis and manual gaps |
-| G04 BATCH | FAILED | native66 macOS raw979 and Windows raw action/context deadlines | Strict counters and budgets; causal throughput diagnosis |
-| G05 RETRIES | FAILED | native66 marked controls pass; native65 permission failure remains unexplained | Preserve cancellation/permission uncertainty, no replay |
-| G06 JOBS | FAILED | native66 components106/107 pass; historical permission uncertainty remains | Preserve debt; managed recovery and exact ownership facts |
+| G00 BASELINE | IN PROGRESS | native67 logged1,793/6 plus Mac actual cleanup_failed968; modal unexecuted | Final same-SHA whole acceptance |
+| G01 INSTALL | IN PROGRESS | native67 five175-file production installs pass; historical TLS failure preserved | Regular next-candidate verification; no TLS workaround/retry |
+| G02 MCP | IN PROGRESS | native67 Linux/Windows actual Codex1k pass; Mac FAILED968/cleanup_failed | Sustained whole client acceptance |
+| G03 FEATURE PARITY | FAILED | native67 Mac3 original failures; Windows legacy3 pass; Mac modal unexecuted | Keep strict original assertions; provider diagnosis and manual gaps |
+| G04 BATCH | FAILED | native67 Mac main189 pass; Windows raw close/input failures | Strict counters and budgets; causal throughput diagnosis |
+| G05 RETRIES | FAILED | native67 marked controls pass; Windows Firefox429 deadline fails | Preserve cancellation/permission uncertainty, no replay |
+| G06 JOBS | FAILED | native67 components107/108 pass; Mac actual browser group signal_permission_denied | Preserve debt; managed recovery and exact ownership facts |
 | G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | native66 all five screenshot fixtures pass with live roots; historical133/old4 unresolved | Complete ancestry evidence; disk bounds and managed repair |
+| G08 STORAGE | FAILED | native67 five screenshot fixtures pass; helper incarnation demonstrated; historical133/old4 unresolved | Complete ancestry evidence; disk bounds and managed repair |
 | G09 AUTH/PROFILES | FAILED | coalesced close14/14 Node20/22/24, real Chromium/Firefox parity2/2; native prior session restore | Managed profiles/reset, Windows ACLs and crash repair; annotation dashboard lifecycle separate |
-| G10 CROSS-BROWSER | FAILED | native66 Windows Firefox action/context/connection and Mac1k/capture failures | Causal diagnosis; strict thresholds/no replay |
-| G11 CROSS-OS | FAILED | native66 Windows2/Mac1 main failures; wrapper2 tests and Mac actual timeout | Final whole native matrix required |
+| G10 CROSS-BROWSER | FAILED | native67 Windows Firefox close/input/retry and Mac original/client failures | Causal diagnosis; strict thresholds/no replay |
+| G11 CROSS-OS | FAILED | native67 Windows3/Mac0 main failures; wrapper3 Mac failures and actual cleanup failure | Final whole native matrix required |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md; independent100-run resource soak and3 fresh samples/mode at1100e3c | Cross-OS/CLI-SKILLS repeated resource and token measurements remain; no billing claim |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-sixtysixth-*, native66-lifetime-*, lifetime-* | Verify local teardown and expanded diagnostic projection |
-| G18 CLEAN MERGE | FAILED | Draft PR2; native66 workflows fail; teardown correction local only | Resolve critical gaps; whole green SHA before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-sixtyseventh-*, native67-*, original-slider-bounds-* | Native slider variants; preserve cleanup and provider failure receipts |
+| G18 CLEAN MERGE | FAILED | Draft PR2; native67 workflows fail; new slider variant local only | Resolve critical gaps; whole green SHA before merge/release |
 
 ## Defects and risk register
 
@@ -231,11 +237,12 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
   termination exist; raw runner remains cooperative. Artifact cleanup now has an
   independent5s worker/1s kill confirmation; full native acceptance and durable
   maintenance uncertainty remain open.
-- RISK-006: per-run private artifacts, native20-run identity proof and payload
-  budgets exist. Explicit age-based confirmed-job pruning validates natively;
-  cumulative quotas, automatic scheduling and screenshot pixel masking remain open.
+- RISK-006: per-run private artifacts, native66 five-lane20-run identity proof,
+  payload ceilings and retained-artifact admission budgets exist. Explicit age-based
+  confirmed-job pruning validates natively. Admission is not a hard disk/global
+  quota; automatic scheduling and screenshot pixel masking remain open.
 - RISK-007: fixed HTTP/action/cleanup/journal taxonomies and redacted receipts exist.
-  Main HTTP error-before-readiness precision fix is locally verified/native pending;
+  Main HTTP error-before-readiness precision controls pass native63 onward;
   native browser failures and diagnostic coverage remain incomplete.
 - RISK-008: durable jobs/queue/status/result/reconnect-without-replay, foreground
   CLI and protected Windows storage/public clients exist. Automatic resume,
@@ -4546,3 +4553,84 @@ parent/replacement context without another query, matching change, role filter
 or signal. Pure graph/model focused15/15 each Node20/22/24 and lint/diff pass.
 The partial-capture close correction2066647 and these diagnostic additions are
 not in native66; they require next candidate verification.
+
+## Native67 launched; authenticated evidence retrieval blocked
+
+Candidate543c14fa97092797291f7512c72f9539b179e808 pushed successfully.
+Batch39688989440 and CI39688989356 started; draft PR2 updated. Subsequently
+authenticated gh API/watch returned HTTP401 Bad credentials. Public read-only
+API still reports both workflows in_progress at this checkpoint. Detailed log
+retrieval is blocked pending restored authentication. No native67 pass/count
+is inferred. Evidence: native67-auth-blocker.json. No further push while these
+workflows are active; local checkpoint only, working tree intentionally dirty.
+
+### Native67 authentication recovery and final local component check
+
+Authenticated gh run view recovered without credential changes. The earlier401
+was transient; preserve native67-auth-blocker.json rather than claiming a current
+authentication barrier. Both workflows remain active; full log retrieval waits
+for completion. Final543c14f sources pass107/107 Node22 components, zero failed/
+skipped/cancelled,38.351s, using the exact26 component test paths from the CI
+workflow with --test-concurrency=1 --test-reporter=tap. Receipt:
+native67-final-components22.txt. This is the final handle-strengthened observer
+and root-row projection phase, not a replacement for native browser acceptance.
+
+### Current risk register correction
+
+RISK-006 now distinguishes implemented retained-artifact admission budgets from
+unimplemented hard disk/global bounds and scheduling. RISK-007 now records native
+verification of the early HTTP projection; neither promotes whole acceptance.
+Earlier checkpoint text remains historical.
+
+### Original slider boundary/step behavior — local after543c14f
+
+Added tests/input-parity.spec.ts real MCP case for range min0/max10/step2:
+exact0/10 succeed and emit one input event each; -1/11/3 report tool errors but
+HTML sanitization leaves0/10/4 respectively, with no additional input event.
+A subsequent valid6 emits exactly the third input event. No production/tool
+semantics changed; non-atomic errors remain unsafe to replay. Pinned coreBundle
+fill assigns input.value before comparing the sanitized value and dispatching
+events. Command: npx playwright test tests/input-parity.spec.ts --project=chromium
+--project=firefox --workers=1 --grep 'slider bounds'. Result2/2,11.6s, zero skips.
+Lint passes; diff check passes. Receipts original-slider-bounds-{local,lint}.txt.
+This local test is not in native67; WebKit/native OS coverage remains pending.
+
+Limited read-only upstream macOS slow-click issue searches found no established
+exact match in the returned first-page titles/context. This is not a complete
+search or root-cause result. No third-party reproduction executed, issue posted,
+dependency changed or workaround applied. native67-upstream-search-context.json.
+
+## Native67 at543c14f — observer fix verified, acceptance still failed
+
+Exact job/count evidence: worker-ci-sixtyseventh-{batch,wrapper}*, combined
+counts1,793/6 with zero reported skipped/cancelled; all17 non-soak jobs conclude.
+Mac modal unexecuted. Install175×5 pass. Components107 each Linux22/24/macOS,
+108 Windows pass, including deliberate EEXIST preservation and assigned gate
+release. Screenshots20×5 and controlled orphan detection/child-handle exit ACK
+pass. Native67-lifetime-* preserves every comparison and all capture/audit scopes.
+Pair7 actual constructor helper9272 birth23:03:47.1497200Z differs from captured
+factory birth23:03:40.0641790Z; child1784 birth23:03:47.1524000Z follows replacement.
+This is a concrete sample, no universal ancestry proof or retrospective clearance.
+
+Windows raw headless fresh1 completes23/23 but server_timeout,29.159s; headed
+fresh5 completes7/23 then locator_timeout at8,11.613s. Direct-pipe test passes.
+Firefox429 two GET/responses ends timeout/completed0, last response4.240s;
+known terminated/removed, forced:false. No POST replay conclusion from this
+failed test's later unexecuted scenarios; separate marked controls still pass.
+Failure-only private1/10 (46 confirmed) ends context_timeout after23/23;
+inherited0/10 (17 confirmed) ends action_failed17/23; both independent audits0.
+
+Mac main189 pass including raw/jobs/batch1k, but actual client FAILED968 at969,
+cleanup_failed/attention:true/forced:true, signal_permission_denied plus
+browser_group_signal_failed. PID hints nonZombie0/zombie0/missing3 are explicitly
+identity-unverified and do not clear debt. Guardian/journal failure arrays empty.
+Receipt native67-macos-client-failure.json. Failure-only Mac pipe1k102.856s and
+server1k118.779s pass/audit0; no default transport change or causal fix. Linux/
+Windows actual client35.584/38.482s1k/model0/owned0 pass.
+
+Original Mac Chrome advanced case fails click visibility/stability5s at Save;
+Firefox large-DOM second find and restored-session navigation each hit30s test
+deadlines with page/context closed. Keep assertions unchanged. Original144 each
+Linux/Windows, Docker2 and Windows legacy3 pass. These healthy samples do not
+resolve historical close/input/capture findings. Source/evidence and remaining
+G00–G18 remain open; no release or merge.

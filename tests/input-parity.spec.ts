@@ -94,3 +94,24 @@ test('original form slider fills and exposes non-atomic invalid-value failure', 
   // describe original form errors as transactional or automatically replay them.
   await call('browser_close');
 });
+
+test('original slider bounds and step failures preserve sanitized effects without replay', async ({ startClient, server }) => {
+  server.setContent('/', `<!doctype html><input id="slider" type="range" min="0" max="10" step="2" value="2" aria-label="Bounded slider" oninput="document.querySelector('output').textContent=String(Number(document.querySelector('output').textContent)+1)"><output>0</output>`, 'text/html');
+  const { client } = await startClient({ args: ['--isolated'] }); const call = tools(client);
+  await call('browser_navigate', { url: server.PREFIX });
+  const field = (value: string) => ({ fields: [{ name: 'Bounded slider', target: '#slider', type: 'slider', value }] });
+  const state = async () => evaluated(await call('browser_evaluate', { function: "() => ({value:document.querySelector('#slider').value,events:Number(document.querySelector('output').textContent)})" }));
+  await call('browser_fill_form', field('0'));
+  expect(await state()).toEqual({ value: '0', events: 1 });
+  await call('browser_fill_form', field('10'));
+  expect(await state()).toEqual({ value: '10', events: 2 });
+  for (const [value, sanitized] of [['-1', '0'], ['11', '10'], ['3', '4']]) {
+    const result = await client.callTool({ name: 'browser_fill_form', arguments: field(value) });
+    expect(result.isError).toBe(true);
+    // The assignment changed the DOM, but validation failed before input events.
+    expect(await state()).toEqual({ value: sanitized, events: 2 });
+  }
+  await call('browser_fill_form', field('6'));
+  expect(await state()).toEqual({ value: '6', events: 3 });
+  await call('browser_close');
+});

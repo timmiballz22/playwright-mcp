@@ -2,8 +2,9 @@
 
 See [CODEX_EXECUTION_REPORT.md](CODEX_EXECUTION_REPORT.md) for the current
 candidate and [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) for G00–G18.
-Latest completed native66 failed (1,782/5 plus Mac actual-client timeout);
-later local teardown/diagnostic changes require next-candidate verification. The records below preserve earlier scoped evidence.
+Latest completed native67 failed (1,793/6 plus Mac actual-client cleanup_failed968).
+Local slider boundary/step coverage requires next-candidate native verification.
+The records below preserve earlier scoped evidence.
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a
 Windows production-install failure that prevents its main browser suite from

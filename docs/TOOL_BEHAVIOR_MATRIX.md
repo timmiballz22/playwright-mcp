@@ -136,3 +136,9 @@ Operator procedure on a supported graphical desktop:
 This procedure is not an executed PASS. The companion batch/jobs endpoints do not
 expose annotation or desktop dashboard startup. The default original core tool set
 omits the devtools capability; optional tool invocation retains upstream behavior.
+
+Local post543c14f slider boundary/step fixture passes Chromium and Firefox via
+actual MCP: exact min/max values succeed; below/above bounds and step mismatch
+return errors after range sanitization changes the DOM, before input events.
+A later valid value emits one event. This does not make failed fills atomic or
+replay-safe. See original-slider-bounds-local.txt; native/WebKit proof pending.
