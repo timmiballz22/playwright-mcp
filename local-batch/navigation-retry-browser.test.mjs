@@ -58,7 +58,9 @@ test(`real ${browser}: supervised navigation respects throttling and never repla
       requestOffsetsMs: times.get('GET/cancel').map(time => time - times.get('GET/cancel')[0]),
       reason: cancelled.reason, failedStep: cancelled.failedStep, execution: cancelled.execution,
     }));
-    await run('/form', { steps: [{ type: 'click', selector: 'button' }, { type: 'waitFor', selector: '#submitted' }] });
+    const form = await run('/form', { steps: [{ type: 'click', selector: 'button' }, { type: 'waitFor', selector: '#submitted' }] });
+    assert.equal(form.ok, true, JSON.stringify({ route: '/form', reason: form.reason, completed: form.completed,
+      failedStep: form.failedStep, execution: form.execution, postHits: hits.get('POST/submit') ?? 0 }));
     assert.equal(hits.get('POST/submit'), 1);
   } finally { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); await rm(directory, { recursive: true, force: true }); }
 });

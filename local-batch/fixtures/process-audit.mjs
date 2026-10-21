@@ -5,7 +5,7 @@ import path from 'node:path';
 import { windowsOwnedProcesses, windowsCimFailurePhase } from './windows-process-graph.mjs';
 const identities = new Map();
 const exec = promisify(execFile);
-export async function ownedDescendants(roots, { rememberLiveRoots = false } = {}) {
+export async function ownedDescendants(roots, { rememberLiveRoots = false, onReceipt } = {}) {
   const owned = new Set(roots.filter(pid => Number.isSafeInteger(pid) && pid > 1));
   let rows;
   if (process.platform === 'win32') {
@@ -21,10 +21,13 @@ $json = $rows | ConvertTo-Json -Compress
 [Console]::Error.WriteLine('PWMCP_AUDIT_PHASE=done')
 [Console]::Out.Write($json)`;
     let stdout;
+    let helperPid;
     try {
       // Native cold WMI startup exceeded the previous five-second test audit
       // bound. This is read-only evidence collection, never execution cleanup.
-      ({ stdout } = await exec(executable, ['-NoProfile', '-NonInteractive', '-Command', script], { timeout: 10000, maxBuffer: 1048576, windowsHide: true }));
+      const query = exec(executable, ['-NoProfile', '-NonInteractive', '-Command', script], { timeout: 10000, maxBuffer: 1048576, windowsHide: true });
+      helperPid = query.child?.pid;
+      ({ stdout } = await query);
     } catch (error) {
       const kind = error.code === 'ERR_CHILD_PROCESS_STDIO_MAXBUFFER' ? 'output_limit' :
         error.killed ? 'timeout' : Number.isInteger(error.code) ? 'exit_' + error.code :
@@ -33,7 +36,13 @@ $json = $rows | ConvertTo-Json -Compress
     }
     const parsed = JSON.parse(stdout);
     rows = (Array.isArray(parsed) ? parsed : [parsed]).map(row => ({ pid: Number(row.ProcessId), parent: Number(row.ParentProcessId), started: row.Started }));
-    return windowsOwnedProcesses(roots, rows, identities, rememberLiveRoots);
+    const result = windowsOwnedProcesses(roots, rows, identities, rememberLiveRoots);
+    // Diagnostic only: a matching audit helper remains in the conservative
+    // result. Never hide a possible orphan based on its role or PID reuse.
+    try { onReceipt?.({ observedCount: result.length, auditHelperMatched: Number.isSafeInteger(helperPid) && result.includes(helperPid),
+      rootMatches: result.filter(pid => owned.has(pid)).length,
+      rememberedRootBirths: [...owned].filter(pid => identities.has(pid)).length }); } catch {}
+    return result;
   } else {
     const { stdout } = await exec('/bin/ps', ['-A', '-o', 'pid=,ppid=,pgid=,stat='], { timeout: 2000, maxBuffer: 1048576 });
     rows = stdout.trim().split('\n').map(line => {

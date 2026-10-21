@@ -28,7 +28,10 @@ test('original highlight paints a controlled region and both hide methods clear 
   const observe = async (phase: string, ready: (sample: Awaited<ReturnType<typeof capture>>) => boolean) => {
     const end = performance.now() + 5000;
     for (let attempt = 1; ; attempt++) {
-      await call('browser_evaluate', { function: '() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve(true))))' });
+      // Observe the actual screenshot rather than inserting an extra MCP
+      // evaluate/animation-frame round trip before every valid frame. Native
+      // Windows Firefox spent 6.2s in that prerequisite alone; the same 5s
+      // observation bound and pixel conditions still govern this loop.
       // Failed screenshot calls throw immediately; only valid frames are observed.
       const sample = await capture(`${phase}-${attempt}`);
       if (ready(sample) && performance.now() <= end) { console.log(JSON.stringify({ fixture: 'highlight_region', phase, observations: attempt, redPixels: sample.redPixels })); return sample; }

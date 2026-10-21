@@ -1,29 +1,39 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `4797a00`: **1,266 reported test passes/nine failures**.
-Wrapper39596168653:430/4; batch39596168652:836/5. All17 jobs concluded,
-none cancelled; no reported test skips. Original wrapper failures are Windows
-Firefox cookies and macOS Firefox trusted100-click close, large-DOM interaction
-and storage restore. Legacy Windows/macOS extra wrapper steps did not run after
-those failures. Docker passes2/2; Linux original suite passes144/144.
+Latest completed native `f485f1e`: **1,290 reported passes/eight failed tests**.
+Wrapper39601660969:435/2; batch39601661284:855/6. All17 jobs concluded,
+none cancelled; zero reported test skips/cancels. Linux/macOS original144-test
+suites, Docker2/2 and macOS modal3/3 pass. Windows original142/2 fails Firefox
+highlight observation and held-input click. Its legacy extra step did not run.
 
-All installed production checks pass, including Windows CIM phase instrumentation
-on its normal path. Linux main batch passes on Node20/22/24. macOS main batch
-fails raw Chromium1,000 and stdio batch-MCP1,000 timeout cases; Windows main batch
-fails raw Firefox headed/direct-pipe and a Chromium429 retry case. The429 fixture
-requests10s, while the supervisor reserves its final3s for cleanup on Windows;
-it reports completed1 and confirmed terminated/removed cleanup. This does not
-prove that the worker had a successful final report or justify extending bounds.
+All installed production, journal components and actual Codex1,000-action lanes
+pass. Codex timings: Linux36.111s, Windows39.087s, macOS81.658s; zero model turns/
+owned survivors. The new reserve/late-result cancellation source regressions pass
+all five batch lanes. This verifies that bounded cancellation fix, not all cleanup.
 
-Actual Codex1,000 passes Linux35.204s, Windows38.884s and macOS119.055s with zero
-model turns/owned survivors. macOS remains close to its120s ceiling. The Codex
-failure-only Chromium transport comparison therefore did not run; it is now also
-scheduled after a failed macOS main batch suite. Windows reversed temp controls
-both pass10/10 fresh runs: private-first and inherited-second,230 actions each,
-zero survivors. The earlier temp difference was not reproduced; no production
-temp or transport workaround is adopted. Earlier journal/CIM failures remain
-unexplained by these healthy repetitions. **Not release-ready.** Evidence:
-worker-ci-fortysixth-*; native progress and transport diagnostics remain pending.
+Windows batch130/5 fails Firefox deadline ownership audit, supervised20-click,
+raw headless/headed and no-POST-replay setup. The deadline audit observes one
+process after terminated/removed cleanup was reported; its role/birth is absent
+from the receipt. This is an unresolved cleanup failure, with no PID-reuse or
+survivor explanation established. Additional fixed audit metadata is prepared;
+no process is excluded and cleanup is not promoted. Direct-pipe passes this
+round, without explaining other Firefox failures. Private-first temp control
+passes6/10, inherited-second10/10, both with zero final owned survivors. This
+reverses the earlier apparent private-temp advantage; no workaround is adopted.
+
+macOS batch134/1 fails durable MCP1,000 at987, TIMED_OUT with readable result and
+terminated/removed cleanup, no operator attention. Same-host raw Chromium controls
+both pass: BrowserServer119.430s and direct-pipe117.014s,1,000 operations each and
+zero owned survivors. Both remain close to120s; a single ordered pair does not
+establish a transport cause or justify changing production transport/deadlines.
+
+Native failure-only original-tool metadata works: the plain highlight screenshot
+has the expected zero red pixels, but the prerequisite evaluate takes6.245s and
+exceeds the existing5s observation budget before its49ms screenshot. Next fixture
+observes screenshots directly, retaining identical pixels/5s/20-frame/30s limits;
+local Chromium/Firefox devtools selection passes6/6. The separate held-input
+click timeout remains open. **Not release-ready.** Evidence: worker-ci-fortyseventh-*
+and highlight-direct-capture-local.txt.
 
 Local follow-ups awaiting native execution add HTTP header/body/query/report
 privacy checks and IPv6 loopback alias controls (Chromium/Firefox on Node20/22/24),

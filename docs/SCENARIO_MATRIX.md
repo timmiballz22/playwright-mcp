@@ -1,17 +1,17 @@
 # Mandatory scenario evidence
 
-Latest completed native `4797a00`: **1,266 reported passes/nine failed tests**;
-all17 jobs concluded, none cancelled. Wrapper39596168653:430/4;
-batch39596168652:836/5. All installed production and actual Codex1,000-action
-lanes pass. Original Firefox, macOS raw/MCP throughput and Windows raw Firefox/
-Chromium retry failures remain. No full release gate is promoted.
+Latest completed native `f485f1e`: **1,290 reported passes/eight failed tests**;
+all17 jobs concluded, none cancelled. Wrapper39601660969:435/2;
+batch39601661284:855/6. Installed production, all journal and all actual Codex
+lanes pass. Windows Firefox has original/input/cleanup failures; macOS durable
+MCP1,000 times out at987. One Windows process observation conflicts with reported
+cleanup and remains unresolved; no PID is filtered or cleanup promoted.
 
-Candidate `f485f1e` is under native verification. Further local HTTP/privacy,
-IPv6, cancellation-negative and portable functional-soak checks are committed
-but not pushed during that matrix. The local functional100/600 passes with fresh
-storage and zero owned survivors; this is not native or full resource acceptance.
-See [execution report](CODEX_EXECUTION_REPORT.md) and the dated ledger entries
-for exact evidence and pending work. **Not release-ready.**
+Follow-up HTTP/privacy, IPv6, cancellation-negative, screenshot-observation,
+audit-receipt and portable functional-soak checks await native verification.
+The local functional100/600 passes with fresh storage and zero owned survivors;
+it is not native or full resource acceptance. See [execution report](CODEX_EXECUTION_REPORT.md)
+for exact evidence and open gates. **Not release-ready.**
 
 At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
@@ -149,7 +149,7 @@ acceptance remain open.
 | 9 | 100 reset workflows without carryover | PARTIAL: Linux supervised100 fresh executions/600 actions now assert empty cookie/localStorage state then positively seed/read both every run; zero owned survivors, FD/RSS thresholds pass. Portable functional100/600 also passes locally with independent per-run zero-owned audits; a manual three-OS lane is prepared. Managed reused-profile reset, other stores and native100-run acceptance remain. |
 | 10 | Concurrent queued jobs + screenshot ownership | PARTIAL: durable FIFO/controller pressure and two installed queued jobs pass; public POSIX preview executes1,000 actions and prevents duplicate starts. New Linux Node22/24 public two-owner concurrent-start acceptance proves distinct PNGs, cross-owner denial, deletion preserving the other image, dedup after cleanup and zero owned survivors. Native confirmation and automatic retention remain. |
 | 11 | Client/project ownership | PARTIAL: public POSIX MCP foreign-owner denial, trusted project namespace config and journal owner/project fencing pass. Jobs profiles and Windows ACLs remain unfinished. |
-| 12 | Cancel during launch and locator wait | PARTIAL: injected stalled launch/late close, blocked worker and active real navigation; local trusted witness now proves cancellation after a real Chromium locator wait becomes pending, one confirmed action, bounded cleanup and independent zero survivors; native locator fixture and other phases remain. Local Node20/22/24 result-resolution cancellation regression passes16 executor cases each; native verification pending. |
+| 12 | Cancel during launch and locator wait | PARTIAL: injected stalled launch/late close, blocked worker and active real navigation; local trusted witness now proves cancellation after a real Chromium locator wait becomes pending, one confirmed action, bounded cleanup and independent zero survivors; native locator fixture and other phases remain. Result-resolution/reserve cancellation controls pass all five f485f1e batch lanes; expanded18-case failure-priority selection passes local Node20/22/24 and awaits native verification. |
 | 13 | Stdio close during browser run | PARTIAL: real EOF tests; 9041497 native Windows EOF/SIGTERM/abrupt-host cleanup passed; broader shutdown phase coverage remains. |
 | 14 | SIGINT/SIGTERM + intact journal | PARTIAL: real foreground CLI SIGTERM persists CANCELLED after1 action with zero active owned processes; actual controller SIGKILL installed proof and journal rollback pass. Broader phase-specific crashes remain. |
 | 15 | Browser crash during screenshot | PARTIAL: trusted fixture starts a real Chromium screenshot, verifies its promise is pending, kills only its own BrowserServer child handle, then requires screenshot failure, no PNG/temp publication and independently observed zero owned survivors. Native107076c passes all five batch lanes (Linux20/22/24, macOS Intel22, Windows22); broader crash positions remain. |
@@ -180,7 +180,7 @@ acceptance remain open.
 | 40 | Default stdio listener audit | PARTIAL: no public companion HTTP transport. Active supervised execution uses a private loopback BrowserServer protocol allowed by master section 0; Linux Node24 operator probe initializes all three stdio endpoints (25/1/6 tools), maps socket inodes only from four live owned processes, finds zero TCP/IPv6 TCP listeners and verifies zero owned processes after shutdown. New Linux Node22/24 active supervised browser snapshots attribute one exact-loopback worker TCP listener across eight owned processes with complete readable FD coverage; cancellation leaves zero owned survivors. Native OS listener audits and broader egress controls remain. |
 | 41 | Local CLI without connected model | Verified local 26-operation fixture, exact counter, report and canary absence; installed browsers/dependencies required. Not an OS air-gap audit. |
 | 42 | Large DOM bounded representation | PARTIAL: batch returns last ten metadata steps and no DOM; local Chromium/Firefox4,000-button fixture saves a full snapshot above64KiB while explicit file responses stay below4096 characters; bounded browser_find returns actionable references and confirms a real last-row click. This uses operator-selected snapshot-mode=none; default inline/heap bounds remain open and native all-engine file/find fixture passed at b6a91b9. |
-| 43 | Repeated suites, explained flakiness | PARTIAL: failed runs preserved; latest4797a00 has1,266 reported passes/nine failed tests, all17 jobs concluded. All installed and actual Codex1,000-action lanes pass; original Firefox, macOS raw/MCP throughput and Windows raw Firefox/Chromium retry failures remain. New f485f1e cancellation boundary/progress diagnostics are native-pending. No full native resolution. |
+| 43 | Repeated suites, explained flakiness | PARTIAL: failed runs preserved; latestf485f1e has1,290 reported passes/eight failed tests, all17 jobs concluded. Installed and actual Codex1,000-action lanes pass; Windows Firefox original/runner/ownership-audit failures and macOS durable1,000-action timeout remain. Cancellation/progress diagnostics are natively verified; the Windows post-cleanup process remains unresolved. No full native resolution. |
 | 44 | Main/release blocked until evidence | PARTIAL: publishing disabled and PR remains draft; branch-protection API returned 403, enforcement not verified. No main merge. |
 | 45 | Documented setup with no global MCP config | PARTIAL: actual temporary-config Codex and installed paths with spaces; native Bash/PowerShell bootstraps pass at 5264cb6; native Codex operator walkthroughs remain incomplete. |
 

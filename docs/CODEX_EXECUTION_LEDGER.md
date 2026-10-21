@@ -1,17 +1,17 @@
 # Execution ledger
 
-Latest completed native `4797a00`: **1,266 reported passes/nine failed tests**;
-all17 jobs concluded, none cancelled. Wrapper39596168653:430/4;
-batch39596168652:836/5. All installed production and actual Codex1,000-action
-lanes pass. Original Firefox, macOS raw/MCP throughput and Windows raw Firefox/
-Chromium retry failures remain. No full release gate is promoted.
+Latest completed native `f485f1e`: **1,290 reported passes/eight failed tests**;
+all17 jobs concluded, none cancelled. Wrapper39601660969:435/2;
+batch39601661284:855/6. Installed production, all journal and all actual Codex
+lanes pass. Windows Firefox has original/input/cleanup failures; macOS durable
+MCP1,000 times out at987. One Windows process observation conflicts with reported
+cleanup and remains unresolved; no PID is filtered or cleanup promoted.
 
-Candidate `f485f1e` is under native verification. Further local HTTP/privacy,
-IPv6, cancellation-negative and portable functional-soak checks are committed
-but not pushed during that matrix. The local functional100/600 passes with fresh
-storage and zero owned survivors; this is not native or full resource acceptance.
-See [execution report](CODEX_EXECUTION_REPORT.md) and the dated ledger entries
-for exact evidence and pending work. **Not release-ready.**
+Follow-up HTTP/privacy, IPv6, cancellation-negative, screenshot-observation,
+audit-receipt and portable functional-soak checks await native verification.
+The local functional100/600 passes with fresh storage and zero owned survivors;
+it is not native or full resource acceptance. See [execution report](CODEX_EXECUTION_REPORT.md)
+for exact evidence and open gates. **Not release-ready.**
 
 At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
@@ -170,7 +170,7 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | G03 FEATURE PARITY | FAILED | native4797a00 original Firefox cookie/close/large-DOM/storage failures;25/72 names,six schemas; tests/*.spec.ts | Complete remaining capability-specific positive/negative cases |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs,jobs-mcp.test.mjs; native4797a00 actual Codex exact1,000 Chromium actions/997 clicks all OSs; raw/MCP throughput failures stay G10/G12 | Preserve exact action/DOM counters; broader browser reliability stays G10 |
 | G05 RETRIES | FAILED | navigation-retry-browser.test.mjs; native4797a00 Windows Chromium429 case times out after2 GET hits; unsafe POST not replayed | Diagnose bounded navigation failure without enlarging deadlines |
-| G06 JOBS | IN PROGRESS | jobs/controller.mjs,guardian.mjs,journal.mjs; native six-tool/CLI,owner/dedup/cancel/reconnect; EOF/SIGKILL evidence | Finish phase faults and restart/resource acceptance; all three actual client lanes pass native4797a00 |
+| G06 JOBS | FAILED | jobs/controller.mjs,guardian.mjs,journal.mjs; native six-tool/CLI,owner/dedup/cancel/reconnect; EOF/SIGKILL evidence | Resolve nativef485f1e Windows ownership-audit contradiction; complete phase/restart/resource acceptance; all actual client lanes pass |
 | G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
 | G08 STORAGE | FAILED | screenshot-budget.mjs,jobs/artifact-cleanup.mjs,private-windows.*; native protected ACLs and16MiB image payload budget | Complete cumulative disk quotas/retention; image budget is not browser/profile cap |
 | G09 AUTH/PROFILES | FAILED | profile-guard.cjs,profile-lease.cjs; native all-engine ownership/session restore | Managed project profiles, Windows profile ACLs, reset/corruption/crash recovery |
@@ -181,7 +181,7 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,evidence/worker-ci-fortysixth-*,late-cancel-*,validation-property-*; exact SHA/counts retained | Keep every gate/scenario tied to executed evidence; pending is not pass |
+| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,evidence/worker-ci-fortyseventh-*,late-cancel-*,validation-property-*; exact SHA/counts retained | Keep every gate/scenario tied to executed evidence; pending is not pass |
 | G18 CLEAN MERGE | FAILED | Draft PR2; last full green d71c91e (14 jobs), current17-job failures retained | Resolve critical gaps; require green complete final SHA before merge |
 
 ## Defects and risk register
@@ -2503,3 +2503,65 @@ over-cap and no-POST-replay controls. Local Node24 Chromium passes; source code
 already handled this case. This does not explain native429 lifecycle timeouts.
 Node22 Chromium/Firefox full retry selections also pass2/2, including the new
 fragment control. Native and WebKit remain pending; no causal fix is claimed.
+
+## Native47 completed and bounded failure diagnostics
+
+Latest completed native `f485f1e`: **1,290 reported passes/eight failed tests**.
+Wrapper39601660969:435/2; batch39601661284:855/6. All17 jobs concluded,
+none cancelled; zero reported test skips/cancels. Linux/macOS original144-test
+suites, Docker2/2 and macOS modal3/3 pass. Windows original142/2 fails Firefox
+highlight observation and held-input click. Its legacy extra step did not run.
+
+All installed production, journal components and actual Codex1,000-action lanes
+pass. Codex timings: Linux36.111s, Windows39.087s, macOS81.658s; zero model turns/
+owned survivors. The new reserve/late-result cancellation source regressions pass
+all five batch lanes. This verifies that bounded cancellation fix, not all cleanup.
+
+Windows batch130/5 fails Firefox deadline ownership audit, supervised20-click,
+raw headless/headed and no-POST-replay setup. The deadline audit observes one
+process after terminated/removed cleanup was reported; its role/birth is absent
+from the receipt. This is an unresolved cleanup failure, with no PID-reuse or
+survivor explanation established. Additional fixed audit metadata is prepared;
+no process is excluded and cleanup is not promoted. Direct-pipe passes this
+round, without explaining other Firefox failures. Private-first temp control
+passes6/10, inherited-second10/10, both with zero final owned survivors. This
+reverses the earlier apparent private-temp advantage; no workaround is adopted.
+
+macOS batch134/1 fails durable MCP1,000 at987, TIMED_OUT with readable result and
+terminated/removed cleanup, no operator attention. Same-host raw Chromium controls
+both pass: BrowserServer119.430s and direct-pipe117.014s,1,000 operations each and
+zero owned survivors. Both remain close to120s; a single ordered pair does not
+establish a transport cause or justify changing production transport/deadlines.
+
+Native failure-only original-tool metadata works: the plain highlight screenshot
+has the expected zero red pixels, but the prerequisite evaluate takes6.245s and
+exceeds the existing5s observation budget before its49ms screenshot. Next fixture
+observes screenshots directly, retaining identical pixels/5s/20-frame/30s limits;
+local Chromium/Firefox devtools selection passes6/6. The separate held-input
+click timeout remains open. **Not release-ready.** Evidence: worker-ci-fortyseventh-*
+and highlight-direct-capture-local.txt.
+
+The screenshot observation change removes only an unnecessary prerequisite
+MCP evaluate call; failed screenshots still throw, all pixel comparisons and
+budgets remain. Six local Chromium/Firefox devtools tests pass. Windows native
+confirmation remains pending.
+
+Read-only Windows audit receipts now retain only fixed count/boolean metadata:
+observed count, whether the querying helper itself matched, root match count and
+number of remembered root births. The query's documented child handle supplies
+its helper PID privately. The assertion also records only whether supervisor,
+worker or browser roots matched, and fixed cleanup labels. No executable names,
+paths, arguments or raw process identities enter that new receipt. The result
+list and conservative ownership classification are unchanged, including a
+possible helper match. This is diagnosis, not a survivor fix.
+
+The retry fixture now requires the form workflow itself to succeed before
+asserting exactly one POST. Native47 previously failed only undefined!==1,
+without the failed form result. New assertion preserves no-replay and provides
+bounded existing step/cleanup metadata for that failure.
+
+Local source selections after the diagnostic change: real Chromium/Firefox
+deadline/cleanup checks pass2/2; form/retry selections pass2/2; graph/phase/privacy
+checks pass5/5 each Node20/22/24. The documented promisified execFile child handle
+is confirmed locally on Node24. Lint passes. Windows receipt callback execution
+remains native-pending; no cleanup fix is claimed from these local passes.

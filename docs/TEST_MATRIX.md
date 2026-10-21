@@ -1,17 +1,17 @@
 # Current acceptance coverage
 
-Latest completed native `4797a00`: **1,266 reported passes/nine failed tests**;
-all17 jobs concluded, none cancelled. Wrapper39596168653:430/4;
-batch39596168652:836/5. All installed production and actual Codex1,000-action
-lanes pass. Original Firefox, macOS raw/MCP throughput and Windows raw Firefox/
-Chromium retry failures remain. No full release gate is promoted.
+Latest completed native `f485f1e`: **1,290 reported passes/eight failed tests**;
+all17 jobs concluded, none cancelled. Wrapper39601660969:435/2;
+batch39601661284:855/6. Installed production, all journal and all actual Codex
+lanes pass. Windows Firefox has original/input/cleanup failures; macOS durable
+MCP1,000 times out at987. One Windows process observation conflicts with reported
+cleanup and remains unresolved; no PID is filtered or cleanup promoted.
 
-Candidate `f485f1e` is under native verification. Further local HTTP/privacy,
-IPv6, cancellation-negative and portable functional-soak checks are committed
-but not pushed during that matrix. The local functional100/600 passes with fresh
-storage and zero owned survivors; this is not native or full resource acceptance.
-See [execution report](CODEX_EXECUTION_REPORT.md) and the dated ledger entries
-for exact evidence and pending work. **Not release-ready.**
+Follow-up HTTP/privacy, IPv6, cancellation-negative, screenshot-observation,
+audit-receipt and portable functional-soak checks await native verification.
+The local functional100/600 passes with fresh storage and zero owned survivors;
+it is not native or full resource acceptance. See [execution report](CODEX_EXECUTION_REPORT.md)
+for exact evidence and open gates. **Not release-ready.**
 
 At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.

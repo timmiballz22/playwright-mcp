@@ -31,7 +31,14 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
       assert.ok(result.durationMs < 15000);
       assert.equal(result.execution.tempCleanup, 'removed');
       await assert.rejects(stat(path.join(dir, 'exec-' + result.runId, 'tmp')), { code: 'ENOENT' });
-      assert.deepEqual(await ownedDescendants([result.execution.supervisorPid, result.execution.workerPid, ...owned]), [], 'Owned descendant processes remain after cleanup');
+      let auditReceipt = null;
+      const survivors = await ownedDescendants([result.execution.supervisorPid, result.execution.workerPid, ...owned], {
+        onReceipt: receipt => { auditReceipt = receipt; },
+      });
+      assert.deepEqual(survivors, [], JSON.stringify({ failure: 'owned_process_after_cleanup', audit: auditReceipt,
+        supervisorMatched: survivors.includes(result.execution.supervisorPid), workerMatched: survivors.includes(result.execution.workerPid),
+        browserRootsMatched: owned.filter(pid => survivors.includes(pid)).length,
+        forced: result.execution.forced, cleanup: result.execution.cleanup, tempCleanup: result.execution.tempCleanup }));
       for (const pid of owned) {
         // Zombies have exited and released browser resources; host reaping is
         // separate. Do not count a still-executing process as successful cleanup.
