@@ -1,0 +1,37 @@
+✔ bounded writer contention waits before one mutation without replay (628.610744ms)
+✔ recovery with live unexpired records is read-only while another writer owns the lock (88.474898ms)
+✔ internal job controller queue-success (679.61126ms)
+✔ internal job controller cancel-and-reconnect (443.047766ms)
+✔ internal job controller queue-pressure (784.423157ms)
+✔ internal job controller queue-expiry (786.306999ms)
+✔ internal job controller guardian-crash (706.07836ms)
+✔ internal job controller close-before-dequeue (211.106729ms)
+✔ internal job controller cancel-during-guardian-start (194.754877ms)
+✔ durable guardian success: cleanup and canonical journal outcome (393.188128ms)
+✔ durable guardian cancel: cleanup and canonical journal outcome (716.104105ms)
+✔ durable guardian disconnect: cleanup and canonical journal outcome (673.140057ms)
+✔ durable guardian crash: cleanup and canonical journal outcome (622.57595ms)
+✔ durable guardian mismatch: cleanup and canonical journal outcome (225.639726ms)
+✔ durable guardian admissionFailure: cleanup and canonical journal outcome (302.39101ms)
+✔ durable guardian preDisconnected: cleanup and canonical journal outcome (225.036195ms)
+✔ managed directory links and database hardlinks cannot modify another file (345.365106ms)
+✔ POSIX journal directory must exclude group and other access (38.82311ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (94.605814ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (52.928703ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (48.958684ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (61.178607ms)
+✔ killed transaction rolls back without a partial job or duplicate request (190.109624ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (146.137606ms)
+✔ corrupt journal is rejected without silently erasing the file (90.123127ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (41.740942ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (148.22722ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (134.915253ms)
+✔ controller expires its queued input by monotonic elapsed time when wall deadline remains in the future (152.372673ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9560.175695

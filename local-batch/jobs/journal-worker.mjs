@@ -59,6 +59,18 @@ async function privateKey(directory) {
   try { return await file.readFile(); } finally { await file.close(); }
 }
 
+function recoveryDecision(row, lease) {
+  if (row.state === 'QUEUED' && !row.started && row.deadline_at <= Date.now()) return 'expired';
+  const reusedHolder = lease?.holder_pid === identity.pid && lease.instance !== identity.instance;
+  const reusedController = row.controller_pid === identity.pid && row.instance !== identity.instance;
+  if (lease && live(lease.holder_pid) && !reusedHolder) return null;
+  if (!lease && live(row.controller_pid) && !reusedController) return null;
+  return 'crashed';
+}
+const recoveryRows = () => db.prepare("SELECT * FROM jobs WHERE state IN ('CREATED','VALIDATING','QUEUED','RUNNING') LIMIT 64").all();
+const recoveryLease = row => db.prepare('SELECT * FROM execution_lease WHERE job_id=?').get(row.id);
+const cleanupBlocked = () => Boolean(db.prepare('SELECT uncertain FROM execution_lease WHERE singleton=1').get()?.uncertain);
+
 function transaction(callback) {
   db.exec('BEGIN IMMEDIATE');
   try { const result = callback(); db.exec('COMMIT'); return result; }
@@ -325,24 +337,25 @@ const handlers = new Map([
     return dto(finished);
   })],
   ['result', data => { const row = owned(data.id); if (!terminal.has(row.state)) error('not_ready'); if (!row.summary) error('result_expired'); return JSON.parse(row.summary); }],
-  ['recover', () => transaction(() => {
+  ['recover', () => {
+    // Polls with no state change must not contend with durable writers. This
+    // read-only preflight grants no lease and never schedules execution.
+    if (!recoveryRows().some(row => recoveryDecision(row, recoveryLease(row)))) return { recovered: 0, cleanupBlocked: cleanupBlocked() };
+    return transaction(() => {
     let recovered = 0;
-    for (const row of db.prepare("SELECT * FROM jobs WHERE state IN ('CREATED','VALIDATING','QUEUED','RUNNING') LIMIT 64").all()) {
-      const lease = db.prepare('SELECT * FROM execution_lease WHERE job_id=?').get(row.id);
+    // A possible mutation is re-read and rechecked under the write transaction.
+    for (const row of recoveryRows()) {
+      const lease = recoveryLease(row);
+      const decision = recoveryDecision(row, lease);
       // Expired unstarted work cannot acquire a worker after this transaction.
       // activate() checks the same deadline before persisting RUNNING.
-      if (row.state === 'QUEUED' && !row.started && row.deadline_at <= Date.now()) {
+      if (decision === 'expired') {
         update(row, 'TIMED_OUT', 0, 'complete', 'queue_expired');
         if (lease) db.prepare('DELETE FROM execution_lease WHERE singleton=1').run();
         recovered++;
         continue;
       }
-      // A current process knows its own incarnation. A recycled numeric PID is
-      // not the old controller, even though kill(pid, 0) now succeeds.
-      const reusedHolder = lease?.holder_pid === identity.pid && lease.instance !== identity.instance;
-      const reusedController = row.controller_pid === identity.pid && row.instance !== identity.instance;
-      if (lease && live(lease.holder_pid) && !reusedHolder) continue;
-      if (!lease && live(row.controller_pid) && !reusedController) continue;
+      if (decision !== 'crashed') continue;
       const uncertain = row.started || row.worker_pid !== null;
       db.prepare('UPDATE jobs SET uncertain=? WHERE id=?').run(uncertain ? 1 : 0, row.id);
       update(row, 'CRASHED', row.completed, 'complete', 'recovered_interrupted');
@@ -352,8 +365,9 @@ const handlers = new Map([
       }
       recovered++;
     }
-    return { recovered, cleanupBlocked: Boolean(db.prepare('SELECT uncertain FROM execution_lease WHERE singleton=1').get()?.uncertain) };
-  })],
+    return { recovered, cleanupBlocked: cleanupBlocked() };
+    });
+  }],
   ['integrity', () => ({ ok: db.prepare('PRAGMA quick_check').get().quick_check === 'ok' })],
   ['close', () => { db.close(); db = undefined; return { closed: true }; }],
 ]);

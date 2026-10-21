@@ -1,11 +1,12 @@
 export const FAILURE_KINDS = Object.freeze(['interrupted', 'http_failure', 'assertion_mismatch',
   'not_visible', 'not_enabled', 'not_stable', 'detached', 'pointer_intercepted',
-  'locator_timeout', 'pointer_action_timeout', 'navigation_timeout', 'target_closed', 'ambiguous_locator', 'invalid_selector', 'unknown']);
+  'locator_timeout', 'pointer_action_timeout', 'navigation_timeout', 'target_closed', 'ambiguous_locator', 'invalid_selector', 'artifact_quota', 'unknown']);
 export const STEP_FAILURE_CODES = Object.freeze(['cancelled', 'timeout', 'action_failed',
   'rate_limited', 'http_401', 'http_403', 'http_404', 'http_4xx', 'http_5xx']);
 
 // Best-effort fixed codes only. Never return a substring of a browser message.
 export function classifyActionFailure(error, step) {
+  if (error?.code === 'SCREENSHOT_BYTE_LIMIT') return 'artifact_quota';
   if (STEP_FAILURE_CODES.slice(3).includes(error?.safeCode)) return 'http_failure';
   const message = typeof error?.message === 'string' ? error.message : '';
   if (['assertText', 'assertURL'].includes(step.type) && ['Text assertion failed', 'URL assertion failed'].includes(message)) return 'assertion_mismatch';

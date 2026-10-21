@@ -49,7 +49,11 @@ export class JobJournal {
       if (!request) return;
       this.pending.delete(message.id); clearTimeout(request.timer);
       if (message.ok) request.resolve(message.value);
-      else request.reject(new JournalError(/^[a-z_]{1,40}$/.test(message.code) ? message.code : 'journal_unavailable'));
+      else {
+        const error = new JournalError(/^[a-z_]{1,40}$/.test(message.code) ? message.code : 'journal_unavailable');
+        error.command = request.command; // Fixed internal verb only; never arguments.
+        request.reject(error);
+      }
     });
   }
 
@@ -63,7 +67,7 @@ export class JobJournal {
     return new Promise((resolve, reject) => {
       const id = this.nextId++;
       const timer = setTimeout(() => this.abort(), this.timeoutMs);
-      this.pending.set(id, { resolve, reject, timer });
+      this.pending.set(id, { resolve, reject, timer, command });
       this.child.send({ id, command, data }, error => { if (error) this.abort(); });
     });
   }

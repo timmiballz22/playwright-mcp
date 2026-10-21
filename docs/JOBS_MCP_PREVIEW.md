@@ -105,3 +105,22 @@ checks a1,000-action job, duplicate keys, owner isolation, terminal artifact cle
 and a separate active cancellation, with zero model turns and temporary config.
 See [MCP_CLIENT_SETUP.md](MCP_CLIENT_SETUP.md) and codex-jobs-client evidence for
 measured scope; this does not certify native conversational use.
+
+## Screenshot byte budget
+
+Approved screenshots have a default per-run total of16 MiB. Trusted operator
+`PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES` accepts an integer from0 through268435456
+(256 MiB). Workflow/tool arguments cannot change it. Sensitive-capture approval
+is still separately required. Quota failure is `action_failed` with fixed
+`failureKind: artifact_quota`; prior confirmed actions are retained without replay.
+
+The worker obtains a viewport PNG buffer, checks the remaining byte budget before
+image-file writes, and publishes private complete files through a temporary file
+and atomic rename. Cancellation/deadline checks prevent late publication at the
+checked boundaries. Run directories are private/unique and step indices ordered;
+existing targets are rejected. No forced garbage collection or screenshot replay.
+
+This bounds screenshot payload bytes, not browser memory, response bodies,
+filesystem block overhead, reports, cleanup diagnostics, history or cumulative
+project storage. Capturing the PNG buffer happens before checking its size. Full
+write quotas, retention, OS resource controls and power-loss durability remain open.

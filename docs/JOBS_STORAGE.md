@@ -45,3 +45,13 @@ cancellation/deadline. Native Windows
 runs omit the POSIX-only mode test. Installed-package smoke verifies both existing
 browser endpoints plus journal creation, owner isolation and cancellation. Native
 CI results for this component are pending.
+
+Live recovery now performs a read-only preflight. If no unstarted record expired
+and all recorded holders/controllers remain live, it returns without a write lock.
+Any possible recovery mutation re-reads and rechecks records under the original
+BEGIN IMMEDIATE transaction. Durable writes, FULL synchronous mode,750ms lock wait
+and2s RPC watchdog are unchanged. No command/action retry is added. A controlled
+writer-lock fixture fails journal_busy before this change and reads successfully
+afterward while the writer still holds the lock. Internal error diagnostics now
+include only the fixed command verb, never its arguments. This reduces needless
+poll contention; it is not proof that all native journal_busy causes are resolved.

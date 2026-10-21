@@ -1312,3 +1312,53 @@ No full Windows ACL, managed profile registration/reset, crash recovery, encrypt
 retention, disk/browser quotas or full G07/G09 claim. See PROFILE_OWNERSHIP.md.
 NEXT: native profile/keyboard verification, then remaining driver/ACL/quota/egress
 requirements. Goal remains incomplete; no publishing/main merge.
+
+### 2026-10-21 — native profile fix, screenshot budget and read-only recovery
+
+Native69710f3:761 passed/eight failed, zero test skips/cancellations. Batch
+39537862771:554/3; wrapper39537862779:207/5. All68 original wrapper cases per
+OS pass, including strict WebKit profile contention, restore, ARIA keyboard,
+mobile viewport/touch and media switch/reset. Remaining failures: Docker two
+missing profile-guard modules in its minimal COPY layout; five Windows raw Firefox
+checks across batch/legacy headless/headed/direct-pipe; Node24 controller queue
+success journal_busy. Native profile guard and explicit-tabindex fixes are proven;
+not a complete green or managed-profile security gate. Selected logs/counts
+worker-ci-twentythird-* preserve all failures.
+
+Docker runtime now copies both required CJS modules. A minimal COPY-layout real
+Chromium/stdio profile smoke passes with zero active owned processes; this uses
+host dependencies and is not a built image claim. Actual local Docker build fails
+at npm SELF_SIGNED_CERT_IN_CHAIN; TLS verification is not disabled. Native clean
+image build remains the image acceptance path. See docker-profile-* evidence.
+
+Screenshot payload budget defaults16MiB per run, trusted source/CLI/MCP/jobs
+operator override0–256MiB, never workflow input. Viewport PNG buffer checked before
+image-file writes; private exclusive temporary files, atomic publication, existing
+target refusal and cancellation/deadline checks. Quota error is fixed artifact_quota
+kind under action_failed. Image buffers, reports/diagnostics, total history/project
+storage, browser RSS/response-body memory and retention are separate unfinished
+limits. No pixel masking/forced GC/replay claim.
+
+Before: isolated committed69710f3 code accepts both screenshots despite a limit;
+new real regression fails true!==false. After: first PNG retained, next refused,
+no temp image, private file mode and verified owned cleanup. Component24 tests;
+broader executor/report/one-tool1000-action MCP set19 tests; Node20 subset21 and
+Node22 subset6 pass. Public jobs1,000-action/EOF/cancel/cleanup suite plus budget
+unit cases3 pass; tool argument override denied and durable artifact_quota saved.
+Initial jobs assertion expected one metadata file but cleanup diagnostic makes two;
+corrected to direct filesystem absence of PNG/temp plus metadata availability.
+CLI flag real-browser3-case set passes. Fresh119-file package passes all original,
+profile, batch, jobs/CLI/controller/guardian/storage/SIGKILL checks. Evidence
+screenshot-budget-*; counts are per listed suite, not deduplicated totals.
+
+Controlled no-change recovery while a writer holds BEGIN IMMEDIATE previously
+fails journal_busy; now read-only preflight succeeds without taking that lock.
+Actual recovery mutations are re-read/rechecked in the unchanged write transaction.
+FULL durability,750ms busy wait and2s RPC timeout unchanged; no mutation retry.
+Internal errors tag the fixed command verb only, never arguments. All29 kernel/
+controller/guardian/clock/contention tests pass Node24 and22. This reduces a
+reproduced contention source, not a claimed resolution of every native busy case.
+See journal-read-recovery-*. Native confirmation of new changes is pending.
+NEXT: native Docker/budget/recovery verification, then Windows Firefox/ACLs,
+managed profiles/reset, cumulative quotas/retention and egress controls. Full
+mission remains incomplete; no publication/main merge.

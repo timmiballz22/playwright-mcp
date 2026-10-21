@@ -22,6 +22,7 @@ if (process.platform !== 'win32') {
       const otherProject = await resolveJobConfig({ env, cwd: second });
       assert.notEqual(otherProject.journal.directory, a.journal.directory);
       assert.equal(a.execution.readOnly, true);
+      assert.equal(a.execution.maxScreenshotBytes, 16777216);
       assert.equal(a.execution.allowSensitiveArtifacts, false);
       assert.deepEqual(a.execution.allowedOrigins, ['http://127.0.0.1:8123']);
     } finally { await rm(root, { recursive: true, force: true }); }
@@ -43,7 +44,7 @@ if (process.platform !== 'win32') {
     const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-config-input-'));
     try {
       const base = { PLAYWRIGHT_JOBS_OWNER_ID: randomUUID(), PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data') };
-      for (const patch of [{ PLAYWRIGHT_JOBS_DATA_DIR: '' }, { PLAYWRIGHT_JOBS_OWNER_ID: '' }, { PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: 'http://user:secret@localhost/' }, { PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: 'file:///tmp' }, { PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: 'maybe' }, { PLAYWRIGHT_JOBS_NAVIGATION_RETRIES: '3' }])
+      for (const patch of [{ PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES: '268435457' }, { PLAYWRIGHT_JOBS_DATA_DIR: '' }, { PLAYWRIGHT_JOBS_OWNER_ID: '' }, { PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: 'http://user:secret@localhost/' }, { PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: 'file:///tmp' }, { PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: 'maybe' }, { PLAYWRIGHT_JOBS_NAVIGATION_RETRIES: '3' }])
         await assert.rejects(resolveJobConfig({ env: { ...base, ...patch }, cwd: root }));
       assert.deepEqual(await readdir(root), []);
     } finally { await rm(root, { recursive: true, force: true }); }

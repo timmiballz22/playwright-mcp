@@ -31,7 +31,7 @@ function makeFake({ failAt = -1 } = {}) {
       waitFor: async () => {},
       textContent: async () => String(state.clicks),
     }),
-    screenshot: async () => {},
+    screenshot: async () => Buffer.from('owned-fake-image'),
   };
   const context = {
     setDefaultTimeout: () => {},

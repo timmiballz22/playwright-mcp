@@ -2,6 +2,7 @@
 // Separate, optional MCP sidecar. Microsoft's upstream Playwright MCP remains unchanged.
 // Install full clone dependencies first: npm ci.
 import path from 'node:path';
+import { parseScreenshotLimit } from './screenshot-budget.mjs';
 import { workflowInputSchema } from './workflow-contract.mjs';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
@@ -19,6 +20,7 @@ const navigationRetryCount = process.env.PLAYWRIGHT_BATCH_NAVIGATION_RETRIES;
 if (navigationRetryCount !== undefined && !/^[0-2]$/.test(navigationRetryCount))
   throw new TypeError('PLAYWRIGHT_BATCH_NAVIGATION_RETRIES must be 0, 1 or 2');
 const navigationRetry = navigationRetryCount === undefined ? undefined : { maxRetries: Number(navigationRetryCount) };
+const maxScreenshotBytes = parseScreenshotLimit(process.env.PLAYWRIGHT_BATCH_MAX_SCREENSHOT_BYTES);
 let busy = false;
 let cleanupBlocked = false;
 let activeAbort;
@@ -59,7 +61,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
   if (extra.signal.aborted) abort();
   try {
     const summary = await executeWorkflow(request.params.arguments, {
-      allowedOrigins, artifactsDir, navigationRetry, allowSensitiveArtifacts: process.env.PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS === '1', signal: activeAbort.signal,
+      allowedOrigins, artifactsDir, navigationRetry, maxScreenshotBytes, allowSensitiveArtifacts: process.env.PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS === '1', signal: activeAbort.signal,
     });
     if (summary.execution?.cleanup === 'failed') cleanupBlocked = true;
     return { isError: !summary.ok, content: [{ type: 'text', text: JSON.stringify(summary) }] };

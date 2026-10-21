@@ -1,3 +1,4 @@
+import { validateScreenshotLimit } from './screenshot-budget.mjs';
 // Operator policy is never accepted in workflow/tool input.
 export function parseOrigins(allowedOrigins) {
   if (!Array.isArray(allowedOrigins))
@@ -20,7 +21,8 @@ export function allowedAddress(raw, allowed) {
   return allowed.has(url.origin);
 }
 
-export function validateExecutionPolicy(spec, { allowedOrigins = [], allowSensitiveArtifacts = false, readOnly = false } = {}) {
+export function validateExecutionPolicy(spec, { allowedOrigins = [], allowSensitiveArtifacts = false, readOnly = false, maxScreenshotBytes } = {}) {
+  validateScreenshotLimit(maxScreenshotBytes);
   if (typeof readOnly !== 'boolean') throw new TypeError('readOnly must be boolean');
   const allowed = parseOrigins(allowedOrigins);
   if (spec.steps.some(step => step.type === 'screenshot') && allowSensitiveArtifacts !== true)

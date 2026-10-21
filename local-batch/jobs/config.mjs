@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import path from 'node:path';
 import os from 'node:os';
 import { parseOrigins } from '../policy.mjs';
+import { parseScreenshotLimit } from '../screenshot-budget.mjs';
 import { navigationRetryPolicy } from '../navigation-retry.mjs';
 export class JobConfigError extends Error {
   constructor(code) { super(code); this.name = 'JobConfigError'; this.code = code; }
@@ -48,10 +49,11 @@ export async function resolveJobConfig({ env = process.env, cwd = process.cwd() 
   if (process.platform === 'win32' || typeof process.getuid !== 'function') reject('unsupported_private_storage');
   const ownerId = env.PLAYWRIGHT_JOBS_OWNER_ID;
   if (typeof ownerId !== 'string' || !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(ownerId)) reject('invalid_owner');
-  let allowedOrigins; let navigationRetry;
+  let allowedOrigins; let navigationRetry; let maxScreenshotBytes;
   const allowSensitiveArtifacts = flag(env, 'PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS');
   const readOnly = !flag(env, 'PLAYWRIGHT_JOBS_ALLOW_MUTATIONS');
   try {
+    maxScreenshotBytes = parseScreenshotLimit(env.PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES);
     const origins = (env.PLAYWRIGHT_JOBS_ALLOWED_ORIGINS ?? '').split(',').map(value => value.trim()).filter(Boolean);
     if (origins.length > 64 || origins.some(value => value.length > 2048)) reject('invalid_policy');
     allowedOrigins = [...parseOrigins(origins)];
@@ -73,7 +75,7 @@ export async function resolveJobConfig({ env = process.env, cwd = process.cwd() 
     const projectStore = await privateDirectory(path.join(canonicalBase, 'projects', projectId));
     const directory = await privateDirectory(path.join(projectStore, 'journal'));
     const artifactsDir = await privateDirectory(path.join(projectStore, 'artifacts', hash(ownerId)));
-    return { journal: { directory, projectId, ownerId }, execution: { allowedOrigins, artifactsDir, readOnly, allowSensitiveArtifacts, navigationRetry } };
+    return { journal: { directory, projectId, ownerId }, execution: { allowedOrigins, artifactsDir, readOnly, allowSensitiveArtifacts, navigationRetry, maxScreenshotBytes } };
   } catch (error) {
     if (error instanceof JobConfigError) throw error;
     reject('storage_unavailable');

@@ -10,6 +10,7 @@ import { randomUUID } from 'node:crypto';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
+import { resolveJobConfig } from './jobs/config.mjs';
 import { supportsJournal } from './jobs/journal.mjs';
 import { ownedDescendants } from './fixtures/process-audit.mjs';
 const entry = fileURLToPath(new URL('./jobs-mcp.mjs', import.meta.url));
@@ -19,10 +20,10 @@ if (supportsJournal && process.platform !== 'win32') test('preview stdio jobs: d
   const server = createServer((_request, response) => { response.writeHead(200, { 'Content-Type': 'text/html' }); response.end('<div id="ready">ready</div><button>Add</button><output>0</output><script>let n=0;document.querySelector("button").onclick=()=>document.querySelector("output").textContent=String(++n)</script>'); });
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   const origin = `http://127.0.0.1:${server.address().port}`;
-  async function open(ownerId = owner, mutations = false) {
+  async function open(ownerId = owner, mutations = false, maxScreenshotBytes) {
     const client = new Client({ name: 'jobs-acceptance', version: '1.0.0' });
     const transport = new StdioClientTransport({ command: process.execPath, args: [entry], stderr: 'pipe', env: {
-      ...process.env, PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: mutations ? '1' : '0', PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS: '0', PLAYWRIGHT_JOBS_OWNER_ID: ownerId, PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data'), PLAYWRIGHT_JOBS_PROJECT_DIR: root, PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: origin,
+      ...process.env, PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: mutations ? '1' : '0', PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS: maxScreenshotBytes === undefined ? '0' : '1', PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES: String(maxScreenshotBytes ?? 16777216), PLAYWRIGHT_JOBS_OWNER_ID: ownerId, PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data'), PLAYWRIGHT_JOBS_PROJECT_DIR: root, PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: origin,
     } });
     await client.connect(transport); roots.push(transport.pid); clients.push(client); return client;
   }
@@ -101,6 +102,20 @@ if (supportsJournal && process.platform !== 'win32') test('preview stdio jobs: d
       { type: 'assertText', selector: 'output', equals: '997' }, { type: 'assertURL', url: origin + '/' },
     ] } })).jobId, large.jobId);
     assert.equal((await call(writer, 'get_workflow_result', { jobId: large.jobId })).result.completed, 1000);
+    const captureClient = await open(owner, false, 1);
+    const captureWorkflow = { timeoutMs: 20000, steps: [{ type: 'goto', url: origin }, { type: 'screenshot' }] };
+    const override = await call(captureClient, 'start_workflow', { requestKey: 'quota-override', workflow: captureWorkflow, maxScreenshotBytes: 268435456 });
+    assert.equal(override.isError, true);
+    const capture = await call(captureClient, 'start_workflow', { requestKey: 'quota', workflow: captureWorkflow });
+    let captureResult; const captureEnd = performance.now() + 25000;
+    do { captureResult = await call(captureClient, 'get_workflow_result', { jobId: capture.jobId, waitMs: 10000 }); } while (!captureResult.ready && performance.now() < captureEnd);
+    assert.equal(captureResult.job.state, 'FAILED'); assert.equal(captureResult.result.completed, 1);
+    assert.equal(captureResult.result.failedStep.failureKind, 'artifact_quota');
+    assert.equal(captureResult.result.reportPath, undefined); assert.equal(JSON.stringify(captureResult).includes(root), false);
+    const captureConfig = await resolveJobConfig({ env: { PLAYWRIGHT_JOBS_OWNER_ID: owner, PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data'), PLAYWRIGHT_JOBS_PROJECT_DIR: root } });
+    const captureFiles = await readdir(path.join(captureConfig.execution.artifactsDir, 'exec-' + captureResult.result.runId), { recursive: true });
+    assert.equal(captureFiles.some(name => name.endsWith('.png') || path.basename(name).startsWith('.capture-')), false);
+    assert.ok((await call(captureClient, 'cleanup_workflows', { jobIds: [capture.jobId] })).results[0].files >= 1, 'Safe report and cleanup metadata remain available');
   } finally {
     await Promise.allSettled(clients.map(client => client.close()));
     let clean = false;

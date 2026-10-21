@@ -3,6 +3,7 @@
 import { mkdir, mkdtemp } from 'node:fs/promises';
 import path from 'node:path';
 import { performance } from 'node:perf_hooks';
+import { ScreenshotBudget } from './screenshot-budget.mjs';
 import { allowedAddress, validateExecutionPolicy } from './policy.mjs';
 import { classifyActionFailure } from './failure.mjs';
 import { navigationRetryPolicy, navigationRetryDelay, parseRetryAfter } from './navigation-retry.mjs';
@@ -114,7 +115,7 @@ export function validateWorkflow(workflow) {
   return { browser, timeoutMs, actionTimeoutMs, iterations, steps };
 }
 
-async function perform(page, step, index, artifactsDir) {
+async function perform(page, step, index, artifactsDir, screenshots, canPublish) {
   const locator = step.selector ? resolveLocator(page, step.selector) : undefined;
   switch (step.type) {
     case 'goto': {
@@ -153,7 +154,7 @@ async function perform(page, step, index, artifactsDir) {
     case 'screenshot': {
       await mkdir(artifactsDir, { recursive: true, mode: 0o700 });
       const target = path.join(artifactsDir, 'step-' + String(index).padStart(4, '0') + '.png');
-      await page.screenshot({ path: target, fullPage: false });
+      await screenshots.publish(page, target, { canPublish });
       return { artifact: target };
     }
     default: throw new Error('Unreachable action');
@@ -173,14 +174,16 @@ export async function runWorkflow(workflow, {
   signal,
   allowSensitiveArtifacts = false,
   readOnly = false,
+  maxScreenshotBytes,
   onBrowserProcess,
   onProgress,
   navigationRetry, // Trusted operator opt-in for safe GET navigation only.
   onActionFailure, // Trusted source diagnostics only; never accepted in workflow JSON.
 } = {}) {
   const spec = validateWorkflow(workflow);
-  const allowed = validateExecutionPolicy(spec, { allowedOrigins, allowSensitiveArtifacts, readOnly });
+  const allowed = validateExecutionPolicy(spec, { allowedOrigins, allowSensitiveArtifacts, readOnly, maxScreenshotBytes });
   const retryPolicy = navigationRetryPolicy(navigationRetry);
+  const screenshots = new ScreenshotBudget(maxScreenshotBytes);
   if (signal?.aborted)
     return { ok: false, reason: 'cancelled', completed: 0, results: [] };
 
@@ -299,7 +302,10 @@ export async function runWorkflow(workflow, {
             const target = new URL(step.url); target.hash = '';
             currentNavigation = target.href;
           }
-          const metadata = await bounded(perform(page, step, index, artifactsDir));
+          const metadata = await bounded(perform(page, step, index, artifactsDir, screenshots, () => {
+            if (performance.now() - started >= spec.timeoutMs) stop('timeout');
+            return !cancelled && !timedOut && !closing;
+          }));
           currentNavigation = undefined;
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: true, durationMs: Math.round(performance.now() - start), ...metadata });

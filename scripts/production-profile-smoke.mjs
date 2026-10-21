@@ -4,12 +4,11 @@ import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 import { createServer } from 'node:http';
 import { once } from 'node:events';
 import { mkdtemp, mkdir, readFile, lstat, rm } from 'node:fs/promises';
-import { pathToFileURL } from 'node:url';
+import { ownedDescendants } from '../local-batch/fixtures/process-audit.mjs';
 import path from 'node:path';
 import os from 'node:os';
 import assert from 'node:assert/strict';
 const target = path.resolve(process.argv[2]);
-const { ownedDescendants } = await import(pathToFileURL(path.join(target, 'local-batch/fixtures/process-audit.mjs')));
 const root = await mkdtemp(path.join(os.tmpdir(), 'installed-profile-'));
 const profile = path.join(root, 'profile'); await mkdir(profile, { mode: 0o700 });
 const fixture = createServer((_request, response) => { response.writeHead(200, { 'Content-Type': 'text/html' }); response.end('<title>Owned profile fixture</title><button>Ready</button>'); });

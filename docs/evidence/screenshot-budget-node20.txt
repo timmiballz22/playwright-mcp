@@ -1,0 +1,115 @@
+TAP version 13
+# Subtest: operator owner/project namespaces are stable, private and independent of tool data
+ok 1 - operator owner/project namespaces are stable, private and independent of tool data
+  ---
+  duration_ms: 24.566079
+  ...
+# Subtest: untrusted symlinks and writable ancestors cannot redirect job storage writes
+ok 2 - untrusted symlinks and writable ancestors cannot redirect job storage writes
+  ---
+  duration_ms: 7.757787
+  ...
+# Subtest: invalid owner/policy config is rejected before any storage creation
+ok 3 - invalid owner/policy config is rejected before any storage creation
+  ---
+  duration_ms: 3.436524
+  ...
+# Subtest: failure classification returns fixed codes and never browser text
+ok 4 - failure classification returns fixed codes and never browser text
+  ---
+  duration_ms: 1.110309
+  ...
+# Subtest: rejects unknown instructions, unbounded workloads and hostile origins
+ok 5 - rejects unknown instructions, unbounded workloads and hostile origins
+  ---
+  duration_ms: 1.75871
+  ...
+# Subtest: 100 ordered actions finish in a single batch with one browser launch
+ok 6 - 100 ordered actions finish in a single batch with one browser launch
+  ---
+  duration_ms: 11.841939
+  ...
+# Subtest: failures stop promptly, hide underlying sensitive errors and clean up
+ok 7 - failures stop promptly, hide underlying sensitive errors and clean up
+  ---
+  duration_ms: 3.01349
+  ...
+# Subtest: cancellation before starting avoids launching browser
+ok 8 - cancellation before starting avoids launching browser
+  ---
+  duration_ms: 0.473214
+  ...
+# Subtest: checks target origins and reports assertion failure without page content
+ok 9 - checks target origins and reports assertion failure without page content
+  ---
+  duration_ms: 2.972902
+  ...
+# Subtest: unknown localhost ports require exact operator origins
+ok 10 - unknown localhost ports require exact operator origins
+  ---
+  duration_ms: 6.266452
+  ...
+# Subtest: rejects extra workflow and action properties rather than ignoring policy
+ok 11 - rejects extra workflow and action properties rather than ignoring policy
+  ---
+  duration_ms: 0.249657
+  ...
+# Subtest: deadline includes a stalled launch and closes late browser
+ok 12 - deadline includes a stalled launch and closes late browser
+  ---
+  duration_ms: 201.752218
+  ...
+# Subtest: validation snapshots actions before asynchronous launch
+ok 13 - validation snapshots actions before asynchronous launch
+  ---
+  duration_ms: 2.070293
+  ...
+# Subtest: screenshot capture requires operator approval for sensitive artifacts
+ok 14 - screenshot capture requires operator approval for sensitive artifacts
+  ---
+  duration_ms: 0.712709
+  ...
+# Subtest: workflow version and serialized size are bounded
+ok 15 - workflow version and serialized size are bounded
+  ---
+  duration_ms: 9.808646
+  ...
+# Subtest: accessible selectors validate exact shape and clone nested values
+ok 16 - accessible selectors validate exact shape and clone nested values
+  ---
+  duration_ms: 0.235081
+  ...
+# Subtest: explicit action repeats expand within the total action cap
+ok 17 - explicit action repeats expand within the total action cap
+  ---
+  duration_ms: 18.016114
+  ...
+# Subtest: text equality rejects duplicate counters and ambiguous expectations
+ok 18 - text equality rejects duplicate counters and ambiguous expectations
+  ---
+  duration_ms: 2.190296
+  ...
+# Subtest: real screenshot byte budget keeps first PNG and rejects the next before publication, with verified owned cleanup
+ok 19 - real screenshot byte budget keeps first PNG and rejects the next before publication, with verified owned cleanup
+  ---
+  duration_ms: 2050.777515
+  ...
+# Subtest: screenshot budget refuses excess before writes and publishes complete private files without overwriting
+ok 20 - screenshot budget refuses excess before writes and publishes complete private files without overwriting
+  ---
+  duration_ms: 16.807394
+  ...
+# Subtest: cancellation after image capture cannot publish a late screenshot or leave a temporary file
+ok 21 - cancellation after image capture cannot publish a late screenshot or leave a temporary file
+  ---
+  duration_ms: 2.017368
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2750.715853
