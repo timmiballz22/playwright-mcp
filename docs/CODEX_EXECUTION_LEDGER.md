@@ -1370,3 +1370,23 @@ See journal-read-recovery-*. Native confirmation of new changes is pending.
 NEXT: native Docker/budget/recovery verification, then Windows Firefox/ACLs,
 managed profiles/reset, cumulative quotas/retention and egress controls. Full
 mission remains incomplete; no publication/main merge.
+
+
+## Strict browser-null validation and deterministic JSON corpus
+
+An explicit JSON browser:null was accepted as the Chromium default even though
+the public schema permits only three browser strings. The focused regression
+fails before the fix (missing TypeError). Runtime now defaults only undefined/
+omitted browser; null is rejected before supervisor/browser or artifact allocation.
+No valid workflow or delegated original browser operation changes.
+
+New validation-property.test.mjs uses fixed seed0x4d435031 for500 valid bounded
+workflows (all twelve action kinds, Unicode and empty fill) and170 invalid JSON
+mutations (unknown policy/code/prototype fields at each level, wrong types, numeric
+bounds and expansion overflow). This is a reproducible finite corpus, not proof
+against every malformed input. Node24/20 runner+corpus suites each pass18 tests;
+Node22 corpus+file+job snapshot suite passes6. Fresh Node22 production-only140-file
+package passes real original/batch/jobs MCP, batch/jobs CLI, profile isolation,
+deduplication, cancellation, guardian/journal and controller-SIGKILL cleanup with
+zero active owned processes. No skip/cancellation. Evidence:validation-property-*
+and null-browser-production-local.txt. Native verification of this fix is pending.

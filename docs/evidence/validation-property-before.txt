@@ -1,0 +1,46 @@
+✖ explicit null browser is rejected consistently with the public schema (1.377618ms)
+✔ seeded valid workflows preserve action bounds and Unicode without changing input (20.992928ms)
+✖ JSON mutation corpus rejects unknown fields, wrong types and expansion overflow (1.298936ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 101.130119
+
+✖ failing tests:
+
+test at local-batch/validation-property.test.mjs:6:1
+✖ explicit null browser is rejected consistently with the public schema (1.377618ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (TypeError).
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/validation-property.test.mjs:7:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at local-batch/validation-property.test.mjs:37:1
+✖ JSON mutation corpus rejects unknown fields, wrong types and expansion overflow (1.298936ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (TypeError).
+      at reject (file:///workspace/playwright-mcp/local-batch/validation-property.test.mjs:40:36)
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/validation-property.test.mjs:46:76)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

@@ -76,7 +76,7 @@ export function validateWorkflow(workflow) {
   const iterations = integer(workflow.iterations, 'iterations', 1, MAX_ITERATIONS, 1);
   if (workflow.steps.length * iterations > MAX_STEPS)
     throw new TypeError('Workflow exceeds ' + MAX_STEPS + ' total actions');
-  const browser = workflow.browser ?? 'chromium';
+  const browser = workflow.browser === undefined ? 'chromium' : workflow.browser;
   if (!['chromium', 'firefox', 'webkit'].includes(browser))
     throw new TypeError('Unsupported browser');
   const timeoutMs = integer(workflow.timeoutMs, 'timeoutMs', 100, MAX_DURATION_MS, 120000);
