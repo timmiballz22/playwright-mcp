@@ -10,41 +10,49 @@ import { readWorkflowFile } from './workflow-file.mjs';
 import { validateWorkflow } from './runner.mjs';
 const terminal = new Set(['SUCCEEDED', 'FAILED', 'CANCELLED', 'TIMED_OUT', 'CRASHED']);
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
-const invalid = () => { throw new TypeError('invalid_arguments'); };
+const invalid = () => { throw Object.assign(new TypeError('invalid_arguments'), { code: 'invalid_arguments' }); };
 export function parseJobArguments(argv) {
   const [command, ...rest] = argv;
-  const fields = { start: ['--workflow', '--request-key'], status: ['--job-id'], result: ['--job-id', '--wait-ms'], cancel: ['--job-id'], list: ['--limit'], cleanup: ['--job-id', '--delete'] };
+  const fields = { start: ['--workflow', '--request-key'], status: ['--job-id'], result: ['--job-id', '--wait-ms'], cancel: ['--job-id'], list: ['--limit'], cleanup: ['--job-id', '--delete'],
+    'prune-artifacts': ['--older-than-days', '--limit', '--after-job-id', '--delete'] };
   if (!Object.hasOwn(fields, command)) invalid();
   const result = { command }; const seen = new Set();
   if (command === 'cleanup') { result.jobIds = []; result.dryRun = true; }
+  if (command === 'prune-artifacts') result.dryRun = true;
   for (let index = 0; index < rest.length; index++) {
     const flag = rest[index];
     if (!fields[command].includes(flag) || seen.has(flag) && !(command === 'cleanup' && flag === '--job-id')) invalid();
     seen.add(flag);
     if (flag === '--delete') { result.dryRun = false; continue; }
     const value = rest[++index]; if (typeof value !== 'string' || !value.length) invalid();
-    if (flag === '--job-id') {
+    if (flag === '--job-id' || flag === '--after-job-id') {
       if (!uuid.test(value)) invalid();
-      if (command === 'cleanup') result.jobIds.push(value); else result.jobId = value;
+      if (flag === '--after-job-id') result.afterJobId = value;
+      else if (command === 'cleanup') result.jobIds.push(value); else result.jobId = value;
+    } else if (flag === '--older-than-days') {
+      if (!/^[1-9]\d{0,3}$/.test(value) || Number(value) > 3650) invalid();
+      result.olderThanDays = Number(value);
     } else if (flag === '--wait-ms' || flag === '--limit') {
       if (!/^\d{1,5}$/.test(value)) invalid();
       const number = Number(value);
       if (flag === '--wait-ms') { if (number > 10000) invalid(); result.waitMs = number; }
-      else { if (number < 1 || number > 20) invalid(); result.limit = number; }
+      else { if (number < 1 || number > (command === 'prune-artifacts' ? 10 : 20)) invalid(); result.limit = number; }
     } else if (flag === '--workflow') result.workflow = value;
     else if (flag === '--request-key') { if (value.length > 128) invalid(); result.requestKey = value; }
   }
   if (command === 'start' && (!result.workflow || !result.requestKey) || ['status', 'result', 'cancel'].includes(command) && !result.jobId || command === 'cleanup' && (!result.jobIds.length || result.jobIds.length > 10 || new Set(result.jobIds).size !== result.jobIds.length)) invalid();
+  if (command === 'prune-artifacts' && !result.olderThanDays) invalid();
   return result;
 }
-const safeCodes = new Set(['not_found', 'not_terminal', 'cleanup_blocked', 'cleanup_limit', 'unsafe_artifacts', 'queue_full', 'history_full', 'idempotency_conflict', 'controller_busy', 'journal_busy', 'journal_unavailable', 'storage_full', 'request_cancelled', 'wait_expired', 'unsupported_runtime', 'unsupported_private_storage', 'private_storage_unavailable', 'invalid_owner', 'invalid_policy', 'invalid_storage', 'invalid_project', 'unsafe_storage']);
+const safeCodes = new Set(['invalid_arguments', 'not_found', 'not_terminal', 'cleanup_blocked', 'cleanup_limit', 'unsafe_artifacts', 'queue_full', 'history_full', 'idempotency_conflict', 'controller_busy', 'journal_busy', 'journal_unavailable', 'storage_full', 'request_cancelled', 'wait_expired', 'unsupported_runtime', 'unsupported_private_storage', 'private_storage_unavailable', 'invalid_owner', 'invalid_policy', 'invalid_storage', 'invalid_project', 'unsafe_storage']);
 const safeCode = error => safeCodes.has(error?.code) ? error.code : 'jobs_failed';
 const emit = value => process.stdout.write(JSON.stringify(value) + '\n');
 async function main() {
   const options = parseJobArguments(process.argv.slice(2));
   if (!supportsJournal) throw Object.assign(new Error(), { code: 'unsupported_runtime' });
   let interrupted = false; let controller; let started;
-  const cancel = () => { interrupted = true; };
+  const operationAbort = new AbortController();
+  const cancel = () => { interrupted = true; operationAbort.abort(); };
   process.once('SIGINT', cancel); process.once('SIGTERM', cancel);
   try {
     const config = await resolveJobConfig();
@@ -69,6 +77,12 @@ async function main() {
     } else if (options.command === 'status') emit(await controller.status(options.jobId));
     else if (options.command === 'cancel') emit(await controller.cancel(options.jobId));
     else if (options.command === 'list') emit({ jobs: await controller.list(options.limit ?? 20) });
+    else if (options.command === 'prune-artifacts') {
+      const result = await controller.pruneArtifacts({ olderThanDays: options.olderThanDays, limit: options.limit,
+        afterJobId: options.afterJobId, dryRun: options.dryRun, signal: operationAbort.signal });
+      emit(result);
+      if (result.interrupted || result.operatorAttentionRequired || result.results.some(item => !item.ok)) process.exitCode = 1;
+    }
     else if (options.command === 'result') {
       const end = performance.now() + (options.waitMs ?? 0); let job;
       do {

@@ -10,6 +10,17 @@ test('jobs CLI validates bounded commands without accepting operator policy over
   for (const args of [[], ['start'], ['start', '--workflow', 'f', '--request-key', ''], ['status', '--job-id', '../bad'], ['result', '--job-id', id, '--wait-ms', '10001'], ['list', '--limit', '21'], ['list', '--owner', 'x'], ['start', '--workflow', 'f', '--request-key', 'k', '--allow-origin', 'https://x'], ['cleanup', '--job-id', id, '--job-id', id], ['status', '--job-id', id, '--delete']]) assert.throws(() => parseJobArguments(args), TypeError);
 });
 
+test('retention CLI previews bounded age pages and requires explicit deletion', () => {
+  assert.deepEqual(parseJobArguments(['prune-artifacts', '--older-than-days', '7']),
+    { command: 'prune-artifacts', dryRun: true, olderThanDays: 7 });
+  assert.deepEqual(parseJobArguments(['prune-artifacts', '--older-than-days', '30', '--limit', '4', '--after-job-id', id, '--delete']),
+    { command: 'prune-artifacts', dryRun: false, olderThanDays: 30, limit: 4, afterJobId: id });
+  for (const args of [[], ['--older-than-days', '0'], ['--older-than-days', '3651'], ['--older-than-days', '01'],
+    ['--older-than-days', '1', '--limit', '11'], ['--older-than-days', '1', '--after-job-id', '../fake-private-canary'],
+    ['--older-than-days', '1', '--owner', 'other'], ['--older-than-days', '1', '--delete', '--delete']])
+    assert.throws(() => parseJobArguments(['prune-artifacts', ...args]), TypeError);
+});
+
 const { supportsJournal } = await import('./jobs/journal.mjs');
 if (!supportsJournal) test('jobs CLI rejects unsupported execution before opening workflow or creating state', async () => {
   const { execFile } = await import('node:child_process');
@@ -20,7 +31,8 @@ if (!supportsJournal) test('jobs CLI rejects unsupported execution before openin
   const os = await import('node:os'); const path = await import('node:path');
   const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-cli-unsupported-'));
   try {
-    await assert.rejects(promisify(execFile)(process.execPath, [fileURLToPath(new URL('./jobs-cli.mjs', import.meta.url)), 'start', '--workflow', 'fake-path-canary', '--request-key', 'fake-key-canary'], {
+    for (const args of [['start', '--workflow', 'fake-path-canary', '--request-key', 'fake-key-canary'], ['prune-artifacts', '--older-than-days', '7']])
+    await assert.rejects(promisify(execFile)(process.execPath, [fileURLToPath(new URL('./jobs-cli.mjs', import.meta.url)), ...args], {
       timeout: 5000, env: { ...process.env, PLAYWRIGHT_JOBS_OWNER_ID: randomUUID(), PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data') },
     }), error => {
       assert.equal(error.code, 1); assert.equal(error.stdout, '');

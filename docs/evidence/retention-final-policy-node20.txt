@@ -1,0 +1,55 @@
+TAP version 13
+# Subtest: jobs CLI validates bounded commands without accepting operator policy overrides
+ok 1 - jobs CLI validates bounded commands without accepting operator policy overrides
+  ---
+  duration_ms: 3.203338
+  ...
+# Subtest: retention CLI previews bounded age pages and requires explicit deletion
+ok 2 - retention CLI previews bounded age pages and requires explicit deletion
+  ---
+  duration_ms: 5.224826
+  ...
+# Subtest: jobs CLI rejects unsupported execution before opening workflow or creating state
+ok 3 - jobs CLI rejects unsupported execution before opening workflow or creating state
+  ---
+  duration_ms: 509.922075
+  ...
+# Subtest: jobs CLI executes through a symlinked installation path instead of silently exiting zero
+ok 4 - jobs CLI executes through a symlinked installation path instead of silently exiting zero
+  ---
+  duration_ms: 261.890604
+  ...
+# Subtest: retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+ok 5 - retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+  ---
+  duration_ms: 23.412771
+  ...
+# Subtest: invalid or pre-aborted retention does not query storage
+ok 6 - invalid or pre-aborted retention does not query storage
+  ---
+  duration_ms: 0.457322
+  ...
+# Subtest: retention interruption completes one authorized scope and preserves the continuation
+ok 7 - retention interruption completes one authorized scope and preserves the continuation
+  ---
+  duration_ms: 7.162557
+  ...
+# Subtest: artifact retention never conceals a blocked project even when no old artifacts qualify
+ok 8 - artifact retention never conceals a blocked project even when no old artifacts qualify
+  ---
+  duration_ms: 0.549813
+  ...
+# Subtest: retention stops on lost journal transport without touching later scopes
+ok 9 - retention stops on lost journal transport without touching later scopes
+  ---
+  duration_ms: 0.444743
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1200.516576

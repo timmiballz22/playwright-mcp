@@ -80,3 +80,11 @@ idempotency keys, and instead puts Windows ephemeral browser data in an exclusiv
 ACL repair. Ownership ACK precedes browser allocation; only acknowledged scopes
 are removed. A collision remains untouched, reports unknown cleanup and retains
 uncertain execution fencing. Native public-job confirmation is pending.
+
+The operator CLI `prune-artifacts --older-than-days N` previews bounded old
+terminal artifact pages; `--delete` applies the selection, with age rechecked
+before each scope. A read-only owner-bound `retention` journal RPC paginates by
+stable terminal updated_at/id. The SQLite schema remains version1; no record,
+event or idempotency key is deleted. See JOBS_MCP_PREVIEW.md for continuation,
+interruption and limits. This is artifact retention control, not cumulative disk
+quota or history compaction.

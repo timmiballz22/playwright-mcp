@@ -1,5 +1,16 @@
 # Execution report — verified milestone, incomplete mission
 
+New local candidate adds explicit age-based operator artifact pruning, dry-run
+by default, bounded owner/project pagination and preserved results/request keys.
+Node22/24 components each56/56; Node20 boundaries9/9; fresh167-file production
+install and lint pass. Native retention execution remains pending. Full quotas,
+scheduled retention and wall-clock artifact cleanup containment remain open.
+
+Latest completed native5060ca4: wrapper432 pass/2 fail; batch902 pass/8 fail
+and one cancelled test (distinct from job cancellation). Both workflows finish
+with failure; this does not validate the later retention candidate. Detailed
+selected logs/counts are retained under worker-ci-fiftieth-*.
+
 Latest completed full native `b144c7d`: **1,337 reported passes/six failed
 tests**, plus macOS actual-Codex failure. Wrapper39609165296:434/3;
 batch39609165341:903/3. All17 executed jobs conclude; one soak job intentionally

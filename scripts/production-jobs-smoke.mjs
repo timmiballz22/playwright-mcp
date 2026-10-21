@@ -71,7 +71,11 @@ if (!supportsJournal) {
     assert.equal((await cli(['status', '--job-id', cliId]))[0].state, 'SUCCEEDED');
     assert.equal((await cli(['result', '--job-id', cliId]))[0].result.completed, 2);
     assert.ok((await cli(['list', '--limit', '2']))[0].jobs.some(job => job.jobId === cliId));
-    assert.equal((await cli(['cleanup', '--job-id', cliId]))[0].results[0].dryRun, true);
+    const retentionPreview = (await cli(['prune-artifacts', '--older-than-days', '1']))[0];
+    assert.equal(retentionPreview.dryRun, true); assert.deepEqual(retentionPreview.results, []);
+    assert.deepEqual((await cli(['prune-artifacts', '--older-than-days', '1', '--delete']))[0].results, []);
+    const freshPreview = (await cli(['cleanup', '--job-id', cliId]))[0].results[0];
+    assert.equal(freshPreview.dryRun, true); assert.ok(freshPreview.files >= 1, 'Retention must preserve the fresh real execution report');
     assert.equal((await cli(['cleanup', '--job-id', cliId, '--delete']))[0].results[0].removed, true);
     assert.equal(navigations, 2);
     const cancelJob = await call('start_workflow', { requestKey: 'cli-cancel', workflow: { timeoutMs: 20000, steps: [{ type: 'goto', url: origin }, { type: 'waitFor', selector: '#not-present' }] } });
@@ -81,7 +85,7 @@ if (!supportsJournal) {
     assert.equal((await cli(['cancel', '--job-id', cancelJob.jobId]))[0].cancelRequested, true);
     assert.equal((await call('get_workflow_result', { jobId: cancelJob.jobId, waitMs: 10000 })).job.state, 'CANCELLED');
     verified = true;
-    console.log(JSON.stringify({ entry: 'local-batch/jobs-cli.mjs', production: true, realBrowser: 'chromium', completed: 2, duplicateExecuted: false, statusResultListCleanup: true, activeCancel: true }));
+    console.log(JSON.stringify({ entry: 'local-batch/jobs-cli.mjs', production: true, realBrowser: 'chromium', completed: 2, duplicateExecuted: false, statusResultListCleanup: true, retentionPreview: true, retentionFreshPreserved: true, activeCancel: true }));
     console.log(JSON.stringify({ entry: 'local-batch/jobs-mcp.mjs', handshake: true, toolCount: 6, realBrowser: 'chromium', completed: 2, duplicateExecuted: false, production: true }));
   } finally {
     let clean = false;

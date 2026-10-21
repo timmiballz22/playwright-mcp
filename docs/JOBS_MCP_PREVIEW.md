@@ -169,3 +169,35 @@ and source1,000-action verification. No ACL or cleanup assertion was relaxed.
 The empty-inventory failure was later traced to ConvertTo-Json timing out under
 Codex's filtered environment. Framework JSON serialization atfd17363 fixes native
 startup and the actual zero-turn client check. Waiting alone was not a fix.
+
+## Operator artifact retention
+
+The jobs CLI can preview old terminal artifacts without adding an MCP tool or a
+background service. Use the same trusted owner/project/storage environment as the
+registered jobs client:
+
+```sh
+node local-batch/jobs-cli.mjs prune-artifacts --older-than-days 7 --limit 10
+node local-batch/jobs-cli.mjs prune-artifacts --older-than-days 7 --limit 10 --delete
+```
+
+An age of 1–3650 whole 24-hour days is required. Preview is the default; `--delete`
+authorizes removal for this invocation's policy. Each page selects at most ten
+oldest eligible jobs for this owner/project. `hasMore` and `nextAfterJobId` support
+continuation: append `--after-job-id` with that returned ID for the next page.
+Keep the starting cursor when previewing and then deleting the same page.
+Already-absent scopes remain in history and can be passed with the cursor.
+
+The controller rechecks terminal state, known cleanup and age before opening each
+execution scope. Active, newly fresh and uncertain jobs retain their files.
+Each result reports its job ID and fixed counts/status, without paths, request
+keys or file contents. A failed job outcome, interruption or known project cleanup
+debt yields a nonzero exit; inspect those outcomes before continuing. Pagination
+advances past attempted rows, so failed IDs can be retried explicitly through the
+existing `cleanup --job-id` command. SIGINT/SIGTERM stops before the next job;
+an already-started scope can complete.
+
+Durable result summaries and idempotency keys stay in the journal. Artifact
+pruning does not release an uncertain lease or reset profiles. It uses the same
+per-scope entry/depth/byte bounds and link/ownership checks as explicit cleanup.
+Scheduling, history purging and cumulative disk quotas remain separate work.

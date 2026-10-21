@@ -262,6 +262,17 @@ const handlers = new Map([
     if (!integer(limit, 1, 20)) error('invalid_metadata');
     return db.prepare('SELECT * FROM jobs WHERE owner=? ORDER BY created_at DESC,id DESC LIMIT ?').all(identity.owner, limit).map(dto);
   }],
+  ['retention', data => {
+    const limit = data.limit ?? 10;
+    if (!integer(data.beforeMs, 1, Date.now()) || !integer(limit, 1, 10)) error('invalid_metadata');
+    const after = data.afterId === undefined ? null : owned(data.afterId);
+    if (after && !terminal.has(after.state)) error('invalid_metadata');
+    // Read-only and owner-bound. Stable terminal timestamps allow bounded
+    // continuation without deleting request keys or adding schema tombstones.
+    const rows = db.prepare("SELECT * FROM jobs WHERE owner=? AND updated_at<? AND uncertain=0 AND state IN ('SUCCEEDED','FAILED','CANCELLED','TIMED_OUT','CRASHED') AND (? IS NULL OR updated_at>? OR (updated_at=? AND id>?)) ORDER BY updated_at,id LIMIT ?")
+      .all(identity.owner, data.beforeMs, after?.updated_at ?? null, after?.updated_at ?? 0, after?.updated_at ?? 0, after?.id ?? '', limit + 1);
+    return { jobs: rows.slice(0, limit).map(dto), hasMore: rows.length > limit };
+  }],
   ['events', data => {
     const row = owned(data.id);
     return db.prepare('SELECT revision,state,stage,completed,created_at AS createdAt FROM events WHERE job_id=? ORDER BY revision').all(row.id);

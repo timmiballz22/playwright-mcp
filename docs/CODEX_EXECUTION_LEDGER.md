@@ -2819,3 +2819,36 @@ reproduce/explain the older four-process observation. One job passes, three
 primary groups intentionally skip, no cancellation. Both same-SHA Windows passes
 are retained separately; further healthy repetitions are not treated as fixes.
 Evidence: portable-native-windows-third*.
+
+## Explicit bounded operator artifact retention (local candidate)
+
+Before implementation, the new CLI/controller acceptance fails three tests because
+age-based artifact retention is unavailable; the receipt is retained. The new
+prune-artifacts command requires1–3650 days, defaults to preview and needs explicit
+--delete for removal. Up to10 old owner/project terminal jobs are selected per
+page; a terminal-job ID cursor reaches records beyond the newest20 and advances
+past already-absent scopes. Kernel selection is fixed SQL/read-only, owner-HMAC
+bound, excludes uncertain/active rows and leaves schema version1 unchanged.
+
+Controller cleanup rechecks age immediately before filesystem access. Existing
+terminal/uncertainty/scope/link/owner checks remain. Known project cleanup debt is
+reported even with no candidates; journal/queue failures stop further attempts.
+Interruption finishes an authorized scope then preserves continuation for the
+rest. Results contain IDs/counts/fixed codes, not paths/keys/content. The six MCP
+schemas and normal workflow policy are unchanged; no scheduling/default deletion
+is introduced. Job results/request keys stay, including after file removal, so
+an identical request remains deduplicated. Full quotas/history/profile retention
+and stronger wall-clock cleanup containment remain open.
+
+Real SQLite tests age only private synthetic fixture rows, verify oldest-owner
+pagination beyond21 newer rows, fresh/foreign/active/uncertain exclusion, no event
+mutation and preserved uncertain lease. Actual CLI preview/delete preserves a
+fresh fixture, hides canaries and retains result/duplicate behavior without any
+browser replay. These component fixtures do not claim browser execution. Installed
+smoke additionally checks that age pruning preserves a fresh real-browser report.
+Native component coverage is added; execution of this source change is pending.
+
+Local retention verification: Node22 and24 each56/56; Node20 boundary9/9,
+zero failures/skips/cancellations. Fresh production-only install167 files passes,
+including installed age-preview/fresh-report preservation. Lint and diff check
+pass. Evidence: retention-*.txt. Native execution of retention remains pending.
