@@ -54,17 +54,23 @@ export class JobController {
     catch (error) { return Promise.reject(error); }
     return this.serialize(async () => {
       if (this.closed) throw new JournalError('controller_closed');
-      if (this.blocked) throw new JournalError('cleanup_blocked');
       const id = randomUUID();
       try {
+        const recovered = await this.journal.call('recover');
+        if (recovered.cleanupBlocked) this.blocked = true;
         const row = await this.journal.call('create', { id, requestKey, workflowDigest: snapshot.digest,
-          admitNew: this.inputs.size < 9, total: snapshot.spec.steps.length * snapshot.spec.iterations, deadlineAt: acceptedAt + snapshot.spec.timeoutMs });
+          admitNew: !this.blocked && this.inputs.size < 9, requireCleanLease: true, total: snapshot.spec.steps.length * snapshot.spec.iterations, deadlineAt: acceptedAt + snapshot.spec.timeoutMs });
         // Only the winning creator retains input. Duplicate/lost replies never
         // schedule a second execution, including across controller processes.
         if (row.jobId === id && row.state === 'QUEUED') this.inputs.set(id, snapshot.workflow);
         this.schedule();
         return row;
-      } catch (error) { this.unavailable(error); throw error; }
+      } catch (error) {
+        this.unavailable(error);
+        if (error.code === 'cleanup_blocked') this.blocked = true;
+        if (this.blocked && error.code === 'queue_full') throw new JournalError('cleanup_blocked');
+        throw error;
+      }
     });
   }
 
@@ -72,7 +78,7 @@ export class JobController {
     if (this.closed) return Promise.reject(new JournalError('controller_closed'));
     return this.serialize(async () => {
       try {
-        if (['read', 'list', 'result'].includes(command)) await this.journal.call('recover');
+        if (['read', 'list', 'result'].includes(command) && (await this.journal.call('recover')).cleanupBlocked) this.blocked = true;
         return await this.journal.call(command, data);
       }
       catch (error) { this.unavailable(error); throw error; }

@@ -70,10 +70,15 @@ if (supportsJournal) for (const mode of ['queue-success', 'cancel-and-reconnect'
           const end = performance.now() + 5000;
           while (owned.length < 4 && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 25));
           assert.ok(owned.length >= 4, 'Owned worker effects were not observed');
+          const competing = await JobController.open(config);
           controller.active.child.kill('SIGKILL');
           const crashed = await waitFor(controller, first.jobId, 'CRASHED');
           assert.equal(crashed.operatorAttentionRequired, true);
-          await assert.rejects(controller.start(workflow, 'after-crash'), { code: 'cleanup_blocked' });
+          try {
+            await assert.rejects(controller.start(workflow, 'after-crash'), { code: 'cleanup_blocked' });
+            await assert.rejects(competing.start(workflow, 'other-after-crash'), { code: 'cleanup_blocked' });
+            assert.equal((await competing.start(workflow, 'request-1')).jobId, first.jobId);
+          } finally { await competing.close(); }
           return;
         }
         const queued = await controller.start(mode === 'queue-expiry' ? { ...workflow, timeoutMs: 100 } : workflow, 'request-2');

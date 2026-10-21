@@ -12,13 +12,14 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
 test(`real ${browser}: supervised navigation respects throttling and never replays form POST or over-cap waits`, async () => {
   const hits = new Map(); const times = new Map();
   const abort = new AbortController();
+  let abortAt;
   const server = createServer((req, res) => {
     res.setHeader('Content-Type', 'text/html');
     const key = req.method + req.url;
     hits.set(key, (hits.get(key) || 0) + 1);
     times.set(key, [...times.get(key) || [], performance.now()]);
     if (req.url === '/form') { res.setHeader('Content-Type', 'text/html'); res.end('<form method="post" action="/submit"><button>Send</button></form>'); return; }
-    if (req.url === '/cancel') { res.writeHead(429, { 'Retry-After': '1' }); res.end('canary-rate-body'); setTimeout(() => abort.abort(), 100); return; }
+    if (req.url === '/cancel') { res.writeHead(429, { 'Retry-After': '1' }); res.end('canary-rate-body'); setTimeout(() => { abortAt = performance.now(); abort.abort(); }, 100); return; }
     const status = req.url === '/503' ? 503 : 429;
     if (req.url === '/submit' || req.url === '/cap' || req.url === '/exhaust' || hits.get(key) === 1) {
       res.writeHead(status, { 'Content-Type': 'text/html', 'Retry-After': req.url === '/cap' ? '99999999999999999999' : req.url === '/429' ? '1' : '0', 'X-Secret': 'canary-rate-header' });
@@ -52,7 +53,11 @@ test(`real ${browser}: supervised navigation respects throttling and never repla
     assert.equal(hits.get('GET/cap'), 1);
     const exhaust = await run('/exhaust'); assert.equal(exhaust.ok, false); assert.equal(hits.get('GET/exhaust'), 3);
     const cancelled = await run('/cancel', { signal: abort.signal });
-    assert.equal(cancelled.reason, 'cancelled'); assert.equal(hits.get('GET/cancel'), 1);
+    assert.equal(cancelled.reason, 'cancelled'); assert.equal(hits.get('GET/cancel'), 1, JSON.stringify({
+      cancelAtMsAfterRequest: abortAt - times.get('GET/cancel')[0],
+      requestOffsetsMs: times.get('GET/cancel').map(time => time - times.get('GET/cancel')[0]),
+      reason: cancelled.reason, failedStep: cancelled.failedStep, execution: cancelled.execution,
+    }));
     await run('/form', { steps: [{ type: 'click', selector: 'button' }, { type: 'waitFor', selector: '#submitted' }] });
     assert.equal(hits.get('POST/submit'), 1);
   } finally { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); await rm(directory, { recursive: true, force: true }); }

@@ -43,7 +43,10 @@ chain. At most nine accepted workflows are retained (one active plus eight
 queued), each at most 1 MiB encoded. JSON/string copies and engine memory add
 runtime overhead; these are not browser RSS/CPU quotas. Journal create checks an
 internal admitNew flag atomically *after* duplicate lookup, allowing existing keys
-at capacity while refusing new retained input. This also bounds memory when a
+at capacity while refusing new retained input. requireCleanLease also checks
+the project lease inside the same creation transaction, after duplicate lookup.
+This blocks new admission when an already-open competing controller has not yet
+observed another guardian's uncertain death; matching old keys remain readable. This also bounds memory when a
 competing client cancels records whose payloads remain in the creator's memory.
 Lifecycle finalization and close cannot be shed by request admission limits.
 

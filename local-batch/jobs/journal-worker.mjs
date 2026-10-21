@@ -217,11 +217,13 @@ const handlers = new Map([
   ['create', data => transaction(() => {
     if (!uuid.test(data.id || '') || typeof data.requestKey !== 'string' || !data.requestKey.length || data.requestKey.length > 128 ||
         !/^[0-9a-f]{64}$/.test(data.workflowDigest || '') || !integer(data.total, 0, 1000) || data.admitNew !== undefined && typeof data.admitNew !== 'boolean' ||
+        data.requireCleanLease !== undefined && typeof data.requireCleanLease !== 'boolean' ||
         !integer(data.deadlineAt, Date.now() - 86400000, Date.now() + 86400000)) error('invalid_metadata');
     const requestKey = mac('request:' + identity.owner + ':' + data.requestKey);
     const fingerprint = mac('workflow:' + data.workflowDigest);
     const existing = db.prepare('SELECT * FROM jobs WHERE owner=? AND request_key=?').get(identity.owner, requestKey);
     if (existing) { if (existing.fingerprint !== fingerprint) error('idempotency_conflict'); return dto(existing); }
+    if (data.requireCleanLease && db.prepare('SELECT uncertain FROM execution_lease WHERE singleton=1').get()?.uncertain) error('cleanup_blocked');
     if (data.admitNew === false) error('queue_full');
     if (db.prepare("SELECT COUNT(*) AS count FROM jobs WHERE state='QUEUED'").get().count >= 8) error('queue_full');
     if (db.prepare('SELECT COUNT(*) AS count FROM jobs').get().count >= 10000) error('history_full');

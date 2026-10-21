@@ -109,7 +109,11 @@ if (!supportsJournal) {
       assert.equal(finished.completionCertainty, 'confirmed_lower_bound');
       assert.deepEqual(await journal.call('cancel', { id: active.jobId }), finished);
       assert.equal((await journal.call('recover')).cleanupBlocked, true);
-      const next = await create();
+      const request = { id: randomUUID(), requestKey: randomUUID(), workflowDigest: '8'.repeat(64), total: 3, deadlineAt: Date.now() + 30000 };
+      await assert.rejects(journal.call('create', { ...request, requireCleanLease: true }), { code: 'cleanup_blocked' });
+      const next = await journal.call('create', request);
+      assert.equal((await journal.call('create', { ...request, id: randomUUID(), requireCleanLease: true, admitNew: false })).jobId, next.jobId);
+      await assert.rejects(journal.call('create', { ...request, requireCleanLease: 'false' }), { code: 'invalid_metadata' });
       assert.deepEqual(await journal.call('reserve', { id: next.jobId, nonce: randomUUID() }), { acquired: false, reason: 'cleanup_blocked' });
       assert.deepEqual(await journal.call('integrity'), { ok: true });
     } finally { await journal?.close(); await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
