@@ -108,3 +108,31 @@ including slider valid/event/invalid partial-mutation behavior and malformed
 resume-location rejection with a usable session afterward. The companion/native
 Codex attempt has two client failures and an unreported cancelled macOS batch job; this is scoped original-tool evidence,
 not a full green matrix or successful interactive debugger/annotation proof.
+
+
+## Interactive annotation acceptance: NOT TESTED
+
+Pinned playwright-core1.64.1 implements browser_annotate under the devtools
+capability. Source review (evidence/annotation-source-review.json, bundle SHA256
+included) shows it starts a detached dashboard process, then an annotation client,
+and waits for human input. The abort listener kills that client; this review does
+not establish dashboard shutdown or a successful screenshot/ARIA/annotation result.
+No annotation call was made in this headless audit. The tool is preserved through
+upstream delegation and schema discovery; its interactive acceptance remains open.
+
+Operator procedure on a supported graphical desktop:
+
+1. Launch this fork's original stdio endpoint with --caps=devtools and a dedicated
+   isolated session. Navigate to a static page owned by the operator.
+2. Invoke browser_annotate, draw a box over a known visible fixture element, add
+   a fixed test label and submit. Verify the returned annotated image, matching
+   ARIA element and annotation coordinates/label. Record exact engine/OS/SHA.
+3. Repeat with explicit cancellation and confirm later browser_snapshot remains
+   usable, without treating cancellation as a submitted annotation.
+4. Close the browser/client and independently inspect the captured launcher and
+   dashboard process identities. Record any surviving owned dashboard rather
+   than declaring cleanup based solely on the annotation client's exit.
+
+This procedure is not an executed PASS. The companion batch/jobs endpoints do not
+expose annotation or desktop dashboard startup. The default original core tool set
+omits the devtools capability; optional tool invocation retains upstream behavior.

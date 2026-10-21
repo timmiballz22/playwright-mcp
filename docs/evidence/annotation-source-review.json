@@ -1,0 +1,13 @@
+{
+  "package": "playwright-core",
+  "version": "1.64.1",
+  "source": "node_modules/playwright-core/lib/coreBundle.js",
+  "sha256": "829521b67ed7be90c7d6d6098ff39f2241562d47e4ad7ccab13710924a56001d",
+  "tool": "browser_annotate",
+  "capability": "devtools",
+  "review": "source_only_not_executed",
+  "interactiveInputRequired": true,
+  "detachedDashboardProcessObservedInSource": true,
+  "abortHandlerTargetsAnnotationClientOnly": true,
+  "excerpt": "name: \"browser_annotate\",\n        title: \"Annotate the current page\",\n        description: \"Open the Playwright Dashboard in annotation mode for the current page and wait for the user to draw annotations. Returns the annotated screenshot, ARIA snapshot, and the list of annotations.\",\n        inputSchema: z10.object({}),\n        type: \"readOnly\"\n      },\n      handle: async (tab2, params2, response2, signal) => {\n        const pageId4 = tab2.page._guid;\n        const daemonScript = libPath(\"entry\", \"dashboardApp.js\");\n        const daemonArgs = [daemonScript, `--pageId=${pageId4}`];\n        const daemon = (0, import_child_process2.spawn)(process.execPath, daemonArgs, { detached: true, stdio: \"ignore\", windowsHide: true });\n        daemon.unref();\n        const client = (0, import_child_process2.spawn)(process.execPath, [...daemonArgs, \"--annotate\"], {\n          stdio: [\"pipe\", \"pipe\", \"inherit\"]\n        });\n        const onAbort = () => client.kill();\n        signal?.addEventListener(\"abort\", onAbort);\n        const stdoutChunks = [];\n        client.stdout.on(\"data\", (chunk) => stdoutChunks.push(chunk));\n        const exitCode = await new Promise((resolve) => client.on(\"exit\", (code) => resolve(code)));\n        signal?.removeEventListener(\"abort\", onAbort);\n        if (signal?.aborted) {\n          response2.addTextResult(\"Annotation cancelled.\");\n          return;\n        }\n        if (exitCode !== 0) {\n          response2.addError(`Annotation client exited with code ${exitCode}`);\n          return;\n        }\n        const text2 = Buffer.concat(stdoutChunks).toString(\"utf8\").trim();\n        if (!text2) {\n          response2.addTextResult(\"No annotations were submitted.\");\n          return;\n        }\n        const result2 = JSON.parse(text2);\n        if (result2.type !== \"submitted\" || result2.frames.length === 0) {\n          response2.addTextResult(\"No annotations were submitted.\");\n          return;\n        }\n        "
+}

@@ -34,6 +34,11 @@ resource quota. Host-controlled screenshot payload budgets default to16MiB per r
 
 The original MCP endpoint remains upstream behavior, including optional privileged
 features and its own trust model. Companion restrictions do not secure that endpoint.
+In particular, explicit devtools browser_annotate starts the upstream detached
+dashboard and annotation client. Human submission/cancellation and dashboard
+shutdown remain unverified; companion process-cleanup claims do not cover that
+interactive lifecycle. This source review did not invoke the tool. See
+TOOL_BEHAVIOR_MATRIX.md for the pending graphical operator procedure.
 Execution runs in a separate worker with an independent watchdog and scoped
 process termination. This is not an OS sandbox or browser RSS quota. Linux zombie
 processes await host reaping; simultaneous controller loss, uninterruptible kernel

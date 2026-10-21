@@ -3459,3 +3459,28 @@ Evidence jobs-wait-codex-node24.txt. It validates the bounded-wait candidate and
 is not relabelled an installed/native final-candidate proof. Native55 still active
 at f03ad33; local commits held to avoid cancellation. NEXT ACTION remains inspect
 macOS component and browser failures when complete logs become available.
+
+
+## Repeat interface comparison and annotation trust review (1100e3c runtime)
+
+Unchanged scripts/benchmark-local-interfaces.mjs executed three sequential runs,
+all exit0. Four interfaces per run,100 verified clicks each (1,200 total clicks),
+independent zero-owned cleanup each mode, zero model turns. Median audited wall:
+original MCP55.400s/102calls, original trusted-code5.607s/onecall, declarative
+batch5.001s/onecall, forkCLI4.454s/noMCPcalls. JSON bytes/ranges documented in
+PERFORMANCE.md and evidence/interface-repeat-*. This closes the single-sample
+gap for these local modes only: fixed ordering, differing security/reporting,
+no token/wire/CPU/RSS/cross-OS measurement or population confidence claim.
+
+Read-only pinned coreBundle browser_annotate review confirms explicit devtools
+invocation spawns a detached dashboard and an annotation client, waits for human
+drawing, and cancellation handler targets the client. Source hash/excerpt retained
+in annotation-source-review.json; no tool invocation or graphical behavior PASS.
+TOOL_BEHAVIOR_MATRIX.md now gives operator submission/cancellation/owned-process
+checks; THREAT_MODEL.md scopes companion cleanup away from this optional upstream
+interactive process. All72 tool schemas remain delegated/preserved. G03/G14 stay
+open; this documentation is not human acceptance or dashboard shutdown evidence.
+
+Native55 f03ad33 still active; no additional push/cancellation. MacOS component
+failure has only generic exit1 annotations; no cause inferred. NEXT ACTION: full
+native log inspection, real failure reproduction, and candidate verification.

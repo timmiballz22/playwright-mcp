@@ -275,3 +275,30 @@ failure. Cross-OS functional100-run proofs now exist at8d661bf(Linux/macOS Intel
 andb144c7d(Windows), not one full green final SHA or complete resource gate.
 Elapsed functional time includes different OS audit costs, not only browser work.
 Evidence: portable-native-windows-second*.
+
+
+## Three fresh interface samples at1100e3c
+
+Linux x64, Node24.19.0, Playwright1.64.1; unchanged
+`node scripts/benchmark-local-interfaces.mjs` repeated three times, sequentially.
+Each mode launches a fresh Chromium and verifies100 clicks against its owned
+static fixture. Each sample independently confirms zero active owned processes
+after shutdown. Fixed mode order is preserved, so ordering/cache effects are not
+controlled; these are small-sample medians/ranges, not population p95 estimates.
+
+| Interface | Calls | Median through audited shutdown | Range | Parameter/result JSON bytes |
+|---|---:|---:|---|---|
+| Original MCP |102|55,400ms|55,270–55,474ms|6,914 /29,203|
+| Original trusted-code MCP |1|5,607ms|5,553–5,786ms|506 /680|
+| Declarative batch MCP |1|5,001ms|4,994–5,131ms|300 /1,565|
+| Fork batch CLI |0|4,454ms|4,330–4,462ms|259-byte workflow /1,960 stdout bytes|
+
+The original trusted-code interface already batches in one call and returns a
+smaller result here. The declarative companion adds schema/policy/cleanup metadata
+and does not accept arbitrary code. Snapshot/reporting/routing semantics differ;
+this is not an isolated protocol or equivalent-trust performance comparison.
+Only static source-authored trusted code is used in the expert benchmark.
+Zero model turns are started; model tokens, wire-envelope bytes and CPU/RSS are
+NOT measured in these samples. No billing, cross-OS or broad reliability claim.
+G12 remains IN PROGRESS. Raw results and explicit summary:
+evidence/interface-repeat-{1,2,3}.json and interface-repeat-summary.json.
