@@ -1,5 +1,6 @@
 // Actual Codex app-server protocol, zero model turns. Temporary -c configuration
 // only; no global client config edits. Requires Node22.13+ and Codex CLI.
+import { COMMAND_FIELDS, JOURNAL_FAILURE_CAUSES } from '../local-batch/jobs/journal-protocol.mjs';
 import { spawn, execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { createInterface } from 'node:readline';
@@ -41,7 +42,11 @@ const child = spawn(codexCommand, [...codexArguments, 'app-server', '--stdio', '
 });
 const closed = once(child, 'close').catch(() => []);
 // Keep raw client diagnostics private; emit only our fixed startup code format.
-const guardianFailures = new Set(); const guardianExits = new Set();
+const guardianFailures = new Set(); const guardianExits = new Set(); const journalFailures = new Set();
+const rememberJournalFailures = value => {
+  for (const match of value.matchAll(/Local job journal unavailable \(([a-z_]+)\/([a-z_]+)\)/g))
+    if (journalFailures.size < 16 && JOURNAL_FAILURE_CAUSES.includes(match[1]) && (match[2] === 'none' || COMMAND_FIELDS.has(match[2]))) journalFailures.add(match.slice(1).join('/'));
+};
 const startupCodes = new Set(); const helperFailures = new Set(); const startupStates = new Map(); let stderrTail = '';
 const startupCategory = value => {
   if (typeof value !== 'string') return undefined;
@@ -54,6 +59,7 @@ const startupCategory = value => {
 };
 child.stderr.on('data', chunk => {
   stderrTail = (stderrTail + chunk.toString()).slice(-4096);
+  rememberJournalFailures(stderrTail);
   for (const match of stderrTail.matchAll(/Local job guardian failed \(([a-z_]+)\/([a-z_]+)\/([a-z_]+)\)/g)) guardianFailures.add(match.slice(1).join('/'));
   for (const match of stderrTail.matchAll(/Local job guardian exited \((unknown|-?[0-9]+)\/(none|SIGKILL|SIGTERM|SIGABRT|SIGSEGV|SIGINT)\)/g)) guardianExits.add(match.slice(1).join('/'));
   for (const match of stderrTail.matchAll(/Local jobs startup failed \(([a-z_]{1,40})\)/g)) startupCodes.add(match[1]);
@@ -68,8 +74,10 @@ lines.on('line', line => {
   try { packet = JSON.parse(line); } catch { rejectPending(); return; }
   if (packet.method === 'mcpServer/startupStatus/updated') {
     const value = packet.params;
-    if (['jobs', 'foreign_jobs'].includes(value?.name) && typeof value.error === 'string')
+    if (['jobs', 'foreign_jobs'].includes(value?.name) && typeof value.error === 'string') {
+      rememberJournalFailures(value.error);
       for (const match of value.error.matchAll(/Local jobs startup failed \(([a-z_]{1,40})\)/g)) startupCodes.add(match[1]);
+    }
     if (['jobs', 'foreign_jobs'].includes(value?.name) && ['starting', 'ready', 'failed', 'cancelled'].includes(value?.status))
       startupStates.set(value.name, { status: value.status, errorPresent: typeof value.error === 'string', category: startupCategory(value.error), reauthenticationRequired: value.failureReason === 'reauthenticationRequired' });
   }
@@ -108,7 +116,7 @@ try {
       if (tools.length || startupCodes.size || ['failed', 'cancelled'].includes(startupStates.get(name)?.status) || performance.now() >= discoveryEnd) break;
       await new Promise(resolve => setTimeout(resolve, 200));
     } while (polls < 100);
-    const diagnostic = JSON.stringify({ server: name, tools: tools.length, polls, startup: startupStates.get(name), startupCodes: [...startupCodes].sort(), helperFailures: [...helperFailures].sort() });
+    const diagnostic = JSON.stringify({ server: name, tools: tools.length, polls, startup: startupStates.get(name), startupCodes: [...startupCodes].sort(), helperFailures: [...helperFailures].sort(), journalFailures: [...journalFailures].sort() });
     if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Codex tool discovery::' + diagnostic);
     assert.deepEqual(tools, expectedTools, diagnostic);
   }
@@ -126,7 +134,7 @@ try {
   let result; let resultCalls = 0; const end = performance.now() + 130000;
   do { resultCalls++; result = await call('get_workflow_result', { jobId: first.jobId, waitMs: 10000 }); } while (!result.ready && performance.now() < end);
   const cleanupProcessHint = result.result?.execution?.cleanup === 'failed' ? await reportedProcessStateHint([result.result.execution.supervisorPid, result.result.execution.workerPid, ...(Array.isArray(result.result.execution.browserPids) ? result.result.execution.browserPids : [])]) : undefined;
-  const receipt = JSON.stringify({ phase: 'codex_primary_job', state: result.job?.state, jobReason: result.job?.reason, jobStage: result.job?.stage, jobCompleted: result.job?.completed, resultAvailable: !!result.result, operatorAttentionRequired: result.job?.operatorAttentionRequired, guardianFailures: [...guardianFailures], guardianExits: [...guardianExits], forced: result.result?.execution?.forced, workerCleanupFailed: result.result?.execution?.workerCleanupFailed, cleanupProcessHint, terminationFailures: Array.isArray(result.result?.execution?.terminationFailures) ? result.result.execution.terminationFailures.filter(code => TERMINATION_FAILURE_CODES.includes(code)).slice(0, 8) : undefined, completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup });
+  const receipt = JSON.stringify({ phase: 'codex_primary_job', state: result.job?.state, jobReason: result.job?.reason, jobStage: result.job?.stage, jobCompleted: result.job?.completed, resultAvailable: !!result.result, operatorAttentionRequired: result.job?.operatorAttentionRequired, guardianFailures: [...guardianFailures], journalFailures: [...journalFailures].sort(), guardianExits: [...guardianExits], forced: result.result?.execution?.forced, workerCleanupFailed: result.result?.execution?.workerCleanupFailed, cleanupProcessHint, terminationFailures: Array.isArray(result.result?.execution?.terminationFailures) ? result.result.execution.terminationFailures.filter(code => TERMINATION_FAILURE_CODES.includes(code)).slice(0, 8) : undefined, completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup });
   if (process.env.GITHUB_ACTIONS === 'true' && result.job?.state !== 'SUCCEEDED') console.error('::error title=Codex jobs receipt::' + receipt.replaceAll('%', '%25').replaceAll('\r', '%0D').replaceAll('\n', '%0A'));
   assert.equal(result.job.state, 'SUCCEEDED', receipt); assert.equal(result.result.completed, 1000);
   assert.equal(result.result.recentSteps.length, 10); assert.equal(result.result.reportPath, undefined);

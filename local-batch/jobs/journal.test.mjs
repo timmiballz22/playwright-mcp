@@ -15,6 +15,17 @@ if (!supportsJournal) {
     await assert.rejects(JobJournal.open({}), { code: 'unsupported_runtime' });
   });
 } else {
+  test('unexpected journal worker exit remains distinct from an RPC timeout', async () => {
+    const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-read-exit-'));
+    const config = { directory, projectId: '9'.repeat(64), ownerId: 'read-exit-owner' }; let journal;
+    try {
+      journal = await JobJournal.open({ ...config, workerModule: new URL('./fixtures/read-exit.mjs', import.meta.url) });
+      await assert.rejects(journal.call('read', { id: randomUUID() }), { code: 'journal_unavailable', command: 'read', journalFailure: 'worker_exit', journalFailureCommand: 'none' });
+      await journal.exited;
+      journal = await JobJournal.open(config);
+      assert.deepEqual(await journal.call('integrity'), { ok: true }); assert.deepEqual(await journal.call('list'), []);
+    } finally { await journal?.close(); await rm(directory, { recursive: true, force: true }); }
+  });
   test('termination failure diagnostics persist without losing uncertain cleanup or releasing the lease', async () => {
     const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-termination-'));
     let journal;
@@ -189,9 +200,12 @@ if (!supportsJournal) {
       journal.timeoutMs = 100;
       const id = randomUUID();
       const pending = journal.call('create', { id, requestKey: 'one-request', workflowDigest: 'c'.repeat(64), total: 2, deadlineAt: Date.now() + 30000 })
-        .then(() => 'unexpected_success', exception => exception.code);
-      assert.equal(await pending, 'journal_unavailable');
+        .then(() => 'unexpected_success', exception => exception);
+      const failure = await pending;
+      assert.equal(failure.code, 'journal_unavailable'); assert.equal(failure.command, 'create');
+      assert.equal(failure.journalFailure, 'rpc_timeout'); assert.equal(failure.journalFailureCommand, 'create');
       await journal.exited;
+      await assert.rejects(journal.call('list'), { code: 'journal_unavailable', command: 'list', journalFailure: 'rpc_timeout', journalFailureCommand: 'create' });
       assert.equal((await stat(path.join(directory, 'transaction-paused'))).isFile(), true);
       journal = await JobJournal.open(config);
       assert.deepEqual(await journal.call('integrity'), { ok: true });

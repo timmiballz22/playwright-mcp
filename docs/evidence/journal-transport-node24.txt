@@ -1,0 +1,24 @@
+✔ guardian diagnostics retain fixed journal metadata and discard private values (1.299199ms)
+✔ journal transport diagnostics retain only fixed causes and originating verbs (0.183592ms)
+✔ unexpected journal worker exit remains distinct from an RPC timeout (101.204445ms)
+✔ termination failure diagnostics persist without losing uncertain cleanup or releasing the lease (55.661127ms)
+✔ managed directory links and database hardlinks cannot modify another file (324.65648ms)
+✔ POSIX journal directory must exclude group and other access (39.776729ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (97.760916ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (60.284558ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (48.591939ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (65.700902ms)
+✔ killed transaction rolls back without a partial job or duplicate request (189.718498ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (130.985438ms)
+✔ corrupt journal is rejected without silently erasing the file (86.206062ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (40.118979ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (144.913244ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (129.030209ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1642.959337

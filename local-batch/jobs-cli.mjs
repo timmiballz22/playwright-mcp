@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { journalFailureLine } from './jobs/guardian-diagnostic.mjs';
 import { realpath } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { setTimeout as delay } from 'node:timers/promises';
@@ -96,6 +97,7 @@ async function main() {
 // Compare canonical paths so an aliased installation still executes the CLI.
 const invokedPath = process.argv[1] ? await realpath(process.argv[1]).catch(() => undefined) : undefined;
 if (invokedPath && invokedPath === await realpath(fileURLToPath(import.meta.url))) main().catch(error => {
+  process.stderr.write(journalFailureLine(error));
   process.stderr.write('Local jobs CLI failed (' + safeCode(error) + '). Check command, trusted configuration and runtime.\n');
   process.exitCode = 1;
 });

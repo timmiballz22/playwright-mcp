@@ -1,3 +1,4 @@
+export const JOURNAL_FAILURE_CAUSES = Object.freeze(['rpc_timeout', 'worker_exit', 'worker_error', 'send_failure', 'closed', 'aborted', 'worker_rejected', 'invalid_response']);
 export const COMMAND_FIELDS = new Map([
   ['init', ['directory', 'projectId', 'ownerId', 'instanceId', 'pid']],
   ['create', ['id', 'requestKey', 'workflowDigest', 'total', 'deadlineAt', 'admitNew', 'requireCleanLease']],

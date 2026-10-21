@@ -1,5 +1,6 @@
 // Fresh simultaneous SDK startup control after an actual Codex failure.
 // No browser action, global config change, client restart or warmed Codex store.
+import { COMMAND_FIELDS, JOURNAL_FAILURE_CAUSES } from '../local-batch/jobs/journal-protocol.mjs';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { mkdtemp, rm, readFile } from 'node:fs/promises';
@@ -19,7 +20,7 @@ const coreNames = new Set(['PATH', 'PATHEXT', 'SHELL', 'COMSPEC', 'SYSTEMROOT', 
 const coreEnv = Object.fromEntries(Object.entries(process.env).filter(([name]) => coreNames.has(name.toUpperCase())));
 for (const mode of process.platform === 'win32' ? ['inherited', 'codex_core'] : ['inherited']) for (let iteration = 1; iteration <= 3; iteration++) {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'sdk-jobs-startup-'));
-  const clients = []; const transports = []; const recordedRoots = []; const startupCodes = new Set();
+  const clients = []; const transports = []; const recordedRoots = []; const startupCodes = new Set(); const journalFailures = new Set();
   let observed = []; let verified = false; const started = performance.now();
   try {
     const outcomes = await Promise.allSettled([0, 1].map(async index => {
@@ -40,6 +41,8 @@ for (const mode of process.platform === 'win32' ? ['inherited', 'codex_core'] : 
       };
       transport.stderr.on('data', chunk => {
         tail = (tail + chunk.toString()).slice(-4096);
+        for (const match of tail.matchAll(/Local job journal unavailable \(([a-z_]+)\/([a-z_]+)\)/g))
+          if (journalFailures.size < 16 && JOURNAL_FAILURE_CAUSES.includes(match[1]) && (match[2] === 'none' || COMMAND_FIELDS.has(match[2]))) journalFailures.add(match.slice(1).join('/'));
         for (const match of tail.matchAll(/Local jobs startup failed \(([a-z_]{1,40})\)/g)) startupCodes.add(match[1]);
       });
       await client.connect(transport, { timeout: 20000 });
@@ -50,7 +53,7 @@ for (const mode of process.platform === 'win32' ? ['inherited', 'codex_core'] : 
       return { index, tools: tools.length };
     }));
     const receipt = { os: process.platform, mode, iteration, clients: 2, connected: outcomes.filter(item => item.status === 'fulfilled').length,
-      durationMs: Math.round(performance.now() - started), startupCodes: [...startupCodes].sort(), browserActions: 0 };
+      durationMs: Math.round(performance.now() - started), startupCodes: [...startupCodes].sort(), journalFailures: [...journalFailures].sort(), browserActions: 0 };
     console.log(JSON.stringify(receipt));
     if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=SDK startup control::' + JSON.stringify(receipt));
     if (process.platform === 'win32' && iteration === 1) {

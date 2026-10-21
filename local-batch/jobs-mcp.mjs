@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { guardianDiagnosticLine } from './jobs/guardian-diagnostic.mjs';
+import { guardianDiagnosticLine, journalFailureLine } from './jobs/guardian-diagnostic.mjs';
 // Optional preview stdio endpoint. No daemon, HTTP listener or untrusted code.
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
@@ -86,6 +86,7 @@ async function main() {
       } while (true);
       return response({ job: dto(job), ready: terminal.has(job.state), result: job.resultAvailable ? await controller.result(args.jobId) : null });
     } catch (error) {
+      process.stderr.write(journalFailureLine(error));
       const code = error?.name === 'AbortError' ? 'request_cancelled' : error?.code === 'unknown_tool' ? 'unknown_tool' : codes.has(error?.code) ? error.code : 'invalid_workflow_or_arguments';
       return response({ code, retrySafe: false }, true);
     }
@@ -96,5 +97,6 @@ async function main() {
 main().catch(error => {
   const code = /^[a-z_]{1,40}$/.test(error?.code ?? '') ? error.code : 'jobs_unavailable';
   process.stderr.write('Local jobs startup failed (' + code + '). Check trusted owner, private storage and runtime configuration.\n');
+  process.stderr.write(journalFailureLine(error));
   process.exitCode = 1;
 });

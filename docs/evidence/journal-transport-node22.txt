@@ -1,0 +1,150 @@
+TAP version 13
+# Subtest: guardian diagnostics retain fixed journal metadata and discard private values
+ok 1 - guardian diagnostics retain fixed journal metadata and discard private values
+  ---
+  duration_ms: 2.353916
+  type: 'test'
+  ...
+# Subtest: journal transport diagnostics retain only fixed causes and originating verbs
+ok 2 - journal transport diagnostics retain only fixed causes and originating verbs
+  ---
+  duration_ms: 0.366325
+  type: 'test'
+  ...
+# Subtest: durable guardian success: cleanup and canonical journal outcome
+ok 3 - durable guardian success: cleanup and canonical journal outcome
+  ---
+  duration_ms: 616.469153
+  type: 'test'
+  ...
+# Subtest: durable guardian cancel: cleanup and canonical journal outcome
+ok 4 - durable guardian cancel: cleanup and canonical journal outcome
+  ---
+  duration_ms: 896.122536
+  type: 'test'
+  ...
+# Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+ok 5 - durable guardian disconnect: cleanup and canonical journal outcome
+  ---
+  duration_ms: 730.574472
+  type: 'test'
+  ...
+# Subtest: durable guardian crash: cleanup and canonical journal outcome
+ok 6 - durable guardian crash: cleanup and canonical journal outcome
+  ---
+  duration_ms: 879.086033
+  type: 'test'
+  ...
+# Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+ok 7 - durable guardian mismatch: cleanup and canonical journal outcome
+  ---
+  duration_ms: 313.586625
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+ok 8 - durable guardian admissionFailure: cleanup and canonical journal outcome
+  ---
+  duration_ms: 383.372915
+  type: 'test'
+  ...
+# Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+ok 9 - durable guardian preDisconnected: cleanup and canonical journal outcome
+  ---
+  duration_ms: 303.285347
+  type: 'test'
+  ...
+# Subtest: unexpected journal worker exit remains distinct from an RPC timeout
+ok 10 - unexpected journal worker exit remains distinct from an RPC timeout
+  ---
+  duration_ms: 134.846309
+  type: 'test'
+  ...
+# Subtest: termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+ok 11 - termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+  ---
+  duration_ms: 74.63524
+  type: 'test'
+  ...
+# Subtest: managed directory links and database hardlinks cannot modify another file
+ok 12 - managed directory links and database hardlinks cannot modify another file
+  ---
+  duration_ms: 378.914918
+  type: 'test'
+  ...
+# Subtest: POSIX journal directory must exclude group and other access
+ok 13 - POSIX journal directory must exclude group and other access
+  ---
+  duration_ms: 56.60158
+  type: 'test'
+  ...
+# Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+ok 14 - a simulated reused PID cannot resume old work or clear uncertain active resources
+  ---
+  duration_ms: 133.523302
+  type: 'test'
+  ...
+# Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+ok 15 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+  ---
+  duration_ms: 79.820996
+  type: 'test'
+  ...
+# Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+ok 16 - a success mutation after the persisted deadline cannot commit or release the lease
+  ---
+  duration_ms: 74.056517
+  type: 'test'
+  ...
+# Subtest: competing writers initialize consistently and cannot overfill the project queue
+ok 17 - competing writers initialize consistently and cannot overfill the project queue
+  ---
+  duration_ms: 82.416242
+  type: 'test'
+  ...
+# Subtest: killed transaction rolls back without a partial job or duplicate request
+ok 18 - killed transaction rolls back without a partial job or duplicate request
+  ---
+  duration_ms: 230.065432
+  type: 'test'
+  ...
+# Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+ok 19 - reconnect marks a dead controller queued job crashed and never requeues its request
+  ---
+  duration_ms: 161.860988
+  type: 'test'
+  ...
+# Subtest: corrupt journal is rejected without silently erasing the file
+ok 20 - corrupt journal is rejected without silently erasing the file
+  ---
+  duration_ms: 123.91721
+  type: 'test'
+  ...
+# (node:386999) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: an unrelated SQLite file is rejected without changing its bytes
+ok 21 - an unrelated SQLite file is rejected without changing its bytes
+  ---
+  duration_ms: 66.184778
+  type: 'test'
+  ...
+# Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+ok 22 - journal preserves idempotency, owner isolation and a single project execution lease
+  ---
+  duration_ms: 208.720927
+  type: 'test'
+  ...
+# Subtest: monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+ok 23 - monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+  ---
+  duration_ms: 187.56578
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6299.518161

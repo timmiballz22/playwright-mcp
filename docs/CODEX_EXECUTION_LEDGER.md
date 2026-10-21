@@ -2164,3 +2164,36 @@ Node22 frozen-page rerun passes after other local browser checks completed. Fres
 failures plus all existing profile/jobs/controller/journal/parent-death smokes.
 Native page-budget confirmation remains pending. Evidence: page-limit-*,
 page-budget-components-*, page-budget-real-* and page-budget-frozen-isolated-*.
+
+
+## Distinguish journal transport loss without changing RPC bounds
+
+Running2d8fe7f native annotations show macOS Codex TIMED_OUT982 with a readable
+result and terminated/removed cleanup, while Windows CRASHED200 has no result
+and poll/journal_unavailable/read. A fresh two-client SDK control also cannot
+initialize its journals, while the direct private-storage helper succeeds. This
+is not proof of a timeout, worker crash, SQLite failure or helper cause: the old
+code collapsed several transport outcomes into journal_unavailable. Full native
+receipts will be preserved when the current workflows finish.
+
+JournalError now retains only an allowlisted transport cause and the fixed verb
+that first triggered transport shutdown. RPC timeout, worker exit/error, send
+failure, explicit abort/closed state and worker rejection remain distinct. The
+first cause survives subsequent close/error callbacks; pending requests retain
+their own command separately. Guardian/startup stderr adds a fixed diagnostic
+line; Codex and SDK controls collect at most16 fixed cause/verb pairs. No raw
+exception, SQL, request argument, path, PID, cookie or environment value is added.
+RPC2s, retry policy, shutdown targets and conservative recovery are unchanged.
+
+A real blocked COMMIT reports rpc_timeout/create and still rolls back; a trusted
+worker exiting before read reports worker_exit/none and reopens with SQLite
+integrity intact. Canary/invalid cause/verb controls pass.23 journal/guardian/
+diagnostic tests pass Node22,16 journal/diagnostic tests Node24, and two formatter
+tests Node20. Actual Codex0.163.0 completes1,000 actions in36.237s with zero model
+turns/owned survivors, verified idempotency/isolation/cancel. Three fresh Linux
+SDK pairs all connect2/2 with zero owned survivors. Fresh161-file production-only
+package passes all installed checks, including new page budget and journal
+metadata regression. Native diagnosis of the Windows failure remains pending;
+this instrumentation is not a runtime reliability fix. Evidence:
+journal-transport-node*.txt, journal-transport-codex-node22.txt,
+journal-transport-sdk-startup-node22.txt and journal-transport-production-package.txt.
