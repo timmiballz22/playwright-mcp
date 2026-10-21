@@ -1,0 +1,80 @@
+{"fixture":"jobs_mcp_workspace_preserved","verified":false,"primaryFailed":true,"aborted":false,"auditConfirmed":true,"auditFailed":false,"closeFailures":5}
+✖ preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect (6168.546811ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6547.445775
+
+✖ failing tests:
+
+test at local-batch/jobs-mcp-retention-fault.tmp.mjs:17:22
+✖ preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect (6168.546811ms)
+  Error [AggregateError]: Jobs MCP acceptance, client close or ownership audit failed
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:150:32)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    10 !== 11
+    
+        at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:102:12)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: 10,
+      expected: 11,
+      operator: 'strictEqual',
+      diff: 'simple'
+    },
+    [errors]: [
+      AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+      
+      10 !== 11
+      
+          at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:102:12)
+          at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at async Test.run (node:internal/test_runner/test:1389:7)
+          at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3),
+      Error: controlled_close_failed
+          at file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:133:103
+          at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at async Promise.allSettled (index 0)
+          at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:133:20)
+          at async Test.run (node:internal/test_runner/test:1389:7)
+          at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3),
+      Error: controlled_close_failed
+          at file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:133:103
+          at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at async Promise.allSettled (index 1)
+          at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:133:20)
+          at async Test.run (node:internal/test_runner/test:1389:7)
+          at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3),
+      Error: controlled_close_failed
+          at file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:133:103
+          at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at async Promise.allSettled (index 2)
+          at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:133:20)
+          at async Test.run (node:internal/test_runner/test:1389:7)
+          at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3),
+      Error: controlled_close_failed
+          at file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:133:103
+          at async Promise.allSettled (index 3)
+          at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:133:20)
+          at async Test.run (node:internal/test_runner/test:1389:7)
+          at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3),
+      Error: controlled_close_failed
+          at file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:133:103
+          at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at async Promise.allSettled (index 4)
+          at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs-mcp-retention-fault.tmp.mjs:133:20)
+          at async Test.run (node:internal/test_runner/test:1389:7)
+          at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+    ]
+  }

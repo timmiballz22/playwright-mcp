@@ -3085,3 +3085,20 @@ Node20 does not execute this test. The extra QA file increases dry pack170→171
 required runtime/new QA entries are verified. The prior170-file fresh install
 already covers the unchanged runtime. Native durable HTTP and scope-union tests
 remain pending beyond the active7d97686 candidate. Evidence: durable-http-failure-*.
+
+## Preserve jobs MCP acceptance failures and close errors
+
+The jobs MCP test previously removed its workspace after any failed acceptance
+if the independent ownership audit passed, and ignored all client-close errors.
+It now requires verified acceptance plus clean close/audit for deletion, retains
+fixed diagnostic receipt otherwise, forwards test cancellation to SDK calls and
+aggregates primary/close/audit failures. Existing180s ceiling remains unchanged.
+
+The full real1k/owner/dedup/cancel/EOF/quota test still passes locally on Node24
+(40.358s test time). A private10-action wrong-counter control plus injected close
+errors intentionally exits1: primary retained,5 close errors, independent audit
+confirmed, workspace preserved. A private stalled-response/1.5s deadline control
+on Node22 exits1 with one cancelled test, zero failed tests, aborted:true, primary
+retained, clean closes and independent audit confirmed. Temporary fault specs are
+removed. These negative controls are not counted as passing acceptance. Evidence:
+jobs-mcp-failure-retention-*. Native verification remains pending after7d97686.

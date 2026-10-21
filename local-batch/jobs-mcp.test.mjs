@@ -14,9 +14,10 @@ import { resolveJobConfig } from './jobs/config.mjs';
 import { supportsJournal } from './jobs/journal.mjs';
 import { ownedScopeDescendants } from './fixtures/process-audit.mjs';
 const entry = fileURLToPath(new URL('./jobs-mcp.mjs', import.meta.url));
-if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect', { timeout: 180000 }, async () => {
+if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect', { timeout: 180000 }, async t => {
   const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-mcp-'));
   const owner = randomUUID(); const clients = []; const scopes = [];
+  let verified = false; let primaryFailure;
   const server = createServer((_request, response) => { response.writeHead(200, { 'Content-Type': 'text/html' }); response.end('<div id="ready">ready</div><button>Add</button><output>0</output><script>let n=0;document.querySelector("button").onclick=()=>document.querySelector("output").textContent=String(++n)</script>'); });
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   const origin = `http://127.0.0.1:${server.address().port}`;
@@ -38,7 +39,7 @@ if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission,
     return client;
   }
   async function call(client, name, args) {
-    const reply = await client.callTool({ name, arguments: args });
+    const reply = await client.callTool({ name, arguments: args }, undefined, { signal: t.signal });
     const value = JSON.parse(reply.content[0].text);
     assert.equal(JSON.stringify(value).includes('fake-jobs-key-canary'), false);
     return { ...value, isError: reply.isError === true };
@@ -126,18 +127,28 @@ if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission,
     const captureFiles = await readdir(path.join(captureConfig.execution.artifactsDir, 'exec-' + captureResult.result.runId), { recursive: true });
     assert.equal(captureFiles.some(name => name.endsWith('.png') || path.basename(name).startsWith('.capture-')), false);
     assert.ok((await call(captureClient, 'cleanup_workflows', { jobIds: [capture.jobId] })).results[0].files >= 1, 'Safe report and cleanup metadata remain available');
-  } finally {
-    await Promise.allSettled(clients.map(client => client.close()));
-    let clean = false;
+    verified = true;
+  } catch (error) { primaryFailure = error; throw error; }
+  finally {
+    const closed = await Promise.allSettled(clients.map(client => client.close()));
+    const closeFailures = closed.filter(result => result.status === 'rejected').map(result => result.reason);
+    let clean = false; let auditFailure;
     try {
       const end = performance.now() + 10000;
       while ((await ownedScopeDescendants(scopes)).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 50));
       assert.deepEqual(await ownedScopeDescendants(scopes), []);
       clean = true;
-    } finally {
+    } catch (error) { auditFailure = error; }
+    finally {
       server.closeAllConnections(); await new Promise(resolve => server.close(resolve));
-      if (clean) await rm(root, { recursive: true, force: true });
+      if (verified && clean && !closeFailures.length) await rm(root, { recursive: true, force: true });
+      else console.error(JSON.stringify({ fixture: 'jobs_mcp_workspace_preserved', verified,
+        primaryFailed: !!primaryFailure, aborted: t.signal.aborted, auditConfirmed: clean,
+        auditFailed: !!auditFailure, closeFailures: closeFailures.length }));
     }
+    const failures = [...closeFailures, ...(auditFailure ? [auditFailure] : [])];
+    if (failures.length) throw new AggregateError([...(primaryFailure ? [primaryFailure] : []), ...failures],
+      'Jobs MCP acceptance, client close or ownership audit failed', { cause: primaryFailure ?? failures[0] });
   }
 });
 
