@@ -1,17 +1,15 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native candidate: `bae4d66400e0232bae784b49da339a7ad62bf494`:
-612 passed, five failed, zero test skips/cancellations. The wrapper workflow passed
-162 tests; batch337/3 and component/accounting113/2. Windows failures include stale
-controller admission, CIM audit timeout, raw Firefox pointer timeout and Firefox
-retry navigation timeout; macOS WebKit cancellation observed two requests.
-Atomic admission and serialized component checks are fixed locally. Firefox and
-cancellation diagnostics remain active; no failed action is replayed.
-New locally verified code: `fb81ee9` with stable Playwright/core/test1.64.1 and
-patched runtime SDK1.32.1, Node>=20 (durable components22.13+). Local actual Codex,
-1000-action MCP, production install and100-run supervised soak pass; native
-acceptance is pending. Last full green remains d71c91e. NOT RELEASE-READY:
-public job frontends, profiles, quotas/retention, ACL/DNS controls and gates remain.
+Latest completed native candidate c69a3b8554483c6094fe458f3548a38fd362a4d8:
+613 passed, four failed, zero test skips/cancellations. Stable Playwright1.64.1
+and patched SDK1.32.1 preserve all discovered tool names. Windows Firefox still
+fails in cleanup, stable-element wait and a supervised deadline; Linux Node22
+controller queue success hit journal_busy. Mac/Linux browser jobs and other
+component jobs passed. The controller admission and Windows CIM fixes passed.
+A controlled contention regression now passes with bounded lock acquisition;
+Windows headed/headless comparisons are added without removing headless checks.
+Native confirmation is pending. Last full green remains d71c91e. NOT RELEASE-READY:
+public jobs, profiles, quotas/retention, ACL/DNS controls and other gates remain.
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
 
@@ -883,3 +881,40 @@ passes the defined finite soak thresholds, not all G12 requirements.
 NEXT: native stable-driver/SDK and atomic-controller matrix; diagnose any remaining
 Windows Firefox/macOS cancellation failures from fixed diagnostics, then public
 job frontends/configuration and remaining security/storage/profile acceptance.
+
+## Native stable candidate c69a3b8 and bounded lock contention
+
+Batch https://github.com/timmiballz22/playwright-mcp/actions/runs/39527986504 ;
+wrapper https://github.com/timmiballz22/playwright-mcp/actions/runs/39527986387 .
+Reporter-aware totals613 passed/four failed; zero test skips/cancellations.
+Failures: Linux Node22 controller queue-success journal_busy; Windows Node20 raw
+Firefox fresh1 completed23/23 including screenshot then server_timeout; Windows
+Node22 raw Firefox fresh10 action13 stable-element wait timeout5018ms (12/23,
+fixture counter11); Windows Node22 supervised retry navigation completed1 but
+exceeded its overall deadline during teardown (cleanup/temp verified, two requests).
+The stable dependency upgrade does not establish a Windows Firefox fix. macOS
+WebKit cancellation passed this run; its earlier two-request failure remains open.
+All source-controller installed-package/death smokes passed. Windows component
+admission and CIM audit tests now passed; journal job on Linux22 alone failed.
+
+New controlled journal fixture holds BEGIN IMMEDIATE for450ms: the old250ms busy
+wait fails journal_busy before mutation, while750ms succeeds within the unchanged
+2000ms RPC watchdog. Duplicate create returns one job with exactly three state
+entries; no command/action is replayed. Both Node24/22 component/accounting suites
+pass30 tests, zero failed/skipped/cancelled. Fresh production95-file install still
+passes original/batch/CLI/controller/guardian/storage and actual controller-death
+cleanup. New contention test is added to native component QA. See journal-lock-wait-*.txt.
+
+Windows Firefox now retains its existing ten-fresh headless check and additionally
+runs the same ten workflows headed, using a trusted test-only Playwright adapter.
+Production launch settings, click count, assertions and deadlines are unchanged.
+No headed pass is claimed before native execution. Linux's unchanged headless
+case passed ten fresh workflows (one testcase,28.952s); this is not Windows proof.
+Both Windows Node20/22 modes remain acceptance checks, with no retries or force.
+Source BrowserServer.close awaits upstream process/temp cleanup. Raw callers do
+not own a separately scoped browser-temp root and cannot verify a hung cleanup
+from browser PID exit alone; no forced-success fallback was introduced. Public
+CLI/MCP retain the independent supervisor and temporary cleanup verification.
+NEXT: inspect headed/headless native evidence and lock-wait regression, diagnose
+remaining driver shutdown/action stalls, then continue public job/configuration,
+retention/profile/security gates. Full goal remains incomplete.

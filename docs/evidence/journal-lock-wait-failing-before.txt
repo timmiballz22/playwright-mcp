@@ -1,0 +1,21 @@
+✖ bounded writer contention waits before one mutation without replay (466.264734ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 551.108457
+
+✖ failing tests:
+
+test at local-batch/jobs/contention.test.mjs:11:22
+✖ bounded writer contention waits before one mutation without replay (466.264734ms)
+  Error [JournalError]: journal_busy
+      at ChildProcess.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:52:27)
+      at ChildProcess.emit (node:events:509:28)
+      at emit (node:internal/child_process:989:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:91:21) {
+    code: 'journal_busy'
+  }

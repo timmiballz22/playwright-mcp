@@ -1,0 +1,38 @@
+✔ bounded writer contention waits before one mutation without replay (672.952665ms)
+✔ internal job controller queue-success (672.212661ms)
+✔ internal job controller cancel-and-reconnect (441.188071ms)
+✔ internal job controller queue-pressure (729.426354ms)
+✔ internal job controller queue-expiry (773.962504ms)
+✔ internal job controller guardian-crash (648.839924ms)
+✔ internal job controller close-before-dequeue (187.270628ms)
+✔ internal job controller cancel-during-guardian-start (164.747972ms)
+✔ durable guardian success: cleanup and canonical journal outcome (339.414456ms)
+✔ durable guardian cancel: cleanup and canonical journal outcome (644.406619ms)
+✔ durable guardian disconnect: cleanup and canonical journal outcome (541.534519ms)
+✔ durable guardian crash: cleanup and canonical journal outcome (632.365791ms)
+✔ durable guardian mismatch: cleanup and canonical journal outcome (190.251218ms)
+✔ durable guardian admissionFailure: cleanup and canonical journal outcome (266.285522ms)
+✔ durable guardian preDisconnected: cleanup and canonical journal outcome (196.218016ms)
+✔ managed directory links and database hardlinks cannot modify another file (334.053298ms)
+✔ POSIX journal directory must exclude group and other access (40.938372ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (96.982032ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (55.784713ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (49.970617ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (65.409832ms)
+✔ killed transaction rolls back without a partial job or duplicate request (186.285864ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (129.850194ms)
+✔ corrupt journal is rejected without silently erasing the file (87.970386ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (42.026739ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (141.1157ms)
+✔ workflow identity ignores object key order, defaults and equivalent repeat expansion (2.114671ms)
+✔ captured workflow input cannot change after submission and oversized or unknown data is rejected (4.472818ms)
+✔ CI totals include TAP, Node24 spec and original Playwright summaries (1.858107ms)
+✔ a repeated summary is counted once and incomplete Node totals fail closed (0.98815ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8722.964403
