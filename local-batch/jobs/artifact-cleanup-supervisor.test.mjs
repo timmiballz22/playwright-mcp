@@ -1,7 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, realpath, mkdir, writeFile, readFile, rm } from 'node:fs/promises';
-import { spawn } from 'node:child_process';
+import { spawn, fork } from 'node:child_process';
+import { ownedDescendants } from '../fixtures/process-audit.mjs';
 import { once } from 'node:events';
 import { randomUUID } from 'node:crypto';
 import os from 'node:os';
@@ -61,4 +62,58 @@ test('an unconfirmed cleanup blocks further scopes in the same controller', asyn
   await assert.rejects(queued, { code: 'cleanup_unconfirmed' });
   await assert.rejects(controller.cleanup(randomUUID()), { code: 'cleanup_unconfirmed' });
   assert.equal(queried, false);
+});
+
+
+test('actual artifact worker exits after controller death while filesystem awaits', { timeout: 30000 }, async () => {
+  const base = await realpath(await mkdtemp(path.join(os.tmpdir(), 'artifact-parent-death-')));
+  const marker = path.join(base, 'pending');
+  const wrapper = path.join(base, 'blocked-worker.mjs');
+  const parentModule = path.join(base, 'controller.mjs');
+  const actualWorker = new URL('./artifact-cleanup-worker.mjs', import.meta.url).href;
+  let parent; let observed = []; let verified = false;
+  try {
+    // Patch only this private worker's lstat. The real runtime worker, scope
+    // validation and IPC-disconnect handler still run, with an unresolved async
+    // filesystem boundary rather than a fabricated success/error receipt.
+    await writeFile(wrapper, `import fs from 'node:fs/promises';
+import { syncBuiltinESMExports } from 'node:module';
+fs.lstat = async () => { await fs.writeFile(${JSON.stringify(marker)}, 'pending'); return await new Promise(() => {}); };
+syncBuiltinESMExports();
+await import(${JSON.stringify(actualWorker)});`);
+    // A private surrogate parent isolates EOF handling from the adapter's
+    // already-tested five-second timeout. Slow read-only native audits must not
+    // accidentally turn this into a timeout test instead of parent death.
+    await writeFile(parentModule, `import { fork } from 'node:child_process';
+const child = fork(${JSON.stringify(wrapper)}, [], {stdio:['ignore','ignore','ignore','ipc'],execArgv:[],windowsHide:true});
+child.once('spawn', () => process.send({pid:child.pid}));
+child.send(${JSON.stringify({ base, runId: randomUUID() })});`);
+    parent = fork(parentModule, [], { stdio: ['ignore', 'ignore', 'ignore', 'ipc'], execArgv: [], windowsHide: true });
+    const [message] = await once(parent, 'message');
+    assert.ok(Number.isSafeInteger(message.pid) && message.pid > 1);
+    const pendingBy = performance.now() + 2000;
+    for (;;) {
+      try { assert.equal(await readFile(marker, 'utf8'), 'pending'); break; }
+      catch (error) { if (error.code !== 'ENOENT' || performance.now() >= pendingBy) throw error; }
+      await new Promise(resolve => setTimeout(resolve, 10));
+    }
+    observed = await ownedDescendants([parent.pid, message.pid], { rememberLiveRoots: true });
+    assert.ok(observed.includes(message.pid), 'Independently observe the actual pending worker before parent death');
+    const exited = once(parent, 'exit'); parent.kill('SIGKILL'); await exited;
+    const stoppedBy = performance.now() + 2000;
+    let survivors;
+    do {
+      survivors = await ownedDescendants(observed);
+      if (!survivors.length) break;
+      await new Promise(resolve => setTimeout(resolve, 25));
+    } while (performance.now() < stoppedBy);
+    assert.deepEqual(survivors, [], 'Disconnected artifact worker must exit despite pending filesystem promise');
+    verified = true;
+  } finally {
+    if (parent && parent.exitCode === null && parent.signalCode === null) {
+      const exited = once(parent, 'exit'); parent.kill('SIGKILL'); await exited;
+    }
+    if (verified) await rm(base, { recursive: true, force: true });
+    else console.error('Artifact parent-death fixture preserved: shutdown not confirmed');
+  }
 });

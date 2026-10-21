@@ -208,5 +208,7 @@ worker exit are both required for success. A timeout can leave partial deletion;
 inspect the fixed error and preview before retrying. Unconfirmed exit reports
 `cleanup_unconfirmed`, stops this retention page and blocks further cleanup/new
 jobs in this controller. That diagnostic is not a durable maintenance lease;
-parent-death containment and cross-controller uncertainty still need validation.
+a Linux Node20/22/24 fault check verifies worker EOF exit during a simulated
+filesystem stall. Native parent-death containment and cross-controller uncertainty
+still need validation.
 No changed browser/action/test deadline or OS disk quota is implied.

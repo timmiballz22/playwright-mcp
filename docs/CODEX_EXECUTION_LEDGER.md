@@ -2913,3 +2913,18 @@ its own counter. Large-DOM optimized witness passes12 host browser projects
 (macOS Firefox27.5s/30s unchanged ceiling). Supervised20-screenshot/report
 uniqueness/identity and zero-owned assertions pass all five native batch lanes.
 These establish their scoped acceptance at5060ca4, not overall reliability.
+
+## Actual artifact worker EOF during pending filesystem operation
+
+Private fault fixture patches only lstat in the worker process, then imports the
+actual packaged artifact worker and cleanup module. A private surrogate parent
+is SIGKILLed while that asynchronous filesystem promise is unresolved. Independent
+read-only process inventory observes the worker before death and confirms zero
+remaining owned processes after IPC loss. The surrogate parent avoids conflating
+slow Windows audit startup with the adapter's separately-tested five-second
+budget. Production modules/budgets are unchanged.
+
+All eight cleanup adapter/EOF tests pass independently on Node20/22/24 on Linux,
+with zero skips/cancellations. This covers simulated async filesystem stalling,
+not a kernel-uninterruptible process or a durable cross-controller maintenance
+lease. Native Windows/macOS execution is pending. Receipts: artifact-parent-death-*.
