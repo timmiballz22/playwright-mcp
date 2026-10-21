@@ -1,0 +1,50 @@
+
+Running 2 tests using 1 worker
+
+(node:212078) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (7.2s)
+(node:212370) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [firefox] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation (8.0s)
+
+
+  1) [chromium] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "fake-profile-cookie-value"
+    Received string:    "{\"content\":[{\"type\":\"text\",\"text\":\"### Result\\nCookie 'fake-profile-cookie' not found\\n### Ran Playwright code\\n```js\\nawait page.context().cookies();\\n```\"}]}"
+
+      25 |   const restored = (await open(profile)).client;
+      26 |   await call(restored, 'browser_navigate', { url: server.PREFIX });
+    > 27 |   expect(JSON.stringify(await call(restored, 'browser_cookie_get', { name: 'fake-profile-cookie' }))).toContain('fake-profile-cookie-value');
+         |                                                                                                       ^
+      28 |   expect(JSON.stringify(await call(restored, 'browser_localstorage_get', { key: 'fake-profile-key' }))).toContain('fake-profile-local-value');
+      29 |   await call(restored, 'browser_close');
+      30 |   const otherProfile = testInfo.outputPath('other-private-profile');
+        at /workspace/playwright-mcp/tests/profile-parity.spec.ts:27:103
+
+    Error Context: test-results/profile-parity-original-op-98006-dependent-profile-isolation-chromium/error-context.md
+
+  2) [firefox] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation 
+
+    Error: expect(received).toMatch(expected)
+
+    Expected pattern: /already in use|locked|in use by another/i
+    Received string:  "{\"content\":[{\"type\":\"text\",\"text\":\"### Error\\nError: async initializeServer: Failed to launch the browser process.\\nBrowser logs:\\n\\n<launching> /home/agent/.cache/ms-playwright/firefox-1555/firefox/firefox -no-remote -headless -profile /workspace/playwright-mcp/test-results/profile-parity-original-op-98006-dependent-profile-isolation-firefox/private-profile -juggler-pipe about:blank\\n<launched> pid=212585\\n[pid=212585][err] *** You are running in headless mode.\\n[pid=212585][err] Firefox is already running, but is not responding. To use Firefox, you must first close the existing Firefox process, restart your device, or use a different profile.\\n[pid=212585] <process did exit: exitCode=0, signal=null>\\n[pid=212585] starting temporary directories cleanup\\nCall log:\\n\\u001b[2m  - <launching> /home/agent/.cache/ms-playwright/firefox-1555/firefox/firefox -no-remote -headless -profile /workspace/playwright-mcp/test-results/profile-parity-original-op-98006-dependent-profile-isolation-firefox/private-profile -juggler-pipe about:blank\\u001b[22m\\n\\u001b[2m  - <launched> pid=212585\\u001b[22m\\n\\u001b[2m  - [pid=212585][err] *** You are running in headless mode.\\u001b[22m\\n\\u001b[2m  - [pid=212585][err] Firefox is already running, but is not responding. To use Firefox, you must first close the existing Firefox process, restart your device, or use a different profile.\\u001b[22m\\n\\u001b[2m  - [pid=212585] <process did exit: exitCode=0, signal=null>\\u001b[22m\\n\\u001b[2m  - [pid=212585] starting temporary directories cleanup\\u001b[22m\\n\\u001b[2m  - [pid=212585] <gracefully close start>\\u001b[22m\\n\\u001b[2m  - [pid=212585] <kill>\\u001b[22m\\n\\u001b[2m  - [pid=212585] <skipped force kill spawnedProcess.killed=false processClosed=true>\\u001b[22m\\n\\u001b[2m  - [pid=212585] finished temporary directories cleanup\\u001b[22m\\n\\u001b[2m  - [pid=212585] <gracefully close end>\\u001b[22m\\n\"}],\"isError\":true}"
+
+      21 |   const locked = await contending.callTool({ name: 'browser_navigate', arguments: { url: server.PREFIX } });
+      22 |   expect(locked.isError).toBe(true);
+    > 23 |   expect(JSON.stringify(locked)).toMatch(/already in use|locked|in use by another/i);
+         |                                  ^
+      24 |   await call(first, 'browser_close');
+      25 |   const restored = (await open(profile)).client;
+      26 |   await call(restored, 'browser_navigate', { url: server.PREFIX });
+        at /workspace/playwright-mcp/tests/profile-parity.spec.ts:23:34
+
+    Error Context: test-results/profile-parity-original-op-98006-dependent-profile-isolation-firefox/error-context.md
+
+  2 failed
+    [chromium] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation 
+    [firefox] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, cookie/local storage restore and independent profile isolation 

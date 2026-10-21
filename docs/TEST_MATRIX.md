@@ -1,4 +1,18 @@
-# Acceptance coverage
+# Current acceptance coverage
+
+[SCENARIO_MATRIX.md](SCENARIO_MATRIX.md) is the current45-scenario map;
+[CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) records exact candidates and
+commands. Latest completed native ee54674:640 passed/3 failed, all failures Windows
+Firefox. Candidate667190a native results are pending. Public POSIX jobs MCP,
+foreground CLI and bounded terminal cleanup are previews; Windows private storage,
+profiles, full quotas/retention and egress controls remain open. No release-ready
+claim follows from local scoped passes.
+
+The following table is historical and predates the durable controller, public
+preview, configured navigation retries and independent-observer soak. It is
+retained for traceability; use the linked current map for present scope.
+
+# Historical acceptance coverage
 
 The full 45 required scenarios and 72 tool families are defined in
 CODEX_ULTIMATE_MASTER_PROMPT.md; the ledger tracks G00–G18.

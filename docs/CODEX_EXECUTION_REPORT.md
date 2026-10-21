@@ -1,15 +1,16 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native candidate c69a3b8554483c6094fe458f3548a38fd362a4d8:
-613 passed, four failed, zero test skips/cancellations. Stable Playwright1.64.1
-and patched SDK1.32.1 preserve all discovered tool names. Windows Firefox still
-fails in cleanup, stable-element wait and a supervised deadline; Linux Node22
-controller queue success hit journal_busy. Mac/Linux browser jobs and other
-component jobs passed. The controller admission and Windows CIM fixes passed.
-A controlled contention regression now passes with bounded lock acquisition;
-Windows headed/headless comparisons are added without removing headless checks.
-Native confirmation is pending. Last full green remains d71c91e. NOT RELEASE-READY:
-public jobs, profiles, quotas/retention, ACL/DNS controls and other gates remain.
+Latest completed native candidate ee54674499d520e3d55dfaa32ed15e31a1728b2f:
+640 passed, three failed, zero test skips/cancellations. All original wrapper
+suites passed; Windows Firefox failed two headed click checks and one headless
+context close check. Linux/macOS passed real1,000-action jobs MCP and installed
+five-tool preview checks. Windows rejects private job storage until ACL support.
+Candidate667190a adds sixth-tool terminal artifact cleanup, foreground jobs CLI
+and monotonic queue/guardian deadlines; its native runs are pending. Local
+component, real1,000-action/CLI signal and fresh107-file package checks pass.
+Headed transport did not resolve Firefox; a direct-pipe comparison retains all
+existing checks. Last full green remains d71c91e. NOT RELEASE-READY: Windows
+ACLs/Firefox, profiles, full quotas/retention, DNS/OS egress and other gates remain.
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
 

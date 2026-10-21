@@ -1,11 +1,11 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Latest completed native candidate 9e73a08 has 483 passes and one strict
-Windows raw Firefox cleanup failure. Last complete green is d71c91e (469, all
-14 jobs). Internal guardian/diagnostic changes need native verification. Earlier
-intermittent failures remain recorded and are not fully explained. OPEN means no adequate proof;
-PARTIAL means the remaining condition is still mandatory.
+PASS. Latest completed native ee54674 has640 passes and three Windows Firefox
+failures. Last complete green is d71c91e (469, all14 jobs). Candidate667190a
+(six-tool cleanup, foreground jobs CLI, monotonic queue deadline and transport
+comparison) awaits native results. Earlier intermittent failures are retained.
+OPEN means no adequate proof; PARTIAL means remaining work is still mandatory.
 
 | # | Scenario | Status and concrete evidence / gap |
 |---|---|---|
@@ -18,11 +18,11 @@ PARTIAL means the remaining condition is still mandatory.
 | 7 | Clean Codex initialization/discovery/navigation | Verified temporary app-server config, ephemeral thread, both endpoints; worker-codex-97f3c57 evidence (1,000 actions in 34.021s). No global config changes. |
 | 8 | Exact 1,000 operations + final counter | Verified real MCP/Codex fixture: goto, 997 clicks, exact count and exact URL, one positive batch call. Not 1,000 clicks. |
 | 9 | 100 reset workflows without carryover | PARTIAL: 100 fresh raw-runner workflows measured; explicit state-reset/cookie carryover acceptance remains. |
-| 10 | Concurrent queued jobs + screenshot ownership | PARTIAL: 20 unique screenshot runs and busy rejection; durable queue not implemented. |
-| 11 | Client/project ownership | PARTIAL: internal journal owner isolation and project marker fencing tests; no public job/profile endpoint or cross-client MCP ownership proof. |
+| 10 | Concurrent queued jobs + screenshot ownership | PARTIAL: durable FIFO/controller pressure and two installed queued jobs pass; public POSIX preview executes1,000 actions and prevents duplicate starts. Concurrent screenshot/retention acceptance remains. |
+| 11 | Client/project ownership | PARTIAL: public POSIX MCP foreign-owner denial, trusted project namespace config and journal owner/project fencing pass. Jobs profiles and Windows ACLs remain unfinished. |
 | 12 | Cancel during launch and locator wait | PARTIAL: injected stalled launch/late close, blocked worker and active real navigation; extend real phase-specific cancellation. |
 | 13 | Stdio close during browser run | PARTIAL: real EOF tests; 9041497 native Windows EOF/SIGTERM/abrupt-host cleanup passed; broader shutdown phase coverage remains. |
-| 14 | SIGINT/SIGTERM + intact journal | PARTIAL: native SIGTERM/EOF/guardian ownership plus journal killed-transaction rollback and recovery; durable execution integration remains absent. |
+| 14 | SIGINT/SIGTERM + intact journal | PARTIAL: real foreground CLI SIGTERM persists CANCELLED after1 action with zero active owned processes; actual controller SIGKILL installed proof and journal rollback pass. Broader phase-specific crashes remain. |
 | 15 | Browser crash during screenshot | OPEN: worker crash fixture is not a real browser crash during screenshot. |
 | 16 | Slow navigation deadline + cleanup | PARTIAL: real browser locator deadline and hanging navigation cancellation; add explicit navigation-timeout acceptance. |
 | 17 | Invalid/extra/empty/oversized input | Verified strict validation, empty fill operator fixture, 1 MiB file limit and SDK 10 MiB frame guard/shutdown tests; not a general fuzzing proof. |
@@ -31,27 +31,27 @@ PARTIAL means the remaining condition is still mandatory.
 | 20 | Credentials, IPv6, encodings, file URLs | PARTIAL: credentials/file/unknown IPv6 loopback covered; complete encoding/canonicalization adversarial matrix remains. |
 | 21 | Upload symlink escape | PARTIAL: original upload outside/symlink/junction negatives passed all native browsers at 9e73a08; earlier macOS modal timeout remains unexplained. Companion has no upload action. |
 | 22 | Popup/iframe/WebSocket policy | PARTIAL: iframe and WebSocket zero-hit fixtures pass; popup policy proof remains. |
-| 23 | Service worker limitation | OPEN: disabled in context options; dedicated hostile worker fixture still required. |
-| 24 | 20-run artifact uniqueness + retention | PARTIAL: uniqueness/private POSIX dirs and ignore rules proved; retention/quota policy absent. |
+| 23 | Service worker limitation | PARTIAL: dedicated Chromium fixture proves approved positive control registers and reaches its target; strict runtime requests neither worker script nor target, verifies cleanup. Other engines and native new fixture remain pending. |
+| 24 | 20-run artifact uniqueness + retention | PARTIAL: unique private artifacts and bounded dry-run/delete terminal cleanup pass locally, including unsafe-link/limit guards. Retention and enforced write quotas remain absent. |
 | 25 | Input/header secret canaries | PARTIAL: fill/error/report/protocol canaries tested; header and all artifact channels remain. |
 | 26 | HTTP errors vs JS exceptions | PARTIAL: status/Retry-After taxonomy and sanitized generic failures tested; complete real-response/exception matrix remains. |
-| 27 | Retry-After backoff + no unsafe replay | PARTIAL: metadata and maxRetries=0; report-fault fixture proves no navigation replay. Backoff scheduler absent. |
+| 27 | Retry-After backoff + no unsafe replay | PARTIAL: configured GET-only 429/503 Retry-After backoff and no unsafe-action replay tests/installed smoke pass. Native Windows Firefox intermittency and the full retry taxonomy remain open. |
 | 28 | CSS/test-id/role-name locators | PARTIAL: validator/resolver tests, real role/name 997 clicks and label operator fixture; full real locator/ambiguity matrix remains. |
 | 29 | Dialog/popup/cross-frame behavior | PARTIAL: original dialog/frame and stale-target negatives passed native matrix at 9e73a08; earlier modal intermittency remains unexplained. Popup behavior proof remains. |
-| 30 | Mobile touch/viewport/DPI | OPEN: no executed mobile acceptance fixture. |
-| 31 | Held/repeated keyboard/canvas input | OPEN: no full hold/release/repeated-Space fixture. |
+| 30 | Mobile touch/viewport/DPI | PARTIAL: local Chromium mobile viewport/DPI/actual touch and CSS-scale PNG390x844 pass; Firefox explicit desktop viewport plus touch passes. Native/new WebKit coverage pending; no physical mobile claim. |
+| 31 | Held/repeated keyboard/canvas input | PARTIAL: original ARIA labels, Tab focus order, Enter and Space activation pass local Chromium/Firefox. Hold/release/repeated input and canvas fixtures remain. |
 | 32 | Dark mode/reduced motion | OPEN: discovery retains upstream capability; behavior not proved. |
 | 33 | Bounded console/request errors | PARTIAL: companion suppresses page logs; upstream console/network output behavior and large/error bounds still need fixtures. |
-| 34 | Isolated storage + project persistence | PARTIAL: original cookie/localStorage functions verified; companion persistent profiles absent. |
+| 34 | Isolated storage + project persistence | PARTIAL: original persistent-cookie/localStorage restore, sessionStorage end, exclusive profile lock and independent directory isolation pass local Chromium/Firefox. Jobs persistent profiles and secure managed reset remain absent. |
 | 35 | Corrupt profile/lock diagnosis | OPEN: no companion profile manager. |
-| 36 | Reconnect persistence or honest limitation | LIMITATION documented: internal journal and trusted guardian bridge exist; public jobs/queue/controller/reconnect is unfinished. This does not pass G06. |
+| 36 | Reconnect persistence or honest limitation | PARTIAL: public POSIX MCP/CLI IDs, duplicate keys, status/results, EOF cancellation and reconnect without replay pass. No daemon/resume; Windows private storage unsupported; full G06 remains open. |
 | 37 | CPU/RAM/process caps | OPEN: one active workflow and worker V8 heap cap are not total browser/process-tree quotas. |
-| 38 | Soak RSS/handles/pages/FDs | PARTIAL: old raw-runner 100-run RSS samples; complete supervised process-tree measurements remain. |
+| 38 | Soak RSS/handles/pages/FDs | PARTIAL: independent-observer100-run supervised Linux soak measures browser tree RSS/CPU lower bounds and subjectFD/RSS. Full browser FD access is kernel-denied; cross-OS and token comparisons remain. |
 | 39 | Original screenshot/network/storage/PDF/video/trace | PARTIAL: PNG/PDF/WebM/trace/storage/tabs native behavior passed; full network and negative capability coverage remains. |
 | 40 | Default stdio listener audit | PARTIAL: no public companion HTTP transport. Active supervised execution uses a private loopback BrowserServer protocol allowed by master section 0; explicit port/cleanup audit remains. |
 | 41 | Local CLI without connected model | Verified local 26-operation fixture, exact counter, report and canary absence; installed browsers/dependencies required. Not an OS air-gap audit. |
 | 42 | Large DOM bounded representation | PARTIAL: batch returns last ten metadata steps and no DOM; original large-snapshot limits remain untested. |
-| 43 | Repeated suites, explained flakiness | PARTIAL: all failed runs preserved. Windows cleanup-only classification reconciled with resource proof and native pass; latest macOS modal timeout and earlier browser intermittency remain open. |
+| 43 | Repeated suites, explained flakiness | PARTIAL: failed runs preserved; latest ee54674 has3 Windows Firefox failures in both headed/headless paths. Direct-pipe comparison is a hypothesis under native test, not a claimed resolution. |
 | 44 | Main/release blocked until evidence | PARTIAL: publishing disabled and PR remains draft; branch-protection API returned 403, enforcement not verified. No main merge. |
 | 45 | Documented setup with no global MCP config | PARTIAL: actual temporary-config Codex and installed paths with spaces; native Bash/PowerShell bootstraps pass at 5264cb6; native Codex operator walkthroughs remain incomplete. |
 

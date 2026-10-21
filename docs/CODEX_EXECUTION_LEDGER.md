@@ -1162,3 +1162,47 @@ BrowserServer workflows and ten direct-pipe workflows, each navigation/20 clicks
 assertion/PNG/cleanup under unchanged deadlines. This is Linux transport coverage,
 not a Windows fix. See firefox-pipe-comparison-linux.txt; new native candidate
 must retain all three Windows modes and failures rather than substitute a pass.
+
+### 2026-10-21 — original accessibility/mobile/profile parity and empty storage guard
+
+Added original-endpoint ARIA/keyboard fixture (Tab, Enter, Space; no pointer calls)
+and responsive CSS/actual touch fixture. Four local Chromium/Firefox cases pass;
+Chromium uses isMobile+hasTouch+3xDPI, screenshot CSS scale is exactly390x844.
+Firefox deliberately uses desktop viewport+hasTouch; actual tap event is asserted,
+not full mobile emulation. No local WebKit libraries or physical-device claim.
+An initial assertion incorrectly expected Firefox isMobile configuration to reject;
+it was accepted. Preserve that failed test assumption; no runtime bug/fix claimed.
+
+Added upstream opt-in persistent profile parity: two local cases pass Chromium/
+Firefox. Contending profile is refused while the first session remains intact;
+clean close/reopen restores explicitly persistent cookie and localStorage, ends
+sessionStorage, and another directory receives neither cookie nor local value.
+POSIX fixture profile root is0700. Initial tests incorrectly assumed a session
+cookie persists and omitted Firefox's already-running lock diagnostic; corrected
+the fixture to set a real expiration and recognize that explicit diagnostic.
+Initial logs retained. This reuses upstream profiles, not a new jobs profile
+manager. Corrupt profiles, crash recovery, managed reset/retention, IndexedDB,
+Windows ACLs and the full G09/G13 matrices remain open. Native new tests pending.
+
+A separate trusted configuration negative reproduced empty DATA_DIR resolving to
+and writing into a private project directory. Empty explicit storage values now
+reject before any write; all3 config cases pass. Omitted DATA_DIR still selects
+the documented application state default. Before/after jobs-empty-data-* evidence.
+Updated architecture/execution/scenario docs to distinguish current previews from
+historical missing-controller tables. Current pushed667190a native results pending;
+this new parity/config candidate has no native claim. Full mission incomplete.
+
+Dedicated supervised Chromium service-worker fixture now passes with a meaningful
+positive control: a trusted test-only worker enables registration and explicitly
+approves both owned origins; registration fetches script/target exactly once.
+Strict runtime then requests neither script nor target and completes3 assertions,
+with independently verified owned-process/temp cleanup. The first fixture assumed
+blocked registration rejects; Playwright instead can resolve without a registration
+object. That test assumption was corrected, logs retained; production policy was
+unchanged. Public workflow input cannot select the control module or context
+policy. This proves a Chromium surface, not cross-engine/full egress isolation.
+The normal source jobs MCP/CLI smoke still passes after the empty-path fix.
+See service-worker-policy-* and jobs-empty-data-smoke.txt. Native current667190a
+has a macOS installed-package failure awaiting full logs; Windows direct-pipe
+Firefox also failed, ruling out BrowserServer transport as the sole cause. No
+resolution or complete native pass claimed.

@@ -1,6 +1,6 @@
 # Architecture
 
-Two independent stdio endpoints preserve Microsoft's wrapper without copying
+Independent original, batch and optional jobs stdio endpoints preserve Microsoft's wrapper without copying
 its bundled backend. `cli.js` and `index.js` delegate to pinned playwright-core;
 its MCP/browser/profile/trace/video implementations remain upstream. The
 companion is ESM JS using the same Playwright engine and a runtime MCP SDK.
@@ -38,9 +38,12 @@ The supervisor removes temporary files after termination through a bounded clean
 child, with retries for transient Windows file locks. Reports publish via
 exclusive temporary files and atomic rename, not a power-loss durable journal.
 Replies contain at most ten recent steps. Failed execution counts can be confirmed
-lower bounds; unsafe actions are never automatically replayed. There is an internal durable metadata journal, bounded source controller and trusted guardian bridge, but no public durable
-job execution API, retention/quota controller, persistent companion profile or
-resume engine. Worker V8 heap is capped at 256 MiB; browser RSS and response-body
+lower bounds; unsafe actions are never automatically replayed. An optional POSIX jobs MCP/foreground CLI preview wraps the durable metadata
+journal, bounded controller and trusted guardian. It provides start/status/result/
+cancel/list and bounded terminal artifact cleanup; default browser policy is
+read-only. It requires Node22.13+ and private operator configuration. Windows
+startup fails closed pending ACL enforcement. Retention/full quotas, persistent
+companion profiles and resume remain unfinished. Worker V8 heap is capped at 256 MiB; browser RSS and response-body
 memory are not capped by that setting.
 
 Decision: option A (separate companion), with reusable runner entrypoint for CLI
@@ -67,3 +70,8 @@ watchdog deadline. Cancellation/deadline blocks late acknowledgement. Failure
 before acknowledgement has exact zero action completion and remains retrySafe=false.
 The normal CLI/MCP do not configure this hook. It is not accepted in workflow JSON
 or a public job API, and callback code is trusted source code, not model input.
+
+See [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md) for exact optional jobs configuration,
+foreground cancellation, cleanup bounds and remaining limitations. Job submissions
+carry a monotonic deadline through queueing and guardian startup; persisted wall
+timestamps support display and conservative recovery without replay.

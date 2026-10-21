@@ -62,7 +62,7 @@ export async function resolveJobConfig({ env = process.env, cwd = process.cwd() 
   const project = env.PLAYWRIGHT_JOBS_PROJECT_DIR ?? cwd;
   const providedBase = env.PLAYWRIGHT_JOBS_DATA_DIR;
   if (typeof project !== 'string' || project.length > 4096 || project.includes('\0') ||
-      providedBase !== undefined && (typeof providedBase !== 'string' || providedBase.length > 4096 || providedBase.includes('\0'))) reject('invalid_storage');
+      providedBase !== undefined && (typeof providedBase !== 'string' || !providedBase.length || providedBase.length > 4096 || providedBase.includes('\0'))) reject('invalid_storage');
   let projectRoot;
   try { projectRoot = await realpath(project); if (!(await lstat(projectRoot)).isDirectory()) reject('invalid_project'); }
   catch { reject('invalid_project'); }
