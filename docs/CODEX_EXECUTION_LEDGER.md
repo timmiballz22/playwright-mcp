@@ -2852,3 +2852,40 @@ Local retention verification: Node22 and24 each56/56; Node20 boundary9/9,
 zero failures/skips/cancellations. Fresh production-only install167 files passes,
 including installed age-preview/fresh-report preservation. Lint and diff check
 pass. Evidence: retention-*.txt. Native execution of retention remains pending.
+
+## Independent artifact cleanup containment (local candidate)
+
+Reused existing count/depth/bytes/owner/link scan in a separate child, rather than
+changing deletion semantics. Parent supplies only its authorized execution scope;
+worker has no browser/workflow/shell input. Fixed IPC receipts omit paths/content.
+A five-second filesystem budget plus one-second kill confirmation bounds waiting
+on this controller's event loop. A positive receipt alone never succeeds: natural
+exit0 must follow. Timeout/malformed/double receipt/error produces fixed failure
+and targets only the actual ChildProcess handle. Unconfirmed termination never
+claims success and blocks subsequent scopes/new jobs in the same controller.
+This is not durable cross-controller maintenance tracking or a verified guarantee
+after parent death. Partial file removal remains possible on timeout.
+
+Faults cover pre-result CPU hang, positive-result CPU hang, malformed/private
+receipt, fixed rejection and signal exit; an unrelated live sibling survives.
+Normal worker preview/delete/absent scope and safe errors pass. Native validation
+of this new adapter remains pending; six MCP schemas are unchanged.
+
+Component receipts: Node22/24 each59/59 before the final same-controller guard;
+final changed boundaries (CLI/retention/containment)17/17 each. Node20 final
+boundaries11/11. A queued operation rechecks the unconfirmed latch before reading
+its scope, so already-enqueued cleanup also stops. Fresh installed production169-file package
+passes original/batch/jobs/profile/guardian smoke checks. Lint and diff checks
+pass. No native evidence yet for this unpushed adapter.
+
+Native50 (5060ca4) detailed: original Linux144/0, Windows143/1 Firefox popup
+click timeout, macOS143/1 Firefox trusted100 interrupted at72; Docker2/0.
+Windows main138/7 failures are Firefox supervised positive, HTTP404 expected but
+cancelled, all three raw fresh modes, navigation retry and page-limit positive
+control (initial goto timeout). macOS main143/1 plus one cancelled test: raw
+Chromium1k fails and MCP handshake/browser test hits its unchanged120s ceiling.
+The TAP cancellation is preserved separately from test failure counts. All three
+actual Codex clients complete1k (Linux40.395s/Windows37.813s/macOS85.549s), zero
+model turns and zero observed owned processes. All five167-file production
+installs pass. Full workflows failed; these healthy substeps do not explain the
+recurrent native Firefox/macOS timing and ownership observations.

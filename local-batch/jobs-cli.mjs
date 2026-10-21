@@ -44,7 +44,7 @@ export function parseJobArguments(argv) {
   if (command === 'prune-artifacts' && !result.olderThanDays) invalid();
   return result;
 }
-const safeCodes = new Set(['invalid_arguments', 'not_found', 'not_terminal', 'cleanup_blocked', 'cleanup_limit', 'unsafe_artifacts', 'queue_full', 'history_full', 'idempotency_conflict', 'controller_busy', 'journal_busy', 'journal_unavailable', 'storage_full', 'request_cancelled', 'wait_expired', 'unsupported_runtime', 'unsupported_private_storage', 'private_storage_unavailable', 'invalid_owner', 'invalid_policy', 'invalid_storage', 'invalid_project', 'unsafe_storage']);
+const safeCodes = new Set(['invalid_arguments', 'not_found', 'not_terminal', 'cleanup_blocked', 'cleanup_limit', 'cleanup_timeout', 'cleanup_unconfirmed', 'cleanup_failed', 'unsafe_artifacts', 'queue_full', 'history_full', 'idempotency_conflict', 'controller_busy', 'journal_busy', 'journal_unavailable', 'storage_full', 'request_cancelled', 'wait_expired', 'unsupported_runtime', 'unsupported_private_storage', 'private_storage_unavailable', 'invalid_owner', 'invalid_policy', 'invalid_storage', 'invalid_project', 'unsafe_storage']);
 const safeCode = error => safeCodes.has(error?.code) ? error.code : 'jobs_failed';
 const emit = value => process.stdout.write(JSON.stringify(value) + '\n');
 async function main() {

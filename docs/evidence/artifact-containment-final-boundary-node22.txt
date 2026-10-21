@@ -1,0 +1,114 @@
+TAP version 13
+# Subtest: jobs CLI validates bounded commands without accepting operator policy overrides
+ok 1 - jobs CLI validates bounded commands without accepting operator policy overrides
+  ---
+  duration_ms: 2.09117
+  type: 'test'
+  ...
+# Subtest: retention CLI previews bounded age pages and requires explicit deletion
+ok 2 - retention CLI previews bounded age pages and requires explicit deletion
+  ---
+  duration_ms: 4.203357
+  type: 'test'
+  ...
+# Subtest: jobs CLI executes through a symlinked installation path instead of silently exiting zero
+ok 3 - jobs CLI executes through a symlinked installation path instead of silently exiting zero
+  ---
+  duration_ms: 93.48611
+  type: 'test'
+  ...
+# Subtest: bounded artifact worker previews, removes and preserves fixed safe errors
+ok 4 - bounded artifact worker previews, removes and preserves fixed safe errors
+  ---
+  duration_ms: 581.223626
+  type: 'test'
+  ...
+# Subtest: artifact worker before-result: independent deadline and natural-exit confirmation
+ok 5 - artifact worker before-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 780.499469
+  type: 'test'
+  ...
+# Subtest: artifact worker after-result: independent deadline and natural-exit confirmation
+ok 6 - artifact worker after-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 800.561588
+  type: 'test'
+  ...
+# Subtest: artifact worker invalid-result: independent deadline and natural-exit confirmation
+ok 7 - artifact worker invalid-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 104.407596
+  type: 'test'
+  ...
+# Subtest: artifact worker failed-result: independent deadline and natural-exit confirmation
+ok 8 - artifact worker failed-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 151.18512
+  type: 'test'
+  ...
+# Subtest: artifact worker signal-exit: independent deadline and natural-exit confirmation
+ok 9 - artifact worker signal-exit: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 178.688932
+  type: 'test'
+  ...
+# Subtest: an unconfirmed cleanup blocks further scopes in the same controller
+ok 10 - an unconfirmed cleanup blocks further scopes in the same controller
+  ---
+  duration_ms: 1.521695
+  type: 'test'
+  ...
+# Subtest: retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+ok 11 - retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+  ---
+  duration_ms: 238.324213
+  type: 'test'
+  ...
+# Subtest: invalid or pre-aborted retention does not query storage
+ok 12 - invalid or pre-aborted retention does not query storage
+  ---
+  duration_ms: 0.490189
+  type: 'test'
+  ...
+# Subtest: retention interruption completes one authorized scope and preserves the continuation
+ok 13 - retention interruption completes one authorized scope and preserves the continuation
+  ---
+  duration_ms: 102.512835
+  type: 'test'
+  ...
+# (node:494923) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: artifact retention never conceals a blocked project even when no old artifacts qualify
+ok 14 - artifact retention never conceals a blocked project even when no old artifacts qualify
+  ---
+  duration_ms: 0.424616
+  type: 'test'
+  ...
+# Subtest: retention stops on lost journal transport without touching later scopes
+ok 15 - retention stops on lost journal transport without touching later scopes
+  ---
+  duration_ms: 0.577936
+  type: 'test'
+  ...
+# Subtest: read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+ok 16 - read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+  ---
+  duration_ms: 356.835524
+  type: 'test'
+  ...
+# Subtest: actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+ok 17 - actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+  ---
+  duration_ms: 821.847492
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4568.991745

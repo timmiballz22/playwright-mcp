@@ -1,0 +1,368 @@
+TAP version 13
+# Subtest: bounded artifact worker previews, removes and preserves fixed safe errors
+ok 1 - bounded artifact worker previews, removes and preserves fixed safe errors
+  ---
+  duration_ms: 195.164906
+  type: 'test'
+  ...
+# Subtest: artifact worker before-result: independent deadline and natural-exit confirmation
+ok 2 - artifact worker before-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 768.470658
+  type: 'test'
+  ...
+# Subtest: artifact worker after-result: independent deadline and natural-exit confirmation
+ok 3 - artifact worker after-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 790.270785
+  type: 'test'
+  ...
+# Subtest: artifact worker invalid-result: independent deadline and natural-exit confirmation
+ok 4 - artifact worker invalid-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 141.535253
+  type: 'test'
+  ...
+# Subtest: artifact worker failed-result: independent deadline and natural-exit confirmation
+ok 5 - artifact worker failed-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 146.828887
+  type: 'test'
+  ...
+# Subtest: artifact worker signal-exit: independent deadline and natural-exit confirmation
+ok 6 - artifact worker signal-exit: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 66.60144
+  type: 'test'
+  ...
+# Subtest: bounded artifact cleanup previews, removes only one scope and is idempotent
+ok 7 - bounded artifact cleanup previews, removes only one scope and is idempotent
+  ---
+  duration_ms: 19.116189
+  type: 'test'
+  ...
+# Subtest: linked entries and oversized trees reject before deleting any artifact
+ok 8 - linked entries and oversized trees reject before deleting any artifact
+  ---
+  duration_ms: 42.368399
+  type: 'test'
+  ...
+# Subtest: controller rejects active, uncertain and expired-result cleanup before filesystem access
+ok 9 - controller rejects active, uncertain and expired-result cleanup before filesystem access
+  ---
+  duration_ms: 9.794464
+  type: 'test'
+  ...
+# Subtest: operator owner/project namespaces are stable, private and independent of tool data
+ok 10 - operator owner/project namespaces are stable, private and independent of tool data
+  ---
+  duration_ms: 57.475197
+  type: 'test'
+  ...
+# Subtest: untrusted symlinks and writable ancestors cannot redirect job storage writes
+ok 11 - untrusted symlinks and writable ancestors cannot redirect job storage writes
+  ---
+  duration_ms: 7.776412
+  type: 'test'
+  ...
+# Subtest: invalid owner/policy config is rejected before any storage creation
+ok 12 - invalid owner/policy config is rejected before any storage creation
+  ---
+  duration_ms: 10.031234
+  type: 'test'
+  ...
+# Subtest: bounded writer contention waits before one mutation without replay
+ok 13 - bounded writer contention waits before one mutation without replay
+  ---
+  duration_ms: 594.389351
+  type: 'test'
+  ...
+# Subtest: recovery with live unexpired records is read-only while another writer owns the lock
+ok 14 - recovery with live unexpired records is read-only while another writer owns the lock
+  ---
+  duration_ms: 230.148784
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-success
+ok 15 - internal job controller queue-success
+  ---
+  duration_ms: 1560.374037
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-and-reconnect
+ok 16 - internal job controller cancel-and-reconnect
+  ---
+  duration_ms: 1343.611716
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-pressure
+ok 17 - internal job controller queue-pressure
+  ---
+  duration_ms: 1280.909233
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-expiry
+ok 18 - internal job controller queue-expiry
+  ---
+  duration_ms: 1198.799199
+  type: 'test'
+  ...
+# Subtest: internal job controller guardian-crash
+ok 19 - internal job controller guardian-crash
+  ---
+  duration_ms: 1387.5872
+  type: 'test'
+  ...
+# Subtest: internal job controller close-before-dequeue
+ok 20 - internal job controller close-before-dequeue
+  ---
+  duration_ms: 549.104447
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-during-guardian-start
+ok 21 - internal job controller cancel-during-guardian-start
+  ---
+  duration_ms: 419.473463
+  type: 'test'
+  ...
+# Subtest: guardian diagnostics retain fixed journal metadata and discard private values
+ok 22 - guardian diagnostics retain fixed journal metadata and discard private values
+  ---
+  duration_ms: 1.159894
+  type: 'test'
+  ...
+# Subtest: journal transport diagnostics retain only fixed causes and originating verbs
+ok 23 - journal transport diagnostics retain only fixed causes and originating verbs
+  ---
+  duration_ms: 0.215001
+  type: 'test'
+  ...
+# Subtest: durable guardian success: cleanup and canonical journal outcome
+ok 24 - durable guardian success: cleanup and canonical journal outcome
+  ---
+  duration_ms: 644.934305
+  type: 'test'
+  ...
+# Subtest: durable guardian cancel: cleanup and canonical journal outcome
+ok 25 - durable guardian cancel: cleanup and canonical journal outcome
+  ---
+  duration_ms: 1054.584278
+  type: 'test'
+  ...
+# Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+ok 26 - durable guardian disconnect: cleanup and canonical journal outcome
+  ---
+  duration_ms: 919.155681
+  type: 'test'
+  ...
+# Subtest: durable guardian crash: cleanup and canonical journal outcome
+ok 27 - durable guardian crash: cleanup and canonical journal outcome
+  ---
+  duration_ms: 1165.437249
+  type: 'test'
+  ...
+# Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+ok 28 - durable guardian mismatch: cleanup and canonical journal outcome
+  ---
+  duration_ms: 411.616191
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+ok 29 - durable guardian admissionFailure: cleanup and canonical journal outcome
+  ---
+  duration_ms: 488.100005
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionTimeout: cleanup and canonical journal outcome
+ok 30 - durable guardian admissionTimeout: cleanup and canonical journal outcome
+  ---
+  duration_ms: 2447.778094
+  type: 'test'
+  ...
+# Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+ok 31 - durable guardian preDisconnected: cleanup and canonical journal outcome
+  ---
+  duration_ms: 470.403
+  type: 'test'
+  ...
+# Subtest: unexpected journal worker exit remains distinct from an RPC timeout
+ok 32 - unexpected journal worker exit remains distinct from an RPC timeout
+  ---
+  duration_ms: 182.690913
+  type: 'test'
+  ...
+# Subtest: termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+ok 33 - termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+  ---
+  duration_ms: 70.7767
+  type: 'test'
+  ...
+# Subtest: managed directory links and database hardlinks cannot modify another file
+ok 34 - managed directory links and database hardlinks cannot modify another file
+  ---
+  duration_ms: 375.804186
+  type: 'test'
+  ...
+# Subtest: POSIX journal directory must exclude group and other access
+ok 35 - POSIX journal directory must exclude group and other access
+  ---
+  duration_ms: 80.363032
+  type: 'test'
+  ...
+# Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+ok 36 - a simulated reused PID cannot resume old work or clear uncertain active resources
+  ---
+  duration_ms: 167.143581
+  type: 'test'
+  ...
+# Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+ok 37 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+  ---
+  duration_ms: 97.967677
+  type: 'test'
+  ...
+# Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+ok 38 - a success mutation after the persisted deadline cannot commit or release the lease
+  ---
+  duration_ms: 66.800354
+  type: 'test'
+  ...
+# Subtest: competing writers initialize consistently and cannot overfill the project queue
+ok 39 - competing writers initialize consistently and cannot overfill the project queue
+  ---
+  duration_ms: 115.653469
+  type: 'test'
+  ...
+# Subtest: killed transaction rolls back without a partial job or duplicate request
+ok 40 - killed transaction rolls back without a partial job or duplicate request
+  ---
+  duration_ms: 230.964785
+  type: 'test'
+  ...
+# Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+ok 41 - reconnect marks a dead controller queued job crashed and never requeues its request
+  ---
+  duration_ms: 275.376358
+  type: 'test'
+  ...
+# Subtest: corrupt journal is rejected without silently erasing the file
+ok 42 - corrupt journal is rejected without silently erasing the file
+  ---
+  duration_ms: 248.693075
+  type: 'test'
+  ...
+# (node:490033) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: an unrelated SQLite file is rejected without changing its bytes
+ok 43 - an unrelated SQLite file is rejected without changing its bytes
+  ---
+  duration_ms: 164.681196
+  type: 'test'
+  ...
+# Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+ok 44 - journal preserves idempotency, owner isolation and a single project execution lease
+  ---
+  duration_ms: 391.948045
+  type: 'test'
+  ...
+# Subtest: monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+ok 45 - monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+  ---
+  duration_ms: 527.30882
+  type: 'test'
+  ...
+# Subtest: Windows ACL helper rejects a non-Windows host without creating storage
+ok 46 - Windows ACL helper rejects a non-Windows host without creating storage
+  ---
+  duration_ms: 1.329643
+  type: 'test'
+  ...
+# Subtest: Windows helper failure diagnostics contain only fixed process categories
+ok 47 - Windows helper failure diagnostics contain only fixed process categories
+  ---
+  duration_ms: 0.239161
+  type: 'test'
+  ...
+# Subtest: controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+ok 48 - controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+  ---
+  duration_ms: 153.49726
+  type: 'test'
+  ...
+# Subtest: retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+ok 49 - retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+  ---
+  duration_ms: 114.064349
+  type: 'test'
+  ...
+# Subtest: invalid or pre-aborted retention does not query storage
+ok 50 - invalid or pre-aborted retention does not query storage
+  ---
+  duration_ms: 0.414114
+  type: 'test'
+  ...
+# Subtest: retention interruption completes one authorized scope and preserves the continuation
+ok 51 - retention interruption completes one authorized scope and preserves the continuation
+  ---
+  duration_ms: 77.144028
+  type: 'test'
+  ...
+# Subtest: artifact retention never conceals a blocked project even when no old artifacts qualify
+ok 52 - artifact retention never conceals a blocked project even when no old artifacts qualify
+  ---
+  duration_ms: 0.384208
+  type: 'test'
+  ...
+# Subtest: retention stops on lost journal transport without touching later scopes
+ok 53 - retention stops on lost journal transport without touching later scopes
+  ---
+  duration_ms: 0.349481
+  type: 'test'
+  ...
+# (node:490794) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+ok 54 - read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+  ---
+  duration_ms: 389.84204
+  type: 'test'
+  ...
+# Subtest: actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+ok 55 - actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+  ---
+  duration_ms: 543.593545
+  type: 'test'
+  ...
+# Subtest: workflow identity ignores object key order, defaults and equivalent repeat expansion
+ok 56 - workflow identity ignores object key order, defaults and equivalent repeat expansion
+  ---
+  duration_ms: 2.229947
+  type: 'test'
+  ...
+# Subtest: captured workflow input cannot change after submission and oversized or unknown data is rejected
+ok 57 - captured workflow input cannot change after submission and oversized or unknown data is rejected
+  ---
+  duration_ms: 6.369791
+  type: 'test'
+  ...
+# Subtest: CI totals include TAP, Node24 spec and original Playwright summaries
+ok 58 - CI totals include TAP, Node24 spec and original Playwright summaries
+  ---
+  duration_ms: 1.967657
+  type: 'test'
+  ...
+# Subtest: a repeated summary is counted once and incomplete Node totals fail closed
+ok 59 - a repeated summary is counted once and incomplete Node totals fail closed
+  ---
+  duration_ms: 0.704103
+  type: 'test'
+  ...
+1..59
+# tests 59
+# suites 0
+# pass 59
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 23596.608402

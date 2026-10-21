@@ -1,5 +1,12 @@
 # Execution report — verified milestone, incomplete mission
 
+Local unpushed cleanup candidate adds an independent artifact worker, five-second
+budget plus one-second kill confirmation and fixed receipts. Positive IPC alone
+cannot succeed without natural worker exit. Node22/24 full jobs components59/59
+before the final guard; final CLI/retention/worker boundaries17/17 each. A fresh
+169-file production install passes. Native execution, parent-death handling and
+durable cross-controller maintenance uncertainty remain unverified/open.
+
 New local candidate adds explicit age-based operator artifact pruning, dry-run
 by default, bounded owner/project pagination and preserved results/request keys.
 Node22/24 components each56/56; Node20 boundaries9/9; fresh167-file production

@@ -8,9 +8,9 @@ import { JobJournal, JournalError } from './journal.mjs';
 import { captureWorkflow } from './workflow-snapshot.mjs';
 import { navigationRetryPolicy } from '../navigation-retry.mjs';
 import { validateExecutionPolicy } from '../policy.mjs';
-import { cleanupJobArtifacts } from './artifact-cleanup.mjs';
+import { cleanupJobArtifactsBounded as cleanupJobArtifacts } from './artifact-cleanup-supervisor.mjs';
 const terminal = new Set(['SUCCEEDED', 'FAILED', 'CANCELLED', 'TIMED_OUT', 'CRASHED']);
-const retentionCodes = new Set(['not_found', 'not_terminal', 'not_expired', 'cleanup_blocked', 'cleanup_limit', 'unsafe_artifacts',
+const retentionCodes = new Set(['not_found', 'not_terminal', 'not_expired', 'cleanup_blocked', 'cleanup_limit', 'unsafe_artifacts', 'cleanup_timeout', 'cleanup_unconfirmed', 'cleanup_failed',
   'controller_closed', 'controller_busy', 'journal_busy', 'journal_unavailable', 'storage_full']);
 
 export class JobController {
@@ -96,11 +96,13 @@ export class JobController {
   result(id) { return this.request('result', { id }); }
   list(limit = 20) { return this.request('list', { limit }); }
   cleanup(id, dryRun = true, beforeMs) {
+    if (this.cleanupUnconfirmed) return Promise.reject(new JournalError('cleanup_unconfirmed'));
     if (this.closed) return Promise.reject(new JournalError('controller_closed'));
     if (typeof dryRun !== 'boolean') return Promise.reject(new JournalError('invalid_metadata'));
     if (beforeMs !== undefined && (!Number.isSafeInteger(beforeMs) || beforeMs < 1 || beforeMs > Date.now())) return Promise.reject(new JournalError('invalid_metadata'));
     return this.serialize(async () => {
       try {
+        if (this.cleanupUnconfirmed) throw new JournalError('cleanup_unconfirmed');
         const row = await this.journal.call('read', { id });
         if (!terminal.has(row.state)) throw new JournalError('not_terminal');
         if (row.operatorAttentionRequired) { this.blocked = true; throw new JournalError('cleanup_blocked'); }
@@ -112,7 +114,7 @@ export class JobController {
         const summary = await this.journal.call('result', { id });
         if (!summary.runId && !summary.execution) return { dryRun, files: 0, bytes: 0, removed: false, alreadyAbsent: true };
         return await cleanupJobArtifacts({ base: this.execution.artifactsDir, runId: summary.runId, dryRun });
-      } catch (error) { this.unavailable(error); throw error; }
+      } catch (error) { if (error?.code === 'cleanup_unconfirmed') { this.blocked = true; this.cleanupUnconfirmed = true; } this.unavailable(error); throw error; }
     });
   }
   async pruneArtifacts({ olderThanDays, limit = 10, afterJobId, dryRun = true, signal } = {}) {
@@ -132,7 +134,7 @@ export class JobController {
       try { results.push({ jobId: job.jobId, ok: true, ...await this.cleanup(job.jobId, dryRun, beforeMs) }); }
       catch (error) {
         results.push({ jobId: job.jobId, ok: false, code: retentionCodes.has(error?.code) ? error.code : 'cleanup_failed' });
-        if (['controller_busy', 'journal_busy', 'journal_unavailable', 'journal_corrupt', 'storage_full', 'controller_closed'].includes(error?.code)) break;
+        if (['cleanup_unconfirmed', 'controller_busy', 'journal_busy', 'journal_unavailable', 'journal_corrupt', 'storage_full', 'controller_closed'].includes(error?.code)) break;
       }
     }
     return { ...base, results, interrupted: !!signal?.aborted,

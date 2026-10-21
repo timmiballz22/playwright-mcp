@@ -20,7 +20,7 @@ const definitions = [
   { name: 'cleanup_workflows', description: 'Preview or remove artifacts of up to ten authorized terminal jobs with confirmed cleanup. Dry run defaults true. Durable request keys and result summaries are retained. Per-job outcomes allow partial completion.', inputSchema: schema({ jobIds: { type: 'array', minItems: 1, maxItems: 10, uniqueItems: true, items: idSchema }, dryRun: { type: 'boolean', default: true } }, ['jobIds']) },
   { name: 'list_workflows', description: 'List at most twenty recent jobs for the configured local owner/project.', inputSchema: schema({ limit: { type: 'integer', minimum: 1, maximum: 20 } }, []) },
 ];
-const codes = new Set(['not_found', 'queue_full', 'history_full', 'idempotency_conflict', 'controller_busy', 'cleanup_blocked', 'journal_busy', 'journal_unavailable', 'storage_full', 'controller_closed', 'request_cancelled', 'not_terminal', 'unsafe_artifacts', 'cleanup_limit']);
+const codes = new Set(['not_found', 'queue_full', 'history_full', 'idempotency_conflict', 'controller_busy', 'cleanup_blocked', 'journal_busy', 'journal_unavailable', 'storage_full', 'controller_closed', 'request_cancelled', 'not_terminal', 'unsafe_artifacts', 'cleanup_limit', 'cleanup_timeout', 'cleanup_unconfirmed', 'cleanup_failed']);
 const response = (value, isError = false) => ({ isError, content: [{ type: 'text', text: JSON.stringify(value) }] });
 const dto = job => ({ ...job, progressPercent: job.total ? Math.floor(job.completed / job.total * 100) : 0 });
 function argumentsOf(name, value) {

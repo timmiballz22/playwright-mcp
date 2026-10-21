@@ -201,3 +201,12 @@ Durable result summaries and idempotency keys stay in the journal. Artifact
 pruning does not release an uncertain lease or reset profiles. It uses the same
 per-scope entry/depth/byte bounds and link/ownership checks as explicit cleanup.
 Scheduling, history purging and cumulative disk quotas remain separate work.
+
+Artifact filesystem work now runs in an independent worker with a five-second
+budget and up to one second to confirm forced exit. A valid receipt and natural
+worker exit are both required for success. A timeout can leave partial deletion;
+inspect the fixed error and preview before retrying. Unconfirmed exit reports
+`cleanup_unconfirmed`, stops this retention page and blocks further cleanup/new
+jobs in this controller. That diagnostic is not a durable maintenance lease;
+parent-death containment and cross-controller uncertainty still need validation.
+No changed browser/action/test deadline or OS disk quota is implied.
