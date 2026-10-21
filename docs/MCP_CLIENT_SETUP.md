@@ -122,3 +122,21 @@ UID/GID (`--user "$(id -u):$(id -g)"`) and choose a writable private workspace/p
 inside that mount. Fresh0077 files belong to that identity; changing permissions
 to make exports world-readable is not required. The image's default user is
 unchanged. The next native Docker run will verify this mapping.
+
+
+When mapping a numeric Docker UID, also set writable private XDG paths for Chromium
+and Crashpad. For a fresh local test workspace (the image is built locally):
+
+```bash
+mkdir -m 700 private-playwright
+mkdir -m 700 private-playwright/.config private-playwright/.cache
+docker run --rm -i --user "$(id -u):$(id -g)" \
+  -v "$PWD/private-playwright:/workspace" -w /workspace \
+  -e XDG_CONFIG_HOME=/workspace/.config \
+  -e XDG_CACHE_HOME=/workspace/.cache \
+  playwright-mcp-dev:latest --user-data-dir=/workspace/profile
+```
+
+This retains the image's standard headless Chromium setup and keeps shared files
+owned by the host reader. The repository's corresponding native test is pending;
+the prior UID-only attempt failed at Crashpad startup.

@@ -188,8 +188,14 @@ async function createTransport(args: string[], cwd: string, mcpMode: TestOptions
   if (mcpMode === 'docker') {
     const relCwd = path.relative(test.info().project.outputDir, cwd);
     const dockerCwd = path.posix.join('/app/test-results', relCwd.split(path.sep).join('/'));
+    // An arbitrary mapped UID may have no writable home in the image. Give
+    // Chromium/Crashpad private platform config/cache roots in the owned mount.
+    fs.mkdirSync(path.join(cwd, '.config'), { recursive: true, mode: 0o700 });
+    fs.mkdirSync(path.join(cwd, '.cache'), { recursive: true, mode: 0o700 });
     const dockerArgs = ['run', '--rm', '-i', '--network=host', '-v', `${test.info().project.outputDir}:/app/test-results`, '-w', dockerCwd,
-      '-e', `PWMCP_PROFILES_DIR_FOR_TEST=${path.posix.join(dockerCwd, 'ms-playwright')}`];
+      '-e', `PWMCP_PROFILES_DIR_FOR_TEST=${path.posix.join(dockerCwd, 'ms-playwright')}`,
+      '-e', `XDG_CONFIG_HOME=${path.posix.join(dockerCwd, '.config')}`,
+      '-e', `XDG_CACHE_HOME=${path.posix.join(dockerCwd, '.cache')}`];
     // Bind-mounted private files must belong to the client reading them. Keep
     // CLI 0077 privacy; never make credential/snapshot artifacts world-readable.
     if (typeof process.getuid === 'function' && typeof process.getgid === 'function')

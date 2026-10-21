@@ -78,7 +78,12 @@ test('original trusted-code tool executes 100 real clicks with exact owned fixtu
   // Source-defined code for this owned fixture only, never page-provided code.
   const code = `async page => {
     await page.goto(${JSON.stringify(server.PREFIX)});
-    for (let i = 0; i < 100; i++) await page.getByRole('button', { name: 'Add', exact: true }).click();
+    let completed = 0;
+    try {
+      for (; completed < 100; completed++) await page.getByRole('button', { name: 'Add', exact: true }).click();
+    } catch {
+      throw new Error('Owned trusted-click fixture interrupted after ' + completed + ' confirmed clicks');
+    }
     const count = Number(await page.locator('output').textContent()); const url = page.url();
     if (count !== 100 || url !== ${JSON.stringify(server.PREFIX)}) throw new Error('Owned fixture assertion failed');
     return { count, url };

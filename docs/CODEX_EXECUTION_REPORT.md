@@ -1,6 +1,33 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `2359eba`: **1,085 tests passed/five failed**, zero test
+Latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
+test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
+Separately, macOS installed-package controller-death verification failed, so its
+subsequent batch acceptance step did not run. Counts exclude that unexecuted suite.
+All17 jobs completed. Failures: Docker2 startup cases, macOS Firefox trusted100
+clicks, Windows legacy Firefox1 mode and raw Firefox2 modes. New input/developer
+fixtures pass across the native host browser projects that ran; Windows/Linux
+original136 cases each pass, macOS135/1. No full release gate is promoted.
+
+Actual Codex six-tool1,000-action checks pass all three lanes: Windows38.097s,
+macOS Intel85.930s, Linux36.560s; zero model turns/owned survivors. Earlier macOS
+970-action timeout/cleanup failure and Windows CRASHED job remain unexplained.
+The new Docker log identifies Crashpad's missing database after host-UID mapping;
+next candidate supplies owned private XDG config/cache directories, preserving
+0077 artifact privacy. Native Docker confirmation remains pending.
+
+A deterministic real-browser fixture reproduces the controller-death verifier's
+shutdown-order race: the terminal row is visible while journal bookkeeping exits.
+Next verifier confirms zero old owned processes within its existing10s bound
+before starting the replacement observer worker, then checks CANCELLED/clean lease/
+integrity. Both regular and deliberately lingering-close154-file installed-package
+checks pass locally; source Node22/24 regressions pass. This changes test ordering,
+not production deadlines, process authority or cleanup classification.
+Evidence: worker-ci-fortyfirst-*, parent-death-close-race-* and
+guardian-shutdown-order-production-package.txt. **Not release-ready.**
+
+
+Previous completed native `2359eba`: **1,085 tests passed/five failed**, zero test
 skips/cancellations and all17 jobs completed. Wrapper39575041636:349/4;
 batch39575042201:736/1. Failures: two Docker snapshot-link reads; macOS Intel
 Firefox trusted100-click/large-DOM tests(each30s test timeout); Windows public
@@ -1523,3 +1550,53 @@ root-cause claim. Evidence: windows-audit-reasons-node*.txt.
 The batch CI job envelope increases20 to30min for cold browser downloads plus the
 growing strict suite and bounded failure probes. Individual workflow/action/RPC/
 startup/cleanup limits remain unchanged, and prior failures remain failures.
+
+
+## Native Docker Crashpad path correction
+
+The host-UID mapping aligns the intended writer/reader identity, but native808d681
+now fails earlier with chrome_crashpad_handler: --database is required. A mapped
+numeric UID need not have a writable home in the image. The test transport now
+creates private0700 .config/.cache directories in its owned mounted workspace and
+passes XDG_CONFIG_HOME/XDG_CACHE_HOME explicitly. It preserves HOME, crash reporting,
+process identity and artifact permissions. No GPU/security/crash suppression flags
+are added. Local Docker build remains unavailable due registry TLS trust; native
+confirmation is required, not claimed. The previous failures are retained.
+
+## Controller-death verifier ordering: reproduced and corrected
+
+The verifier previously created its replacement journal worker before old execution
+shutdown, then asserted zero processes immediately after observing a terminal row.
+Guardian finish commits before its own journal close/exit. A trusted fixture holds
+only post-disconnect bookkeeping for500ms; the original verifier deterministically
+fails with three recorded processes. This is a fixture-only delay after real DB
+close, not a workflow action delay. Corrected ordering waits for zero old processes
+within the existing10s bound before creating the replacement observer, then reads
+CANCELLED, requires no operator attention, proves the next lease and SQLite integrity.
+It also avoids a new observer reusing an old recorded PID during the old-tree audit.
+Initial Windows roots are registered only while live; identity guards remain strict.
+
+The same lingering-close case passes locally with700ms shutdown; Node22/24 real
+regressions each pass. Fresh154-file production install passes regular252ms and
+lingering824ms shutdown checks, zero owned survivors and released lease in both.
+The installed verifier now exercises both modes. No runtime success is manufactured
+from failed cleanup. Prior macOS survivor identity was not captured, so this does
+not assert which process that old PID represented. Native confirmation remains open.
+
+## Bounded termination-stage diagnostics and regression verification
+
+Trusted termination emits only fixed stage codes on failure: invalid root,
+Windows taskkill, worker stop, enumeration, descendant/group signal or wait timeout.
+The supervisor retains at most eight distinct codes; actual Codex failure receipts
+filter to that allowlist. Signal targets, enumeration, deadlines, exit checks and
+boolean success criteria are unchanged. Callback exceptions cannot change cleanup.
+Sixteen termination/executor checks pass Node20 and24, including a real owned fork,
+unrelated sibling protection and injected worker/supervisor failures. Fresh package
+verification also passes. These are diagnostics, not a fix for the earlier macOS
+970-action cleanup failure.
+
+The complete original local Chromium/Firefox suite passes68 tests in1.9m. The
+trusted100-click fixture additionally retains a confirmed-click lower bound when
+interrupted, without extra per-click I/O, retry or timing changes; its local two
+engine rerun passes(10.8s). Evidence: original-full-two-engine-local.txt,
+termination-diagnostics-node*.txt and original-trusted-click-progress-local.txt.

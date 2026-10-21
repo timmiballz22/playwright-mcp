@@ -1,6 +1,33 @@
 # Current acceptance coverage
 
-Latest completed native `2359eba`: **1,085 tests passed/five failed**, zero test
+Latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
+test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
+Separately, macOS installed-package controller-death verification failed, so its
+subsequent batch acceptance step did not run. Counts exclude that unexecuted suite.
+All17 jobs completed. Failures: Docker2 startup cases, macOS Firefox trusted100
+clicks, Windows legacy Firefox1 mode and raw Firefox2 modes. New input/developer
+fixtures pass across the native host browser projects that ran; Windows/Linux
+original136 cases each pass, macOS135/1. No full release gate is promoted.
+
+Actual Codex six-tool1,000-action checks pass all three lanes: Windows38.097s,
+macOS Intel85.930s, Linux36.560s; zero model turns/owned survivors. Earlier macOS
+970-action timeout/cleanup failure and Windows CRASHED job remain unexplained.
+The new Docker log identifies Crashpad's missing database after host-UID mapping;
+next candidate supplies owned private XDG config/cache directories, preserving
+0077 artifact privacy. Native Docker confirmation remains pending.
+
+A deterministic real-browser fixture reproduces the controller-death verifier's
+shutdown-order race: the terminal row is visible while journal bookkeeping exits.
+Next verifier confirms zero old owned processes within its existing10s bound
+before starting the replacement observer worker, then checks CANCELLED/clean lease/
+integrity. Both regular and deliberately lingering-close154-file installed-package
+checks pass locally; source Node22/24 regressions pass. This changes test ordering,
+not production deadlines, process authority or cleanup classification.
+Evidence: worker-ci-fortyfirst-*, parent-death-close-race-* and
+guardian-shutdown-order-production-package.txt. **Not release-ready.**
+
+
+Previous completed native `2359eba`: **1,085 tests passed/five failed**, zero test
 skips/cancellations and all17 jobs completed. Wrapper39575041636:349/4;
 batch39575042201:736/1. Failures: two Docker snapshot-link reads; macOS Intel
 Firefox trusted100-click/large-DOM tests(each30s test timeout); Windows public
