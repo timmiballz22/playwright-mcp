@@ -1,17 +1,17 @@
 # Current acceptance coverage
 
-Latest completed native `f485f1e`: **1,290 reported passes/eight failed tests**;
-all17 jobs concluded, none cancelled. Wrapper39601660969:435/2;
-batch39601661284:855/6. Installed production, all journal and all actual Codex
-lanes pass. Windows Firefox has original/input/cleanup failures; macOS durable
-MCP1,000 times out at987. One Windows process observation conflicts with reported
-cleanup and remains unresolved; no PID is filtered or cleanup promoted.
+Latest completed full native `8d661bf`: **1,332 reported passes/nine failed
+tests**, plus macOS actual-Codex TIMED_OUT888. Wrapper39604935626:437/3;
+batch39604935913:895/6. All17 executed jobs conclude; one soak job intentionally
+skips, no cancellations. All144 original tests/host, all installed166-file
+packages and journal lanes pass. Windows legacy Firefox, browser cleanup/retry/
+HTTP privacy audits and macOS raw1,000-action throughput remain unresolved.
 
-Follow-up HTTP/privacy, IPv6, cancellation-negative, screenshot-observation,
-audit-receipt and portable functional-soak checks await native verification.
-The local functional100/600 passes with fresh storage and zero owned survivors;
-it is not native or full resource acceptance. See [execution report](CODEX_EXECUTION_REPORT.md)
-for exact evidence and open gates. **Not release-ready.**
+Separate scoped native soak: Linux/macOS Intel100/600 passes; Windows emits50-run/
+300-action receipt then fails a four-process ownership audit. No full Windows
+soak, cleanup resolution, resource bounds or release gate is promoted. Targeted
+Windows role/birth receipts and HTTP double-failure preservation await native
+verification. See [execution report](CODEX_EXECUTION_REPORT.md). **Not release-ready.**
 
 At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.

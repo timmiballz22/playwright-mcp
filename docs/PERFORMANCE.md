@@ -258,3 +258,10 @@ pass is claimed. Three functional jobs execute, two pass/one fails; three primar
 job groups intentionally skip in this mode, none cancel. This is separate scoped
 acceptance, not a complete native matrix or CPU/RAM/FD/handle gate. Evidence:
 portable-native-first.txt and portable-native-first-summary.json.
+
+For a scoped Windows follow-up, set both manual inputs `functional_soak=true`
+and `functional_soak_windows_only=true`. This selects one Windows soak job and
+preserves ordinary PR coverage. The failure-only Codex transport control now
+runs direct pipe first; the batch control keeps BrowserServer first. Local
+reversed-order controls pass34.109/33.964s,1,000 operations each/zero owned.
+This is no macOS transport fix or hard resource-bound acceptance.

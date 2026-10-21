@@ -55,9 +55,9 @@ if (process.argv[2] === '--owned-child') {
   process.disconnect();
 } else {
   const args = process.argv.slice(2);
-  if (args.length > 1 || args.length === 1 && !['--private-first', '--chromium-transport'].includes(args[0])) throw new TypeError('Invalid diagnostic arguments');
-  const chromiumTransport = args[0] === '--chromium-transport';
-  const modeOrder = chromiumTransport ? ['server', 'direct-pipe'] : args.length ? ['private', 'inherited'] : ['inherited', 'private'];
+  if (args.length > 1 || args.length === 1 && !['--private-first', '--chromium-transport', '--chromium-pipe-first'].includes(args[0])) throw new TypeError('Invalid diagnostic arguments');
+  const chromiumTransport = ['--chromium-transport', '--chromium-pipe-first'].includes(args[0]);
+  const modeOrder = args[0] === '--chromium-pipe-first' ? ['direct-pipe', 'server'] : chromiumTransport ? ['server', 'direct-pipe'] : args.length ? ['private', 'inherited'] : ['inherited', 'private'];
   let failed = false; let interrupted = false; let current;
   const cancel = () => {
     interrupted = true;

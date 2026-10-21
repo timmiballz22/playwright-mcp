@@ -183,7 +183,7 @@ jobs:
         if: failure() && runner.os == 'macOS' && steps.codex.outcome == 'failure'
         timeout-minutes: 7
         shell: bash
-        run: node scripts/diagnose-raw-runner.mjs --chromium-transport 2>&1 | tee chromium-transport.log
+        run: node scripts/diagnose-raw-runner.mjs --chromium-pipe-first 2>&1 | tee chromium-transport.log
       - name: Preserve failed Codex client evidence
         if: failure() && steps.codex.outcome == 'failure'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
