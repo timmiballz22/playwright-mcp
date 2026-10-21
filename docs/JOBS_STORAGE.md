@@ -2,13 +2,15 @@
 
 The SQLite journal in `local-batch/jobs/` stores bounded durable metadata.
 The separate jobs MCP and foreground CLI now expose scheduling, status,
-result, cancel, list and bounded terminal artifact cleanup; the synchronous
+result, cancel, list and bounded terminal artifact cleanup (plus explicit age
+pruning in the CLI); the synchronous
 companion still exposes one batch tool. See [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md)
 and [JOBS_CONTROLLER.md](JOBS_CONTROLLER.md). These scoped endpoints do not make
 the durable jobs gate complete: Windows public integration acceptance, full retention and
 recovery operator flows remain unfinished.
 
-The journal requires Node 22.13 or newer and runs SQLite in a bounded child process.
+The journal requires Node22.13+, Node23.4+ or Node24+ and runs SQLite in a bounded
+child process; early Node23 is rejected.
 Node 20 synchronous execution remains available. Use a local filesystem; network
 filesystem locking and power-loss durability have not been verified. WAL and FULL
 synchronization support committed metadata; tests demonstrate process-crash

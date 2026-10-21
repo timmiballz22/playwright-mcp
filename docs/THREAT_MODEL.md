@@ -23,7 +23,12 @@ Screenshots can contain credentials and page secrets: capture is disabled unless
 the local operator opts in via CLI/environment. Use only approved fixtures/data;
 pixel masking remains unimplemented. Workflow input cannot enable capture.
 Worker directories are private and unique. Jobs offer bounded terminal artifact
-cleanup with dry-run default. Host-controlled screenshot payload budgets default to16MiB per run; browser image-buffer memory, report sizes, total storage and retention remain unbounded by that limit.
+cleanup with dry-run default. The operator CLI can page age-based cleanup of
+confirmed terminal job artifacts. Results/request keys remain; ordinary batch
+artifacts and profile data have no automatic age retention. Filesystem cleanup
+runs in a separate bounded worker; unconfirmed exit fails and blocks this
+controller, but its maintenance uncertainty is not a durable cross-controller
+lease. Host-controlled screenshot payload budgets default to16MiB per run; browser image-buffer memory, report sizes, total storage and retention remain unbounded by that limit.
 
 The original MCP endpoint remains upstream behavior, including optional privileged
 features and its own trust model. Companion restrictions do not secure that endpoint.

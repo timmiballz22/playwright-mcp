@@ -195,13 +195,19 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
   route.continue follows redirects without re-interception. Fixed using route.fetch
   maxRedirects:0/maxRetries:0; **all redirects currently rejected**, including approved
   same-origin. WebSockets closed, service workers blocked. DNS/OS egress still residual.
-- RISK-005: launch included in deadline; late launch closed; cleanup bounded at 5s/resource.
-  Supervised CLI/MCP process termination and report deadline added; native candidate evidence pending. Raw runner remains cooperative.
-- RISK-006: per-run directories prevent screenshot overwrite; retention/redaction open.
-- RISK-007: errors remain sanitized, diagnostic taxonomy incomplete.
-- RISK-008: POSIX durable jobs/queue/status/result/reconnect-without-replay and
-  foreground CLI now exist. Windows ACLs, automatic resume and full lifecycle
-  acceptance remain unfinished.
+- RISK-005: supervised CLI/MCP lifecycle/report deadlines and scoped process
+  termination exist; raw runner remains cooperative. Artifact cleanup now has an
+  independent5s worker/1s kill confirmation; full native acceptance and durable
+  maintenance uncertainty remain open.
+- RISK-006: per-run private artifacts, native20-run identity proof and payload
+  budgets exist. Explicit age-based confirmed-job pruning validates natively;
+  cumulative quotas, automatic scheduling and screenshot pixel masking remain open.
+- RISK-007: fixed HTTP/action/cleanup/journal taxonomies and redacted receipts exist.
+  Main HTTP error-before-readiness precision fix is locally verified/native pending;
+  native browser failures and diagnostic coverage remain incomplete.
+- RISK-008: durable jobs/queue/status/result/reconnect-without-replay, foreground
+  CLI and protected Windows storage/public clients exist. Automatic resume,
+  uncertain-lease operator recovery and full lifecycle acceptance remain open.
 - RISK-009: Chromium/Firefox verified selectively; WebKit libraries unavailable locally.
 - RISK-010: blocked requests produce policy_blocked, not false workflow success.
 - RISK-011: unknown fields rejected, actions copied before async execution to prevent
