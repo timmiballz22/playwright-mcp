@@ -23,6 +23,7 @@ test('operator owner/project namespaces are stable, private and independent of t
     assert.equal(a.execution.temporaryBase, process.platform === 'win32' ? await realpath(env.PLAYWRIGHT_JOBS_DATA_DIR) : undefined);
     assert.equal(a.execution.readOnly, true);
     assert.equal(a.execution.maxScreenshotBytes, 16777216);
+    assert.equal(a.execution.maxPages, 8);
     assert.equal(a.execution.allowSensitiveArtifacts, false);
     assert.deepEqual(a.execution.allowedOrigins, ['http://127.0.0.1:8123']);
   } finally { await rm(root, { recursive: true, force: true }); }
@@ -44,7 +45,7 @@ test('invalid owner/policy config is rejected before any storage creation', asyn
   const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-config-input-'));
   try {
     const base = { PLAYWRIGHT_JOBS_OWNER_ID: randomUUID(), PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data') };
-    for (const patch of [{ PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES: '268435457' }, { PLAYWRIGHT_JOBS_DATA_DIR: '' }, { PLAYWRIGHT_JOBS_OWNER_ID: '' }, { PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: 'http://user:secret@localhost/' }, { PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: 'file:///tmp' }, { PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: 'maybe' }, { PLAYWRIGHT_JOBS_NAVIGATION_RETRIES: '3' }])
+    for (const patch of [{ PLAYWRIGHT_JOBS_MAX_PAGES: '0' }, { PLAYWRIGHT_JOBS_MAX_PAGES: '33' }, { PLAYWRIGHT_JOBS_MAX_PAGES: 'fake-private-page-canary' }, { PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES: '268435457' }, { PLAYWRIGHT_JOBS_DATA_DIR: '' }, { PLAYWRIGHT_JOBS_OWNER_ID: '' }, { PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: 'http://user:secret@localhost/' }, { PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: 'file:///tmp' }, { PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: 'maybe' }, { PLAYWRIGHT_JOBS_NAVIGATION_RETRIES: '3' }])
       await assert.rejects(resolveJobConfig({ env: { ...base, ...patch }, cwd: root }));
     assert.deepEqual(await readdir(root), []);
   } finally { await rm(root, { recursive: true, force: true }); }

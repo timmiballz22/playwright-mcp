@@ -12,7 +12,10 @@ import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 const target = path.resolve(process.argv[2]);
 const dir = await mkdtemp(path.join(os.tmpdir(), 'production-smoke-'));
 const throttleHits = new Map();
+let afterLimitHits = 0;
 const fixture = createServer((req, res) => {
+  if (req.url === '/popup-source') { res.writeHead(200, { 'content-type': 'text/html' }); res.end('<button onclick="window.open(\'/popup-child\')">Open popup</button>'); return; }
+  if (req.url === '/after-limit') afterLimitHits++;
   if (req.url === '/throttle' || req.url === '/cli-throttle') {
     throttleHits.set(req.url, (throttleHits.get(req.url) || 0) + 1);
     if (throttleHits.get(req.url) === 1) {
@@ -24,13 +27,14 @@ const fixture = createServer((req, res) => {
 });
 fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
 const origin = `http://127.0.0.1:${fixture.address().port}`;
+const limitedWorkflow = { timeoutMs: 20000, steps: [{ type: 'goto', url: origin + '/popup-source' }, { type: 'click', selector: 'button' }, { type: 'waitFor', selector: '#never' }, { type: 'goto', url: origin + '/after-limit' }] };
 try {
   for (const entry of ['cli.js', 'local-batch/mcp.mjs']) {
     const original = entry === 'cli.js';
     const client = new Client({ name: 'production-smoke', version: '1.0.0' });
     const transport = new StdioClientTransport({ command: process.execPath,
       args: [path.join(target, entry), ...(original ? ['--browser=chromium', '--isolated', '--headless'] : [])],
-      cwd: target, stderr: 'pipe', env: { ...process.env, PLAYWRIGHT_BATCH_ALLOWED_ORIGINS: origin, PLAYWRIGHT_BATCH_ARTIFACTS_DIR: dir, ...(!original ? { PLAYWRIGHT_BATCH_NAVIGATION_RETRIES: '1' } : {}) },
+      cwd: target, stderr: 'pipe', env: { ...process.env, PLAYWRIGHT_BATCH_ALLOWED_ORIGINS: origin, PLAYWRIGHT_BATCH_ARTIFACTS_DIR: dir, ...(!original ? { PLAYWRIGHT_BATCH_NAVIGATION_RETRIES: '1', PLAYWRIGHT_BATCH_MAX_PAGES: '1' } : {}) },
     });
     try {
       await client.connect(transport); await client.ping();
@@ -51,17 +55,30 @@ try {
         assert.equal(summary.execution.mode, 'supervised');
         assert.equal(summary.execution.cleanup, 'terminated');
         assert.equal(JSON.parse(await readFile(summary.reportPath, 'utf8')).results.length, 5);
+        const limited = await client.callTool({ name: 'browser_run_batch', arguments: limitedWorkflow });
+        assert.equal(limited.isError, true);
+        const failed = JSON.parse(limited.content[0].text);
+        assert.equal(failed.reason, 'resource_limit'); assert.equal(failed.actionsSucceeded, false);
+        assert.equal(failed.execution.cleanup, 'terminated'); assert.equal(failed.execution.tempCleanup, 'removed');
+        assert.equal(afterLimitHits, 0);
       }
-      console.log(JSON.stringify({ entry, handshake: true, toolCount: tools.length, realBrowser: true, production: true }));
+      console.log(JSON.stringify({ entry, handshake: true, toolCount: tools.length, realBrowser: true, ...(!original ? { pageLimit: true } : {}), production: true }));
     } finally { await client.close(); }
   }
   const workflowFile = path.join(dir, 'cli-workflow.json');
   await writeFile(workflowFile, JSON.stringify({ steps: [{ type: 'goto', url: origin + '/cli-throttle' }] }));
   const { stdout } = await promisify(execFile)(process.execPath, [path.join(target, 'local-batch/cli.mjs'),
-    '--workflow', workflowFile, '--allow-origin', origin, '--artifacts', dir, '--navigation-retries', '1'], { timeout: 15000 });
+    '--workflow', workflowFile, '--allow-origin', origin, '--artifacts', dir, '--navigation-retries', '1', '--max-pages', '1'], { timeout: 15000 });
   const cliResult = JSON.parse(stdout);
   assert.equal(cliResult.ok, true); assert.equal(cliResult.completed, 1);
   assert.equal(throttleHits.get('/cli-throttle'), 2);
   assert.equal(cliResult.execution.cleanup, 'terminated');
-  console.log(JSON.stringify({ entry: 'local-batch/cli.mjs', realBrowser: true, navigationRetry: true, production: true }));
+  await writeFile(workflowFile, JSON.stringify(limitedWorkflow));
+  let failure;
+  try { await promisify(execFile)(process.execPath, [path.join(target, 'local-batch/cli.mjs'), '--workflow', workflowFile, '--allow-origin', origin, '--artifacts', dir, '--max-pages', '1'], { timeout: 25000 }); }
+  catch (error) { assert.equal(error.code, 1); failure = JSON.parse(error.stdout); }
+  assert.equal(failure?.reason, 'resource_limit'); assert.equal(failure.actionsSucceeded, false);
+  assert.equal(failure.execution.cleanup, 'terminated'); assert.equal(failure.execution.tempCleanup, 'removed');
+  assert.equal(afterLimitHits, 0);
+  console.log(JSON.stringify({ entry: 'local-batch/cli.mjs', realBrowser: true, navigationRetry: true, pageLimit: true, production: true }));
 } finally { fixture.closeAllConnections(); fixture.close(); await rm(dir, { recursive: true, force: true }); }

@@ -177,3 +177,13 @@ creates the final name only if absent, including files created during capture or
 report writing. An exceeded budget yields fixed `artifact_quota` failure
 kind and preserves earlier confirmed actions. This is screenshot payload storage
 only, not total directory/retention/browser-memory quota or pixel redaction.
+
+
+The companion's observed open-page limit defaults to8 per workflow (main page
+included). Set CLI `--max-pages N`, batch MCP `PLAYWRIGHT_BATCH_MAX_PAGES`, or jobs
+`PLAYWRIGHT_JOBS_MAX_PAGES` to an integer1–32 in operator configuration. Workflow
+JSON cannot override it. Exceeding the observed count stops with `resource_limit`;
+action effects may have occurred and must not be automatically replayed. This
+reactive limit can observe allocation after it happens; CPU/RAM/process-tree and
+global project quotas remain separate open requirements. Original upstream MCP
+page behavior is unchanged.

@@ -2134,3 +2134,33 @@ underlying native timeout/cleanup failures remain open. New cache control and
 slider/resume negatives also await native confirmation. Evidence:
 worker-ci-fortythird-*, journal-cleanup-metadata-* and routing-cache-*. **Not
 release-ready.**
+
+
+## Observed open-page budget
+
+The companion now defaults to eight observed open pages per isolated workflow
+context, including the main page. The operator may choose1–32 using CLI
+--max-pages, PLAYWRIGHT_BATCH_MAX_PAGES or PLAYWRIGHT_JOBS_MAX_PAGES. Source API
+maxPages is trusted host configuration. Workflow/tool JSON cannot raise it.
+Invalid values fail before worker startup or job storage creation. Existing
+original Microsoft tools and discovery schemas are unchanged.
+
+A context page event exceeding the budget interrupts the workflow with fixed
+resource_limit/page_quota metadata, suppresses further steps and late screenshot
+publication, and keeps actionsSucceeded false. Effects may already have happened;
+retrySafe remains false and duplicate request keys do not replay. Confirmed owned
+cleanup permits the next lease; uncertain cleanup still blocks it. Closed page
+events release observed slots. This is reactive: allocation may precede the event;
+it is not an OS CPU/RAM/process quota or a global cross-project limit.
+
+A real owned three-popup regression previously ignored maxPages2 and continued
+to the next navigation (one Chromium failure retained). Corrected maxPages4
+positive control and maxPages2 rejection pass Chromium/Firefox on Node20 and24;
+Node22 combined real suite passes6, including public jobs persistence/no replay/
+next clean lease, stalled navigation and screenshot crash.50 component checks
+pass Node22,34 Node20 and19 initial runner/config/bounds checks Node24. An isolated
+Node22 frozen-page rerun passes after other local browser checks completed. Fresh
+161-file production-only package passes installed CLI and batch MCP popup-limit
+failures plus all existing profile/jobs/controller/journal/parent-death smokes.
+Native page-budget confirmation remains pending. Evidence: page-limit-*,
+page-budget-components-*, page-budget-real-* and page-budget-frozen-isolated-*.

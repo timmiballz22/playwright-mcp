@@ -154,3 +154,13 @@ is unused. Exit1 reports a blocked/uncertain guard or unavailable directory; exi
 means invalid arguments. The recorded process is always identity-unverified.
 Windows ACL privacy is reported as unverified. The command preserves credentials,
 locks and permissions; reset/recovery still requires separate operator review.
+
+
+The companion's observed open-page limit defaults to8 per workflow (main page
+included). Set CLI `--max-pages N`, batch MCP `PLAYWRIGHT_BATCH_MAX_PAGES`, or jobs
+`PLAYWRIGHT_JOBS_MAX_PAGES` to an integer1–32 in operator configuration. Workflow
+JSON cannot override it. Exceeding the observed count stops with `resource_limit`;
+action effects may have occurred and must not be automatically replayed. This
+reactive limit can observe allocation after it happens; CPU/RAM/process-tree and
+global project quotas remain separate open requirements. Original upstream MCP
+page behavior is unchanged.

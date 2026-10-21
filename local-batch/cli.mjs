@@ -2,6 +2,7 @@
 // Local-only batch CLI; no cloud service, HTTP listener or arbitrary code execution.
 import { readWorkflowFile } from './workflow-file.mjs';
 import path from 'node:path';
+import { parsePageLimit } from './page-budget.mjs';
 import { parseScreenshotLimit } from './screenshot-budget.mjs';
 import { executeWorkflow } from './executor.mjs';
 
@@ -17,6 +18,10 @@ function argsOf(argv) {
       const count = argv[++i];
       if (!/^[0-2]$/.test(count ?? '')) throw new TypeError('navigation-retries must be 0, 1 or 2');
       args.navigationRetry = { maxRetries: Number(count) };
+    }
+    else if (arg === '--max-pages') {
+      const value = argv[++i]; if (value === undefined) throw new TypeError('Missing page limit');
+      args.maxPages = parsePageLimit(value);
     }
     else if (arg === '--max-screenshot-bytes') {
       const value = argv[++i]; if (value === undefined) throw new TypeError('Missing screenshot byte limit');
@@ -47,6 +52,7 @@ async function main() {
       allowedOrigins: options.origins,
       navigationRetry: options.navigationRetry,
       maxScreenshotBytes: options.maxScreenshotBytes,
+      maxPages: options.maxPages,
       allowSensitiveArtifacts: options.allowSensitiveArtifacts === true,
       artifactsDir,
       signal: abort.signal,

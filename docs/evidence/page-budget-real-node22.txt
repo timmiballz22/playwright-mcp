@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: a real page main-thread freeze cannot defeat the independent execution deadline
+ok 1 - a real page main-thread freeze cannot defeat the independent execution deadline
+  ---
+  duration_ms: 9455.823279
+  type: 'test'
+  ...
+# Subtest: witnessed stalled navigation reaches workflow deadline without executing the next step
+ok 2 - witnessed stalled navigation reaches workflow deadline without executing the next step
+  ---
+  duration_ms: 9224.67254
+  type: 'test'
+  ...
+# Subtest: public jobs persist page-limit failure, never replay it and release only the verified clean lease
+ok 3 - public jobs persist page-limit failure, never replay it and release only the verified clean lease
+  ---
+  duration_ms: 2629.816341
+  type: 'test'
+  ...
+# Subtest: chromium: operator page limit stops an approved popup burst without executing the next step
+ok 4 - chromium: operator page limit stops an approved popup burst without executing the next step
+  ---
+  duration_ms: 2122.003062
+  type: 'test'
+  ...
+# Subtest: firefox: operator page limit stops an approved popup burst without executing the next step
+ok 5 - firefox: operator page limit stops an approved popup burst without executing the next step
+  ---
+  duration_ms: 5118.909709
+  type: 'test'
+  ...
+# Subtest: real browser crash during a pending screenshot cannot publish success or an image
+ok 6 - real browser crash during a pending screenshot cannot publish success or an image
+  ---
+  duration_ms: 856.970399
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 30133.967913

@@ -15,7 +15,7 @@ const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const terminal = new Set(['SUCCEEDED', 'FAILED', 'CANCELLED', 'TIMED_OUT', 'CRASHED']);
 const reasons = new Set([null, 'cancelled', 'timeout', 'validation_failed', 'policy_blocked',
   'action_failed', 'worker_crashed', 'supervisor_failed', 'cleanup_failed', 'journal_unavailable',
-  'recovered_interrupted', 'execution_failed', 'queue_expired']);
+  'recovered_interrupted', 'execution_failed', 'queue_expired', 'resource_limit']);
 const error = code => { throw Object.assign(new Error(code), { safeCode: code }); };
 const integer = (value, min, max) => Number.isSafeInteger(value) && value >= min && value <= max;
 const mac = value => createHmac('sha256', key).update(value).digest('hex');

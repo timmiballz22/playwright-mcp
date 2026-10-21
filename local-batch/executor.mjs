@@ -1,5 +1,6 @@
 // Safe stdio/CLI execution boundary. Custom workers/events are trusted source-API
 // hooks for fault injection, never accepted in workflow JSON or MCP arguments.
+import { validatePageLimit } from './page-budget.mjs';
 import { fork } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
@@ -10,7 +11,7 @@ import { navigationRetryPolicy } from './navigation-retry.mjs';
 import { terminateOwnedProcesses } from './process-tree.mjs';
 
 export async function executeWorkflow(input, {
-  allowedOrigins = [], artifactsDir = path.resolve('.local-batch-output'), temporaryBase, allowSensitiveArtifacts = false, readOnly = false, maxScreenshotBytes, navigationRetry, signal,
+  allowedOrigins = [], artifactsDir = path.resolve('.local-batch-output'), temporaryBase, allowSensitiveArtifacts = false, readOnly = false, maxScreenshotBytes, maxPages, navigationRetry, signal,
   workerModule = new URL('./execution-worker.mjs', import.meta.url), onEvent, beforeWorkerStart,
 } = {}) {
   if (temporaryBase !== undefined && (typeof temporaryBase !== 'string' || !path.isAbsolute(temporaryBase) || temporaryBase.includes('\0'))) throw new TypeError('Temporary base must be an absolute trusted directory');
@@ -22,6 +23,7 @@ export async function executeWorkflow(input, {
   const spec = validateWorkflow(workflow);
   validateExecutionPolicy(spec, { allowedOrigins, allowSensitiveArtifacts, readOnly, maxScreenshotBytes });
   const retryPolicy = navigationRetryPolicy(navigationRetry);
+  const pageLimit = validatePageLimit(maxPages);
   const total = spec.steps.length * spec.iterations;
   const runId = randomUUID();
   const elapsed = () => Math.round(Number(process.hrtime.bigint() - started) / 1000000);
@@ -118,7 +120,7 @@ export async function executeWorkflow(input, {
     });
     if (signal?.aborted) abort();
     else if (elapsed() >= spec.timeoutMs) void force('timeout');
-    else supervisor.send({ type: 'start', workflow, options: { allowedOrigins, artifactsDir, temporaryBase, allowSensitiveArtifacts, readOnly, maxScreenshotBytes, navigationRetry: retryPolicy ?? undefined },
+    else supervisor.send({ type: 'start', workflow, options: { allowedOrigins, artifactsDir, temporaryBase, allowSensitiveArtifacts, readOnly, maxScreenshotBytes, maxPages: pageLimit, navigationRetry: retryPolicy ?? undefined },
       workerModule: workerURL.href, requireReadyAck: Boolean(beforeWorkerStart), runId, total, timeoutMs: spec.timeoutMs, deadlineNs: String(deadlineNs) }, () => {});
   });
 }

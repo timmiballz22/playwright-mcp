@@ -1,0 +1,312 @@
+TAP version 13
+# Subtest: cooperative context cleanup timeout retains fixed stage and stays failed
+ok 1 - cooperative context cleanup timeout retains fixed stage and stays failed
+  ---
+  duration_ms: 50.215132
+  type: 'test'
+  ...
+# Subtest: cooperative context cleanup error retains fixed stage and stays failed
+ok 2 - cooperative context cleanup error retains fixed stage and stays failed
+  ---
+  duration_ms: 2.360837
+  type: 'test'
+  ...
+# Subtest: untrusted Retry-After hints cannot exceed bounded durable result metadata
+ok 3 - untrusted Retry-After hints cannot exceed bounded durable result metadata
+  ---
+  duration_ms: 8.838333
+  type: 'test'
+  ...
+# Subtest: all three close failures plus final server kill failure remain bounded fixed metadata
+ok 4 - all three close failures plus final server kill failure remain bounded fixed metadata
+  ---
+  duration_ms: 3.452397
+  type: 'test'
+  ...
+# Subtest: supervised hang: bounded completion and owned process cleanup
+ok 5 - supervised hang: bounded completion and owned process cleanup
+  ---
+  duration_ms: 2364.834813
+  type: 'test'
+  ...
+# Subtest: supervised report-stall: bounded completion and owned process cleanup
+ok 6 - supervised report-stall: bounded completion and owned process cleanup
+  ---
+  duration_ms: 2310.462618
+  type: 'test'
+  ...
+# Subtest: supervised crash: bounded completion and owned process cleanup
+ok 7 - supervised crash: bounded completion and owned process cleanup
+  ---
+  duration_ms: 206.321763
+  type: 'test'
+  ...
+# Subtest: pre-cancelled execution never starts a worker
+ok 8 - pre-cancelled execution never starts a worker
+  ---
+  duration_ms: 0.551902
+  type: 'test'
+  ...
+# Subtest: cancel interrupts a worker that cannot service its abort listener
+ok 9 - cancel interrupts a worker that cannot service its abort listener
+  ---
+  duration_ms: 657.409782
+  type: 'test'
+  ...
+# Subtest: supervisor crash cannot strand its worker or detached child
+ok 10 - supervisor crash cannot strand its worker or detached child
+  ---
+  duration_ms: 404.72115
+  type: 'test'
+  ...
+# Subtest: cancellation between precheck and supervisor startup does not start a worker
+ok 11 - cancellation between precheck and supervisor startup does not start a worker
+  ---
+  duration_ms: 112.090393
+  type: 'test'
+  ...
+# Subtest: safe failure and lower-bound progress survive supervisor death without raw diagnostics
+ok 12 - safe failure and lower-bound progress survive supervisor death without raw diagnostics
+  ---
+  duration_ms: 684.095125
+  type: 'test'
+  ...
+# Subtest: verified cleanup recovery preserves success action outcome
+ok 13 - verified cleanup recovery preserves success action outcome
+  ---
+  duration_ms: 705.485513
+  type: 'test'
+  ...
+# Subtest: verified cleanup recovery preserves blocked action outcome
+ok 14 - verified cleanup recovery preserves blocked action outcome
+  ---
+  duration_ms: 598.412854
+  type: 'test'
+  ...
+# Subtest: verified cleanup recovery preserves action action outcome
+ok 15 - verified cleanup recovery preserves action action outcome
+  ---
+  duration_ms: 307.52817
+  type: 'test'
+  ...
+# Subtest: failed durable admission cannot start worker actions
+ok 16 - failed durable admission cannot start worker actions
+  ---
+  duration_ms: 224.44818
+  type: 'test'
+  ...
+# Subtest: stalled durable admission cannot evade watchdog deadline or start late
+ok 17 - stalled durable admission cannot evade watchdog deadline or start late
+  ---
+  duration_ms: 1659.104093
+  type: 'test'
+  ...
+# Subtest: successful durable admission precedes owned worker effects
+ok 18 - successful durable admission precedes owned worker effects
+  ---
+  duration_ms: 326.914607
+  type: 'test'
+  ...
+# Subtest: operator owner/project namespaces are stable, private and independent of tool data
+ok 19 - operator owner/project namespaces are stable, private and independent of tool data
+  ---
+  duration_ms: 151.540006
+  type: 'test'
+  ...
+# Subtest: untrusted symlinks and writable ancestors cannot redirect job storage writes
+ok 20 - untrusted symlinks and writable ancestors cannot redirect job storage writes
+  ---
+  duration_ms: 6.121123
+  type: 'test'
+  ...
+# Subtest: invalid owner/policy config is rejected before any storage creation
+ok 21 - invalid owner/policy config is rejected before any storage creation
+  ---
+  duration_ms: 3.135429
+  type: 'test'
+  ...
+# Subtest: termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+ok 22 - termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+  ---
+  duration_ms: 158.355859
+  type: 'test'
+  ...
+# Subtest: managed directory links and database hardlinks cannot modify another file
+ok 23 - managed directory links and database hardlinks cannot modify another file
+  ---
+  duration_ms: 537.268815
+  type: 'test'
+  ...
+# Subtest: POSIX journal directory must exclude group and other access
+ok 24 - POSIX journal directory must exclude group and other access
+  ---
+  duration_ms: 131.671063
+  type: 'test'
+  ...
+# Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+ok 25 - a simulated reused PID cannot resume old work or clear uncertain active resources
+  ---
+  duration_ms: 267.222564
+  type: 'test'
+  ...
+# Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+ok 26 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+  ---
+  duration_ms: 113.951826
+  type: 'test'
+  ...
+# Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+ok 27 - a success mutation after the persisted deadline cannot commit or release the lease
+  ---
+  duration_ms: 289.755953
+  type: 'test'
+  ...
+# Subtest: competing writers initialize consistently and cannot overfill the project queue
+ok 28 - competing writers initialize consistently and cannot overfill the project queue
+  ---
+  duration_ms: 258.085279
+  type: 'test'
+  ...
+# Subtest: killed transaction rolls back without a partial job or duplicate request
+ok 29 - killed transaction rolls back without a partial job or duplicate request
+  ---
+  duration_ms: 474.241335
+  type: 'test'
+  ...
+# Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+ok 30 - reconnect marks a dead controller queued job crashed and never requeues its request
+  ---
+  duration_ms: 281.933788
+  type: 'test'
+  ...
+# Subtest: corrupt journal is rejected without silently erasing the file
+ok 31 - corrupt journal is rejected without silently erasing the file
+  ---
+  duration_ms: 136.477314
+  type: 'test'
+  ...
+# (node:383063) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: an unrelated SQLite file is rejected without changing its bytes
+ok 32 - an unrelated SQLite file is rejected without changing its bytes
+  ---
+  duration_ms: 63.101594
+  type: 'test'
+  ...
+# Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+ok 33 - journal preserves idempotency, owner isolation and a single project execution lease
+  ---
+  duration_ms: 219.398927
+  type: 'test'
+  ...
+# Subtest: monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+ok 34 - monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+  ---
+  duration_ms: 195.986341
+  type: 'test'
+  ...
+# Subtest: operator page bounds reject invalid values before worker startup and cannot come from workflow JSON
+ok 35 - operator page bounds reject invalid values before worker startup and cannot come from workflow JSON
+  ---
+  duration_ms: 4.220156
+  type: 'test'
+  ...
+# Subtest: failure classification returns fixed codes and never browser text
+ok 36 - failure classification returns fixed codes and never browser text
+  ---
+  duration_ms: 0.923333
+  type: 'test'
+  ...
+# Subtest: rejects unknown instructions, unbounded workloads and hostile origins
+ok 37 - rejects unknown instructions, unbounded workloads and hostile origins
+  ---
+  duration_ms: 2.447666
+  type: 'test'
+  ...
+# Subtest: 100 ordered actions finish in a single batch with one browser launch
+ok 38 - 100 ordered actions finish in a single batch with one browser launch
+  ---
+  duration_ms: 11.941395
+  type: 'test'
+  ...
+# Subtest: failures stop promptly, hide underlying sensitive errors and clean up
+ok 39 - failures stop promptly, hide underlying sensitive errors and clean up
+  ---
+  duration_ms: 2.116687
+  type: 'test'
+  ...
+# Subtest: cancellation before starting avoids launching browser
+ok 40 - cancellation before starting avoids launching browser
+  ---
+  duration_ms: 0.266936
+  type: 'test'
+  ...
+# Subtest: checks target origins and reports assertion failure without page content
+ok 41 - checks target origins and reports assertion failure without page content
+  ---
+  duration_ms: 3.957143
+  type: 'test'
+  ...
+# Subtest: unknown localhost ports require exact operator origins
+ok 42 - unknown localhost ports require exact operator origins
+  ---
+  duration_ms: 1.589558
+  type: 'test'
+  ...
+# Subtest: rejects extra workflow and action properties rather than ignoring policy
+ok 43 - rejects extra workflow and action properties rather than ignoring policy
+  ---
+  duration_ms: 0.269116
+  type: 'test'
+  ...
+# Subtest: deadline includes a stalled launch and closes late browser
+ok 44 - deadline includes a stalled launch and closes late browser
+  ---
+  duration_ms: 201.259233
+  type: 'test'
+  ...
+# Subtest: validation snapshots actions before asynchronous launch
+ok 45 - validation snapshots actions before asynchronous launch
+  ---
+  duration_ms: 5.145705
+  type: 'test'
+  ...
+# Subtest: screenshot capture requires operator approval for sensitive artifacts
+ok 46 - screenshot capture requires operator approval for sensitive artifacts
+  ---
+  duration_ms: 0.467865
+  type: 'test'
+  ...
+# Subtest: workflow version and serialized size are bounded
+ok 47 - workflow version and serialized size are bounded
+  ---
+  duration_ms: 7.470355
+  type: 'test'
+  ...
+# Subtest: accessible selectors validate exact shape and clone nested values
+ok 48 - accessible selectors validate exact shape and clone nested values
+  ---
+  duration_ms: 0.199085
+  type: 'test'
+  ...
+# Subtest: explicit action repeats expand within the total action cap
+ok 49 - explicit action repeats expand within the total action cap
+  ---
+  duration_ms: 26.064809
+  type: 'test'
+  ...
+# Subtest: text equality rejects duplicate counters and ambiguous expectations
+ok 50 - text equality rejects duplicate counters and ambiguous expectations
+  ---
+  duration_ms: 3.007582
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14721.760693

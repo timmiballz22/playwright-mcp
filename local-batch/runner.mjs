@@ -1,5 +1,6 @@
 // Local-only, declarative Playwright workflow engine. No shell execution or arbitrary JS evaluation.
 // Copyright 2026 contributors. Licensed under Apache-2.0, see ../LICENSE.
+import { validatePageLimit } from './page-budget.mjs';
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -176,12 +177,14 @@ export async function runWorkflow(workflow, {
   allowSensitiveArtifacts = false,
   readOnly = false,
   maxScreenshotBytes,
+  maxPages,
   onBrowserProcess,
   onProgress,
   navigationRetry, // Trusted operator opt-in for safe GET navigation only.
   onActionFailure, // Trusted source diagnostics only; never accepted in workflow JSON.
 } = {}) {
   const spec = validateWorkflow(workflow);
+  const pageLimit = validatePageLimit(maxPages);
   const allowed = validateExecutionPolicy(spec, { allowedOrigins, allowSensitiveArtifacts, readOnly, maxScreenshotBytes });
   const retryPolicy = navigationRetryPolicy(navigationRetry);
   const screenshots = new ScreenshotBudget(maxScreenshotBytes);
@@ -194,6 +197,7 @@ export async function runWorkflow(workflow, {
   let context;
   let cancelled = false;
   let timedOut = false;
+  let resourceExceeded = false;
   let cleanupFailed = false;
   const cleanupFailures = [];
   let blockedRequests = 0;
@@ -205,9 +209,10 @@ export async function runWorkflow(workflow, {
   // A stop can arrive between operations; mark rejection handled immediately.
   void stopped.catch(() => {});
   const stop = reason => {
-    if (cancelled || timedOut) return;
+    if (cancelled || timedOut || resourceExceeded) return;
     cancelled = reason === 'cancelled';
     timedOut = reason === 'timeout';
+    resourceExceeded = reason === 'resource_limit';
     retryAbort.abort();
     rejectStopped(new Error(reason));
     void context?.close().catch(() => {});
@@ -232,21 +237,30 @@ export async function runWorkflow(workflow, {
       browserServer = await bounded(playwright[spec.browser].launchServer({ ...launchOptions, host: '127.0.0.1' }).then(server => {
         // Retain ownership even if a trusted source observer throws.
         browserServer = server;
-        if (cancelled || timedOut) void server.kill().catch(() => {});
+        if (cancelled || timedOut || resourceExceeded) void server.kill().catch(() => {});
         onBrowserProcess?.(server.process().pid);
         return server;
       }));
       browser = await bounded(playwright[spec.browser].connect(browserServer.wsEndpoint(), { timeout: launchOptions.timeout }));
     } else {
       browser = await bounded(playwright[spec.browser].launch(launchOptions).then(value => {
-        if (cancelled || timedOut) void value.close().catch(() => {});
+        if (cancelled || timedOut || resourceExceeded) void value.close().catch(() => {});
         return value;
       }));
     }
     context = await bounded(browser.newContext({ acceptDownloads: false, serviceWorkers: 'block' }).then(value => {
-      if (cancelled || timedOut) void value.close().catch(() => {});
+      if (cancelled || timedOut || resourceExceeded) void value.close().catch(() => {});
       return value;
     }));
+    let openPages = 0;
+    // Real Playwright contexts always implement these events. Source-provided
+    // test adapters are trusted and may omit event simulation.
+    context.on?.('page', opened => {
+      if (opened.isClosed()) return;
+      openPages++;
+      opened.once('close', () => { openPages--; });
+      if (openPages > pageLimit) stop('resource_limit');
+    });
     context.setDefaultTimeout(spec.actionTimeoutMs);
     context.setDefaultNavigationTimeout(Math.min(30000, spec.timeoutMs));
 
@@ -261,7 +275,7 @@ export async function runWorkflow(workflow, {
         }
         let response;
         for (let attempt = 0; ; attempt++) {
-          if (closing || cancelled || timedOut) throw new Error('stopped');
+          if (closing || cancelled || timedOut || resourceExceeded) throw new Error('stopped');
           response = await route.fetch({ maxRedirects: 0, maxRetries: 0,
             timeout: Math.max(1, spec.timeoutMs - (performance.now() - started)) });
           const request = route.request();
@@ -294,7 +308,7 @@ export async function runWorkflow(workflow, {
     let index = 0;
     outer: for (let repetition = 0; repetition < spec.iterations; repetition++) {
       for (const step of spec.steps) {
-        if (cancelled || timedOut)
+        if (cancelled || timedOut || resourceExceeded)
           break outer;
         const start = performance.now();
         index++;
@@ -306,7 +320,7 @@ export async function runWorkflow(workflow, {
           }
           const metadata = await bounded(perform(page, step, index, artifactsDir, screenshots, () => {
             if (performance.now() - started >= spec.timeoutMs) stop('timeout');
-            return !cancelled && !timedOut && !closing;
+            return !cancelled && !timedOut && !resourceExceeded && !closing;
           }));
           currentNavigation = undefined;
           results.push({ index, repetition: repetition + 1, type: step.type,
@@ -315,7 +329,7 @@ export async function runWorkflow(workflow, {
         } catch (error) {
           const httpFailure = ['rate_limited', 'http_401', 'http_403', 'http_404', 'http_4xx', 'http_5xx'].includes(error?.safeCode);
           const safeError = cancelled ? 'cancelled' : timedOut ? 'timeout' : httpFailure ? error.safeCode : 'action_failed';
-          const failureKind = cancelled || timedOut ? 'interrupted' : classifyActionFailure(error, step);
+          const failureKind = resourceExceeded ? 'page_quota' : cancelled || timedOut ? 'interrupted' : classifyActionFailure(error, step);
           try { onActionFailure?.(error, { index, type: step.type, error: safeError, failureKind }, page); } catch {}
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: false, durationMs: Math.round(performance.now() - start),
@@ -326,7 +340,7 @@ export async function runWorkflow(workflow, {
       }
     }
   } catch {
-    if (!cancelled && !timedOut)
+    if (!cancelled && !timedOut && !resourceExceeded)
       results.push({ index: 0, type: 'setup', ok: false, error: 'setup_failed' });
   } finally {
     closing = true;
@@ -354,10 +368,10 @@ export async function runWorkflow(workflow, {
       finally { clearTimeout(cleanupTimer); }
     }
   }
-  const actionsSucceeded = results.length === spec.steps.length * spec.iterations && results.every(r => r.ok);
-  const ok = blockedRequests === 0 && !cancelled && !timedOut && !cleanupFailed && actionsSucceeded;
+  const actionsSucceeded = !resourceExceeded && results.length === spec.steps.length * spec.iterations && results.every(r => r.ok);
+  const ok = blockedRequests === 0 && !cancelled && !timedOut && !resourceExceeded && !cleanupFailed && actionsSucceeded;
   return { ok, reason: cancelled ? 'cancelled' : timedOut ? 'timeout' :
-    cleanupFailed ? 'cleanup_failed' : blockedRequests ? 'policy_blocked' : ok ? null : 'action_failed',
+    resourceExceeded ? 'resource_limit' : cleanupFailed ? 'cleanup_failed' : blockedRequests ? 'policy_blocked' : ok ? null : 'action_failed',
     browser: spec.browser, blockedRequests, actionsSucceeded, cleanupFailures, completed: results.filter(r => r.ok).length,
     total: spec.steps.length * spec.iterations,
     durationMs: Math.round(performance.now() - started), results };
