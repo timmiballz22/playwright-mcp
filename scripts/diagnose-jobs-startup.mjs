@@ -19,7 +19,7 @@ const coreNames = new Set(['PATH', 'PATHEXT', 'SHELL', 'COMSPEC', 'SYSTEMROOT', 
 const coreEnv = Object.fromEntries(Object.entries(process.env).filter(([name]) => coreNames.has(name.toUpperCase())));
 for (const mode of process.platform === 'win32' ? ['inherited', 'codex_core'] : ['inherited']) for (let iteration = 1; iteration <= 3; iteration++) {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'sdk-jobs-startup-'));
-  const clients = []; const transports = []; const startupCodes = new Set();
+  const clients = []; const transports = []; const recordedRoots = []; const startupCodes = new Set();
   let observed = []; let verified = false; const started = performance.now();
   try {
     const outcomes = await Promise.allSettled([0, 1].map(async index => {
@@ -29,6 +29,15 @@ for (const mode of process.platform === 'win32' ? ['inherited', 'codex_core'] : 
         PLAYWRIGHT_JOBS_PROJECT_DIR: directory, PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: '', PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: '0', PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS: '0',
       } });
       transports.push(transport); let tail = '';
+      // pid is cleared when an SDK transport exits. Retain and identify the live
+      // child before initialize can fail, so failed startups cannot hide orphans.
+      const startTransport = transport.start.bind(transport);
+      transport.start = async () => {
+        await startTransport();
+        assert.ok(Number.isSafeInteger(transport.pid), 'SDK process identity unavailable');
+        recordedRoots.push(transport.pid);
+        observed.push(...await ownedDescendants([transport.pid], { rememberLiveRoots: true }));
+      };
       transport.stderr.on('data', chunk => {
         tail = (tail + chunk.toString()).slice(-4096);
         for (const match of tail.matchAll(/Local jobs startup failed \(([a-z_]{1,40})\)/g)) startupCodes.add(match[1]);
@@ -74,8 +83,8 @@ for (const mode of process.platform === 'win32' ? ['inherited', 'codex_core'] : 
     }
     assert.equal(receipt.connected, 2, 'Fresh simultaneous SDK startup failed'); verified = true;
   } finally {
-    const roots = transports.map(transport => transport.pid).filter(Number.isSafeInteger);
-    try { observed = await ownedDescendants(roots, { rememberLiveRoots: true }); }
+    const roots = [...new Set([...recordedRoots, ...transports.map(transport => transport.pid).filter(Number.isSafeInteger)])];
+    try { observed.push(...await ownedDescendants(roots)); }
     finally { await Promise.allSettled(clients.map(client => client.close())); }
     const end = performance.now() + 10000;
     while ((await ownedDescendants([...roots, ...observed])).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 100));

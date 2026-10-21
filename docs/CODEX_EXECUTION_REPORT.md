@@ -1106,3 +1106,14 @@ system PowerShell Modules directory. Actual Codex configuration, production help
 permissions, execution policy and10s helper deadline are unchanged. This is a
 controlled hypothesis test, not a claimed native fix. Output includes only fixed
 phase/category/variant metadata; raw helper stdout/stderr is never printed.
+
+
+SDK startup control now records each transport PID through its public start method
+before initialize can fail, and remembers its live process identity then. SDK clears
+pid after exit, so collecting only at final shutdown could lose failed server roots.
+Final scans retain those recorded roots/descendants and never relabel exited roots
+as live. Three revised local Node22 pairs pass (462/441/419ms), zero actions and
+zero active survivors. The previous inherited native pairs had live clients at
+observation; their cleanup evidence stands. The failed native codex_core pair's
+old empty-root final scan is not independent cleanup proof and is not a PASS claim.
+Source:diagnose-jobs-startup.mjs; evidence:sdk-startup-retained-identities-local.txt.
