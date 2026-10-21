@@ -2,7 +2,7 @@
 
 See [CODEX_EXECUTION_REPORT.md](CODEX_EXECUTION_REPORT.md) for the current
 candidate and [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) for G00–G18.
-Latest completed native63 failed; later local corrections and the next native
+Latest completed native64 failed; later local corrections and the next native
 verification are separate phases. The records below preserve earlier scoped evidence.
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a

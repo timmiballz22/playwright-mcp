@@ -2,37 +2,35 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening. Native64 runsbf71fa8 at batch39677472725
-and wrapper39677472730; full proof pending. Latest completed
-native63 atd22b111: batch39673986509 FAILURE1,281/10; wrapper39673986586
-SUCCESS440/0 =>1,721 reported passes/ten failed tests, plus two failed JSON
-comparison controls (macOS server997/1k and Windows private-temp Firefox5/10).
-All three actual Codex1k clients pass with zero-model/owned0. Five175-file installs
-and components102/103 pass; all17 executed jobs conclude, one intentional soak
-job skip, zero reported test skips/cancellations or cancelled jobs.
+Branch feat/local-production-hardening. Latest completed native64 atbf71fa8:
+batch39677472725 FAILURE1,317/7; wrapper39677472730 SUCCESS440/0 =>1,757
+reported passes/seven failed tests, plus two failed Windows JSON comparisons.
+All17 executed jobs conclude, functional_soak intentionally skipped, zero reported
+test skips/cancellations or cancelled jobs. Five175-file installs and components
+104/105 pass. Actual Codex1k Linux36.136s/Windows38.314s/macOS81.072s, owned0,
+zero model turns. The final-launch-report guard and actual-worker fault now pass
+on native lanes. All30 marked GET/committed-POST observations across15 tests in
+five main lanes have one request, cancelled/known cleanup, forced:false. These
+samples do not resolve the old WebKit second GET.
 
-Windows failures: Firefox positive origin control, supervised20-click, all three
-raw modes and retry cleanup timeout; controller fixture exits before readiness
-with cause unavailable; WebKit page-limit audit observes four processes. Neither
-age/role filters nor missing-PID hints can dismiss them. macOS raw Chromium970/1k
-and batch MCP959/1k time out. Previous screenshot/close/second-GET findings stay
-open. Healthy observations do not resolve intermittent failures.
+Windows raw headless fresh8 fails6/23 with pointer timeout plus three cleanup
+timeouts; pipe fresh1 completes23/23 but context close times out. Firefox page
+reuse completes10 steps then overall timeout. Screenshot pair2 observes133
+processes: helperMatched:true,rootMatches0,rememberedBirths0,131 births before
+observation window. No age/role/name filter or helper exclusion dismisses this
+unresolved observation; exact root lifetime capture is needed. macOS raw953,
+public jobs959 and batch MCP978 miss1k deadlines. Original wrapper440/0 passes.
 
-Local76b6bca runtime retains unknown ownership after final launch failure report;
-31376a9 adds marked fetch/committed POST cancellation witness. Actual-worker old
-guard returns action_failed/cleanup terminated with live child; corrected guard
-retains debt. Focused24/24 Node22/24,22/22 Node20; components104/104 Node22/24;
-fresh175-file production install/death audits and Chromium/Firefox regression pass.
-Latest runtime100-cycle Linux Node22 soak:600 actions, every owned audit empty,
-FD24→24, RSS growth8,826,880 below32MiB. Partial browser FD visibility remains.
-These later changes are not in native63; native64 bf71fa8 runs the final-report
-guard and marked witness. A later local POSIX helper correction requires a
-confirmed freeze before worker-tree signals;29/29 each20/22/24,105 components
-each22/24 and production/death audits pass. This helper and94fdfde QA diagnostics
-are not in native64; next verification remains pending.
+Later local94fdfde preserves safe pre-ready causes and page-audit evidence;
+6a00a1b requires confirmed SIGSTOP before worker-tree/group operations. Intercepted
+old missing-root freeze returns cleaned:true/group signal1; new controls retain
+worker_stop_failed/cleaned:false/group signal0.29/29 each Node20/22/24,105 component
+cases each22/24, real Chromium/Firefox deadline2/2 and175-file production/death
+audits pass. No larger deadlines, broader signals or action replay. These later
+changes are not in native64 and need native65 verification.
 
-**Not release-ready. NEXT ACTION: push the next candidate and inspect native64.**
-No PID filtering, hint-based fence release, action replay or raised budgets.
+**Not release-ready. NEXT ACTION: push native65 and capture precise source-only
+root lifetime evidence for the unresolved process observations.**
 
 ## Historical checkpoints
 
@@ -203,25 +201,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native63 logged1,721/10 plus two failed JSON comparisons;25/72 discovery and six jobs schemas | Final same-SHA whole acceptance |
-| G01 INSTALL | IN PROGRESS | native63 five175-file installs pass; later76b6bca runtime local install/death audits pass | Native proof of latest runtime |
-| G02 MCP | IN PROGRESS | native63 all actual Codex1k clients pass; macOS batch MCP959 times out; historical failures retained | Sustained whole client acceptance |
-| G03 FEATURE PARITY | IN PROGRESS | native63 wrapper440/0 including legacy Windows Firefox3/0; old intermittent close not resolved | Interactive annotation/debugger and remaining negatives |
-| G04 BATCH | FAILED | native63 macOS batch MCP959 and raw Chromium970 deadlines; public jobs/client healthy samples | Strict1k counters/budgets and causal throughput diagnosis |
-| G05 RETRIES | FAILED | native63 Windows Firefox two GETs/one completed step then overall timeout; prior WebKit second GET unresolved | Native marked-call and close-path proof; no deadline relaxation |
-| G06 JOBS | FAILED | native63 components102/103 pass but source parent-death fixture exits before ready; later final-report correction local104/104 | Preserve uncertainty; identify pre-ready failure and native guard proof |
+| G00 BASELINE | IN PROGRESS | native64 logged1,757/7 plus two failed Windows comparisons;25/72 discovery/six jobs schemas | Final same-SHA whole acceptance |
+| G01 INSTALL | IN PROGRESS | native64 five175-file installs pass; later6a00a1b runtime local install/death audits pass | Native proof of latest runtime |
+| G02 MCP | IN PROGRESS | native64 all actual Codex1k clients pass; macOS batch MCP978 timeout | Sustained whole client acceptance |
+| G03 FEATURE PARITY | IN PROGRESS | native64 wrapper440/0 including legacy Firefox3/0; historical close issue unresolved | Interactive annotation/debugger and remaining negatives |
+| G04 BATCH | FAILED | native64 macOS raw953/public jobs959/batch MCP978 deadlines | Strict1k counters and budgets; causal throughput diagnosis |
+| G05 RETRIES | FAILED | native64 marked15 GET/15 committed POST controls pass; earlier WebKit second GET unresolved | Preserve controlled witness and no replay; remaining provider latency |
+| G06 JOBS | FAILED | native64 final-report ownership cases/components104/105 pass; local freeze correction105 components pending native | Precise ownership evidence and managed recovery; no hint-based release |
 | G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | native63 five175-file installs pass; Windows WebKit page-limit observes4 processes and old screenshot4 unresolved | Independent ownership provenance, full/temporary disk bounds and managed repair |
+| G08 STORAGE | FAILED | native64 installs pass; screenshot audit133 processes, helper matched, root birth facts absent | Verified lifetime provenance; disk bounds and managed repair |
 | G09 AUTH/PROFILES | FAILED | coalesced close14/14 Node20/22/24, real Chromium/Firefox parity2/2; native prior session restore | Managed profiles/reset, Windows ACLs and crash repair; annotation dashboard lifecycle separate |
-| G10 CROSS-BROWSER | FAILED | native63 Windows Firefox failures/WebKit4 process audit, macOS raw/MCP1k deadlines | Causal diagnosis; strict thresholds/no replay |
-| G11 CROSS-OS | FAILED | native63 wrapper green/Linux lanes pass; Windows8 and macOS2 batch failures | Final whole native matrix required |
+| G10 CROSS-BROWSER | FAILED | native64 Windows Firefox action/close and macOS1k failures | Causal diagnosis; strict thresholds/no replay |
+| G11 CROSS-OS | FAILED | native64 wrapper green; Windows4 and macOS3 batch failures | Final whole native matrix required |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md; independent100-run resource soak and3 fresh samples/mode at1100e3c | Cross-OS/CLI-SKILLS repeated resource and token measurements remain; no billing claim |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-sixtythird-*, unreported-real-worker-*, marked-fetch-* and soak100 receipts | Exact phases/SHA and unexecuted scopes |
-| G18 CLEAN MERGE | FAILED | Draft PR2; native63 batch failed and later runtime local only | Resolve critical gaps; whole green SHA before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-sixtyfourth-*, native64-marked-cancellation-receipts.json, missing-freeze-* | Exact phases and verified lifetime capture |
+| G18 CLEAN MERGE | FAILED | Draft PR2; native64 batch failed and later helper correction local only | Resolve critical gaps; whole green SHA before merge/release |
 
 ## Defects and risk register
 
@@ -4360,3 +4358,39 @@ returns cleaned:true/groupSignals1, new controls all cleaned:false/groupSignals0
 All individual summaries/counts are separately verified; no failed/skipped or
 cancelled test is accepted. Lint/diff pass. missing-freeze-* retains phases. Native64 bf71fa8 does not include this
 helper correction or94fdfde's later QA diagnostics.
+
+## Native64 bf71fa8 — completed failure with new controls verified
+
+Batch1,317/7, wrapper440/0 =>1,757 reported passes/seven failed tests. All17
+executed jobs conclude, intentional functional_soak skip, zero reported test
+skips/cancellations/job cancellations. Five175-file installs and components104
+(Windows105) pass. Main Linux22/24 183/0 each,20 179/0, Windows175/4, macOS180/3.
+Actual Codex1k passes Linux36.136s/Windows38.314s/macOS81.072s, owned0,modelTurns0.
+All standard original host144/0, Docker2, macOS modal3 and Windows legacy3 pass.
+
+Actual-worker final failure/unknown child cases pass on all main lanes; model
+direct/durable cases pass in all component lanes. Thirty marked requests across
+fifteen Chromium/Firefox/WebKit GET/POST cancellation tests in five main lanes
+all show1 request, cancelled, known cleanup, forced:false. The committed POST
+keeps1 prior goto confirmed and retrySafe:false. This is controlled evidence, not
+a resolution of native61 WebKit's second GET. Full fixed receipts are in
+native64-marked-cancellation-receipts.json.
+
+Windows raw headless fresh8:6/23 at7 pointer timeout; cleanup_failures context,
+server and server-kill timeouts; total27.149s. Direct pipe fresh1:23/23 actions
+confirmed but context_timeout, duration10.291s; still a failed case. Firefox page
+reuse10/10 actions then overall timeout12.336s, known cleanup/removal. Screenshot
+pair2 audit observes133 processes, helperMatched:true/rootMatches0/remembered
+rootBirths0/oldBirthCount131. Preserve all observations as unresolved. The old
+case recorded counts, not a full identity ledger; no retroactive birth/role
+classification is justified. Root facts must be captured while actual factory
+handles are still live, preserving every lifetime and real orphan fault control.
+
+macOS raw Chromium953/1k at954,120.115s; jobs TIMED_OUT959 at960; batch MCP978,
+both supervised outcomes known terminated/removed. Failure-only server1k117.833s
+and pipe1k110.192s pass/owned0, not a causal fix or transport switch. Windows
+private-temp comparison0/10 fails first run2/23; inherited0/10 fails15/23; both
+pointer timeout, independent owned0. Those are two extra failed JSON probes,
+not counted tests. Full selected steps/jobs/counts: worker-ci-sixtyfourth-*.
+Native65 will include94fdfde QA and6a00a1b POSIX freeze correction; native64 does
+not verify those. Limited upstream context search made no causal match or change.

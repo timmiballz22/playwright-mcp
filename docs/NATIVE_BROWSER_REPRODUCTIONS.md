@@ -69,3 +69,15 @@ ten fresh runs using its trusted test environment configuration. Preserve the
 No forced click, suppressed failure or automatic action replay is an acceptable
 resolution. Helper.js teardown warnings are observations, not an established cause.
 See `evidence/worker-ci-fiftyeighth-wrapper.txt` for full fixed receipts and call logs.
+
+## Upstream context checked during native64
+
+Pinned Playwright 1.64.1 uses Firefox 157.0, revision r1555. Related upstream
+[#43028](https://github.com/microsoft/playwright/issues/43028) describes headed
+dynamic viewport resizing; a later comment reports fractional internal dimensions
+with r1555. The issue is closed, and other environments did not reproduce it.
+Our raw click fixture performs no dynamic resizing, and its headless/pipe cases
+also fail intermittently. A shared revision does not establish a common cause.
+Limited public searches found no exact current match. Versions, focus, click
+semantics and deadlines stay unchanged. No external report was posted and no
+third-party reproduction was executed. See native64-upstream-context.json.
