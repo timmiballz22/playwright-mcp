@@ -1340,3 +1340,24 @@ both. Six local Chromium/Firefox cases pass(10.8s), including browser_close ACK.
 Evidence: `evidence/original-storage-local.txt`. This is expanded positive behavior
 coverage, not a claim that all72 tool behaviors or native variants are complete.
 No delegated upstream implementation or companion code surface changed.
+
+
+## Original network/config/testing capability behavior
+
+Local Chromium/Firefox network cases pass(2 tests,8.8s): a201 route mock returns
+exact JSON/body without reaching the owned HTTP server; unroute restores its real200
+response; request-header addition/removal reaches the server; offline prevents
+another hit; online restores one request and removed routes no longer alter headers.
+Only source-authored fixture evaluation is used. Companion origin/retry policy is
+unchanged. Initial assertions mistakenly searched an echoed code block for an
+unexpected-result string; corrected tests parse the actual JSON Result section.
+Both initial failures and successful reruns are preserved as fixture-development
+evidence, not product failures or retried browser actions.
+
+Local config/locator/testing cases pass(2 tests,4.5s): isolated config, locator
+resolution, visible element/text/list assertions and five value types(textbox,
+checkbox,radio,combobox,slider), plus four explicit mismatch rejections. Initial
+locator expectation assumed semantic rewriting; pinned upstream correctly returns
+locator('#name') for the supplied CSS selector. The test now checks that contract;
+no upstream implementation changed. Evidence: original-network-routing-* and
+original-testing-capabilities-* under evidence/. Native confirmation remains pending.
