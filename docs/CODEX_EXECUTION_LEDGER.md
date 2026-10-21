@@ -2414,3 +2414,23 @@ Fresh165-file production-only Node22 package verification passes all installed
 smokes, including real original/batch/jobs endpoints, profiles and normal/lingering
 controller-death cleanup. Evidence: late-cancel-production.txt. This validates the
 local install; current Windows/macOS cancellation regressions remain native-pending.
+
+## HTTP error privacy and late-abort negative controls
+
+New real HTTP fixture covers401/403/404/418/429/500/503 navigation responses,
+requiring fixed failureKind/error/httpStatus, no completed/next action, no default
+retry and terminated/removed cleanup. Query, header, body and thrown-script
+canaries must be absent from both bounded summaries and persisted worker reports.
+A200 script executes a DOM marker then throws; explicit DOM assertion succeeds,
+confirming that a page script exception is not an HTTP navigation failure. No
+production network/error semantics change. Chromium/Firefox each pass on local
+Node20/22/24 (eight fresh executions each engine,16 each Node); WebKit and native
+validation remain pending. Independent read-only owned-process audits find zero
+survivors after each engine selection. Evidence: http-failure-privacy-node*.txt.
+
+Late-result cancellation tests now also abort after failed action/policy results;
+these must preserve the original failure reason rather than becoming cancelled.
+Full executor regression with these negative controls passes18/18 each
+Node20/22/24, zero skips/cancels. Lint passes.166-file dry pack includes the new
+HTTP fixture; latest165-file production install covers unchanged runtime code.
+These follow-up tests are not present in the running f485f1e native matrix.
