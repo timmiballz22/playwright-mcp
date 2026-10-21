@@ -2342,3 +2342,26 @@ MCP page budgets, profile diagnosis/contention/restore, jobs/controller/journal
 and regular/lingering parent-death smokes all pass. Windows PowerShell phase
 execution remains native-pending; local passing checks do not establish why CIM
 exceeded10s. Evidence: raw-runner-cim-production-final.txt.
+
+
+## Failure-only original-tool call progress
+
+Native46 wrapper failures are Firefox30s timeouts: Windows cookie operations;
+macOS trusted100-click close, large-DOM interaction and storage restore. Existing
+SDK disconnect errors can omit the pending tool. Test clients now track only
+versioned allowlisted tool names, monotonic durations and fixed outcome labels.
+At unexpected test failure, before teardown, emit at most four clients with four
+active and four recent calls each. No argument/result/error text, URL, path, PID,
+client name or source code enters the receipt; unknown tool names become
+unknown_tool. Calls preserve their original receiver, arguments, return values and
+exceptions. No extra MCP request or per-call I/O is added, and no production tool
+schema/backend or deadline changes.
+
+Two privacy/concurrent-bound tests pass each Node20/22/24. A controlled real SDK
+fixture intentionally exits with one failed test and confirms that its unknown
+name/argument canaries are absent from the emitted receipt; that temporary test
+is removed. This is expected fault evidence, not an ordinary suite PASS. Sixteen
+affected original Chromium/Firefox cases pass(41.3s), and a Node20 fixture/client
+loading cookie case passes.164-file dry pack includes both QA helper files; the
+last162-file production-only verification covers unchanged runtime entry points.
+Native progress receipt confirmation remains pending. Evidence: tool-progress-*.

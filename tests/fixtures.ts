@@ -23,6 +23,9 @@ import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { ListRootsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { TestServer } from './testserver/index';
+import { trackToolProgress } from '../local-batch/fixtures/tool-progress.mjs';
+
+const originalToolNames = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/evidence/discovery-chromium-extended.json'), 'utf8')).tools.map((tool: { name: string }) => tool.name));
 
 import type { Config } from '../config';
 import type { BrowserContext } from 'playwright';
@@ -76,6 +79,7 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
 
   startClient: async ({ mcpHeadless, mcpBrowser, mcpMode, mcpArgs }, use, testInfo) => {
     const clients: Client[] = [];
+    const progress: Array<() => unknown> = [];
 
     await use(async options => {
       const cwd = testInfo.outputPath();
@@ -93,6 +97,7 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
       }
 
       const client = new Client({ name: options?.clientName ?? 'test', version: '1.0.0' }, options?.roots ? { capabilities: { roots: {} } } : undefined);
+      progress.push(trackToolProgress(client, originalToolNames));
       if (options?.roots) {
         client.setRequestHandler(ListRootsRequestSchema, async request => {
           if (options.rootsResponseDelay)
@@ -115,7 +120,15 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
       return { client, stderr: () => stderrBuffer };
     });
 
-    await Promise.all(clients.map(client => client.close()));
+    try {
+      if (testInfo.status !== testInfo.expectedStatus) {
+        const receipt = JSON.stringify({ fixture: 'original_mcp_progress', clientCount: progress.length, clients: progress.slice(0, 4).map(snapshot => snapshot()) });
+        console.log(receipt);
+        if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Original MCP progress::' + receipt);
+      }
+    } finally {
+      await Promise.all(clients.map(client => client.close()));
+    }
   },
 
   wsEndpoint: async ({ }, use) => {
