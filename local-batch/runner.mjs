@@ -1,7 +1,8 @@
 // Local-only, declarative Playwright workflow engine. No shell execution or arbitrary JS evaluation.
 // Copyright 2026 contributors. Licensed under Apache-2.0, see ../LICENSE.
-import { mkdir, mkdtemp } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
+import { randomUUID } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
 import { ScreenshotBudget } from './screenshot-budget.mjs';
 import { allowedAddress, validateExecutionPolicy } from './policy.mjs';
@@ -221,7 +222,8 @@ export async function runWorkflow(workflow, {
   const results = [];
   try {
     await bounded(mkdir(artifactsDir, { recursive: true, mode: 0o700 }));
-    artifactsDir = await bounded(mkdtemp(path.join(artifactsDir, 'run-')));
+    artifactsDir = path.join(artifactsDir, 'run-' + randomUUID());
+    await bounded(mkdir(artifactsDir, { mode: 0o700 }));
     const playwright = suppliedPlaywright ?? await bounded(import('playwright'));
     const launchOptions = { headless: true, timeout: Math.max(1, spec.timeoutMs - (performance.now() - started)) };
     if (onBrowserProcess || typeof playwright[spec.browser].launchServer === 'function') {

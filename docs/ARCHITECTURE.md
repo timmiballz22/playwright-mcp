@@ -29,7 +29,9 @@ artifact base fails browser setup. The worker creates the temporary directory
 exclusively and waits for the supervisor's ownership ACK before browser launch.
 The supervisor removes only acknowledged temporary ownership; an existing or
 unacknowledged directory is retained and makes cleanup uncertain. The shorter
-layout is a candidate awaiting native public-job acceptance, not a broader disk
+layout alone still failed before browser launch. Run artifact allocation now
+uses exclusive UUID mkdir instead of mkdtemp under the deep artifact root; the
+joint candidate awaits native public-job acceptance. This adds no broader disk
 quota or managed-profile feature.
 
 The frontend and independent supervisor enforce a monotonic execution deadline,

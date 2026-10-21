@@ -255,3 +255,14 @@ pass; Docker and all four components pass. API-readable annotations confirm
 short private base65 completes2 actions; job artifact base214 fails setup, both
 with verified cleanup. Short-temp candidate now addresses that measured difference
 without moving journal/artifact data. Native fix confirmation is pending.
+
+Native148ccab showed short browser temp alone is insufficient: protected short
+artifact base succeeds, deep artifact base still fails even with short temp,
+and no launch-error witness exists. The runner allocates a child with mkdtemp
+before calling the browser provider. The joint candidate uses exclusive UUID
+mkdir for new artifact directories, preserving existing parent namespaces/keys.
+Windows component regression creates a deep owned path, records the legacy
+mkdtemp outcome as a fixed notice, then requires one successful fake-browser
+launch/action and a UUID directory. Native proof is pending. Local21 runner/
+ownership and seven real-temp/quota/config cases pass; fresh137-file package
+passes. No action/deadline assertion is relaxed.

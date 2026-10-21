@@ -6,6 +6,7 @@ import { promisify } from 'node:util';
 import { createHash, randomUUID } from 'node:crypto';
 import os from 'node:os';
 import path from 'node:path';
+import { runWorkflow } from '../runner.mjs';
 import { prepareWindowsJobDirectories } from './private-windows.mjs';
 const hash = value => createHash('sha256').update(value).digest('hex');
 const powershell = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
@@ -39,6 +40,26 @@ else {
       const fileAcl = await inspect(marker);
       assert.ok(fileAcl.rules.every(rule => [first.ownerSid, 'S-1-5-18'].includes(rule.sid) && rule.type === 'Allow'), 'Created files must inherit only private owner/System grants');
       assert.equal((await prepareWindowsJobDirectories({ base, projectRoot, ownerHash })).directory, first.directory);
+    } finally { await rm(root, { recursive: true, force: true }); }
+  });
+  test('Windows artifact allocation supports a deep owned path without relying on mkdtemp', { timeout: 15000 }, async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'artifact-long-'));
+    try {
+      const deep = path.join(root, 'a'.repeat(80), 'b'.repeat(80), 'c'.repeat(80));
+      await mkdir(deep, { recursive: true, mode: 0o700 });
+      let legacyCode = 'succeeded';
+      try { await mkdtemp(path.join(deep, 'legacy-run-')); }
+      catch (error) { legacyCode = /^[A-Z_]{1,30}$/.test(error.code ?? '') ? error.code : 'unknown'; }
+      if (process.env.GITHUB_ACTIONS === 'true') console.log('::notice title=Windows directory allocation::' + JSON.stringify({ characters: deep.length, legacyMkdtemp: legacyCode }));
+      let launches = 0; let clicks = 0;
+      const context = { setDefaultTimeout() {}, setDefaultNavigationTimeout() {}, route: async () => {}, newPage: async () => ({ locator: () => ({ click: async () => { clicks++; } }) }), close: async () => {} };
+      const result = await runWorkflow({ steps: [{ type: 'click', selector: 'button' }] }, { artifactsDir: deep,
+        playwright: { chromium: { launch: async () => { launches++; return { newContext: async () => context, close: async () => {} }; } } },
+      });
+      assert.equal(result.ok, true, JSON.stringify(result)); assert.equal(result.completed, 1);
+      assert.equal(launches, 1); assert.equal(clicks, 1);
+      const names = await readdir(deep);
+      assert.equal(names.filter(name => /^run-[0-9a-f-]{36}$/.test(name)).length, 1);
     } finally { await rm(root, { recursive: true, force: true }); }
   });
   test('unsafe existing ACLs and junctions fail closed without modifying outside state', { timeout: 30000 }, async () => {
