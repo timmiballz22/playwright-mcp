@@ -1,0 +1,184 @@
+TAP version 13
+# Subtest: abrupt execution-host death terminates its supervisor, worker and real browser
+ok 1 - abrupt execution-host death terminates its supervisor, worker and real browser
+  ---
+  duration_ms: 985.705296
+  type: 'test'
+  ...
+# Subtest: cleanup reserve cancellation is not erased by a late successful worker report
+ok 2 - cleanup reserve cancellation is not erased by a late successful worker report
+  ---
+  duration_ms: 3281.383358
+  type: 'test'
+  ...
+# Subtest: late cancellation after supervisor result preserves success outcome
+ok 3 - late cancellation after supervisor result preserves success outcome
+  ---
+  duration_ms: 146.306337
+  type: 'test'
+  ...
+# Subtest: late cancellation after supervisor result preserves blocked outcome
+ok 4 - late cancellation after supervisor result preserves blocked outcome
+  ---
+  duration_ms: 151.815565
+  type: 'test'
+  ...
+# Subtest: late cancellation after supervisor result preserves action outcome
+ok 5 - late cancellation after supervisor result preserves action outcome
+  ---
+  duration_ms: 154.49673
+  type: 'test'
+  ...
+# Subtest: supervised hang: bounded completion and owned process cleanup
+ok 6 - supervised hang: bounded completion and owned process cleanup
+  ---
+  duration_ms: 1957.650832
+  type: 'test'
+  ...
+# Subtest: supervised report-stall: bounded completion and owned process cleanup
+ok 7 - supervised report-stall: bounded completion and owned process cleanup
+  ---
+  duration_ms: 1962.73345
+  type: 'test'
+  ...
+# Subtest: supervised crash: bounded completion and owned process cleanup
+ok 8 - supervised crash: bounded completion and owned process cleanup
+  ---
+  duration_ms: 163.959264
+  type: 'test'
+  ...
+# Subtest: pre-cancelled execution never starts a worker
+ok 9 - pre-cancelled execution never starts a worker
+  ---
+  duration_ms: 1.166598
+  type: 'test'
+  ...
+# Subtest: cancel interrupts a worker that cannot service its abort listener
+ok 10 - cancel interrupts a worker that cannot service its abort listener
+  ---
+  duration_ms: 509.660693
+  type: 'test'
+  ...
+# Subtest: supervisor crash cannot strand its worker or detached child
+ok 11 - supervisor crash cannot strand its worker or detached child
+  ---
+  duration_ms: 306.784647
+  type: 'test'
+  ...
+# Subtest: cancellation between precheck and supervisor startup does not start a worker
+ok 12 - cancellation between precheck and supervisor startup does not start a worker
+  ---
+  duration_ms: 39.319558
+  type: 'test'
+  ...
+# Subtest: safe failure and lower-bound progress survive supervisor death without raw diagnostics
+ok 13 - safe failure and lower-bound progress survive supervisor death without raw diagnostics
+  ---
+  duration_ms: 315.102397
+  type: 'test'
+  ...
+# Subtest: verified cleanup recovery preserves success action outcome
+ok 14 - verified cleanup recovery preserves success action outcome
+  ---
+  duration_ms: 162.93483
+  type: 'test'
+  ...
+# Subtest: verified cleanup recovery preserves blocked action outcome
+ok 15 - verified cleanup recovery preserves blocked action outcome
+  ---
+  duration_ms: 150.437299
+  type: 'test'
+  ...
+# Subtest: verified cleanup recovery preserves action action outcome
+ok 16 - verified cleanup recovery preserves action action outcome
+  ---
+  duration_ms: 163.060585
+  type: 'test'
+  ...
+# Subtest: failed durable admission cannot start worker actions
+ok 17 - failed durable admission cannot start worker actions
+  ---
+  duration_ms: 71.418612
+  type: 'test'
+  ...
+# Subtest: stalled durable admission cannot evade watchdog deadline or start late
+ok 18 - stalled durable admission cannot evade watchdog deadline or start late
+  ---
+  duration_ms: 1615.485561
+  type: 'test'
+  ...
+# Subtest: successful durable admission precedes owned worker effects
+ok 19 - successful durable admission precedes owned worker effects
+  ---
+  duration_ms: 169.720904
+  type: 'test'
+  ...
+# Subtest: invalid termination roots remain rejected and emit only a fixed diagnostic
+ok 20 - invalid termination roots remain rejected and emit only a fixed diagnostic
+  ---
+  duration_ms: 1.481197
+  type: 'test'
+  ...
+# Subtest: diagnostic callback preserves bounded termination of an actually owned fork
+ok 21 - diagnostic callback preserves bounded termination of an actually owned fork
+  ---
+  duration_ms: 615.145915
+  type: 'test'
+  ...
+# Subtest: POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors
+ok 22 - POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors
+  ---
+  duration_ms: 0.543723
+  type: 'test'
+  ...
+# Subtest: POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors
+ok 23 - POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors
+  ---
+  duration_ms: 0.168866
+  type: 'test'
+  ...
+# Subtest: POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors
+ok 24 - POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors
+  ---
+  duration_ms: 0.477248
+  type: 'test'
+  ...
+# Subtest: POSIX signal diagnostic retains fixed already-gone result without raw errors
+ok 25 - POSIX signal diagnostic retains fixed already-gone result without raw errors
+  ---
+  duration_ms: 0.190391
+  type: 'test'
+  ...
+# Subtest: a root freeze ESRCH cannot authorize a later group signal or certify cleanup
+ok 26 - a root freeze ESRCH cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.531967
+  type: 'test'
+  ...
+# Subtest: a root freeze EPERM cannot authorize a later group signal or certify cleanup
+ok 27 - a root freeze EPERM cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.264316
+  type: 'test'
+  ...
+# Subtest: a root freeze EINVAL cannot authorize a later group signal or certify cleanup
+ok 28 - a root freeze EINVAL cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.436764
+  type: 'test'
+  ...
+# Subtest: a root freeze unknown error cannot authorize a later group signal or certify cleanup
+ok 29 - a root freeze unknown error cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.641789
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13112.16578

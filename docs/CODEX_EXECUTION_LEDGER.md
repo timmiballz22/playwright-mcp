@@ -25,7 +25,11 @@ retains debt. Focused24/24 Node22/24,22/22 Node20; components104/104 Node22/24;
 fresh175-file production install/death audits and Chromium/Firefox regression pass.
 Latest runtime100-cycle Linux Node22 soak:600 actions, every owned audit empty,
 FD24→24, RSS growth8,826,880 below32MiB. Partial browser FD visibility remains.
-These later changes are not in native63; next native verification is pending.
+These later changes are not in native63; native64 bf71fa8 runs the final-report
+guard and marked witness. A later local POSIX helper correction requires a
+confirmed freeze before worker-tree signals;29/29 each20/22/24,105 components
+each22/24 and production/death audits pass. This helper and94fdfde QA diagnostics
+are not in native64; next verification remains pending.
 
 **Not release-ready. NEXT ACTION: push the next candidate and inspect native64.**
 No PID filtering, hint-based fence release, action replay or raised budgets.
@@ -4330,3 +4334,29 @@ observes empty, and dual errors preserve both primary and teardown failures.
 Chromium/Firefox2/2 local pass. This does not resolve native63's four processes
 or native61's screenshot observations; Windows/WebKit proof remains pending.
 Native64 does not contain these later QA diagnostics.
+
+## Require a confirmed worker freeze — local after94fdfde
+
+A safe signal-interception model shows that SIGSTOP/ESRCH for an allegedly live
+worker was treated as success, followed by SIGKILL of its numeric group and a
+cleaned:true result. No actual unrelated process or OS PID reuse is exercised.
+After an absent root, these later operations lack a confirmed frozen-worker
+anchor. First model6/7 pass,1 fail; expanded model6/10,4 fail for ESRCH, EPERM,
+EINVAL and unknown stop failures (all intercepted, no real signal targets).
+
+The helper now distinguishes already-gone from a successfully delivered freeze.
+Only a confirmed SIGSTOP authorizes worker ancestry enumeration and the worker
+group kill. Failed freeze leaves existing worker_stop_failed and cleanup:false;
+known reported browser-group handling is unchanged. Existing fixed first error
+class,2s termination ceiling, no retry/broader signal, eight-entry journal cap
+and conservative admission fencing remain. This is not universal process-birth
+or PID-reuse proof and does not resolve native possible-orphan observations.
+
+Focused29/29 each Node20/22/24 includes actual owned-child death, abrupt host
+death, stalled workers and late-report/cancellation controls. Real Chromium/Firefox deadlines2/2, full components105/105 each22/24 and
+fresh175-file production install/death audits (owned0) pass. Final signal
+receipts10/10 each20/22/24 follow the logging-only addition: old ESRCH control
+returns cleaned:true/groupSignals1, new controls all cleaned:false/groupSignals0.
+All individual summaries/counts are separately verified; no failed/skipped or
+cancelled test is accepted. Lint/diff pass. missing-freeze-* retains phases. Native64 bf71fa8 does not include this
+helper correction or94fdfde's later QA diagnostics.

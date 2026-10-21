@@ -1,0 +1,37 @@
+✔ abrupt execution-host death terminates its supervisor, worker and real browser (931.974123ms)
+✔ cleanup reserve cancellation is not erased by a late successful worker report (3270.693067ms)
+✔ late cancellation after supervisor result preserves success outcome (135.365608ms)
+✔ late cancellation after supervisor result preserves blocked outcome (122.76909ms)
+✔ late cancellation after supervisor result preserves action outcome (122.883335ms)
+✔ supervised hang: bounded completion and owned process cleanup (1969.942729ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1952.354901ms)
+✔ supervised crash: bounded completion and owned process cleanup (82.77611ms)
+✔ pre-cancelled execution never starts a worker (0.628766ms)
+✔ cancel interrupts a worker that cannot service its abort listener (494.870281ms)
+✔ supervisor crash cannot strand its worker or detached child (268.492534ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (37.781366ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (293.519786ms)
+✔ verified cleanup recovery preserves success action outcome (124.469016ms)
+✔ verified cleanup recovery preserves blocked action outcome (119.692231ms)
+✔ verified cleanup recovery preserves action action outcome (137.009557ms)
+✔ failed durable admission cannot start worker actions (74.811077ms)
+✔ stalled durable admission cannot evade watchdog deadline or start late (1619.562038ms)
+✔ successful durable admission precedes owned worker effects (150.622141ms)
+✔ invalid termination roots remain rejected and emit only a fixed diagnostic (1.632589ms)
+✔ diagnostic callback preserves bounded termination of an actually owned fork (588.610577ms)
+✔ POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors (0.852004ms)
+✔ POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors (0.247502ms)
+✔ POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors (0.229177ms)
+✔ POSIX signal diagnostic retains fixed already-gone result without raw errors (0.246169ms)
+✔ a root freeze ESRCH cannot authorize a later group signal or certify cleanup (0.404779ms)
+✔ a root freeze EPERM cannot authorize a later group signal or certify cleanup (0.296936ms)
+✔ a root freeze EINVAL cannot authorize a later group signal or certify cleanup (0.441ms)
+✔ a root freeze unknown error cannot authorize a later group signal or certify cleanup (0.317557ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12693.602935

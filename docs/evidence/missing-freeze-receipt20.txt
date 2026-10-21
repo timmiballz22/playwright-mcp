@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: invalid termination roots remain rejected and emit only a fixed diagnostic
+ok 1 - invalid termination roots remain rejected and emit only a fixed diagnostic
+  ---
+  duration_ms: 1.903534
+  ...
+# {"fixture":"worker_freeze_authority","stop":"ESRCH","cleaned":false,"groupSignals":0,"failures":["worker_stop_failed"]}
+# {"fixture":"worker_freeze_authority","stop":"EPERM","cleaned":false,"groupSignals":0,"failures":["signal_permission_denied","worker_stop_failed"]}
+# {"fixture":"worker_freeze_authority","stop":"EINVAL","cleaned":false,"groupSignals":0,"failures":["signal_invalid_argument","worker_stop_failed"]}
+# {"fixture":"worker_freeze_authority","stop":"unknown","cleaned":false,"groupSignals":0,"failures":["signal_unknown_error","worker_stop_failed"]}
+# Subtest: diagnostic callback preserves bounded termination of an actually owned fork
+ok 2 - diagnostic callback preserves bounded termination of an actually owned fork
+  ---
+  duration_ms: 547.247813
+  ...
+# Subtest: POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors
+ok 3 - POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors
+  ---
+  duration_ms: 0.523264
+  ...
+# Subtest: POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors
+ok 4 - POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors
+  ---
+  duration_ms: 0.228532
+  ...
+# Subtest: POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors
+ok 5 - POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors
+  ---
+  duration_ms: 0.122787
+  ...
+# Subtest: POSIX signal diagnostic retains fixed already-gone result without raw errors
+ok 6 - POSIX signal diagnostic retains fixed already-gone result without raw errors
+  ---
+  duration_ms: 0.094859
+  ...
+# Subtest: a root freeze ESRCH cannot authorize a later group signal or certify cleanup
+ok 7 - a root freeze ESRCH cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.776762
+  ...
+# Subtest: a root freeze EPERM cannot authorize a later group signal or certify cleanup
+ok 8 - a root freeze EPERM cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.536727
+  ...
+# Subtest: a root freeze EINVAL cannot authorize a later group signal or certify cleanup
+ok 9 - a root freeze EINVAL cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.498519
+  ...
+# Subtest: a root freeze unknown error cannot authorize a later group signal or certify cleanup
+ok 10 - a root freeze unknown error cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.499727
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 635.401498

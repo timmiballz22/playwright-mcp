@@ -7,19 +7,19 @@ import path from 'node:path';
 const exec = promisify(execFile);
 export { TERMINATION_FAILURE_CODES } from './failure.mjs';
 const validPid = pid => Number.isSafeInteger(pid) && pid > 1 && pid !== process.pid;
-function signal(pid, name, onFailure) {
+function signal(pid, name, onFailure, onGone) {
   try { process.kill(pid, name); return true; }
-  catch (error) { if (error?.code === 'ESRCH') return true; onFailure?.(error?.code); return false; }
+  catch (error) { if (error?.code === 'ESRCH') { onGone?.(); return true; } onFailure?.(error?.code); return false; }
 }
 
 export async function terminateOwnedProcesses(rootPid, browserPids = [], rootRunning = true, onDiagnostic) {
   const note = code => { try { onDiagnostic?.(code); } catch {} };
   let signalDetailReported = false;
-  const ownedSignal = (pid, name) => signal(pid, name, code => {
+  const ownedSignal = (pid, name, onGone) => signal(pid, name, code => {
     if (signalDetailReported) return;
     signalDetailReported = true;
     note(['EPERM', 'EACCES'].includes(code) ? 'signal_permission_denied' : code === 'EINVAL' ? 'signal_invalid_argument' : 'signal_unknown_error');
-  });
+  }, onGone);
   const checked = (ok, code) => { if (!ok) note(code); return ok; };
   if (!validPid(rootPid)) { note('invalid_root'); return false; }
   const owned = new Set(browserPids.filter(validPid));
@@ -41,32 +41,39 @@ export async function terminateOwnedProcesses(rootPid, browserPids = [], rootRun
   }
   const groups = new Set(owned);
   const individual = new Set();
+  let frozen = false;
   if (rootRunning) {
     // Freeze the worker before enumerating launch-time children. Playwright
     // creates its own detached browser groups (pinned processLauncher).
-    ok = checked(ownedSignal(rootPid, 'SIGSTOP'), 'worker_stop_failed') && ok;
-    groups.add(rootPid); // our fork is detached, so its PGID is its PID
-    try {
-      const { stdout } = await exec('/bin/ps', ['-A', '-o', 'pid=,ppid=,pgid='], { timeout: commandTimeout(), maxBuffer: 1048576 });
-      const rows = stdout.trim().split('\n').map(line => line.trim().split(/\s+/).map(Number))
-        .filter(row => row.length === 3 && row.every(Number.isSafeInteger));
-      const descendants = new Set([rootPid]);
-      let previous;
-      do {
-        previous = descendants.size;
-        for (const [pid, ppid] of rows) if (descendants.has(ppid)) descendants.add(pid);
-      } while (previous !== descendants.size);
-      for (const [pid, , pgid] of rows) {
-        if (!descendants.has(pid)) continue;
-        verify.add(pid);
-        if (descendants.has(pgid)) groups.add(pgid);
-        else individual.add(pid); // never kill an unrelated containing group
-      }
-    } catch { ok = false; note('enumeration_failed'); }
+    let gone = false;
+    frozen = ownedSignal(rootPid, 'SIGSTOP', () => { gone = true; }) && !gone;
+    ok = checked(frozen, 'worker_stop_failed') && ok;
+    // ESRCH is not a successful freeze. Keep uncertainty rather than use
+    // an unfrozen worker PID as authority for tree/group operations.
+    if (frozen) {
+      groups.add(rootPid); // our fork is detached, so its PGID is its PID
+      try {
+        const { stdout } = await exec('/bin/ps', ['-A', '-o', 'pid=,ppid=,pgid='], { timeout: commandTimeout(), maxBuffer: 1048576 });
+        const rows = stdout.trim().split('\n').map(line => line.trim().split(/\s+/).map(Number))
+          .filter(row => row.length === 3 && row.every(Number.isSafeInteger));
+        const descendants = new Set([rootPid]);
+        let previous;
+        do {
+          previous = descendants.size;
+          for (const [pid, ppid] of rows) if (descendants.has(ppid)) descendants.add(pid);
+        } while (previous !== descendants.size);
+        for (const [pid, , pgid] of rows) {
+          if (!descendants.has(pid)) continue;
+          verify.add(pid);
+          if (descendants.has(pgid)) groups.add(pgid);
+          else individual.add(pid); // never kill an unrelated containing group
+        }
+      } catch { ok = false; note('enumeration_failed'); }
+    }
   }
   for (const pid of individual) ok = checked(ownedSignal(pid, 'SIGKILL'), 'descendant_signal_failed') && ok;
   for (const pid of [...groups].filter(pid => pid !== rootPid)) ok = checked(ownedSignal(-pid, 'SIGKILL'), 'browser_group_signal_failed') && ok;
-  if (rootRunning) ok = checked(ownedSignal(-rootPid, 'SIGKILL'), 'worker_group_signal_failed') && ok;
+  if (frozen) ok = checked(ownedSignal(-rootPid, 'SIGKILL'), 'worker_group_signal_failed') && ok;
   return checked(await waitStopped(verify, end), 'wait_timeout') && ok;
 }
 

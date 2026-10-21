@@ -23,8 +23,12 @@ empty, FD24→24, RSS growth8,826,880<32MiB; browser FD visibility remains parti
 The local marked-fetch witness observes each public fetch call and a committed
 private POST with no response. Chromium/Firefox pass; deliberate duplicate-POST
 control fails on count2. No production replay fix or default transport change is
-claimed. Neither this witness nor76b6bca is in native63; next native verification
-is pending. Exact phases/receipts and G00–G18: CODEX_EXECUTION_LEDGER.md.
+claimed. Neither this witness nor76b6bca is in native63; native64 bf71fa8 is running.
+A later local POSIX helper requires confirmed SIGSTOP before worker-tree
+enumeration/group kill; intercepted missing/failed freeze controls retain
+worker_stop_failed rather than signal that group.29/29 each20/22/24,105 component
+cases each22/24 and production/death audits pass; native proof is pending.
+Later QA also retains bounded pre-readiness diagnostics and page-audit receipts. Exact phases/receipts and G00–G18: CODEX_EXECUTION_LEDGER.md.
 
 The following records are historical checkpoints.
 

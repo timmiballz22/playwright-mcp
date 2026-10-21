@@ -1,0 +1,120 @@
+✔ invalid termination roots remain rejected and emit only a fixed diagnostic (2.170912ms)
+✔ diagnostic callback preserves bounded termination of an actually owned fork (597.866732ms)
+✔ POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors (0.656812ms)
+✔ POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors (0.13716ms)
+✔ POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors (0.33972ms)
+✔ POSIX signal diagnostic retains fixed already-gone result without raw errors (0.261556ms)
+✖ a root freeze ESRCH cannot authorize a later group signal or certify cleanup (188.08351ms)
+✖ a root freeze EPERM cannot authorize a later group signal or certify cleanup (183.936221ms)
+✖ a root freeze EINVAL cannot authorize a later group signal or certify cleanup (174.729671ms)
+✖ a root freeze unknown error cannot authorize a later group signal or certify cleanup (181.15716ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 6
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1415.006679
+
+✖ failing tests:
+
+test at local-batch/process-tree.test.mjs:39:209
+✖ a root freeze ESRCH cannot authorize a later group signal or certify cleanup (188.08351ms)
+  AssertionError [ERR_ASSERTION]: Missing root must not authorize a process-group signal
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'SIGKILL',
+  +     pid: -2147483646
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:47:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { pid: -2147483646, name: 'SIGKILL' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/process-tree.test.mjs:39:209
+✖ a root freeze EPERM cannot authorize a later group signal or certify cleanup (183.936221ms)
+  AssertionError [ERR_ASSERTION]: Missing root must not authorize a process-group signal
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'SIGKILL',
+  +     pid: -2147483646
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:47:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { pid: -2147483646, name: 'SIGKILL' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/process-tree.test.mjs:39:209
+✖ a root freeze EINVAL cannot authorize a later group signal or certify cleanup (174.729671ms)
+  AssertionError [ERR_ASSERTION]: Missing root must not authorize a process-group signal
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'SIGKILL',
+  +     pid: -2147483646
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:47:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { pid: -2147483646, name: 'SIGKILL' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/process-tree.test.mjs:39:209
+✖ a root freeze unknown error cannot authorize a later group signal or certify cleanup (181.15716ms)
+  AssertionError [ERR_ASSERTION]: Missing root must not authorize a process-group signal
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'SIGKILL',
+  +     pid: -2147483646
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:47:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { pid: -2147483646, name: 'SIGKILL' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

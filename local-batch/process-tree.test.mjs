@@ -35,3 +35,19 @@ if (process.platform !== 'win32') for (const [errorCode, detail] of [['EPERM', '
     } finally { process.kill = original; }
   });
 }
+
+if (process.platform !== 'win32') for (const [stopCode, detail] of [['ESRCH', null], ['EPERM', 'signal_permission_denied'], ['EINVAL', 'signal_invalid_argument'], ['PRIVATE_CANARY', 'signal_unknown_error']]) test(`a root freeze ${stopCode === 'PRIVATE_CANARY' ? 'unknown error' : stopCode} cannot authorize a later group signal or certify cleanup`, async () => {
+  const original = process.kill; const signals = []; const events = [];
+  process.kill = (pid, name) => {
+    signals.push({ pid, name });
+    if (name === 'SIGSTOP' || name === 0) throw Object.assign(new Error('private-missing-root-canary'), { code: name === 0 ? 'ESRCH' : stopCode });
+  };
+  try {
+    const ok = await terminateOwnedProcesses(2147483646, [], true, code => events.push(code));
+    console.log(JSON.stringify({ fixture: 'worker_freeze_authority', stop: stopCode === 'PRIVATE_CANARY' ? 'unknown' : stopCode, cleaned: ok, groupSignals: signals.filter(call => call.pid < 0).length, failures: events }));
+    assert.deepEqual(signals.filter(call => call.pid < 0), [], 'Missing root must not authorize a process-group signal');
+    assert.equal(ok, false);
+    assert.deepEqual(events, [...(detail ? [detail] : []), 'worker_stop_failed']);
+    assert.equal(JSON.stringify(events).includes('canary'), false);
+  } finally { process.kill = original; }
+});

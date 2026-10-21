@@ -103,8 +103,12 @@ Termination diagnostics retain an eight-entry maximum independently of the error
 code inventory. At most one first signal-error class supplements the existing
 failure category: `signal_permission_denied` (EPERM/EACCES),
 `signal_invalid_argument` (EINVAL), or `signal_unknown_error` (other failures).
-No raw error message/code is returned. ESRCH retains its existing already-gone
-handling. None of these observations grants permission to release an uncertain
+No raw error message/code is returned. ESRCH retains already-gone handling for
+ordinary termination signals, but is not proof that a worker freeze succeeded.
+Worker-tree enumeration and worker-group SIGKILL require a successful SIGSTOP;
+a failed/missing freeze keeps worker_stop_failed and cleanup uncertainty. Already
+reported browser groups keep their existing handling. None of these observations
+grants permission to release an uncertain
 lease, retry a signal with broader authority, or replay workflow actions.
 `browser_ownership_unconfirmed` marks a started worker exit without a browser
 ownership receipt when either its final report is absent or a launch attempt was
