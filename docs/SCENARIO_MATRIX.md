@@ -1,14 +1,15 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Latest completed native c7ae948 has704 test passes/one failure plus a
-Windows installed-package verification failure before its browser suite. All68
-original wrapper tests passed on each OS, including profile contention/restore,
-keyboard/media and upload/frame fixtures; Docker passed2/2. Legacy Windows
-Node20 Firefox direct-pipe still failed. The next candidate's creation-time
-process audit and unwired ACL prototype await native confirmation. Last full
-green remains d71c91e(469). Earlier failures remain retained. OPEN means no
-adequate proof; PARTIAL means required work remains.
+PASS. Latest completed native9e1371e has807 passes/six failures: three
+Windows Firefox raw loops, macOS synchronous1,000-action deadline after987
+confirmed actions, and two Windows ACL test-inspector module-load failures.
+All68 original tests per OS, Docker and installed production checks passed,
+including creation-time-aware Windows profile process auditing. Windows public
+jobs remain disabled pending independent ACL acceptance. New popup/network/
+encoded-origin/crash/frozen-page fixtures await native coverage. Last full green
+remains d71c91e(469); earlier failures are retained. OPEN means no adequate proof;
+PARTIAL means required work remains.
 
 | # | Scenario | Status and concrete evidence / gap |
 |---|---|---|
@@ -31,7 +32,7 @@ adequate proof; PARTIAL means required work remains.
 | 17 | Invalid/extra/empty/oversized input | Verified strict validation, empty fill operator fixture, 1 MiB file limit and SDK 10 MiB frame guard/shutdown tests; not a general fuzzing proof. |
 | 18 | Approved-to-denied redirect | Verified real Chromium/Firefox/WebKit CI fixtures. All redirects are rejected, including same-origin. |
 | 19 | Unknown localhost port | Verified exact-origin unit policy and real redirect-to-denied-port hit counter. |
-| 20 | Credentials, IPv6, encodings, file URLs | PARTIAL: credentials/file/unknown IPv6 loopback covered; complete encoding/canonicalization adversarial matrix remains. |
+| 20 | Credentials, IPv6, encodings, file URLs | PARTIAL: credentials/file/unknown IPv6 loopback covered; decimal/hex/octal/short/percent-encoded localhost alias controls pass real Chromium/Firefox and cannot cross an unapproved port; native new fixture, full IPv6/encoding adversarial matrix and DNS controls remain. |
 | 21 | Upload symlink escape | PARTIAL: original upload outside/symlink/junction negatives passed all native browsers at 9e73a08; earlier macOS modal timeout remains unexplained. Companion has no upload action. |
 | 22 | Popup/iframe/WebSocket policy | PARTIAL: iframe and WebSocket zero-hit fixtures pass; popup approved/denied positive-control fixtures pass local Chromium/Firefox; native WebKit confirmation remains. |
 | 23 | Service worker limitation | PARTIAL: dedicated Chromium fixture proves approved positive control registers and reaches its target; strict runtime requests neither worker script nor target, verifies cleanup. Other engines and native new fixture remain pending. |

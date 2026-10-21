@@ -10,10 +10,10 @@ import { prepareWindowsJobDirectories } from './private-windows.mjs';
 const hash = value => createHash('sha256').update(value).digest('hex');
 const powershell = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
 async function inspect(directory, widen = false) {
-  const script = `[Console]::OutputEncoding=[Text.UTF8Encoding]::new($false);$ErrorActionPreference='Stop';$p=$env:OWNED_ACL_FIXTURE;$a=Get-Acl -LiteralPath $p;
-  if($env:OWNED_ACL_WIDEN -eq '1'){$r=[Security.AccessControl.FileSystemAccessRule]::new([Security.Principal.SecurityIdentifier]::new('S-1-5-32-545'),[Security.AccessControl.FileSystemRights]::ReadAndExecute,[Security.AccessControl.InheritanceFlags]'ContainerInherit,ObjectInherit',[Security.AccessControl.PropagationFlags]::None,[Security.AccessControl.AccessControlType]::Allow);$a.AddAccessRule($r);Set-Acl -LiteralPath $p -AclObject $a;$a=Get-Acl -LiteralPath $p};
+  const script = `[Console]::OutputEncoding=[Text.UTF8Encoding]::new($false);$ErrorActionPreference='Stop';$p=$env:OWNED_ACL_FIXTURE;$directory=([IO.File]::GetAttributes($p) -band [IO.FileAttributes]::Directory) -ne 0;$a=if($directory){[IO.Directory]::GetAccessControl($p)}else{[IO.File]::GetAccessControl($p)};
+  if($env:OWNED_ACL_WIDEN -eq '1'){$r=[Security.AccessControl.FileSystemAccessRule]::new([Security.Principal.SecurityIdentifier]::new('S-1-5-32-545'),[Security.AccessControl.FileSystemRights]::ReadAndExecute,[Security.AccessControl.InheritanceFlags]'ContainerInherit,ObjectInherit',[Security.AccessControl.PropagationFlags]::None,[Security.AccessControl.AccessControlType]::Allow);$a.AddAccessRule($r);[IO.Directory]::SetAccessControl($p,$a);$a=[IO.Directory]::GetAccessControl($p)};
   $rules=@($a.GetAccessRules($true,$true,[Security.Principal.SecurityIdentifier])|ForEach-Object{@{sid=$_.IdentityReference.Value;type=$_.AccessControlType.ToString()}});
-  [Console]::WriteLine((@{owner=$a.GetOwner([Security.Principal.SecurityIdentifier]).Value;protected=$a.AreAccessRulesProtected;rules=$rules;sddl=$a.Sddl}|ConvertTo-Json -Compress -Depth 5))`;
+  [Console]::WriteLine((@{owner=$a.GetOwner([Security.Principal.SecurityIdentifier]).Value;protected=$a.AreAccessRulesProtected;rules=$rules;sddl=$a.GetSecurityDescriptorSddlForm([Security.AccessControl.AccessControlSections]::All)}|ConvertTo-Json -Compress -Depth 5))`;
   const { stdout } = await promisify(execFile)(powershell, ['-NoProfile', '-NonInteractive', '-Command', script], { timeout: 10000, maxBuffer: 65536, windowsHide: true, env: { ...process.env, OWNED_ACL_FIXTURE: directory, OWNED_ACL_WIDEN: widen ? '1' : '0' } });
   return JSON.parse(stdout);
 }

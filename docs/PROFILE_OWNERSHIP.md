@@ -47,4 +47,4 @@ Firefox profile restore/lock plus library/discovery regression; fresh production
 package handshake and persistent-profile smoke. Native c7ae948 passed the strict original profile fixture on Chromium,
 Firefox and WebKit across all three OSs. The installed Windows process audit
 failed separately; creation-time tracking now passes its installed smoke in the
-ongoing9e1371e run, whose complete result is still pending.
+completed9e1371e run; its unrelated failures remain recorded in the ledger.

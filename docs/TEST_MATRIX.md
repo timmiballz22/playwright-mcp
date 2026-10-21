@@ -94,3 +94,19 @@ that report supports this separate failure-mode test, not a diagnosis of our
 Windows simple-click Firefox stall. Issue34586 involved concurrent contexts and
 was closed after an older Firefox roll; our fixture has one context per fresh
 browser. No launch, graphics, security or driver settings were changed.
+
+Native9e1371e:807 pass/six fail (wrapper210/2, batch597/4), zero test skips/
+cancellations. All original68 per OS, Docker and installed packages pass.
+Windows installed profile audit now passes; its former numeric-parent false
+ownership case is addressed by live creation-time identity evidence. Windows
+ACL helper creation/namespace calls succeeded, but independent Get-Acl could not
+load Microsoft.PowerShell.Security. Test inspector is changed to direct .NET
+ACL reads/writes of owned fixtures; no policy bypass or runtime ACL relaxation.
+Three Windows raw Firefox loops still fail. macOS synchronous1,000-action MCP
+expires with987 confirmed actions and verified cleanup; raw1,000-action fixture
+passes in113.5s. Deadlines/assertions are retained, no failed input replayed.
+
+encoded-origin.test.mjs approves a localhost target for six browser-canonical
+aliases (normal, integer, hexadecimal, octal, shortened and percent-encoded),
+then repeats with that port denied: all fetches settle, denied effect count is
+zero, cleanup is verified. Local Chromium/Firefox pass; WebKit/native pending.

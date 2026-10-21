@@ -1,19 +1,22 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `c7ae948`: **704 test passes, one test failure**, zero
-test skips/cancellations, plus a Windows installed-package verification failure.
-Wrapper run39540474669 passed211/failed1: all68 original tests passed on each
-OS and Docker passed2/2; legacy Windows Node20 Firefox direct-pipe still stalled.
-Batch run39540476877 passed493/failed0 tests; Windows installed-profile process
-auditing failed before its browser suite ran. Its numeric-parent audit reported
-many unrelated-looking system PIDs; process leakage versus PID reuse was not
-established by that output. Current candidate records creation-time identities
-while owned roots are live, with synthetic orphan/reuse regressions and local
-real Chromium proof; native verification is pending. The Windows ACL helper is
-an unwired prototype with native tests, not public Windows jobs support.
-Screenshot byte budgets and read-only recovery passed where executed. Last full
-green remains d71c91e. Full quotas/retention, Windows driver/ACLs, managed profile
-recovery, DNS/OS egress and other gates still block release.
+Latest completed native `9e1371e`: **807 passed/six failed**, zero test
+skips/cancellations. Wrapper39542770264:210/2; batch39542770274:597/4.
+All68 original tests per OS, Docker2/2 and installed production package checks
+passed. Creation-time process identity tracking fixes the previously failing
+Windows installed profile audit without dropping orphan checks. Three failures
+remain in Windows raw Firefox fresh-browser loops (Node20 headless/headed and
+Node22 headless); direct pipe passed this run but failed earlier. macOS synchronous
+1,000-action MCP hit its unchanged deadline after987 confirmed actions; its raw
+1,000-action fixture passed in113.5s. Two Windows ACL tests failed in the separate
+Get-Acl inspector's module loading, after helper creation/namespace calls succeeded.
+The test inspector now uses public .NET ACL APIs directly, without changing any
+execution policy or runtime ACL checks; native proof remains pending and Windows
+public jobs stay disabled. New popup/encoded-origin positive controls, original
+network/console behavior, real screenshot crash and frozen-page deadline fixtures
+pass scoped Linux checks and await native confirmation. Last full green remains
+d71c91e. Full quotas/retention, Windows driver/ACLs, managed profile recovery,
+DNS/OS egress and other gates still block release.
 
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
