@@ -1,14 +1,26 @@
 # Execution report — verified milestone, incomplete mission
 
-Current candidate `94d7cd4` has a newly observed Windows actual-Codex primary job
-CRASHED after both servers reached ready; its startup SDK/helper controls pass.
-Final native run results are unavailable because subsequent GitHub requests return
-HTTP401. The completed-run counts below remain historical, not current-candidate
-success. Local sanitized guardian diagnostics pass16 tests and an actual Codex
-1,000-action check, but have no Windows validation yet. See execution ledger.
+Latest completed native `94d7cd4`: **999 tests passed/five failed**, zero test
+skips/cancellations. Wrapper39568334026:278/3; batch39568334110:721/2. All five
+test failures are Windows Firefox: original iframe/large-DOM/network-console
+cases, supervised20-click workflow and429 navigation. Separately, Windows actual
+Codex startup/discovery succeeded but its primary job ended CRASHED without a
+result; Linux36.789s/macOS75.579s actual Codex1,000-action checks pass.
+
+The matched raw Firefox probe passes ten fresh runs/230 actions each with logging
+off/on on Windows, zero owned survivors. The passing logged case still records
+removeProgressListener. This narrows evidence but does not identify the failure
+cause: private temp storage, process observation and workload differ. Strict
+failing cases remain. Installed143-file packages pass all native OSs; Windows
+startup SDK/helper controls pass. GitHub's temporary401 outage is resolved.
+Local follow-ups add sanitized guardian diagnostics, verify their146-file production
+package, measure the released official CLI, and verify100 fresh cookie/localStorage
+runs plus witnessed navigation deadline. These follow-ups await native validation.
+Evidence: `evidence/worker-ci-thirtyeighth-*-tests.txt` and
+`evidence/worker-ci-thirtyeighth-counts.jsonl`. **Not release-ready.**
 
 
-Latest completed native `fd9d074`: **1,002 tests passed,five failed**, zero test
+Previous completed native `fd9d074`: **1,002 tests passed,five failed**, zero test
 skips/cancellations. Wrapper39564493704:282/2; batch39564493658:720/3. All five
 failures are Windows Firefox: raw Node22 headless/headed,429 fixture,and two
 legacy Node20 modes. All92 original cases per OS pass, including100 fast clicks
