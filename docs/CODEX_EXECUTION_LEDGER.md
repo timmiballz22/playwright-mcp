@@ -1657,3 +1657,20 @@ journal smokes and real controller-SIGKILL cleanup(12 observed owned processes,
 zero survivors, lease released, SQLite integrity). Final tarball146 files.
 Evidence: `evidence/guardian-diagnostic-production-package.txt`. Native package
 verification remains pending; this does not resolve the Windows Codex crash.
+
+
+## Public queued screenshot ownership and deletion acceptance
+
+New jobs-screenshot-ownership.test.mjs uses two real stdio owners on one canonical
+project, starts both workflows concurrently, and requires both three-action jobs
+to succeed. Private owner artifact roots and execution IDs differ. Each produces
+one valid PNG from a distinct red/blue fixture; SHA256 values differ. Cross-owner
+status/cleanup requests return not_found. OwnerA cleanup deletes its image while
+OwnerB's bytes remain identical; OwnerA's duplicate request still returns the
+original ID after cleanup, and OwnerB's list contains only its own job. OwnerB then
+cleans its own artifacts. Independent post-close process audits require zero
+owned survivors. Local Linux Node22 and24 each pass(one test,3.066/2.878s).
+Evidence: `evidence/jobs-screenshot-ownership-node22.txt` and
+`evidence/jobs-screenshot-ownership-node24.txt`. This is same-OS-user trusted-client
+isolation, not protection from a hostile process sharing that OS identity. Native
+confirmation and automatic retention remain open; no runtime/policy change.
