@@ -1,6 +1,6 @@
 // Per-run screenshot bytes only. Report/history quotas and browser-memory caps
 // are separate. Caller owns a private unique run directory and ordered indices.
-import { lstat, open, rename, rm } from 'node:fs/promises';
+import { lstat, open, link, rm } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
 export const DEFAULT_SCREENSHOT_BYTES = 16777216;
@@ -34,7 +34,10 @@ export class ScreenshotBudget {
       file = await open(temporary, 'wx', 0o600); created = true;
       await file.writeFile(bytes); await file.close(); file = undefined;
       if (!canPublish()) throw failure('ARTIFACT_CANCELLED');
-      await rename(temporary, target);
+      // Atomic create-if-absent: rename would replace a target created while
+      // capture or file I/O was pending. Both names are in this private directory.
+      try { await link(temporary, target); }
+      catch (error) { if (error.code === 'EEXIST') throw failure('ARTIFACT_COLLISION'); throw error; }
     } finally {
       await file?.close().catch(() => {});
       if (created) await rm(temporary, { force: true });

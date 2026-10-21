@@ -2,13 +2,17 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { syncBuiltinESMExports } from 'node:module';
-const writeFile = fs.writeFile;
-fs.writeFile = async (file, data, options) => {
-  if (/^\.?run-[0-9a-f-]+\.(json|tmp)$/.test(path.basename(String(file)))) {
-    await writeFile(file, '{"partial":', options);
-    throw Object.assign(new Error('fake-report-secret-never-expose'), { code: 'ENOSPC' });
+const open = fs.open;
+fs.open = async (filename, ...args) => {
+  const file = await open(filename, ...args);
+  if (/^\.?run-[0-9a-f-]+\.(json|tmp)$/.test(path.basename(String(filename)))) {
+    const writeFile = file.writeFile.bind(file);
+    file.writeFile = async () => {
+      await writeFile('{"partial":');
+      throw Object.assign(new Error('fake-report-secret-never-expose'), { code: 'ENOSPC' });
+    };
   }
-  return writeFile(file, data, options);
+  return file;
 };
 syncBuiltinESMExports();
 await import('../execution-worker.mjs');

@@ -1,5 +1,5 @@
 // Copyright 2026 contributors. Apache-2.0 license.
-import { mkdir, writeFile, rename, rm } from 'node:fs/promises';
+import { mkdir, open, link, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 
@@ -9,11 +9,15 @@ export async function saveReport(result, artifactsDir) {
   const id = randomUUID();
   const reportPath = path.join(artifactsDir, 'run-' + id + '.json');
   const temporary = path.join(artifactsDir, '.run-' + id + '.tmp');
+  let created = false;
   try {
-    await writeFile(temporary, JSON.stringify(result, null, 2) + '\n', { mode: 0o600, flag: 'wx' });
-    await rename(temporary, reportPath);
+    const file = await open(temporary, 'wx', 0o600); created = true;
+    try { await file.writeFile(JSON.stringify(result, null, 2) + '\n'); }
+    finally { await file.close(); }
+    // Publish atomically without replacing a target that appeared during I/O.
+    await link(temporary, reportPath);
   } finally {
-    await rm(temporary, { force: true });
+    if (created) await rm(temporary, { force: true });
   }
   const { results, ...summary } = result;
   return {

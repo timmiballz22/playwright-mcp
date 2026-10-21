@@ -31,3 +31,30 @@ test('cancellation after image capture cannot publish a late screenshot or leave
     assert.equal(parseScreenshotLimit('0'), 0);
   } finally { await rm(directory, { recursive: true, force: true }); }
 });
+
+test('a target created during capture is never overwritten by publication', async () => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'screenshot-race-'));
+  const target = path.join(directory, 'owned.png');
+  try {
+    const page = { screenshot: async () => { await writeFile(target, 'competing-owned-writer', { flag: 'wx' }); return Buffer.from('new-private-image'); } };
+    await assert.rejects(new ScreenshotBudget(100).publish(page, target), { code: 'ARTIFACT_COLLISION' });
+    assert.equal(await readFile(target, 'utf8'), 'competing-owned-writer');
+    assert.deepEqual(await readdir(directory), ['owned.png']);
+  } finally { await rm(directory, { recursive: true, force: true }); }
+});
+
+test('concurrent captures publish one complete winner and refuse the other', async () => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'screenshot-concurrent-'));
+  const target = path.join(directory, 'owned.png'); const budget = new ScreenshotBudget(100);
+  let arrivals = 0; let release;
+  const both = new Promise(resolve => { release = resolve; });
+  const capture = value => ({ screenshot: async () => { if (++arrivals === 2) release(); await both; return Buffer.from(value); } });
+  try {
+    const results = await Promise.allSettled([budget.publish(capture('first-image'), target), budget.publish(capture('second-image'), target)]);
+    assert.equal(results.filter(result => result.status === 'fulfilled').length, 1);
+    const refused = results.find(result => result.status === 'rejected'); assert.equal(refused.reason.code, 'ARTIFACT_COLLISION');
+    assert.ok(['first-image', 'second-image'].includes(await readFile(target, 'utf8')));
+    assert.equal(budget.used, Buffer.byteLength('first-image') + Buffer.byteLength('second-image'));
+    assert.deepEqual(await readdir(directory), ['owned.png']);
+  } finally { await rm(directory, { recursive: true, force: true }); }
+});

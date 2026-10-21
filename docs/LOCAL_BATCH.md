@@ -171,6 +171,9 @@ set `--max-screenshot-bytes N`; the one-tool MCP endpoint reads trusted
 `PLAYWRIGHT_BATCH_MAX_SCREENSHOT_BYTES`. Range0–268435456 bytes. Workflow input
 cannot override this policy, and sensitive-capture approval is still required.
 Images are buffered, checked before file writes and atomically published with
-private permissions. An exceeded budget yields fixed `artifact_quota` failure
+private permissions. Screenshot/report publication requires hard-link support in
+the artifact directory; unsupported filesystems return a failure. Publication
+creates the final name only if absent, including files created during capture or
+report writing. An exceeded budget yields fixed `artifact_quota` failure
 kind and preserves earlier confirmed actions. This is screenshot payload storage
 only, not total directory/retention/browser-memory quota or pixel redaction.

@@ -1054,3 +1054,37 @@ Final finite-corpus checks additionally assert all12 action kinds were generated
 and normalized actions preserve their exact input values; cases remain500 valid/
 170 invalid. Node20/24 runner+corpus18 each pass; Node22 helper/config/corpus/file/
 snapshot11 pass. Native confirmation of this candidate is pending.
+
+
+## Atomic no-overwrite artifact publication and temporary-file ownership
+
+Two deterministic regressions expose a publication race: screenshot/report target
+created after the existence check/during private temporary I/O is replaced by
+rename. Both tests fail before the fix (unexpected success). Reports also delete
+a pre-existing temporary-name collision in unconditional finally cleanup; the
+new ownership test fails before with ENOENT reading the marker it must preserve.
+The fixtures use only private owned directories and static synthetic values.
+
+Screenshot/report publication now atomically links the complete private temporary
+file to an absent final name and removes its own temporary link. EEXIST preserves
+the competing destination. Reports acquire an exclusive FileHandle first, track
+creation ownership, close after success/partial writes, and unlink only a temporary
+file they created. The existing real-browser partial ENOSPC fixture is adapted
+to the FileHandle write boundary; the fault is not removed or weakened. No action
+is replayed and failed publication cannot become job success.
+
+Node20/24 each pass7 unit cases: simultaneous captures have one complete winner,
+racing destinations and unowned temporary collisions survive, reports are complete
+and summaries remain bounded, private POSIX mode and final link count1 hold.
+Node22 real Chromium report-ENOSPC/screenshot quota/CLI cases pass3; public jobs
+MCP1,000-action/owner/dedup/cancel/reconnect/cleanup/quota harness passes1 in41.147s.
+Fresh production-only141-file package passes real original/batch/jobs MCP/CLI,
+profile guard, durable controller/guardian/journal and controller-SIGKILL recovery
+with zero active owned processes. Evidence:artifact-publication-* and the three
+*-before records. These are per-command counts, not a combined unique total.
+
+Publication requires filesystem hard-link support inside the artifact directory,
+as documented in LOCAL_BATCH.md. Unsupported filesystems fail closed. Normal
+completion leaves a single private final name; crashes during the brief two-link
+window can require conservative operator cleanup. This does not implement full
+project/browser/profile disk quotas or retention. Native acceptance is pending.
