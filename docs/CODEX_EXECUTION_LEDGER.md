@@ -1961,3 +1961,54 @@ trusted100-click fixture additionally retains a confirmed-click lower bound when
 interrupted, without extra per-click I/O, retry or timing changes; its local two
 engine rerun passes(10.8s). Evidence: original-full-two-engine-local.txt,
 termination-diagnostics-node*.txt and original-trusted-click-progress-local.txt.
+
+
+## Read-only original profile diagnosis
+
+`playwright-mcp profile-doctor <directory>` reuses the existing profile lease
+reader before loading the browser backend. It inspects only bounded guard metadata
+and root permission metadata, classifies missing/unreadable locks and recorded PID
+presence, and reports identityVerified:false. A recorded PID is not incarnation
+proof or authority for reset/termination. Tokens, PIDs, paths and credentials are
+not printed. Windows ACL privacy remains explicitly unverified. An absent guard
+is not proof that an unrelated browser is not using the directory.
+
+The command does not create a missing profile or repair permissions, reset state,
+release a lock or kill a process. Existing acquire/release behavior is unchanged.
+Nine local tests pass on each of Node20/22/24: real active leases, a dead owner,
+malformed/oversized/link metadata, unreadable fake credential bytes, permission
+preservation, no stdout canaries and rejected reset arguments. Evidence:
+profile-doctor-node20/22/24.txt. This is scoped diagnosis for scenario35, not a
+new profile store or completed managed-profile/reset/retention acceptance.
+
+Fresh155-file production-only install passes the read-only doctor on an actual
+guarded persistent profile, without exposing token/path, and confirms absent guard
+after close, cookie restoration, contention and zero owned survivors. Both normal
+and lingering controller-death checks pass. Evidence: profile-doctor-production-package.txt.
+
+
+## Native42 receipts and bounded highlight paint observation
+
+Latest completed native `107076c`: **1,165 tests passed/nine failed**, zero
+reported test skips/cancellations; all17 jobs completed. Wrapper39582244429:
+408/5; batch39582244422:757/4. Docker's two cases now pass with host-UID mapping
+and owned private XDG config/cache directories. Installed production-package
+normal and lingering controller-death verification passes Linux, macOS Intel and
+Windows, including zero owned survivors before replacement observation.
+
+Actual Codex six-tool1,000-action checks pass all three lanes: Windows37.897s,
+macOS Intel78.292s, Linux36.289s; zero model turns and owned survivors.
+Failures remain: Windows legacy Firefox1 case; Ubuntu WebKit highlight1;
+macOS highlight2 and trusted100-click close timeout1; macOS raw/MCP Chromium
+1,000-action timeouts2 (980/993 confirmed); Windows raw Firefox/429 cases2.
+Earlier failures remain recorded; healthy repetitions do not establish their cause.
+
+The highlight fixture now observes a controlled decoded PNG region across bounded
+paint frames, checking the red outline and exact restoration of that region.
+Whole-file compression/font bytes were not the intended visual contract. Failed
+screenshot calls still fail immediately; no action is replayed, and the test's
+30s ceiling remains. The PNG decoder is pinned dev-only. Local Chromium/Firefox
+pass2/2; native confirmation remains pending. Read-only profile diagnosis passes
+nine tests each on Node20/22/24 and a155-file production-only install; native
+confirmation of this new command remains pending. Evidence: worker-ci-fortysecond-*,
+highlight-region-local.txt and profile-doctor-*. **Not release-ready.**
