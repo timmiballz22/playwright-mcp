@@ -12,7 +12,7 @@ import { JobJournal, supportsJournal } from './journal.mjs';
 import { ownedDescendants } from '../fixtures/process-audit.mjs';
 
 if (supportsJournal) {
-  for (const mode of ['success', 'cancel', 'disconnect', 'crash', 'mismatch', 'admissionFailure', 'preDisconnected']) {
+  for (const mode of ['success', 'cancel', 'disconnect', 'crash', 'mismatch', 'admissionFailure', 'admissionTimeout', 'preDisconnected']) {
     test(`durable guardian ${mode}: cleanup and canonical journal outcome`, { timeout: 20000 }, async context => {
       const root = await mkdtemp(path.join(os.tmpdir(), 'durable-guardian-'));
       let journal;
@@ -42,7 +42,7 @@ if (supportsJournal) {
           if (mode === 'crash') child.kill('SIGKILL');
           if (mode === 'cancel') void journal.call('cancel', { id });
         });
-        child.send({ type: 'start', id, nonce, journal: { ...config, instanceId: journal.instanceId, ...(mode === 'admissionFailure' ? { workerModule: new URL('./fixtures/resource-fault.mjs', import.meta.url).href } : {}) },
+        child.send({ type: 'start', id, nonce, journal: { ...config, instanceId: journal.instanceId, ...(['admissionFailure', 'admissionTimeout'].includes(mode) ? { workerModule: new URL(mode === 'admissionFailure' ? './fixtures/resource-fault.mjs' : './fixtures/resource-timeout.mjs', import.meta.url).href } : {}) },
           workflow: mode === 'mismatch' ? { ...workflow, steps: [{ type: 'click', selector: 'different' }] } : workflow,
           execution: { artifactsDir: path.join(root, 'artifacts'),
             workerModule: new URL(mode === 'success' ? '../fixtures/cleanup-success-worker.mjs' : '../fixtures/hang-worker.mjs', import.meta.url).href },
@@ -58,8 +58,12 @@ if (supportsJournal) {
           assert.deepEqual(await ownedDescendants([child.pid, ...owned]), []);
           return;
         }
-        if (mode === 'admissionFailure') {
-          assert.deepEqual(diagnostic, { stage: 'write', code: 'storage_full', command: 'resources' });
+        if (['admissionFailure', 'admissionTimeout'].includes(mode)) {
+          if (mode === 'admissionTimeout') {
+            const { stage, command, ...cause } = diagnostic;
+            assert.deepEqual(cause, { code: 'journal_unavailable', journalFailure: 'rpc_timeout', journalFailureCommand: 'resources' });
+            assert.ok(stage === 'poll' && command === 'read' || stage === 'write' && command === 'resources', 'Only a pending poll or resource write may first observe this loss');
+          } else assert.deepEqual(diagnostic, { stage: 'write', code: 'storage_full', command: 'resources' });
           assert.equal(code, 1);
           assert.equal(acted, false, 'Resource persistence failed after worker effects started');
           await journal.call('recover');

@@ -201,7 +201,11 @@ if (!supportsJournal) {
       const id = randomUUID();
       const pending = journal.call('create', { id, requestKey: 'one-request', workflowDigest: 'c'.repeat(64), total: 2, deadlineAt: Date.now() + 30000 })
         .then(() => 'unexpected_success', exception => exception);
+      const pendingRead = journal.call('list').then(() => 'unexpected_success', exception => exception);
       const failure = await pending;
+      const readFailure = await pendingRead;
+      assert.equal(readFailure.code, 'journal_unavailable'); assert.equal(readFailure.command, 'list');
+      assert.equal(readFailure.journalFailure, 'rpc_timeout'); assert.equal(readFailure.journalFailureCommand, 'create');
       assert.equal(failure.code, 'journal_unavailable'); assert.equal(failure.command, 'create');
       assert.equal(failure.journalFailure, 'rpc_timeout'); assert.equal(failure.journalFailureCommand, 'create');
       await journal.exited;

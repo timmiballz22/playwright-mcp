@@ -2263,3 +2263,19 @@ closed-slot reuse and journal transport diagnostics; native confirmation is pend
 Evidence: worker-ci-fortyfourth-*, native44-provider-state.json,
 firefox-private-first-node22.txt and encoded-origin-diagnostic-order-node22.txt.
 **Not release-ready.**
+
+
+## First transport cause survives concurrent RPC and guardian forwarding
+
+The blocked-COMMIT regression now issues a read while the create is pending.
+Both reject without replay; the read retains its own list verb and reports the
+originating timeout/create. This passes selected tests on Node22/24. A separate
+trusted guardian fixture holds resources before its handler, preventing browser
+admission. Its first reported failure is poll/read while the causal hint is
+rpc_timeout/resources. The initial test incorrectly required the write observer
+and failed; the corrected invariant permits only poll/read or write/resources
+while requiring the fixed resources cause. No runtime timing/recovery is changed.
+Both Node22/24 guardian regressions pass: no browser effect, uncertain CRASHED
+recovery, operator attention and zero owned survivors. This does not establish
+which request caused the earlier native Windows failure. Evidence:
+journal-first-cause-concurrent-node*.txt and journal-first-cause-guardian-*.txt.
