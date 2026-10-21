@@ -8,10 +8,10 @@
 37,713 ms test duration; 26.5 total operations/s. Security routing enabled.
 This is one sample, not median/p95 or a comparison to upstream/CLI.
 
-`node scripts/soak-local.mjs`: 100 fresh browser workflows, 18,041 ms,
+Historical raw-runner `node scripts/soak-local.mjs` before its supervised functional upgrade: 100 fresh browser workflows, 18,041 ms,
 runner RSS min 118,349,824 / max 182,501,376 bytes. RSS increased; **no leak-free
 claim**. Browser process-tree RSS, file descriptors, handles and CPU not measured.
-A follow-up with `node --expose-gc scripts/soak-local.mjs` samples after explicit GC;
+A historical follow-up with `node --expose-gc scripts/soak-local.mjs` sampled after explicit GC;
 see evidence/soak-gc.txt for actual results. This diagnostic does not replace
 normal production resource measurements. Site is local, workflows sequential,
 no model invocations, network caching bypassed by routing/fetch.
@@ -235,3 +235,16 @@ This verifies cookie/localStorage isolation from fresh supervised executions.
 It does not implement or verify resetting a reused managed persistent profile,
 IndexedDB/cache/sessionStorage isolation, native100-run stability, or a durable
 job reset command. Those broader scenario9/profile requirements remain open.
+
+The current `node scripts/soak-local.mjs [20–100]` is a portable functional check:
+it supervises each six-action execution, positively seeds cookie/localStorage,
+requires fresh storage next run, and independently audits zero owned survivors
+after every run. Its subject RSS includes read-only process-audit allocations;
+it establishes no browser RSS/CPU/FD/handle bound and does not replace
+`soak-supervised.mjs`. It stops on the first failure and preserves that workspace.
+The manual Local batch QA `functional_soak=true` input selects only three native
+100-run jobs; ordinary PR runs retain the complete batch matrix. Those manual
+jobs are separate functional acceptance, not a green full native matrix.
+Local Node22 functional100/600:109.293s, zero owned after every run and storage
+freshness verified. Subject RSS71,315,456–108,998,656B includes audit allocations,
+with no leak threshold conclusion. See evidence/portable-soak-100-node22.txt.

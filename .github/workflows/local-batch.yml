@@ -2,6 +2,10 @@ name: Local batch QA
 on:
   workflow_dispatch:
     inputs:
+      functional_soak:
+        description: Run only the three-OS 100-run functional soak
+        type: boolean
+        default: false
       macos_runner:
         description: Native macOS runner architecture
         type: choice
@@ -20,6 +24,7 @@ concurrency:
 
 jobs:
   journal:
+    if: ${{ !inputs.functional_soak }}
     strategy:
       fail-fast: false
       matrix:
@@ -47,7 +52,36 @@ jobs:
           path: component-tests.log
           retention-days: 1
           if-no-files-found: error
+  functional_soak:
+    if: ${{ inputs.functional_soak }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, "${{ inputs.macos_runner || 'macos-15-intel' }}", windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Exercise 100 supervised fresh functional workflows
+        id: soak
+        shell: bash
+        run: node scripts/soak-local.mjs 100 2>&1 | tee functional-soak.log
+      - name: Preserve functional soak receipt
+        if: always() && (steps.soak.outcome == 'success' || steps.soak.outcome == 'failure')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: functional-soak-${{ matrix.os }}
+          path: functional-soak.log
+          retention-days: 1
+          if-no-files-found: error
   batch:
+    if: ${{ !inputs.functional_soak }}
     strategy:
       fail-fast: false
       matrix:
@@ -115,6 +149,7 @@ jobs:
           if-no-files-found: error
 
   codex_client:
+    if: ${{ !inputs.functional_soak }}
     strategy:
       fail-fast: false
       matrix:

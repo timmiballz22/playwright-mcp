@@ -2447,3 +2447,34 @@ Chromium/Firefox. Combined old IPv4/new IPv6 controls pass4/4 on Node22; Node20
 reports4 pass/two explicit WebKit name-filter skips. WebKit is not locally
 executable and native IPv6 verification remains pending. These tests are not in
 the active f485f1e native run. Evidence: ipv6-origin-node*.txt.
+
+## Portable functional soak (native lane prepared)
+
+The historical soak-local.mjs used the raw runner and measured only its own RSS.
+It now exercises supervised CLI/MCP-equivalent execution, six ordered actions per
+run, positive fresh cookie/localStorage and seeded-state assertions, and an
+independent read-only owned-process audit after every run. It stops at the first
+failure, preserves failed/uncertain workspaces and keeps the15s execution bound.
+A20-run Node22 local check passes120 actions/zero owned survivors. A controlled
+SIGTERM after the tenth receipt exits1 as expected, preserves its workspace and
+independently confirms zero owned processes before the test removes that specific
+fixture root. This is expected-failure evidence, not a green soak.
+
+The new manual functional_soak=true workflow input selects only three100-run
+native Chromium jobs; journal/batch/Codex jobs retain their existing behavior for
+ordinary PRs and skip in this explicitly scoped mode. Each new job has a20m CI
+ceiling; no runtime deadline changes. Functional subject RSS includes audit
+allocations; no CPU/RAM/FD/handle threshold or cross-OS resource claim is added.
+The independent Linux resource soak and its stronger measurements remain intact.
+Native functional execution is pending, and this script does not reset a managed
+persistent profile or test all stores. Source changes remain outside the active
+f485f1e native matrix. Evidence: portable-soak-*.
+
+The local100-run functional check passes600 actions in109.293s with fresh
+cookie/localStorage and zero owned survivors after every run. Subject RSS is
+71,315,456–108,998,656B including audits, not a leak threshold result. During that
+run, the failure-only workspace retention guard was tightened to preserve any
+failed run even when cleanup succeeded; the100-run process had already loaded
+the previous success path. The final guard is checked separately by the20-run
+success and controlled SIGTERM failure. Lint and YAML parse/condition checks pass;
+no new YAML dependency was installed (Node yaml unavailable; Python parser used).
