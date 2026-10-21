@@ -27,7 +27,7 @@ adequate proof; PARTIAL means required work remains.
 | 13 | Stdio close during browser run | PARTIAL: real EOF tests; 9041497 native Windows EOF/SIGTERM/abrupt-host cleanup passed; broader shutdown phase coverage remains. |
 | 14 | SIGINT/SIGTERM + intact journal | PARTIAL: real foreground CLI SIGTERM persists CANCELLED after1 action with zero active owned processes; actual controller SIGKILL installed proof and journal rollback pass. Broader phase-specific crashes remain. |
 | 15 | Browser crash during screenshot | PARTIAL: trusted fixture starts a real Chromium screenshot, verifies its promise is pending, kills only its own BrowserServer child handle, then requires screenshot failure, no PNG/temp publication and independently observed zero owned survivors. Local Node22/24 proof; native cross-OS confirmation pending. |
-| 16 | Slow navigation deadline + cleanup | PARTIAL: real browser locator deadline and hanging navigation cancellation; add explicit navigation-timeout acceptance. |
+| 16 | Slow navigation deadline + cleanup | PARTIAL: real browser locator deadline, hanging navigation cancellation and a local Chromium main-thread tight-loop fixture;10s independent boundary returns before12s with zero owned survivors. Native frozen-page fixture and explicit navigation-timeout acceptance remain. |
 | 17 | Invalid/extra/empty/oversized input | Verified strict validation, empty fill operator fixture, 1 MiB file limit and SDK 10 MiB frame guard/shutdown tests; not a general fuzzing proof. |
 | 18 | Approved-to-denied redirect | Verified real Chromium/Firefox/WebKit CI fixtures. All redirects are rejected, including same-origin. |
 | 19 | Unknown localhost port | Verified exact-origin unit policy and real redirect-to-denied-port hit counter. |

@@ -84,3 +84,13 @@ including a real uncaught JS exception, and explicit20KiB+ console file output
 with a response below4096 characters. It does not assert default console bounds.
 The first fixture attempt used nonexistent setRoute; that test-authoring failure
 is preserved, then corrected to this repository's route API.
+
+frozen-page.test.mjs reaches an owned local page's freeze trigger, then runs a
+real main-thread tight loop during a locator wait. The10s executor boundary
+returns timeout before12s, confirms cleanup/temp removal and independently
+checks zero owned survivors (local Node24). Native new fixture is pending.
+Upstream issue43462 reproduces delayed waitForFunction timeout on frozen pages;
+that report supports this separate failure-mode test, not a diagnosis of our
+Windows simple-click Firefox stall. Issue34586 involved concurrent contexts and
+was closed after an older Firefox roll; our fixture has one context per fresh
+browser. No launch, graphics, security or driver settings were changed.
