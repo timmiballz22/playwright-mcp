@@ -1,0 +1,55 @@
+TAP version 13
+# Subtest: known main GET 401 fails precisely even when document readiness never settles
+ok 1 - known main GET 401 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 9.192032
+  ...
+# Subtest: known main GET 403 fails precisely even when document readiness never settles
+ok 2 - known main GET 403 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 2.277112
+  ...
+# Subtest: known main GET 404 fails precisely even when document readiness never settles
+ok 3 - known main GET 404 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 1.706116
+  ...
+# Subtest: known main GET 429 fails precisely even when document readiness never settles
+ok 4 - known main GET 429 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 1.11779
+  ...
+# Subtest: known main GET 503 fails precisely even when document readiness never settles
+ok 5 - known main GET 503 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 1.892536
+  ...
+# Subtest: HTTP error outside the current main GET does not become its navigation failure ({"main":false})
+ok 6 - HTTP error outside the current main GET does not become its navigation failure ({"main":false})
+  ---
+  duration_ms: 1.853559
+  ...
+# Subtest: HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"})
+ok 7 - HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"})
+  ---
+  duration_ms: 4.220974
+  ...
+# Subtest: known HTTP failure waits for the configured retry attempts before failing without DOM readiness
+ok 8 - known HTTP failure waits for the configured retry attempts before failing without DOM readiness
+  ---
+  duration_ms: 330.591495
+  ...
+# Subtest: observed cancellation keeps precedence over a newly available HTTP failure
+ok 9 - observed cancellation keeps precedence over a newly available HTTP failure
+  ---
+  duration_ms: 2.768638
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 449.477974

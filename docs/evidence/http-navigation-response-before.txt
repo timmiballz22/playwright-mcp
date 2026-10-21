@@ -1,0 +1,112 @@
+✖ known main GET 401 fails precisely even when document readiness never settles (203.578606ms)
+✖ known main GET 403 fails precisely even when document readiness never settles (201.239938ms)
+✖ known main GET 404 fails precisely even when document readiness never settles (200.772125ms)
+✖ known main GET 429 fails precisely even when document readiness never settles (204.524813ms)
+✖ known main GET 503 fails precisely even when document readiness never settles (202.83217ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"main":false}) (7.000117ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"}) (2.432514ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 2
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1117.376122
+
+✖ failing tests:
+
+test at local-batch/http-navigation-response.test.mjs:24:3
+✖ known main GET 401 fails precisely even when document readiness never settles (203.578606ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'timeout'
+  - 'action_failed'
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-navigation-response.test.mjs:28:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'timeout',
+    expected: 'action_failed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/http-navigation-response.test.mjs:24:3
+✖ known main GET 403 fails precisely even when document readiness never settles (201.239938ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'timeout'
+  - 'action_failed'
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-navigation-response.test.mjs:28:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'timeout',
+    expected: 'action_failed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/http-navigation-response.test.mjs:24:3
+✖ known main GET 404 fails precisely even when document readiness never settles (200.772125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'timeout'
+  - 'action_failed'
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-navigation-response.test.mjs:28:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'timeout',
+    expected: 'action_failed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/http-navigation-response.test.mjs:24:3
+✖ known main GET 429 fails precisely even when document readiness never settles (204.524813ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'timeout'
+  - 'action_failed'
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-navigation-response.test.mjs:28:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'timeout',
+    expected: 'action_failed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/http-navigation-response.test.mjs:24:3
+✖ known main GET 503 fails precisely even when document readiness never settles (202.83217ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'timeout'
+  - 'action_failed'
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-navigation-response.test.mjs:28:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'timeout',
+    expected: 'action_failed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -3036,3 +3036,29 @@ owner denial, active/queued cancellation, EOF/reconnect and screenshot quota).
 Default helper adapter/parent-loss tests8/8 also pass. Lint/diff pass. No native
 fix is claimed yet; source is local while7d97686 native worker CI runs. Receipts:
 scoped-process-audit-*. Earlier unexplained ownership observations remain open.
+
+## Preserve known HTTP navigation failure before document readiness
+
+Native Windows repeatedly reports cancelled/timeout instead of expectedHTTP404.
+Its exact browser stall cause remains unproven. Independently reproduced a code
+precision gap: even after route.fetch yields a known main HTTP error, goto waits
+for DOMContentLoaded before classifying it. A mock with a known response and
+unresolved readiness yields five wrong timeout outcomes (2/7 controls pass).
+
+Runner now classifies only the current explicit main-frame GET's final error
+after configured retry attempts, before waiting for DOM readiness. Route aborts
+the error document, returns the same fixed HTTP code/status/validated retry hint,
+and keeps policy-block counts separate. A per-action identity prevents stale
+route responses targeting another goto. The existing post-goto check remains for
+trusted adapters. POST/subframe HTTP errors keep their prior semantics; the
+positive form fixture still succeeds and sends one POST. No additional retry,
+allowlist, action/workflow deadline or completion claim changes.
+
+After:31 related Node24 mock tests pass; all nine new controls pass Node20/22,
+with previous29 related tests also passing there. Controls include exhausted
+retry attempts before precise failure and cancellation retaining precedence.
+Real Chromium/Firefox status/privacy and retry suites4/4 pass (46.708s), including
+all HTTP codes, script200, exact GET hits/backoff/fragment, cap/exhaust/cancel and
+no POST replay. Fresh170-file production-only install passes; lint/diff pass.
+Native WebKit/Windows/macOS validation remains pending. No native failure is
+called fixed solely from these controls. Evidence: http-navigation-response-*.

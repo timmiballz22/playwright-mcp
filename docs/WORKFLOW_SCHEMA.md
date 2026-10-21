@@ -17,7 +17,7 @@ assertText currently reads once and is NOT a retrying expect assertion.
 
 | Action type | Required fields | Meaning |
 |---|---|---|
-| goto | url | HTTP(S), exact locally approved origin; wait DOMContentLoaded |
+| goto | url | HTTP(S), exact locally approved origin; wait DOMContentLoaded for non-error responses |
 | assertURL | url | Exact current URL match; target must be approved |
 | click | selector | Playwright strict locator click; never auto-replayed |
 | fill | selector, value | String up to 10,000 characters, including empty |
@@ -50,7 +50,12 @@ Reasons include cancelled, timeout, cleanup_failed, policy_blocked, action_faile
 setup errors are scrubbed as setup_failed steps. HTTP navigation failures report
 httpStatus and safe codes http_401/http_403/http_404/http_4xx/http_5xx/rate_limited.
 A bounded valid Retry-After header becomes retryAfterMs metadata without echoing headers.
-There is no automatic retry or durable cross-call backoff scheduler. Durable job IDs are not available.
+No retries occur by default. The trusted operator may enable bounded main-GET
+429/503 retries as described below; there is no durable cross-call backoff scheduler.
+The synchronous batch endpoint has no job ID; the separate jobs endpoint provides durable IDs.
+Once the current main GET has a final HTTP error response, it fails with that
+fixed code without waiting for an error document to become ready. Configured retry
+attempts run first. Subframe requests and form POSTs do not take this early-failure path.
 
 Supervised CLI/MCP replies also include `schemaVersion`, opaque `runId`, and
 `execution` cleanup metadata. An unsuccessful count has

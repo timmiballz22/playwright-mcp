@@ -117,20 +117,23 @@ export function validateWorkflow(workflow) {
   return { browser, timeoutMs, actionTimeoutMs, iterations, steps };
 }
 
+function httpNavigationFailure(response) {
+  const status = response?.status();
+  if (!Number.isInteger(status) || status < 400 || status > 599) return null;
+  const safeCode = status === 429 ? 'rate_limited' : status === 401 ? 'http_401' :
+    status === 403 ? 'http_403' : status === 404 ? 'http_404' : status >= 500 ? 'http_5xx' : 'http_4xx';
+  const parsed = parseRetryAfter(response.headers()['retry-after']);
+  const retryAfterMs = Number.isSafeInteger(Math.ceil(parsed)) && parsed >= 0 && parsed <= 86400000 ? Math.ceil(parsed) : undefined;
+  return Object.assign(new Error('HTTP navigation failed'), { safeCode, httpStatus: status, retryAfterMs });
+}
+
 async function perform(page, step, index, artifactsDir, screenshots, canPublish) {
   const locator = step.selector ? resolveLocator(page, step.selector) : undefined;
   switch (step.type) {
     case 'goto': {
       const response = await page.goto(step.url, { waitUntil: 'domcontentloaded' });
-      const status = response?.status();
-      if (Number.isInteger(status) && status >= 400 && status <= 599) {
-        const safeCode = status === 429 ? 'rate_limited' : status === 401 ? 'http_401' :
-          status === 403 ? 'http_403' : status === 404 ? 'http_404' : status >= 500 ? 'http_5xx' : 'http_4xx';
-        const rawRetryAfter = response.headers()['retry-after'];
-        const parsed = parseRetryAfter(rawRetryAfter);
-        const retryAfterMs = Number.isSafeInteger(Math.ceil(parsed)) && parsed >= 0 && parsed <= 86400000 ? Math.ceil(parsed) : undefined;
-        throw Object.assign(new Error('HTTP navigation failed'), { safeCode, httpStatus: status, retryAfterMs });
-      }
+      const failure = httpNavigationFailure(response);
+      if (failure) throw failure;
       break;
     }
     case 'click': await locator.click(); break;
@@ -268,6 +271,11 @@ export async function runWorkflow(workflow, {
     // Fetch without following redirects, and fail closed on all redirects until
     // redirect method/body/cookie semantics have a separately verified executor.
     await bounded(context.route('**/*', async route => {
+      const navigation = currentNavigation;
+      const request = route.request();
+      const isCurrentMainGet = () => navigation && navigation === currentNavigation &&
+        request.method?.() === 'GET' && request.isNavigationRequest?.() &&
+        request.frame?.() === page.mainFrame?.() && request.url() === navigation.url;
       try {
         if (!allowedAddress(route.request().url(), allowed) || readOnly && !['GET', 'HEAD'].includes(route.request().method())) {
           blockedRequests++;
@@ -278,15 +286,21 @@ export async function runWorkflow(workflow, {
           if (closing || cancelled || timedOut || resourceExceeded) throw new Error('stopped');
           response = await route.fetch({ maxRedirects: 0, maxRetries: 0,
             timeout: Math.max(1, spec.timeoutMs - (performance.now() - started)) });
-          const request = route.request();
-          const eligible = retryPolicy && currentNavigation && request.method() === 'GET' &&
-            request.isNavigationRequest() && request.frame() === page.mainFrame() &&
-            request.url() === currentNavigation;
+          const eligible = retryPolicy && isCurrentMainGet();
           const wait = eligible ? navigationRetryDelay(response.status(), response.headers()['retry-after'], attempt, retryPolicy) : null;
           const remaining = spec.timeoutMs - (performance.now() - started);
           if (wait === null || wait >= remaining) break;
           await response.dispose();
           await delay(wait, undefined, { signal: retryAbort.signal });
+        }
+        const failure = isCurrentMainGet() ? httpNavigationFailure(response) : null;
+        if (failure) {
+          // The HTTP outcome is already known. Do not wait for an error page's
+          // document readiness or replace its fixed status with a later timeout.
+          navigation.reject(failure);
+          await route.abort('failed').catch(() => {});
+          await response.dispose().catch(() => {});
+          return;
         }
         if (response.status() >= 300 && response.status() < 400 && response.headers().location) {
           blockedRequests++;
@@ -314,19 +328,23 @@ export async function runWorkflow(workflow, {
         index++;
         try {
           currentNavigation = undefined;
+          let navigationFailure;
           if (step.type === 'goto') {
             const target = new URL(step.url); target.hash = '';
-            currentNavigation = target.href;
+            navigationFailure = new Promise((_, reject) => { currentNavigation = { url: target.href, reject }; });
+            void navigationFailure.catch(() => {});
           }
-          const metadata = await bounded(perform(page, step, index, artifactsDir, screenshots, () => {
+          const action = perform(page, step, index, artifactsDir, screenshots, () => {
             if (performance.now() - started >= spec.timeoutMs) stop('timeout');
             return !cancelled && !timedOut && !resourceExceeded && !closing;
-          }));
+          });
+          const metadata = await bounded(navigationFailure ? Promise.race([action, navigationFailure]) : action);
           currentNavigation = undefined;
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: true, durationMs: Math.round(performance.now() - start), ...metadata });
           onProgress?.({ completed: results.length });
         } catch (error) {
+          currentNavigation = undefined;
           const httpFailure = ['rate_limited', 'http_401', 'http_403', 'http_404', 'http_4xx', 'http_5xx'].includes(error?.safeCode);
           const safeError = cancelled ? 'cancelled' : timedOut ? 'timeout' : httpFailure ? error.safeCode : 'action_failed';
           const failureKind = resourceExceeded ? 'page_quota' : cancelled || timedOut ? 'interrupted' : classifyActionFailure(error, step);
