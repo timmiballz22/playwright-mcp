@@ -4,7 +4,9 @@ This stdio preview requires Node22.13+ and private local storage. POSIX uses
 private modes; the experimental Windows configuration now uses protected
 owner/System DACLs. Its helper passed native acceptance at ebdec88.
 Windows installed public MCP/CLI and source1,000-action checks pass at6fffa27.
-Actual Codex Windows discovery still fails; it is not release-ready.
+Native candidatefd17363 actual Codex Windows zero-turn jobs verification now
+passes after replacing helper cmdlet serialization with standard .NET JSON.
+The preview is not release-ready.
 The original MCP endpoint and one-tool batch endpoint remain available.
 
 Register `playwright-jobs-mcp` (or `node local-batch/jobs-mcp.mjs`) with trusted
@@ -141,7 +143,8 @@ UNC/device paths, reparse points and unsafe existing grants fail closed. Existin
 ACLs are never repaired. Current SID plus canonical project determines the shared
 journal namespace; owner UUID hashes separate artifact directories. The public
 Windows installed MCP/CLI and source six-tool jobs pass at native6fffa27; actual
-Codex Windows discovery remains unverified after an empty-inventory failure.
+Codex Windows startup was later fixed atfd17363; zero-turn six-tool1,000-action
+client verification passes. Full reliability/acceptance remains open.
 
 Native585acae passes Windows configuration/ACL components (39 checks in the
 component job), but the first installed public MCP job returns terminal FAILED
@@ -157,5 +160,6 @@ lifecycle/fault checks pass; native installed/public acceptance is still pending
 Native6fffa27 supersedes the earlier public Windows setup failures above: combined
 short browser temp plus exclusive UUID artifact allocation passes installed MCP/CLI
 and source1,000-action verification. No ACL or cleanup assertion was relaxed.
-Actual Codex Windows discovery still returns no tools; bounded readiness polling
-and fixed startup-code diagnostics are a candidate, not a verified native fix.
+The empty-inventory failure was later traced to ConvertTo-Json timing out under
+Codex's filtered environment. Framework JSON serialization atfd17363 fixes native
+startup and the actual zero-turn client check. Waiting alone was not a fix.

@@ -149,3 +149,37 @@ measurements and are retained as interface-benchmark-*-diagnostic/first evidence
 they are script defects, not product regressions or timing samples. The complete
 JSON sample is evidence/interface-benchmark-local.json. Reproduce with
 `node scripts/benchmark-local-interfaces.mjs`; no global configuration changes.
+
+
+## Preserved upstream trusted-code batching comparison
+
+The original core tool set also exposes browser_run_code_unsafe. It already
+supports batching source-authored trusted Playwright code in one call, so the
+interactive102-call path above does not establish that upstream lacks batching.
+A second complete Linux/Node22.23.3/Playwright1.64.1 sample adds that mode with
+exact100-click DOM and URL assertions against the same owned fixture:
+
+| Mode | MCP calls | Parameter/result JSON bytes | Through audited shutdown |
+|---|---:|---|---:|
+| Original interactive |102|6,914 /29,203; one79-byte snapshot read|55,116ms|
+| Original trusted code |1|506 /680|5,340ms|
+| Declarative batch MCP |1|300 /1,565|4,803ms|
+| Fork batch CLI |0|259-byte file /1,960 stdout bytes|4,453ms|
+
+Both batching tools use one call. The upstream trusted-code result is smaller in
+this sample. The declarative batch includes bounded progress and cleanup metadata,
+strict operator-origin enforcement and schema constraints; the trusted-code tool
+executes arbitrary server-side JavaScript and is explicitly labeled unsafe by
+upstream. The benchmark passes only static source-defined code for the owned
+fixture and never accepts page/user code. Companion workflows gain no eval or
+code option. All four paths confirm their counters and independently exit with
+zero active owned survivors. This is one complete sample, not a confidence
+interval, model-token measurement or official CLI/SKILLS comparison. See
+evidence/interface-benchmark-with-upstream-code.json.
+
+A new original-tool regression executes the same100 fast clicks inside that
+preserved tool on each native browser/OS. Local Chromium and Firefox both pass
+(2 tests,14.6s total) including exact DOM/URL assertions and browser_close ACK.
+Native coverage remains pending. It also tests whether strict Windows Firefox
+failures reproduce through delegated upstream fast-loop execution, without
+removing the existing failing batch tests or adding per-click delays.

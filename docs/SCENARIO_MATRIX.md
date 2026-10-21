@@ -1,30 +1,30 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Latest completed native `a3eccc0`: **989 tests passed,five failed**, zero test
-skips/cancellations. Wrapper39559878537:270/2; batch39559878521:719/3. All five
-failures are Windows Firefox: raw Node22 headless/direct-pipe,429 retry fixture,
-and two legacy Node20 modes. Every original case passes (88 per OS), Docker and
-all four41-test durable components pass. The corrected graph test, seeded workflow
-corpus, atomic artifact collision/ownership tests, installed packages and source
-six-tool1,000-action jobs pass on all configured native OSs.
+PASS. Latest completed native `fd17363`: **988 tests passed,seven failed**, zero test
+skips/cancellations. Wrapper39562165760:269/3; batch39562165945:719/4. All failures
+are Windows Firefox (three raw Node22 modes,429 fixture,three legacy Node20 modes).
+All88 original cases per OS, Docker, Linux/macOS41-test and Windows42-test durable
+components, installed public endpoints, artifact ownership/race regressions and
+source1,000-action jobs pass. No critical startup failure remains reproduced.
 
-Windows actual Codex and the restricted SDK/helper control still fail at final
-ConvertTo-Json serialization after10s. Native fixed phase markers locate the
-stall; system-module-path selection alone fails too. Linux/macOS actual Codex
-pass1,000 actions/cancel/owner/dedup in36.554s/68.586s with zero model turns and
-zero survivors. The four Firefox controls again pass400 clicks/20 fresh launches,
-zero survivors, without reproducing strict ten-run failures. Instrumentation and
-pacing differ; no causal or production reliability fix is claimed.
+Actual Codex0.163.0 jobs verification now passes on all three OSs: Windows38.064s
+(start47ms,four result calls), Linux35.865s,macOS74.728s. Each verifies six tools,
+1,000 actions,owner isolation,deduplication,active cancellation and zero surviving
+owned processes, with zero model turns. Framework JSON serialization resolves
+the Windows filtered-environment timeout with unchanged ACLs and10s bound. Native
+Unicode/private-ACL checks pass. Failure-only filtered SDK controls did not run
+after the actual client passed; they are not counted as additional passes.
 
-The next candidate replaces only PowerShell cmdlet serialization with standard
-.NET Framework JSON serialization, retaining all ACL checks and10s deadline.
-Unicode/private-ACL and actual restricted-client confirmation remain pending.
-A Linux interface benchmark verifies100 clicks: original102 MCP calls/54.877s,
-batch1 call/4.765s, fork CLI0 MCP calls/4.442s, through audited shutdown. One sample,
-JSON payload bytes only; model tokens/resources/official CLI+SKILLS unmeasured.
-Current matrix17 jobs; last full green remains d71c91e (14). Quotas/retention,
-profiles, egress, Firefox/client reliability and remaining gates remain open.
+Four instrumented Firefox controls again pass400 clicks/20 launches, but strict
+ten-run failures remain unexplained. A new delegated trusted-code100-click test
+passes local Chromium/Firefox and awaits native execution. The balanced Linux
+benchmark shows upstream trusted-code and declarative batch each use one MCP
+call; its trusted-code reply is smaller. Single-sample timings are5.340s/4.803s,
+versus55.116s for102 interactive calls and4.453s for fork CLI, including audited
+shutdown. Tokens/resources/official CLI+SKILLS remain unmeasured. Matrix17 jobs;
+last full green d71c91e (14). Quotas,retention,profiles,egress,reliability and
+remaining acceptance still block release.
 
 | # | Scenario | Status and concrete evidence / gap |
 |---|---|---|

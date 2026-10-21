@@ -1,0 +1,15 @@
+
+> @timmiballz22/playwright-mcp-local@0.0.83 test
+> playwright test --project=chromium --project=firefox tests/advanced.spec.ts -g trusted-code tool
+
+
+Running 2 tests using 1 worker
+
+(node:288338) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/advanced.spec.ts:72:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (5.0s)
+(node:288474) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [firefox] › tests/advanced.spec.ts:72:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (7.9s)
+
+  2 passed (14.6s)

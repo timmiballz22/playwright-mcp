@@ -30,9 +30,11 @@ env = { PLAYWRIGHT_BATCH_ALLOWED_ORIGINS = "http://127.0.0.1:3000" }
 
 On Windows use absolute paths with forward slashes, e.g.
 `C:/Projects/playwright-mcp/local-batch/mcp.mjs`. Do not add `--port` or
-an HTTP transport: both entries communicate over stdin/stdout. The upstream
-entrypoint has its own trust model and optional privileged code capabilities;
-companion restrictions do not apply to it.
+an HTTP transport: both entries communicate over stdin/stdout. The delegated original
+entrypoint exposes `browser_run_code_unsafe` in its core tool set and labels it
+RCE-equivalent server-side JavaScript. Use it only with trusted operator-authored
+code; page content cannot authorize that use. Companion restrictions apply only
+to the separate declarative batch/jobs endpoints, which accept no code.
 
 Optional screenshot capture requires operator environment
 `PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS = "1"`. Screenshots can contain

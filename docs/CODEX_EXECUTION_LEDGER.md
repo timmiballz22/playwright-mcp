@@ -2,30 +2,30 @@
 
 Updated 2026-10-21. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest completed native `a3eccc0`: **989 tests passed,five failed**, zero test
-skips/cancellations. Wrapper39559878537:270/2; batch39559878521:719/3. All five
-failures are Windows Firefox: raw Node22 headless/direct-pipe,429 retry fixture,
-and two legacy Node20 modes. Every original case passes (88 per OS), Docker and
-all four41-test durable components pass. The corrected graph test, seeded workflow
-corpus, atomic artifact collision/ownership tests, installed packages and source
-six-tool1,000-action jobs pass on all configured native OSs.
+Latest completed native `fd17363`: **988 tests passed,seven failed**, zero test
+skips/cancellations. Wrapper39562165760:269/3; batch39562165945:719/4. All failures
+are Windows Firefox (three raw Node22 modes,429 fixture,three legacy Node20 modes).
+All88 original cases per OS, Docker, Linux/macOS41-test and Windows42-test durable
+components, installed public endpoints, artifact ownership/race regressions and
+source1,000-action jobs pass. No critical startup failure remains reproduced.
 
-Windows actual Codex and the restricted SDK/helper control still fail at final
-ConvertTo-Json serialization after10s. Native fixed phase markers locate the
-stall; system-module-path selection alone fails too. Linux/macOS actual Codex
-pass1,000 actions/cancel/owner/dedup in36.554s/68.586s with zero model turns and
-zero survivors. The four Firefox controls again pass400 clicks/20 fresh launches,
-zero survivors, without reproducing strict ten-run failures. Instrumentation and
-pacing differ; no causal or production reliability fix is claimed.
+Actual Codex0.163.0 jobs verification now passes on all three OSs: Windows38.064s
+(start47ms,four result calls), Linux35.865s,macOS74.728s. Each verifies six tools,
+1,000 actions,owner isolation,deduplication,active cancellation and zero surviving
+owned processes, with zero model turns. Framework JSON serialization resolves
+the Windows filtered-environment timeout with unchanged ACLs and10s bound. Native
+Unicode/private-ACL checks pass. Failure-only filtered SDK controls did not run
+after the actual client passed; they are not counted as additional passes.
 
-The next candidate replaces only PowerShell cmdlet serialization with standard
-.NET Framework JSON serialization, retaining all ACL checks and10s deadline.
-Unicode/private-ACL and actual restricted-client confirmation remain pending.
-A Linux interface benchmark verifies100 clicks: original102 MCP calls/54.877s,
-batch1 call/4.765s, fork CLI0 MCP calls/4.442s, through audited shutdown. One sample,
-JSON payload bytes only; model tokens/resources/official CLI+SKILLS unmeasured.
-Current matrix17 jobs; last full green remains d71c91e (14). Quotas/retention,
-profiles, egress, Firefox/client reliability and remaining gates remain open.
+Four instrumented Firefox controls again pass400 clicks/20 launches, but strict
+ten-run failures remain unexplained. A new delegated trusted-code100-click test
+passes local Chromium/Firefox and awaits native execution. The balanced Linux
+benchmark shows upstream trusted-code and declarative batch each use one MCP
+call; its trusted-code reply is smaller. Single-sample timings are5.340s/4.803s,
+versus55.116s for102 interactive calls and4.453s for fork CLI, including audited
+shutdown. Tokens/resources/official CLI+SKILLS remain unmeasured. Matrix17 jobs;
+last full green d71c91e (14). Quotas,retention,profiles,egress,reliability and
+remaining acceptance still block release.
 
 All 45 mandatory scenarios are
 mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
@@ -34,7 +34,7 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 |---|---|---|---|
 | G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 tool inventories,six schemas; Native2f87026 all88 original cases/OS | Preserve baseline/channel scope and verify final clean SHA |
 | G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs; Native2f87026 all-OS installs; cd419d8 fresh140-file Node22 production smoke | Verify final candidate natively and complete clean operator walkthroughs |
-| G02 MCP | FAILED | scripts/verify-codex-jobs.mjs; Linux/macOS1,000-action checks pass; native4d61ebd Windows startup private_storage_unavailable | Diagnose helper failure under actual Codex; retain exact six-tool contract |
+| G02 MCP | IN PROGRESS | scripts/verify-codex-jobs.mjs; nativefd17363 actual zero-turn six-tool1,000-action checks pass all OSs after framework JSON fix | Complete remaining malformed/concurrent/disconnect phase acceptance |
 | G03 FEATURE PARITY | FAILED | Native4d61ebd Windows named-context timeout;25/72 names,six schemas; tests/interactions.spec.ts,advanced.spec.ts,network-console.spec.ts,held-input.spec.ts;88 original cases/OS | Complete remaining capability-specific positive/negative cases |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs,jobs-mcp.test.mjs; Native2f87026 exact1,000 Chromium actions/997 clicks all OSs | Preserve exact action/DOM counters; broader browser reliability stays G10 |
 | G05 RETRIES | FAILED | navigation-retry-browser.test.mjs; Native2f87026 Windows Firefox429 case times out after2 GET hits; unsafe POST not replayed | Diagnose bounded navigation failure without enlarging deadlines |
@@ -43,7 +43,7 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | G08 STORAGE | FAILED | screenshot-budget.mjs,jobs/cleanup.mjs,private-windows.*; native protected ACLs and16MiB image payload budget | Complete cumulative disk quotas/retention; image budget is not browser/profile cap |
 | G09 AUTH/PROFILES | FAILED | profile-guard.cjs,profile-lease.cjs; native all-engine ownership/session restore | Managed project profiles, Windows profile ACLs, reset/corruption/crash recovery |
 | G10 CROSS-BROWSER | FAILED | Native2f87026 six Windows Firefox failures across raw loops/retry/popup | Collect transport/routing controls; no force click/security flags/action replay |
-| G11 CROSS-OS | FAILED | native installed original/batch/jobs pass all OSs; actual Codex Windows helper startup fails | Restore actual Windows Codex startup and require green native suites |
+| G11 CROSS-OS | IN PROGRESS | native installed original/batch/jobs andfd17363 actual Codex zero-turn checks pass all OSs | Require complete green native acceptance; Windows Firefox remains G10 failure |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md,scripts/soak-local.mjs; independent100-run Linux soak and client timings | Native/CLI/SKILLS/token comparison, complete resource observation |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
@@ -1502,3 +1502,14 @@ PowerShell or verify the candidate serializer. Native Windows actual client,
 restricted-environment control and Unicode fixture remain pending. The existing
 Windows installed-package success in a3eccc0 validates atomic artifact changes,
 not this unpushed helper candidate.
+
+
+## Nativefd17363 partial: Windows actual client startup fixed
+
+Windows component job119095759702 passes, including framework JSON Unicode/path
+and private-ACL checks. Actual Codex Windows job119095759627 passes: both servers
+report ready/six tools, then all1,000-action, owner, deduplication, cancellation
+and independent cleanup assertions complete. Linux/macOS actual client jobs also
+pass. No model turns, sandbox/approval changes, deadline increase, environment
+widening or ACL repair. The full browser matrix is still running; this is scoped
+verification of the serialization fix, not release readiness.

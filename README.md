@@ -1684,6 +1684,7 @@ This repository is a fork of Microsoft's Playwright MCP. Its CLI/library delegat
 The optional [local jobs MCP preview](docs/JOBS_MCP_PREVIEW.md) provides durable
 start/status/result/cancel/list/cleanup tools with Node22.13+. POSIX acceptance
 has scoped native proof; Windows configuration/ACL, installed public MCP/CLI and
-source1,000-action jobs checks now pass. Actual Codex Windows discovery and raw
-Firefox reliability remain unresolved; execution is experimental. Full
+source1,000-action jobs checks now pass. Native actual Codex zero-turn jobs checks
+now pass on Windows, Linux and macOS. Windows raw Firefox reliability remains
+unresolved; execution is experimental. Full
 quotas, retention, managed profiles and other release gates remain open.

@@ -32,10 +32,10 @@ async function stopped(roots) {
   assert.deepEqual(await ownedDescendants(roots), [], 'Benchmark owned cleanup is uncertain');
 }
 try {
-  for (const mode of ['original_mcp', 'batch_mcp']) {
+  for (const mode of ['original_mcp', 'original_trusted_code_mcp', 'batch_mcp']) {
     const client = new Client({ name: 'interface-benchmark', version: '1.0.0' });
     const transport = new StdioClientTransport({ command: process.execPath,
-      args: mode === 'original_mcp' ? [path.join(repository, 'cli.js'), '--browser=chromium', '--headless', '--isolated'] : [path.join(repository, 'local-batch/mcp.mjs')],
+      args: mode.startsWith('original_') ? [path.join(repository, 'cli.js'), '--browser=chromium', '--headless', '--isolated'] : [path.join(repository, 'local-batch/mcp.mjs')],
       cwd: directory, stderr: 'pipe', env: { ...process.env, PLAYWRIGHT_BATCH_ALLOWED_ORIGINS: origin, PLAYWRIGHT_BATCH_ARTIFACTS_DIR: path.join(directory, 'artifacts') },
     });
     transport.stderr.resume();
@@ -68,13 +68,27 @@ try {
         const snapshot = await call('browser_snapshot', {});
         const final = await snapshotText(snapshot);
         assert.match(final, /- (?:status|generic)(?:\s+\[[^\]]+\])*:\s*(?:"100"|100)\s*$/m); assert.ok(final.includes(origin));
+      } else if (mode === 'original_trusted_code_mcp') {
+        // This source-defined fixture code uses the preserved expert upstream
+        // tool. It is never derived from a page, user file or workflow argument.
+        const code = `async page => {
+          await page.goto(${JSON.stringify(origin)});
+          for (let i = 0; i < 100; i++) await page.getByRole('button', { name: 'Add', exact: true }).click();
+          const count = Number(await page.locator('output').textContent()); const url = page.url();
+          if (count !== 100 || url !== ${JSON.stringify(origin + '/')}) throw new Error('Owned fixture assertion failed');
+          return { count, url };
+        }`;
+        const result = await call('browser_run_code_unsafe', { code });
+        const text = result.content.filter(item => item.type === 'text').map(item => item.text).join('\n');
+        const receipt = text.match(/\{"count":100,"url":"[^"\n]+"\}/)?.[0];
+        assert.deepEqual(JSON.parse(receipt ?? 'null'), { count: 100, url: origin + '/' });
       } else {
         const result = JSON.parse((await call('browser_run_batch', workflow)).content[0].text);
         assert.equal(result.ok, true); assert.equal(result.completed, 103);
       }
       observed.push(...await ownedDescendants([root], { rememberLiveRoots: true }));
       measurement = { mode, clicks: 100, toolCalls, parameterBytes, resultBytes, snapshotFilesRead, snapshotFileBytes, discoveryJsonBytes: bytes(inventory), setupMs,
-        totalMs: Math.round(performance.now() - start), routing: mode === 'batch_mcp' ? 'strict_origins_fetch' : 'upstream_default' };
+        totalMs: Math.round(performance.now() - start), routing: mode === 'batch_mcp' ? 'strict_origins_fetch' : 'upstream_default', trustedExpertCode: mode === 'original_trusted_code_mcp' };
     } finally {
       try { if (root && transport.pid === root) observed.push(...await ownedDescendants([root], { rememberLiveRoots: true })); }
       finally { await client.close(); }
