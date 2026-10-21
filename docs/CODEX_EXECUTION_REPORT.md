@@ -1317,3 +1317,26 @@ Evidence: `evidence/jobs-screenshot-ownership-node22.txt` and
 `evidence/jobs-screenshot-ownership-node24.txt`. This is same-OS-user trusted-client
 isolation, not protection from a hostile process sharing that OS identity. Native
 confirmation and automatic retention remain open; no runtime/policy change.
+
+
+## Active listener attribution and full storage-tool positives
+
+The new optional verify-active-listeners.mjs waits for a real supervised Chromium
+navigation to complete, then attributes TCP socket inodes only to eight live owned
+processes while a locator wait holds execution active. Linux Node22 and24 each
+observe exactly one owned listener, on the execution worker at exact127.0.0.1;
+all eight processes' FD links are readable in both snapshots. Cancellation then
+confirms one completed action, terminated/removed cleanup and zero owned survivors.
+This is point-in-time TCP evidence, not DNS/UDP/egress isolation or a native OS
+listener audit. The script reports partial coverage explicitly if browser FD access
+is denied; unreadable worker descriptors fail rather than imply a missing listener.
+Evidence: `evidence/active-listener-audit-node22.json` and
+`evidence/active-listener-audit-node24.json`.
+
+New original storage capability tests exercise all15 cookie/localStorage/
+sessionStorage get/set/list/delete/clear tools against an owned isolated browser.
+Two seeded values are visible; deleting one preserves its sibling, and clear removes
+both. Six local Chromium/Firefox cases pass(10.8s), including browser_close ACK.
+Evidence: `evidence/original-storage-local.txt`. This is expanded positive behavior
+coverage, not a claim that all72 tool behaviors or native variants are complete.
+No delegated upstream implementation or companion code surface changed.
