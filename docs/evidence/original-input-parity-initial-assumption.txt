@@ -1,0 +1,75 @@
+
+Running 6 tests using 2 workers
+
+(node:338440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:338441) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [chromium] › tests/input-parity.spec.ts:47:5 › original element drag and MIME/file drops reach only the owned drop target (3.6s)
+  ✘  1 [chromium] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (4.2s)
+(node:338729) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [chromium] › tests/input-parity.spec.ts:64:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (2.5s)
+(node:339001) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [firefox] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (5.4s)
+(node:339279) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 [firefox] › tests/input-parity.spec.ts:47:5 › original element drag and MIME/file drops reach only the owned drop target (4.7s)
+  ✓  6 [firefox] › tests/input-parity.spec.ts:64:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (3.9s)
+
+
+  1) [chromium] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "choice": "alpha",
+    -   "keys": 3,
+    +   "keys": 4,
+        "value": "key",
+      }
+
+      34 |   await call('browser_type', { target: '#name', text: '' });
+      35 |   await call('browser_type', { target: '#name', text: 'key', slowly: true });
+    > 36 |   expect(evaluated(await call('browser_evaluate', { function: "() => ({value:document.querySelector('#name').value,keys:Number(document.querySelector('#name').dataset.keys),choice:document.querySelector('#choice').value})" }))).toEqual({ value: 'key', keys: 3, choice: 'alpha' });
+         |                                                                                                                                                                                                                                     ^
+      37 |   await call('browser_type', { target: '#name', text: 'final', submit: true });
+      38 |   await call('browser_wait_for', { text: 'submitted:final' });
+      39 |   await call('browser_hover', { target: '#hover' });
+        at /workspace/playwright-mcp/tests/input-parity.spec.ts:36:229
+
+    Error Context: test-results/input-parity-original-form-ee1a6-story-affect-the-owned-page-chromium/error-context.md
+
+  2) [firefox] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "choice": "alpha",
+    -   "keys": 3,
+    +   "keys": 4,
+        "value": "key",
+      }
+
+      34 |   await call('browser_type', { target: '#name', text: '' });
+      35 |   await call('browser_type', { target: '#name', text: 'key', slowly: true });
+    > 36 |   expect(evaluated(await call('browser_evaluate', { function: "() => ({value:document.querySelector('#name').value,keys:Number(document.querySelector('#name').dataset.keys),choice:document.querySelector('#choice').value})" }))).toEqual({ value: 'key', keys: 3, choice: 'alpha' });
+         |                                                                                                                                                                                                                                     ^
+      37 |   await call('browser_type', { target: '#name', text: 'final', submit: true });
+      38 |   await call('browser_wait_for', { text: 'submitted:final' });
+      39 |   await call('browser_hover', { target: '#hover' });
+        at /workspace/playwright-mcp/tests/input-parity.spec.ts:36:229
+
+    Error Context: test-results/input-parity-original-form-ee1a6-story-affect-the-owned-page-firefox/error-context.md
+
+  2 failed
+    [chromium] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page 
+    [firefox] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page 
+  4 passed (16.1s)

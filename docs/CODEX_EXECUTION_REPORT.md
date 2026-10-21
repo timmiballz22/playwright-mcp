@@ -1440,3 +1440,31 @@ hint was emitted. This is a real new native failure, not a completed1,000-action
 check; cleanup cause remains unknown until full logs/diagnostics are available.
 No timeout, assertion or cleanup status has been relaxed. macOS Intel components
 passed; full candidate run remains active.
+
+
+## Original input parity and complete tool review index
+
+Six local Chromium/Firefox cases pass(17.7s): resize/viewport dimensions, four
+form field types, option selection, normal/per-key typing and submit, hover,
+history return, element drag, MIME/file drops, coordinate canvas stroke pixels
+and wheel-driven scroll. Data/file content and DOM effects are independently
+checked. An initial fixture expected no keyup from clearing an input; real clear
+emits Delete. Corrected checks measure exactly three additional keyups for 'key'.
+Initial4 passes/two fixture failures and final6 passes are retained as evidence;
+no production behavior or timeout changed. See original-input-parity-*.
+
+TOOL_BEHAVIOR_MATRIX.md maps all72 versioned original tool schemas to candidate
+fixture touchpoints. Seventy have source behavior calls; interactive annotation
+and debugger resume remain open. This source index is not a PASS percentage or
+proof of every parameter branch/native combination. Full negative/variant review,
+including fill_form slider behavior and sensitive-export overwrite/Windows ACLs,
+remains open. New input/developer-tool fixtures await native execution.
+
+A new optional client-failure hint reports only fixed process-state counts for
+reported executor IDs on POSIX, with identityVerified:false. It is bounded to16
+IDs/one-second read-only ps and never grants kill authority or changes job/cleanup
+classification. It may describe recycled IDs and is explicitly a hint. Pure
+privacy/adversarial and real-own-process checks pass2 tests each on Node20/22/24;
+pack dry run includes the helper, and the required-entry verifier checks it.
+This is added to diagnose macOS Intel's cleanup failure, not a production fix.
+Evidence: process-state-hint-node*.txt.
