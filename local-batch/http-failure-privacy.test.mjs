@@ -10,11 +10,13 @@ import { ownedScopeDescendants } from './fixtures/process-audit.mjs';
 
 for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',')) {
   test(`real ${browser}: HTTP error codes and script exceptions keep response secrets out of reports`, { timeout: 120000 }, async () => {
-    const hits = new Map();
+    const hits = new Map(); const finishedResponses = new Map(); const firstRequests = new Map(); const lastResponses = new Map();
     const canaries = ['fake-query-private-canary', 'fake-header-private-canary', 'fake-body-private-canary', 'fake-script-private-canary'];
     const server = createServer((request, response) => {
       const route = new URL(request.url, 'http://fixture.invalid').pathname;
       hits.set(route, (hits.get(route) ?? 0) + 1);
+      if (!firstRequests.has(route)) firstRequests.set(route, performance.now());
+      response.once('finish', () => { finishedResponses.set(route, (finishedResponses.get(route) ?? 0) + 1); lastResponses.set(route, performance.now()); });
       const status = /^\/[45]\d\d$/.test(route) ? Number(route.slice(1)) : route === '/script' ? 200 : 404;
       response.writeHead(status, {
         'Content-Type': 'text/html', 'X-Fixture-Secret': canaries[1], 'Cache-Control': 'no-store',
@@ -35,19 +37,26 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
       for (const [route, code] of [['/401', 'http_401'], ['/403', 'http_403'], ['/404', 'http_404'],
         ['/418', 'http_4xx'], ['/429', 'rate_limited'], ['/500', 'http_5xx'], ['/503', 'http_5xx'], ['/script', null]]) {
         currentRoute = route; primaryStage = 'execution'; outcome = null;
+        const started = performance.now(); const phases = { workerMs: null, browserMs: null, startAuditMs: null };
         const scope = { roots: new Set(), identities: new Map() }; scopes.push(scope);
         let startAuditFailure;
         const result = await executeWorkflow({ browser, timeoutMs: 15000, actionTimeoutMs: 3000,
           steps: [{ type: 'goto', url: `${origin}${route}?secret=${canaries[0]}` },
             { type: 'assertText', selector: '#script-ran', equals: canaries[2] }] }, {
           allowedOrigins: [origin], artifactsDir: directory,
-          onEvent: event => { if (event.pid) scope.roots.add(event.pid); },
+          onEvent: event => {
+            if (event.pid) scope.roots.add(event.pid);
+            if (event.type === 'workerSpawned') phases.workerMs = Math.round(performance.now() - started);
+            if (event.type === 'ownedProcess') phases.browserMs = Math.round(performance.now() - started);
+          },
           // The existing trusted start ACK holds supervisor/worker allocation
           // before browser effects. Observe this owned lifetime independently;
           // a later workflow cannot overwrite an earlier root incarnation.
           beforeWorkerStart: async () => {
+            const auditStarted = performance.now();
             try { await ownedScopeDescendants([scope], { rememberLiveRoots: true }); }
             catch (error) { startAuditFailure = error; throw error; }
+            finally { phases.startAuditMs = Math.round(performance.now() - auditStarted); }
           },
         });
         if (startAuditFailure) throw startAuditFailure;
@@ -55,7 +64,11 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
         outcome = { ok: result.ok, reason: result.reason, completed: result.completed,
           failureCode: result.failedStep?.error ?? null, failureKind: result.failedStep?.failureKind ?? null,
           httpStatus: result.failedStep?.httpStatus ?? null, forced: result.execution?.forced,
-          cleanup: result.execution?.cleanup, tempCleanup: result.execution?.tempCleanup };
+          cleanup: result.execution?.cleanup, tempCleanup: result.execution?.tempCleanup,
+          requestsSeen: hits.get(route) ?? 0, responsesFinished: finishedResponses.get(route) ?? 0,
+          timing: { ...phases,
+            firstRequestMs: firstRequests.has(route) ? Math.round(firstRequests.get(route) - started) : null,
+            lastResponseMs: lastResponses.has(route) ? Math.round(lastResponses.get(route) - started) : null } };
         assert.equal(result.execution.cleanup, 'terminated');
         assert.equal(result.execution.tempCleanup, 'removed');
         assert.equal(result.ok, code === null, JSON.stringify({ route, reason: result.reason, failedStep: result.failedStep }));

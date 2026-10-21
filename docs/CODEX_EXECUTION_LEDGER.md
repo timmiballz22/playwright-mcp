@@ -3858,3 +3858,21 @@ browser/config group7/7 passes (with quota component8/8 checked separately). Fre
 lint/diff pass. Evidence retained-component-*,retained-config-* separates before,
 intermediate and final receipts. Expected next component96/97 (Windows), verify
 actual logs. Hold push until native59 completes; pending native work is not green.
+
+## HTTP fixture timing diagnostics (local, after231ecba)
+
+Native58 Windows /500 has no observed HTTP status before its timeout, so it cannot
+be called a misclassified known500 response. The source-only privacy fixture now
+records fixed request/finished-response counts and rounded worker/browser/start-
+audit/request/response timings in its existing failure receipt. It never records
+headers/body/query/selector/raw exception data. Runtime behavior, assertions and
+all deadlines remain unchanged. These fields can distinguish setup/audit budget
+consumption from a navigation that stalls after server response completion.
+
+Normal Chromium+Firefox privacy cases2/2 each Node22/24 pass, plus lint/diff.
+A deliberate /500 assertion failure exits1 after5 verified cases, preserves its
+receipt and independent cleanup audit, and excludes all four seeded secrets from
+that receipt. It records1 request/1 response, known typed500 and fixed timings;
+this is negative diagnostic evidence, not another passed workflow. Evidence
+http-timing-*. Native59 predates this test-only projection; wait for its final logs
+before pushing the browser-free component correction/operator quota candidate.
