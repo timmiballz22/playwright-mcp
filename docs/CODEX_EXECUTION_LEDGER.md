@@ -2728,3 +2728,13 @@ The separate supervised artifact test passes on Node20/22 with20 concurrent-pair
 executions each;167-file dry pack contains the extra QA fixture. The last full
 native166-file production install covers unchanged runtime entry points. New
 artifact identity checks remain Windows/macOS/native-pending; lint passes.
+
+## Read-only upstream Firefox symptom review
+
+Registry latest stable remains1.64.1, matching the lock. Upstream issue34586
+(concurrent tab creation, fixed after Firefox roll35491) and41742(Web Worker
+WebSocket session teardown) share removeProgressListener output. Both are closed;
+our static one-page counter has neither reported trigger, so the shared line
+cannot establish the cause. No dependency change or browser workaround follows
+from these reports. No upstream message/issue is posted. Evidence:
+firefox-upstream-review.json.
