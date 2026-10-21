@@ -2,7 +2,8 @@
 
 Requires Node.js 20+; use a maintained Node 22 or 24 LTS installation for new
 setups. The internal durable job components require Node 22.13+ (node:sqlite).
-Node 18 is unsupported. No global MCP
+Node 18 is unsupported. Durable jobs reject early Node23.x below23.4 because
+SQLite is not flag-free there. No global MCP
 configuration is required to run CLI workflows. This fork is private and is not
 published as Microsoft's npm package.
 

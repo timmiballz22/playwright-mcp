@@ -1,0 +1,51 @@
+✔ bounded artifact cleanup previews, removes only one scope and is idempotent (14.890626ms)
+✔ linked entries and oversized trees reject before deleting any artifact (7.640657ms)
+✔ controller rejects active, uncertain and expired-result cleanup before filesystem access (8.412693ms)
+✔ operator owner/project namespaces are stable, private and independent of tool data (23.175235ms)
+✔ untrusted symlinks and writable ancestors cannot redirect job storage writes (4.411404ms)
+✔ invalid owner/policy config is rejected before any storage creation (1.742443ms)
+✔ bounded writer contention waits before one mutation without replay (624.129318ms)
+✔ recovery with live unexpired records is read-only while another writer owns the lock (112.066529ms)
+✔ internal job controller queue-success (833.44783ms)
+✔ internal job controller cancel-and-reconnect (577.15431ms)
+✔ internal job controller queue-pressure (882.088934ms)
+✔ internal job controller queue-expiry (928.681588ms)
+✔ internal job controller guardian-crash (775.613018ms)
+✔ internal job controller close-before-dequeue (260.886181ms)
+✔ internal job controller cancel-during-guardian-start (219.247338ms)
+✔ durable guardian success: cleanup and canonical journal outcome (393.822341ms)
+✔ durable guardian cancel: cleanup and canonical journal outcome (700.244101ms)
+✔ durable guardian disconnect: cleanup and canonical journal outcome (616.774147ms)
+✔ durable guardian crash: cleanup and canonical journal outcome (681.98027ms)
+✔ durable guardian mismatch: cleanup and canonical journal outcome (234.102357ms)
+✔ durable guardian admissionFailure: cleanup and canonical journal outcome (310.678867ms)
+✔ durable guardian preDisconnected: cleanup and canonical journal outcome (227.827971ms)
+✔ managed directory links and database hardlinks cannot modify another file (371.657493ms)
+✔ POSIX journal directory must exclude group and other access (52.245107ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (116.681934ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (64.516811ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (58.813394ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (87.233507ms)
+✔ killed transaction rolls back without a partial job or duplicate request (208.840681ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (147.77639ms)
+✔ corrupt journal is rejected without silently erasing the file (104.044665ms)
+(node:296109) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ an unrelated SQLite file is rejected without changing its bytes (54.382519ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (177.474215ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (166.307115ms)
+✔ Windows ACL helper rejects a non-Windows host without creating storage (1.233055ms)
+✔ Windows helper failure diagnostics contain only fixed process categories (0.203426ms)
+✔ controller expires its queued input by monotonic elapsed time when wall deadline remains in the future (152.638667ms)
+✔ workflow identity ignores object key order, defaults and equivalent repeat expansion (1.514644ms)
+✔ captured workflow input cannot change after submission and oversized or unknown data is rejected (5.980214ms)
+✔ CI totals include TAP, Node24 spec and original Playwright summaries (1.915874ms)
+✔ a repeated summary is counted once and incomplete Node totals fail closed (0.678594ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 41
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10709.839194

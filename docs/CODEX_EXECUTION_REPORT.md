@@ -1190,3 +1190,20 @@ Evidence:node-minimum-version,minimum-node22-* and minimum-fixture-node24-compon
 NEXT: retain the current native run and characterize Windows Firefox through the
 new upstream trusted-code fast-loop regression; broader quotas/profiles/egress and
 remaining gates stay open.
+
+
+## Early Node23 runtime guard
+
+Real Node23.0.0 probe: supportsJournal=true while importing node:sqlite fails. The
+old major>22 shortcut incorrectly attempted jobs on early23.x. The guard now
+requires22.13+,23.4+,or24+ on the corresponding major lines. Node's documented
+flag-free boundaries are confirmed in nodejs/node doc/api/sqlite.md and
+https://github.com/nodejs/node/pull/55890. Public endpoint/CLI now reject early23.x
+before state creation or workflow-file reads. No experimental flag is added.
+
+Node23.0.0 actual unsupported-runtime tests:4 pass,zero skip/cancel. Node23.4.0
+plain import,insert/read/integrity probe passes, and the full41-test component
+suite passes. These are isolated tooling binaries from the temporary npx cache,
+not a changed system runtime/dependency/lockfile or a recommendation of an older
+release. Node22.13 minimum production proof remains as recorded above.
+Evidence:node23-availability-before,node23-unsupported-fixed,node23-flagfree-*.

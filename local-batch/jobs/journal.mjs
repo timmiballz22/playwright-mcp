@@ -5,7 +5,8 @@ import { COMMAND_FIELDS, validCommandData } from './journal-protocol.mjs';
 
 const [major, minor] = process.versions.node.split('.').map(Number);
 const PROCESS_INSTANCE = randomUUID();
-export const supportsJournal = major > 22 || major === 22 && minor >= 13;
+// SQLite became flag-free in22.13 and23.4; early23.x still needs a flag.
+export const supportsJournal = major >= 24 || major === 23 && minor >= 4 || major === 22 && minor >= 13;
 export class JournalError extends Error {
   constructor(code) { super(code); this.name = 'JournalError'; this.code = code; }
 }

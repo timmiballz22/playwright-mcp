@@ -1,6 +1,7 @@
 # Optional local jobs MCP preview
 
-This stdio preview requires Node22.13+ and private local storage. POSIX uses
+This stdio preview requires flag-free SQLite (Node22.13+,23.4+,or24+) and private
+local storage; maintained Node22/24 installations are recommended. POSIX uses
 private modes; the experimental Windows configuration now uses protected
 owner/System DACLs. Its helper passed native acceptance at ebdec88.
 Windows installed public MCP/CLI and source1,000-action checks pass at6fffa27.
