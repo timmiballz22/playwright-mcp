@@ -1,6 +1,19 @@
 # Current acceptance coverage
 
-Latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
+Latest completed native `4797a00`: **1,266 reported passes/nine failed tests**;
+all17 jobs concluded, none cancelled. Wrapper39596168653:430/4;
+batch39596168652:836/5. All installed production and actual Codex1,000-action
+lanes pass. Original Firefox, macOS raw/MCP throughput and Windows raw Firefox/
+Chromium retry failures remain. No full release gate is promoted.
+
+Candidate `f485f1e` is under native verification. Further local HTTP/privacy,
+IPv6, cancellation-negative and portable functional-soak checks are committed
+but not pushed during that matrix. The local functional100/600 passes with fresh
+storage and zero owned survivors; this is not native or full resource acceptance.
+See [execution report](CODEX_EXECUTION_REPORT.md) and the dated ledger entries
+for exact evidence and pending work. **Not release-ready.**
+
+At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
 Separately, macOS installed-package controller-death verification failed, so its
 subsequent batch acceptance step did not run. Counts exclude that unexecuted suite.
@@ -404,7 +417,7 @@ one test failure. No deadline/count/cleanup assertion was loosened.
 
 ## Native6fffa27 and client-readiness follow-up
 
-Latest completed native `6fffa27`: **942 tests passed/three failed**, zero test
+At this historical checkpoint, latest completed native `6fffa27`: **942 tests passed/three failed**, zero test
 skips/cancellations, plus one Windows Codex-client discovery verification failure.
 Wrapper39552616750:271/1; batch39552616754:671/2. All three test failures are raw
 Windows Firefox loops. All88 original cases per OS, Docker and four durable
@@ -459,7 +472,7 @@ generation and diff checks pass. This does not prove Firefox routing is the caus
 
 ## Native2f87026 completed
 
-Latest completed native `2f87026`: **939 tests passed/six failed**, zero test
+At this historical checkpoint, latest completed native `2f87026`: **939 tests passed/six failed**, zero test
 skips/cancellations, plus Windows actual-Codex discovery failure. Wrapper39554479797:
 270/2; batch39554479785:669/4. All88 original tests per OS, Docker, four durable
 component jobs and installed public MCP/CLI jobs checks pass. Windows source

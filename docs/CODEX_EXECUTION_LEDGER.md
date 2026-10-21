@@ -1,6 +1,19 @@
 # Execution ledger
 
-Latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
+Latest completed native `4797a00`: **1,266 reported passes/nine failed tests**;
+all17 jobs concluded, none cancelled. Wrapper39596168653:430/4;
+batch39596168652:836/5. All installed production and actual Codex1,000-action
+lanes pass. Original Firefox, macOS raw/MCP throughput and Windows raw Firefox/
+Chromium retry failures remain. No full release gate is promoted.
+
+Candidate `f485f1e` is under native verification. Further local HTTP/privacy,
+IPv6, cancellation-negative and portable functional-soak checks are committed
+but not pushed during that matrix. The local functional100/600 passes with fresh
+storage and zero owned survivors; this is not native or full resource acceptance.
+See [execution report](CODEX_EXECUTION_REPORT.md) and the dated ledger entries
+for exact evidence and pending work. **Not release-ready.**
+
+At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
 Separately, macOS installed-package controller-death verification failed, so its
 subsequent batch acceptance step did not run. Counts exclude that unexecuted suite.
@@ -1989,7 +2002,7 @@ and lingering controller-death checks pass. Evidence: profile-doctor-production-
 
 ## Native42 receipts and bounded highlight paint observation
 
-Latest completed native `107076c`: **1,165 tests passed/nine failed**, zero
+At this historical checkpoint, latest completed native `107076c`: **1,165 tests passed/nine failed**, zero
 reported test skips/cancellations; all17 jobs completed. Wrapper39582244429:
 408/5; batch39582244422:757/4. Docker's two cases now pass with host-UID mapping
 and owned private XDG config/cache directories. Installed production-package
@@ -2106,7 +2119,7 @@ this is registry advisory evidence, not a general supply-chain guarantee.
 
 ## Native43 completed receipts
 
-Latest completed native `08e434a`: **1,196 tests passed/five failed**, plus a
+At this historical checkpoint, latest completed native `08e434a`: **1,196 tests passed/five failed**, plus a
 separate failed actual-Codex acceptance job on macOS Intel. Zero reported test
 skips/cancellations; all17 jobs completed. Wrapper39585522873:414/2;
 batch39585522979:782/3. Original136-test host suites all pass, Docker2/2 and
@@ -2283,7 +2296,7 @@ journal-first-cause-concurrent-node*.txt and journal-first-cause-guardian-*.txt.
 
 ## Native45 completed jobs and pending controlled transport/CIM probes
 
-Latest completed native `2272e93`: **1,140 reported test passes/two failures**,
+At this historical checkpoint, latest completed native `2272e93`: **1,140 reported test passes/two failures**,
 plus Windows installed-package process-audit failure and macOS actual-Codex
 acceptance failure. Wrapper39592625883:438/2; batch39592626077:702/0 across the
 suites that ran. All17 jobs concluded, none cancelled. The Windows main batch
@@ -2368,7 +2381,7 @@ Native progress receipt confirmation remains pending. Evidence: tool-progress-*.
 
 ## Native46 completed and lifecycle cancellation boundary
 
-Latest completed native `4797a00`: **1,266 reported test passes/nine failures**.
+At this historical checkpoint, latest completed native `4797a00`: **1,266 reported test passes/nine failures**.
 Wrapper39596168653:430/4; batch39596168652:836/5. All17 jobs concluded,
 none cancelled; no reported test skips. Original wrapper failures are Windows
 Firefox cookies and macOS Firefox trusted100-click close, large-DOM interaction

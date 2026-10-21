@@ -1,6 +1,19 @@
 # Mandatory scenario evidence
 
-Latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
+Latest completed native `4797a00`: **1,266 reported passes/nine failed tests**;
+all17 jobs concluded, none cancelled. Wrapper39596168653:430/4;
+batch39596168652:836/5. All installed production and actual Codex1,000-action
+lanes pass. Original Firefox, macOS raw/MCP throughput and Windows raw Firefox/
+Chromium retry failures remain. No full release gate is promoted.
+
+Candidate `f485f1e` is under native verification. Further local HTTP/privacy,
+IPv6, cancellation-negative and portable functional-soak checks are committed
+but not pushed during that matrix. The local functional100/600 passes with fresh
+storage and zero owned survivors; this is not native or full resource acceptance.
+See [execution report](CODEX_EXECUTION_REPORT.md) and the dated ledger entries
+for exact evidence and pending work. **Not release-ready.**
+
+At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
 Separately, macOS installed-package controller-death verification failed, so its
 subsequent batch acceptance step did not run. Counts exclude that unexecuted suite.
