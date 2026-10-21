@@ -31,7 +31,11 @@ async function main() {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'supervised-soak-subject-'));
   const server = createServer((_request, response) => {
     response.writeHead(200, { 'Content-Type': 'text/html' });
-    response.end('<!doctype html><button onclick="this.textContent=\'done\'">fresh</button>');
+    response.end(`<!doctype html><button>fresh</button><output></output><script>
+      const output=document.querySelector('output');
+      output.textContent=document.cookie.includes('soak-marker=')||localStorage.getItem('soak-marker')!==null?'dirty':'clean';
+      document.querySelector('button').onclick=function(){document.cookie='soak-marker=seeded; SameSite=Strict; path=/';localStorage.setItem('soak-marker','seeded');this.textContent='done';output.textContent=document.cookie.includes('soak-marker=seeded')&&localStorage.getItem('soak-marker')==='seeded'?'seeded':'seed-failed';};
+    </script>`);
   });
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   const origin = `http://127.0.0.1:${server.address().port}`;
@@ -44,16 +48,18 @@ async function main() {
       cleanupAttested = false;
       const result = await executeWorkflow({ timeoutMs: 15000, steps: [
         { type: 'goto', url: origin }, { type: 'assertText', selector: 'button', equals: 'fresh' },
+        { type: 'assertText', selector: 'output', equals: 'clean' },
         { type: 'click', selector: 'button' }, { type: 'assertText', selector: 'button', equals: 'done' },
+        { type: 'assertText', selector: 'output', equals: 'seeded' },
       ] }, { allowedOrigins: [origin], artifactsDir: directory, signal: abort.signal,
         onEvent: event => { if (event.pid) send({ type: 'owned', run, pid: event.pid }); },
       });
       assert.equal(result.ok, true, JSON.stringify({ reason: result.reason, completed: result.completed, execution: result.execution }));
-      assert.equal(result.completed, 4); assert.equal(result.execution.cleanup, 'terminated');
+      assert.equal(result.completed, 6); assert.equal(result.execution.cleanup, 'terminated');
       assert.equal(result.execution.tempCleanup, 'removed');
       await new Promise(resolve => setImmediate(resolve));
       const memory = process.memoryUsage();
-      await exchange({ type: 'runDone', run, row: { run, durationMs: result.durationMs,
+      await exchange({ type: 'runDone', run, row: { run, completed: result.completed, freshCookieAndLocalStorageVerified: true, durationMs: result.durationMs,
         subjectRss: memory.rss, subjectHeapUsed: memory.heapUsed, subjectFds: (await readdir('/proc/self/fd')).length } });
       cleanupAttested = true;
     }

@@ -1,5 +1,13 @@
 # Mandatory scenario evidence
 
+Current candidate `94d7cd4` has a newly observed Windows actual-Codex primary job
+CRASHED after both servers reached ready; its startup SDK/helper controls pass.
+Final native run results are unavailable because subsequent GitHub requests return
+HTTP401. The completed-run counts below remain historical, not current-candidate
+success. Local sanitized guardian diagnostics pass16 tests and an actual Codex
+1,000-action check, but have no Windows validation yet. See execution ledger.
+
+
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
 PASS. Latest completed native `fd9d074`: **1,002 tests passed,five failed**, zero test
 skips/cancellations. Wrapper39564493704:282/2; batch39564493658:720/3. All five
@@ -35,14 +43,14 @@ acceptance remain open.
 | 6 | Fork cannot publish Microsoft artifact | Verified private package, refusal script, disabled inherited publisher and distribution.test.mjs. No publish attempted. |
 | 7 | Clean Codex initialization/discovery/navigation | Verified temporary app-server config, ephemeral thread, both endpoints; worker-codex-97f3c57 evidence (1,000 actions in 34.021s). No global config changes. |
 | 8 | Exact 1,000 operations + final counter | Verified real MCP/Codex fixture: goto, 997 clicks, exact count and exact URL, one positive batch call. Not 1,000 clicks. |
-| 9 | 100 reset workflows without carryover | PARTIAL: 100 fresh raw-runner workflows measured; explicit state-reset/cookie carryover acceptance remains. |
+| 9 | 100 reset workflows without carryover | PARTIAL: Linux supervised100 fresh executions/600 actions now assert empty cookie/localStorage state then positively seed/read both every run; zero owned survivors, FD/RSS thresholds pass. Managed reused-profile reset, other stores and native100-run acceptance remain. |
 | 10 | Concurrent queued jobs + screenshot ownership | PARTIAL: durable FIFO/controller pressure and two installed queued jobs pass; public POSIX preview executes1,000 actions and prevents duplicate starts. Concurrent screenshot/retention acceptance remains. |
 | 11 | Client/project ownership | PARTIAL: public POSIX MCP foreign-owner denial, trusted project namespace config and journal owner/project fencing pass. Jobs profiles and Windows ACLs remain unfinished. |
 | 12 | Cancel during launch and locator wait | PARTIAL: injected stalled launch/late close, blocked worker and active real navigation; local trusted witness now proves cancellation after a real Chromium locator wait becomes pending, one confirmed action, bounded cleanup and independent zero survivors; native locator fixture and other phases remain. |
 | 13 | Stdio close during browser run | PARTIAL: real EOF tests; 9041497 native Windows EOF/SIGTERM/abrupt-host cleanup passed; broader shutdown phase coverage remains. |
 | 14 | SIGINT/SIGTERM + intact journal | PARTIAL: real foreground CLI SIGTERM persists CANCELLED after1 action with zero active owned processes; actual controller SIGKILL installed proof and journal rollback pass. Broader phase-specific crashes remain. |
 | 15 | Browser crash during screenshot | PARTIAL: trusted fixture starts a real Chromium screenshot, verifies its promise is pending, kills only its own BrowserServer child handle, then requires screenshot failure, no PNG/temp publication and independently observed zero owned survivors. Local Node22/24 proof; native cross-OS confirmation pending. |
-| 16 | Slow navigation deadline + cleanup | PARTIAL: real browser locator deadline, hanging navigation cancellation and a local Chromium main-thread tight-loop fixture;10s independent boundary returns before12s with zero owned survivors. Native frozen-page fixture passed; explicit navigation-timeout acceptance remains. |
+| 16 | Slow navigation deadline + cleanup | PARTIAL: real browser locator deadline, hanging navigation cancellation and a local Chromium main-thread tight-loop fixture;10s independent boundary returns before12s with zero owned survivors. Native frozen-page fixture passed. New Linux Node20/22 witnessed stalled navigation test passes: timeout, zero completed/no replay/next-step request, terminated/removed cleanup and zero owned survivors; native slow-navigation confirmation remains. |
 | 17 | Invalid/extra/empty/oversized input | Verified strict validation, empty fill operator fixture, 1 MiB file limit and SDK 10 MiB frame guard/shutdown tests; not a general fuzzing proof. |
 | 18 | Approved-to-denied redirect | Verified real Chromium/Firefox/WebKit CI fixtures. All redirects are rejected, including same-origin. |
 | 19 | Unknown localhost port | Verified exact-origin unit policy and real redirect-to-denied-port hit counter. |

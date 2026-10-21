@@ -97,7 +97,7 @@ try {
   const rssGrowth = quantile(last.map(row => row.subjectRss), 0.5) - quantile(warm.map(row => row.subjectRss), 0.5);
   const finalFd = records.at(-1).subjectFds;
   const passed = finalFd <= baselineFd + 4 && rssGrowth <= 32 * 1024 * 1024;
-  console.log(JSON.stringify({ kind: 'summary', runs: records.length, actions: records.length * 4, elapsedMs: Math.round(performance.now() - start),
+  console.log(JSON.stringify({ kind: 'summary', runs: records.length, actions: records.reduce((sum, row) => sum + row.completed, 0), freshCookieAndLocalStorageVerifiedEveryRun: records.every(row => row.freshCookieAndLocalStorageVerified === true), elapsedMs: Math.round(performance.now() - start),
     medianRunMs: quantile(records.map(row => row.durationMs), 0.5), p95RunMs: quantile(records.map(row => row.durationMs), 0.95),
     peakSampledTreeRss: Math.max(...records.map(row => row.peakSampledTreeRss)),
     peakSampledReadableTreeFds: Math.max(...records.map(row => row.peakSampledReadableTreeFds)),

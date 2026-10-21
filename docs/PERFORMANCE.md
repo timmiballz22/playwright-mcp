@@ -181,9 +181,9 @@ evidence/interface-benchmark-with-upstream-code.json.
 A new original-tool regression executes the same100 fast clicks inside that
 preserved tool on each native browser/OS. Local Chromium and Firefox both pass
 (2 tests,14.6s total) including exact DOM/URL assertions and browser_close ACK.
-Native coverage remains pending. It also tests whether strict Windows Firefox
-failures reproduce through delegated upstream fast-loop execution, without
-removing the existing failing batch tests or adding per-click delays.
+Native fd9d074 passed this case on all four projects on Linux/macOS/Windows,
+including Windows Firefox. The separate raw-runner Windows Firefox failures
+remain unresolved; this does not isolate their cause or remove the strict cases.
 
 
 ## Released official Playwright CLI comparison
@@ -216,3 +216,22 @@ source-defined fixture code. It does not add code execution to companion workflo
 or measure a model using official CLI/SKILLS. Evidence:
 `evidence/official-cli-benchmark-node22.json` and
 `evidence/official-cli-benchmark-node24.json`.
+
+
+## Fresh-run state isolation acceptance
+
+The supervised Linux Node22.23.3 soak now explicitly tests cookie/localStorage
+carryover at the same owned origin across100 fresh executions. Each run must see
+both stores empty, perform the click, and positively read back both seeded values;
+DOM freshness alone cannot pass. All100 runs/600 actions pass in115.687s, each with
+independently observed zero owned survivors. Median/p95 run latency1,033/1,146ms;
+subject FDs24 to24; median post-warmup RSS growth8,507,392 bytes against the
+unchanged32MiB limit. Peak sampled process-tree RSS615,059,456 bytes; browser FD
+coverage remains partial(permission denied on37 process identities), and sampled
+CPU/RSS are not complete maxima. Zero model turns. Evidence:
+`evidence/state-isolation-supervised-soak100.jsonl`.
+
+This verifies cookie/localStorage isolation from fresh supervised executions.
+It does not implement or verify resetting a reused managed persistent profile,
+IndexedDB/cache/sessionStorage isolation, native100-run stability, or a durable
+job reset command. Those broader scenario9/profile requirements remain open.

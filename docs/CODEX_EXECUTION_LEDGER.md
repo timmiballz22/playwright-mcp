@@ -1591,3 +1591,35 @@ No user profile or global config changes. Failures retain fixtures. Argument/out
 byte counts are not token counts; SKILLS/model usage and native official CLI
 comparison remain open. See PERFORMANCE.md and evidence/official-cli-benchmark-*.json.
 This measurement closes only the missing local released-CLI sample, not a release gate.
+
+
+## Fresh-run state isolation acceptance
+
+The supervised Linux Node22.23.3 soak now explicitly tests cookie/localStorage
+carryover at the same owned origin across100 fresh executions. Each run must see
+both stores empty, perform the click, and positively read back both seeded values;
+DOM freshness alone cannot pass. All100 runs/600 actions pass in115.687s, each with
+independently observed zero owned survivors. Median/p95 run latency1,033/1,146ms;
+subject FDs24 to24; median post-warmup RSS growth8,507,392 bytes against the
+unchanged32MiB limit. Peak sampled process-tree RSS615,059,456 bytes; browser FD
+coverage remains partial(permission denied on37 process identities), and sampled
+CPU/RSS are not complete maxima. Zero model turns. Evidence:
+`evidence/state-isolation-supervised-soak100.jsonl`.
+
+This verifies cookie/localStorage isolation from fresh supervised executions.
+It does not implement or verify resetting a reused managed persistent profile,
+IndexedDB/cache/sessionStorage isolation, native100-run stability, or a durable
+job reset command. Those broader scenario9/profile requirements remain open.
+
+
+## Witnessed slow navigation deadline
+
+A new real Chromium acceptance test keeps an owned HTTP response pending, waits
+for the actual request, then requires the10s workflow boundary to return timeout
+with zero completed actions, no replay and no execution of the following navigation.
+It checks terminated/removed cleanup and independently observes zero owned process
+survivors. Linux Node22 and20 each pass(one test each,9.295/9.325s total including
+observer/fixture overhead); no production deadline or retry policy changed.
+Evidence: `evidence/navigation-deadline-node22.txt` and
+`evidence/navigation-deadline-node20.txt`. Native cross-OS confirmation remains
+blocked by unavailable GitHub authentication; this is scoped scenario16 evidence.

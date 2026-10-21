@@ -1,5 +1,13 @@
 # Current acceptance coverage
 
+Current candidate `94d7cd4` has a newly observed Windows actual-Codex primary job
+CRASHED after both servers reached ready; its startup SDK/helper controls pass.
+Final native run results are unavailable because subsequent GitHub requests return
+HTTP401. The completed-run counts below remain historical, not current-candidate
+success. Local sanitized guardian diagnostics pass16 tests and an actual Codex
+1,000-action check, but have no Windows validation yet. See execution ledger.
+
+
 [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md) is the current45-scenario map;
 [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) records exact candidates and
 commands. Latest completed native `fd9d074`: **1,002 tests passed,five failed**, zero test
