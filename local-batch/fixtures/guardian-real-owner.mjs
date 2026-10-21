@@ -14,7 +14,7 @@ const server = createServer((request, response) => { response.end('<!doctype htm
 server.listen(0, '127.0.0.1'); await once(server, 'listening');
 const origin = `http://127.0.0.1:${server.address().port}`;
 controller = await JobController.open({
-  journal: { directory: path.join(directory, 'journal'), projectId: 'e'.repeat(64), ownerId: 'parent-death-fixture' },
+  journal: { directory: path.join(directory, 'journal'), projectId: 'e'.repeat(64), ownerId: 'parent-death-fixture', ...(process.argv[3] === '--linger-journal-close' ? { workerModule: new URL('./linger-journal-worker.mjs', import.meta.url).href } : {}) },
   execution: { artifactsDir: path.join(directory, 'artifacts'), allowedOrigins: [origin] },
   onEvent: event => {
     if (event.pid) roots.push(event.pid);
