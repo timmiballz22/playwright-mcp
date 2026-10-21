@@ -50,6 +50,9 @@ if (process.argv[2] === '--owned-child') {
   fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
   process.disconnect();
 } else {
+  const args = process.argv.slice(2);
+  if (args.length > 1 || args.length === 1 && args[0] !== '--private-first') throw new TypeError('Invalid diagnostic arguments');
+  const modeOrder = args.length ? ['private', 'inherited'] : ['inherited', 'private'];
   let failed = false; let interrupted = false; let current;
   const cancel = () => {
     interrupted = true;
@@ -57,7 +60,7 @@ if (process.argv[2] === '--owned-child') {
       void terminateOwnedProcesses(current.pid, [], true).catch(() => {});
   };
   process.once('SIGINT', cancel); process.once('SIGTERM', cancel);
-  for (const mode of ['inherited', 'private']) {
+  for (const mode of modeOrder) {
     if (interrupted) throw new Error('Exact runner diagnostic cancelled');
     const directory = await mkdtemp(path.join(os.tmpdir(), 'ff-runner-' + mode + '-'));
     const child = fork(fileURLToPath(import.meta.url), ['--owned-child', mode, directory], { detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
@@ -97,7 +100,7 @@ if (process.argv[2] === '--owned-child') {
       while (remaining.length && performance.now() < end) { await new Promise(resolve => setTimeout(resolve, 100)); remaining = await ownedDescendants([child.pid, ...browsers, ...observed]); }
       assert.deepEqual(remaining, [], 'Exact runner diagnostic cleanup uncertain');
       assert.equal(auditFailure, false, 'Exact runner process identity uncertain'); clean = true;
-      const result = { os: process.platform, mode, privateTempRoot: mode === 'private', ...(receipt ?? { ok: false, reason: interrupted ? 'operator_cancelled' : 'independent_deadline_or_exit' }), residualProcessesBeforeForce: residual.length, activeOwnedProcesses: 0 };
+      const result = { os: process.platform, mode, comparisonOrder: modeOrder, position: modeOrder.indexOf(mode) + 1, privateTempRoot: mode === 'private', ...(receipt ?? { ok: false, reason: interrupted ? 'operator_cancelled' : 'independent_deadline_or_exit' }), residualProcessesBeforeForce: residual.length, activeOwnedProcesses: 0 };
       if (residual.length) result.ok = false;
       console.log(JSON.stringify(result));
       if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Firefox exact runner::' + JSON.stringify(result));

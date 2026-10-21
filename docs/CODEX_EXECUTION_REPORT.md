@@ -1,6 +1,48 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `08e434a`: **1,196 tests passed/five failed**, plus a
+Latest native attempt `2d8fe7f` is **incomplete**: available summaries report
+**1,108 passed/six failed tests**, plus two failed actual-Codex acceptance jobs.
+Wrapper39587708648:439/1; batch39587708557:669/5 across available completed suites.
+Sixteen jobs completed; the remaining macOS Intel batch job exceeded its configured
+30-minute limit, did not acknowledge normal cancellation, and was force-cancelled.
+GitHub supplied zero log lines for that job. Its suite/cleanup outcome is unknown
+and excluded from counts. Available test summaries report no skips/cancellations;
+that does not turn the cancelled job into an executed passing suite.
+
+All original144-test host suites pass, including the slider and malformed-resume
+negatives; Docker2/2 and macOS modal repeats3/3 pass. Completed journal component
+lanes pass43/43 (Windows44/44), including bounded termination/close metadata
+persistence with an uncertain lease retained. A full native green is not established.
+
+Counted failures: legacy Windows Node20 Firefox headed; Windows Node22 Firefox
+alias-policy reason mismatch (timeout versus policy_blocked), supervised20-click
+startup timeout, raw headed/direct-pipe locator stalls, and429 navigation timeout.
+The alias fixture reached its four completed actions but its independent target
+hit assertion followed the failing reason assertion; no security bypass cause is
+established. That hit check now executes first and reason failures include a safe
+owned-fixture receipt. Local Chromium/Firefox selected cases pass; local WebKit
+is not available. The next native run retains all original assertions.
+
+Actual Codex Linux1,000 actions passes35.568s, zero owned survivors/model turns.
+macOS TIMED_OUT982 retains its result with terminated/removed cleanup and no
+operator attention. Windows CRASHED200 has no result, operator attention and
+poll/journal_unavailable/read; fresh SDK startup also fails journal initialization.
+The pending fixed transport diagnostics distinguish timeout/worker exit/send
+failure without changing RPC2s, recovery or retries. Underlying native failures
+remain unresolved.
+
+One Windows temp comparison now differs: inherited3/10 successful,74 confirmed
+actions including its failed run; private10/10,230 actions. Both verify zero owned
+survivors. Inherited always ran first, so this is not a causal temp-directory fix.
+The next two-case diagnostic reverses that order, preserving its action/case/CI
+bounds and production policy. Local reversed controls pass20/20,460 actions,
+zero survivors. Next candidate also includes locally verified observed-page budget,
+closed-slot reuse and journal transport diagnostics; native confirmation is pending.
+Evidence: worker-ci-fortyfourth-*, native44-provider-state.json,
+firefox-private-first-node22.txt and encoded-origin-diagnostic-order-node22.txt.
+**Not release-ready.**
+
+Previous fully completed native `08e434a`: **1,196 tests passed/five failed**, plus a
 separate failed actual-Codex acceptance job on macOS Intel. Zero reported test
 skips/cancellations; all17 jobs completed. Wrapper39585522873:414/2;
 batch39585522979:782/3. Original136-test host suites all pass, Docker2/2 and

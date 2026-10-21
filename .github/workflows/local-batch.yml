@@ -94,7 +94,7 @@ jobs:
         if: failure() && runner.os == 'Windows' && steps.batch_windows.outcome == 'failure'
         timeout-minutes: 11
         shell: bash
-        run: node scripts/diagnose-firefox-runner.mjs 2>&1 | tee firefox-runner.log
+        run: node scripts/diagnose-firefox-runner.mjs --private-first 2>&1 | tee firefox-runner.log
       - name: Preserve failed browser evidence
         if: failure() && (steps.installed.outcome == 'failure' || steps.batch_bash.outcome == 'failure' || steps.batch_windows.outcome == 'failure')
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2

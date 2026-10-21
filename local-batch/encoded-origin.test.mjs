@@ -31,8 +31,8 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
         ] }, { artifactsDir: root, allowedOrigins: control ? [origin, destination] : [origin] });
         assert.equal(result.ok, control, JSON.stringify({ control, result }));
         assert.equal(result.completed, 4, 'All browser alias requests must actually settle');
-        if (!control) assert.equal(result.reason, 'policy_blocked');
         assert.equal(hits, urls.length, 'Only explicitly approved control requests may reach the target');
+        if (!control) assert.equal(result.reason, 'policy_blocked', JSON.stringify({ control, hits, result }));
         assert.equal(result.execution.cleanup, 'terminated'); assert.equal(result.execution.tempCleanup, 'removed');
       }
       verified = true;

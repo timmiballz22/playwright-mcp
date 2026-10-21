@@ -104,5 +104,5 @@ Evidence: original-resume-negative-local.txt.
 Native2d8fe7f original suites pass144/144 each on Linux, macOS Intel and Windows,
 including slider valid/event/invalid partial-mutation behavior and malformed
 resume-location rejection with a usable session afterward. The companion/native
-Codex acceptance workflow is still running; this is scoped original-tool evidence,
+Codex attempt has two client failures and an unreported cancelled macOS batch job; this is scoped original-tool evidence,
 not a full green matrix or successful interactive debugger/annotation proof.
