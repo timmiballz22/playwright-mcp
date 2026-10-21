@@ -4127,3 +4127,41 @@ entrypoints, real Chromium and two controller-death audits with activeOwned0;
 tarball175 files. Private fault/test remain checkout-only. http-early-* receipts
 preserve the negative, intermediate and final phases. Native62 runs456a141 and
 does not include this change; cross-platform verification remains pending.
+
+## Native62 at456a141 — completed failure; ownership fixture correction
+
+Batch39670418950:1,266/13; wrapper39670419016:438/2. Combined1,704 passes,15
+failed tests; separate actual-Codex macOS fails TIMED_OUT954 at955, known
+terminated/removed, no operator attention. Test skips/cancellations0; intentional
+functional_soak job skipped. Completed native62 results do not include ce73a11.
+All five175-file production installs pass. Components99/99 Linux22/24/macOS;
+Windows98/100. All five main lanes fail their old temp-ACK crash expectation:
+new fail-closed guard intentionally returns cleanup_failed rather than
+worker_crashed, because an empty browser-PID receipt set after worker exit cannot
+prove absence of unreported children. This does not undo verified temp removal.
+
+Windows ownership cases both lose the post-crash live-child witness in about2s,
+not a test deadline. Node22.23.3 libuv source explicitly assigns non-detached
+children to kill-on-parent-exit job control. The fixture mistakenly selected
+detached:false on Windows. It now deliberately creates a detached adversarial
+child on every OS; all live-child/debt/admission/reopen assertions stay intact,
+all budgets unchanged. Pinned Playwright's direct Windows browser launch is
+non-detached: this model is not evidence of a direct Windows browser leak.
+Source hash/excerpts: native62-windows-spawn-source.json. Failed fixture roots
+will now survive successful teardown for diagnosis. Temp-ACK test now requires
+cleanup_failed/browser_ownership_unconfirmed/retrySafe:false while retaining
+removed-temp and empty-pool assertions. Local before2/3 (old reason fails),
+final focused5/5 each Node22/24. Windows correction remains native-unverified.
+
+Other native62 failures remain: Windows supervised Firefox times out16/23; raw
+headed Firefox fresh3 stops10/23 with pointer action failure; Firefox throttling
+case times out after1 step. macOS raw Chromium1k deadline, public jobs timeout971
+and MCP timeout981. Wrapper Windows legacy Firefox has two failures. These are
+retained in worker-ci-sixtysecond-* with exact jobs/counts; no retry, assertion
+relaxation or higher runtime budget is used to erase them. Previous native61
+screenshot ownership and WebKit second-GET findings remain unresolved even when
+their native62 cases pass.
+
+Post-correction full Node22 component suite102/102,0 failed/skipped/cancelled;
+lint and diff checks pass. Production code is unchanged by this fixture/test
+correction. HTTP metadata production proof is recorded separately at ce73a11.

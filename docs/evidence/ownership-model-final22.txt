@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: real browser uses a short external private temporary root and cancellation removes it
+ok 1 - real browser uses a short external private temporary root and cancellation removes it
+  ---
+  duration_ms: 1263.515728
+  type: 'test'
+  ...
+# Subtest: unacknowledged external temporary collision is retained and cleanup fails closed
+ok 2 - unacknowledged external temporary collision is retained and cleanup fails closed
+  ---
+  duration_ms: 102.890326
+  type: 'test'
+  ...
+# Subtest: worker crash after temporary ownership ACK removes only its owned external directory
+ok 3 - worker crash after temporary ownership ACK removes only its owned external directory
+  ---
+  duration_ms: 129.493685
+  type: 'test'
+  ...
+# Subtest: unexpected exit cannot certify an unreported live browser model as cleaned
+ok 4 - unexpected exit cannot certify an unreported live browser model as cleaned
+  ---
+  duration_ms: 850.759914
+  type: 'test'
+  ...
+# Subtest: unreported browser uncertainty retains durable admission fence after child self-exit
+ok 5 - unreported browser uncertainty retains durable admission fence after child self-exit
+  ---
+  duration_ms: 1014.340904
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3494.51528

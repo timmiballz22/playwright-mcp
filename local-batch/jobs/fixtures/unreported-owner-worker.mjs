@@ -1,4 +1,6 @@
-// Model a browser allocated before its ownership receipt, then an owner crash.
+// Adversarial detached-child model before ownership receipt, then owner crash.
+// Windows non-detached Node children die with their owner via libuv job control;
+// detached:true deliberately models a surviving unknown child on every platform.
 import { fork } from 'node:child_process';
 import { mkdir, writeFile, access } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -15,7 +17,7 @@ process.once('message', async packet => {
     process.send({ type: 'temporaryCreated' });
   });
   const child = fork(fileURLToPath(new URL('./unreported-child.mjs', import.meta.url)), [control], {
-    detached: process.platform !== 'win32', stdio: ['ignore', 'ignore', 'ignore', 'ipc'], windowsHide: true,
+    detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'], windowsHide: true,
   });
   child.on('error', () => process.exit(43));
   // Deliberately no ownedProcess or result message to the supervisor.

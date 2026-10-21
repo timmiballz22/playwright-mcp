@@ -61,8 +61,10 @@ test('worker crash after temporary ownership ACK removes only its owned external
       artifactsDir: path.join(root, 'artifacts'), temporaryBase,
       workerModule: new URL('./fixtures/external-temp-crash.mjs', import.meta.url),
     });
-    assert.equal(result.ok, false); assert.equal(result.reason, 'worker_crashed'); assert.equal(result.completed, 0);
-    assert.equal(result.execution.cleanup, 'terminated'); assert.equal(result.execution.tempCleanup, 'removed');
+    assert.equal(result.ok, false); assert.equal(result.reason, 'cleanup_failed'); assert.equal(result.completed, 0);
+    assert.deepEqual(result.execution.terminationFailures, ['browser_ownership_unconfirmed']);
+    assert.equal(result.retrySafe, false);
+    assert.equal(result.execution.cleanup, 'failed'); assert.equal(result.execution.tempCleanup, 'removed');
     assert.deepEqual(await readdir(temporaryBase), []);
   } finally { await rm(root, { recursive: true, force: true }); }
 });

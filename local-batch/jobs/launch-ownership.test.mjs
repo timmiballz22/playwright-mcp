@@ -23,7 +23,7 @@ async function controlled(body) {
   const control = path.join(root, 'control'); await mkdir(control, { mode: 0o700 });
   const previous = process.env.PLAYWRIGHT_TEST_UNREPORTED_CONTROL;
   process.env.PLAYWRIGHT_TEST_UNREPORTED_CONTROL = control;
-  const scope = { roots: new Set(), identities: new Map() }; let close; let operation; let verified = false;
+  const scope = { roots: new Set(), identities: new Map() }; let close; let operation; let verified = false; let accepted = false;
   const onEvent = event => { if (event.pid) scope.roots.add(event.pid); };
   try {
     await body({ root, control, scope, onEvent,
@@ -36,6 +36,7 @@ async function controlled(body) {
         return childPid;
       },
     });
+    accepted = true;
   } finally {
     try {
       await writeFile(path.join(control, 'stop-child'), '', { mode: 0o600 });
@@ -50,7 +51,7 @@ async function controlled(body) {
     } finally {
       if (previous === undefined) delete process.env.PLAYWRIGHT_TEST_UNREPORTED_CONTROL;
       else process.env.PLAYWRIGHT_TEST_UNREPORTED_CONTROL = previous;
-      if (verified) await rm(root, { recursive: true, force: true });
+      if (verified && accepted) await rm(root, { recursive: true, force: true });
       else console.error('Unreported launch fixture preserved: ' + root);
     }
   }
