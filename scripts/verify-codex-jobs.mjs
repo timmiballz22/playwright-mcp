@@ -1,6 +1,6 @@
 // Actual Codex app-server protocol, zero model turns. Temporary -c configuration
 // only; no global client config edits. Requires Node22.13+ and Codex CLI.
-import { stepFailureDiagnostic } from '../local-batch/failure.mjs';
+import { stepFailureDiagnostic } from './step-failure-diagnostic.mjs';
 import { COMMAND_FIELDS, JOURNAL_FAILURE_CAUSES } from '../local-batch/jobs/journal-protocol.mjs';
 import { spawn, execFile } from 'node:child_process';
 import { promisify } from 'node:util';

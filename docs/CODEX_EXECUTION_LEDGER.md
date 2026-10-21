@@ -3176,3 +3176,22 @@ Original results/keys remain, timestamps/events stable, nonces/paths not public.
 Fresh171-file production-only install and lint/diff checks pass. Existing six MCP
 input schemas remain unchanged. Native validation is pending beyond c88171e.
 Evidence: maintenance-*. Earlier native process/HTTP failures remain open.
+
+## Final maintenance checks and retention auth-test clock boundary
+
+After all lease/fault controls, full components65/65 each Node22/24, with zero
+failures/skips/cancellations. Final retention+maintenance selection11/11 each
+also passes. Native53's foreign-cursor check used the current instant, so a
+cutoff validation rejected before ownership with invalid_metadata on Windows.
+The negative owner/nonterminal controls now use a known-valid day-old cutoff,
+while future-cutoff rejection remains explicit. No production cutoff validation
+or deadline is loosened.
+
+Moved the CI-only failed-step projection into scripts/step-failure-diagnostic.mjs
+so production failure constants/journal startup no longer import workflow schema
+only for that formatter. Five projection/cleanup tests pass on Node20/22/24;
+required package-entry check includes the helper. Fresh172-file production-only
+install passes all original/batch/jobs/profile/journal/controller-death checks.
+Normal/linger parent-death probes174/745ms observe zero owned before replacement.
+This removes an unused runtime dependency, not proof of the Windows init cause.
+Lint/diff pass. Native validation of maintenance and this split is pending.

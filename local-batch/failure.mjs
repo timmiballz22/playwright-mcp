@@ -1,4 +1,3 @@
-import { workflowInputSchema } from './workflow-contract.mjs';
 export const TERMINATION_FAILURE_CODES = Object.freeze(['invalid_root', 'windows_taskkill_failed', 'worker_stop_failed', 'enumeration_failed', 'descendant_signal_failed', 'browser_group_signal_failed', 'worker_group_signal_failed', 'wait_timeout']);
 export const FAILURE_KINDS = Object.freeze(['interrupted', 'http_failure', 'assertion_mismatch',
   'not_visible', 'not_enabled', 'not_stable', 'detached', 'pointer_intercepted',
@@ -25,16 +24,4 @@ export function classifyActionFailure(error, step) {
   if (message.includes('strict mode violation')) return 'ambiguous_locator';
   if (message.includes('while parsing css selector') || message.includes('Unknown engine')) return 'invalid_selector';
   return 'unknown';
-}
-
-// Small fixed diagnostic projection for CI/client receipts. Never copy a step's
-// locator, URL, input value, artifact path or raw error into the receipt.
-export function stepFailureDiagnostic(value) {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
-  const bounded = (number, min, max) => Number.isSafeInteger(number) && number >= min && number <= max ? number : undefined;
-  return { index: bounded(value.index, value.type === 'setup' ? 0 : 1, value.type === 'setup' ? 0 : 1000), repetition: bounded(value.repetition, 1, 100),
-    type: value.type === 'setup' || workflowInputSchema.properties.steps.items.properties.type.enum.includes(value.type) ? value.type : 'unknown',
-    error: STEP_FAILURE_CODES.includes(value.error) || value.type === 'setup' && value.error === 'setup_failed' ? value.error : 'unknown',
-    failureKind: FAILURE_KINDS.includes(value.failureKind) ? value.failureKind : 'unknown',
-    durationMs: bounded(value.durationMs, 0, 180000), httpStatus: bounded(value.httpStatus, 400, 599) };
 }

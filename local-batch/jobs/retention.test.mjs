@@ -163,8 +163,8 @@ if (supportsJournal) test('read-only retention pages reach old owner jobs beyond
     assert.deepEqual(await journal.call('events', { id: oldIds[0] }), before);
     assert.equal((await journal.call('read', { id: activeId })).state, 'QUEUED', 'Selection must not run recovery or change active state');
     assert.equal((await journal.call('read', { id: uncertainId })).operatorAttentionRequired, true);
-    await assert.rejects(journal.call('retention', { beforeMs: Date.now(), afterId: foreignId }), { code: 'not_found' });
-    await assert.rejects(journal.call('retention', { beforeMs: Date.now(), afterId: activeId }), { code: 'invalid_metadata' });
+    await assert.rejects(journal.call('retention', { beforeMs: Date.now() - 86400000, afterId: foreignId }), { code: 'not_found' });
+    await assert.rejects(journal.call('retention', { beforeMs: Date.now() - 86400000, afterId: activeId }), { code: 'invalid_metadata' });
     for (const patch of [{ beforeMs: Date.now() + 60000 }, { limit: 11 }, { limit: 0 }])
       await assert.rejects(journal.call('retention', { beforeMs: Date.now() - 86400000, ...patch }), { code: 'invalid_metadata' });
     await assert.rejects(journal.call('create', { id: randomUUID(), requestKey: 'must-stay-blocked', workflowDigest: 'd'.repeat(64), total: 1,

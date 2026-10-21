@@ -1,4 +1,4 @@
-import { stepFailureDiagnostic } from './failure.mjs';
+import { stepFailureDiagnostic } from '../scripts/step-failure-diagnostic.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, rm } from 'node:fs/promises';
