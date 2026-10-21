@@ -1113,3 +1113,8 @@ Evidence jobs-cli-*.txt; no native acceptance claimed yet. Earlier ee54674 nativ
 runs remain active; do not cancel them by pushing this candidate prematurely.
 NEXT: inspect native preview results; Windows ACLs, profiles, full quotas/retention,
 egress and other master gates remain open. Full goal remains incomplete.
+Node20 CLI validation additionally passes2 tests, including unsupported runtime
+rejection before workflow open/state creation without canary-path disclosure.
+Node22 CLI argument plus real SIGTERM lifecycle tests pass2 tests. Evidence
+jobs-cli-node20.txt/jobs-cli-node22.txt. Native Windows negative storage checks
+remain separate from functional support.
