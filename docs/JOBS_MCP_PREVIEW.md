@@ -2,7 +2,7 @@
 
 This stdio preview requires Node22.13+ and private local storage. POSIX uses
 private modes; the experimental Windows configuration now uses protected
-owner/System DACLs. Its helper passed native acceptance at ebdec88, while public
+owner/System DACLs. Its helper passed native acceptance at ebdec88.
 Windows installed public MCP/CLI and source1,000-action checks pass at6fffa27.
 Actual Codex Windows discovery still fails; it is not release-ready.
 The original MCP endpoint and one-tool batch endpoint remain available.

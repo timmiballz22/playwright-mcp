@@ -926,3 +926,54 @@ CLI/MCP retain the independent supervisor and temporary cleanup verification.
 NEXT: inspect headed/headless native evidence and lock-wait regression, diagnose
 remaining driver shutdown/action stalls, then continue public job/configuration,
 retention/profile/security gates. Full goal remains incomplete.
+
+
+## Firefox factor probe and Codex startup diagnostic candidate
+
+Native2f87026 Windows Codex discovery still returns zero tools after48 read-only
+polls within20s; no recognized server startup code was emitted. This disproves
+that the bounded readiness wait alone resolves the failure. Linux/macOS client
+jobs pass again; the rest of that native matrix is still running. No sandbox,
+authorization, runtime or journal deadline is relaxed.
+
+The next probe consumes the pinned0.163.0 generated protocol schema's
+mcpServer/startupStatus/updated notifications. It retains only known server names,
+fixed startup status, error presence, fixed error category and reauthentication
+boolean; no raw error/config/path/auth value is logged. Local actual client
+verification passes: both servers ready/six tools,1,000 actions in35.557s, cancel
+after1, owner/dedup, zero model turns and zero owned survivors.
+
+An optional Firefox factor probe compares public pipe and BrowserServer transports
+with no route versus fetch/fulfill, only against its own static loopback fixture.
+Each case requires5 fresh launches,100 real clicks, exact DOM counters and PNG
+buffers, then independent zero-survivor auditing. A separate parent imposes120s
+per case and kills only its owned process tree on deadline; uncertain auditing
+stops comparisons. No production policy switch or action replay is introduced.
+Linux Node24 and20 each pass all4 cases (400 clicks/20 fresh launches each);
+Windows evidence is pending. The first development run was stopped after editing
+the child protocol while it was active; its owned tree was terminated and zero
+survivors independently confirmed. Completed final-protocol runs are separate
+evidence, not a retry claim for the original Windows failures.
+
+The native Windows failure-only step preserves the strict failing batch result
+and records these factors for diagnosis. YAML parse, script syntax, documentation
+generation and diff checks pass. This does not prove Firefox routing is the cause.
+
+Pinned client source inspection explains why earlier stderr matching stayed empty:
+[stdio_server_launcher.rs at rust-v0.163.0](https://github.com/openai/codex/blob/rust-v0.163.0/codex-rs/rmcp-client/src/stdio_server_launcher.rs)
+logs server stderr at info level. The probe sets only its child's narrow
+RUST_LOG target, retains a4KiB private rolling buffer and emits only fixed endpoint
+startup codes; raw lines never reach test output. Local full client recheck passes
+in35.767s with zero model turns/survivors. No global logging configuration changes.
+
+A second failure-only Windows control starts two fresh SDK clients simultaneously
+against the same fresh project/store, three independent pairs, no browser actions.
+This does not warm or restart the failing Codex store. Each must discover the exact
+six tools, list zero jobs and independently close with zero owned survivors.
+Local Node22 pairs pass in343/285/263ms; fixed-code stderr receipt and count only.
+This distinguishes a potential concurrent startup failure from client-specific
+startup without presuming either cause. Native Windows control is pending.
+
+Operator commands: `node scripts/diagnose-firefox-fixture.mjs` and Node22.13+
+`node scripts/diagnose-jobs-startup.mjs`. Both create only their own local fixtures;
+neither accepts a destination URL or modifies production security policy.

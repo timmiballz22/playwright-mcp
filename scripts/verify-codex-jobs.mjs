@@ -33,10 +33,23 @@ const environment = id => ({ PLAYWRIGHT_JOBS_OWNER_ID: id, PLAYWRIGHT_JOBS_DATA_
 const table = entries => '{' + Object.entries(entries).map(([key, value]) => key + '=' + JSON.stringify(value)).join(',') + '}';
 const server = id => `{command=${JSON.stringify(process.execPath)},args=[${JSON.stringify(path.join(root, 'local-batch/jobs-mcp.mjs'))}],env=${table(environment(id))}}`;
 const config = `mcp_servers={jobs=${server(owner)},foreign_jobs=${server(randomUUID())}}`;
-const child = spawn(codexCommand, [...codexArguments, 'app-server', '--stdio', '-c', config], { cwd: root, detached: true, stdio: ['pipe', 'pipe', 'pipe'] });
+const child = spawn(codexCommand, [...codexArguments, 'app-server', '--stdio', '-c', config], { cwd: root, detached: true, stdio: ['pipe', 'pipe', 'pipe'],
+  // Pinned client logs server stderr at this target. Raw lines stay in our
+  // bounded private buffer; only the endpoint's fixed startup code is emitted.
+  env: { ...process.env, RUST_LOG: [process.env.RUST_LOG, 'codex_rmcp_client::stdio_server_launcher=info'].filter(Boolean).join(',') },
+});
 const closed = once(child, 'close').catch(() => []);
 // Keep raw client diagnostics private; emit only our fixed startup code format.
-const startupCodes = new Set(); let stderrTail = '';
+const startupCodes = new Set(); const startupStates = new Map(); let stderrTail = '';
+const startupCategory = value => {
+  if (typeof value !== 'string') return undefined;
+  if (/Local jobs startup failed \([a-z_]{1,40}\)/.test(value)) return 'jobs_startup_rejected';
+  if (/os error (?:5|13)\b|access is denied|permission denied/i.test(value)) return 'access_denied';
+  if (/os error 2\b|program not found|no such file/i.test(value)) return 'launcher_or_file_missing';
+  if (/timed out|timeout/i.test(value)) return 'startup_timeout';
+  if (/initialize response|handshak/i.test(value)) return 'handshake_failed';
+  return 'unclassified_startup_error';
+};
 child.stderr.on('data', chunk => {
   stderrTail = (stderrTail + chunk.toString()).slice(-4096);
   for (const match of stderrTail.matchAll(/Local jobs startup failed \(([a-z_]{1,40})\)/g)) startupCodes.add(match[1]);
@@ -48,6 +61,13 @@ child.once('close', rejectPending); child.once('error', rejectPending); child.st
 lines.on('line', line => {
   let packet;
   try { packet = JSON.parse(line); } catch { rejectPending(); return; }
+  if (packet.method === 'mcpServer/startupStatus/updated') {
+    const value = packet.params;
+    if (['jobs', 'foreign_jobs'].includes(value?.name) && typeof value.error === 'string')
+      for (const match of value.error.matchAll(/Local jobs startup failed \(([a-z_]{1,40})\)/g)) startupCodes.add(match[1]);
+    if (['jobs', 'foreign_jobs'].includes(value?.name) && ['starting', 'ready', 'failed', 'cancelled'].includes(value?.status))
+      startupStates.set(value.name, { status: value.status, errorPresent: typeof value.error === 'string', category: startupCategory(value.error), reauthenticationRequired: value.failureReason === 'reauthenticationRequired' });
+  }
   const item = pending.get(packet.id); if (!item) return;
   pending.delete(packet.id); clearTimeout(item.timer);
   if (packet.error) {
@@ -80,10 +100,10 @@ try {
       const inventory = await rpc('mcpServerStatus/list', { threadId: thread.id, serverName: name, detail: 'toolsAndAuthOnly' }, Math.max(1, discoveryEnd - performance.now()));
       const registered = inventory.data.find(item => item.name === name);
       tools = Object.keys(registered?.tools ?? {}).sort(); polls++;
-      if (tools.length || startupCodes.size || performance.now() >= discoveryEnd) break;
+      if (tools.length || startupCodes.size || ['failed', 'cancelled'].includes(startupStates.get(name)?.status) || performance.now() >= discoveryEnd) break;
       await new Promise(resolve => setTimeout(resolve, 200));
     } while (polls < 100);
-    const diagnostic = JSON.stringify({ server: name, tools: tools.length, polls, startupCodes: [...startupCodes].sort() });
+    const diagnostic = JSON.stringify({ server: name, tools: tools.length, polls, startup: startupStates.get(name), startupCodes: [...startupCodes].sort() });
     if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Codex tool discovery::' + diagnostic);
     assert.deepEqual(tools, expectedTools, diagnostic);
   }

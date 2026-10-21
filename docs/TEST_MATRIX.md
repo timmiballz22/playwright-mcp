@@ -2,12 +2,12 @@
 
 [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md) is the current45-scenario map;
 [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) records exact candidates and
-commands. Latest completed native667190a:601 test passes/3 Windows Firefox test failures,
-plus a macOS installed-package failure before its browser suite. CLI alias fix
-and new parity/security coverage await native confirmation. Public POSIX jobs MCP,
-foreground CLI and bounded terminal cleanup are previews; Windows private storage,
-profiles, full quotas/retention and egress controls remain open. No release-ready
-claim follows from local scoped passes.
+commands. Latest completed native6fffa27:942 test passes/three raw Windows Firefox
+failures, plus Windows actual-Codex discovery failure. Windows installed public
+MCP/CLI and source1,000-action jobs now pass; actual Codex Linux/macOS pass with
+zero model turns. Full quotas/retention, managed profiles, egress and complete
+acceptance remain open. See the final section for exact run IDs and candidate
+scope. No release-ready claim follows from these scoped passes.
 
 The following table is historical and predates the durable controller, public
 preview, configured navigation retries and independent-observer soak. It is
@@ -308,3 +308,35 @@ macOS timing/WebKit failures remain retained. Full quotas/retention, Windows
 client reliability, raw Firefox, managed profiles and egress still block release.
 
 Evidence: worker-ci-thirtyfirst-selected.log and worker-ci-thirtyfirst-counts.jsonl.
+
+
+## Firefox factor probe and Codex startup diagnostic candidate
+
+Native2f87026 Windows Codex discovery still returns zero tools after48 read-only
+polls within20s; no recognized server startup code was emitted. This disproves
+that the bounded readiness wait alone resolves the failure. Linux/macOS client
+jobs pass again; the rest of that native matrix is still running. No sandbox,
+authorization, runtime or journal deadline is relaxed.
+
+The next probe consumes the pinned0.163.0 generated protocol schema's
+mcpServer/startupStatus/updated notifications. It retains only known server names,
+fixed startup status, error presence, fixed error category and reauthentication
+boolean; no raw error/config/path/auth value is logged. Local actual client
+verification passes: both servers ready/six tools,1,000 actions in35.557s, cancel
+after1, owner/dedup, zero model turns and zero owned survivors.
+
+An optional Firefox factor probe compares public pipe and BrowserServer transports
+with no route versus fetch/fulfill, only against its own static loopback fixture.
+Each case requires5 fresh launches,100 real clicks, exact DOM counters and PNG
+buffers, then independent zero-survivor auditing. A separate parent imposes120s
+per case and kills only its owned process tree on deadline; uncertain auditing
+stops comparisons. No production policy switch or action replay is introduced.
+Linux Node24 and20 each pass all4 cases (400 clicks/20 fresh launches each);
+Windows evidence is pending. The first development run was stopped after editing
+the child protocol while it was active; its owned tree was terminated and zero
+survivors independently confirmed. Completed final-protocol runs are separate
+evidence, not a retry claim for the original Windows failures.
+
+The native Windows failure-only step preserves the strict failing batch result
+and records these factors for diagnosis. YAML parse, script syntax, documentation
+generation and diff checks pass. This does not prove Firefox routing is the cause.

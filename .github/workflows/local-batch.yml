@@ -80,6 +80,11 @@ jobs:
         run: ./scripts/bootstrap-local-batch.ps1 2>&1 | Tee-Object -FilePath batch-tests.log
         env:
           PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS: '10'
+      - name: Compare Windows Firefox fixture transport and routing
+        if: failure() && runner.os == 'Windows' && steps.batch_windows.outcome == 'failure'
+        timeout-minutes: 11
+        shell: bash
+        run: node scripts/diagnose-firefox-fixture.mjs 2>&1 | tee firefox-factor.log
       - name: Preserve failed browser evidence
         if: failure() && (steps.installed.outcome == 'failure' || steps.batch_bash.outcome == 'failure' || steps.batch_windows.outcome == 'failure')
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -88,6 +93,7 @@ jobs:
           path: |
             installed-tests.log
             layout-probe.log
+            firefox-factor.log
             batch-tests.log
           retention-days: 1
           if-no-files-found: error
@@ -114,11 +120,17 @@ jobs:
         id: codex
         shell: bash
         run: node scripts/verify-codex-jobs.mjs "$RUNNER_TEMP/codex-cli/node_modules/@openai/codex/bin/codex.js" 2>&1 | tee codex-jobs.log
+      - name: Compare fresh simultaneous SDK startup after Windows client failure
+        if: failure() && runner.os == 'Windows' && steps.codex.outcome == 'failure'
+        shell: bash
+        run: node scripts/diagnose-jobs-startup.mjs 2>&1 | tee sdk-startup.log
       - name: Preserve failed Codex client evidence
         if: failure() && steps.codex.outcome == 'failure'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: codex-jobs-${{ matrix.os }}
-          path: codex-jobs.log
+          path: |
+            codex-jobs.log
+            sdk-startup.log
           retention-days: 1
           if-no-files-found: error

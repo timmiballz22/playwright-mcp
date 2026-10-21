@@ -26,14 +26,14 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
 | G00 BASELINE | NOT-TESTED | BASELINE_AUDIT.md; original managed-Chromium baseline 8/8 and six unchanged schemas; default local Chrome still absent | Preserve channel/OS baseline limitations; extend original native baseline evidence |
-| G01 INSTALL | NOT-TESTED | c7 installed Windows profile audit fails; local candidate124-file package passes | Verify creation-time-aware process audit from fresh native tarballs |
+| G01 INSTALL | NOT-TESTED | Native6fffa27 installed packages pass all OSs; fresh137-file local snapshot passes | Complete fresh operator installation and remaining acceptance scenarios |
 | G02 MCP | NOT-TESTED | Actual Codex6-tool jobs client,1,000 actions, active cancel and zero owned processes; original25/batch1 contracts | Complete remaining malformed/concurrent/resource phase cases on all OSs |
 | G03 FEATURE PARITY | NOT-TESTED | 25/72 names and six schemas retained; storage/media/profile/ARIA/touch and advanced scoped behaviors | Verify every remaining capability group and native guard compatibility |
 | G04 BATCH | PASS | local-batch/mcp.test.mjs + integration.test.mjs; evidence/codex-client-operator.txt: exact 1000 actions / 997 clicks | Extend real long workflow to other browsers |
 | G05 RETRIES | NOT-TESTED | Operator-only bounded GET goto 429/503 policy; real Chromium/Firefox no-POST-replay tests | Native retry coverage, fairness and bounded metrics |
-| G06 JOBS | NOT-TESTED | POSIX six-tool MCP/foreground CLI; idempotent journal/FIFO/guardian; EOF/SIGTERM/SIGKILL and monotonic deadline evidence | Windows private storage, full phase faults, retention and restart acceptance |
+| G06 JOBS | NOT-TESTED | Native all-OS six-tool MCP/foreground CLI; idempotent journal/FIFO/guardian; EOF/SIGTERM/SIGKILL and monotonic deadline evidence | Windows actual Codex discovery, full phase faults, retention and restart acceptance |
 | G07 SECURITY | FAIL | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
-| G08 STORAGE | FAIL | Private run/artifact metadata, atomic reports, bounded dry-run terminal cleanup | Enforce write quotas/retention and native Windows ACLs |
+| G08 STORAGE | FAIL | Private run/artifact metadata, atomic reports, bounded dry-run terminal cleanup | Complete cumulative quotas/retention; native Windows protected ACL components pass |
 | G09 AUTH/PROFILES | FAIL | Public-API lease guard rejects contention and restores persistent storage in native all-engine c7 tests | Managed project profiles, ACLs, corruption/reset/crash recovery |
 | G10 CROSS-BROWSER | FAIL | Native7e2 Windows raw Firefox still fails headless/headed; direct pipe previously failed too | Diagnose original driver stalls; retain strict tests and unsupported local WebKit limitation |
 | G11 CROSS-OS | FAIL | Native original/batch/jobs package installs verified; POSIX jobs/browser fixtures pass | Windows jobs ACLs, complete green native suites and native actual Codex walkthroughs |
