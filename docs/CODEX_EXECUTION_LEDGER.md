@@ -2,28 +2,21 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening; last pushed f81f720. Current local report
-byte-ceiling/diagnostic candidate follows6a2263a; use git log/status for current
-SHA. Latest fully logged native56 at f81f720: wrapper SUCCESS440/0 and batch
-FAILURE1,127/4 =>1,567 passes/four failed tests, PLUS macOS Codex TIMED_OUT960/1k.
-All17 executed jobs conclude; one intentional functional-soak skip, zero reported
-test skips/cancellations or job cancellations. CI39643412147/batch39643412200.
+Branch feat/local-production-hardening; last pushed b62740e. Native57 complete:
+wrapper39648589224 FAILURE435/2; batch39648588946 FAILURE1,166/4. Combined1,601
+reported passes/six failed tests, plus separate macOS Codex timeout954/1k.
+All17 executed jobs conclude; functional_soak intentionally skipped. No reported
+test skips/cancellations. All five173-file installs and native components78/79 pass.
 
-All native components78/78 (Windows79) and five173-file installs pass. Remaining
-Windows Firefox headless/pipe and macOS raw/public-jobs1k fail. HTTP scope/owned
-audits pass this round without filters; earlier orphan observations remain unknown.
-Windows inherited failure-only probe root_birth_changed has no final receipt.
+Local temporary-cleanup candidate: bounded owned-handle stop confirmation, drained
+IPC, strict receipts, monotonic deadline and repeated-error handling. Final85/85
+components each Node22/24, focused7/7 Node20, fresh173-file production install,
+normal/linger independent controller-death audits and lint pass. Before-controls
+are retained separately. Native verification of this candidate is pending.
 
-Local candidate:8MiB report byte cap verified on Node20/22/24, real POST faults,
-durable FAILED/progress/dedup and empty owned audit; components78/78 Node22/24,
-fresh173-file production install pass. Raw scoped controllers/live-anchor rules
-and fixed counter receipts verified by17 pure cases per Node20/22/24 and real raw
-controls. Experimental Node child-process channel ownership evidence is source-only;
-no default transport change. Detailed phase-specific receipts/limitations below.
-
-**Not release-ready. NEXT ACTION: push candidate after native56 completion, then
-inspect native57 actual failures.** Managed reset, cumulative quotas, hard OS
-resource bounds, graphical annotation and remaining feature acceptance stay open.
+**Not release-ready. NEXT ACTION: push cleanup candidate and inspect native58.**
+Managed reset, cumulative quotas, hard OS resource bounds, graphical annotation
+and remaining feature acceptance stay open. Detailed phase-specific receipts below.
 
 ## Historical checkpoints
 
@@ -3694,3 +3687,34 @@ This is a negative control, not another passing1k workflow. No actions replayed,
 forced or omitted, no timing budget changed. Evidence raw-receipt-negative-*.
 NEXT ACTION: push this reviewed candidate after complete56 conclusions, inspect
 native57, diagnose browser latency/failures and remaining resource/profile gates.
+
+## Native57 at b62740e — completed, not green
+
+Wrapper435/2: macOS trusted Firefox100 interrupted after93 and storage-state timeout.
+Batch1,166/4: macOS raw Chromium completed978/1k, timeout at click979; public jobs
+TIMED_OUT987/1k at988. Windows Firefox headless fresh9 completed14/23, click15
+locator_timeout; direct-pipe fresh1 completed23/23 but cleanup_failed with two
+cleanup timeouts. Completed actions do not make failed cleanup a passing workflow.
+Actual Codex zero-model Linux36.144s/Windows37.817s pass; macOS954/1k timeout at955,
+forced:true, known terminated/removed cleanup, readable result, no operator attention.
+Native success in other scopes does not resolve earlier ownership observations.
+Selected step logs, job conclusions and exact test counts: worker-ci-fiftyseventh-*.
+
+## Temporary cleanup helper — bounded failure and drained receipts (local)
+
+The old timeout killed its owned child but waited without a finite confirmation;
+IPC errors could return without stopping it, null receipts threw, and exit-before-
+final-IPC could lose success. The helper now allows1s owned-handle confirmation
+following the existing operation deadline, disconnects/unrefs when unconfirmed,
+and returns false without claiming termination. Success requires strict single
+boolean receipt, drained close0 and monotonic deadline. Repeated errors are handled.
+No stored-PID kill, lease release, action replay or expanded action budget.
+
+Five isolated fault controls cover missing exit, repeated errors, malformed receipt,
+exit-before-final-IPC and late close despite delayed timer delivery. Real worker
+parent-EOF control suspends JS filesystem completion and audits owned descendants;
+it does not prove kernel-uninterruptible I/O termination. Final components85/85
+Node22/24 and focused7/7 Node20 pass; production173 install and both normal/linger
+controller-death audits report zero observed owned processes. Lint/diff pass.
+Evidence temp-stop-* preserves before failures and final receipts separately.
+Native57 predates this change; cross-platform proof remains pending.

@@ -129,3 +129,12 @@ execution retains its existing execution_failed/report-stage envelope, completed
 counts and retrySafe:false without replay. Exact-limit reports remain valid.
 The limit includes pretty-print formatting/newline and does not establish total
 project disk, browser memory or serialization-heap quotas.
+
+
+Temporary-profile deletion also requires a valid fixed receipt and natural helper
+close with IPC drained. Its existing operation deadline defaults to2s. After a
+stop request it waits at most1s for exit confirmation through the owned child
+handle, then disconnects/unrefs and returns false. False retains cleanup uncertainty
+and never authorizes lease release or another workflow after unconfirmed cleanup.
+A monotonic deadline check rejects a late success even if the timer callback was
+delayed. No stored PID is signalled; malformed receipts and IPC errors fail closed.

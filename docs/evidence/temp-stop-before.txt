@@ -1,0 +1,67 @@
+✖ temporary cleanup receipt cannot authorize success without confirmed worker exit (252.50742ms)
+✖ temporary cleanup IPC error attempts owned-handle termination before returning uncertainty (7.550935ms)
+✖ malformed cleanup receipt fails closed without an uncaught message handler exception (250.924216ms)
+✖ temporary cleanup drains its final receipt after process exit before confirming success (2.590855ms)
+ℹ Error: A resource generated asynchronous activity after the test ended. This activity created the error "TypeError: Cannot read properties of null (reading 'ok')" which triggered an uncaughtException event, caught by the test runner.
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 580.247747
+
+✖ failing tests:
+
+test at local-batch/jobs/temporary-cleanup-stop.test.mjs:46:1
+✖ temporary cleanup receipt cannot authorize success without confirmed worker exit (252.50742ms)
+  Error: Cleanup stop confirmation was not bounded
+      at Timeout.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/temporary-cleanup-stop.test.mjs:34:105)
+      at listOnTimeout (node:internal/timers:635:17)
+      at process.processTimers (node:internal/timers:571:7)
+
+test at local-batch/jobs/temporary-cleanup-stop.test.mjs:52:1
+✖ temporary cleanup IPC error attempts owned-handle termination before returning uncertainty (7.550935ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(children[0].kills > 0)
+  
+      at file:///workspace/playwright-mcp/local-batch/jobs/temporary-cleanup-stop.test.mjs:55:12
+      at async withWorker (file:///workspace/playwright-mcp/local-batch/jobs/temporary-cleanup-stop.test.mjs:37:9)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/temporary-cleanup-stop.test.mjs:53:3)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at local-batch/jobs/temporary-cleanup-stop.test.mjs:58:1
+✖ malformed cleanup receipt fails closed without an uncaught message handler exception (250.924216ms)
+  Error: Cleanup stop confirmation was not bounded
+      at Timeout.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/temporary-cleanup-stop.test.mjs:34:105)
+      at listOnTimeout (node:internal/timers:635:17)
+      at process.processTimers (node:internal/timers:571:7)
+
+test at local-batch/jobs/temporary-cleanup-stop.test.mjs:63:1
+✖ temporary cleanup drains its final receipt after process exit before confirming success (2.590855ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at file:///workspace/playwright-mcp/local-batch/jobs/temporary-cleanup-stop.test.mjs:65:12
+      at async withWorker (file:///workspace/playwright-mcp/local-batch/jobs/temporary-cleanup-stop.test.mjs:37:9)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/temporary-cleanup-stop.test.mjs:64:3)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

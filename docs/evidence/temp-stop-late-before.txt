@@ -1,0 +1,34 @@
+✔ temporary cleanup receipt cannot authorize success without confirmed worker exit (9.135601ms)
+✔ temporary cleanup IPC error attempts owned-handle termination before returning uncertainty (3.288343ms)
+✔ malformed cleanup receipt fails closed without an uncaught message handler exception (6.593546ms)
+✔ temporary cleanup drains its final receipt after process exit before confirming success (11.13065ms)
+✖ a late natural cleanup receipt cannot win before a delayed timeout callback (1.458288ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 122.720553
+
+✖ failing tests:
+
+test at local-batch/jobs/temporary-cleanup-stop.test.mjs:75:1
+✖ a late natural cleanup receipt cannot win before a delayed timeout callback (1.458288ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at file:///workspace/playwright-mcp/local-batch/jobs/temporary-cleanup-stop.test.mjs:77:56
+      at async withWorker (file:///workspace/playwright-mcp/local-batch/jobs/temporary-cleanup-stop.test.mjs:41:9)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/temporary-cleanup-stop.test.mjs:77:3)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

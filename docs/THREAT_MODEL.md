@@ -61,3 +61,11 @@ restriction on original code/network capabilities. Other software or the same OS
 user can ignore/tamper with markers; dedicated private profile directories remain
 necessary. See PROFILE_OWNERSHIP.md. The optional jobs owner UUID scopes records
 within a local service and is not authentication against the same OS user.
+
+
+The temporary-directory cleanup adapter separately bounds owned-handle exit
+confirmation after its operation deadline. A receipt alone cannot certify cleanup,
+and late receipt/close cannot override its monotonic deadline. Failed or unconfirmed
+shutdown returns false; existing supervisor/job uncertainty fencing stays in effect.
+The controlled EOF test suspends a JavaScript filesystem promise in the actual
+worker; it is not proof against uninterruptible kernel I/O or host failure.
