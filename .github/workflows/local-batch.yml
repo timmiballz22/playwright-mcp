@@ -133,8 +133,8 @@ jobs:
         timeout-minutes: 11
         shell: bash
         run: node scripts/diagnose-firefox-runner.mjs --private-first 2>&1 | tee firefox-runner.log
-      - name: Compare Chromium transports after macOS batch failure
-        if: failure() && runner.os == 'macOS' && steps.batch_bash.outcome == 'failure'
+      - name: Compare Chromium transports after macOS install or batch failure
+        if: failure() && runner.os == 'macOS' && (steps.installed.outcome == 'failure' || steps.batch_bash.outcome == 'failure')
         timeout-minutes: 7
         shell: bash
         run: node scripts/diagnose-raw-runner.mjs --chromium-transport 2>&1 | tee chromium-transport.log

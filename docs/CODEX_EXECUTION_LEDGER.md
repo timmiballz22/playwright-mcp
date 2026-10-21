@@ -3380,3 +3380,29 @@ step is unexecuted after main failure. Evidence worker-ci-fiftyfourth-*.
 NEXT ACTION: push a reviewed candidate with these locally verified fixes, wait
 for native55, investigate browser runtime failures without unsafe retries,
 forced actions or timeout growth. Release gates remain FAILED/IN PROGRESS.
+
+
+## Installed-smoke failure evidence preservation (local after f03ad33)
+
+Native54 macOS batch MCP locator timeout carried a reportPath but the smoke's
+finally unconditionally erased its fixture. scripts/production-smoke.mjs now
+retains the failed fixture/report and prints its local path; passing runs still
+remove their fixture. Failure plus SDK close failure retains both in an
+AggregateError with primary cause. Original browser_close is now checked for
+isError before claiming the original installed smoke success.
+
+Private wrong-completed-count controls execute real source browser workflows:
+before exits1 and leaves zero reports; after exits1 and retains one report.
+They are deliberate failures, not passing production installs. Healthy source
+smoke exits0. Fresh Node22 production172 install exits0 with real original/batch/
+jobs/CLI, private profile and both independent normal/linger shutdown receipts.
+Lint/diff pass. Evidence production-evidence-* keeps negatives and healthy install
+separate. No workflow semantics, actions, tool schema or deadline changes.
+
+MacOS failure-only transport comparison now also runs after installed-smoke
+failure rather than only main-suite failure; its existing7min independent job
+ceiling and owned fixture remain. This is diagnostic coverage, not a browser fix.
+Native55 f03ad33 runs CI39639279738 and batch39639279780 are active: no push until
+conclusions. MacOS components already conclude failure; full logs not yet exposed
+by gh run view while run active. NEXT ACTION inspect the actual failure rather
+than infer a timing or runtime cause; no deadline growth to make green.

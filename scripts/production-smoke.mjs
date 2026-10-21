@@ -13,6 +13,7 @@ const target = path.resolve(process.argv[2]);
 const dir = await mkdtemp(path.join(os.tmpdir(), 'production-smoke-'));
 const throttleHits = new Map();
 let afterLimitHits = 0;
+let verified = false;
 const fixture = createServer((req, res) => {
   if (req.url === '/popup-source') { res.writeHead(200, { 'content-type': 'text/html' }); res.end('<button onclick="window.open(\'/popup-child\')">Open popup</button>'); return; }
   if (req.url === '/after-limit') afterLimitHits++;
@@ -36,6 +37,7 @@ try {
       args: [path.join(target, entry), ...(original ? ['--browser=chromium', '--isolated', '--headless'] : [])],
       cwd: target, stderr: 'pipe', env: { ...process.env, PLAYWRIGHT_BATCH_ALLOWED_ORIGINS: origin, PLAYWRIGHT_BATCH_ARTIFACTS_DIR: dir, ...(!original ? { PLAYWRIGHT_BATCH_NAVIGATION_RETRIES: '1', PLAYWRIGHT_BATCH_MAX_PAGES: '1' } : {}) },
     });
+    let primaryFailure;
     try {
       await client.connect(transport); await client.ping();
       const { tools } = await client.listTools();
@@ -46,7 +48,8 @@ try {
       assert.notEqual(response.isError, true, JSON.stringify(response));
       if (original) {
         assert.ok(JSON.stringify(response.content).includes('Production Fixture'));
-        await client.callTool({ name: 'browser_close', arguments: {} });
+        const closed = await client.callTool({ name: 'browser_close', arguments: {} });
+        assert.notEqual(closed.isError, true, 'Installed original browser close failed');
       } else {
         const summary = JSON.parse(response.content[0].text);
         assert.equal(summary.completed, 5);
@@ -63,7 +66,14 @@ try {
         assert.equal(afterLimitHits, 0);
       }
       console.log(JSON.stringify({ entry, handshake: true, toolCount: tools.length, realBrowser: true, ...(!original ? { pageLimit: true } : {}), production: true }));
-    } finally { await client.close(); }
+    } catch (error) { primaryFailure = error; throw error; }
+    finally {
+      try { await client.close(); }
+      catch (error) {
+        if (primaryFailure) throw new AggregateError([primaryFailure, error], 'Installed smoke and client close failed', { cause: primaryFailure });
+        throw error;
+      }
+    }
   }
   const workflowFile = path.join(dir, 'cli-workflow.json');
   await writeFile(workflowFile, JSON.stringify({ steps: [{ type: 'goto', url: origin + '/cli-throttle' }] }));
@@ -81,4 +91,9 @@ try {
   assert.equal(failure.execution.cleanup, 'terminated'); assert.equal(failure.execution.tempCleanup, 'removed');
   assert.equal(afterLimitHits, 0);
   console.log(JSON.stringify({ entry: 'local-batch/cli.mjs', realBrowser: true, navigationRetry: true, pageLimit: true, production: true }));
-} finally { fixture.closeAllConnections(); fixture.close(); await rm(dir, { recursive: true, force: true }); }
+  verified = true;
+} finally {
+  fixture.closeAllConnections(); fixture.close();
+  if (verified) await rm(dir, { recursive: true, force: true });
+  else process.stderr.write('Installed smoke fixture preserved: ' + dir + '\n');
+}
