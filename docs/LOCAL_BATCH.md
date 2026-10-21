@@ -8,7 +8,7 @@ locally without a cloud browser service, hosting, or one agent tool call per cli
 credits, but cannot remove model usage allowances, machine limits, website
 rate limits, or authorization requirements.
 
-## Setup (Node.js 20+ recommended)
+## Setup (Node.js 20+ required; 22 or 24 LTS recommended)
 
 ```bash
 git clone https://github.com/timmiballz22/playwright-mcp.git

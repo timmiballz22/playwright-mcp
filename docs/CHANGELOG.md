@@ -1,5 +1,19 @@
 # Fork changes (unreleased)
 
+- Pin Playwright, playwright-core and @playwright/test together at stable 1.64.1;
+  managed Chromium156, Firefox157 and WebKit27.2. Original entrypoint delegation
+  remains intact. Six discovery contracts retain 25 default/72 extended tools.
+- Upstream browser_find adds optional maxResults, browser_tabs adds optional
+  isolatedContext. browser_wait_for time combined with text/textGone is now the
+  condition timeout (upstream behavior change); time-only waits remain supported.
+- Pin runtime MCP SDK1.32.1 after high-severity dependency advisories; npm audit
+  --omit=dev reports zero. This audits npm dependencies, not all vendored code.
+- Declare Node20 minimum consistently with bootstrap and current driver. Prefer
+  Node22/24 LTS; optional durable components require Node22.13+.
+- Internal bounded source job controller, atomic uncertain-lease admission fence,
+  real installed queue/reconnect/death checks, and independently observed 100-run
+  supervised Linux soak. Public job frontends/configuration remain unfinished.
+
 - Private fork identity, runtime MCP SDK, local-batch tarball entries, production
   installation/handshake checks; inherited publishing removed.
 - Exact operator origin policy (localhost no longer implicit), redirect SSRF fix;
@@ -12,7 +26,8 @@
 - Atomic report publication and bounded regular-file UTF-8 CLI ingestion.
   Malformed/oversized MCP input and long-poll teardown have real regressions.
 - Unique private artifact directories; screenshot capture requires operator opt-in.
-- HTTP error status classification, Retry-After metadata, no automatic request replay.
+- HTTP error classification and operator-only bounded GET navigation retry after
+  429/503, disabled by default; no click, form or POST replay.
 - Browser/OS CI matrix, upstream discovery schema contracts, security/lifecycle/
   screenshot fixtures, 1,000-action workflow and 100-run diagnostic soak.
 

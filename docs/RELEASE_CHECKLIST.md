@@ -24,3 +24,10 @@ Rollback: stop local stdio clients, preserve approved sensitive artifacts/profil
 in operator-controlled storage, checkout the prior tested commit in a separate
 clone, run its pinned npm ci/browser install, and update the client's absolute
 entrypoint. Do not reset user profile data or force-push history to roll back.
+
+Current dependency candidate: Playwright/core/test1.64.1, runtime SDK1.32.1,
+Node>=20 (durable source components22.13+). Local original/batch/package/Codex
+and 100-run supervised checks pass; native matrix acceptance is pending. Baseline
+tool contracts remain versioned at42def9d; the stable diff has zero removed tools,
+two optional fields and one documented wait-semantics clarification. This does
+not close outstanding security, profiles, retention or public job API gates.

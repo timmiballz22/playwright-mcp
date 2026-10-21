@@ -45,7 +45,10 @@ memory are not capped by that setting.
 
 Decision: option A (separate companion), with reusable runner entrypoint for CLI
 and MCP. A facade would add protocol delegation and capability maintenance before
-showing measurable benefit. No upstream sync was attempted: pinned alpha and
+showing measurable benefit. The baseline used a pinned alpha. A targeted dependency upgrade to stable 1.64.1
+preserves all discovered tool names, with documented optional schema additions.
+Native acceptance is pending; no repository merge or backend copy was introduced.
+Historical decision: pinned alpha and
 current monorepo differ; retain exact versions until compatibility is proved.
 
 Worker reports retain original execution evidence, tagged worker_execution. Final

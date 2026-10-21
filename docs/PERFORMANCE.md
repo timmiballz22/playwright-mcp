@@ -80,7 +80,7 @@ measured frontend. This supports instrumentation contamination as the cause of
 the initial RSS failure; it does not erase that result or prove every workload
 leak-free. scripts/soak-supervised.mjs forks scripts/soak-subject.mjs, which waits
 for independent observer cleanup audits between runs. Both signal/disconnect
-paths are bounded; private diagnostic roots are retained on uncertain cleanup.
+paths have explicit design bounds but are not yet fault-injection verified; private diagnostic roots are retained on uncertain cleanup.
 
 Raw evidence: evidence/supervised-soak-separated-100.txt. Browser descriptor
 coverage remains partial (27 process identities denied), not PASS for full tree
@@ -91,3 +91,20 @@ reaping is distinct from active owned processes. This is Linux source execution,
 not an MCP, CLI/SKILLS, model-token, cross-OS or upgraded-driver benchmark. G12
 remains IN PROGRESS. The active driver dependency must be reidentified after any
 subsequent upgrade; these numbers describe the alpha engine baseline only.
+
+Stable-driver repeat (Playwright/core1.64.1, SDK1.32.1, same Linux/Node24.19.0
+observer protocol): 100 workflows/400 actions, 82,197ms total, median767ms,
+p95819ms. Subject CPU390ms, observer CPU4,996ms (excluding ps helpers), sampled
+owned-tree CPU lower bound72,870ms. Peak sampled summed tree RSS558,473,216 bytes,
+peak sampled8 owned processes. Subject FDs24->24; post-warmup median RSS growth
+1,441,792 bytes. The unchanged32MiB/four-FD thresholds pass; zero active owned
+descendants were audited after every run. No forced GC or reduced routing/checks.
+Browser FD coverage is partial (31 process identities denied). One run per
+version is not statistical proof of performance equivalence. See
+ evidence/playwright-stable-soak-100.txt for all100 records and limitations.
+
+The upgraded SDK/driver also passed a real 1000-action stdio MCP regression
+(34,315ms testcase) and actual CodexCLI0.163.0 app-server verification (34,068ms
+batch): original navigation, discovery25/1, exactly1000 completed, one positive
+batch tool call, four declared steps, zero model turns. Global Codex configuration
+was not modified. This is not measured normal-conversation model usage or tokens.

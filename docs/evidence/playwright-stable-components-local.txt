@@ -1,0 +1,37 @@
+✔ internal job controller queue-success (667.563756ms)
+✔ internal job controller cancel-and-reconnect (408.02271ms)
+✔ internal job controller queue-pressure (727.615282ms)
+✔ internal job controller queue-expiry (747.004557ms)
+✔ internal job controller guardian-crash (610.988034ms)
+✔ internal job controller close-before-dequeue (180.958055ms)
+✔ internal job controller cancel-during-guardian-start (159.146174ms)
+✔ durable guardian success: cleanup and canonical journal outcome (330.103256ms)
+✔ durable guardian cancel: cleanup and canonical journal outcome (612.057597ms)
+✔ durable guardian disconnect: cleanup and canonical journal outcome (522.781412ms)
+✔ durable guardian crash: cleanup and canonical journal outcome (606.299808ms)
+✔ durable guardian mismatch: cleanup and canonical journal outcome (191.31689ms)
+✔ durable guardian admissionFailure: cleanup and canonical journal outcome (287.860859ms)
+✔ durable guardian preDisconnected: cleanup and canonical journal outcome (203.333801ms)
+✔ managed directory links and database hardlinks cannot modify another file (332.432288ms)
+✔ POSIX journal directory must exclude group and other access (38.741129ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (91.38939ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (57.337116ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (49.843238ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (65.446195ms)
+✔ killed transaction rolls back without a partial job or duplicate request (186.33394ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (127.869751ms)
+✔ corrupt journal is rejected without silently erasing the file (83.743048ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (44.028949ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (144.434177ms)
+✔ workflow identity ignores object key order, defaults and equivalent repeat expansion (1.723005ms)
+✔ captured workflow input cannot change after submission and oversized or unknown data is rejected (4.17368ms)
+✔ CI totals include TAP, Node24 spec and original Playwright summaries (1.763144ms)
+✔ a repeated summary is counted once and incomplete Node totals fail closed (0.599707ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7775.066649

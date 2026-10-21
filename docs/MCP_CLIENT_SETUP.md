@@ -1,8 +1,8 @@
 # Local stdio setup
 
-Requires Node.js 20+ for the companion test/bootstrap path; use a maintained
-Node 22 or 24 LTS installation for new setups. The upstream package
-engine remains >=18; companion Node 18 verification is outstanding. No global MCP
+Requires Node.js 20+; use a maintained Node 22 or 24 LTS installation for new
+setups. The internal durable job components require Node 22.13+ (node:sqlite).
+Node 18 is unsupported. No global MCP
 configuration is required to run CLI workflows. This fork is private and is not
 published as Microsoft's npm package.
 
