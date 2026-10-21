@@ -108,3 +108,10 @@ Node directly, including Windows, with temporary `-c` MCP registration and an
 ephemeral workspace-write thread. No model turn or global configuration write.
 Pinned0.163.0 Node-launcher Linux verification passes; new native CI jobs await
 acceptance. This does not certify a conversational model or remove model quotas.
+
+
+The standalone original CLI sets a POSIX creation mask of0077, so newly created
+storage-state exports remain0600 even when the parent uses0022. Existing files
+retain their prior permissions; export sensitive state to a fresh private path.
+This mask does not establish Windows ACLs. Embedding the library leaves the host's
+process mask unchanged; the embedding application owns its file permissions.

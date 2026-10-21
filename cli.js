@@ -15,6 +15,12 @@
  * limitations under the License.
  */
 
+// The standalone process owns its creation mask. Fresh exported browser state
+// can contain credentials; never inherit group/world-readable file defaults.
+// Library hosts retain control of their own process mask. Existing files and
+// Windows ACLs require separate protection; umask does not repair either.
+if (process.platform !== 'win32') process.umask(0o077);
+
 const { program } = require('playwright-core/lib/utilsBundle');
 const { tools, libCli } = require('playwright-core/lib/coreBundle');
 // Compose persistent-profile ownership over public APIs; tools stay delegated.
