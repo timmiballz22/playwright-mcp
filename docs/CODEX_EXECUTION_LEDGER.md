@@ -2434,3 +2434,16 @@ Full executor regression with these negative controls passes18/18 each
 Node20/22/24, zero skips/cancels. Lint passes.166-file dry pack includes the new
 HTTP fixture; latest165-file production install covers unchanged runtime code.
 These follow-up tests are not present in the running f485f1e native matrix.
+
+## IPv6 loopback origin positive and negative controls
+
+The real alias fixture now binds an IPv6-only ::1 target and exercises compressed,
+expanded and leading-zero IPv6 forms. Approved exact-origin requests must all
+reach that target before the unapproved-origin run must settle all four requests
+with zero additional target hits, policy_blocked and terminated/removed cleanup.
+No allowlist/parser or runtime behavior change; IPv6 support is required by the
+fixture, with no silent fallback to IPv4. Local Node24 new IPv6 cases pass2/2 on
+Chromium/Firefox. Combined old IPv4/new IPv6 controls pass4/4 on Node22; Node20
+reports4 pass/two explicit WebKit name-filter skips. WebKit is not locally
+executable and native IPv6 verification remains pending. These tests are not in
+the active f485f1e native run. Evidence: ipv6-origin-node*.txt.

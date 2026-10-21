@@ -8,12 +8,15 @@ import path from 'node:path';
 import { executeWorkflow } from './executor.mjs';
 
 for (const browser of ['chromium', 'firefox', 'webkit']) {
-  test(`${browser}: canonical localhost aliases cannot escape an unapproved port`, { timeout: 45000 }, async () => {
+for (const family of ['ipv4', 'ipv6']) {
+  test(`${browser}: canonical ${family === 'ipv4' ? 'localhost' : 'IPv6 loopback'} aliases cannot escape an unapproved port`, { timeout: 45000 }, async () => {
     let hits = 0;
     const target = createServer((_request, response) => { hits++; response.writeHead(200, { 'Access-Control-Allow-Origin': '*' }); response.end('owned control'); });
-    target.listen(0, '127.0.0.1'); await once(target, 'listening');
-    const destination = `http://127.0.0.1:${target.address().port}`;
-    const urls = ['127.0.0.1', '2130706433', '0x7f000001', '0177.0.0.1', '127.1', '%31%32%37.0.0.1'].map((host, index) => `http://${host}:${target.address().port}/effect?case=${index}`);
+    target.listen({ port: 0, host: family === 'ipv4' ? '127.0.0.1' : '::1', ipv6Only: true }); await once(target, 'listening');
+    const destination = `http://${family === 'ipv4' ? '127.0.0.1' : '[::1]'}:${target.address().port}`;
+    const hosts = family === 'ipv4' ? ['127.0.0.1', '2130706433', '0x7f000001', '0177.0.0.1', '127.1', '%31%32%37.0.0.1'] :
+      ['[::1]', '[0:0:0:0:0:0:0:1]', '[::0:1]', '[0000:0000:0000:0000:0000:0000:0000:0001]'];
+    const urls = hosts.map((host, index) => `http://${host}:${target.address().port}/effect?case=${index}`);
     const fixture = createServer((_request, response) => {
       response.writeHead(200, { 'Content-Type': 'text/html' });
       response.end(`<!doctype html><button onclick="run()">Run aliases</button><output>Waiting</output><script>
@@ -42,4 +45,5 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
       if (verified) await rm(root, { recursive: true, force: true });
     }
   });
+}
 }
