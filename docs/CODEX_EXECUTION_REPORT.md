@@ -1,15 +1,17 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native runtime candidate: `fa89738bc7fed576307d29df49a37c3fc434e3a7`.
-575 passed, six failed, zero test skips/cancellations. All original wrapper jobs
-passed (162 tests); all journal jobs passed (79). Five WebKit retry-fixture cases
-and the Windows Firefox retry case failed their first successful-goto assertion.
-Both Windows raw Firefox ten-fresh fixtures passed this run; historical flakiness
-remains unresolved. The fixture lacked an HTML Content-Type and failure details;
-the corrected fixture needs native validation. Last full green remains d71c91e.
-Internal controller candidate 5c18667 has local Node24/22 component and fresh
-production-package proof, but native acceptance and public job tools/configuration,
-profiles and remaining master-spec gates are incomplete. NOT RELEASE-READY.
+Latest completed native candidate: `bae4d66400e0232bae784b49da339a7ad62bf494`:
+612 passed, five failed, zero test skips/cancellations. The wrapper workflow passed
+162 tests; batch337/3 and component/accounting113/2. Windows failures include stale
+controller admission, CIM audit timeout, raw Firefox pointer timeout and Firefox
+retry navigation timeout; macOS WebKit cancellation observed two requests.
+Atomic admission and serialized component checks are fixed locally. Firefox and
+cancellation diagnostics remain active; no failed action is replayed.
+New locally verified code: `fb81ee9` with stable Playwright/core/test1.64.1 and
+patched runtime SDK1.32.1, Node>=20 (durable components22.13+). Local actual Codex,
+1000-action MCP, production install and100-run supervised soak pass; native
+acceptance is pending. Last full green remains d71c91e. NOT RELEASE-READY:
+public job frontends, profiles, quotas/retention, ACL/DNS controls and gates remain.
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
 
@@ -799,3 +801,85 @@ No action force/replay/deadline inflation is introduced. Linux Node24 normal
 browser installation passed this matrix, without bypassing signature checks.
 Public jobs, native stability, ACLs, quotas/retention, profiles, DNS/OS egress and
 remaining G00–G18 acceptance remain unfinished. Last full green is still d71c91e.
+
+## Native bae4d66, atomic admission fix and stable dependency candidate
+
+Latest matrix: batch https://github.com/timmiballz22/playwright-mcp/actions/runs/39523736659 ;
+wrapper https://github.com/timmiballz22/playwright-mcp/actions/runs/39523736626 .
+Reporter-aware totals:612 passed, five failed, zero test skips/cancellations.
+All original wrapper jobs passed. Failures: Windows controller guardian-crash
+admission race; Windows guardian-success CIM audit timeout (10s); Windows raw
+Firefox fresh1 action16 pointer timeout5004ms (15/23 confirmed, counter probe
+also timed out); Windows Firefox retry goto timeout with one request; macOS
+WebKit cancellation request count2 instead of1. Basic WebKit throttled navigation
+now passes on all five native batch hosts after the fixture Content-Type fix.
+The macOS cancellation timing cause remains unknown; bounded request/abort timing
+diagnostics are added without loosening its count assertion. No input replay,
+force or production deadline inflation was introduced. Preserve failures in
+worker-ci-seventeenth-* evidence; they are not reclassified as passes.
+
+Runtime fix3380ae6: an already-open competing controller deterministically
+reproduced new admission after another guardian's uncertain death. Journal create
+now checks requireCleanLease atomically after duplicate lookup; source reads
+propagate cleanupBlocked. New jobs are refused; matching prior request keys still
+return the canonical job without replay. Direct journal assertions exercise this
+transaction and reject malformed flag values. Component fault files now run with
+--test-concurrency=1 to avoid concurrent Windows CIM/CPU pressure. Twenty-nine
+component/accounting tests pass locally under Node24 and Node22. Fresh installed
+production checks pass. Evidence: job-controller-atomic-* and the failing-before
+job-controller-uncertain-admission-failing-before.txt. Native confirmation pending.
+
+The first100-run profiler completed all400 browser actions and active-process
+cleanup but failed its32MiB parent RSS budget. Separating read-only observation
+from the subject removed sampler allocations from the measured frontend, keeping
+the same thresholds. Alpha-driver control:100/400,78,922ms, subject FDs24->24,
+RSS growth1,310,720 bytes, zero active owned after every run. See PERFORMANCE.md;
+complete browser FD inspection remains denied/partial, never counted as verified.
+
+Reviewable dependency/runtime candidate fb81ee9: Playwright/core/test pinned
+exactly1.64.1 and SDK1.32.1, Node>=20. The previous SDK lock produced one high
+advisory package with four advisories (GHSA-22jm-h49p-29qw, GHSA-6prh-2h8m-c8cw,
+GHSA-46jr-4wx8-v453, GHSA-rvq5-wwqv-78pq). Compatible audit fix updated the SDK;
+npm audit --omit=dev now reports0 vulnerabilities in the npm dependency tree.
+This is not a vendored-code or overall security certification.
+
+Official Playwright stable release and96 upstream commits since the alpha were
+inspected, including Firefox header-boundary fix ece43bfc2 and browser rolls.
+No backend copy, original entrypoint change or blind repository merge was made.
+Baseline discovery remains versioned at42def9d. Six contracts retain25 default/
+72 extended names with zero removals and unchanged existing validation shapes.
+Optional maxResults/isolatedContext fields and the upstream combined text/time
+wait behavior are documented in CHANGELOG.md. See playwright-stable-contract-diff.json.
+Updated engines: Chromium156.0.8078.4, Firefox157.0, WebKit27.2; local WebKit library
+constraints remain and no local WebKit pass is claimed.
+
+Executed against the upgraded driver/SDK:27 batch/protocol/runner tests pass
+(including real1000-action MCP34,315ms);29 component/accounting tests pass;
+26 original Chromium/Firefox wrapper cases pass; two selected real redirect
+security cases pass; Node20 protocol/policy subset passes four. All these executed
+cases have zero failures/skips/cancellations. Fresh production tarball95 files
+passes original25-tool navigation, batch1-tool and CLI throttling, two queued
+Chromium jobs/ten actions without duplicate/reconnect replay, guardian/storage,
+and actual controller SIGKILL (12 owned, CANCELLED1/2, zero active, lease released,
+integrity valid). Evidence: playwright-stable-*.txt; commands are the corresponding
+scripts and test file names recorded in those logs.
+
+Actual CodexCLI0.163.0 app-server with temporary -c server overrides confirms
+original25/batch1 discovery, original navigation and exact1000 actions in one
+positive batch call, four declared steps,34,068ms, zero model turns. No global
+Codex configuration changed. Only its three allowlisted PASS JSON lines are
+preserved; remote-auth warmup diagnostics are not evidence. Source raw/sync API
+limits and normal model usage allowances still apply.
+
+Stable-driver100-run supervised source soak:100 workflows/400 actions,82,197ms,
+median767/p95819ms, zero active owned descendants after every run, subject FDs
+24->24, post-warmup median RSS growth1,441,792 bytes (budget33,554,432). Subject CPU
+390ms, observer4,996ms, sampled owned CPU lower bound72,870ms; sampled summed RSS
+peak558,473,216 bytes. No forced GC; full security routing remained enabled.
+Partial browser FD access (31 identities denied), sampling/shared-page limits,
+Linux-only scope and absence of model-token/CLI comparisons are explicit. This
+passes the defined finite soak thresholds, not all G12 requirements.
+
+NEXT: native stable-driver/SDK and atomic-controller matrix; diagnose any remaining
+Windows Firefox/macOS cancellation failures from fixed diagnostics, then public
+job frontends/configuration and remaining security/storage/profile acceptance.
