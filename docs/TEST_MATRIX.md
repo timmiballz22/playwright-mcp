@@ -167,3 +167,11 @@ runtime refusal before workflow/state writes. Fresh132-file production package
 passes locally. Windows public integration awaits native acceptance. POSIX SIGTERM
 handler tests remain POSIX-specific; Windows forced process termination is not
 claimed to deliver the same completion event.
+
+held-input.spec.ts passes local Chromium/Firefox: pointer-down state persists
+across separate move tools and paints a sampled canvas pixel; mouse-up clears
+held state exactly once. Two ArrowRight presses plus Shift+ArrowRight produce
+four keydowns/four keyups, zero held keys and exact selection2–3. Native new
+fixture is pending. Installed-package failures are also prepared for failure-only
+log artifacts, so early startup failures can be inspected before a whole matrix
+completes; native upload acceptance remains pending.

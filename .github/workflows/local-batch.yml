@@ -60,7 +60,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium firefox webkit
-      - run: node scripts/verify-package.mjs
+      - name: Verify installed production package
+        id: installed
+        shell: bash
+        run: node scripts/verify-package.mjs 2>&1 | tee installed-tests.log
       - name: Run mock and real browser tests through Bash bootstrap
         id: batch_bash
         if: runner.os != 'Windows'
@@ -74,10 +77,12 @@ jobs:
         env:
           PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS: '10'
       - name: Preserve failed browser evidence
-        if: failure() && (steps.batch_bash.outcome == 'failure' || steps.batch_windows.outcome == 'failure')
+        if: failure() && (steps.installed.outcome == 'failure' || steps.batch_bash.outcome == 'failure' || steps.batch_windows.outcome == 'failure')
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: batch-tests-${{ matrix.os }}-node${{ matrix.node }}
-          path: batch-tests.log
+          path: |
+            installed-tests.log
+            batch-tests.log
           retention-days: 1
           if-no-files-found: error
