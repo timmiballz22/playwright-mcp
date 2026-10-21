@@ -3582,3 +3582,32 @@ No public API/runtime deadline change. Evidence component-reporter-*.
 NEXT ACTION: push the reviewed next candidate now native55 has concluded; inspect
 new native failures, retaining strict permissions/timeout assertions and prior
 Windows orphan uncertainty. G00–G18 remain incomplete; no release/merge approval.
+
+
+## Public Node handle capture in source-only pipe control (after f81f720)
+
+Native55 Mac pipe/server timings motivate checking ownership feasibility, not
+changing the production transport. diagnose-raw-runner.mjs now observes the public
+Node child_process diagnostics channel only during its controlled direct launch.
+The channel supplies the actual ChildProcess at construction, before PID is set;
+PID notification uses its spawn event. No Playwright private field, PID/role/name
+heuristic or persisted-PID termination is added. The fixed receipt requires at
+least one captured handle, every handle to spawn, and every handle to report exit.
+Parent's independent existing ownership audit still must pass separately.
+
+Linux Chromium1k direct-pipe AND1k BrowserServer controls exit0 on Node20/22/24
+(two separate1k runs per Node). Pipe handles1captured/1spawned/1exited each;
+all runs independently report zero owned survivors. Pipe/server runner durations:
+Node20 33.931/33.770s,Node22 37.348/37.527s,Node24 36.779/37.623s. Fixed pipe-first
+order, read-only observer overhead and local concurrent samples prevent a causal
+speed or cross-OS claim. Firefox/WebKit handle capture not exercised here.
+
+Official Node22 docs confirm the event but mark process channels Stability1
+EXPERIMENTAL (added16.18). It is research evidence, not the production ownership
+boundary or a default transport switch. Missing handles make the control fail,
+not authorize success. Raw receipts pipe-owned-handles-*, official source review
+node22-child-process-channel-review.json; lint/diff pass. Native56 remains active
+at f81f720, which excludes this experiment. Its four component job conclusions
+are success so far (full test counts pending logs); no init-timeout fix inferred.
+NEXT ACTION: inspect native56; obtain native proof before considering any runtime
+transport change, retain all strict deadlines and earlier orphan uncertainty.

@@ -1,5 +1,6 @@
 // Exact raw-runner controls: Firefox temp ordering or Chromium transport. Static owned fixture only; no production policy change.
-import { fork } from 'node:child_process';
+import { fork, ChildProcess } from 'node:child_process';
+import { channel } from 'node:diagnostics_channel';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
 import { mkdtemp, mkdir, rm } from 'node:fs/promises';
@@ -27,7 +28,20 @@ if (process.argv[2] === '--owned-child') {
     process.env.TMPDIR = temporary; process.env.TEMP = temporary; process.env.TMP = temporary;
   }
   const engine = (await import('playwright'))[browser];
-  const provider = mode === 'direct-pipe' ? { launch: options => engine.launch(options) } : engine;
+  const directHandles = new Set();
+  const childChannel = channel('child_process');
+  const provider = mode === 'direct-pipe' ? { launch: async options => {
+    // Public Node diagnostics provides the actual locally constructed handle,
+    // before spawn assigns its PID. Capture only this controlled launch window.
+    const capture = ({ process: child }) => {
+      if (!(child instanceof ChildProcess)) return;
+      directHandles.add(child);
+      child.once('spawn', () => { if (Number.isSafeInteger(child.pid)) send({ type: 'browser', pid: child.pid }); });
+    };
+    childChannel.subscribe(capture);
+    try { return await engine.launch(options); }
+    finally { childChannel.unsubscribe(capture); }
+  } } : engine;
   // Only this initial handshake waits for the audit, before any browser exists.
   const start = once(process, 'message'); send({ type: 'ready' }); await start;
   let successfulRuns = 0; let confirmedActions = 0; let last;
@@ -47,9 +61,17 @@ if (process.argv[2] === '--owned-child') {
       assert.equal(result.completed, clicks + 3); successfulRuns++;
     }
   } catch { last = { ok: false, reason: 'fixture_failed' }; }
+  const handleReceipt = mode === 'direct-pipe' ? {
+    capturedOwnedHandles: directHandles.size,
+    spawnedOwnedHandles: [...directHandles].filter(child => Number.isSafeInteger(child.pid)).length,
+    exitedOwnedHandles: [...directHandles].filter(child => child.exitCode !== null || child.signalCode !== null).length,
+  } : undefined;
+  const handlesConfirmed = !handleReceipt || handleReceipt.capturedOwnedHandles > 0 &&
+    handleReceipt.spawnedOwnedHandles === handleReceipt.capturedOwnedHandles &&
+    handleReceipt.exitedOwnedHandles === handleReceipt.capturedOwnedHandles;
   // Keep the owned controller alive until its final identity snapshot is taken.
   const finish = once(process, 'message');
-  send({ type: 'receipt', value: { logging: false, privateTempRoot, browser, transport: mode === 'direct-pipe' ? 'direct_pipe' : 'browser_server', requiredFreshRuns: freshRuns, successfulRuns, confirmedActions, ok: successfulRuns === freshRuns, last } });
+  send({ type: 'receipt', value: { logging: false, privateTempRoot, browser, transport: mode === 'direct-pipe' ? 'direct_pipe' : 'browser_server', requiredFreshRuns: freshRuns, successfulRuns, confirmedActions, ok: successfulRuns === freshRuns && handlesConfirmed, ...(handleReceipt ? { handleReceipt } : {}), last } });
   await finish;
   fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
   process.disconnect();
