@@ -2576,3 +2576,9 @@ filtering survivors, issuing additional kills or changing production cleanup.
 Local Chromium/Firefox real deadline cases pass2/2. The change is not in active
 8d661bf native runs and is held locally until those conclude. Evidence:
 deadline-fixture-retention-local.txt.
+
+Current architecture/operator docs now describe hard-link report publication,
+configured GET-only retries, already-executed public Windows acceptance and the
+still-open cleanup failure accurately. The jobs environment table includes the
+implemented page and screenshot limits with their real scope/defaults. These
+are documentation corrections, not new quota or production behavior.

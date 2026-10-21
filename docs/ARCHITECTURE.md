@@ -19,8 +19,10 @@ The operator configures exact origins, artifact base directory and sensitive
 capture approval. Tool JSON cannot modify these. Validation copies actions and
 nested selectors before async setup. A workflow creates an ephemeral browser,
 a context with service workers/downloads disabled, request policy, and a page.
-Requests are fetched without redirect following/retries; all redirect responses
-are aborted. WebSockets are closed. Any blocked request fails the workflow.
+Requests are fetched without automatic redirect following or driver retries.
+An optional operator policy retries only eligible main-navigation GET429/503
+responses with bounded backoff; unsafe actions are never replayed. All redirect
+responses are aborted. WebSockets are closed. Any blocked request fails the workflow.
 
 Windows jobs use a unique short browser-temp directory directly under the
 protected storage base. Journal/artifact namespaces stay unchanged. This follows
@@ -31,7 +33,8 @@ The supervisor removes only acknowledged temporary ownership; an existing or
 unacknowledged directory is retained and makes cleanup uncertain. The shorter
 layout alone still failed before browser launch. Run artifact allocation now
 uses exclusive UUID mkdir instead of mkdtemp under the deep artifact root; the
-joint candidate awaits native public-job acceptance. This adds no broader disk
+joint layout passed native installed/public-job acceptance at6fffa27; subsequent
+actual Codex checks also pass. This adds no broader disk
 quota or managed-profile feature.
 
 The frontend and independent supervisor enforce a monotonic execution deadline,
@@ -52,16 +55,21 @@ Filesystem latency is not covered by that deadline.
 Each worker has a private execution directory and temporary browser directory.
 The supervisor removes temporary files after termination through a bounded cleanup
 child, with retries for transient Windows file locks. Reports publish via
-exclusive temporary files and atomic rename, not a power-loss durable journal.
+exclusive temporary files and atomic no-overwrite hard-link publication, not a
+power-loss durable journal.
 Replies contain at most ten recent steps. Failed execution counts can be confirmed
 lower bounds; unsafe actions are never automatically replayed. An optional jobs MCP/foreground CLI preview wraps the durable metadata
 journal, bounded controller and trusted guardian. It provides start/status/result/
 cancel/list and bounded terminal artifact cleanup; default browser policy is
 read-only. It requires Node22.13+ and private operator configuration. Windows
-configuration uses the independently native-tested ACL helper; experimental public
-endpoint integration awaits native acceptance. Retention/full quotas, persistent
+configuration uses the independently native-tested ACL helper. Nativef485f1e
+installed public endpoints and all three actual Codex lanes pass; a separate
+Windows Firefox ownership audit contradicts reported cleanup and remains
+unresolved. Public execution remains experimental. Retention/full quotas, persistent
 companion profiles and resume remain unfinished. Worker V8 heap is capped at 256 MiB; browser RSS and response-body
-memory are not capped by that setting.
+memory are not capped by that setting. The observed open-page budget defaults
+to8, with an operator limit1–32 and no workflow override. It stops after page
+events reveal an excess; it is not a hard OS allocation or process-tree quota.
 
 Decision: option A (separate companion), with reusable runner entrypoint for CLI
 and MCP. A facade would add protocol delegation and capability maintenance before

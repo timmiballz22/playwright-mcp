@@ -7,7 +7,10 @@ owner/System DACLs. Its helper passed native acceptance at ebdec88.
 Windows installed public MCP/CLI and source1,000-action checks pass at6fffa27.
 Native candidatefd17363 actual Codex Windows zero-turn jobs verification now
 passes after replacing helper cmdlet serialization with standard .NET JSON.
-The preview is not release-ready.
+Latest nativef485f1e passes installed endpoints and actual Codex1,000-action
+checks on all three OSs. A Windows Firefox post-cleanup process observation and
+a macOS durable1,000-action timeout remain unresolved. The preview is not
+release-ready.
 The original MCP endpoint and one-tool batch endpoint remain available.
 
 Register `playwright-jobs-mcp` (or `node local-batch/jobs-mcp.mjs`) with trusted
@@ -27,6 +30,8 @@ Example UUIDs in setup snippets are placeholders, not shared registration IDs.
 | `PLAYWRIGHT_JOBS_ALLOW_MUTATIONS` | `0` by default. Set `1` only for approved writes. |
 | `PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS` | `0` by default. Set `1` to permit screenshots. |
 | `PLAYWRIGHT_JOBS_NAVIGATION_RETRIES` | Optional navigation retry count, 0–2. |
+| `PLAYWRIGHT_JOBS_MAX_PAGES` | Observed open-page budget, default 8; operator integer 1–32. This is reactive, not an OS process/memory quota. |
+| `PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES` | Per-run screenshot payload budget, default 16 MiB; operator integer 0–268435456. This does not bound total disk or browser memory. |
 
 Configuration is operator-controlled, never tool input. New storage directories
 are private; unsafe existing permissions, untrusted symlinks and writable
