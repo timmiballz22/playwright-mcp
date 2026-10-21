@@ -36,7 +36,7 @@ try {
   const nonce = randomUUID(); assert.equal((await journal.call('reserve', { id: next.jobId, nonce })).acquired, true);
   await journal.call('cancel', { id: next.jobId }); await journal.call('activate', { id: next.jobId, nonce });
   assert.deepEqual(await journal.call('integrity'), { ok: true });
-  console.log(JSON.stringify({ component: 'durable_guardian', os: process.platform, realBrowser: 'chromium', controllerSignal: 'SIGKILL', observedOwnedProcesses: observed.length, terminalState: row.state, completed: row.completed, total: row.total, activeOwnedProcesses: 0, projectLeaseReleased: true, integrity: true, modelTurns: 0 }));
+  console.log(JSON.stringify({ component: 'durable_guardian', controller: 'internal_job_controller', os: process.platform, realBrowser: 'chromium', controllerSignal: 'SIGKILL', observedOwnedProcesses: observed.length, terminalState: row.state, completed: row.completed, total: row.total, activeOwnedProcesses: 0, projectLeaseReleased: true, integrity: true, modelTurns: 0 }));
 } finally {
   clearTimeout(timer); lines.close(); owner.stdout.destroy();
   if (owner.exitCode === null && owner.signalCode === null) { owner.kill('SIGKILL'); await ownerExit; }

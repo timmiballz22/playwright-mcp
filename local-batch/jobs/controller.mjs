@@ -1,0 +1,203 @@
+// Internal trusted source API. Public MCP/CLI job configuration is not implemented.
+import { fork } from 'node:child_process';
+import { randomUUID } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+import { JobJournal, JournalError } from './journal.mjs';
+import { captureWorkflow } from './workflow-snapshot.mjs';
+import { navigationRetryPolicy } from '../navigation-retry.mjs';
+const terminal = new Set(['SUCCEEDED', 'FAILED', 'CANCELLED', 'TIMED_OUT', 'CRASHED']);
+
+export class JobController {
+  static async open({ journal: config, execution = {}, onEvent } = {}) {
+    const executionOptions = { ...execution,
+      allowedOrigins: [...execution.allowedOrigins ?? []],
+      artifactsDir: path.resolve(execution.artifactsDir ?? '.local-batch-output'),
+      navigationRetry: navigationRetryPolicy(execution.navigationRetry) ?? undefined };
+    const journal = await JobJournal.open(config);
+    try {
+      const recovered = await journal.call('recover');
+      return new JobController(journal, { ...config, instanceId: journal.instanceId }, executionOptions, onEvent, recovered.cleanupBlocked);
+    } catch (error) { await journal.close(); throw error; }
+  }
+
+  constructor(journal, config, execution, onEvent, blocked) {
+    this.journal = journal; this.config = config; this.execution = execution;
+    this.onEvent = onEvent; this.blocked = blocked;
+    this.inputs = new Map(); this.operations = Promise.resolve(); this.pending = 0;
+    this.closed = false; this.active = undefined; this.timer = undefined;
+  }
+
+  serialize(callback) {
+    if (this.pending >= 8) return Promise.reject(new JournalError('controller_busy'));
+    this.pending++;
+    const task = this.operations.then(callback);
+    this.operations = task.catch(() => {}).finally(() => { this.pending--; });
+    return task;
+  }
+
+  notify(event) { try { this.onEvent?.(event); } catch {} }
+  unavailable(error) {
+    if (['journal_unavailable', 'journal_corrupt', 'storage_full'].includes(error?.code)) {
+      this.blocked = true;
+      // The independent guardian handles IPC loss; never kill from journal PIDs.
+      if (this.active?.child.connected) this.active.child.disconnect();
+    }
+  }
+
+  start(input, requestKey) {
+    if (this.closed) return Promise.reject(new JournalError('controller_closed'));
+    if (this.pending >= 8) return Promise.reject(new JournalError('controller_busy'));
+    const acceptedAt = Date.now();
+    let snapshot;
+    try { snapshot = captureWorkflow(input); }
+    catch (error) { return Promise.reject(error); }
+    return this.serialize(async () => {
+      if (this.closed) throw new JournalError('controller_closed');
+      if (this.blocked) throw new JournalError('cleanup_blocked');
+      const id = randomUUID();
+      try {
+        const row = await this.journal.call('create', { id, requestKey, workflowDigest: snapshot.digest,
+          admitNew: this.inputs.size < 9, total: snapshot.spec.steps.length * snapshot.spec.iterations, deadlineAt: acceptedAt + snapshot.spec.timeoutMs });
+        // Only the winning creator retains input. Duplicate/lost replies never
+        // schedule a second execution, including across controller processes.
+        if (row.jobId === id && row.state === 'QUEUED') this.inputs.set(id, snapshot.workflow);
+        this.schedule();
+        return row;
+      } catch (error) { this.unavailable(error); throw error; }
+    });
+  }
+
+  request(command, data) {
+    if (this.closed) return Promise.reject(new JournalError('controller_closed'));
+    return this.serialize(async () => {
+      try {
+        if (['read', 'list', 'result'].includes(command)) await this.journal.call('recover');
+        return await this.journal.call(command, data);
+      }
+      catch (error) { this.unavailable(error); throw error; }
+    });
+  }
+  status(id) { return this.request('read', { id }); }
+  result(id) { return this.request('result', { id }); }
+  list(limit = 20) { return this.request('list', { limit }); }
+  async cancel(id) {
+    const row = await this.request('cancel', { id });
+    if (terminal.has(row.state)) this.inputs.delete(id);
+    this.schedule();
+    return row;
+  }
+
+  schedule(milliseconds = 0) {
+    if (this.closed || this.blocked || this.active || this.timer || !this.inputs.size) return;
+    this.timer = setTimeout(() => {
+      this.timer = undefined;
+      void this.serialize(() => this.pump()).catch(error => {
+        if (error.code === 'controller_busy') this.schedule(100);
+        else { this.blocked = true; this.unavailable(error); }
+      });
+    }, milliseconds);
+    this.timer.unref();
+  }
+
+  async pump() {
+    if (this.closed || this.blocked || this.active || !this.inputs.size) return;
+    const [id, workflow] = this.inputs.entries().next().value;
+    const row = await this.journal.call('read', { id });
+    if (row.state !== 'QUEUED') { this.inputs.delete(id); this.schedule(); return; }
+    const nonce = randomUUID();
+    const reserved = await this.journal.call('reserve', { id, nonce });
+    if (!reserved.acquired) {
+      if (reserved.reason === 'cleanup_blocked') this.blocked = true;
+      if (reserved.reason === 'not_started') this.inputs.delete(id);
+      this.schedule(100); return;
+    }
+    let child;
+    try {
+      child = fork(fileURLToPath(new URL('./guardian.mjs', import.meta.url)), [], {
+        detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'],
+        execArgv: ['--max-old-space-size=128'], windowsHide: true,
+      });
+    } catch {
+      await this.journal.call('finish', { id, nonce, state: 'FAILED', completed: 0, cleanupOk: true, reason: 'execution_failed' });
+      this.inputs.delete(id); this.schedule(); return;
+    }
+    let resolveDone;
+    const active = { id, nonce, child, done: new Promise(resolve => { resolveDone = resolve; }) };
+    this.active = active;
+    this.notify({ type: 'guardianSpawned', jobId: id, pid: child.pid });
+    child.on('message', event => {
+      if (['supervisorSpawned', 'workerSpawned', 'ownedProcess'].includes(event?.type) && Number.isInteger(event.pid) && event.pid > 1)
+        this.notify({ type: event.type, jobId: id, pid: event.pid });
+    });
+    let handled = false;
+    const exited = () => {
+      if (handled) return;
+      handled = true;
+      // Cleanup/results are authoritative only after the owned guardian exits.
+      // Do not trust a complete message as permission to launch another browser.
+      const finalize = async () => {
+        try {
+          let current = await this.journal.call('read', { id });
+          if (current.state === 'QUEUED') {
+            // No activation/worker effects occurred; the controller still holds
+            // the reservation. A known child exit permits exact-zero failure.
+            const state = current.cancelRequested ? 'CANCELLED' : Date.now() >= Date.parse(current.deadlineAt) ? 'TIMED_OUT' : 'FAILED';
+            current = await this.journal.call('finish', { id, nonce, state, completed: 0, cleanupOk: true,
+              reason: state === 'CANCELLED' ? 'cancelled' : state === 'TIMED_OUT' ? 'timeout' : 'execution_failed' });
+          } else if (!terminal.has(current.state)) {
+            await this.journal.call('recover');
+            current = await this.journal.call('read', { id });
+          }
+          if (!terminal.has(current.state) || current.operatorAttentionRequired) this.blocked = true;
+          if (terminal.has(current.state)) this.notify({ type: 'jobComplete', jobId: id, state: current.state });
+        } catch (error) { this.blocked = true; this.unavailable(error); }
+        finally {
+          this.inputs.delete(id); this.active = undefined;
+          resolveDone(); this.schedule();
+        }
+      };
+      // Lifecycle bookkeeping cannot be shed by the public admission bound.
+      this.operations = this.operations.then(finalize, finalize);
+    };
+    child.once('exit', exited);
+    child.once('error', () => {
+      if (!child.pid) exited();
+      else if (child.connected) child.disconnect();
+    });
+    child.send({ type: 'start', id, nonce, journal: this.config, workflow, execution: this.execution }, error => {
+      if (error && child.connected) child.disconnect();
+    });
+  }
+
+  close() {
+    if (this.closing) return this.closing;
+    this.closed = true; clearTimeout(this.timer); this.timer = undefined;
+    this.closing = this.closeOwned();
+    return this.closing;
+  }
+  async closeOwned() {
+    // Queue behind admitted operations without waiting inside the queue for an
+    // exit handler which itself needs that queue.
+    const prepare = async () => {
+      for (const id of this.inputs.keys()) {
+        try { await this.journal.call('cancel', { id }); }
+        catch (error) { this.blocked = true; this.unavailable(error); }
+      }
+      if (this.active?.child.connected) this.active.child.disconnect();
+      return this.active;
+    };
+    const pending = this.operations.then(prepare, prepare);
+    this.operations = pending.then(() => {});
+    const active = await pending;
+    let timer; let exited = !active;
+    if (active) {
+      exited = await Promise.race([active.done.then(() => true), new Promise(resolve => { timer = setTimeout(() => resolve(false), 10000); })]);
+      clearTimeout(timer);
+      if (!exited) active.child.unref();
+    }
+    this.inputs.clear();
+    await this.journal.close();
+    return { closed: true, cleanupConfirmed: exited && !this.blocked };
+  }
+}

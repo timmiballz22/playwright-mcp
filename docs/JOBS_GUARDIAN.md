@@ -2,8 +2,9 @@
 
 `local-batch/jobs/guardian.mjs` connects the metadata journal to the supervised
 executor. This is a trusted process protocol, not a public MCP job endpoint or
-queue manager. Start/status/result/cancel/list/cleanup tools and the controller
-that owns queued inputs remain unfinished. G06 does not pass from this component.
+public queue manager. The internal [source controller](JOBS_CONTROLLER.md) now owns
+bounded queued inputs; public start/status/result/cancel/list/cleanup tools and
+operator configuration remain unfinished. G06 does not pass from this component.
 
 The caller validates and snapshots a workflow, creates its idempotent journal
 record, reserves the project lease and forks the guardian detached with ignored

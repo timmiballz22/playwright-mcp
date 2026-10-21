@@ -38,7 +38,7 @@ The supervisor removes temporary files after termination through a bounded clean
 child, with retries for transient Windows file locks. Reports publish via
 exclusive temporary files and atomic rename, not a power-loss durable journal.
 Replies contain at most ten recent steps. Failed execution counts can be confirmed
-lower bounds; unsafe actions are never automatically replayed. There is an internal durable metadata journal and trusted guardian bridge, but no public durable
+lower bounds; unsafe actions are never automatically replayed. There is an internal durable metadata journal, bounded source controller and trusted guardian bridge, but no public durable
 job execution API, retention/quota controller, persistent companion profile or
 resume engine. Worker V8 heap is capped at 256 MiB; browser RSS and response-body
 memory are not capped by that setting.

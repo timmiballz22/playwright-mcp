@@ -1,6 +1,7 @@
 # Durable job implementation contract
 
 This is the execution integration contract, not an implemented public feature.
+The internal bounded source controller is described in [JOBS_CONTROLLER.md](JOBS_CONTROLLER.md).
 The internal metadata kernel is documented in [JOBS_STORAGE.md](JOBS_STORAGE.md),
 and the trusted execution bridge in [JOBS_GUARDIAN.md](JOBS_GUARDIAN.md). The current
 companion still exposes one synchronous batch tool. The supervised executor is

@@ -1,6 +1,6 @@
 export const COMMAND_FIELDS = new Map([
   ['init', ['directory', 'projectId', 'ownerId', 'instanceId', 'pid']],
-  ['create', ['id', 'requestKey', 'workflowDigest', 'total', 'deadlineAt']],
+  ['create', ['id', 'requestKey', 'workflowDigest', 'total', 'deadlineAt', 'admitNew']],
   ['verify', ['id', 'workflowDigest']],
   ['read', ['id']], ['list', ['limit']], ['events', ['id']], ['result', ['id']], ['cancel', ['id']],
   ['reserve', ['id', 'nonce']], ['activate', ['id', 'nonce']],

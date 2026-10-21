@@ -13,6 +13,7 @@ test(`real ${browser}: supervised navigation respects throttling and never repla
   const hits = new Map(); const times = new Map();
   const abort = new AbortController();
   const server = createServer((req, res) => {
+    res.setHeader('Content-Type', 'text/html');
     const key = req.method + req.url;
     hits.set(key, (hits.get(key) || 0) + 1);
     times.set(key, [...times.get(key) || [], performance.now()]);
@@ -39,7 +40,10 @@ test(`real ${browser}: supervised navigation respects throttling and never repla
   };
   try {
     for (const route of ['/429', '/503']) {
-      assert.equal((await run(route)).ok, true);
+      const result = await run(route);
+      assert.equal(result.ok, true, JSON.stringify({ route, reason: result.reason,
+        completed: result.completed, failedStep: result.failedStep, execution: result.execution,
+        hits: hits.get('GET' + route) }));
       assert.equal(hits.get('GET' + route), 2);
       const [first, second] = times.get('GET' + route);
       assert.ok(second - first >= (route === '/429' ? 990 : 90));
