@@ -71,3 +71,12 @@ component job), but the first installed public MCP job returns terminal FAILED
 before CLI coverage runs. Its cause is unproven because the old assertion omitted
 the reason. Windows public execution is not certified; fixed diagnostics and
 failure artifacts are being added. No ACL check is relaxed to address this.
+
+Controlled native40df6ca probe: short protected base65 characters succeeds with
+two actions; full job artifact base214 characters fails setup, with confirmed
+cleanup in both. The candidate keeps all existing journal/artifact paths and
+idempotency keys, and instead puts Windows ephemeral browser data in an exclusive
+`tmp-RUN_UUID` directory under the already protected base. No store migration or
+ACL repair. Ownership ACK precedes browser allocation; only acknowledged scopes
+are removed. A collision remains untouched, reports unknown cleanup and retains
+uncertain execution fencing. Native public-job confirmation is pending.

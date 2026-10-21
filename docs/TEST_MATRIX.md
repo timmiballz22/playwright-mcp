@@ -235,3 +235,23 @@ Other failures: Windows raw Firefox headless and macOS synchronous1,000-action
 MCP deadline after944 confirmed actions. No deadlines or counts were relaxed.
 Failure artifact upload succeeded; Azure download from this host returned403.
 Fixed diagnostic annotations are added as an independently readable channel.
+
+Short browser-temp candidate: native before evidence shows protected base65
+characters succeeds while full job namespace214 characters fails setup. Keep
+journals/artifacts intact; allocate Windows browser temp directly under the
+private base with exclusive UUID creation and explicit supervisor ownership ACK
+before browser launch. Unacknowledged/colliding roots are never deleted and
+cleanup is unknown. Three local real/fault cases prove active external browser
+files, cancellation removal, collision retention and post-ACK crash removal.
+Node24 fault/config set20 passes; Node20 external3 passes; Node22 external plus
+screenshot/locator phase5 passes. Fresh137-file production snapshot passes.
+Windows path-specific public acceptance remains pending; no namespace migration,
+deadline increase, unsafe replay or new model/tool policy field.
+
+Native40df6ca:827 test passes/one failure (wrapper271/1,batch556/0), zero test
+skips/cancellations plus installed Windows setup failure and controlled layout
+reproduction. All88 original tests per OS include named context isolation and
+pass; Docker and all four components pass. API-readable annotations confirm
+short private base65 completes2 actions; job artifact base214 fails setup, both
+with verified cleanup. Short-temp candidate now addresses that measured difference
+without moving journal/artifact data. Native fix confirmation is pending.

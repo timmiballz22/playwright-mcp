@@ -27,6 +27,7 @@ else {
       const base = path.join(root, 'state'); const projectRoot = root; const ownerHash = hash(randomUUID());
       const first = await prepareWindowsJobDirectories({ base, projectRoot, ownerHash });
       assert.equal(first.projectId, hash(first.ownerSid + ':' + projectRoot));
+      assert.equal(first.temporaryBase, await realpath(base));
       const second = await prepareWindowsJobDirectories({ base, projectRoot, ownerHash: hash(randomUUID()) });
       assert.equal(second.directory, first.directory); assert.notEqual(second.artifactsDir, first.artifactsDir);
       for (const directory of [base, first.directory, first.artifactsDir]) {

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, chmod, readdir, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, chmod, realpath, readdir, rm, symlink, writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import os from 'node:os';
 import path from 'node:path';
@@ -20,6 +20,7 @@ test('operator owner/project namespaces are stable, private and independent of t
     assert.notEqual(otherOwner.execution.artifactsDir, a.execution.artifactsDir);
     const otherProject = await resolveJobConfig({ env, cwd: second });
     assert.notEqual(otherProject.journal.directory, a.journal.directory);
+    assert.equal(a.execution.temporaryBase, process.platform === 'win32' ? await realpath(env.PLAYWRIGHT_JOBS_DATA_DIR) : undefined);
     assert.equal(a.execution.readOnly, true);
     assert.equal(a.execution.maxScreenshotBytes, 16777216);
     assert.equal(a.execution.allowSensitiveArtifacts, false);

@@ -26,9 +26,9 @@ try {
   // The helper makes base itself protected owner/System storage before either
   // case runs. Only directory depth differs; origins/actions/browser are equal.
   const canonicalBase = await realpath(base);
-  for (const [layout, artifactsDir] of [['short_private_base', canonicalBase], ['job_namespace', config.execution.artifactsDir]]) {
+  for (const [layout, artifactsDir, temporaryBase] of [['short_private_base', canonicalBase], ['job_namespace', config.execution.artifactsDir], ['job_namespace_short_temp', config.execution.artifactsDir, config.execution.temporaryBase]]) {
     const result = await executeWorkflow({ timeoutMs: 20000, steps: [{ type: 'goto', url: origin }, { type: 'assertText', selector: '#ready', equals: 'Owned layout fixture' }] }, {
-      artifactsDir, allowedOrigins: [origin], readOnly: true,
+      artifactsDir, temporaryBase, allowedOrigins: [origin], readOnly: true,
       workerModule: new URL('../local-batch/fixtures/launch-diagnostic.mjs', import.meta.url),
     });
     let launch;

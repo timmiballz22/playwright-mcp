@@ -22,8 +22,15 @@ process.once('message', async packet => {
     await mkdir(path.dirname(packet.workspaceRoot), { recursive: true, mode: 0o700 });
     await mkdir(packet.workspaceRoot, { mode: 0o700 }); // exclusive run ownership
     await new Promise((resolve, reject) => process.send({ type: 'workspaceCreated' }, error => error ? reject(error) : resolve()));
-    const tempDir = path.join(packet.workspaceRoot, 'tmp');
-    await mkdir(tempDir, { mode: 0o700 });
+    const tempDir = packet.temporaryRoot ?? path.join(packet.workspaceRoot, 'tmp');
+    await mkdir(tempDir, { mode: 0o700 }); // exclusive ownership, including external roots
+    await new Promise((resolve, reject) => {
+      const clear = () => { process.removeListener('message', acknowledged); process.removeListener('disconnect', disconnected); };
+      const acknowledged = message => { if (message.type === 'temporaryReady') { clear(); resolve(); } };
+      const disconnected = () => { clear(); reject(new Error('disconnected')); };
+      process.on('message', acknowledged); process.once('disconnect', disconnected);
+      process.send({ type: 'temporaryCreated' }, error => { if (error) { clear(); reject(error); } });
+    });
     // Scope Playwright's own temporary profiles/downloads to this execution.
     // Only this worker and its browser inherit these legitimate temp settings.
     process.env.TMPDIR = tempDir; process.env.TEMP = tempDir; process.env.TMP = tempDir;

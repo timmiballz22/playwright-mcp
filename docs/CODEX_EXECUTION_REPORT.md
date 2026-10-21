@@ -1,22 +1,22 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `b6a91b9`: **814 test passes/two failures**, zero test
-skips/cancellations, plus Windows installed public-job verification failure before
-its browser suite. Wrapper39547086316:259/1; batch39547086295:555/1.
-All84 original tests per OS, Docker and all four durable component jobs pass.
-Held-pointer/canvas/released modifiers and4,000-node file/find/action cases now
-have native all-engine proof. Windows first public job fails at setup before any
-navigation, with confirmed process/temp cleanup and no operator attention. Cause
-is still unproven; current candidate adds a cleanup-gated short/deep private-layout
-probe and API-readable fixed receipt annotations. Azure artifact uploads work,
-but this host cannot download their blobs (403); full completed logs remain usable.
-Other failures: Windows raw Firefox headless stall/cleanup and macOS1,000-action
-synchronous MCP deadline after944 confirmed actions. Deadlines/count assertions
-remain unchanged. Raw final owned-server kill and phase fixtures pass their
-native cases; named-tab-context state isolation passes local Chromium/Firefox and
-awaits native proof. Last full green remains d71c91e. Full quotas/retention, public
-Windows execution, raw/retry/performance reliability, managed profiles, egress
-and other gates remain open.
+Latest completed native `40df6ca`: **827 test passes/one failure**, zero test
+skips/cancellations, plus Windows installed setup and its controlled layout
+reproduction failing before the Windows browser suite. Wrapper39548304880:271/1;
+batch39548304781:556/0. All88 original tests per OS, Docker and four durable
+component jobs pass. Named tab-context sharing/isolation now has native proof.
+Windows layout probe: short protected base65 characters completes2 actions;
+full job artifact base214 characters fails setup; both verify process/temp cleanup.
+The current candidate moves only Windows ephemeral browser data to a unique
+short directory under the protected base. Journal/artifact namespaces and request
+keys stay intact. Explicit temporary-ownership ACK precedes browser allocation;
+unknown/colliding directories are retained and cleanup fails closed. Node24
+fault/config20, Node20 external3, Node22 external/phase5 and fresh137-file
+production checks pass locally. Native Windows fix acceptance remains pending.
+One test failure remains Windows raw Firefox headless; earlier macOS timing and
+WebKit cancellation failures remain retained despite passing this run unchanged.
+Last full green remains d71c91e. Full quotas/retention, public Windows execution,
+raw/retry/performance reliability, managed profiles, egress and other gates remain.
 
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.

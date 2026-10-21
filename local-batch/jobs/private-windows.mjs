@@ -32,5 +32,5 @@ export async function prepareWindowsJobDirectories({ base, projectRoot, ownerHas
   const directory = await realpath(value.directory); const artifactsDir = await realpath(value.artifactsDir);
   const project = path.join(canonicalBase, 'projects', value.projectId);
   if (path.relative(path.join(project, 'journal'), directory) || path.relative(path.join(project, 'artifacts', ownerHash), artifactsDir)) fail('unsafe_storage');
-  return { ownerSid: value.ownerSid, projectId: value.projectId, directory, artifactsDir };
+  return { ownerSid: value.ownerSid, projectId: value.projectId, directory, artifactsDir, temporaryBase: canonicalBase };
 }

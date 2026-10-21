@@ -146,3 +146,8 @@ component job), but the first installed public MCP job returns terminal FAILED
 before CLI coverage runs. Its cause is unproven because the old assertion omitted
 the reason. Windows public execution is not certified; fixed diagnostics and
 failure artifacts are being added. No ACL check is relaxed to address this.
+
+The current setup fix moves only Windows ephemeral browser data into a unique
+short private directory under the configured data base. Journal paths, artifact
+paths, owner/project hashes and retained request keys remain stable. Local
+lifecycle/fault checks pass; native installed/public acceptance is still pending.

@@ -1,0 +1,28 @@
+✔ supervised hang: bounded completion and owned process cleanup (1848.585588ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1825.576038ms)
+✔ supervised crash: bounded completion and owned process cleanup (80.055994ms)
+✔ pre-cancelled execution never starts a worker (0.683179ms)
+✔ cancel interrupts a worker that cannot service its abort listener (353.779685ms)
+✔ supervisor crash cannot strand its worker or detached child (169.64457ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (34.887837ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (159.442631ms)
+✔ verified cleanup recovery preserves success action outcome (119.798853ms)
+✔ verified cleanup recovery preserves blocked action outcome (119.343117ms)
+✔ verified cleanup recovery preserves action action outcome (112.284837ms)
+✔ failed durable admission cannot start worker actions (70.781345ms)
+✔ stalled durable admission cannot evade watchdog deadline or start late (1609.780763ms)
+✔ successful durable admission precedes owned worker effects (130.492495ms)
+✔ real browser uses a short external private temporary root and cancellation removes it (713.364933ms)
+✔ unacknowledged external temporary collision is retained and cleanup fails closed (85.955938ms)
+✔ worker crash after temporary ownership ACK removes only its owned external directory (110.69473ms)
+✔ operator owner/project namespaces are stable, private and independent of tool data (17.081356ms)
+✔ untrusted symlinks and writable ancestors cannot redirect job storage writes (4.266558ms)
+✔ invalid owner/policy config is rejected before any storage creation (1.53268ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7757.321248

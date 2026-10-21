@@ -10,9 +10,10 @@ import { navigationRetryPolicy } from './navigation-retry.mjs';
 import { terminateOwnedProcesses } from './process-tree.mjs';
 
 export async function executeWorkflow(input, {
-  allowedOrigins = [], artifactsDir = path.resolve('.local-batch-output'), allowSensitiveArtifacts = false, readOnly = false, maxScreenshotBytes, navigationRetry, signal,
+  allowedOrigins = [], artifactsDir = path.resolve('.local-batch-output'), temporaryBase, allowSensitiveArtifacts = false, readOnly = false, maxScreenshotBytes, navigationRetry, signal,
   workerModule = new URL('./execution-worker.mjs', import.meta.url), onEvent, beforeWorkerStart,
 } = {}) {
+  if (temporaryBase !== undefined && (typeof temporaryBase !== 'string' || !path.isAbsolute(temporaryBase) || temporaryBase.includes('\0'))) throw new TypeError('Temporary base must be an absolute trusted directory');
   const started = process.hrtime.bigint();
   const encoded = JSON.stringify(input);
   if (typeof encoded !== 'string' || Buffer.byteLength(encoded) > 1048576)
@@ -117,7 +118,7 @@ export async function executeWorkflow(input, {
     });
     if (signal?.aborted) abort();
     else if (elapsed() >= spec.timeoutMs) void force('timeout');
-    else supervisor.send({ type: 'start', workflow, options: { allowedOrigins, artifactsDir, allowSensitiveArtifacts, readOnly, maxScreenshotBytes, navigationRetry: retryPolicy ?? undefined },
+    else supervisor.send({ type: 'start', workflow, options: { allowedOrigins, artifactsDir, temporaryBase, allowSensitiveArtifacts, readOnly, maxScreenshotBytes, navigationRetry: retryPolicy ?? undefined },
       workerModule: workerURL.href, requireReadyAck: Boolean(beforeWorkerStart), runId, total, timeoutMs: spec.timeoutMs, deadlineNs: String(deadlineNs) }, () => {});
   });
 }

@@ -2,6 +2,7 @@
 import { fork } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { lstat } from 'node:fs/promises';
 import { cleanupTemporaryDirectory } from './cleanup.mjs';
 import { terminateOwnedProcesses } from './process-tree.mjs';
 import { FAILURE_KINDS, STEP_FAILURE_CODES } from './failure.mjs';
@@ -19,6 +20,9 @@ let completed = 0;
 let failedStep = null;
 let workspaceRoot;
 let ownsWorkspace = false;
+let temporaryRoot;
+let externalTemporary = false;
+let ownsTemporary = false;
 const browserPids = new Set();
 const send = value => {
   if (process.connected) { try { process.send(value, () => {}); } catch {} }
@@ -31,11 +35,17 @@ async function finish(exitCode) {
   clearTimeout(deadlineTimer); clearTimeout(forceTimer);
   let cleaned = await terminateOwnedProcesses(worker.pid, [...browserPids], !workerExited);
   let tempCleanup = 'not-created';
-  if (ownsWorkspace) {
-    const removed = await cleanupTemporaryDirectory(path.join(workspaceRoot, 'tmp'), Math.max(1, Math.min(2000, remaining())), path.join(workspaceRoot, 'cleanup-diagnostic.json'));
+  if (externalTemporary && !ownsTemporary) {
+    // A collision or crash before the creation ACK never grants deletion rights.
+    // A surviving unacknowledged directory makes cleanup uncertain, not empty.
+    try { await lstat(temporaryRoot); tempCleanup = 'unknown'; cleaned = false; }
+    catch (error) { if (error.code !== 'ENOENT') { tempCleanup = 'unknown'; cleaned = false; } }
+  } else if (ownsWorkspace || ownsTemporary) {
+    const removed = await cleanupTemporaryDirectory(temporaryRoot, Math.max(1, Math.min(2000, remaining())), path.join(workspaceRoot, 'cleanup-diagnostic.json'));
     tempCleanup = removed ? 'removed' : 'failed';
     if (!removed) cleaned = false;
   }
+
   const reason = !cleaned ? 'cleanup_failed' : stopReason ||
     (remaining() <= 0 ? 'timeout' : exitCode !== 0 ? 'worker_crashed' : candidate ? null : 'execution_failed');
   let summary = reason ? { ok: false, reason, completed, total: packet.total,
@@ -73,7 +83,7 @@ process.once('disconnect', () => stop('cancelled'));
 function startWorker() {
   if (!worker || workerStarted || finishing || stopReason || remaining() <= 0 || !worker.connected) return;
   workerStarted = true;
-  worker.send({ type: 'start', workflow: packet.workflow, options: packet.options, runId: packet.runId, workspaceRoot }, () => {});
+  worker.send({ type: 'start', workflow: packet.workflow, options: packet.options, runId: packet.runId, workspaceRoot, temporaryRoot }, () => {});
 }
 process.on('message', message => {
   if (message.type === 'workerReady') { if (packet?.requireReadyAck) startWorker(); return; }
@@ -81,6 +91,8 @@ process.on('message', message => {
   if (message.type !== 'start' || packet || !process.connected || stopReason) return;
   packet = message;
   workspaceRoot = path.resolve(packet.options.artifactsDir, 'exec-' + packet.runId);
+  externalTemporary = packet.options.temporaryBase !== undefined;
+  temporaryRoot = externalTemporary ? path.resolve(packet.options.temporaryBase, 'tmp-' + packet.runId) : path.join(workspaceRoot, 'tmp');
   worker = fork(fileURLToPath(new URL(packet.workerModule)), [], {
     stdio: ['ignore', 'ignore', 'ignore', 'ipc'], detached: process.platform !== 'win32',
     execArgv: ['--max-old-space-size=256'], windowsHide: true,
@@ -89,6 +101,9 @@ process.on('message', message => {
   worker.on('message', event => {
     if (event.type === 'workspaceCreated') {
       ownsWorkspace = true;
+    } else if (event.type === 'temporaryCreated' && ownsWorkspace) {
+      ownsTemporary = true;
+      if (worker.connected) worker.send({ type: 'temporaryReady' }, () => {});
     } else if (event.type === 'ownedProcess' && Number.isSafeInteger(event.pid) && event.pid > 1 && event.pid !== process.pid && event.pid !== process.ppid) {
       browserPids.add(event.pid); send(event);
     } else if (event.type === 'progress' && Number.isInteger(event.completed) && event.completed >= completed && event.completed <= packet.total) {

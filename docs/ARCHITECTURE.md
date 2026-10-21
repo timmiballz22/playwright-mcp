@@ -22,6 +22,16 @@ a context with service workers/downloads disabled, request policy, and a page.
 Requests are fetched without redirect following/retries; all redirect responses
 are aborted. WebSockets are closed. Any blocked request fails the workflow.
 
+Windows jobs use a unique short browser-temp directory directly under the
+protected storage base. Journal/artifact namespaces stay unchanged. This follows
+native proof that a65-character protected base works while the214-character job
+artifact base fails browser setup. The worker creates the temporary directory
+exclusively and waits for the supervisor's ownership ACK before browser launch.
+The supervisor removes only acknowledged temporary ownership; an existing or
+unacknowledged directory is retained and makes cleanup uncertain. The shorter
+layout is a candidate awaiting native public-job acceptance, not a broader disk
+quota or managed-profile feature.
+
 The frontend and independent supervisor enforce a monotonic execution deadline,
 including browser setup, actions, report publication and worker exit. The
 supervisor reserves cleanup time and terminates owned processes when cooperative
