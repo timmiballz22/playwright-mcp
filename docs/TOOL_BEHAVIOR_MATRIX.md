@@ -3,8 +3,10 @@
 Pinned stable1.64.1 extended Chromium discovery defines72 tools. This index maps
 source fixture touchpoints; a source call is not itself a PASS or a coverage
 percentage. Consult execution evidence for the exact commit, engine and OS.
-New fixture additions have local Chromium/Firefox evidence and await native
-confirmation. All72 versioned schemas remain checked by capabilities.spec.ts.
+Native8d661bf passes all144 original cases on each host OS, including the new
+fixture touchpoints. Prior Firefox stalls remain unexplained and parameter/
+negative coverage is incomplete. All72 versioned schemas remain checked by
+capabilities.spec.ts.
 
 Interactive annotation/debugger-resume flows remain open. Other rows still need
 full negative/parameter/native review; slider bounds/steps, export overwrite

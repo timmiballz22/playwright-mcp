@@ -62,10 +62,11 @@ lower bounds; unsafe actions are never automatically replayed. An optional jobs 
 journal, bounded controller and trusted guardian. It provides start/status/result/
 cancel/list and bounded terminal artifact cleanup; default browser policy is
 read-only. It requires Node22.13+ and private operator configuration. Windows
-configuration uses the independently native-tested ACL helper. Nativef485f1e
-installed public endpoints and all three actual Codex lanes pass; a separate
-Windows Firefox ownership audit contradicts reported cleanup and remains
-unresolved. Public execution remains experimental. Retention/full quotas, persistent
+configuration uses the independently native-tested ACL helper. Native8d661bf
+installed public endpoints pass all OSs; actual Codex passes Linux/Windows and
+times out on macOS. Windows ownership audits contradict reported cleanup and
+remain unresolved, including the Chromium functional soak. Public execution
+remains experimental. Retention/full quotas, persistent
 companion profiles and resume remain unfinished. Worker V8 heap is capped at 256 MiB; browser RSS and response-body
 memory are not capped by that setting. The observed open-page budget defaults
 to8, with an operator limit1–32 and no workflow override. It stops after page

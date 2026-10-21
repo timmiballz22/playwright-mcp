@@ -7,10 +7,10 @@ owner/System DACLs. Its helper passed native acceptance at ebdec88.
 Windows installed public MCP/CLI and source1,000-action checks pass at6fffa27.
 Native candidatefd17363 actual Codex Windows zero-turn jobs verification now
 passes after replacing helper cmdlet serialization with standard .NET JSON.
-Latest nativef485f1e passes installed endpoints and actual Codex1,000-action
-checks on all three OSs. A Windows Firefox post-cleanup process observation and
-a macOS durable1,000-action timeout remain unresolved. The preview is not
-release-ready.
+Native8d661bf passes installed endpoints on all OSs and actual Codex1,000-action
+checks on Linux/Windows; macOS actual Codex times out at888. Windows ownership
+audits remain unresolved, including the separate Chromium functional soak after
+its50-run receipt. The preview is not release-ready.
 The original MCP endpoint and one-tool batch endpoint remain available.
 
 Register `playwright-jobs-mcp` (or `node local-batch/jobs-mcp.mjs`) with trusted

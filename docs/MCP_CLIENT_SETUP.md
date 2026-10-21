@@ -63,7 +63,8 @@ separate installation. Avoid assuming a managed Chromium download installs Chrom
 ## Optional jobs preview
 
 Node22.13+ is required. Windows private ACL helper tests pass; its public
-endpoint integration is experimental and awaits native acceptance. See [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md) for trusted configuration,
+endpoint integration has native installed/actual-client evidence, while complete
+stability and ownership/cleanup acceptance remain open. See [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md) for trusted configuration,
 default read-only policy, cancellation and bounded cleanup. A separate registered
 owner UUID identifies each local client; it is not same-OS-user authentication.
 

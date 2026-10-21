@@ -2687,3 +2687,8 @@ adapter/order behavior, not macOS causality. Normal updated HTTP Node20 Chromium
 selection passes1/1; Node22 Chromium/Firefox selection passes2/2. Lint passes;
 workflow scope/order parses. Evidence: chromium-pipe-first-local.txt and
 http-privacy-audit-node20.txt.
+
+Operator setup, jobs preview, architecture and original-tool index now point to
+native8d661bf scoped evidence rather than calling already-executed endpoint
+integration unverified. They retain experimental status and the open Windows
+ownership/macOS throughput failures. No parity or release gate is promoted.
