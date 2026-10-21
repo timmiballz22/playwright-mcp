@@ -2,9 +2,10 @@
 import { DatabaseSync } from 'node:sqlite';
 import { writeFileSync } from 'node:fs';
 import path from 'node:path';
+import '../journal-worker.mjs';
 let directory;
 let armed = false;
-process.on('message', packet => {
+process.prependListener('message', packet => {
   if (packet.command === 'init') directory = packet.data.directory;
   if (packet.command === 'create') armed = true;
 });
@@ -16,4 +17,3 @@ DatabaseSync.prototype.exec = function(sql) {
   }
   return original.call(this, sql);
 };
-await import('../journal-worker.mjs');

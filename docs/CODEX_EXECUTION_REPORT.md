@@ -1165,3 +1165,28 @@ PowerShell or verify the candidate serializer. Native Windows actual client,
 restricted-environment control and Unicode fixture remain pending. The existing
 Windows installed-package success in a3eccc0 validates atomic artifact changes,
 not this unpushed helper candidate.
+
+
+## Exact minimum durable runtime: Node22.13.0
+
+Installed Node22.13.0 only in the temporary npx tooling cache; no global runtime,
+project dependencies or lockfile changed. Initial complete component run:39 pass/
+2 fail, no skips/cancellations. Both fail during fault-fixture initialization at
+the unchanged2s RPC watchdog. deadline-finish.mjs and transaction-fault.mjs attach
+message listeners before dynamically importing the real journal handler, consuming
+init on this runtime. They now statically import that handler and prepend their
+fault hooks before requests are processed. Production journal code is unchanged.
+
+Complete component suite after the fix:41/41 on Node22.13.0 and41/41 on Node24,
+zero skips/cancellations. The late-success mutation is still refused; transaction
+pause witness is still required before kill, followed by rollback/integrity and
+no duplicate request. No deadline/assertion is enlarged or removed.
+
+Fresh Node22.13.0 production-only142-file tarball verifies real original/batch/jobs
+MCP and CLI, profile ownership, owner/dedup/cancel/reconnect, controller/guardian/
+journal and controller-SIGKILL recovery with zero active owned processes. This is
+Linux minimum-runtime proof, not native Windows/macOS minimum-patch certification.
+Evidence:node-minimum-version,minimum-node22-* and minimum-fixture-node24-components.
+NEXT: retain the current native run and characterize Windows Firefox through the
+new upstream trusted-code fast-loop regression; broader quotas/profiles/egress and
+remaining gates stay open.
