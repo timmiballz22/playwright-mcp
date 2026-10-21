@@ -16,12 +16,13 @@ cd playwright-mcp
 npm ci
 npx playwright install chromium
 node --test local-batch/runner.test.mjs
-RUN_BROWSER_TESTS=1 node --test local-batch/integration.test.mjs
+RUN_BROWSER_TESTS=1 PLAYWRIGHT_BATCH_TEST_BROWSERS=chromium node --test local-batch/integration.test.mjs
 ```
 
 On Windows PowerShell use
-`$env:RUN_BROWSER_TESTS="1"; node --test local-batch/integration.test.mjs`.
-Playwright MCP's existing configuration and `node cli.js` remain intact.
+`$env:RUN_BROWSER_TESTS="1"; $env:PLAYWRIGHT_BATCH_TEST_BROWSERS="chromium"; node --test local-batch/integration.test.mjs`.
+`node cli.js` delegates to the pinned Microsoft backend, with the fork's
+persistent-profile ownership guard. Original configuration options remain available.
 Install Firefox and WebKit as desired via `npx playwright install firefox webkit`.
 
 ## Codex client: two local MCP processes

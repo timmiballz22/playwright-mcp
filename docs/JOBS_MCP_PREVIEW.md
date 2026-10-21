@@ -10,6 +10,10 @@ Register `playwright-jobs-mcp` (or `node local-batch/jobs-mcp.mjs`) with trusted
 client environment values. No global client configuration is changed by installing
 this package.
 
+Generate a new owner UUID once for each registered client, then retain it across
+reconnects: `node -e "console.log(require('node:crypto').randomUUID())"`.
+Example UUIDs in setup snippets are placeholders, not shared registration IDs.
+
 | Environment | Meaning |
 | --- | --- |
 | `PLAYWRIGHT_JOBS_OWNER_ID` | Required stable lowercase UUID identifying this registered local client. Keep it consistent across reconnects. |

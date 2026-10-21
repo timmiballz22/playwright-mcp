@@ -1,5 +1,11 @@
 ## Playwright MCP
 
+This private community fork is `@timmiballz22/playwright-mcp-local`. Install from
+this checkout or a locally packed tarball; registry publication is disabled.
+See [fork/Codex setup](docs/MCP_CLIENT_SETUP.md) and the
+[current acceptance ledger](docs/CODEX_EXECUTION_LEDGER.md). The upstream package
+installation examples below describe Microsoft's distribution.
+
 A Model Context Protocol (MCP) server that provides browser automation capabilities using [Playwright](https://playwright.dev). This server enables LLMs to interact with web pages through structured accessibility snapshots, bypassing the need for screenshots or visually-tuned models.
 
 ### Playwright MCP vs Playwright CLI
@@ -1668,7 +1674,7 @@ http.createServer(async (req, res) => {
 
 ## Community fork: local batch automation
 
-This repository is a fork of Microsoft's Playwright MCP. The original MCP server and its configuration remain unchanged. This fork adds an **optional, local-only** declarative batch runner and an independent stdio MCP sidecar for running many ordered browser interactions per tool call. No public server or external browser-agent credits are required.
+This repository is a fork of Microsoft's Playwright MCP. Its CLI/library delegate to the pinned Microsoft backend, with a public-API persistent-profile ownership guard; default25/extended72 tool contracts remain. This fork adds an **optional, local-only** declarative batch runner and an independent stdio MCP sidecar for running many ordered browser interactions per tool call. No public server or external browser-agent credits are required.
 
 - [Local batch usage, safety restrictions and setup](docs/LOCAL_BATCH.md)
 - [Codex implementation and verification handoff](docs/CODEX_HANDOFF.md)
@@ -1676,5 +1682,7 @@ This repository is a fork of Microsoft's Playwright MCP. The original MCP server
 **Limits:** This does not remove ChatGPT/Codex usage allowances or target website rate limits. The original Playwright MCP is maintained upstream, with core code now in the Microsoft Playwright monorepo.
 
 The optional [local jobs MCP preview](docs/JOBS_MCP_PREVIEW.md) provides durable
-start/status/result/cancel/list tools on POSIX with Node 22.13+. Native acceptance
-is pending; Windows ACLs, cleanup tooling and other release gates remain open.
+start/status/result/cancel/list/cleanup tools with Node22.13+. POSIX acceptance
+has scoped native proof; Windows configuration/ACL checks pass, but its initial
+installed public job currently fails and execution remains experimental. Full
+quotas, retention, managed profiles and other release gates remain open.
