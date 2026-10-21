@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { readFile, mkdtemp, rm } from 'node:fs/promises';
+import { readFile, readdir, mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 
@@ -19,6 +19,55 @@ async function assertStopped(pids) {
   }
   assert.fail('An execution-owned process is still running');
 }
+
+test('cleanup reserve cancellation is not erased by a late successful worker report', { timeout: 15000 }, async () => {
+  const { executeWorkflow } = await import('./executor.mjs');
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'reserve-result-'));
+  const observed = [];
+  try {
+    const result = await executeWorkflow({ timeoutMs: 4000, steps: [{ type: 'click', selector: 'button' }] }, {
+      artifactsDir: directory, workerModule: new URL('./fixtures/reserve-result-worker.mjs', import.meta.url),
+      onEvent: event => { if (event.pid) observed.push(event.pid); },
+    });
+    await assertStopped(observed);
+    assert.equal(result.ok, false);
+    assert.equal(result.reason, 'timeout');
+    assert.equal(result.completed, 1);
+    assert.equal(result.execution.forced, false);
+    assert.equal(result.execution.cleanup, 'terminated');
+    assert.equal(result.execution.tempCleanup, 'removed');
+    const workspace = path.join(directory, 'exec-' + result.runId);
+    const reports = (await readdir(workspace)).filter(name => /^run-.*\.json$/.test(name));
+    assert.equal(reports.length, 1);
+    assert.equal(JSON.parse(await readFile(path.join(workspace, reports[0]), 'utf8')).ok, true);
+  } finally { await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
+});
+
+test('cancellation after supervisor result but before final resolution remains cancelled', { timeout: 15000 }, async () => {
+  const { executeWorkflow } = await import('./executor.mjs');
+  const controller = new AbortController();
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'late-cancel-'));
+  const observed = [];
+  let received = false;
+  try {
+    const result = await executeWorkflow({ timeoutMs: 10000, steps: [{ type: 'click', selector: 'button' }] }, {
+      artifactsDir: directory, signal: controller.signal,
+      workerModule: new URL('./fixtures/cleanup-success-worker.mjs', import.meta.url),
+      onEvent: event => {
+        if (event.pid) observed.push(event.pid);
+        if (event.type === 'resultReceived') { received = true; controller.abort(); }
+      },
+    });
+    assert.equal(received, true);
+    await assertStopped(observed);
+    assert.equal(result.ok, false);
+    assert.equal(result.reason, 'cancelled');
+    assert.equal(result.retrySafe, false);
+    assert.equal(result.execution.cleanup, 'terminated');
+    assert.equal(result.execution.tempCleanup, 'removed');
+    assert.equal(result.completed, 1);
+  } finally { await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
+});
 
 for (const mode of ['hang', 'report-stall', 'crash']) {
   test(`supervised ${mode}: bounded completion and owned process cleanup`, { timeout: 15000 }, async () => {

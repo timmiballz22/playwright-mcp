@@ -1,0 +1,24 @@
+✔ cleanup reserve cancellation is not erased by a late successful worker report (3354.431682ms)
+✔ cancellation after supervisor result but before final resolution remains cancelled (136.340711ms)
+✔ supervised hang: bounded completion and owned process cleanup (1941.492299ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1925.270123ms)
+✔ supervised crash: bounded completion and owned process cleanup (86.541769ms)
+✔ pre-cancelled execution never starts a worker (0.728639ms)
+✔ cancel interrupts a worker that cannot service its abort listener (455.551806ms)
+✔ supervisor crash cannot strand its worker or detached child (229.81826ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (51.102811ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (362.434583ms)
+✔ verified cleanup recovery preserves success action outcome (148.116105ms)
+✔ verified cleanup recovery preserves blocked action outcome (124.560443ms)
+✔ verified cleanup recovery preserves action action outcome (148.192615ms)
+✔ failed durable admission cannot start worker actions (128.006485ms)
+✔ stalled durable admission cannot evade watchdog deadline or start late (1612.408807ms)
+✔ successful durable admission precedes owned worker effects (144.264819ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10936.529141

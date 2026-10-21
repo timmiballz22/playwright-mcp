@@ -2365,3 +2365,52 @@ affected original Chromium/Firefox cases pass(41.3s), and a Node20 fixture/clien
 loading cookie case passes.164-file dry pack includes both QA helper files; the
 last162-file production-only verification covers unchanged runtime entry points.
 Native progress receipt confirmation remains pending. Evidence: tool-progress-*.
+
+## Native46 completed and lifecycle cancellation boundary
+
+Latest completed native `4797a00`: **1,266 reported test passes/nine failures**.
+Wrapper39596168653:430/4; batch39596168652:836/5. All17 jobs concluded,
+none cancelled; no reported test skips. Original wrapper failures are Windows
+Firefox cookies and macOS Firefox trusted100-click close, large-DOM interaction
+and storage restore. Legacy Windows/macOS extra wrapper steps did not run after
+those failures. Docker passes2/2; Linux original suite passes144/144.
+
+All installed production checks pass, including Windows CIM phase instrumentation
+on its normal path. Linux main batch passes on Node20/22/24. macOS main batch
+fails raw Chromium1,000 and stdio batch-MCP1,000 timeout cases; Windows main batch
+fails raw Firefox headed/direct-pipe and a Chromium429 retry case. The429 fixture
+requests10s, while the supervisor reserves its final3s for cleanup on Windows;
+it reports completed1 and confirmed terminated/removed cleanup. This does not
+prove that the worker had a successful final report or justify extending bounds.
+
+Actual Codex1,000 passes Linux35.204s, Windows38.884s and macOS119.055s with zero
+model turns/owned survivors. macOS remains close to its120s ceiling. The Codex
+failure-only Chromium transport comparison therefore did not run; it is now also
+scheduled after a failed macOS main batch suite. Windows reversed temp controls
+both pass10/10 fresh runs: private-first and inherited-second,230 actions each,
+zero survivors. The earlier temp difference was not reproduced; no production
+temp or transport workaround is adopted. Earlier journal/CIM failures remain
+unexplained by these healthy repetitions. **Not release-ready.** Evidence:
+worker-ci-fortysixth-*; native progress and transport diagnostics remain pending.
+
+A controlled trusted worker publishes a successful action report, waits for the
+cleanup-reserve abort, then returns and exits naturally. Its result correctly
+remains timeout with completed1, forced=false, terminated/removed cleanup; the
+persisted worker report independently confirms action success. Action success
+alone does not undo cancellation. No reserve/deadline or failure promotion change.
+
+A separate deterministic source-hook regression aborts after the supervisor result
+arrives but before API resolution. Before the fix it incorrectly returned ok=true.
+The parent now honors an observed stop reason when resolving an otherwise
+successful result, preserving progress, report and cleanup metadata. Existing
+failure outcomes retain priority. The trusted source onEvent hook emits only a
+fixed resultReceived event, no report/arguments/content, to exercise that race.
+
+Full executor regression passes16/16 each Node20/22/24, including the reserve
+control, late abort, existing worker hangs/crash/report stall, cancellation,
+supervisor death and durable admission. Before-fix assertion failure is retained
+in late-cancel-before.txt. Lint passes. Native verification remains pending.
+Fresh165-file production-only Node22 package verification passes all installed
+smokes, including real original/batch/jobs endpoints, profiles and normal/lingering
+controller-death cleanup. Evidence: late-cancel-production.txt. This validates the
+local install; current Windows/macOS cancellation regressions remain native-pending.

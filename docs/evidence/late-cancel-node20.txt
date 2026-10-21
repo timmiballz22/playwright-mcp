@@ -1,0 +1,90 @@
+TAP version 13
+# Subtest: cleanup reserve cancellation is not erased by a late successful worker report
+ok 1 - cleanup reserve cancellation is not erased by a late successful worker report
+  ---
+  duration_ms: 3342.043943
+  ...
+# Subtest: cancellation after supervisor result but before final resolution remains cancelled
+ok 2 - cancellation after supervisor result but before final resolution remains cancelled
+  ---
+  duration_ms: 300.772106
+  ...
+# Subtest: supervised hang: bounded completion and owned process cleanup
+ok 3 - supervised hang: bounded completion and owned process cleanup
+  ---
+  duration_ms: 1950.933115
+  ...
+# Subtest: supervised report-stall: bounded completion and owned process cleanup
+ok 4 - supervised report-stall: bounded completion and owned process cleanup
+  ---
+  duration_ms: 2298.266284
+  ...
+# Subtest: supervised crash: bounded completion and owned process cleanup
+ok 5 - supervised crash: bounded completion and owned process cleanup
+  ---
+  duration_ms: 408.95753
+  ...
+# Subtest: pre-cancelled execution never starts a worker
+ok 6 - pre-cancelled execution never starts a worker
+  ---
+  duration_ms: 0.724012
+  ...
+# Subtest: cancel interrupts a worker that cannot service its abort listener
+ok 7 - cancel interrupts a worker that cannot service its abort listener
+  ---
+  duration_ms: 928.108121
+  ...
+# Subtest: supervisor crash cannot strand its worker or detached child
+ok 8 - supervisor crash cannot strand its worker or detached child
+  ---
+  duration_ms: 570.822809
+  ...
+# Subtest: cancellation between precheck and supervisor startup does not start a worker
+ok 9 - cancellation between precheck and supervisor startup does not start a worker
+  ---
+  duration_ms: 122.979149
+  ...
+# Subtest: safe failure and lower-bound progress survive supervisor death without raw diagnostics
+ok 10 - safe failure and lower-bound progress survive supervisor death without raw diagnostics
+  ---
+  duration_ms: 438.816491
+  ...
+# Subtest: verified cleanup recovery preserves success action outcome
+ok 11 - verified cleanup recovery preserves success action outcome
+  ---
+  duration_ms: 354.618557
+  ...
+# Subtest: verified cleanup recovery preserves blocked action outcome
+ok 12 - verified cleanup recovery preserves blocked action outcome
+  ---
+  duration_ms: 237.763682
+  ...
+# Subtest: verified cleanup recovery preserves action action outcome
+ok 13 - verified cleanup recovery preserves action action outcome
+  ---
+  duration_ms: 236.404592
+  ...
+# Subtest: failed durable admission cannot start worker actions
+ok 14 - failed durable admission cannot start worker actions
+  ---
+  duration_ms: 132.270789
+  ...
+# Subtest: stalled durable admission cannot evade watchdog deadline or start late
+ok 15 - stalled durable admission cannot evade watchdog deadline or start late
+  ---
+  duration_ms: 1612.521443
+  ...
+# Subtest: successful durable admission precedes owned worker effects
+ok 16 - successful durable admission precedes owned worker effects
+  ---
+  duration_ms: 231.467572
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13298.858861

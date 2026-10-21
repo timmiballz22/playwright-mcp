@@ -1,39 +1,29 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `2272e93`: **1,140 reported test passes/two failures**,
-plus Windows installed-package process-audit failure and macOS actual-Codex
-acceptance failure. Wrapper39592625883:438/2; batch39592626077:702/0 across the
-suites that ran. All17 jobs concluded, none cancelled. The Windows main batch
-suite did not execute after installed-profile verification failed, so its cases
-are excluded; zero reported test skips does not imply that suite ran.
+Latest completed native `4797a00`: **1,266 reported test passes/nine failures**.
+Wrapper39596168653:430/4; batch39596168652:836/5. All17 jobs concluded,
+none cancelled; no reported test skips. Original wrapper failures are Windows
+Firefox cookies and macOS Firefox trusted100-click close, large-DOM interaction
+and storage restore. Legacy Windows/macOS extra wrapper steps did not run after
+those failures. Docker passes2/2; Linux original suite passes144/144.
 
-All three original144-test host suites pass, Docker2/2 and macOS modal repeats3/3
-pass. Two counted failures are Windows Node20 raw Firefox headless/direct-pipe;
-headed passes this round, without establishing a cause for earlier mode failures.
-Linux/macOS main batch suites pass, including all-engine page burst/reused-slot
-controls, public durable page-limit failure/no replay/next lease, and journal
-metadata persistence. Installed Windows CLI/batch-MCP page-limit checks pass,
-then profile verification fails its independent10s CIM process audit. Cleanup
-confirmation is unavailable; subsequent installed/main batch checks are unexecuted.
+All installed production checks pass, including Windows CIM phase instrumentation
+on its normal path. Linux main batch passes on Node20/22/24. macOS main batch
+fails raw Chromium1,000 and stdio batch-MCP1,000 timeout cases; Windows main batch
+fails raw Firefox headed/direct-pipe and a Chromium429 retry case. The429 fixture
+requests10s, while the supervisor reserves its final3s for cleanup on Windows;
+it reports completed1 and confirmed terminated/removed cleanup. This does not
+prove that the worker had a successful final report or justify extending bounds.
 
-Actual Codex passes Linux35.215s and Windows38.613s (1,000 actions, zero model
-turns/owned survivors). macOS TIMED_OUT964 retains a readable result, terminated/
-removed cleanup, no journal failure hint and no operator attention. Earlier
-Windows journal availability failures remain unexplained; healthy repetition is
-not a fix. A new same-host raw Chromium BrowserServer/direct-pipe control is
-prepared for that macOS failure without changing production transport or120s
-workflow/5s action/180s receipt-watchdog bounds. Linux controls each pass1,000
-operations with zero owned survivors (33.821/33.789s), one non-statistical pair.
-
-Windows CIM evidence remains fail-closed. Pending instrumentation keeps the10s
-audit budget and identity/birth checks, emitting only fixed entered/query/
-projection/serialization/done phases. Cmdlet errors terminate the read-only helper
-instead of allowing partial evidence; no ACL, execution policy or kill authority
-changes. Phase/privacy/identity tests pass5 each Node20/22/24; native diagnosis
-remains pending. New guardian fault evidence separates first observer poll/read
-from causal timeout/resources, without browser admission or replay. **Not
-release-ready.** Evidence: worker-ci-fortyfifth-*, chromium-transport-control-*,
-windows-cim-phase-node*.txt and journal-first-cause-*.
+Actual Codex1,000 passes Linux35.204s, Windows38.884s and macOS119.055s with zero
+model turns/owned survivors. macOS remains close to its120s ceiling. The Codex
+failure-only Chromium transport comparison therefore did not run; it is now also
+scheduled after a failed macOS main batch suite. Windows reversed temp controls
+both pass10/10 fresh runs: private-first and inherited-second,230 actions each,
+zero survivors. The earlier temp difference was not reproduced; no production
+temp or transport workaround is adopted. Earlier journal/CIM failures remain
+unexplained by these healthy repetitions. **Not release-ready.** Evidence:
+worker-ci-fortysixth-*; native progress and transport diagnostics remain pending.
 
 Previous native attempt `2d8fe7f` is **incomplete**: available summaries report
 **1,108 passed/six failed tests**, plus two failed actual-Codex acceptance jobs.

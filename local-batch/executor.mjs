@@ -54,6 +54,9 @@ export async function executeWorkflow(input, {
     notify({ type: 'supervisorSpawned', pid: supervisor.pid });
     const finish = summary => {
       if (settled) return;
+      // Cancellation can arrive after the watchdog has finished cleanup and sent
+      // its result, but before its exit allows this promise to resolve.
+      if (summary.ok && stopReason) summary = { ...summary, ok: false, reason: stopReason };
       settled = true;
       clearTimeout(deadlineTimer); clearTimeout(fallbackTimer);
       if (summary.execution?.cleanup === 'failed') {
@@ -81,8 +84,10 @@ export async function executeWorkflow(input, {
     signal?.addEventListener('abort', abort, { once: true });
     const deadlineTimer = setTimeout(() => { void force(stopReason || 'timeout'); }, Math.max(0, spec.timeoutMs - elapsed()));
     supervisor.on('message', event => {
-      if (event.type === 'result') candidate = event.summary;
-      else {
+      if (event.type === 'result') {
+        candidate = event.summary;
+        notify({ type: 'resultReceived' });
+      } else {
         if (event.type === 'workerSpawned') {
           workerPid = event.pid;
           if (beforeWorkerStart) {

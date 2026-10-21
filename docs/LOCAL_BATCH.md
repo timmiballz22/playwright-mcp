@@ -141,6 +141,11 @@ exit; stalled cleanup triggers scoped process termination. Uncertain cleanup
 fails closed and blocks new MCP work. Direct source calls to the raw runner use
 cooperative cleanup. CLI input accepts regular files up to 1 MiB with strict UTF-8
 validation, but filesystem ingestion latency precedes the execution deadline.
+The supervisor starts cancellation before the deadline to reserve cleanup time:
+up to three seconds on Windows and one second elsewhere (scaled for short runs).
+This can return timeout before the requested ceiling; completed actions or a late
+successful worker report do not erase cancellation. An abort observed before the
+execution promise resolves also prevents a successful result.
 Worker V8 heap limits do not cap browser RSS. Reports use atomic publication;
 there is no durable job journal or automatic replay of uncertain actions.
 Screenshots use an exclusively created per-run directory. There is no retention
