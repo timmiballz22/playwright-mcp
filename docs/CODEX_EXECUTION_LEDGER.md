@@ -2,13 +2,17 @@
 
 Updated 2026-10-21. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest retrieved native batch matrix: `4bf7d770dfd5d22bc3a059a8bf54d1beb8ee9244`:
-306 recorded passes, one Windows raw Firefox pointer-action timeout; component jobs passed.
-Wrapper evidence for run 39518437744 could not be retrieved after GitHub API
-credentials began returning HTTP 401. No combined total is asserted for this run.
-Last complete green remains d71c91e (469). The failed input-delay experiment is
-reverted; the shared BrowserServer candidate still needs native validation.
-Public job controller/tools, profiles and remaining master-spec gates are incomplete.
+Latest completed native runtime candidate: `4855acb9956a898f47380acb86b09bd2be0490d8`.
+Four batch browser jobs passed 63 tests each; Linux Node24 failed browser install
+on an apt repository HTTP403 before tests. All four journal jobs passed (59 test
+passes recorded; the Linux Node24 summary is absent from retrieved logs).
+Original wrapper tests passed 161; the additional Windows Node20 Firefox case
+failed (fresh run4, stability wait). Thus available logs record 472 passes and one
+test failure, plus the install failure; no complete aggregate is asserted.
+Windows Node22 ten-fresh Firefox passed. Actual controller-death cleanup passed
+on Linux/macOS/Windows installed packages. Last complete green remains d71c91e.
+New operator-only navigation retry code is locally tested at 7571453; native
+validation is pending. Public jobs, profiles and remaining gates are incomplete.
 All 45 mandatory scenarios are
 mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
@@ -824,3 +828,25 @@ empty. Shared BrowserServer ownership does not establish a native stability fix.
 Linux Node24 also failed browser installation before tests; log diagnosis pending.
 Do not certify new HEAD from historical green d71c91e. Jobs/public controller,
 profiles, quotas/retention, DNS/OS egress and remaining gates remain open.
+
+## Native 4855acb outcome and installed parent-death evidence
+
+Batch: https://github.com/timmiballz22/playwright-mcp/actions/runs/39521168233 .
+Wrapper: https://github.com/timmiballz22/playwright-mcp/actions/runs/39521168347 .
+All original wrapper assertions passed; the focused Node20 Firefox case failed
+at fresh run4, action16, completed15/23. Call log stopped while waiting for the
+locator to be visible/enabled/stable; the fixed counter probe returned14.
+cleanupFailures=[]; no click was replayed. Node22 passed ten fresh workflows.
+Shared transport remains useful for ownership, but is not a demonstrated fix.
+Linux Node24 apt install failed fetching the signed Microsoft noble InRelease
+with HTTP403; signature checks were not disabled and browser tests did not run.
+The upcoming full candidate matrix repeats normal installation without changing
+trust settings. Retrieved logs omit the Linux Node24 journal summary; metadata
+says its job passed, but no test count is inferred. Available totals: 472 passes,
+one test failure, one install failure. Evidence: worker-ci-fifteenth-*.json/txt.
+
+Fresh installed real Chromium controller SIGKILL verification passed on Windows
+(13 owned processes observed, CANCELLED1/2), Linux (12, CANCELLED1/2), and macOS
+(10, CANCELLED0/2). Each independently observed zero active owned descendants,
+confirmed project lease release and checked journal integrity. Zero model turns.
+These are internal guardian proofs, not public jobs/controller acceptance.

@@ -46,9 +46,11 @@ guardian and verifies its durable result and owner isolation.
 
 The first IPC-disconnect test waited for ChildProcess close after IPC had been
 explicitly disconnected; the guardian was already gone. Observing exit and then
-separately auditing descendants corrected the harness. Actual frontend SIGKILL
-through a future job controller, public tool schemas, lost start responses,
-queue pressure and native guardian verification remain acceptance work.
+separately auditing descendants corrected the harness. Actual controller SIGKILL through the internal source fixture now passes against
+fresh installed production tarballs on Linux, macOS and Windows at 4855acb:
+12/10/13 owned processes respectively, zero active descendants, CANCELLED,
+released project lease and valid journal. Public job controller/tool schemas,
+lost start responses and queue pressure remain acceptance work.
 
 Native batch QA now uses Node 22 on all three OSes to exercise this Node 22.13+
 component in installed-package browser smoke. Linux Node 20/24 coverage remains;
