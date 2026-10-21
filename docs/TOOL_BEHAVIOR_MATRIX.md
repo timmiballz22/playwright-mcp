@@ -141,4 +141,6 @@ Local post543c14f slider boundary/step fixture passes Chromium and Firefox via
 actual MCP: exact min/max values succeed; below/above bounds and step mismatch
 return errors after range sanitization changes the DOM, before input events.
 A later valid value emits one event. This does not make failed fills atomic or
-replay-safe. See original-slider-bounds-local.txt; native/WebKit proof pending.
+replay-safe. See original-slider-bounds-local.txt. Native68 at4f50caa verifies all12 variants
+across Chrome/Chromium/Firefox/WebKit on Linux/macOS/Windows; the separate
+Windows named-tab case fails, so whole original acceptance remains failed.

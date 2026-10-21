@@ -1,37 +1,38 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native67 at543c14f:
-batch39688989440 FAILURE1,359/3; CI39688989356 FAILURE434/3 =>1,793 reported
-passes/six failed tests, plus separate macOS actual-Codex FAILED968/1k with
-cleanup_failed/operatorAttentionRequired:true, forced:true and
-signal_permission_denied/browser_group_signal_failed. Missing PID hints are
-identity-unverified and never clear this uncertainty. All17 non-soak jobs
-conclude; functional_soak intentionally skipped. Mac modal step is unexecuted.
-Zero TAP skips/cancellations is not proof of that omitted scope.
+Latest completed native68 at4f50caa:
+batch39691283754 FAILURE1,359/3; CI39691283722 FAILURE448/1 =>1,807 reported
+passes/four failed tests, zero reported test skips/cancellations. All17 non-soak
+jobs conclude; functional_soak intentionally skipped. Windows legacy step is
+unexecuted after host-suite failure; zero TAP skips is not proof of that scope.
 
-Five175-file production installs and components107/108 pass. All five real20-
-screenshot fixtures retain all20 live factory scopes and pass unchanged checks;
-Windows captures six births per pair. Collision teardown now passes all four
-native component lanes. Windows pair7 retains legacy candidates9272/1784:
-actual audit-helper handle PID9272 has a different birth from captured factory
-PID9272; child1784 was born after that replacement. No helper exclusion or matching
-change occurs. Historical133/four and native66 missing ancestry stay unclassified.
+Five175-file production installs, components107/108 and all three actual Codex
+clients1k pass: Linux35.738s/Mac87.397s/Windows38.370s, model0/owned0. All Linux
+main lanes and Mac189 pass; Windows178/3 fails raw Chromium screenshot shutdown,
+Firefox headless context close and headed input. Original Linux/Mac148 each,
+Docker2, Mac modal3 and all12 new slider variant cases pass. Windows147/1 fails
+Firefox named-tab isolation at30s with Connection closed; this does not prove
+storage leakage or the causal source of the stall. Failure-only Firefox private/
+inherited10/10=230 each pass/audit0, not causal fixes.
 
-All Linux main lanes and Mac189/189 pass; Windows178/3 fails raw headless close,
-headed input and supervised Firefox429 deadline. Original Linux144/Windows144,
-Docker2 and Windows legacy3 pass; Mac141/3 fails Chrome click actionability,
-Firefox large-DOM lookup and restored-session navigation. Linux/Windows actual
-Codex1k pass35.584/38.482s/model0/owned0; Mac968 remains failed cleanup. Mac
-failure-only pipe1k102.856s/server1k118.779s both pass/audit0; Windows temp
-comparisons both fail. Healthy controls are not causal fixes.
+All five supervised20-screenshot fixtures retain all20 live factory scopes and
+pass; the separate raw Windows screenshot fixture fails cleanup after its
+screenshot effect succeeds. Windows pair6 retains legacy3028/5300; actual query-
+helper3028 birth differs from captured factory3028, child5300 born after that
+replacement. No candidate exclusion or matching change. Historical133/four and
+native66 missing ancestry remain unclassified. Native67 Mac FAILED968/permission
+uncertainty remains unexplained despite native68's healthy client sample.
 
-Local after543c14f: original slider boundary/step test passes actual MCP on
-Chromium/Firefox2/2; lint passes. It preserves non-atomic invalid-value behavior,
-adds no production change and needs native/WebKit verification. Final543c14f
-Node22 components107/107 also pass locally. Transient GitHub401 and exec-server
-disconnect recovered; neither is a current blocker.
+Local committed196d253 adds bounded read-only group counts to failed Codex cleanup
+receipts; no names/argv/raw snapshots, identityVerified:false, no signal/lease/
+status changes. Real POSIX group member is observed after its factory leader
+exits, then self-exits via private stop file. Final focused28/28 each Node20/22/24,
+lint, fresh175-file production and actual Linux Codex1k36.258s/model0/owned0 pass.
+This diagnostic is not in native68; natural Mac failed-cleanup integration remains
+unverified. Transient GitHub503 and workspace restart recovered.
 
-**Not release-ready. Native68 at4f50caa is active: batch39691283754 / CI39691283722. NEXT ACTION: inspect completed logs; preserve cleanup uncertainty.**
+**Not release-ready. NEXT ACTION: push native69 for group-hint native coverage;
+preserve permission uncertainty and Windows provider failures.**
 
 Exact gate/source/phase evidence: CODEX_EXECUTION_LEDGER.md.
 
