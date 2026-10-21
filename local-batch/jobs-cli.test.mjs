@@ -30,3 +30,23 @@ if (!supportsJournal || process.platform === 'win32') test('jobs CLI rejects uns
     assert.deepEqual(await readdir(root), []);
   } finally { await rm(root, { recursive: true, force: true }); }
 });
+
+test('jobs CLI executes through a symlinked installation path instead of silently exiting zero', async () => {
+  const { execFile } = await import('node:child_process'); const { promisify } = await import('node:util');
+  const { mkdtemp, symlink, readdir, rm } = await import('node:fs/promises');
+  const { fileURLToPath } = await import('node:url');
+  const os = await import('node:os'); const path = await import('node:path');
+  const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-cli-alias-'));
+  try {
+    const alias = path.join(root, 'install-alias');
+    await symlink(fileURLToPath(new URL('../', import.meta.url)), alias, process.platform === 'win32' ? 'junction' : 'dir');
+    const env = { ...process.env, PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data'), PLAYWRIGHT_JOBS_PROJECT_DIR: root };
+    delete env.PLAYWRIGHT_JOBS_OWNER_ID;
+    await assert.rejects(promisify(execFile)(process.execPath, [path.join(alias, 'local-batch/jobs-cli.mjs'), 'list'], { env, timeout: 5000 }), error => {
+      assert.equal(error.code, 1); assert.equal(error.stdout, '');
+      assert.match(error.stderr, /Local jobs CLI failed \((invalid_owner|unsupported_runtime|unsupported_private_storage)\)/);
+      return true;
+    });
+    assert.deepEqual(await readdir(root), ['install-alias']);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});

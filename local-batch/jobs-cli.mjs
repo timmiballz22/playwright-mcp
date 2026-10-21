@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import path from 'node:path';
+import { realpath } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { setTimeout as delay } from 'node:timers/promises';
 import { JobController } from './jobs/controller.mjs';
@@ -92,7 +92,10 @@ async function main() {
     } finally { process.removeListener('SIGINT', cancel); process.removeListener('SIGTERM', cancel); }
   }
 }
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().catch(error => {
+// Node canonicalizes ESM entry URLs, including macOS /var -> /private/var.
+// Compare canonical paths so an aliased installation still executes the CLI.
+const invokedPath = process.argv[1] ? await realpath(process.argv[1]).catch(() => undefined) : undefined;
+if (invokedPath && invokedPath === await realpath(fileURLToPath(import.meta.url))) main().catch(error => {
   process.stderr.write('Local jobs CLI failed (' + safeCode(error) + '). Check command, trusted configuration and runtime.\n');
   process.exitCode = 1;
 });

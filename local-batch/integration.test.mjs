@@ -29,15 +29,22 @@ for (const browser of browsers) {
     const dir = await mkdtemp(path.join(os.tmpdir(), 'pw-batch-'));
     let diagnostic;
     let probe;
-    const provider = mode === 'headed' ? await import('playwright').then(({ firefox }) => ({
-      firefox: {
-        launchServer: options => firefox.launchServer({ ...options, headless: false }),
+    let browserLogs = '';
+    const recordBrowserLog = value => { browserLogs = (browserLogs + String(value) + '\n').slice(-4096); };
+    const logger = { isEnabled: name => name === 'browser', log: (_name, _severity, message) => recordBrowserLog(message) };
+    const provider = browser === 'firefox' ? await import('playwright').then(({ firefox }) => ({
+      firefox: mode === 'direct-pipe' ? {
+        // Trusted fixture adapter uses the public pipe API; no invented handle.
+        launch: options => firefox.launch({ ...options, logger }),
+      } : {
+        launchServer: async options => {
+          const server = await firefox.launchServer({ ...options, ...(mode === 'headed' ? { headless: false } : {}), logger });
+          // Public owned child handle, static fixture only. No production log path.
+          server.process().stderr?.on('data', recordBrowserLog);
+          return server;
+        },
         connect: (...args) => firefox.connect(...args),
       },
-    })) : mode === 'direct-pipe' ? await import('playwright').then(({ firefox }) => ({
-      // Trusted fixture adapter exercises the public pipe launch path without
-      // changing runtime defaults or inventing a browser process handle.
-      firefox: { launch: options => firefox.launch(options) },
     })) : undefined;
     try {
       const steps = [{ type: 'goto', url: origin + '/' },
@@ -47,7 +54,7 @@ for (const browser of browsers) {
       const captures = new Set();
       // Each iteration must succeed before the next starts; no failed action is retried.
       for (let freshRun = 0; freshRun < freshRuns; freshRun++) {
-        diagnostic = undefined; probe = undefined;
+        diagnostic = undefined; probe = undefined; browserLogs = '';
         const result = await runWorkflow({ browser, schemaVersion: 1, steps, timeoutMs: 120000 },
           { artifactsDir: dir, allowedOrigins: [origin], allowSensitiveArtifacts: true,
             ...(provider ? { playwright: provider } : {}),
@@ -62,7 +69,7 @@ for (const browser of browsers) {
             },
           });
         if (probe) await probe;
-        assert.equal(result.ok, true, JSON.stringify({ freshRun: freshRun + 1, result, cleanupFailures: result.cleanupFailures, diagnostic }).slice(-6500));
+        assert.equal(result.ok, true, JSON.stringify({ freshRun: freshRun + 1, result, cleanupFailures: result.cleanupFailures, diagnostic, ...(browserLogs ? { browserLogs } : {}) }).slice(-11000));
         assert.equal(result.completed, clicks + 3);
         const artifact = result.results.at(-1).artifact;
         assert.equal(captures.has(artifact), false, 'Fresh run reused a screenshot path');

@@ -1,10 +1,9 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Latest completed native ee54674 has640 passes and three Windows Firefox
-failures. Last complete green is d71c91e (469, all14 jobs). Candidate667190a
-(six-tool cleanup, foreground jobs CLI, monotonic queue deadline and transport
-comparison) awaits native results. Earlier intermittent failures are retained.
+PASS. Latest completed native667190a has601 test passes/three Windows Firefox
+failures plus one macOS installed-package failure (CLI entry alias bug). Last complete green is d71c91e (469, all14 jobs). The alias fix and new local accessibility/profile/service-worker tests await
+native confirmation. Earlier intermittent failures are retained.
 OPEN means no adequate proof; PARTIAL means remaining work is still mandatory.
 
 | # | Scenario | Status and concrete evidence / gap |
@@ -51,7 +50,7 @@ OPEN means no adequate proof; PARTIAL means remaining work is still mandatory.
 | 40 | Default stdio listener audit | PARTIAL: no public companion HTTP transport. Active supervised execution uses a private loopback BrowserServer protocol allowed by master section 0; explicit port/cleanup audit remains. |
 | 41 | Local CLI without connected model | Verified local 26-operation fixture, exact counter, report and canary absence; installed browsers/dependencies required. Not an OS air-gap audit. |
 | 42 | Large DOM bounded representation | PARTIAL: batch returns last ten metadata steps and no DOM; original large-snapshot limits remain untested. |
-| 43 | Repeated suites, explained flakiness | PARTIAL: failed runs preserved; latest ee54674 has3 Windows Firefox failures in both headed/headless paths. Direct-pipe comparison is a hypothesis under native test, not a claimed resolution. |
+| 43 | Repeated suites, explained flakiness | PARTIAL: failed runs preserved; latest667190a has3 Windows Firefox failures including direct pipe plus a macOS CLI alias bug reproduced/fixed locally. Transport is not the sole cause; no full native resolution. |
 | 44 | Main/release blocked until evidence | PARTIAL: publishing disabled and PR remains draft; branch-protection API returned 403, enforcement not verified. No main merge. |
 | 45 | Documented setup with no global MCP config | PARTIAL: actual temporary-config Codex and installed paths with spaces; native Bash/PowerShell bootstraps pass at 5264cb6; native Codex operator walkthroughs remain incomplete. |
 

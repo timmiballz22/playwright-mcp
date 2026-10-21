@@ -2,8 +2,9 @@
 
 [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md) is the current45-scenario map;
 [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) records exact candidates and
-commands. Latest completed native ee54674:640 passed/3 failed, all failures Windows
-Firefox. Candidate667190a native results are pending. Public POSIX jobs MCP,
+commands. Latest completed native667190a:601 test passes/3 Windows Firefox test failures,
+plus a macOS installed-package failure before its browser suite. CLI alias fix
+and new parity/security coverage await native confirmation. Public POSIX jobs MCP,
 foreground CLI and bounded terminal cleanup are previews; Windows private storage,
 profiles, full quotas/retention and egress controls remain open. No release-ready
 claim follows from local scoped passes.

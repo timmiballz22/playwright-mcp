@@ -1206,3 +1206,35 @@ See service-worker-policy-* and jobs-empty-data-smoke.txt. Native current667190a
 has a macOS installed-package failure awaiting full logs; Windows direct-pipe
 Firefox also failed, ruling out BrowserServer transport as the sole cause. No
 resolution or complete native pass claimed.
+
+### 2026-10-21 — native CLI alias regression and Firefox transport result
+
+Native667190a completed601 tests passed/3 failed, zero test skips/cancellations,
+plus one macOS production-package step failure before its browser suite ran.
+Batch39533630186:438/2; wrapper39533630145:163/1. All original wrapper tests
+pass. Windows Node22 headed fresh6 click8 pointer timeout+context/server cleanup;
+direct-pipe fresh1 click6 stable wait+context/browser cleanup. Windows Node20
+direct-pipe fresh7 click7 stable wait, cleanup complete. Headless/headed legacy
+checks passed this run; transport substitution is not a fix. Preserve all modes.
+Selected logs/counts worker-ci-twentyfirst-* include the packaging failure.
+
+macOS installed jobs CLI exited0 with empty stdout: its entry guard compared
+lexical argv /var/... against canonical ESM /private/var/... and never called main.
+A Linux directory-symlink invocation reproduces the silent zero exit before the
+fix; canonicalizing both paths makes the same test correctly execute/reject its
+invalid owner. Tests pass on Node24,20,22 (including Node22 real SIGTERM cleanup).
+Fresh109-file installed production package passes all original/batch/CLI/jobs/
+controller/guardian/storage and actual SIGKILL cleanup checks. No native alias
+resolution is claimed before the next run. jobs-cli-alias-* evidence.
+
+Firefox fixture adapters now retain at most4096 characters of public browser log/
+owned BrowserServer stderr for this static local fixture, only on failure. No
+production logging/prefs/actions/deadlines changed; both Linux transport tests
+pass. Read-only upstream research: microsoft/playwright#43089 concerns held-Shift
+persistent launch before a page exists, unlike these post-click stalls; #43028
+concerns headed dynamic viewport completion with responsive evaluate, also unlike
+our static-viewport stalls and failed counter probe. Neither establishes root
+cause here; no safe-mode, enterprise policy, sandbox or graphics workaround applied.
+NEXT: native alias/parity/security verification; Windows driver/ACL/profile/quota/
+egress and other master gates remain open. Full goal incomplete; no publication
+or main merge.

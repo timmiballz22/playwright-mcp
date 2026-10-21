@@ -1,16 +1,17 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native candidate ee54674499d520e3d55dfaa32ed15e31a1728b2f:
-640 passed, three failed, zero test skips/cancellations. All original wrapper
-suites passed; Windows Firefox failed two headed click checks and one headless
-context close check. Linux/macOS passed real1,000-action jobs MCP and installed
-five-tool preview checks. Windows rejects private job storage until ACL support.
-Candidate667190a adds sixth-tool terminal artifact cleanup, foreground jobs CLI
-and monotonic queue/guardian deadlines; its native runs are pending. Local
-component, real1,000-action/CLI signal and fresh107-file package checks pass.
-Headed transport did not resolve Firefox; a direct-pipe comparison retains all
-existing checks. Last full green remains d71c91e. NOT RELEASE-READY: Windows
-ACLs/Firefox, profiles, full quotas/retention, DNS/OS egress and other gates remain.
+Latest completed native667190a:601 tests passed, three failed, zero test
+skips/cancellations, plus a macOS installed-package verification failure before
+its browser suite. The latter reproduced a jobs CLI canonical-path bug: ESM
+resolved /var to /private/var, so the entry guard silently skipped main. A local
+symlink regression now fails before and passes after canonical comparison;
+fresh109-file production package passes. Native confirmation is pending.
+All original wrapper suites passed. Windows Firefox headed and direct-pipe
+click/cleanup checks still fail, ruling out BrowserServer transport as the sole
+cause. New local ARIA/mobile/profile parity and hostile service-worker tests pass;
+new native coverage remains pending. Last full green remains d71c91e.
+NOT RELEASE-READY: Windows ACLs/Firefox, profiles, full quotas/retention, DNS/OS
+egress and other gates remain open. Latest commands and candidates are in the ledger.
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
 
