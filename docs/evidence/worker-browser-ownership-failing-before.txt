@@ -1,0 +1,28 @@
+✖ late server ownership is stopped even when a trusted observer throws (206.436262ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 268.412859
+
+✖ failing tests:
+
+test at local-batch/browser-ownership.test.mjs:44:1
+✖ late server ownership is stopped even when a trusted observer throws (206.436262ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/browser-ownership.test.mjs:55:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

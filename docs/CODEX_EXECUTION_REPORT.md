@@ -1,10 +1,12 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native candidate: `741f31ebaffeee750e2e4dd3338659e4f807db9c`:
-535 passed, one Windows raw Firefox pointer-action timeout. All component/guardian
-and wrapper jobs passed. Last complete green remains d71c91e (469).
-The supported sequential input candidate needs native validation. Public job
-controller/tools, profiles and remaining master-spec gates are incomplete.
+Latest retrieved native batch matrix: `4bf7d770dfd5d22bc3a059a8bf54d1beb8ee9244`:
+388 passed, one Windows raw Firefox pointer-action timeout; component jobs passed.
+Wrapper evidence for run 39518437744 could not be retrieved after GitHub API
+credentials began returning HTTP 401. No combined total is asserted for this run.
+Last complete green remains d71c91e (469). The failed input-delay experiment is
+reverted; the shared BrowserServer candidate still needs native validation.
+Public job controller/tools, profiles and remaining master-spec gates are incomplete.
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
 
@@ -645,3 +647,36 @@ classification, not proof of which internal acknowledgement stalled. A trusted
 fixture-only failure hook can read its numeric counter once (500ms), without
 replaying input. CLI/MCP hooks ignore the live Page and forward fixed metadata.
 Public job tools/controller and remaining master gates remain unfinished.
+
+## Rejected input experiment and shared browser ownership candidate (2026-10-21)
+
+Native batch run 39518437734 at 4bf7d77 completed with 388 passed, one failed,
+zero skipped/cancelled: five batch jobs total 309 passed/one failed; four journal
+jobs total 79 passed. Windows Node 22 Firefox failed fresh run 9 at action 6
+(completed 5/23), pointer_action_timeout after 5003ms. Visibility, stability and
+scroll checks passed; the bounded counter probe also timed out (500ms).
+cleanupFailures was empty. Thus delay=1 did not establish a fix and is reverted.
+Preserved evidence: worker-ci-fourteenth-batch.json and its selected test log.
+Wrapper run 39518437744 retrieval failed with HTTP 401; its totals are unverified.
+
+The new candidate uses public BrowserServer launch/connect for real raw runner
+calls, matching the production worker transport. It does not change action or
+execution deadlines, force input, or replay. A separate ownership correction
+retains a server before invoking the trusted observer and stops late allocations
+before observer invocation, including when the observer throws. A controlled
+cancellation regression failed before the correction (zero server kills), then
+passed. This remains a native stability hypothesis, not a proven Windows fix.
+
+Local evidence: runner/cleanup/ownership 22 passed; ownership under Node 22 four
+passed; real Linux Firefox ten fresh workflows passed (one test, 27.316s);
+real concurrent private screenshots and HTTP status checks two passed;
+supervisor/report fault tests 15 passed, all without skips or cancellations.
+Fresh installed production package passed both real-browser endpoints, durable
+seven-action execution and storage smoke. Its new reusable actual-controller
+SIGKILL check observed 12 owned processes, persisted CANCELLED at 1/2 actions,
+found zero active owned processes, acquired the released project lease and
+verified journal integrity. It used Chromium on Linux and zero model turns.
+This tests the internal guardian, not a public durable MCP controller. The same
+check is now part of fresh installed-package verification; native results pending.
+GitHub API retrieval/PR update is blocked by HTTP 401 credentials, not an approval
+review rejection. Full release gates remain open.

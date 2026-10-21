@@ -132,7 +132,7 @@ function allowedAddress(raw, allowed) {
   return allowed.has(url.origin);
 }
 
-async function perform(page, step, index, artifactsDir, clickOptions) {
+async function perform(page, step, index, artifactsDir) {
   const locator = step.selector ? resolveLocator(page, step.selector) : undefined;
   switch (step.type) {
     case 'goto': {
@@ -148,7 +148,7 @@ async function perform(page, step, index, artifactsDir, clickOptions) {
       }
       break;
     }
-    case 'click': await locator.click(clickOptions); break;
+    case 'click': await locator.click(); break;
     case 'fill': await locator.fill(step.value); break;
     case 'press': await locator.press(step.key); break;
     case 'check': await locator.check(); break;
@@ -195,10 +195,6 @@ export async function runWorkflow(workflow, {
   onActionFailure, // Trusted source diagnostics only; never accepted in workflow JSON.
 } = {}) {
   const spec = validateWorkflow(workflow);
-  // In the pinned driver, zero-delay Mouse.click pipelines move/down/up.
-  // A positive supported delay awaits each phase. Keep locator checks and the
-  // same action deadline while avoiding concurrent native input on Windows FF.
-  const clickOptions = spec.browser === 'firefox' && process.platform === 'win32' ? { delay: 1 } : undefined;
   const allowed = parseOrigins(allowedOrigins);
   if (spec.steps.some(step => step.type === 'screenshot') && allowSensitiveArtifacts !== true)
     throw new TypeError('Sensitive artifact capture requires local operator approval');
@@ -243,12 +239,14 @@ export async function runWorkflow(workflow, {
     artifactsDir = await bounded(mkdtemp(path.join(artifactsDir, 'run-')));
     const playwright = suppliedPlaywright ?? await bounded(import('playwright'));
     const launchOptions = { headless: true, timeout: Math.max(1, spec.timeoutMs - (performance.now() - started)) };
-    if (onBrowserProcess) {
+    if (onBrowserProcess || typeof playwright[spec.browser].launchServer === 'function') {
       // Public BrowserServer.process() gives the watchdog an owned PID. Its
       // WebSocket endpoint is loopback-only, private, and never model-visible.
       browserServer = await bounded(playwright[spec.browser].launchServer({ ...launchOptions, host: '127.0.0.1' }).then(server => {
-        onBrowserProcess(server.process().pid);
+        // Retain ownership even if a trusted source observer throws.
+        browserServer = server;
         if (cancelled || timedOut) void server.kill().catch(() => {});
+        onBrowserProcess?.(server.process().pid);
         return server;
       }));
       browser = await bounded(playwright[spec.browser].connect(browserServer.wsEndpoint(), { timeout: launchOptions.timeout }));
@@ -301,7 +299,7 @@ export async function runWorkflow(workflow, {
         const start = performance.now();
         index++;
         try {
-          const metadata = await bounded(perform(page, step, index, artifactsDir, clickOptions));
+          const metadata = await bounded(perform(page, step, index, artifactsDir));
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: true, durationMs: Math.round(performance.now() - start), ...metadata });
           onProgress?.({ completed: results.length });

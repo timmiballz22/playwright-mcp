@@ -26,7 +26,10 @@ supervisor reserves cleanup time and terminates owned processes when cooperative
 cancellation stalls. Parent IPC loss also triggers cleanup. Native process-tree
 termination is bounded separately; uncertain cleanup fails closed and blocks new
 MCP work. Direct source calls to `runWorkflow` retain their cooperative lifecycle
-and are not this supervised boundary. CLI file loading/parsing precedes it and
+and are not this supervised boundary. They now use the same owned, loopback
+BrowserServer transport as the execution worker. Trusted test adapters without
+launchServer retain their direct-launch fallback. Server ownership is retained
+before observer callbacks; late allocations are killed before callbacks run. CLI file loading/parsing precedes it and
 accepts only regular files and reads at most 1 MiB plus one sentinel byte.
 Filesystem latency is not covered by that deadline.
 

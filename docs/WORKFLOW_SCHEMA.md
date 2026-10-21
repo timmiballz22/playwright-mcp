@@ -76,8 +76,6 @@ cleanup failure after independent termination/temp verification; in that case
 `execution.workerCleanupFailed` is true. It never resolves an action/policy failure
 into success or authorizes replay.
 
-On Windows Firefox, click uses Playwright's supported one-millisecond delay to
-serialize move/down/up acknowledgements. Locator checks, declared click count and
-action/global deadlines still apply. No force or replay is enabled. Native
-stability validation of this mitigation is pending; other browsers/hosts retain
-their existing click timing.
+Clicks use the standard Locator.click action with its normal checks and deadlines.
+The one-millisecond Windows Firefox input experiment failed native validation
+and was reverted. No force, automatic replay or deadline increase is enabled.
