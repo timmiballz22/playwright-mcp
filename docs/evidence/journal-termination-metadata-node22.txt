@@ -1,0 +1,228 @@
+TAP version 13
+# Subtest: supervised hang: bounded completion and owned process cleanup
+ok 1 - supervised hang: bounded completion and owned process cleanup
+  ---
+  duration_ms: 1913.093248
+  type: 'test'
+  ...
+# Subtest: supervised report-stall: bounded completion and owned process cleanup
+ok 2 - supervised report-stall: bounded completion and owned process cleanup
+  ---
+  duration_ms: 1873.755005
+  type: 'test'
+  ...
+# Subtest: supervised crash: bounded completion and owned process cleanup
+ok 3 - supervised crash: bounded completion and owned process cleanup
+  ---
+  duration_ms: 128.668695
+  type: 'test'
+  ...
+# Subtest: pre-cancelled execution never starts a worker
+ok 4 - pre-cancelled execution never starts a worker
+  ---
+  duration_ms: 0.560737
+  type: 'test'
+  ...
+# Subtest: cancel interrupts a worker that cannot service its abort listener
+ok 5 - cancel interrupts a worker that cannot service its abort listener
+  ---
+  duration_ms: 466.010911
+  type: 'test'
+  ...
+# Subtest: supervisor crash cannot strand its worker or detached child
+ok 6 - supervisor crash cannot strand its worker or detached child
+  ---
+  duration_ms: 242.581964
+  type: 'test'
+  ...
+# Subtest: cancellation between precheck and supervisor startup does not start a worker
+ok 7 - cancellation between precheck and supervisor startup does not start a worker
+  ---
+  duration_ms: 38.074373
+  type: 'test'
+  ...
+# Subtest: safe failure and lower-bound progress survive supervisor death without raw diagnostics
+ok 8 - safe failure and lower-bound progress survive supervisor death without raw diagnostics
+  ---
+  duration_ms: 240.426766
+  type: 'test'
+  ...
+# Subtest: verified cleanup recovery preserves success action outcome
+ok 9 - verified cleanup recovery preserves success action outcome
+  ---
+  duration_ms: 196.66537
+  type: 'test'
+  ...
+# Subtest: verified cleanup recovery preserves blocked action outcome
+ok 10 - verified cleanup recovery preserves blocked action outcome
+  ---
+  duration_ms: 209.802054
+  type: 'test'
+  ...
+# Subtest: verified cleanup recovery preserves action action outcome
+ok 11 - verified cleanup recovery preserves action action outcome
+  ---
+  duration_ms: 166.437818
+  type: 'test'
+  ...
+# Subtest: failed durable admission cannot start worker actions
+ok 12 - failed durable admission cannot start worker actions
+  ---
+  duration_ms: 87.46392
+  type: 'test'
+  ...
+# Subtest: stalled durable admission cannot evade watchdog deadline or start late
+ok 13 - stalled durable admission cannot evade watchdog deadline or start late
+  ---
+  duration_ms: 1626.583053
+  type: 'test'
+  ...
+# Subtest: successful durable admission precedes owned worker effects
+ok 14 - successful durable admission precedes owned worker effects
+  ---
+  duration_ms: 273.350563
+  type: 'test'
+  ...
+# Subtest: durable guardian success: cleanup and canonical journal outcome
+ok 15 - durable guardian success: cleanup and canonical journal outcome
+  ---
+  duration_ms: 799.53494
+  type: 'test'
+  ...
+# Subtest: durable guardian cancel: cleanup and canonical journal outcome
+ok 16 - durable guardian cancel: cleanup and canonical journal outcome
+  ---
+  duration_ms: 943.208513
+  type: 'test'
+  ...
+# Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+ok 17 - durable guardian disconnect: cleanup and canonical journal outcome
+  ---
+  duration_ms: 827.442494
+  type: 'test'
+  ...
+# Subtest: durable guardian crash: cleanup and canonical journal outcome
+ok 18 - durable guardian crash: cleanup and canonical journal outcome
+  ---
+  duration_ms: 975.772802
+  type: 'test'
+  ...
+# Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+ok 19 - durable guardian mismatch: cleanup and canonical journal outcome
+  ---
+  duration_ms: 367.165996
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+ok 20 - durable guardian admissionFailure: cleanup and canonical journal outcome
+  ---
+  duration_ms: 483.830766
+  type: 'test'
+  ...
+# Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+ok 21 - durable guardian preDisconnected: cleanup and canonical journal outcome
+  ---
+  duration_ms: 327.688375
+  type: 'test'
+  ...
+# Subtest: termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+ok 22 - termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+  ---
+  duration_ms: 77.156933
+  type: 'test'
+  ...
+# Subtest: managed directory links and database hardlinks cannot modify another file
+ok 23 - managed directory links and database hardlinks cannot modify another file
+  ---
+  duration_ms: 380.195979
+  type: 'test'
+  ...
+# Subtest: POSIX journal directory must exclude group and other access
+ok 24 - POSIX journal directory must exclude group and other access
+  ---
+  duration_ms: 54.756035
+  type: 'test'
+  ...
+# Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+ok 25 - a simulated reused PID cannot resume old work or clear uncertain active resources
+  ---
+  duration_ms: 184.285483
+  type: 'test'
+  ...
+# Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+ok 26 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+  ---
+  duration_ms: 72.812877
+  type: 'test'
+  ...
+# Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+ok 27 - a success mutation after the persisted deadline cannot commit or release the lease
+  ---
+  duration_ms: 66.614249
+  type: 'test'
+  ...
+# Subtest: competing writers initialize consistently and cannot overfill the project queue
+ok 28 - competing writers initialize consistently and cannot overfill the project queue
+  ---
+  duration_ms: 103.904783
+  type: 'test'
+  ...
+# Subtest: killed transaction rolls back without a partial job or duplicate request
+ok 29 - killed transaction rolls back without a partial job or duplicate request
+  ---
+  duration_ms: 259.631949
+  type: 'test'
+  ...
+# Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+ok 30 - reconnect marks a dead controller queued job crashed and never requeues its request
+  ---
+  duration_ms: 203.428801
+  type: 'test'
+  ...
+# Subtest: corrupt journal is rejected without silently erasing the file
+ok 31 - corrupt journal is rejected without silently erasing the file
+  ---
+  duration_ms: 171.063468
+  type: 'test'
+  ...
+# (node:367057) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: an unrelated SQLite file is rejected without changing its bytes
+ok 32 - an unrelated SQLite file is rejected without changing its bytes
+  ---
+  duration_ms: 107.401736
+  type: 'test'
+  ...
+# Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+ok 33 - journal preserves idempotency, owner isolation and a single project execution lease
+  ---
+  duration_ms: 255.925053
+  type: 'test'
+  ...
+# Subtest: monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+ok 34 - monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+  ---
+  duration_ms: 195.606372
+  type: 'test'
+  ...
+# Subtest: invalid termination roots remain rejected and emit only a fixed diagnostic
+ok 35 - invalid termination roots remain rejected and emit only a fixed diagnostic
+  ---
+  duration_ms: 2.420235
+  type: 'test'
+  ...
+# Subtest: diagnostic callback preserves bounded termination of an actually owned fork
+ok 36 - diagnostic callback preserves bounded termination of an actually owned fork
+  ---
+  duration_ms: 367.899281
+  type: 'test'
+  ...
+1..36
+# tests 36
+# suites 0
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14964.493705

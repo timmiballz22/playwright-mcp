@@ -5,7 +5,7 @@ import { promisify } from 'node:util';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 const exec = promisify(execFile);
-export const TERMINATION_FAILURE_CODES = Object.freeze(['invalid_root', 'windows_taskkill_failed', 'worker_stop_failed', 'enumeration_failed', 'descendant_signal_failed', 'browser_group_signal_failed', 'worker_group_signal_failed', 'wait_timeout']);
+export { TERMINATION_FAILURE_CODES } from './failure.mjs';
 const validPid = pid => Number.isSafeInteger(pid) && pid > 1 && pid !== process.pid;
 function signal(pid, name) {
   try { process.kill(pid, name); return true; }

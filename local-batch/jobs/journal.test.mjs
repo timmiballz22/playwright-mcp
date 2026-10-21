@@ -15,6 +15,29 @@ if (!supportsJournal) {
     await assert.rejects(JobJournal.open({}), { code: 'unsupported_runtime' });
   });
 } else {
+  test('termination failure diagnostics persist without losing uncertain cleanup or releasing the lease', async () => {
+    const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-termination-'));
+    let journal;
+    try {
+      journal = await JobJournal.open({ directory, projectId: '8'.repeat(64), ownerId: 'termination-owner' });
+      const id = randomUUID(), nonce = randomUUID();
+      await journal.call('create', { id, requestKey: 'termination', workflowDigest: 'a'.repeat(64), total: 1, deadlineAt: Date.now() + 30000 });
+      assert.equal((await journal.call('reserve', { id, nonce })).acquired, true);
+      await journal.call('activate', { id, nonce });
+      const summary = { ok: false, reason: 'cleanup_failed', completed: 0, total: 1,
+        execution: { mode: 'supervised', forced: true, cleanup: 'failed', tempCleanup: 'removed', terminationFailures: ['wait_timeout'] } };
+      for (const invalid of [['fake-private-diagnostic-canary'], Array(9).fill('wait_timeout'), [42], 'wait_timeout'])
+        await assert.rejects(journal.call('finish', { id, nonce, state: 'FAILED', completed: 0, cleanupOk: false,
+          summary: { ...summary, execution: { ...summary.execution, terminationFailures: invalid } } }), { code: 'invalid_metadata' });
+      const finished = await journal.call('finish', { id, nonce, state: 'FAILED', completed: 0, cleanupOk: false, summary });
+      assert.equal(finished.state, 'FAILED'); assert.equal(finished.operatorAttentionRequired, true);
+      assert.deepEqual(await journal.call('result', { id }), summary);
+      const next = randomUUID();
+      await assert.rejects(journal.call('create', { id: next, requestKey: 'next', workflowDigest: 'b'.repeat(64), total: 1,
+        deadlineAt: Date.now() + 30000, requireCleanLease: true }), { code: 'cleanup_blocked' });
+      assert.equal((await journal.call('integrity')).ok, true);
+    } finally { await journal?.close(); await rm(directory, { recursive: true, force: true }); }
+  });
   test('managed directory links and database hardlinks cannot modify another file', { timeout: 10000 }, async () => {
     const root = await mkdtemp(path.join(os.tmpdir(), 'journal-paths-'));
     try {

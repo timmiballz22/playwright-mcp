@@ -24,6 +24,15 @@ nine tests each on Node20/22/24 and a155-file production-only install; native
 confirmation of this new command remains pending. Evidence: worker-ci-fortysecond-*,
 highlight-region-local.txt and profile-doctor-*. **Not release-ready.**
 
+While native08e434a remains running, its macOS Codex failure reports
+finish/invalid_metadata after925 actions. A deterministic SQLite RPC regression
+reproduces the supervisor terminationFailures field being rejected by journal
+validation. The pending fix accepts only eight fixed bounded codes, preserves
+failed results and uncertain leases, and passes36 checks each Node22/24 plus a
+fresh155-file production install. This fixes a metadata contract, not underlying
+cleanup/performance failures. Evidence: journal-termination-metadata-*.txt.
+
+
 Previous completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
 Separately, macOS installed-package controller-death verification failed, so its

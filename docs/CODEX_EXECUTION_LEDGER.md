@@ -2029,3 +2029,31 @@ Malformed browser_resume location negative paths pass local Chromium/Firefox2/2,
 including a subsequent real snapshot and close. Successful interactive stepping/
 resume and annotation submission remain open. No dashboard or daemon is spawned
 by this negative case. Evidence: original-resume-negative-local.txt.
+
+
+## Termination diagnostic / journal contract mismatch
+
+Running08e434a macOS Codex fails after925 confirmed actions. The failure annotation
+reports guardian finish/invalid_metadata/finish, then CRASHED/recovered_interrupted
+with no result and operator attention. Inspection found execution-supervisor emits
+bounded terminationFailures only on termination trouble, while journal summary
+validation rejects that field. A real SQLite child/RPC regression reproduces the
+same finish/invalid_metadata rejection before the fix. This identifies a concrete
+contract defect; the native payload is not yet available to establish every field
+of that particular failure, and underlying cleanup trouble remains unresolved.
+
+The journal now permits only the shared eight fixed termination codes and at most
+eight array entries. Raw/unknown values and over-limit arrays remain rejected.
+The regression preserves the failed result, requires operator attention, retains
+the execution lease and denies clean-lease admission. No success promotion, PID
+authority or deadline change occurs.36 combined journal/guardian/termination/
+executor checks pass each on Node22/24. Before/after and suite evidence:
+journal-termination-metadata-*.txt. The14-case local input/devtools combination
+also passes after the slider and malformed-resume additions. Native confirmation
+remains pending.
+
+Fresh155-file production-only Node22 installation passes the installed journal
+termination diagnostic metadata regression: result persists, operator attention
+remains true and clean-lease admission stays blocked. Actual browser/controller/
+profile/CLI/MCP checks and normal/lingering controller-death checks also pass,
+zero owned survivors. Evidence: journal-termination-metadata-production.txt.

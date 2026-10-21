@@ -6,7 +6,7 @@ import { constants } from 'node:fs';
 import { randomBytes, randomUUID, createHash, createHmac } from 'node:crypto';
 import path from 'node:path';
 import { validCommandData } from './journal-protocol.mjs';
-import { FAILURE_KINDS, STEP_FAILURE_CODES } from '../failure.mjs';
+import { FAILURE_KINDS, STEP_FAILURE_CODES, TERMINATION_FAILURE_CODES } from '../failure.mjs';
 
 let db;
 let identity;
@@ -152,7 +152,7 @@ function validateSummary(value, row, state, completed) {
     if (step.failureKind !== undefined && !FAILURE_KINDS.includes(step.failureKind) ||
         step.error !== undefined && ![...STEP_FAILURE_CODES, 'setup_failed'].includes(step.error)) error('invalid_metadata');
   }
-  if (result.execution && Object.keys(result.execution).some(name => !['mode', 'forced', 'cleanup', 'tempCleanup', 'supervisorPid', 'workerPid', 'browserPids', 'workerCleanupFailed'].includes(name)))
+  if (result.execution && Object.keys(result.execution).some(name => !['mode', 'forced', 'cleanup', 'tempCleanup', 'supervisorPid', 'workerPid', 'browserPids', 'workerCleanupFailed', 'terminationFailures'].includes(name)))
     error('invalid_metadata');
   if (result.execution !== undefined) {
     const execution = result.execution;
@@ -160,6 +160,7 @@ function validateSummary(value, row, state, completed) {
     optional(execution, 'mode', value => value === 'supervised');
     optional(execution, 'forced', value => typeof value === 'boolean');
     optional(execution, 'workerCleanupFailed', value => typeof value === 'boolean');
+    optional(execution, 'terminationFailures', value => Array.isArray(value) && value.length <= TERMINATION_FAILURE_CODES.length && value.every(code => TERMINATION_FAILURE_CODES.includes(code)));
     optional(execution, 'cleanup', value => ['terminated', 'failed'].includes(value));
     optional(execution, 'tempCleanup', value => ['removed', 'failed', 'unknown', 'not-created'].includes(value));
     for (const field of ['supervisorPid', 'workerPid']) optional(execution, field, value => integer(value, 2, 2147483647));

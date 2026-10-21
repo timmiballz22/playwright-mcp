@@ -66,8 +66,19 @@ if (supportsJournal) {
     assert.equal(report.results.length, 7);
     await assert.rejects(other.call('result', { id: durable.jobId }), { code: 'not_found' });
     process.stdout.write(JSON.stringify({ entry: 'local-batch/jobs/guardian.mjs', durableExecution: true, realBrowser: true, completed: 7, production: true }) + '\n');
+    // Metadata regression only: no browser failure is manufactured here.
+    const uncertainId = randomUUID(), uncertainNonce = randomUUID();
+    await owner.call('create', { ...data, id: uncertainId, requestKey: 'installed-termination-metadata' });
+    assert.equal((await owner.call('reserve', { id: uncertainId, nonce: uncertainNonce })).acquired, true);
+    await owner.call('activate', { id: uncertainId, nonce: uncertainNonce });
+    const uncertainSummary = { ok: false, reason: 'cleanup_failed', completed: 0, total: 1,
+      execution: { mode: 'supervised', forced: true, cleanup: 'failed', tempCleanup: 'removed', terminationFailures: ['wait_timeout'] } };
+    const uncertain = await owner.call('finish', { id: uncertainId, nonce: uncertainNonce, state: 'FAILED', completed: 0, cleanupOk: false, summary: uncertainSummary });
+    assert.equal(uncertain.operatorAttentionRequired, true);
+    assert.deepEqual(await owner.call('result', { id: uncertainId }), uncertainSummary);
+    await assert.rejects(owner.call('create', { ...data, id: randomUUID(), requestKey: 'installed-blocked', requireCleanLease: true }), { code: 'cleanup_blocked' });
     assert.deepEqual(await owner.call('integrity'), { ok: true });
-    process.stdout.write(JSON.stringify({ entry: 'local-batch/jobs/journal.mjs', storageKernel: true, ownerIsolation: true, production: true }) + '\n');
+    process.stdout.write(JSON.stringify({ entry: 'local-batch/jobs/journal.mjs', storageKernel: true, ownerIsolation: true, terminationDiagnosticMetadata: true, production: true }) + '\n');
   } finally {
     clearTimeout(watchdog);
     if (guardian && guardian.exitCode === null && guardian.signalCode === null) { guardian.kill('SIGKILL'); if (guardianExit) await guardianExit; }
