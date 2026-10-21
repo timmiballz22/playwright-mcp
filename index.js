@@ -16,4 +16,6 @@
  */
 
 const { tools } = require('playwright-core/lib/coreBundle');
+// Compose persistent-profile ownership over public APIs; tools stay delegated.
+require('./local-batch/profile-guard.cjs').installProfileGuard(require('playwright-core'));
 module.exports = { createConnection: tools.createConnection };

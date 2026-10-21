@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: guard composes public persistent API, refuses another launch and releases after confirmed public close
+ok 1 - guard composes public persistent API, refuses another launch and releases after confirmed public close
+  ---
+  duration_ms: 28.583471
+  type: 'test'
+  ...
+# Subtest: failed launch and disconnected context retain uncertain ownership without stale deletion
+ok 2 - failed launch and disconnected context retain uncertain ownership without stale deletion
+  ---
+  duration_ms: 11.687997
+  type: 'test'
+  ...
+# Subtest: closed event before acknowledged shutdown cannot free a profile, and failed hook setup closes its allocation
+ok 3 - closed event before acknowledged shutdown cannot free a profile, and failed hook setup closes its allocation
+  ---
+  duration_ms: 18.051843
+  type: 'test'
+  ...
+# Subtest: profile lease refuses contention across aliases and releases only its own complete metadata
+ok 4 - profile lease refuses contention across aliases and releases only its own complete metadata
+  ---
+  duration_ms: 29.971657
+  type: 'test'
+  ...
+# Subtest: profile lease never deletes malformed or changed ownership records
+ok 5 - profile lease never deletes malformed or changed ownership records
+  ---
+  duration_ms: 5.378061
+  type: 'test'
+  ...
+# Subtest: another process owns the lease; dead owner remains uncertain and is never silently reclaimed
+ok 6 - another process owns the lease; dead owner remains uncertain and is never silently reclaimed
+  ---
+  duration_ms: 41.53642
+  type: 'test'
+  ...
+# Subtest: linked ownership directory cannot change or delete an outside marker
+ok 7 - linked ownership directory cannot change or delete an outside marker
+  ---
+  duration_ms: 8.984158
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 317.474241

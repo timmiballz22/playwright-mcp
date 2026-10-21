@@ -2,40 +2,41 @@
 
 Updated 2026-10-21. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest completed native candidate c69a3b8554483c6094fe458f3548a38fd362a4d8:
-613 passed, four failed, zero test skips/cancellations. Stable Playwright1.64.1
-and patched SDK1.32.1 preserve all discovered tool names. Windows Firefox still
-fails in cleanup, stable-element wait and a supervised deadline; Linux Node22
-controller queue success hit journal_busy. Mac/Linux browser jobs and other
-component jobs passed. The controller admission and Windows CIM fixes passed.
-A controlled contention regression now passes with bounded lock acquisition;
-Windows headed/headless comparisons are added without removing headless checks.
-Native confirmation is pending. Last full green remains d71c91e. NOT RELEASE-READY:
-public jobs, profiles, quotas/retention, ACL/DNS controls and other gates remain.
+Latest completed native7e2c9cb:708 tests passed/eight failed, zero test
+skips/cancellations. Batch520/2; wrapper188/6. All native installed package checks
+now pass, including macOS CLI alias fix. WebKit accepted a contending persistent
+profile on all OSs; Mac Firefox lock wording, Windows Firefox contention timeout
+and Mac WebKit native-button Tab assumptions also failed. Windows raw Firefox
+headless/headed stalls remain. Profile ownership guard and explicit-tabindex ARIA
+fixture are local candidates; native confirmation is pending. Last full green
+remains d71c91e. Public POSIX six-tool jobs/foreground CLI, bounded terminal
+cleanup, actual Codex1,000-action/no-model-turn client and monotonic queue deadlines
+are implemented with scoped evidence. Full quotas/retention, Windows ACLs, profiles,
+egress and other conditions still block release.
 All 45 mandatory scenarios are
 mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md; original managed-Chromium baseline 8/8 and six unchanged schemas; default local Chrome still absent | Preserve channel/OS baseline limitations; extend original native baseline evidence |
-| G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs: production tarball, both stdio handshakes; SDK runtime, private fork identity | Node20 minimum/22.13+ jobs now explicit; verify stable-driver native clean installs |
-| G02 MCP | IN PROGRESS | local-batch/mcp.test.mjs real compact 1000-action call, EOF/SIGTERM and actual Codex operator evidence; production-smoke.mjs | Test concurrent calls, malformed protocol and full resource ownership |
-| G03 FEATURE PARITY | IN PROGRESS | evidence/discovery-*.json: 25 default / 72 extended tools per configured browser; tests/capabilities.spec.ts | Add representative behavior tests for every capability group |
-| G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs + integration.test.mjs; evidence/codex-client-operator.txt: exact 1000 actions / 997 clicks | Extend real long workflow to other browsers |
-| G05 RETRIES | IN PROGRESS | Operator-only bounded GET goto 429/503 policy; real Chromium/Firefox no-POST-replay tests | Native retry coverage, fairness and bounded metrics |
-| G06 JOBS | IN PROGRESS | Internal bounded controller/journal/guardian; 27 local component tests per Node22/24 and real installed queue/death proof | Native controller proof, public MCP/CLI APIs/configuration, clock changes and safe retention cleanup |
-| G07 SECURITY | FAILED | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
-| G08 STORAGE | IN PROGRESS | runner.mjs mkdtemp private per-run artifacts; report.mjs exclusive report write | Atomic artifacts, quotas, retention and native Windows ACL evidence; 20-run uniqueness already passed |
-| G09 AUTH/PROFILES | NOT STARTED | Batch ephemeral only; upstream retains profile features | Reuse upstream isolation/profile APIs with project locks and tests |
-| G10 CROSS-BROWSER | IN PROGRESS | CI at 2321179: Chromium/Firefox/WebKit positive batch + redirect fixtures, original Chrome/Chromium/Firefox/WebKit behavior on Linux/macOS/Windows; evidence/ci-final-*.json | 9e73a08 supervised positives/admission passed; diagnose strict Windows raw Firefox cleanup with fixed stage codes; earlier intermittency remains recorded; local WebKit unavailable |
-| G11 CROSS-OS | IN PROGRESS | Native CI green at 2321179; plain CLI + actual Codex operator smoke verified on Linux | Native bootstrap passed 53 tests per OS at 5264cb6; execute actual Codex operator setup on native Windows/macOS |
-| G12 PERFORMANCE | IN PROGRESS | scripts/soak-local.mjs; PERFORMANCE.md; evidence/soak*.txt | 100-run observed Linux source soak now measured; native/CLI/token comparison and full FD coverage remain |
-| G13 ACCESSIBILITY/MOBILE | IN PROGRESS | Original MCP preserves role-based click; batch role/name, testId, label, placeholder and text selectors added | Keyboard, mobile/touch/media assertions and selector behavior/negative fixtures |
-| G14 ADVANCED | IN PROGRESS | 72 contracts; native original storage/screenshot/trace/video/tabs/Chromium PDF behavior passed; tests/advanced.spec.ts | Frames/dialog/upload/network tools and remaining advanced positive/negative cases |
-| G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs, private package, publish-disabled.cjs; no registry publishing workflow | Keep publication disabled; registry ownership and a future authorized release remain separate |
-| G16 DOCUMENTATION | IN PROGRESS | LOCAL_BATCH.md, BASELINE_AUDIT.md, THREAT_MODEL.md, PERFORMANCE.md | Finish examples/feature docs as jobs/profiles mature; operator walkthroughs on all OSs |
-| G17 AUDIT EVIDENCE | IN PROGRESS | This ledger + evidence logs + test scripts | Keep tested SHA/CI evidence current; complete all 45 scenarios |
-| G18 CLEAN MERGE | IN PROGRESS | Fork branch, pinned dependencies retained; lint and diff checks | Retain green configured CI; resolve critical gaps and inspect protection before merge |
+| G00 BASELINE | NOT-TESTED | BASELINE_AUDIT.md; original managed-Chromium baseline 8/8 and six unchanged schemas; default local Chrome still absent | Preserve channel/OS baseline limitations; extend original native baseline evidence |
+| G01 INSTALL | NOT-TESTED | Native7e2 installed109-file package passes all OSs; local guarded115-file package passes | Verify new CJS guard and persistent smoke from fresh native tarballs |
+| G02 MCP | NOT-TESTED | Actual Codex6-tool jobs client,1,000 actions, active cancel and zero owned processes; original25/batch1 contracts | Complete remaining malformed/concurrent/resource phase cases on all OSs |
+| G03 FEATURE PARITY | NOT-TESTED | 25/72 names and six schemas retained; storage/media/profile/ARIA/touch and advanced scoped behaviors | Verify every remaining capability group and native guard compatibility |
+| G04 BATCH | PASS | local-batch/mcp.test.mjs + integration.test.mjs; evidence/codex-client-operator.txt: exact 1000 actions / 997 clicks | Extend real long workflow to other browsers |
+| G05 RETRIES | NOT-TESTED | Operator-only bounded GET goto 429/503 policy; real Chromium/Firefox no-POST-replay tests | Native retry coverage, fairness and bounded metrics |
+| G06 JOBS | NOT-TESTED | POSIX six-tool MCP/foreground CLI; idempotent journal/FIFO/guardian; EOF/SIGTERM/SIGKILL and monotonic deadline evidence | Windows private storage, full phase faults, retention and restart acceptance |
+| G07 SECURITY | FAIL | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
+| G08 STORAGE | FAIL | Private run/artifact metadata, atomic reports, bounded dry-run terminal cleanup | Enforce write quotas/retention and native Windows ACLs |
+| G09 AUTH/PROFILES | FAIL | Strict native fixture found WebKit parallel profile access; local public-API lease guard and restore/isolation pass | Native guard proof; managed project profiles, ACLs, corruption/reset/crash recovery |
+| G10 CROSS-BROWSER | FAIL | Native7e2 Windows raw Firefox still fails headless/headed; direct pipe previously failed too | Diagnose original driver stalls; retain strict tests and unsupported local WebKit limitation |
+| G11 CROSS-OS | FAIL | Native original/batch/jobs package installs verified; POSIX jobs/browser fixtures pass | Windows jobs ACLs, complete green native suites and native actual Codex walkthroughs |
+| G12 PERFORMANCE | NOT-TESTED | scripts/soak-local.mjs; PERFORMANCE.md; evidence/soak*.txt | 100-run observed Linux source soak now measured; native/CLI/token comparison and full FD coverage remain |
+| G13 ACCESSIBILITY/MOBILE | NOT-TESTED | Local ARIA keyboard, responsive390x844 CSS PNG, touch and media reset cases pass; native touch passed all engines | Verify explicit-tabindex fixture on macOS WebKit; extend keyboard/canvas/accessibility matrix |
+| G14 ADVANCED | NOT-TESTED | 72 contracts; native original storage/screenshot/trace/video/tabs/Chromium PDF behavior passed; tests/advanced.spec.ts | Frames/dialog/upload/network tools and remaining advanced positive/negative cases |
+| G15 RELEASE SAFETY | PASS | distribution.test.mjs, private package, publish-disabled.cjs; no registry publishing workflow | Keep publication disabled; registry ownership and a future authorized release remain separate |
+| G16 DOCUMENTATION | NOT-TESTED | LOCAL_BATCH.md, BASELINE_AUDIT.md, THREAT_MODEL.md, PERFORMANCE.md | Finish examples/feature docs as jobs/profiles mature; operator walkthroughs on all OSs |
+| G17 AUDIT EVIDENCE | NOT-TESTED | This ledger + evidence logs + test scripts | Keep tested SHA/CI evidence current; complete all 45 scenarios |
+| G18 CLEAN MERGE | FAIL | Draft PR only; last full green d71c91e; newer native failures retained | Resolve critical gaps and require full green at exact final SHA before any merge |
 
 ## Defects and risk register
 
@@ -49,7 +50,9 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
   Supervised CLI/MCP process termination and report deadline added; native candidate evidence pending. Raw runner remains cooperative.
 - RISK-006: per-run directories prevent screenshot overwrite; retention/redaction open.
 - RISK-007: errors remain sanitized, diagnostic taxonomy incomplete.
-- RISK-008: durable jobs/queues/reconnect are NOT implemented.
+- RISK-008: POSIX durable jobs/queue/status/result/reconnect-without-replay and
+  foreground CLI now exist. Windows ACLs, automatic resume and full lifecycle
+  acceptance remain unfinished.
 - RISK-009: Chromium/Firefox verified selectively; WebKit libraries unavailable locally.
 - RISK-010: blocked requests produce policy_blocked, not false workflow success.
 - RISK-011: unknown fields rejected, actions copied before async execution to prevent
@@ -1261,3 +1264,51 @@ Updated client setup to distinguish legacy batch from optional durable jobs and
 provide verified current Linux entrypoint paths. Native interactive Codex on
 Windows/macOS and remaining G00–G18 conditions stay open. Current pushed7e2c9cb
 native validation remains in progress; no release-ready claim.
+
+### 2026-10-21 — public-API persistent profile guard (native pending)
+
+Completed native7e2c9cb:708 passed/eight failed, zero test skips/cancellations.
+Batch39535014877:520/2; wrapper39535014869:188/6. All fresh installed package
+checks pass, including macOS jobs CLI alias regression. WebKit accepted a second
+persistent-profile client on Linux/macOS/Windows. Other wrapper failures: Mac
+Firefox correctly refused with wording outside fixture regex; Windows Firefox
+contention timed out; Mac WebKit Tab did not focus native buttons. Windows raw
+Firefox headless fresh1 click6/server close and headed fresh9 click6 also failed.
+Bounded browser logs include Juggler removeProgressListener shutdown errors, not
+established cause. Direct-pipe passed this run; its prior strict failures remain.
+Native logs/counts retained in worker-ci-twentysecond-*.
+
+A public-API probe verified the delegated backend calls the exported Playwright
+BrowserType.launchPersistentContext. New CJS guard composes that public API from
+existing CJS CLI/library entrypoints, plus public context/browser close, without
+copying backend internals or changing tool schemas. Exclusive canonical directory
+lease, owner PID/random token, bounded no-follow record reads, exact-token/inode
+release and nonrecursive deletion. Dead/corrupt/changed/disconnected/failed launch
+or close retains ownership; no disk PID killing or automatic stale reset. Public
+persistent context close acknowledges browser/process cleanup before release.
+Hook setup failure closes its allocated context. Empty-string temporary profiles
+and caller-supplied external contexts retain their upstream handling.
+
+Seven focused tests pass Node20/22/24, including competing process then actual
+SIGKILL (stale record retained), aliases, malformed/changed metadata, outside
+symlink marker, delayed close acknowledgment and failed hook allocation cleanup.
+Sixteen real Chromium/Firefox profile/library/schema tests pass; six WebKit
+schema-only tests pass (not a local WebKit browser claim). Fresh115-file installed
+package passes original25/batch1/jobs6/CLI/controller/guardian/storage/SIGKILL and
+new real persistent-profile smoke: contention denied, cookie restored, lease
+removed after close, zero active owned processes. Strict native profile regression
+is unchanged and must pass the new candidate. Evidence profile-guard-*.
+
+Apple Safari keyboard documentation confirms native-control traversal depends
+on host Keyboard Navigation preferences; Option-Tab alone is not universal button
+focus. Fixture now uses explicit tabindex ARIA keyboard widgets with real Tab,
+Enter and Space, no pointer/evaluate/focus shortcuts or OS changes. Local Chromium/
+Firefox keyboard plus dark/reduced-motion CSS switch/reset pass4 cases. Native
+macOS WebKit new fixture remains pending. Reference:
+https://support.apple.com/guide/safari/keyboard-and-other-shortcuts-cpsh003/mac
+
+This guard coordinates cooperating fork processes, not other apps or OS privileges.
+No full Windows ACL, managed profile registration/reset, crash recovery, encryption,
+retention, disk/browser quotas or full G07/G09 claim. See PROFILE_OWNERSHIP.md.
+NEXT: native profile/keyboard verification, then remaining driver/ACL/quota/egress
+requirements. Goal remains incomplete; no publishing/main merge.

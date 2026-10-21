@@ -35,3 +35,12 @@ Unimplemented: durable companion jobs/queues/profiles, filesystem ingestion dead
 retention, comprehensive redaction, approved
 redirect semantics, backoff scheduler and full acceptance/benchmark evidence.
 See CODEX_EXECUTION_LEDGER.md. No release-readiness claim.
+
+## Unreleased profile ownership hardening
+
+Original CLI/library tools remain delegated. Public persistent-launch/close APIs
+now acquire canonical cross-process profile leases and release after acknowledged
+shutdown. This addresses WebKit's observed acceptance of a contending profile;
+native confirmation of the guard is pending. Unknown launch/close, dead owner or
+corrupt metadata retains the lease without automatic deletion or PID killing.
+Existing profiles are not reset or repaired. See PROFILE_OWNERSHIP.md for limits.

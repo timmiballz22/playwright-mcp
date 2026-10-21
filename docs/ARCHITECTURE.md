@@ -2,7 +2,9 @@
 
 Independent original, batch and optional jobs stdio endpoints preserve Microsoft's wrapper without copying
 its bundled backend. `cli.js` and `index.js` delegate to pinned playwright-core;
-its MCP/browser/profile/trace/video implementations remain upstream. The
+its MCP/browser/profile/trace/video implementations remain upstream. A thin
+public-API profile ownership guard now refuses competing persistent launches
+and releases only after acknowledged close; see PROFILE_OWNERSHIP.md. The
 companion is ESM JS using the same Playwright engine and a runtime MCP SDK.
 
 Companion path: `mcp.mjs` or `cli.mjs` -> `executor.mjs` -> independent

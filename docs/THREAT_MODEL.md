@@ -22,7 +22,8 @@ Reports still contain timing/action metadata and absolute artifact paths.
 Screenshots can contain credentials and page secrets: capture is disabled unless
 the local operator opts in via CLI/environment. Use only approved fixtures/data;
 pixel masking remains unimplemented. Workflow input cannot enable capture.
-Directories are private and unique; there is no disk quota/retention controller.
+Worker directories are private and unique. Jobs offer bounded terminal artifact
+cleanup with dry-run default; enforced write quotas and retention remain absent.
 
 The original MCP endpoint remains upstream behavior, including optional privileged
 features and its own trust model. Companion restrictions do not secure that endpoint.
@@ -30,11 +31,21 @@ Execution runs in a separate worker with an independent watchdog and scoped
 process termination. This is not an OS sandbox or browser RSS quota. Linux zombie
 processes await host reaping; simultaneous controller loss, uninterruptible kernel
 I/O and host-level failures require external supervision. CLI input ingestion still
-precedes this boundary. Durable jobs and persistent companion profiles remain
-unimplemented. Do not expose either stdio process as a public service.
+precedes this boundary. Optional POSIX jobs MCP/CLI persist owner-scoped records and cancel on controller
+exit without replay. Windows private job storage and persistent companion profiles
+remain unfinished. Do not expose either stdio process as a public service.
 
 Operator-enabled navigation retries are restricted to the current explicit goto's
 GET main-document request after 429/503. A GET is not guaranteed harmless on every
 application; the operator must establish replay safety before enabling the local
 setting. Tool input and page content cannot enable it. No action/POST replay or
 redirect following is authorized; every attempt retains exact-origin checks.
+
+The delegated original endpoint now guards cooperating persistent launches with
+canonical filesystem leases and acknowledged public context close. Dead/corrupt/
+disconnected ownership fails closed without stale PID kills or deletion. This is
+not a private Windows ACL implementation, managed profile reset, OS sandbox or
+restriction on original code/network capabilities. Other software or the same OS
+user can ignore/tamper with markers; dedicated private profile directories remain
+necessary. See PROFILE_OWNERSHIP.md. The optional jobs owner UUID scopes records
+within a local service and is not authentication against the same OS user.

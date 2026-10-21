@@ -17,6 +17,8 @@
 
 const { program } = require('playwright-core/lib/utilsBundle');
 const { tools, libCli } = require('playwright-core/lib/coreBundle');
+// Compose persistent-profile ownership over public APIs; tools stay delegated.
+require('./local-batch/profile-guard.cjs').installProfileGuard(require('playwright-core'));
 
 if (process.argv.includes('install-browser')) {
   const argv = process.argv.map(arg => arg === 'install-browser' ? 'install' : arg);

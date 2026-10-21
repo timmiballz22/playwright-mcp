@@ -1,10 +1,13 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Latest completed native667190a has601 test passes/three Windows Firefox
-failures plus one macOS installed-package failure (CLI entry alias bug). Last complete green is d71c91e (469, all14 jobs). The alias fix and new local accessibility/profile/service-worker tests await
-native confirmation. Earlier intermittent failures are retained.
-OPEN means no adequate proof; PARTIAL means remaining work is still mandatory.
+PASS. Latest completed native7e2c9cb has708 passes/eight failures: WebKit profile
+contention on all OSs; Mac Firefox lock wording, Windows Firefox contention,
+Mac WebKit native-button focus assumption and two Windows raw Firefox stalls.
+The installed package/CLI alias fix passed all OSs. Last full green remains
+d71c91e(469). Public-API profile guard and explicit-tabindex keyboard fixture now
+pass scoped local checks and await native confirmation. Earlier failures remain
+retained. OPEN means no adequate proof; PARTIAL means required work remains.
 
 | # | Scenario | Status and concrete evidence / gap |
 |---|---|---|
@@ -39,7 +42,7 @@ OPEN means no adequate proof; PARTIAL means remaining work is still mandatory.
 | 29 | Dialog/popup/cross-frame behavior | PARTIAL: original dialog/frame and stale-target negatives passed native matrix at 9e73a08; earlier modal intermittency remains unexplained. Popup behavior proof remains. |
 | 30 | Mobile touch/viewport/DPI | PARTIAL: local Chromium mobile viewport/DPI/actual touch and CSS-scale PNG390x844 pass; Firefox explicit desktop viewport plus touch passes. Native/new WebKit coverage pending; no physical mobile claim. |
 | 31 | Held/repeated keyboard/canvas input | PARTIAL: original ARIA labels, Tab focus order, Enter and Space activation pass local Chromium/Firefox. Hold/release/repeated input and canvas fixtures remain. |
-| 32 | Dark mode/reduced motion | OPEN: discovery retains upstream capability; behavior not proved. |
+| 32 | Dark mode/reduced motion | PARTIAL: local original Chromium/Firefox CSS phenotype switches and resets for dark/light and reduce/no-preference pass. Native new coverage pending. |
 | 33 | Bounded console/request errors | PARTIAL: companion suppresses page logs; upstream console/network output behavior and large/error bounds still need fixtures. |
 | 34 | Isolated storage + project persistence | PARTIAL: original persistent-cookie/localStorage restore, sessionStorage end, exclusive profile lock and independent directory isolation pass local Chromium/Firefox. Jobs persistent profiles and secure managed reset remain absent. |
 | 35 | Corrupt profile/lock diagnosis | OPEN: no companion profile manager. |

@@ -1,17 +1,21 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native667190a:601 tests passed, three failed, zero test
-skips/cancellations, plus a macOS installed-package verification failure before
-its browser suite. The latter reproduced a jobs CLI canonical-path bug: ESM
-resolved /var to /private/var, so the entry guard silently skipped main. A local
-symlink regression now fails before and passes after canonical comparison;
-fresh109-file production package passes. Native confirmation is pending.
-All original wrapper suites passed. Windows Firefox headed and direct-pipe
-click/cleanup checks still fail, ruling out BrowserServer transport as the sole
-cause. New local ARIA/mobile/profile parity and hostile service-worker tests pass;
-new native coverage remains pending. Last full green remains d71c91e.
-NOT RELEASE-READY: Windows ACLs/Firefox, profiles, full quotas/retention, DNS/OS
-egress and other gates remain open. Latest commands and candidates are in the ledger.
+Latest completed native7e2c9cb:708 passed/eight failed, zero test skips/
+cancellations. All installed package checks passed, confirming the macOS CLI
+alias fix. New tests found real WebKit profile contention on all OSs, plus Mac
+Firefox lock wording, Windows Firefox contention timeout, Mac WebKit native-button
+focus assumptions and two Windows raw Firefox stalls.
+
+A new public-API guard composes delegated persistent launches with cross-process
+leases and acknowledged context close; no monorepo implementation is copied.
+Seven focused Node20/22/24 tests,16 real Chromium/Firefox library/profile/schema
+cases, six WebKit discovery cases and fresh115-file production package pass
+locally. The unchanged strict profile regression awaits native confirmation.
+Native-button focus assumptions are replaced by explicitly keyboard-accessible
+ARIA widgets; new media reset cases pass locally. Actual Codex six-tool jobs
+client confirms1,000 actions, owner denial, cancellation, cleanup and zero model
+turns. Last full green remains d71c91e. NOT RELEASE-READY: Windows driver/ACLs,
+managed profiles/reset, full quotas/retention, DNS/OS egress and other gates remain.
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
 
