@@ -2197,3 +2197,16 @@ metadata regression. Native diagnosis of the Windows failure remains pending;
 this instrumentation is not a runtime reliability fix. Evidence:
 journal-transport-node*.txt, journal-transport-codex-node22.txt,
 journal-transport-sdk-startup-node22.txt and journal-transport-production-package.txt.
+
+
+## Page-event tracking:100-cycle supervised soak
+
+The updated companion passes100 independent Linux Node22 supervised runs,600
+actions,119.878s elapsed; every run verifies fresh cookie/localStorage before
+seeding and independently observes zero owned survivors. Median/p95 latency
+1,066/1,149ms includes instrumentation. SubjectFD baseline/final24/24; median RSS
+growth after warmup8,290,304 bytes under the32MiB budget. Peak sampled summed
+tree RSS618,360,832 bytes; browser FD coverage remains partial (23 inaccessible
+process identities), not a full descriptor/resource quota proof. All configured
+thresholds pass, zero model turns. Evidence: page-budget-soak-100-node22.txt.
+Native/cross-OS soak and hard browser CPU/RAM/process quotas remain open.

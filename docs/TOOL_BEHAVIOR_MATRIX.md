@@ -23,7 +23,7 @@ Companion workflows expose no code/file/network-policy injection fields.
 | browser_cookie_set | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_cookie_delete | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_cookie_clear | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_resume | [devtools.spec.ts](../tests/devtools.spec.ts) | Malformed-location negative local proof only; successful interactive lifecycle pending |
+| browser_resume | [devtools.spec.ts](../tests/devtools.spec.ts) | Malformed-location negative passes native2d8fe7f host suites; successful interactive lifecycle pending |
 | browser_highlight | [devtools.spec.ts](../tests/devtools.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_hide_highlight | [devtools.spec.ts](../tests/devtools.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_annotate | No automated behavior fixture | Interactive acceptance pending |
@@ -100,3 +100,9 @@ Malformed browser_resume source locations return an explicit error and preserve
 a usable session: local Chromium/Firefox2/2. This negative call does not prove
 step/resume/breakpoint behavior or close the interactive acceptance gate.
 Evidence: original-resume-negative-local.txt.
+
+Native2d8fe7f original suites pass144/144 each on Linux, macOS Intel and Windows,
+including slider valid/event/invalid partial-mutation behavior and malformed
+resume-location rejection with a usable session afterward. The companion/native
+Codex acceptance workflow is still running; this is scoped original-tool evidence,
+not a full green matrix or successful interactive debugger/annotation proof.
