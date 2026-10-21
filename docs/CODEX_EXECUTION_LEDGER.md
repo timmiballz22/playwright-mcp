@@ -2,7 +2,9 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening; last pusheda2a8ac7. Native60 complete:
+Branch feat/local-production-hardening; last pushed4a614b3. Native61 is active:
+CI39664310949 and batch39664310932. All four components pass by conclusion;
+remaining native61 counts/close observations are pending. Latest complete native60:
 CI39659786624 FAILURE436/1; batch39659786456 FAILURE1,252/3 =>1,688 reported passes/
 four failed tests. All17 executed jobs conclude; one intentional soak skip, no
 reported test skips/cancellations or job cancellations. All five174-file installs,
@@ -22,7 +24,7 @@ Chromium/Firefox2/2 and lint pass; synthetic post-ack hold calibrates10→1 obse
 processes. It is not a native stall reproduction. Extra per-test phase diagnostic
 was redundant and removed; existing original_mcp_progress is authoritative.
 
-**Not release-ready. NEXT ACTION: push diagnostic candidate, inspect native61.**
+**Not release-ready. NEXT ACTION: inspect complete native61, then push retry-timing candidate.**
 See exact phase/SHA receipts and prepared NATIVE_BROWSER_REPRODUCTIONS.md. Root
 causes in delegated engine shutdown/pointer latency are not established; no blind
 core patch, forced-click/retry or successful-close reclassification is justified.
@@ -4003,3 +4005,27 @@ observer and records10→1 processes with transport root present. It calibrates 
 read-only observation and is not native teardown/reliability proof. Evidence
 original-close-observer-*. Native61 must verify the candidate. Reproduction packet
 is local only; no external issue or human message has been posted.
+
+## Retry fixture budget diagnostics (local after4a614b3)
+
+The frequent Windows positive /429 failure has1 GET and0 completed before the
+unchanged global deadline. To distinguish cold setup budget from post-response
+stall, the source-only retry fixture now retains supervisor/worker/browser event-
+receipt offsets, first request/last finished-response offsets and request/finished
+response counts in its existing assertion diagnostic. No raw URL/header/body,
+exception or selector is added. Event receipt offsets are not OS process birth or
+exact remote-operation timestamps. Production result/schema are unchanged.
+
+Final Chromium/Firefox retry cases2/2 each Node22/24 pass, preserving minimum
+Retry-After, cap/exhaustion, cancellation and single POST assertions. A deliberately
+wrong positive assertion exits1 after its successful /429 operation and validates
+2 requests/2 finished responses, coherent local response timestamps and no seeded
+canary in the diagnostic. Negative control is not a native failure reproduction
+or another passing positive workflow. Lint/diff pass. retry-timing-positive24 is
+an earlier projection before explicit EventMs names/finished counts; positive22
+and final24 are final source. Evidence retry-timing-*.
+
+The original close-process observer's initial audit also consumes time and may
+change interleavings. A healthy instrumented case cannot be called a fix for the
+prior close stall. Pending observation is read-only diagnostic coverage, not an
+all-processes-exited assertion or authority to release any lease.

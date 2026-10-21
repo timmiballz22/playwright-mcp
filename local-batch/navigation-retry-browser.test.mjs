@@ -10,12 +10,14 @@ import { executeWorkflow } from './executor.mjs';
 const policy = { maxRetries: 2, baseDelayMs: 100, maxDelayMs: 2000 };
 for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',')) {
 test(`real ${browser}: supervised navigation respects throttling and never replays form POST or over-cap waits`, async () => {
-  const hits = new Map(); const times = new Map();
+  const hits = new Map(); const times = new Map(); const finished = new Map();
+  let latestTiming;
   const abort = new AbortController();
   let abortAt;
   const server = createServer((req, res) => {
     res.setHeader('Content-Type', 'text/html');
     const key = req.method + req.url;
+    res.once('finish', () => finished.set(key, { count: (finished.get(key)?.count ?? 0) + 1, at: performance.now() }));
     hits.set(key, (hits.get(key) || 0) + 1);
     times.set(key, [...times.get(key) || [], performance.now()]);
     if (req.url === '/form') { res.setHeader('Content-Type', 'text/html'); res.end('<form method="post" action="/submit"><button>Send</button></form>'); return; }
@@ -31,9 +33,20 @@ test(`real ${browser}: supervised navigation respects throttling and never repla
   const origin = `http://127.0.0.1:${server.address().port}`;
   const directory = await mkdtemp(path.join(os.tmpdir(), 'retry-browser-'));
   const run = async (route, extra = {}) => {
+    const started = performance.now(); const phases = { supervisorEventMs: null, workerEventMs: null, browserEventMs: null };
     const result = await executeWorkflow({ browser, timeoutMs: 10000, steps: [{ type: 'goto', url: origin + route }, ...(extra.steps || [])] }, {
       allowedOrigins: [origin], artifactsDir: directory, navigationRetry: policy, ...extra,
+      onEvent: event => {
+        if (event.type === 'supervisorSpawned') phases.supervisorEventMs = Math.round(performance.now() - started);
+        if (event.type === 'workerSpawned') phases.workerEventMs = Math.round(performance.now() - started);
+        if (event.type === 'ownedProcess') phases.browserEventMs = Math.round(performance.now() - started);
+        extra.onEvent?.(event);
+      },
     });
+    const key = 'GET' + new URL(route, origin).pathname;
+    latestTiming = { ...phases, requestsSeen: hits.get(key) ?? 0, responsesFinished: finished.get(key)?.count ?? 0,
+      firstRequestMs: times.has(key) ? Math.round(times.get(key)[0] - started) : null,
+      lastResponseFinishedMs: finished.has(key) ? Math.round(finished.get(key).at - started) : null };
     assert.equal(JSON.stringify(result).includes('canary'), false);
     assert.equal(result.execution.cleanup, 'terminated');
     assert.equal(result.execution.tempCleanup, 'removed');
@@ -44,7 +57,7 @@ test(`real ${browser}: supervised navigation respects throttling and never repla
       const result = await run(route);
       assert.equal(result.ok, true, JSON.stringify({ route, reason: result.reason,
         completed: result.completed, failedStep: result.failedStep, execution: result.execution,
-        hits: hits.get('GET' + new URL(route, origin).pathname) }));
+        hits: hits.get('GET' + new URL(route, origin).pathname), timing: latestTiming }));
       assert.equal(hits.get('GET' + new URL(route, origin).pathname), 2);
       const [first, second] = times.get('GET' + new URL(route, origin).pathname);
       assert.ok(second - first >= (route === '/429' ? 990 : 90));

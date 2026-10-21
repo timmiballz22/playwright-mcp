@@ -1,0 +1,29 @@
+✖ real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits (2980.131142ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3070.055617
+
+✖ failing tests:
+
+test at local-batch/navigation-retry-browser.test.mjs:12:1
+✖ real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits (2980.131142ms)
+  AssertionError [ERR_ASSERTION]: {"route":"/429","reason":null,"completed":1,"failedStep":null,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":693254,"workerPid":693261,"browserPids":[693273]},"hits":2,"timing":{"supervisorEventMs":4,"workerEventMs":41,"browserEventMs":710,"requestsSeen":2,"responsesFinished":2,"firstRequestMs":1522,"lastResponseFinishedMs":2533}}
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/navigation-retry-browser.test.mjs:58:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
