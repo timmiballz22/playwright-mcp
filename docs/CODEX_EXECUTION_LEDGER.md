@@ -3777,3 +3777,18 @@ quota + report-failure tests10/10 each Node22/24, applicable quota6/6 Node20 and
 lint/diff pass (retained-budget-reason-*). The95-component and174-file receipts
 above precede this final reason-only projection; they are not relabeled as its
 full validation. Next native candidate must verify the final projection too.
+
+Final runtime quota proof: the checkout-only retained-scan-stall fixture patches
+only opendir then imports the actual execution worker. It witnesses pending I/O,
+hits the unchanged1.5s workflow deadline before browser launch, confirms termination
+and independently observes zero owned descendants. This tests a pending JS I/O
+boundary, not kernel-uninterruptible I/O. Final runtime full components96/96 each
+Node22/24, applicable quota7/7 Node20, lint/diff and fresh174-file installed package
+(including normal/linger independent death audits) pass: retained-final-*.
+
+An additional test-only synthetic inventory covers root+9,999 entries accepted,
+next entry refused, no subsequent enumeration, and iterator closed on rejection.
+The final quota test file passes9/9 each Node22/24 and8/8 Node20 (SQLite case not
+registered), retained-entry-bound-*. The96-case component receipts precede only
+this additional test case; runtime source is identical. Native59 should include
+all97 component cases (Windows expected98, verify actual logs).
