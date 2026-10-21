@@ -2,17 +2,16 @@
 
 Updated 2026-10-21. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest completed native runtime candidate: `4855acb9956a898f47380acb86b09bd2be0490d8`.
-Four batch browser jobs passed 63 tests each; Linux Node24 failed browser install
-on an apt repository HTTP403 before tests. All four journal jobs passed (59 test
-passes recorded; the Linux Node24 summary is absent from retrieved logs).
-Original wrapper tests passed 161; the additional Windows Node20 Firefox case
-failed (fresh run4, stability wait). Thus available logs record 472 passes and one
-test failure, plus the install failure; no complete aggregate is asserted.
-Windows Node22 ten-fresh Firefox passed. Actual controller-death cleanup passed
-on Linux/macOS/Windows installed packages. Last complete green remains d71c91e.
-New operator-only navigation retry code is locally tested at 7571453; native
-validation is pending. Public jobs, profiles and remaining gates are incomplete.
+Latest completed native runtime candidate: `fa89738bc7fed576307d29df49a37c3fc434e3a7`.
+575 passed, six failed, zero test skips/cancellations. All original wrapper jobs
+passed (162 tests); all journal jobs passed (79). Five WebKit retry-fixture cases
+and the Windows Firefox retry case failed their first successful-goto assertion.
+Both Windows raw Firefox ten-fresh fixtures passed this run; historical flakiness
+remains unresolved. The fixture lacked an HTML Content-Type and failure details;
+the corrected fixture needs native validation. Last full green remains d71c91e.
+Internal controller candidate 5c18667 has local Node24/22 component and fresh
+production-package proof, but native acceptance and public job tools/configuration,
+profiles and remaining master-spec gates are incomplete. NOT RELEASE-READY.
 All 45 mandatory scenarios are
 mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
@@ -24,7 +23,7 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | G03 FEATURE PARITY | IN PROGRESS | evidence/discovery-*.json: 25 default / 72 extended tools per configured browser; tests/capabilities.spec.ts | Add representative behavior tests for every capability group |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs + integration.test.mjs; evidence/codex-client-operator.txt: exact 1000 actions / 997 clicks | Extend real long workflow to other browsers |
 | G05 RETRIES | IN PROGRESS | Operator-only bounded GET goto 429/503 policy; real Chromium/Firefox no-POST-replay tests | Native retry coverage, fairness and bounded metrics |
-| G06 JOBS | IN PROGRESS | Native independent supervisor/admission/journal proof; internal guardian has local lifecycle/installed-browser evidence; public jobs absent | Native guardian proof, public IDs/queue/status/result/cancel/cleanup and real controller death/recovery |
+| G06 JOBS | IN PROGRESS | Internal bounded controller/journal/guardian; 27 local component tests per Node22/24 and real installed queue/death proof | Native controller proof, public MCP/CLI APIs/configuration, clock changes and safe retention cleanup |
 | G07 SECURITY | FAILED | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
 | G08 STORAGE | IN PROGRESS | runner.mjs mkdtemp private per-run artifacts; report.mjs exclusive report write | Atomic artifacts, quotas, retention and native Windows ACL evidence; 20-run uniqueness already passed |
 | G09 AUTH/PROFILES | NOT STARTED | Batch ephemeral only; upstream retains profile features | Reuse upstream isolation/profile APIs with project locks and tests |
@@ -759,9 +758,8 @@ Public job tools/controller and remaining master gates remain unfinished.
 
 ## Rejected input experiment and shared browser ownership candidate (2026-10-21)
 
-Native batch run 39518437734 at 4bf7d77 completed with eight successful jobs and one failed job. Available logs record
-306 passed/one failed, zero skipped/cancelled; Linux Node 24 batch and journal
-summary lines are absent from the retrieved log, so the full total is unverified. Windows Node 22 Firefox failed fresh run 9 at action 6
+Native batch run 39518437734 at 4bf7d77 completed with eight successful jobs and one failed job. The corrected reporter-aware count is
+388 passed/one failed, zero skipped/cancelled for this batch matrix. Windows Node 22 Firefox failed fresh run 9 at action 6
 (completed 5/23), pointer_action_timeout after 5003ms. Visibility, stability and
 scroll checks passed; the bounded counter probe also timed out (500ms).
 cleanupFailures was empty. Thus delay=1 did not establish a fix and is reverted.
@@ -819,9 +817,8 @@ G05 remains IN PROGRESS pending native evidence and broader fairness controls.
 
 GitHub API credentials recovered. Restored fourteenth wrapper metadata/logs show
 162 passes and all five jobs successful, including the ten-fresh Windows Node 20
-Firefox case. Together with available batch logs this confirms 468 passes and
-one failure; Linux Node 24 batch/journal summaries are still absent from retrieved
-fourteenth logs, so no full-run total is asserted. Fifteenth native runtime
+Firefox case. Reporter-aware counting of Node24 spec output corrects the full
+fourteenth total to 550 passed and one failed, zero test skips/cancellations. Fifteenth native runtime
 candidate 4855acb is not green: Windows Node 20 Firefox fresh run 4 failed step16
 while waiting for visible/enabled/stable; fixture counter was 14, cleanupFailures
 empty. Shared BrowserServer ownership does not establish a native stability fix.
@@ -841,12 +838,69 @@ Shared transport remains useful for ownership, but is not a demonstrated fix.
 Linux Node24 apt install failed fetching the signed Microsoft noble InRelease
 with HTTP403; signature checks were not disabled and browser tests did not run.
 The upcoming full candidate matrix repeats normal installation without changing
-trust settings. Retrieved logs omit the Linux Node24 journal summary; metadata
-says its job passed, but no test count is inferred. Available totals: 472 passes,
-one test failure, one install failure. Evidence: worker-ci-fifteenth-*.json/txt.
+trust settings. Reporter-aware counting includes the Node24 journal output:
+492 passes, one test failure, one install failure, zero test skips/cancellations. Evidence: worker-ci-fifteenth-*.json/txt.
 
 Fresh installed real Chromium controller SIGKILL verification passed on Windows
 (13 owned processes observed, CANCELLED1/2), Linux (12, CANCELLED1/2), and macOS
 (10, CANCELLED0/2). Each independently observed zero active owned descendants,
 confirmed project lease release and checked journal integrity. Zero model turns.
 These are internal guardian proofs, not public jobs/controller acceptance.
+
+## Internal controller candidate and corrected native accounting (2026-10-21)
+
+Reviewable runtime/source commit: 5c186678340e3a8c50a25611479726c8b8c335b2.
+New JobController uses the existing journal and detached guardian: bounded FIFO
+inputs, project lease, keyed idempotency, owner-scoped status/result/list/cancel,
+and idempotent close. Inputs remain in memory, never replay after reconnect.
+Terminal results are admitted only after the owned guardian exits and canonical
+journal outcome is read. Unknown/started guardian death retains an uncertain
+lease. Public MCP/CLI job frontends and trusted namespace/configuration remain
+unfinished; see JOBS_CONTROLLER.md for explicit scope and limitations.
+
+Three controller regressions failed before correction: competing-client queued
+cancellation freed a journal slot while creator payloads remained resident;
+queued status did not expire while another job ran; cancellation plus guardian
+death before activation incorrectly became FAILED. Atomic admitNew after duplicate
+lookup bounds retained payloads to nine while preserving duplicate-key lookup.
+Read reconciliation expires unstarted work, and preactivation exit preserves
+cancellation/deadline intent with exact zero. Eight admitted source requests
+bound pending snapshots. Queue deadlines currently use wall-clock timestamps;
+monotonic handling across clock changes remains open before public acceptance.
+
+Executed: node --test local-batch/jobs/controller.test.mjs
+local-batch/jobs/journal.test.mjs local-batch/jobs/guardian.test.mjs
+local-batch/jobs/workflow-snapshot.test.mjs: 27 passed on local Node24 and 27 on
+Node22, zero failed/skipped/cancelled. Seven controller cases cover successful
+FIFO jobs, duplicates/conflicts, owner separation, cancellation/reconnect,
+retained-input pressure, queue expiry, guardian crash, close before dequeue and
+cancelled guardian startup. These use real owned Node child effects, not browsers.
+Fresh production tarball (93 files) additionally completed two queued real
+Chromium jobs/ten actions, duplicate/reconnect without replay, original and retry
+MCP/CLI smokes, seven-action guardian/storage checks, and actual source-controller
+SIGKILL: 12 owned processes, CANCELLED1/2, zero active owned processes, released
+lease, valid journal. Evidence: job-controller-*.txt. No public job tool claim.
+Native journal jobs now include controller and CI-accounting regression tests;
+production verification includes installed controller and actual owner-death proof.
+
+Corrected CI extraction explicitly handles both TAP (# pass) and Node24 spec
+(ℹ pass). Earlier statements that Node24 summaries were absent were extraction
+errors, corrected above. Two accounting tests pass, including mixed reporters,
+original wrapper counts, duplicate summary and incomplete-total rejection.
+Reproducible: node scripts/ci-test-counts.mjs docs/evidence/worker-ci-sixteenth-batch-tests.txt
+docs/evidence/worker-ci-sixteenth-wrapper-tests.txt. Fourteenth total 550/1;
+fifteenth 492/1 plus one pre-test install failure; sixteenth 575/6. All have zero
+test skips/cancellations (conditional OS steps are not test cases).
+
+Sixteenth batch: https://github.com/timmiballz22/playwright-mcp/actions/runs/39522150365 .
+Wrapper: https://github.com/timmiballz22/playwright-mcp/actions/runs/39522150398 .
+All original wrapper assertions and both Windows ten-fresh raw Firefox cases
+passed. Five WebKit retry cases and Windows Firefox retry case failed at the
+first success assertion; the test omitted bounded result diagnostics, so the
+exact runtime reason is unknown. Success HTML lacked Content-Type. That fixture
+defect is corrected and fixed-field diagnostics added; native confirmation remains
+pending. Corrected fixture passes two local Chromium/Firefox cases (17.999s).
+No action force/replay/deadline inflation is introduced. Linux Node24 normal
+browser installation passed this matrix, without bypassing signature checks.
+Public jobs, native stability, ACLs, quotas/retention, profiles, DNS/OS egress and
+remaining G00–G18 acceptance remain unfinished. Last full green is still d71c91e.
