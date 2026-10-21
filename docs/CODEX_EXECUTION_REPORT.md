@@ -1,20 +1,28 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest complete native61 at4a614b3: **1,686 reported passes/nine failed tests**,
-plus separate macOS actual-Codex FAILED964/1k with failed cleanup and operator
-attention. All five175-file production installs and components97/98 pass; all
-standard original host suites144/0 pass, legacy Windows Firefox0/3 fails. Windows
-HTTP/screenshot ownership and macOS raw/jobs/batch/cancel scopes fail. No PID hint
-or healthy comparison clears those failures. Not release-ready.
+Latest completed native62 at456a141: **1,704 reported passes/15 failed tests**,
+plus separate macOS actual-Codex timeout954/1k with known cleanup. All five175-file
+production installs pass. Five failures are stale temp-ACK crash expectations;
+two Windows ownership cases lose their live-child witness because non-detached
+Node children die with the parent through libuv job control. Windows Firefox and
+macOS1k failures remain. Prior native61 possible-orphan and second-GET findings
+remain unresolved despite healthy later samples. Not release-ready.
 
-Later local P0 correction has actual detached-child before/after evidence: an
-unexpected worker exit without final/browser receipt can no longer claim cleanup
-terminated or release durable admission. IPC is drained; the8-entry metadata cap
-remains fixed; safe first signal-error class preserves permission uncertainty.
-Local components99/99 Node22/24, focused26/25 Node22/20, fresh175-file install,
-normal/linger death audits and public jobs1k2/2 pass. Native62 proof pending.
-See CODEX_EXECUTION_LEDGER.md and NATIVE_BROWSER_REPRODUCTIONS.md for exact phases,
-blocked gates, observer perturbation, negative controls and follow-up cases.
+Current pushed d22b111 corrects the private fault model to an explicitly detached
+child everywhere; live-child/fence/reopen assertions and budgets remain intact.
+The temp-ACK case now requires cleanup uncertainty while preserving owned temp
+removal. It also retains validated early HTTP numeric facts when overall timeout
+wins. Local components102/102 Node22/24 and fresh175-file production install pass.
+Native63 batch39673986509/wrapper39673986586 is running; all four component jobs
+pass, full browser/client verification pending. No successful component job
+establishes full native acceptance.
+
+Later local-only cancellation witness marks each public route.fetch call and
+commits a private POST before withholding the response. Chromium/Firefox checks
+pass; deliberate duplicate-POST negative control fails on count2. This is source
+QA instrumentation, not a production replay fix or a resolution of native61's
+WebKit second GET. Exact phases and unchanged limits are recorded in
+CODEX_EXECUTION_LEDGER.md and NATIVE_BROWSER_REPRODUCTIONS.md.
 
 The following records are historical checkpoints.
 

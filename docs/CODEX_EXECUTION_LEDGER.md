@@ -4165,3 +4165,31 @@ their native62 cases pass.
 Post-correction full Node22 component suite102/102,0 failed/skipped/cancelled;
 lint and diff checks pass. Production code is unchanged by this fixture/test
 correction. HTTP metadata production proof is recorded separately at ce73a11.
+
+## Private fetch/cancellation witness — local only after d22b111
+
+Native61 WebKit's second GET arrives219ms after the first despite a1s server
+retry minimum and parent abort107ms. Its cause is unresolved. Checkout-only
+marked-fetch-worker wraps public route.fetch, preserving request headers and
+adding a private local fixture header with a sequence per public invocation.
+Same-ID repeats suggest an underlying fetch replay; distinct IDs show multiple
+public calls; unmarked traffic bypasses this observed fetch path. Instrumentation
+can change timing and is not a production correction. Private TMP env is set
+before Playwright import, then the actual execution-worker receives its start.
+
+Independent GET429 cancellation and POST cancellation cases use the same10s
+workflow bound. The local POST is recorded before any response; cancellation
+leaves1 confirmed prior goto, retrySafe:false, exactly1 committed POST. The GET
+case has0 confirmed actions/1 GET. Both require known cleanup/removal and an
+independent empty owned-process audit, including failure teardown. Failed roots
+are retained and primary/teardown errors aggregated. No site data or production
+policy hook is introduced; existing throttling/cancellation assertions remain.
+
+Initial witness2/2 Node24 Chromium/Firefox. Deliberate private duplicate-POST
+fault0/1 (two marked POST IDs2/3 about1ms apart), detects replay. Regression4/4
+each Node22/24 includes existing throttling cases before/during teardown-only
+strengthening; final witness2/2 each22/24 after strengthening, no skips/cancels.
+Final duplicate control still0/1; verified cleanup and primary count assertion
+retained. Lint/diff checks pass. marked-fetch-* receipts separate these phases.
+WebKit local host dependencies remain unavailable; no extra installation or
+privilege workaround is attempted. Native63 does not include this witness.

@@ -1,0 +1,26 @@
+TAP version 13
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":726852,"workerPid":726859,"browserPids":[726871]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":102}
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":726943,"workerPid":726950,"browserPids":[726962]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+# Subtest: real chromium: cancellation preserves a committed POST once and identifies public fetch calls
+ok 1 - real chromium: cancellation preserves a committed POST once and identifies public fetch calls
+  ---
+  duration_ms: 1971.50055
+  type: 'test'
+  ...
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":727039,"workerPid":727046,"browserPids":[727058]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":100}
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":727223,"workerPid":727230,"browserPids":[727242]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":99}
+# Subtest: real firefox: cancellation preserves a committed POST once and identifies public fetch calls
+ok 2 - real firefox: cancellation preserves a committed POST once and identifies public fetch calls
+  ---
+  duration_ms: 4381.252127
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6433.875095

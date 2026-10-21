@@ -1,0 +1,30 @@
+{"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":727465,"workerPid":727472,"browserPids":[727484]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":105}
+✖ real chromium: cancellation preserves a committed POST once and identifies public fetch calls (1841.907623ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1936.875152
+
+✖ failing tests:
+
+test at local-batch/navigation-retry-browser.test.mjs:86:3
+✖ real chromium: cancellation preserves a committed POST once and identifies public fetch calls (1841.907623ms)
+  AssertionError [ERR_ASSERTION]: {"scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":727555,"workerPid":727562,"browserPids":[727574]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0},{"method":"POST","fetchId":"3","offsetMs":2}],"abortOffsetMs":101}
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/navigation-retry-browser.test.mjs:119:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

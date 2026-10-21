@@ -6,6 +6,7 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { executeWorkflow } from './executor.mjs';
+import { ownedDescendants } from './fixtures/process-audit.mjs';
 
 const policy = { maxRetries: 2, baseDelayMs: 100, maxDelayMs: 2000 };
 for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',')) {
@@ -77,4 +78,63 @@ test(`real ${browser}: supervised navigation respects throttling and never repla
     assert.equal(hits.get('POST/submit'), 1);
   } finally { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); await rm(directory, { recursive: true, force: true }); }
 });
+}
+
+// Independent source-only witness. Existing throttling/cancel assertions above
+// remain unchanged; marked traffic never leaves this private local server.
+for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',')) {
+  test(`real ${browser}: cancellation preserves a committed POST once and identifies public fetch calls`, { timeout: 40000 }, async () => {
+    const records = []; let active; let pending; let verified = false; let primary;
+    const root = await mkdtemp(path.join(os.tmpdir(), 'cancel-fetch-witness-'));
+    const owned = [];
+    const fixture = createServer((request, response) => {
+      const row = { method: request.method, path: request.url, fetchId: request.headers['x-pwmcp-private-fetch'] ?? null, at: performance.now() };
+      records.push(row);
+      if (request.url === '/form') { response.setHeader('Content-Type', 'text/html'); response.end('<form method="post" action="/commit"><button>Commit</button></form>'); return; }
+      if (request.url === '/commit' || request.url === '/cancel') {
+        // /commit is a committed local ledger entry with no response: abort
+        // cannot establish whether the client observed its effect.
+        if (request.url === '/cancel') { response.writeHead(429, { 'Retry-After': '1' }); response.end('fixed fixture'); }
+        if (!active.scheduled) { active.scheduled = true; setTimeout(() => { active.at = performance.now(); active.abort.abort(); }, 100); }
+        return;
+      }
+      response.writeHead(404); response.end();
+    });
+    fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
+    const origin = `http://127.0.0.1:${fixture.address().port}`;
+    try {
+      for (const scenario of ['cancel', 'commit']) {
+        active = { abort: new AbortController(), scheduled: false };
+        pending = executeWorkflow({ browser, timeoutMs: 10000, steps: [{ type: 'goto', url: origin + (scenario === 'commit' ? '/form' : '/cancel') }, ...(scenario === 'commit' ? [{ type: 'click', selector: 'button' }] : [])] }, {
+          artifactsDir: root, allowedOrigins: [origin], navigationRetry: policy, signal: active.abort.signal,
+          workerModule: new URL('./jobs/fixtures/marked-fetch-worker.mjs', import.meta.url),
+          onEvent: event => { if (event.pid) owned.push(event.pid); },
+        });
+        const result = await pending;
+        const requests = records.filter(row => row.path === '/' + scenario);
+        const receipt = { scenario, reason: result.reason, completed: result.completed, execution: result.execution,
+          requests: requests.map(row => ({ method: row.method, fetchId: row.fetchId, offsetMs: Math.round(row.at - requests[0].at) })),
+          abortOffsetMs: requests.length ? Math.round(active.at - requests[0].at) : null };
+        assert.equal(result.reason, 'cancelled', JSON.stringify(receipt));
+        assert.equal(requests.length, 1, JSON.stringify(receipt));
+        assert.match(requests[0].fetchId, /^[1-9]\d*$/);
+        assert.equal(requests[0].method, scenario === 'commit' ? 'POST' : 'GET');
+        assert.equal(result.retrySafe, false); assert.equal(result.completed, scenario === 'commit' ? 1 : 0);
+        assert.equal(result.execution.cleanup, 'terminated'); assert.equal(result.execution.tempCleanup, 'removed');
+        console.log(JSON.stringify({ component: 'private_fetch_cancel_witness', browser, ...receipt }));
+      }
+      verified = true;
+    } catch (error) { primary = error; throw error; }
+    finally {
+      try {
+        active?.abort.abort(); if (pending) await pending;
+        fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
+        assert.deepEqual(await ownedDescendants(owned), []);
+        if (verified) await rm(root, { recursive: true, force: true });
+      } catch (error) {
+        if (primary) throw new AggregateError([primary, error], 'Cancellation witness and teardown failed');
+        throw error;
+      }
+    }
+  });
 }
