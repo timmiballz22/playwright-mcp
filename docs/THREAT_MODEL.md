@@ -69,3 +69,12 @@ and late receipt/close cannot override its monotonic deadline. Failed or unconfi
 shutdown returns false; existing supervisor/job uncertainty fencing stays in effect.
 The controlled EOF test suspends a JavaScript filesystem promise in the actual
 worker; it is not proof against uninterruptible kernel I/O or host failure.
+
+Durable jobs reserve retained logical artifact bytes before browser effects under
+the existing project lease (512 MiB default per private owner directory). The
+supervised scan fails closed on unsafe entries, byte/entry/depth limits and I/O
+failure; its existing execution deadline also bounds a stalled scan. It reserves
+the full screenshot allowance, report ceiling and diagnostic allowance, retaining
+prior files on refusal. This does not prevent same-user external writers or bound
+temporary browser data, physical disk allocation or other artifact directories.
+Custom trusted source callers must serialize any shared directory across leases.

@@ -1,3 +1,4 @@
+import { DEFAULT_RETAINED_ARTIFACT_BYTES, validateRetainedArtifactLimit } from '../retained-artifact-budget.mjs';
 import { guardianDiagnostic } from './guardian-diagnostic.mjs';
 // Trusted controller; optional public MCP configuration lives in config.mjs.
 import { fork } from 'node:child_process';
@@ -16,6 +17,7 @@ const retentionCodes = new Set(['not_found', 'not_terminal', 'not_expired', 'cle
 export class JobController {
   static async open({ journal: config, execution = {}, onEvent } = {}) {
     const executionOptions = { ...execution,
+      maxRetainedArtifactBytes: validateRetainedArtifactLimit(execution.maxRetainedArtifactBytes ?? DEFAULT_RETAINED_ARTIFACT_BYTES),
       allowedOrigins: [...execution.allowedOrigins ?? []],
       artifactsDir: path.resolve(execution.artifactsDir ?? '.local-batch-output'),
       navigationRetry: navigationRetryPolicy(execution.navigationRetry) ?? undefined };

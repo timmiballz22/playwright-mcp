@@ -1,0 +1,40 @@
+✔ cleanup reserve cancellation is not erased by a late successful worker report (3268.186138ms)
+✔ late cancellation after supervisor result preserves success outcome (159.135655ms)
+✔ late cancellation after supervisor result preserves blocked outcome (122.866071ms)
+✔ late cancellation after supervisor result preserves action outcome (120.485051ms)
+✔ supervised hang: bounded completion and owned process cleanup (1926.476064ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1954.99554ms)
+✔ supervised crash: bounded completion and owned process cleanup (85.001285ms)
+✔ pre-cancelled execution never starts a worker (0.515086ms)
+✔ cancel interrupts a worker that cannot service its abort listener (461.923731ms)
+✔ supervisor crash cannot strand its worker or detached child (246.381097ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (37.70613ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (249.469831ms)
+✔ verified cleanup recovery preserves success action outcome (126.696791ms)
+✔ verified cleanup recovery preserves blocked action outcome (128.197756ms)
+✔ verified cleanup recovery preserves action action outcome (122.541239ms)
+✔ failed durable admission cannot start worker actions (69.813389ms)
+✔ stalled durable admission cannot evade watchdog deadline or start late (1610.812771ms)
+✔ successful durable admission precedes owned worker effects (130.741261ms)
+✔ internal job controller queue-success (864.233947ms)
+✔ internal job controller cancel-and-reconnect (660.653484ms)
+✔ internal job controller queue-pressure (1054.643054ms)
+✔ internal job controller queue-expiry (1090.589826ms)
+✔ internal job controller guardian-crash (1559.842548ms)
+✔ internal job controller close-before-dequeue (842.638617ms)
+✔ internal job controller cancel-during-guardian-start (391.995718ms)
+✔ retained admission accepts the exact reserved boundary and preserves prior bytes when full (8.840627ms)
+✔ retained admission rejects symbolic entries without mutation (3.029857ms)
+✔ retained admission rejects hard entries without mutation (3.290682ms)
+✔ retained admission rejects depth entries without mutation (6.216228ms)
+✔ retained limit rejects malformed trusted configuration (0.49181ms)
+✔ real supervised admission denies before browser launch and preserves prior artifacts (131.654209ms)
+✔ durable quota failure remains deduplicated and a later admitted job executes (1191.869874ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18813.451839

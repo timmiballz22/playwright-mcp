@@ -138,3 +138,21 @@ handle, then disconnects/unrefs and returns false. False retains cleanup uncerta
 and never authorizes lease release or another workflow after unconfirmed cleanup.
 A monotonic deadline check rejects a late success even if the timer callback was
 delayed. No stored PID is signalled; malformed receipts and IPC errors fail closed.
+
+Durable `JobController.open` execution now reserves retained artifact capacity before
+browser launch. The default per-owner artifact directory limit is 512 MiB of
+logical file bytes. Trusted source callers may set `execution.maxRetainedArtifactBytes`
+from 1 byte through 1 GiB; admission still requires enough capacity for the full
+configured screenshot budget, an 8 MiB report and 16 KiB diagnostic allowance.
+This setting is not a workflow/MCP argument. The scan rejects symlinks, hard-linked
+files, foreign POSIX owners, special files, more than 10,000 entries or depth above
+8. It runs inside the existing supervised worker deadline, before creating its run
+workspace or launching a browser. A refusal is a workspace-stage execution failure with zero completed actions; it does not prune files, replay the job or release an uncertain
+cleanup fence. Explicit owner-authorized retention can make space for a new job.
+
+The project execution lease serializes these checks with execution and cleanup.
+The limit covers the standard private owner/project artifact directory. Trusted
+source callers sharing one directory across unrelated project leases must supply
+external serialization. Same-user external writers can race the scan; temporary
+profiles/downloads, filesystem allocation, browser memory and journal bytes are
+separate bounds. This is not a hard OS disk quota or automatic retention policy.

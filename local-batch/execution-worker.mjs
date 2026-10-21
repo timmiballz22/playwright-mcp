@@ -1,3 +1,4 @@
+import { checkRetainedArtifactBudget } from './retained-artifact-budget.mjs';
 // Trusted executor only. Workflow content never chooses modules, code or shell.
 import { runWorkflow } from './runner.mjs';
 import { saveReport } from './report.mjs';
@@ -20,6 +21,8 @@ process.once('message', async packet => {
   try {
     stage = 'workspace';
     await mkdir(path.dirname(packet.workspaceRoot), { recursive: true, mode: 0o700 });
+    if (packet.options.maxRetainedArtifactBytes !== undefined)
+      await checkRetainedArtifactBudget(path.dirname(packet.workspaceRoot), packet.options.maxRetainedArtifactBytes, packet.options.maxScreenshotBytes);
     await mkdir(packet.workspaceRoot, { mode: 0o700 }); // exclusive run ownership
     await new Promise((resolve, reject) => process.send({ type: 'workspaceCreated' }, error => error ? reject(error) : resolve()));
     const tempDir = packet.temporaryRoot ?? path.join(packet.workspaceRoot, 'tmp');

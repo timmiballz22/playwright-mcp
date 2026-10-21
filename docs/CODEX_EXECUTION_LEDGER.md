@@ -3744,3 +3744,28 @@ Node22/24, lint/diff and fresh173-file production installation pass. Both indepe
 normal/linger controller-death audits observe zero owned processes. Evidence
 artifact-receipt-*. Native58 at de9c924 predates this second fix; do not assign its
 results to the local candidate. Hold push until native58 complete.
+
+## Retained artifact admission (local, follows a178e5b/005398f)
+
+JobController.open now sets a512MiB retained logical-byte default on its standard
+private owner/project directory. Trusted source callers may choose1byte–1GiB;
+no public MCP/workflow field added. Before workspace creation or browser launch,
+the supervised worker scans existing retained entries and reserves the entire
+screenshot allowance +8MiB report +16KiB fixed diagnostic allowance. More than
+10,000 entries, depth>8, symlink/hardlink/special/foreign-POSIX-owner entries,
+insufficient capacity and I/O failure refuse admission without pruning. Existing
+worker deadlines bound stalled scanning; the project lease serializes jobs/cleanup.
+
+Exact boundary/one-byte overflow, unsafe links/depth, invalid configuration, real
+prelaunch refusal and durable dedup/recovery pass. Removing enforcement deliberately
+fails the real refusal assertion (negative exit1, retained separately). Node24
+executor/controller regressions32/32; full components95/95 each Node22/24; Node20
+applicable quota6/6 (SQLite case not registered); lint/diff pass. Fresh174-file
+production installation passes endpoints and both independent controller-death
+audits with zero observed owned processes. Evidence retained-budget-*.
+
+This is retained logical admission, not a physical/temporary-disk or global quota.
+Same-user outside writers can race it; custom source callers sharing directories
+across unrelated leases need external serialization. Automatic retention, operator
+repair and comprehensive quotas remain open, so G08 stays FAILED. Native58 predates
+this change. Hold push until its complete evidence is captured.

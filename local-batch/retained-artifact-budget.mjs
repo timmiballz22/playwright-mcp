@@ -1,0 +1,35 @@
+// Trusted host policy. Durable jobs serialize execution with their project lease.
+// This bounds retained logical bytes, not temporary browser data or OS allocation.
+import { lstat, opendir, realpath } from 'node:fs/promises';
+import path from 'node:path';
+import { validateScreenshotLimit } from './screenshot-budget.mjs';
+export const DEFAULT_RETAINED_ARTIFACT_BYTES = 536870912;
+export function validateRetainedArtifactLimit(value) {
+  if (!Number.isSafeInteger(value) || value < 1 || value > 1073741824) throw new TypeError('Invalid retained artifact byte limit');
+  return value;
+}
+const failure = () => Object.assign(new Error('Retained artifact admission denied'), { code: 'ARTIFACT_STORAGE_LIMIT' });
+export async function checkRetainedArtifactBudget(base, limit, screenshotLimit) {
+  validateRetainedArtifactLimit(limit);
+  // Full pretty-printed report cap plus fixed supervisor cleanup diagnostics.
+  const reserve = validateScreenshotLimit(screenshotLimit) + 8388608 + 16384;
+  if (reserve > limit) throw failure();
+  base = path.resolve(base);
+  if (await realpath(base) !== base) throw failure();
+  let bytes = 0; let entries = 0;
+  async function visit(location, depth) {
+    if (++entries > 10000 || depth > 8) throw failure();
+    const entry = await lstat(location);
+    if (entry.isSymbolicLink() || !entry.isDirectory() && !entry.isFile() ||
+        typeof process.getuid === 'function' && entry.uid !== process.getuid()) throw failure();
+    if (entry.isDirectory()) {
+      for await (const item of await opendir(location)) await visit(path.join(location, item.name), depth + 1);
+    } else {
+      if (entry.nlink !== 1 || !Number.isSafeInteger(entry.size) || entry.size < 0) throw failure();
+      bytes += entry.size;
+      if (!Number.isSafeInteger(bytes) || bytes > limit - reserve) throw failure();
+    }
+  }
+  await visit(base, 0);
+  return { bytes, reserve };
+}
