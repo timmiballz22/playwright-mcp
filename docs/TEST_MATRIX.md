@@ -2,12 +2,12 @@
 
 [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md) is the current45-scenario map;
 [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) records exact candidates and
-commands. Latest completed native6fffa27:942 test passes/three raw Windows Firefox
-failures, plus Windows actual-Codex discovery failure. Windows installed public
-MCP/CLI and source1,000-action jobs now pass; actual Codex Linux/macOS pass with
-zero model turns. Full quotas/retention, managed profiles, egress and complete
-acceptance remain open. See the final section for exact run IDs and candidate
-scope. No release-ready claim follows from these scoped passes.
+commands. Latest completed native2f87026:939 test passes/six Windows Firefox
+failures, plus Windows actual-Codex discovery failure after48 bounded polls.
+Windows installed public MCP/CLI and source1,000-action jobs pass again; actual
+Codex Linux/macOS passes with zero model turns. Full quotas/retention, profiles,
+egress and complete acceptance remain open. See the final section for exact run
+IDs and scope. No release-ready claim follows from these scoped passes.
 
 The following table is historical and predates the durable controller, public
 preview, configured navigation retries and independent-observer soak. It is
@@ -340,3 +340,31 @@ evidence, not a retry claim for the original Windows failures.
 The native Windows failure-only step preserves the strict failing batch result
 and records these factors for diagnosis. YAML parse, script syntax, documentation
 generation and diff checks pass. This does not prove Firefox routing is the cause.
+
+
+## Native2f87026 completed
+
+Latest completed native `2f87026`: **939 tests passed/six failed**, zero test
+skips/cancellations, plus Windows actual-Codex discovery failure. Wrapper39554479797:
+270/2; batch39554479785:669/4. All88 original tests per OS, Docker, four durable
+component jobs and installed public MCP/CLI jobs checks pass. Windows source
+six-tool1,000-action jobs passes again. Failures are Windows Firefox: four raw
+loops (Node20 headed/pipe and Node22 headless/headed), supervised429 navigation
+and popup settlement. Their shared cause is unproven. Linux/macOS actual Codex
+zero-model-turn checks pass in36.893s/112.042s. Windows tools remain empty after48
+read-only polls within20s; readiness waiting alone does not fix it.
+
+Next diagnostics consume fixed startup-status notifications and narrowly enabled
+private stderr logging, plus a fresh simultaneous SDK startup control. A separate
+static-fixture Firefox probe compares transport/routing without altering production
+policy. Local client, SDK controls and both Node20/24 Firefox factor matrices pass.
+All original failures remain recorded; no action replay, force click, sandbox or
+timeout relaxation is introduced. Last full green remains d71c91e (14 jobs);
+current matrix has17. Full quotas/retention, managed profiles, egress and remaining
+reliability/acceptance gates still block release.
+
+Windows Node20 headed failure acknowledges9 clicks, but the post-timeout fixture
+counter is10: the timed-out action may already have taken effect. No replay is
+attempted. Direct-pipe also fails; transport alone is not a reliability fix.
+The429 case times out after2 GET hits with terminated/removed cleanup. Popup
+settlement reaches1 of3 required events. Both assertions remain strict.

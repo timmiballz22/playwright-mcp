@@ -1,22 +1,23 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native `6fffa27`: **942 tests passed/three failed**, zero test
-skips/cancellations, plus one Windows Codex-client discovery verification failure.
-Wrapper39552616750:271/1; batch39552616754:671/2. All three test failures are raw
-Windows Firefox loops. All88 original cases per OS, Docker and four durable
-component jobs pass. Windows installed public MCP/CLI verification and source
-six-tool1,000-action jobs harness now pass. The Windows deep-path component records
-legacy mkdtemp ENOENT at300 characters; exclusive UUID allocation succeeds.
-The combined short-temp/UUID fix preserves journal namespaces and retained keys.
-Actual Codex0.163.0 zero-model-turn jobs verification passes on Linux (37.053s)
-and macOS (112.309s), including1,000 actions, owner isolation, deduplication,
-cancellation and zero owned survivors. Windows returns an empty tool inventory;
-the cause is unproven. A candidate adds bounded read-only readiness polling and
-fixed-code startup diagnostics while retaining the exact six-tool contract.
-Local candidate client verification passes in35.609s, zero model turns/survivors.
-The matrix has17 jobs; last full green remains d71c91e (14 jobs). Historical
-macOS timing/WebKit failures remain retained. Full quotas/retention, Windows
-client reliability, raw Firefox, managed profiles and egress still block release.
+Latest completed native `2f87026`: **939 tests passed/six failed**, zero test
+skips/cancellations, plus Windows actual-Codex discovery failure. Wrapper39554479797:
+270/2; batch39554479785:669/4. All88 original tests per OS, Docker, four durable
+component jobs and installed public MCP/CLI jobs checks pass. Windows source
+six-tool1,000-action jobs passes again. Failures are Windows Firefox: four raw
+loops (Node20 headed/pipe and Node22 headless/headed), supervised429 navigation
+and popup settlement. Their shared cause is unproven. Linux/macOS actual Codex
+zero-model-turn checks pass in36.893s/112.042s. Windows tools remain empty after48
+read-only polls within20s; readiness waiting alone does not fix it.
+
+Next diagnostics consume fixed startup-status notifications and narrowly enabled
+private stderr logging, plus a fresh simultaneous SDK startup control. A separate
+static-fixture Firefox probe compares transport/routing without altering production
+policy. Local client, SDK controls and both Node20/24 Firefox factor matrices pass.
+All original failures remain recorded; no action replay, force click, sandbox or
+timeout relaxation is introduced. Last full green remains d71c91e (14 jobs);
+current matrix has17. Full quotas/retention, managed profiles, egress and remaining
+reliability/acceptance gates still block release.
 
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.

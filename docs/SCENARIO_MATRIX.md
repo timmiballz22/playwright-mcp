@@ -1,14 +1,13 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Native6fffa27:942 tests pass/three raw Windows Firefox tests fail, plus
-Windows actual-Codex discovery failure. All88 original cases per OS, Docker,
-four durable components and Windows installed public MCP/CLI/source1,000-action
-jobs checks pass. Combined UUID artifact allocation/short browser temp is now
-native verified. Actual Codex jobs pass Linux/macOS with zero model turns;
-Windows empty-inventory readiness diagnostics are pending. Last full green
-remains d71c91e (14 jobs); current matrix has17. OPEN means inadequate proof;
-PARTIAL means required work remains.
+PASS. Native2f87026:939 tests pass/six Windows Firefox tests fail, plus Windows
+actual-Codex discovery failure after48 polls. All88 original cases per OS, Docker,
+four durable components and installed public MCP/CLI/source1,000-action jobs
+checks pass. Actual Codex Linux/macOS passes with zero model turns. New fixed
+startup/SDK controls and Firefox transport/routing diagnostics await native proof.
+Last full green remains d71c91e (14 jobs); current matrix has17. OPEN means
+inadequate proof; PARTIAL means required work remains.
 
 | # | Scenario | Status and concrete evidence / gap |
 |---|---|---|
