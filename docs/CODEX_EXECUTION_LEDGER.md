@@ -1576,3 +1576,18 @@ suite passes. These are isolated tooling binaries from the temporary npx cache,
 not a changed system runtime/dependency/lockfile or a recommendation of an older
 release. Node22.13 minimum production proof remains as recorded above.
 Evidence:node23-availability-before,node23-unsupported-fixed,node23-flagfree-*.
+
+
+## Released official CLI measurement, scoped local evidence
+
+The independently installed official @playwright/cli0.1.22 completed the owned
+100-click DOM/URL fixture with three CLI commands and zero model turns/MCP calls.
+Linux Node22.23.3:6.163s through audited shutdown; Node24.19.0:6.611s. Both zero
+active owned survivors. Its released driver is1.64.0-alpha-1790635538000/revision1247,
+so this is not identical-driver evidence against forkstable1.64.1/revision1248.
+The benchmark uses fresh private workspace/cache/temp state, a unique named session,
+command bounds and session-specific close, and refuses inherited global CLI config.
+No user profile or global config changes. Failures retain fixtures. Argument/output
+byte counts are not token counts; SKILLS/model usage and native official CLI
+comparison remain open. See PERFORMANCE.md and evidence/official-cli-benchmark-*.json.
+This measurement closes only the missing local released-CLI sample, not a release gate.

@@ -174,7 +174,8 @@ upstream. The benchmark passes only static source-defined code for the owned
 fixture and never accepts page/user code. Companion workflows gain no eval or
 code option. All four paths confirm their counters and independently exit with
 zero active owned survivors. This is one complete sample, not a confidence
-interval, model-token measurement or official CLI/SKILLS comparison. See
+interval or model-token measurement. A separate released official CLI sample follows;
+SKILLS-driven model usage remains unmeasured. See
 evidence/interface-benchmark-with-upstream-code.json.
 
 A new original-tool regression executes the same100 fast clicks inside that
@@ -183,3 +184,35 @@ preserved tool on each native browser/OS. Local Chromium and Firefox both pass
 Native coverage remains pending. It also tests whether strict Windows Firefox
 failures reproduce through delegated upstream fast-loop execution, without
 removing the existing failing batch tests or adding per-click delays.
+
+
+## Released official Playwright CLI comparison
+
+`@playwright/cli@0.1.22` pins Playwright/core
+`1.64.0-alpha-1790635538000`, Chromium revision1247. The fork sample above uses
+stable1.64.1/revision1248. These are independently released configurations,
+not identical-driver measurements. The optional benchmark does not modify either
+package or substitute browser executables.
+
+On the same Linux machine and Node22.23.3, one official CLI sample completed the
+same owned100-click fixture with exact DOM/URL assertions: open1,315ms, through
+run-code5,639ms, through independently audited shutdown6,163ms. Three CLI commands
+(open/run-code/close), zero MCP calls and zero model turns used434 JSON argument
+bytes and729 stdout bytes, zero stderr bytes. These sizes exclude executable/session
+arguments, wire framing and model tokens; they are not directly interchangeable
+with MCP JSON byte counts. A separate Node24.19.0 sample finished in6,611ms.
+Both observed zero active owned survivors. These are single samples, not an SLA
+or a statistically established ranking.
+
+Reproduce using `node scripts/benchmark-official-cli.mjs /absolute/path/to/@playwright/cli/playwright-cli.js`
+after a separate normal package/browser installation. The Linux-only observer
+tracks the detached runtime while its launching CLI is still alive. Each command
+has a120s bound, a fresh named session uses a private workspace/cache/temp directory,
+and finally closes only that session. It refuses inherited global CLI config;
+no global config, profile, HOME or CODEX_HOME is changed. Failed/uncertain fixtures
+are retained, not declared clean. The official runtime uses its local socket;
+no hosted service is involved. This trusted run-code comparison accepts only
+source-defined fixture code. It does not add code execution to companion workflows
+or measure a model using official CLI/SKILLS. Evidence:
+`evidence/official-cli-benchmark-node22.json` and
+`evidence/official-cli-benchmark-node24.json`.
