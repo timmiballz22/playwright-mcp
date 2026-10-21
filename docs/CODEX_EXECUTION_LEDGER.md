@@ -2,23 +2,25 @@
 
 Updated 2026-10-21. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest completed native `40df6ca`: **827 test passes/one failure**, zero test
-skips/cancellations, plus Windows installed setup and its controlled layout
-reproduction failing before the Windows browser suite. Wrapper39548304880:271/1;
-batch39548304781:556/0. All88 original tests per OS, Docker and four durable
-component jobs pass. Named tab-context sharing/isolation now has native proof.
-Windows layout probe: short protected base65 characters completes2 actions;
-full job artifact base214 characters fails setup; both verify process/temp cleanup.
-The current candidate moves only Windows ephemeral browser data to a unique
-short directory under the protected base. Journal/artifact namespaces and request
-keys stay intact. Explicit temporary-ownership ACK precedes browser allocation;
-unknown/colliding directories are retained and cleanup fails closed. Node24
-fault/config20, Node20 external3, Node22 external/phase5 and fresh137-file
-production checks pass locally. Native Windows fix acceptance remains pending.
-One test failure remains Windows raw Firefox headless; earlier macOS timing and
-WebKit cancellation failures remain retained despite passing this run unchanged.
-Last full green remains d71c91e. Full quotas/retention, public Windows execution,
-raw/retry/performance reliability, managed profiles, egress and other gates remain.
+Latest completed native `148ccab`: **839 tests passed/one failed**, zero test
+skips/cancellations, plus Windows installed setup and layout reproduction failures
+before its browser suite. Wrapper39550655935:271/1; batch39550655940:568/0.
+All88 original tests per OS, Docker and all four durable components pass.
+Short browser temp alone did not solve deep setup:65-character protected artifact
+base succeeds,214-character job namespace fails with either temp layout, before
+the launch diagnostic. The joint candidate replaces the runner's mkdtemp artifact
+allocation with exclusive UUID mkdir, retaining short browser temp for upstream
+allocations. Existing journal/artifact namespaces and request keys stay intact.
+Windows component regression now records legacy mkdtemp behavior at a deep owned
+path and requires exactly one successful fake-browser launch/action with UUID
+allocation. Native confirmation pending. Local21 runner/ownership, seven real
+quota/temp/config cases and fresh137-file package pass. Actual Codex Node launcher
+verifies6 tools/1,000 actions/cancel/owner/dedup in35.436s with0 model turns and0
+owned survivors; optional pinned client CI extends the matrix from14 to17 jobs.
+One test failure remains raw Windows Firefox headless. Past macOS timing/WebKit
+cancellation failures remain retained. Last full green remains d71c91e (14 jobs).
+Quotas/retention, Windows execution acceptance, reliability, profiles and egress
+still block release.
 
 All 45 mandatory scenarios are
 mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).

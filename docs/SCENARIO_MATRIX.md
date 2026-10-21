@@ -1,15 +1,14 @@
 # Mandatory scenario evidence
 
 This maps section 22 of the master prompt. Scoped evidence is not a release gate
-PASS. Native40df6ca:827 tests pass/one fail plus Windows installed setup and
-controlled layout reproduction failures. All88 original tests per OS, Docker and
-four durable component jobs pass. Short protected base65 characters succeeds;
-full job artifact base214 fails setup, both with verified cleanup. Candidate moves
-only Windows ephemeral browser data to short acknowledged ownership; journal/
-artifact paths and deduplication remain stable. Native fix acceptance pending.
-Windows raw Firefox still fails; prior timing/cancellation failures remain
-retained. Last full green is d71c91e(469). OPEN means inadequate proof; PARTIAL
-means required work remains.
+PASS. Native148ccab:839 tests pass/one fails plus Windows installed setup/layout
+reproduction failures. All88 original tests per OS, Docker and four durable
+components pass. Short browser temp alone is insufficient: deep artifact setup
+fails before launch. Joint UUID-mkdir/short-temp candidate awaits native proof.
+New pinned actual Codex native jobs raise the configured matrix to17; Linux Node
+launcher proves1,000 actions with0 model turns. Windows raw Firefox and earlier
+timing/cancellation failures remain unresolved. Last full green d71c91e had14
+jobs. OPEN means inadequate proof; PARTIAL means required work remains.
 
 | # | Scenario | Status and concrete evidence / gap |
 |---|---|---|

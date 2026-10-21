@@ -277,3 +277,11 @@ fixed RPC method/numeric code and safe job receipts. Native22 OS jobs are added
 with the same ephemeral workspace-write thread and no turn/start/sampling calls.
 The configured total matrix becomes17 jobs; previous full green d71c91e was14.
 Native Codex client acceptance is pending, not a conversational-model walkthrough.
+
+Native148ccab:839 passes/one test failure (wrapper271/1,batch568/0), zero skips/
+cancellations plus Windows installed/layout failures before browser suite. All88
+original cases per OS, Docker and four components pass. External-temp lifecycle
+and phase tests pass on native POSIX. Windows short-temp-only case still fails
+setup before launch; UUID artifact allocation and the deep-path component
+regression are the next candidate. Legacy Windows Firefox headless remains the
+one test failure. No deadline/count/cleanup assertion was loosened.
