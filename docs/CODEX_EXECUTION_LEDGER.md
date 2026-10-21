@@ -3303,3 +3303,24 @@ control separately. Gate table now uses native53 and local4153227 evidence rathe
 than stale native50 milestones; no failed gate promoted. HTTP401 still blocks
 native54 verification/push. NEXT ACTION: inspect remaining bounded MCP transport
 and profile/resource gaps locally; obtain authenticated final native acceptance.
+
+
+## Jobs MCP malformed/oversized wire acceptance (after b07b414, local)
+
+Inspected pinned SDK1.32.1 ReadBuffer/StdioServerTransport: default10MiB read
+buffer already closes transport on overflow, so no replacement parser or new
+runtime patch is warranted. Existing protocol-input.test.mjs only exercised the
+batch endpoint. It now also starts actual jobs MCP using isolated owner/project
+storage and verifies malformed JSON canary does not reach stdout/stderr, valid
+initialize/ping frames still succeed, and10MiB+1 unterminated bytes cause exit0
+with no stderr. Both endpoints retain the existing5s check/10s test ceilings.
+Only initialize/ping are sent; no workflow/browser actions are requested. This
+checks endpoint exit, not an independent whole-process-tree orphan audit.
+
+Node22/24 each4/4 pass, zero skips/cancellations. Node20 batch2/2 pass, jobs are
+not registered because SQLite runtime is unsupported (not called jobs passes).
+No public tool/input/runtime change. Test-only change is included automatically
+by scripts/test-batch.mjs on native lanes; native remains BLOCKED by HTTP401.
+Evidence jobs-protocol-node*. NEXT ACTION: native verification once authentication
+works; remaining managed profiles, quotas, capability negatives and acceptance
+failures remain open. The goal is not complete or release-ready.
