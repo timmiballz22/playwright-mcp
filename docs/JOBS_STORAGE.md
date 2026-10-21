@@ -147,7 +147,7 @@ configured screenshot budget, an 8 MiB report and 16 KiB diagnostic allowance.
 This setting is not a workflow/MCP argument. The scan rejects symlinks, hard-linked
 files, foreign POSIX owners, special files, more than 10,000 entries or depth above
 8. It runs inside the existing supervised worker deadline, before creating its run
-workspace or launching a browser. A refusal is a workspace-stage execution failure with zero completed actions; it does not prune files, replay the job or release an uncertain
+workspace or launching a browser. A capacity/entry safety refusal returns `resource_limit` at workspace stage with zero completed actions; it does not prune files, replay the job or release an uncertain
 cleanup fence. Explicit owner-authorized retention can make space for a new job.
 
 The project execution lease serializes these checks with execution and cleanup.

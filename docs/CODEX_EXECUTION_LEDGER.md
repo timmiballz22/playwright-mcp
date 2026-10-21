@@ -3769,3 +3769,11 @@ Same-user outside writers can race it; custom source callers sharing directories
 across unrelated leases need external serialization. Automatic retention, operator
 repair and comprehensive quotas remain open, so G08 stays FAILED. Native58 predates
 this change. Hold push until its complete evidence is captured.
+
+Quota refusal projection refinement after e565b17: fixed ARTIFACT_STORAGE_LIMIT
+becomes existing resource_limit at workspace stage; unrelated setup/report errors
+remain execution_failed. No exception strings enter the summary. Final targeted
+quota + report-failure tests10/10 each Node22/24, applicable quota6/6 Node20 and
+lint/diff pass (retained-budget-reason-*). The95-component and174-file receipts
+above precede this final reason-only projection; they are not relabeled as its
+full validation. Next native candidate must verify the final projection too.

@@ -45,8 +45,8 @@ process.once('message', async packet => {
     });
     stage = 'report';
     summary = await saveReport({ schemaVersion: 1, runId: packet.runId, reportScope: 'worker_execution', ...result }, packet.workspaceRoot);
-  } catch {
-    summary = { ok: false, reason: 'execution_failed', stage, completed, recentSteps: [], failedStep: null, reportPath: null };
+  } catch (error) {
+    summary = { ok: false, reason: stage === 'workspace' && error?.code === 'ARTIFACT_STORAGE_LIMIT' ? 'resource_limit' : 'execution_failed', stage, completed, recentSteps: [], failedStep: null, reportPath: null };
   }
   finished = true;
   if (process.connected) {

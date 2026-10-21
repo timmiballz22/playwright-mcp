@@ -35,7 +35,7 @@ test('real supervised admission denies before browser launch and preserves prior
   const result = await executeWorkflow({ steps: [{ type: 'waitFor', selector: 'body' }] }, {
     artifactsDir: base, maxScreenshotBytes: 0, maxRetainedArtifactBytes: reserve + 4, onEvent: event => events.push(event),
   });
-  assert.equal(result.ok, false); assert.equal(result.stage, 'workspace'); assert.equal(result.completed, 0);
+  assert.equal(result.ok, false); assert.equal(result.stage, 'workspace'); assert.equal(result.reason, 'resource_limit'); assert.equal(result.completed, 0);
   assert.equal(result.execution.cleanup, 'terminated'); assert.equal(events.some(e => e.type === 'ownedProcess'), false);
   assert.equal(await readFile(path.join(base, 'prior'), 'utf8'), 'prior');
 }));
