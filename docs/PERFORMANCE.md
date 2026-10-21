@@ -39,3 +39,19 @@ they do not measure current watchdog/worker overhead or prove current resource
 stability. Actual Codex app-server at 9041497 completed one 1,000-operation batch
 in 33,906ms with zero model turns. This remains a single sample with no transferred
 token measurement; supervised process-tree RSS/FD/CPU soak remains open.
+
+Initial supervised-soak instrumentation at source runtime 5c18667 (Linux x64,
+Node24.19.0, two available CPUs): 100 fresh Chromium runs/400 actions completed
+in 78,270ms, median730ms/p95799ms, zero active owned descendants after every run,
+parent FDs23->23. The preset parent RSS criterion **failed**: 78,315,520-byte
+median growth versus a 33,554,432-byte budget. Peak sampled summed owned-tree
+RSS554,188,800 bytes, sampled owned CPU lower bound70,660ms. Sampling ran inside
+the measured executor frontend; observer allocations contaminate the parent RSS
+measurement. This is not a demonstrated product leak or a passing soak gate.
+A separated observer/subject control will test that explanation with unchanged
+thresholds. Browser descriptor enumeration was partly denied by kernel access
+controls (32 observed process identities); only readable descriptor counts were
+collected. No access controls were changed. Evidence:
+evidence/supervised-soak-inprocess-rss-failed.txt and the earlier fail-closed
+permission discovery evidence/supervised-soak-proc-fd-denied.txt. These are scripted
+source-boundary measurements, not MCP or model-token comparisons.

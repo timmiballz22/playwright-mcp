@@ -1,0 +1,37 @@
+{"kind":"environment","mode":"supervised_source","node":"24.19.0","os":"linux","kernel":"6.18.55","arch":"x64","cpu":"INTEL(R) XEON(R) PLATINUM 8573C","availableParallelism":2,"hostMemoryBytes":10452471808,"clockTicks":100,"sampleIntervalMs":50,"runs":100,"gcForced":false,"modelTurns":0,"mcpToolCalls":0}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Process sampling failed
++ actual - expected
+
++ Error: EACCES: permission denied, scandir '/proc/138793/fd'
++     at async readdir (node:internal/fs/promises:1013:18)
++     at async Promise.all (index 2)
++     at async sample (file:///workspace/playwright-mcp/scripts/soak-supervised.mjs:52:47) {
++   code: 'EACCES',
++   errno: -13,
++   path: '/proc/138793/fd',
++   syscall: 'scandir'
++ }
+- undefined
+
+    at file:///workspace/playwright-mcp/scripts/soak-supervised.mjs:88:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: Error: EACCES: permission denied, scandir '/proc/138793/fd'
+      at async readdir (node:internal/fs/promises:1013:18)
+      at async Promise.all (index 2)
+      at async sample (file:///workspace/playwright-mcp/scripts/soak-supervised.mjs:52:47) {
+    errno: -13,
+    code: 'EACCES',
+    syscall: 'scandir',
+    path: '/proc/138793/fd'
+  },
+  expected: undefined,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
