@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
-import { mkdtemp, readdir, rm, realpath, mkdir, writeFile } from 'node:fs/promises';
+import { mkdtemp, readdir, rm, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import { executeWorkflow } from './executor.mjs';
@@ -89,7 +89,7 @@ if (supportsJournal) test('durable report byte failure retains progress and dedu
 {
 const reserve = 8388608 + 16384;
 async function quotaFixture(body) {
-  const base = await realpath(await mkdtemp(path.join(os.tmpdir(), 'retained-budget-browser-')));
+  const base = await mkdtemp(path.join(os.tmpdir(), 'retained-budget-browser-'));
   try { await body(base); } finally { await rm(base, { recursive: true, force: true }); }
 }
 if (supportsJournal) test('durable quota failure remains deduplicated and a later admitted job executes', { timeout: 30000 }, async () => quotaFixture(async base => {

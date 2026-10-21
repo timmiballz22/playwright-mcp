@@ -3876,3 +3876,32 @@ that receipt. It records1 request/1 response, known typed500 and fixed timings;
 this is negative diagnostic evidence, not another passed workflow. Evidence
 http-timing-*. Native59 predates this test-only projection; wait for its final logs
 before pushing the browser-free component correction/operator quota candidate.
+
+## Normal host path aliases at retained admission (local)
+
+Native59 Windows/macOS installed public jobs CLI/MCP checks pass, then the internal
+controller smoke fails before its first successful job. Its raw host temp paths
+use RUNNER~1 (Windows) and /var/folders (macOS); the quota scanner's unconditional
+realpath equality rejects these normal path aliases. The generic assertion does
+not itself prove the terminal reason, so the next smoke adds a fixed state/reason/
+stage/progress/cleanup receipt (no raw error, URLs or input). Native confirmation
+of the proposed path correction remains required.
+
+Inventory now lstats each supplied directory component before canonicalization,
+rejecting user-created symlinks/junctions. Only macOS root-owned /var,/tmp,/etc
+aliases to their exact /private locations are admitted, checking /private owner
+and write bits. Ordinary Windows short/case names contain no link and can then
+canonicalize. All I/O remains inside the supervised worker deadline. A new host-
+temp acceptance/link-refusal case and raw-temp durable browser fixture avoid
+masking this compatibility condition by canonicalizing the test setup itself.
+The package checker now explicitly requires the new quota runtime file.
+
+Final full components97/97 each Node22/24 with missing browser path pass; targeted
+Node22 16/16, Node24 quota/browser13/13 and fresh174-file install with both independent
+normal/linger death audits pass. Lint/diff pass. First overlapping Node20 group is
+13/14:1.5s stalled-scan control never reaches its witness (ENOENT), so it does not
+prove a stalled scan and remains a failed/inconclusive setup control. No deadline
+or assertion changed. After other local browser work exits, CI-style serialized
+Node20 group14/14 passes; this is scoped load isolation, not a source fix or reason
+to erase the earlier failure. Evidence retained-path-* preserves both runs.
+Next native components expected97/98, with positive quota case in browser suite.

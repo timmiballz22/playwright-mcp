@@ -19,8 +19,24 @@ export async function checkRetainedArtifactBudget(base, limit, screenshotLimit) 
   // Full pretty-printed report cap plus fixed supervisor cleanup diagnostics.
   const reserve = validateScreenshotLimit(screenshotLimit) + 8388608 + 16384;
   if (reserve > limit) throw failure();
-  base = path.resolve(base);
-  if (await realpath(base) !== base) throw failure();
+  const absolute = path.resolve(base);
+  let current = path.parse(absolute).root;
+  for (const part of absolute.slice(current.length).split(path.sep).filter(Boolean)) {
+    current = path.join(current, part);
+    let entry = await lstat(current);
+    if (entry.isSymbolicLink()) {
+      // Immutable macOS system aliases are legitimate host temp paths. No
+      // user-selected link/junction gains permission to redirect inventory.
+      if (process.platform !== 'darwin' || !['/var', '/tmp', '/etc'].includes(current) || entry.uid !== 0) throw failure();
+      const resolved = await realpath(current); const parent = await lstat('/private');
+      if (resolved !== '/private' + current || !parent.isDirectory() || parent.uid !== 0 || parent.mode & 0o022) throw failure();
+      current = resolved; entry = await lstat(current);
+    }
+    if (!entry.isDirectory()) throw failure();
+  }
+  // Ordinary Windows short-name/case aliases are not links. Canonicalize after
+  // checking each original component, inside the supervised worker deadline.
+  base = await realpath(current);
   let bytes = 0; let entries = 0;
   async function visit(location, depth) {
     if (++entries > 10000 || depth > 8) throw failure();

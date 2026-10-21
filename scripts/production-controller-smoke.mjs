@@ -40,7 +40,13 @@ if (!supportsJournal) {
       do {
         row = await controller.status(job.jobId);
         if (row.state === 'SUCCEEDED') break;
-        assert.equal(['FAILED', 'CANCELLED', 'CRASHED', 'TIMED_OUT'].includes(row.state), false, 'Unexpected terminal controller state');
+        if (['FAILED', 'CANCELLED', 'CRASHED', 'TIMED_OUT'].includes(row.state)) {
+          const failed = await controller.result(job.jobId);
+          assert.fail(JSON.stringify({ fixture: 'production_controller_failure', state: row.state,
+            reason: failed.reason ?? row.reason, stage: failed.stage ?? null, completed: failed.completed,
+            operatorAttentionRequired: row.operatorAttentionRequired,
+            cleanup: failed.execution?.cleanup ?? null, tempCleanup: failed.execution?.tempCleanup ?? null }));
+        }
         await new Promise(resolve => setTimeout(resolve, 50));
       } while (performance.now() < deadline);
       assert.equal(row.state, 'SUCCEEDED'); assert.equal(row.completed, 5);

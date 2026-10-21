@@ -71,3 +71,14 @@ test('retained inventory stops at its entry boundary and closes the directory it
     assert.equal(observed, 10000); assert.equal(closed, true);
   } finally { fs.lstat = originalStat; fs.opendir = originalOpen; syncBuiltinESMExports(); }
 }));
+
+test('retained admission accepts host temp aliases but rejects caller directory links', async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'retained-host-path-'));
+  try {
+    const hostPath = process.platform === 'darwin' && root.startsWith('/private/var/') ? root.slice('/private'.length) : root;
+    assert.deepEqual(await checkRetainedArtifactBudget(hostPath, reserve, 0), { bytes: 0, reserve });
+    const directory = path.join(root, 'real'); await mkdir(directory);
+    const alias = path.join(root, 'alias'); await symlink(directory, alias, process.platform === 'win32' ? 'junction' : 'dir');
+    await assert.rejects(checkRetainedArtifactBudget(alias, reserve, 0), { code: 'ARTIFACT_STORAGE_LIMIT' });
+  } finally { await rm(root, { recursive: true, force: true }); }
+});

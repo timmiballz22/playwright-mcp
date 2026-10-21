@@ -157,3 +157,11 @@ source callers sharing one directory across unrelated project leases must supply
 external serialization. Same-user external writers can race the scan; temporary
 profiles/downloads, filesystem allocation, browser memory and journal bytes are
 separate bounds. This is not a hard OS disk quota or automatic retention policy.
+
+Host path handling for this inventory checks each supplied directory component
+before canonicalization. Ordinary Windows short-name/case paths are accepted;
+user symlinks/junctions are rejected. On macOS only the root-owned immutable
+`/var`, `/tmp`, `/etc` aliases to their exact `/private` locations are accepted,
+with `/private` ownership/write permissions checked. This avoids rejecting the
+host's normal temporary directory without accepting caller-controlled links.
+The scan and path checks remain inside the existing execution deadline.
