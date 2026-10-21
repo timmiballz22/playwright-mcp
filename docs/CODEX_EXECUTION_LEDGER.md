@@ -22,7 +22,7 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
 | G00 BASELINE | NOT-TESTED | BASELINE_AUDIT.md; original managed-Chromium baseline 8/8 and six unchanged schemas; default local Chrome still absent | Preserve channel/OS baseline limitations; extend original native baseline evidence |
-| G01 INSTALL | NOT-TESTED | Native7e2 installed109-file package passes all OSs; local guarded115-file package passes | Verify new CJS guard and persistent smoke from fresh native tarballs |
+| G01 INSTALL | NOT-TESTED | c7 installed Windows profile audit fails; local candidate124-file package passes | Verify creation-time-aware process audit from fresh native tarballs |
 | G02 MCP | NOT-TESTED | Actual Codex6-tool jobs client,1,000 actions, active cancel and zero owned processes; original25/batch1 contracts | Complete remaining malformed/concurrent/resource phase cases on all OSs |
 | G03 FEATURE PARITY | NOT-TESTED | 25/72 names and six schemas retained; storage/media/profile/ARIA/touch and advanced scoped behaviors | Verify every remaining capability group and native guard compatibility |
 | G04 BATCH | PASS | local-batch/mcp.test.mjs + integration.test.mjs; evidence/codex-client-operator.txt: exact 1000 actions / 997 clicks | Extend real long workflow to other browsers |
@@ -30,11 +30,11 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | G06 JOBS | NOT-TESTED | POSIX six-tool MCP/foreground CLI; idempotent journal/FIFO/guardian; EOF/SIGTERM/SIGKILL and monotonic deadline evidence | Windows private storage, full phase faults, retention and restart acceptance |
 | G07 SECURITY | FAIL | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
 | G08 STORAGE | FAIL | Private run/artifact metadata, atomic reports, bounded dry-run terminal cleanup | Enforce write quotas/retention and native Windows ACLs |
-| G09 AUTH/PROFILES | FAIL | Strict native fixture found WebKit parallel profile access; local public-API lease guard and restore/isolation pass | Native guard proof; managed project profiles, ACLs, corruption/reset/crash recovery |
+| G09 AUTH/PROFILES | FAIL | Public-API lease guard rejects contention and restores persistent storage in native all-engine c7 tests | Managed project profiles, ACLs, corruption/reset/crash recovery |
 | G10 CROSS-BROWSER | FAIL | Native7e2 Windows raw Firefox still fails headless/headed; direct pipe previously failed too | Diagnose original driver stalls; retain strict tests and unsupported local WebKit limitation |
 | G11 CROSS-OS | FAIL | Native original/batch/jobs package installs verified; POSIX jobs/browser fixtures pass | Windows jobs ACLs, complete green native suites and native actual Codex walkthroughs |
 | G12 PERFORMANCE | NOT-TESTED | scripts/soak-local.mjs; PERFORMANCE.md; evidence/soak*.txt | 100-run observed Linux source soak now measured; native/CLI/token comparison and full FD coverage remain |
-| G13 ACCESSIBILITY/MOBILE | NOT-TESTED | Local ARIA keyboard, responsive390x844 CSS PNG, touch and media reset cases pass; native touch passed all engines | Verify explicit-tabindex fixture on macOS WebKit; extend keyboard/canvas/accessibility matrix |
+| G13 ACCESSIBILITY/MOBILE | NOT-TESTED | Local ARIA keyboard, responsive390x844 CSS PNG, touch and media reset cases pass; native touch passed all engines | Native explicit-tabindex/media fixtures pass all engines; extend held keyboard/canvas/accessibility matrix |
 | G14 ADVANCED | NOT-TESTED | 72 contracts; native original storage/screenshot/trace/video/tabs/Chromium PDF behavior passed; tests/advanced.spec.ts | Frames/dialog/upload/network tools and remaining advanced positive/negative cases |
 | G15 RELEASE SAFETY | PASS | distribution.test.mjs, private package, publish-disabled.cjs; no registry publishing workflow | Keep publication disabled; registry ownership and a future authorized release remain separate |
 | G16 DOCUMENTATION | NOT-TESTED | LOCAL_BATCH.md, BASELINE_AUDIT.md, THREAT_MODEL.md, PERFORMANCE.md | Finish examples/feature docs as jobs/profiles mature; operator walkthroughs on all OSs |

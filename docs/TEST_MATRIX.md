@@ -13,7 +13,10 @@ The following table is historical and predates the durable controller, public
 preview, configured navigation retries and independent-observer soak. It is
 retained for traceability; use the linked current map for present scope.
 
-# Historical acceptance coverage
+# Historical snapshot before durable jobs
+
+This table preserves an early baseline; it is not current HEAD status. Current
+scenario status is maintained in SCENARIO_MATRIX.md.
 
 The full 45 required scenarios and 72 tool families are defined in
 CODEX_ULTIMATE_MASTER_PROMPT.md; the ledger tracks G00–G18.
@@ -64,3 +67,13 @@ browser tests). All68 original tests per OS and Docker2 passed. Windows legacy
 Node20 Firefox direct-pipe remains a failure. Creation-time-aware read-only
 process auditing and an unwired Windows ACL prototype await native confirmation;
 local Linux evidence is not Windows ACL proof. See worker-ci-twentyfourth evidence.
+
+Additional candidate coverage: popup-policy.test.mjs uses an approved positive
+control and denied-origin zero-hit case, with popup completion observed through
+the opener. Chromium/Firefox pass locally; WebKit awaits native CI.
+tests/popup.spec.ts independently preserves original popup selection, interaction,
+close and opener behavior in local Chromium/Firefox. screenshot-crash.test.mjs
+requires a real pending Chromium screenshot and successful scoped child-handle
+termination, action failure without image/temp publication, supervisor cleanup
+and an independent zero-survivor scan. This is a trusted fault fixture, not a new
+workflow capability. Local Node22/24 evidence does not establish native Windows.

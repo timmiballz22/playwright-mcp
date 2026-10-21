@@ -23,7 +23,7 @@ Screenshots can contain credentials and page secrets: capture is disabled unless
 the local operator opts in via CLI/environment. Use only approved fixtures/data;
 pixel masking remains unimplemented. Workflow input cannot enable capture.
 Worker directories are private and unique. Jobs offer bounded terminal artifact
-cleanup with dry-run default; enforced write quotas and retention remain absent.
+cleanup with dry-run default. Host-controlled screenshot payload budgets default to16MiB per run; browser image-buffer memory, report sizes, total storage and retention remain unbounded by that limit.
 
 The original MCP endpoint remains upstream behavior, including optional privileged
 features and its own trust model. Companion restrictions do not secure that endpoint.
