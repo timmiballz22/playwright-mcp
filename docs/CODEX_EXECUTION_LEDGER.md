@@ -164,24 +164,24 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 tool inventories,six schemas; Native2f87026 all88 original cases/OS | Preserve baseline/channel scope and verify final clean SHA |
-| G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs; Native2f87026 all-OS installs; cd419d8 fresh140-file Node22 production smoke | Verify final candidate natively and complete clean operator walkthroughs |
-| G02 MCP | IN PROGRESS | scripts/verify-codex-jobs.mjs; nativefd17363 actual zero-turn six-tool1,000-action checks pass all OSs after framework JSON fix | Complete remaining malformed/concurrent/disconnect phase acceptance |
-| G03 FEATURE PARITY | FAILED | Native4d61ebd Windows named-context timeout;25/72 names,six schemas; tests/interactions.spec.ts,advanced.spec.ts,network-console.spec.ts,held-input.spec.ts;88 original cases/OS | Complete remaining capability-specific positive/negative cases |
-| G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs,jobs-mcp.test.mjs; Native2f87026 exact1,000 Chromium actions/997 clicks all OSs | Preserve exact action/DOM counters; broader browser reliability stays G10 |
-| G05 RETRIES | FAILED | navigation-retry-browser.test.mjs; Native2f87026 Windows Firefox429 case times out after2 GET hits; unsafe POST not replayed | Diagnose bounded navigation failure without enlarging deadlines |
-| G06 JOBS | IN PROGRESS | jobs/controller.mjs,guardian.mjs,journal.mjs; native six-tool/CLI,owner/dedup/cancel/reconnect; EOF/SIGKILL evidence | Finish phase faults, restart/resource acceptance and Windows actual client |
+| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 tool inventories,six schemas; native4797a00 Linux144/144; Windows143/1 and macOS141/3 | Preserve baseline/channel scope and verify final clean SHA |
+| G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs; native4797a00 all-OS installs; f485f1e fresh165-file Node22 production smoke | Verify final candidate natively and complete clean operator walkthroughs |
+| G02 MCP | IN PROGRESS | scripts/verify-codex-jobs.mjs; native4797a00 actual zero-turn six-tool1,000-action checks pass all OSs | Complete remaining malformed/concurrent/disconnect phase acceptance |
+| G03 FEATURE PARITY | FAILED | native4797a00 original Firefox cookie/close/large-DOM/storage failures;25/72 names,six schemas; tests/*.spec.ts | Complete remaining capability-specific positive/negative cases |
+| G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs,jobs-mcp.test.mjs; native4797a00 actual Codex exact1,000 Chromium actions/997 clicks all OSs; raw/MCP throughput failures stay G10/G12 | Preserve exact action/DOM counters; broader browser reliability stays G10 |
+| G05 RETRIES | FAILED | navigation-retry-browser.test.mjs; native4797a00 Windows Chromium429 case times out after2 GET hits; unsafe POST not replayed | Diagnose bounded navigation failure without enlarging deadlines |
+| G06 JOBS | IN PROGRESS | jobs/controller.mjs,guardian.mjs,journal.mjs; native six-tool/CLI,owner/dedup/cancel/reconnect; EOF/SIGKILL evidence | Finish phase faults and restart/resource acceptance; all three actual client lanes pass native4797a00 |
 | G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | screenshot-budget.mjs,jobs/cleanup.mjs,private-windows.*; native protected ACLs and16MiB image payload budget | Complete cumulative disk quotas/retention; image budget is not browser/profile cap |
+| G08 STORAGE | FAILED | screenshot-budget.mjs,jobs/artifact-cleanup.mjs,private-windows.*; native protected ACLs and16MiB image payload budget | Complete cumulative disk quotas/retention; image budget is not browser/profile cap |
 | G09 AUTH/PROFILES | FAILED | profile-guard.cjs,profile-lease.cjs; native all-engine ownership/session restore | Managed project profiles, Windows profile ACLs, reset/corruption/crash recovery |
-| G10 CROSS-BROWSER | FAILED | Native2f87026 six Windows Firefox failures across raw loops/retry/popup | Collect transport/routing controls; no force click/security flags/action replay |
-| G11 CROSS-OS | IN PROGRESS | native installed original/batch/jobs andfd17363 actual Codex zero-turn checks pass all OSs | Require complete green native acceptance; Windows Firefox remains G10 failure |
+| G10 CROSS-BROWSER | FAILED | native4797a00 Windows/macOS original Firefox, Windows raw Firefox and macOS raw/MCP throughput failures | Collect transport/routing controls; no force click/security flags/action replay |
+| G11 CROSS-OS | IN PROGRESS | native4797a00 installed original/batch/jobs and actual Codex zero-turn checks pass all OSs | Require complete green native acceptance; Firefox/throughput reliability remains G10 failure |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md,scripts/soak-local.mjs; independent100-run Linux soak and client timings | Native/CLI/SKILLS/token comparison, complete resource observation |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,evidence/worker-ci-thirtysecond-*,validation-property-*; exact SHA/counts retained | Keep every gate/scenario tied to executed evidence; pending is not pass |
+| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,evidence/worker-ci-fortysixth-*,late-cancel-*,validation-property-*; exact SHA/counts retained | Keep every gate/scenario tied to executed evidence; pending is not pass |
 | G18 CLEAN MERGE | FAILED | Draft PR2; last full green d71c91e (14 jobs), current17-job failures retained | Resolve critical gaps; require green complete final SHA before merge |
 
 ## Defects and risk register

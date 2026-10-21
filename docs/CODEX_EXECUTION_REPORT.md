@@ -25,6 +25,13 @@ temp or transport workaround is adopted. Earlier journal/CIM failures remain
 unexplained by these healthy repetitions. **Not release-ready.** Evidence:
 worker-ci-fortysixth-*; native progress and transport diagnostics remain pending.
 
+Local follow-ups awaiting native execution add HTTP header/body/query/report
+privacy checks and IPv6 loopback alias controls (Chromium/Firefox on Node20/22/24),
+late-abort action/policy controls (18 executor tests each Node), and a portable
+functional soak (100 runs/600 actions in109.293s, zero owned after every run and
+fresh cookie/localStorage). A manual three-OS soak-only lane is prepared. These
+are scoped checks, not full resource bounds, managed profile reset or native PASS.
+
 Previous native attempt `2d8fe7f` is **incomplete**: available summaries report
 **1,108 passed/six failed tests**, plus two failed actual-Codex acceptance jobs.
 Wrapper39587708648:439/1; batch39587708557:669/5 across available completed suites.
