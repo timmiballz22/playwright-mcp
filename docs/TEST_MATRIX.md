@@ -1,18 +1,20 @@
 # Current acceptance coverage
 
-Latest completed full native `8d661bf`: **1,332 reported passes/nine failed
-tests**, plus macOS actual-Codex TIMED_OUT888. Wrapper39604935626:437/3;
-batch39604935913:895/6. All17 executed jobs conclude; one soak job intentionally
-skips, no cancellations. All144 original tests/host, all installed166-file
-packages and journal lanes pass. Windows legacy Firefox, browser cleanup/retry/
-HTTP privacy audits and macOS raw1,000-action throughput remain unresolved.
+Latest completed full native `b144c7d`: **1,337 reported passes/six failed
+tests**, plus macOS actual-Codex TIMED_OUT971. Wrapper39609165296:434/3;
+batch39609165341:903/3. All17 executed jobs conclude; one soak job intentionally
+skips, no cancellations. Linux/Windows original144, Windows legacy Firefox3,
+all installed166-file packages and all journal lanes pass. macOS original
+screenshot/timeout and1,000-action throughput failures remain; Windows IPv6
+control fails before initial navigation completes. Earlier ownership failures
+remain unexplained even though this round's HTTP/privacy audits pass.
 
-Separate scoped native soak: Linux/macOS Intel100/600 passes; the initial Windows run
-fails after its50-run receipt, then b144c7d Windows-only100/600 passes176.352s.
-The prior four-process observation remains unexplained; no cleanup resolution,
-resource bound or release gate is promoted. Targeted
-Windows role/birth receipts and HTTP double-failure preservation await native
-verification. See [execution report](CODEX_EXECUTION_REPORT.md). **Not release-ready.**
+Scoped100/600 proofs exist on Linux/macOS Intel at8d661bf and twice Windows at
+b144c7d(176.352/182.015s), fresh storage/zero observed owned per run. These are
+not a final same-SHA full green matrix, managed reset or resource bounds.
+A reduced-call large-DOM witness and supervised artifact identity check await
+native verification. See [execution report](CODEX_EXECUTION_REPORT.md).
+**Not release-ready.**
 
 At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.

@@ -1,0 +1,29 @@
+
+Running 1 test using 1 worker
+
+{"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":6,"pending":0,"active":[],"recent":[{"tool":"browser_find","outcome":"returned","durationMs":191},{"tool":"browser_find","outcome":"returned","durationMs":163},{"tool":"browser_click","outcome":"returned","durationMs":1149},{"tool":"browser_close","outcome":"returned","durationMs":83}]}]}
+  ✘  1 [chromium] › tests/large-dom-witness-probe.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (3.2s)
+
+
+  1) [chromium] › tests/large-dom-witness-probe.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Activated row3999"
+    Received: "Activated row0"
+
+      42 |   expect(activationHits).toBe(1);
+      43 |   await call('browser_close');
+    > 44 |   expect(witnessedBody).toBe('Activated row3999');
+         |                         ^
+      45 |   console.log(JSON.stringify({ fixture: 'large_dom_verified', callToolRequests, snapshotBytes: Buffer.byteLength(snapshot), lastRowWitness: true }));
+      46 | });
+      47 |
+        at /workspace/playwright-mcp/tests/large-dom-witness-probe.spec.ts:44:25
+
+    Error Context: test-results/large-dom-witness-probe-or-b0539-hout-losing-element-actions-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/large-dom-witness-probe.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions 
+(node:475918) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

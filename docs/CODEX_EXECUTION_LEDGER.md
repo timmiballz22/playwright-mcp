@@ -1,18 +1,20 @@
 # Execution ledger
 
-Latest completed full native `8d661bf`: **1,332 reported passes/nine failed
-tests**, plus macOS actual-Codex TIMED_OUT888. Wrapper39604935626:437/3;
-batch39604935913:895/6. All17 executed jobs conclude; one soak job intentionally
-skips, no cancellations. All144 original tests/host, all installed166-file
-packages and journal lanes pass. Windows legacy Firefox, browser cleanup/retry/
-HTTP privacy audits and macOS raw1,000-action throughput remain unresolved.
+Latest completed full native `b144c7d`: **1,337 reported passes/six failed
+tests**, plus macOS actual-Codex TIMED_OUT971. Wrapper39609165296:434/3;
+batch39609165341:903/3. All17 executed jobs conclude; one soak job intentionally
+skips, no cancellations. Linux/Windows original144, Windows legacy Firefox3,
+all installed166-file packages and all journal lanes pass. macOS original
+screenshot/timeout and1,000-action throughput failures remain; Windows IPv6
+control fails before initial navigation completes. Earlier ownership failures
+remain unexplained even though this round's HTTP/privacy audits pass.
 
-Separate scoped native soak: Linux/macOS Intel100/600 passes; the initial Windows run
-fails after its50-run receipt, then b144c7d Windows-only100/600 passes176.352s.
-The prior four-process observation remains unexplained; no cleanup resolution,
-resource bound or release gate is promoted. Targeted
-Windows role/birth receipts and HTTP double-failure preservation await native
-verification. See [execution report](CODEX_EXECUTION_REPORT.md). **Not release-ready.**
+Scoped100/600 proofs exist on Linux/macOS Intel at8d661bf and twice Windows at
+b144c7d(176.352/182.015s), fresh storage/zero observed owned per run. These are
+not a final same-SHA full green matrix, managed reset or resource bounds.
+A reduced-call large-DOM witness and supervised artifact identity check await
+native verification. See [execution report](CODEX_EXECUTION_REPORT.md).
+**Not release-ready.**
 
 At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
@@ -165,10 +167,10 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 tool inventories,six schemas; native8d661bf all144 original cases/host; legacy Windows Firefox still fails | Preserve baseline/channel scope and verify final clean SHA |
+| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 tool inventories,six schemas; nativeb144c7d Linux/Windows144 pass; macOS141/3, Windows legacy3 pass | Preserve baseline/channel scope and verify final clean SHA |
 | G01 INSTALL | IN PROGRESS | scripts/verify-package.mjs; native8d661bf all five166-file production lanes pass | Verify final candidate natively and complete clean operator walkthroughs |
-| G02 MCP | IN PROGRESS | scripts/verify-codex-jobs.mjs; native8d661bf Linux/Windows actual clients pass; macOS TIMED_OUT888 | Complete remaining malformed/concurrent/disconnect phase acceptance |
-| G03 FEATURE PARITY | FAILED | native8d661bf all144 original tests/host pass; prior Firefox stalls unexplained; interactive/variant coverage incomplete | Complete remaining capability-specific positive/negative cases |
+| G02 MCP | IN PROGRESS | scripts/verify-codex-jobs.mjs; nativeb144c7d Linux/Windows actual clients pass; macOS TIMED_OUT971 | Complete remaining malformed/concurrent/disconnect phase acceptance |
+| G03 FEATURE PARITY | FAILED | nativeb144c7d macOS screenshot protocol/Firefox close/find timeouts; interactive/variant coverage incomplete | Complete remaining capability-specific positive/negative cases |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs,jobs-mcp.test.mjs; native8d661bf source batch/jobs1,000 all OSs; actual Codex macOS timeout/raw throughput stay G02/G10/G12 | Preserve exact action/DOM counters; broader browser reliability stays G10 |
 | G05 RETRIES | FAILED | navigation-retry-browser.test.mjs; native8d661bf Windows Firefox429 case times out after2 GET hits; unsafe POST not replayed | Diagnose bounded navigation failure without enlarging deadlines |
 | G06 JOBS | FAILED | jobs/controller.mjs,guardian.mjs,journal.mjs; native six-tool/CLI,owner/dedup/cancel/reconnect; EOF/SIGKILL evidence | Resolve Windows ownership-audit contradictions; targeted birth/role receipt; complete phase/restart/resource acceptance |
@@ -182,7 +184,7 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,evidence/worker-ci-fortyeighth-*,late-cancel-*,validation-property-*; exact SHA/counts retained | Keep every gate/scenario tied to executed evidence; pending is not pass |
+| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md,evidence/worker-ci-fortyninth-*,late-cancel-*,validation-property-*; exact SHA/counts retained | Keep every gate/scenario tied to executed evidence; pending is not pass |
 | G18 CLEAN MERGE | FAILED | Draft PR2; last full green d71c91e (14 jobs), current17-job failures retained | Resolve critical gaps; require green complete final SHA before merge |
 
 ## Defects and risk register
@@ -2745,3 +2747,75 @@ Node22 case passes with20 executions; this is the final local directory-identity
 selection, not native evidence. A further same-SHA Windows-only repro attempt
 (run39611530150) is queued to seek the prior ownership observation with fixed
 metadata; no code or deadline changed and no new result is inferred from queueing.
+
+## Native49 completed; independent large-DOM effect witness
+
+Latest completed full native `b144c7d`: **1,337 reported passes/six failed
+tests**, plus macOS actual-Codex failure. Wrapper39609165296:434/3;
+batch39609165341:903/3. All17 executed jobs conclude; one soak job intentionally
+skips in full mode, no cancellations or reported test skips/cancels.
+
+Linux/Windows original144-test suites pass; all three Windows Node20 raw Firefox
+modes also pass their10 fresh runs, Docker2/2 passes. macOS original141/3 fails
+Chromium screenshot protocol capture and Firefox100-click close/large-DOM test
+deadlines. Its modal extra step does not run. Original-tool fixed receipts identify
+final find pending4.1s and a successful trusted-code call27.747s followed by close
+pending0.847s; the unchanged30s test deadline still fails. These are not new
+failure-free parity/stability claims.
+
+All five166-file production installs, all journal lanes and Linux batch20/22/24
+pass. New HTTP status/privacy checks pass all engines/OS lanes this round,
+including the unchanged Windows ownership assertions. No prior four-process
+failure is explained by these healthy repetitions. Windows main143/1 fails its
+IPv6 positive control during initial IPv4 fixture navigation, timeout/completed0;
+it does not establish an IPv6 policy escape. Other IPv6 controls pass.
+
+macOS main142/2 fails raw Chromium1,000 and durable MCP1,000 at982; actual Codex
+TIMED_OUT971 has readable result, terminated/removed cleanup, no journal hint or
+operator attention. Linux/Windows Codex1,000 pass36.023/38.403s, zero model turns/
+owned survivors. Reversed Codex raw control passes pipe-first111.963s and server-
+second117.409s. Batch server-first times out981; pipe-second passes106.374s.
+Both orders have now run, with variable results; no production transport fix is
+established and no action/deadline/security assertion changes.
+
+Separate b144c7d Windows-only100/600 runs pass176.352s and182.015s with fresh
+cookie/localStorage and zero observed owned after every run. Each executes one
+job and intentionally skips three groups; none cancel. The second attempt sought
+the earlier ownership failure and did not reproduce it. Linux/macOS100/600 proofs
+remain at8d661bf; these scoped checks span candidates and establish no hard
+resource bound or managed profile reset. The prior Windows ownership observations
+remain unresolved.
+
+Next large-DOM fixture keeps4,000 rows,161,846-byte snapshot, bounded find limits
+and reference click but replaces the final verification find with a MutationObserver
+posting the actual changed DOM value to its owned server. This reduces authored
+MCP tool calls7→6 within unchanged budgets. Local Chromium/Firefox2/2 and Node20
+Chromium1/1 pass; a deliberately incorrect value fails after explicit browser-close
+acknowledgement. A separate20-execution supervised artifact identity test passes
+Node20/22 and awaits native verification; the failing raw artifact test stays.
+**Not release-ready.** Evidence: worker-ci-fortyninth-*, portable-native-windows-*,
+large-dom-server-witness-* and supervised-artifacts-*.
+
+The final find request in the failed macOS large-DOM test is verification overhead:
+its target action already returned. The replacement observes output child-list
+mutation and POSTs output.textContent; the test requires POST, exact Activated
+row3999 and one hit. Wrong-row output cannot pass merely because a request arrives.
+Snapshot-before-find/ref-action ordering, snapshot bytes/4,000 buttons, two bounded
+finds and response length checks remain. Server request rejection is handled if a
+prior tool fails; fixture reset cannot create an unhandled promise. No runtime
+engine behavior changes.
+
+Controlled negative source copy changes only the last row's output to row0,
+acknowledges browser_close, then fails the same DOM-value assertion. Expected
+exit1 and close receipt are verified; temporary test is removed. The positive
+selection passes Chromium/Firefox2/2(8.5s) and Node20 Chromium1/1, six tool calls
+each. This is expected negative evidence, not an ordinary pass or an engine fix.
+Final supervised artifact directory/report-ID checks also pass Node20;167-file
+QA pack remains dry-run only. Lint passes; native verification pending.
+
+The additional same-SHA Windows repro attempt finishes100/600 in182.015s,
+fresh cookie/localStorage and zero observed owned after each run. It does not
+reproduce/explain the older four-process observation. One job passes, three
+primary groups intentionally skip, no cancellation. Both same-SHA Windows passes
+are retained separately; further healthy repetitions are not treated as fixes.
+Evidence: portable-native-windows-third*.

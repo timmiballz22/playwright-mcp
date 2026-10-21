@@ -1,57 +1,55 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed full native `8d661bf`: **1,332 reported passes/nine failed
-tests**, plus a failed macOS actual-Codex check. Wrapper39604935626:437/3;
-batch39604935913:895/6. Seventeen jobs execute and conclude; one functional-soak
-job intentionally skips in full mode. No jobs cancel and no test skips/cancels
-are reported. The separate scoped soak has its own results below.
+Latest completed full native `b144c7d`: **1,337 reported passes/six failed
+tests**, plus macOS actual-Codex failure. Wrapper39609165296:434/3;
+batch39609165341:903/3. All17 executed jobs conclude; one soak job intentionally
+skips in full mode, no cancellations or reported test skips/cancels.
 
-All144 original tests pass on each host OS; Docker2/2 and macOS modal3/3 pass.
-The direct screenshot observation fixture is verified across host browser
-projects with unchanged pixels/5s/20-frame/30s limits. Windows legacy Node20
-Firefox headless/headed/direct-pipe controls fail; previous unrelated Firefox
-stalls are not explained by this healthy original-suite repetition.
+Linux/Windows original144-test suites pass; all three Windows Node20 raw Firefox
+modes also pass their10 fresh runs, Docker2/2 passes. macOS original141/3 fails
+Chromium screenshot protocol capture and Firefox100-click close/large-DOM test
+deadlines. Its modal extra step does not run. Original-tool fixed receipts identify
+final find pending4.1s and a successful trusted-code call27.747s followed by close
+pending0.847s; the unchanged30s test deadline still fails. These are not new
+failure-free parity/stability claims.
 
-All five166-file installed production lanes and all journal component lanes pass.
-Linux main batch passes Node20/22/24. New IPv6 alias and expanded cancellation
-failure-priority controls pass all five batch lanes. HTTP privacy passes across
-Linux/macOS engines and Windows Chromium; Windows Firefox lifecycle timeout and
-WebKit ownership audit prevent broader acceptance.
+All five166-file production installs, all journal lanes and Linux batch20/22/24
+pass. New HTTP status/privacy checks pass all engines/OS lanes this round,
+including the unchanged Windows ownership assertions. No prior four-process
+failure is explained by these healthy repetitions. Windows main143/1 fails its
+IPv6 positive control during initial IPv4 fixture navigation, timeout/completed0;
+it does not establish an IPv6 policy escape. Other IPv6 controls pass.
 
-Windows main batch138/5 fails raw Chromium screenshot cleanup(server_timeout),
-supervised Firefox positive clicks, Firefox HTTP privacy timeout, WebKit HTTP
-privacy final ownership audit(four processes) and Firefox429 retry timeout after
-two GET hits. The deadline audit happens to pass this round, so its fixed role
-receipt does not explain the prior process observation. No process is filtered,
-no cleanup claim is promoted and that candidate does not establish a Windows100-run pass. Reversed
-Firefox temp controls both pass10/10 and zero final owned processes; healthy
-repetitions still provide no temp workaround.
+macOS main142/2 fails raw Chromium1,000 and durable MCP1,000 at982; actual Codex
+TIMED_OUT971 has readable result, terminated/removed cleanup, no journal hint or
+operator attention. Linux/Windows Codex1,000 pass36.023/38.403s, zero model turns/
+owned survivors. Reversed Codex raw control passes pipe-first111.963s and server-
+second117.409s. Batch server-first times out981; pipe-second passes106.374s.
+Both orders have now run, with variable results; no production transport fix is
+established and no action/deadline/security assertion changes.
 
-macOS main batch142/1 fails raw Chromium at step972(timeout); its full serialized
-result line is truncated, so no missing summary fields are inferred. Actual Codex
-macOS TIMED_OUT888 retains readable result and terminated/removed cleanup, no
-journal hint or operator attention. Linux/Windows Codex1,000 pass35.625/38.548s,
-zero model turns/owned survivors. macOS transport controls pass both modes in
-both failed jobs: batch116.250/105.237s; client120.029/89.212s(server/pipe).
-Raw-runner durations include cooperative teardown and are not supervised-deadline
-acceptance. Direct pipe always ran second; next client diagnostic reverses order
-within the same bounds/counts, with no production transport change.
+Separate b144c7d Windows-only100/600 runs pass176.352s and182.015s with fresh
+cookie/localStorage and zero observed owned after every run. Each executes one
+job and intentionally skips three groups; none cancel. The second attempt sought
+the earlier ownership failure and did not reproduce it. Linux/macOS100/600 proofs
+remain at8d661bf; these scoped checks span candidates and establish no hard
+resource bound or managed profile reset. The prior Windows ownership observations
+remain unresolved.
 
-The new HTTP fixture's final audit can mask a primary assertion. A controlled
-real-Chromium before/after fault confirms the old primary is lost; the new path
-retains both error objects, emits fixed stage/outcome/audit fields and preserves
-the workspace. Both injected runs are expected failures with independently zero
-real owned processes. Actual Windows failure roles/births remain unverified;
-next targeted soak records fixed metadata and retains all observed processes.
-**Not release-ready.** Evidence: worker-ci-fortyeighth-* and
-http-double-failure-controlled.json.
+Next large-DOM fixture keeps4,000 rows,161,846-byte snapshot, bounded find limits
+and reference click but replaces the final verification find with a MutationObserver
+posting the actual changed DOM value to its owned server. This reduces authored
+MCP tool calls7→6 within unchanged budgets. Local Chromium/Firefox2/2 and Node20
+Chromium1/1 pass; a deliberately incorrect value fails after explicit browser-close
+acknowledgement. A separate20-execution supervised artifact identity test passes
+Node20/22 and awaits native verification; the failing raw artifact test stays.
+**Not release-ready.** Evidence: worker-ci-fortyninth-*, portable-native-windows-*,
+large-dom-server-witness-* and supervised-artifacts-*.
 
-Local follow-ups awaiting native execution add HTTP header/body/query/report
-privacy checks and IPv6 loopback alias controls (Chromium/Firefox on Node20/22/24),
-late-abort action/policy controls (18 executor tests each Node), and a portable
-functional soak (100 runs/600 actions in109.293s, zero owned after every run and
-fresh cookie/localStorage). A manual three-OS soak-only lane is prepared. These
-are scoped checks, not full resource bounds, managed profile reset or native PASS.
+Local follow-ups awaiting native execution now consist of the supervised
+20-artifact identity test and the reduced-call large-DOM effect witness. Earlier
+HTTP/privacy, IPv6 and expanded cancellation checks have executed natively;
+their scoped results and failures are recorded above.
 
 Subsequent Windows-only scoped soak `b144c7d`, run39609200840, passes100
 runs/600 actions in176.352s, fresh cookie/localStorage and zero observed owned

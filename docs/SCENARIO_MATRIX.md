@@ -1,18 +1,20 @@
 # Mandatory scenario evidence
 
-Latest completed full native `8d661bf`: **1,332 reported passes/nine failed
-tests**, plus macOS actual-Codex TIMED_OUT888. Wrapper39604935626:437/3;
-batch39604935913:895/6. All17 executed jobs conclude; one soak job intentionally
-skips, no cancellations. All144 original tests/host, all installed166-file
-packages and journal lanes pass. Windows legacy Firefox, browser cleanup/retry/
-HTTP privacy audits and macOS raw1,000-action throughput remain unresolved.
+Latest completed full native `b144c7d`: **1,337 reported passes/six failed
+tests**, plus macOS actual-Codex TIMED_OUT971. Wrapper39609165296:434/3;
+batch39609165341:903/3. All17 executed jobs conclude; one soak job intentionally
+skips, no cancellations. Linux/Windows original144, Windows legacy Firefox3,
+all installed166-file packages and all journal lanes pass. macOS original
+screenshot/timeout and1,000-action throughput failures remain; Windows IPv6
+control fails before initial navigation completes. Earlier ownership failures
+remain unexplained even though this round's HTTP/privacy audits pass.
 
-Separate scoped native soak: Linux/macOS Intel100/600 passes; the initial Windows run
-fails after its50-run receipt, then b144c7d Windows-only100/600 passes176.352s.
-The prior four-process observation remains unexplained; no cleanup resolution,
-resource bound or release gate is promoted. Targeted
-Windows role/birth receipts and HTTP double-failure preservation await native
-verification. See [execution report](CODEX_EXECUTION_REPORT.md). **Not release-ready.**
+Scoped100/600 proofs exist on Linux/macOS Intel at8d661bf and twice Windows at
+b144c7d(176.352/182.015s), fresh storage/zero observed owned per run. These are
+not a final same-SHA full green matrix, managed reset or resource bounds.
+A reduced-call large-DOM witness and supervised artifact identity check await
+native verification. See [execution report](CODEX_EXECUTION_REPORT.md).
+**Not release-ready.**
 
 At this historical checkpoint, latest completed native `808d681`: **1,038 tests passed/six failed**, zero reported
 test skips/cancellations. Wrapper39578096682:409/4; batch39578096701:629/2.
@@ -181,7 +183,7 @@ acceptance remain open.
 | 40 | Default stdio listener audit | PARTIAL: no public companion HTTP transport. Active supervised execution uses a private loopback BrowserServer protocol allowed by master section 0; Linux Node24 operator probe initializes all three stdio endpoints (25/1/6 tools), maps socket inodes only from four live owned processes, finds zero TCP/IPv6 TCP listeners and verifies zero owned processes after shutdown. New Linux Node22/24 active supervised browser snapshots attribute one exact-loopback worker TCP listener across eight owned processes with complete readable FD coverage; cancellation leaves zero owned survivors. Native OS listener audits and broader egress controls remain. |
 | 41 | Local CLI without connected model | Verified local 26-operation fixture, exact counter, report and canary absence; installed browsers/dependencies required. Not an OS air-gap audit. |
 | 42 | Large DOM bounded representation | PARTIAL: batch returns last ten metadata steps and no DOM; local Chromium/Firefox4,000-button fixture saves a full snapshot above64KiB while explicit file responses stay below4096 characters; bounded browser_find returns actionable references and confirms a real last-row click. This uses operator-selected snapshot-mode=none; default inline/heap bounds remain open and native all-engine file/find fixture passed at b6a91b9. |
-| 43 | Repeated suites, explained flakiness | PARTIAL: latest8d661bf has1,332 reported passes/nine failed tests plus macOS actual-Codex timeout;17 executed jobs conclude, one soak job intentionally skips. All original144/host and installed packages pass. Windows cleanup/ownership, legacy Firefox and macOS throughput remain unresolved; separate Windows100-run soak fails after its50-run receipt. No full native resolution. |
+| 43 | Repeated suites, explained flakiness | PARTIAL: latestb144c7d has1,337 reported passes/six failed tests plus macOS actual-Codex timeout;17 executed jobs conclude, one soak job intentionally skips. Linux/Windows original144 and legacy Windows Firefox3 pass; macOS screenshot/Firefox deadlines and1,000-action throughput remain. Two same-SHA Windows100/600 scoped soaks pass but do not explain previous ownership observations. No full native resolution. |
 | 44 | Main/release blocked until evidence | PARTIAL: publishing disabled and PR remains draft; branch-protection API returned 403, enforcement not verified. No main merge. |
 | 45 | Documented setup with no global MCP config | PARTIAL: actual temporary-config Codex and installed paths with spaces; native Bash/PowerShell bootstraps pass at 5264cb6; native Codex operator walkthroughs remain incomplete. |
 
