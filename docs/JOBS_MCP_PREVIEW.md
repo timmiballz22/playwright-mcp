@@ -3,7 +3,8 @@
 This stdio preview requires Node22.13+ and private local storage. POSIX uses
 private modes; the experimental Windows configuration now uses protected
 owner/System DACLs. Its helper passed native acceptance at ebdec88, while public
-Windows endpoint integration awaits its own native checks. It is not release-ready.
+Windows installed public MCP/CLI and source1,000-action checks pass at6fffa27.
+Actual Codex Windows discovery still fails; it is not release-ready.
 The original MCP endpoint and one-tool batch endpoint remain available.
 
 Register `playwright-jobs-mcp` (or `node local-batch/jobs-mcp.mjs`) with trusted
@@ -139,7 +140,8 @@ Default storage is `%USERPROFILE%/AppData/Local/playwright-batch/jobs`; an expli
 UNC/device paths, reparse points and unsafe existing grants fail closed. Existing
 ACLs are never repaired. Current SID plus canonical project determines the shared
 journal namespace; owner UUID hashes separate artifact directories. The public
-Windows integration is experimental pending installed/MCP/CLI native checks.
+Windows installed MCP/CLI and source six-tool jobs pass at native6fffa27; actual
+Codex Windows discovery remains unverified after an empty-inventory failure.
 
 Native585acae passes Windows configuration/ACL components (39 checks in the
 component job), but the first installed public MCP job returns terminal FAILED
@@ -151,3 +153,9 @@ The current setup fix moves only Windows ephemeral browser data into a unique
 short private directory under the configured data base. Journal paths, artifact
 paths, owner/project hashes and retained request keys remain stable. Local
 lifecycle/fault checks pass; native installed/public acceptance is still pending.
+
+Native6fffa27 supersedes the earlier public Windows setup failures above: combined
+short browser temp plus exclusive UUID artifact allocation passes installed MCP/CLI
+and source1,000-action verification. No ACL or cleanup assertion was relaxed.
+Actual Codex Windows discovery still returns no tools; bounded readiness polling
+and fixed startup-code diagnostics are a candidate, not a verified native fix.

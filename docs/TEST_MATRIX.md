@@ -285,3 +285,26 @@ and phase tests pass on native POSIX. Windows short-temp-only case still fails
 setup before launch; UUID artifact allocation and the deep-path component
 regression are the next candidate. Legacy Windows Firefox headless remains the
 one test failure. No deadline/count/cleanup assertion was loosened.
+
+
+## Native6fffa27 and client-readiness follow-up
+
+Latest completed native `6fffa27`: **942 tests passed/three failed**, zero test
+skips/cancellations, plus one Windows Codex-client discovery verification failure.
+Wrapper39552616750:271/1; batch39552616754:671/2. All three test failures are raw
+Windows Firefox loops. All88 original cases per OS, Docker and four durable
+component jobs pass. Windows installed public MCP/CLI verification and source
+six-tool1,000-action jobs harness now pass. The Windows deep-path component records
+legacy mkdtemp ENOENT at300 characters; exclusive UUID allocation succeeds.
+The combined short-temp/UUID fix preserves journal namespaces and retained keys.
+Actual Codex0.163.0 zero-model-turn jobs verification passes on Linux (37.053s)
+and macOS (112.309s), including1,000 actions, owner isolation, deduplication,
+cancellation and zero owned survivors. Windows returns an empty tool inventory;
+the cause is unproven. A candidate adds bounded read-only readiness polling and
+fixed-code startup diagnostics while retaining the exact six-tool contract.
+Local candidate client verification passes in35.609s, zero model turns/survivors.
+The matrix has17 jobs; last full green remains d71c91e (14 jobs). Historical
+macOS timing/WebKit failures remain retained. Full quotas/retention, Windows
+client reliability, raw Firefox, managed profiles and egress still block release.
+
+Evidence: worker-ci-thirtyfirst-selected.log and worker-ci-thirtyfirst-counts.jsonl.

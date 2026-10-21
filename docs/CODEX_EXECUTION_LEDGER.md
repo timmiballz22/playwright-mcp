@@ -2,25 +2,23 @@
 
 Updated 2026-10-21. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest completed native `148ccab`: **839 tests passed/one failed**, zero test
-skips/cancellations, plus Windows installed setup and layout reproduction failures
-before its browser suite. Wrapper39550655935:271/1; batch39550655940:568/0.
-All88 original tests per OS, Docker and all four durable components pass.
-Short browser temp alone did not solve deep setup:65-character protected artifact
-base succeeds,214-character job namespace fails with either temp layout, before
-the launch diagnostic. The joint candidate replaces the runner's mkdtemp artifact
-allocation with exclusive UUID mkdir, retaining short browser temp for upstream
-allocations. Existing journal/artifact namespaces and request keys stay intact.
-Windows component regression now records legacy mkdtemp behavior at a deep owned
-path and requires exactly one successful fake-browser launch/action with UUID
-allocation. Native confirmation pending. Local21 runner/ownership, seven real
-quota/temp/config cases and fresh137-file package pass. Actual Codex Node launcher
-verifies6 tools/1,000 actions/cancel/owner/dedup in35.436s with0 model turns and0
-owned survivors; optional pinned client CI extends the matrix from14 to17 jobs.
-One test failure remains raw Windows Firefox headless. Past macOS timing/WebKit
-cancellation failures remain retained. Last full green remains d71c91e (14 jobs).
-Quotas/retention, Windows execution acceptance, reliability, profiles and egress
-still block release.
+Latest completed native `6fffa27`: **942 tests passed/three failed**, zero test
+skips/cancellations, plus one Windows Codex-client discovery verification failure.
+Wrapper39552616750:271/1; batch39552616754:671/2. All three test failures are raw
+Windows Firefox loops. All88 original cases per OS, Docker and four durable
+component jobs pass. Windows installed public MCP/CLI verification and source
+six-tool1,000-action jobs harness now pass. The Windows deep-path component records
+legacy mkdtemp ENOENT at300 characters; exclusive UUID allocation succeeds.
+The combined short-temp/UUID fix preserves journal namespaces and retained keys.
+Actual Codex0.163.0 zero-model-turn jobs verification passes on Linux (37.053s)
+and macOS (112.309s), including1,000 actions, owner isolation, deduplication,
+cancellation and zero owned survivors. Windows returns an empty tool inventory;
+the cause is unproven. A candidate adds bounded read-only readiness polling and
+fixed-code startup diagnostics while retaining the exact six-tool contract.
+Local candidate client verification passes in35.609s, zero model turns/survivors.
+The matrix has17 jobs; last full green remains d71c91e (14 jobs). Historical
+macOS timing/WebKit failures remain retained. Full quotas/retention, Windows
+client reliability, raw Firefox, managed profiles and egress still block release.
 
 All 45 mandatory scenarios are
 mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).

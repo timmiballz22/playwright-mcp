@@ -34,7 +34,13 @@ const table = entries => '{' + Object.entries(entries).map(([key, value]) => key
 const server = id => `{command=${JSON.stringify(process.execPath)},args=[${JSON.stringify(path.join(root, 'local-batch/jobs-mcp.mjs'))}],env=${table(environment(id))}}`;
 const config = `mcp_servers={jobs=${server(owner)},foreign_jobs=${server(randomUUID())}}`;
 const child = spawn(codexCommand, [...codexArguments, 'app-server', '--stdio', '-c', config], { cwd: root, detached: true, stdio: ['pipe', 'pipe', 'pipe'] });
-const closed = once(child, 'close').catch(() => []); child.stderr.resume();
+const closed = once(child, 'close').catch(() => []);
+// Keep raw client diagnostics private; emit only our fixed startup code format.
+const startupCodes = new Set(); let stderrTail = '';
+child.stderr.on('data', chunk => {
+  stderrTail = (stderrTail + chunk.toString()).slice(-4096);
+  for (const match of stderrTail.matchAll(/Local jobs startup failed \(([a-z_]{1,40})\)/g)) startupCodes.add(match[1]);
+});
 const lines = createInterface({ input: child.stdout });
 const pending = new Map(); let next = 1; let observed = [];
 const rejectPending = () => { for (const item of pending.values()) { clearTimeout(item.timer); item.reject(new Error('Codex transport closed')); } pending.clear(); };
@@ -52,8 +58,8 @@ lines.on('line', line => {
   } else item.resolve(packet.result);
 });
 const send = packet => child.stdin.write(JSON.stringify({ jsonrpc: '2.0', ...packet }) + '\n');
-const rpc = (method, params) => new Promise((resolve, reject) => {
-  const id = next++; const timer = setTimeout(() => { pending.delete(id); reject(new Error('Codex RPC timed out')); }, 20000);
+const rpc = (method, params, timeoutMs = 20000) => new Promise((resolve, reject) => {
+  const id = next++; const timer = setTimeout(() => { pending.delete(id); reject(new Error('Codex RPC timed out')); }, timeoutMs);
   pending.set(id, { resolve, reject, timer, method }); send({ id, method, params });
 });
 let verified;
@@ -66,10 +72,20 @@ try {
     assert.notEqual(result.isError, true, 'Actual Codex jobs tool returned an error');
     return JSON.parse(result.content[0].text);
   };
+  const expectedTools = ['start_workflow', 'get_workflow_status', 'get_workflow_result', 'cancel_workflow', 'list_workflows', 'cleanup_workflows'].sort();
   for (const name of ['jobs', 'foreign_jobs']) {
-    const inventory = await rpc('mcpServerStatus/list', { threadId: thread.id, serverName: name, detail: 'toolsAndAuthOnly' });
-    const registered = inventory.data.find(item => item.name === name);
-    assert.deepEqual(Object.keys(registered.tools).sort(), ['start_workflow', 'get_workflow_status', 'get_workflow_result', 'cancel_workflow', 'list_workflows', 'cleanup_workflows'].sort());
+    const discoveryEnd = performance.now() + 20000;
+    let tools = []; let polls = 0;
+    do {
+      const inventory = await rpc('mcpServerStatus/list', { threadId: thread.id, serverName: name, detail: 'toolsAndAuthOnly' }, Math.max(1, discoveryEnd - performance.now()));
+      const registered = inventory.data.find(item => item.name === name);
+      tools = Object.keys(registered?.tools ?? {}).sort(); polls++;
+      if (tools.length || startupCodes.size || performance.now() >= discoveryEnd) break;
+      await new Promise(resolve => setTimeout(resolve, 200));
+    } while (polls < 100);
+    const diagnostic = JSON.stringify({ server: name, tools: tools.length, polls, startupCodes: [...startupCodes].sort() });
+    if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Codex tool discovery::' + diagnostic);
+    assert.deepEqual(tools, expectedTools, diagnostic);
   }
   const input = { requestKey: 'codex-1000', workflow: { timeoutMs: 120000, steps: [
     { type: 'goto', url: origin }, { type: 'click', selector: { role: 'button', name: 'Add' }, repeat: 997 },
