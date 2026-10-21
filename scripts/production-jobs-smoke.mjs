@@ -35,7 +35,7 @@ if (!supportsJournal) {
     const response = await client.callTool({ name, arguments: args });
     assert.notEqual(response.isError, true, 'Production jobs tool failed'); return JSON.parse(response.content[0].text);
   };
-  let cliFailed = false; let verified = false;
+  let cliFailed = false; let verified = false; let diagnosticSafe = false;
   try {
     await client.connect(transport);
     await ownedDescendants([transport.pid], { rememberLiveRoots: true });
@@ -44,7 +44,10 @@ if (!supportsJournal) {
     const first = await call('start_workflow', input);
     assert.equal((await call('start_workflow', input)).jobId, first.jobId);
     const result = await call('get_workflow_result', { jobId: first.jobId, waitMs: 10000 });
+    diagnosticSafe = process.platform === 'win32' && result.job?.state === 'FAILED' && result.job?.operatorAttentionRequired === false && result.result?.execution?.cleanup === 'terminated' && result.result?.execution?.tempCleanup === 'removed';
     const receipt = JSON.stringify({ phase: 'initial_job', ready: result.ready, state: result.job?.state, operatorAttentionRequired: result.job?.operatorAttentionRequired, completed: result.result?.completed, reason: result.result?.reason, stage: result.result?.stage, failedStepType: result.result?.failedStep?.type, failureKind: result.result?.failedStep?.failureKind, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup, navigations });
+    if (process.env.GITHUB_ACTIONS === 'true' && (!result.ready || result.job?.state !== 'SUCCEEDED'))
+      console.error('::error title=Installed jobs receipt::' + receipt.replaceAll('%', '%25').replaceAll('\r', '%0D').replaceAll('\n', '%0A'));
     assert.equal(result.ready, true, receipt); assert.equal(result.job.state, 'SUCCEEDED', receipt);
     assert.equal(result.result.completed, 2); assert.equal(result.result.reportPath, undefined);
     assert.equal(navigations, 1);
@@ -88,6 +91,7 @@ if (!supportsJournal) {
       const end = performance.now() + 10000;
       while ((await ownedDescendants(observed)).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 50));
       assert.deepEqual(await ownedDescendants(observed), []);
+      if (diagnosticSafe) console.error('WINDOWS_JOB_LAYOUT_CLEANUP_CONFIRMED');
       clean = !cliFailed && verified;
     } finally {
       await client.close().catch(() => {});

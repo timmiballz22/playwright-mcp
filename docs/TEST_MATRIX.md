@@ -207,3 +207,19 @@ raw Firefox headless fresh7 with8 completed actions/context+server timeouts;
 macOS WebKit cancellation sees GET offsets0/124ms with overwritten abort226ms.
 First-abort recording is fixed; single-hit assertion remains and runtime cause is
 not claimed. All76 original tests per OS, Docker and other components pass.
+
+Named tab-context parity passes local Chromium/Firefox: the optional
+isolatedContext field reuses cookies/localStorage within alpha while beta and the
+original tab remain independent. Native new case is pending.
+
+Prepared Windows failure probe compares a short protected base with the full job
+namespace using two fresh read-only local fixture workflows. It runs automatically
+only after the failed installed job reports verified process/temp cleanup, no
+operator attention, and the fixture's independent post-shutdown scan confirms no
+owned survivors. Unknown cleanup skips the probe; each probe also stops before
+another allocation if its own cleanup is unconfirmed. Only fixed error categories,
+state and path-length counts are reported, never raw launch errors or paths.
+Windows native probe acceptance is pending; Linux syntax checks/YAML parse pass.
+Installed fixed receipts and probe cases emit GitHub annotations because this
+host's Azure artifact downloads returned403 (the artifacts uploaded successfully).
+No ACL, launch-policy, deadline or strict assertion is relaxed for diagnosis.

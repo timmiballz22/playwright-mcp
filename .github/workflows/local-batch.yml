@@ -64,6 +64,10 @@ jobs:
         id: installed
         shell: bash
         run: node scripts/verify-package.mjs 2>&1 | tee installed-tests.log
+      - name: Diagnose failed Windows private job layout
+        if: failure() && runner.os == 'Windows' && steps.installed.outcome == 'failure'
+        shell: bash
+        run: node scripts/diagnose-windows-job-layout.mjs installed-tests.log 2>&1 | tee layout-probe.log
       - name: Run mock and real browser tests through Bash bootstrap
         id: batch_bash
         if: runner.os != 'Windows'
@@ -83,6 +87,7 @@ jobs:
           name: batch-tests-${{ matrix.os }}-node${{ matrix.node }}
           path: |
             installed-tests.log
+            layout-probe.log
             batch-tests.log
           retention-days: 1
           if-no-files-found: error

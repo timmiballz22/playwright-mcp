@@ -39,3 +39,32 @@ test('original storage, screenshot, trace, video, tabs and Chromium PDF behavior
     expect((await fs.readFile(pdf)).subarray(0, 5).toString()).toBe('%PDF-');
   }
 });
+
+test('original named tab contexts share only their own cookie and localStorage state', async ({ startClient, server }) => {
+  server.setContent('/', '<!doctype html><title>Context isolation fixture</title><button>Ready</button>', 'text/html');
+  const { client } = await startClient({ args: ['--isolated', '--caps=storage'] });
+  const call = async (name: string, args: Record<string, unknown> = {}) => {
+    const result = await client.callTool({ name, arguments: args });
+    expect(result.isError, JSON.stringify(result)).not.toBe(true);
+    return JSON.stringify(result.content);
+  };
+  await call('browser_navigate', { url: server.PREFIX });
+  await call('browser_cookie_set', { name: 'main-only', value: 'main-fixture' });
+  await call('browser_localstorage_set', { key: 'context-marker', value: 'main-fixture' });
+  await call('browser_tabs', { action: 'new', url: server.PREFIX, isolatedContext: 'alpha' });
+  expect(await call('browser_cookie_list')).not.toContain('main-only');
+  expect(await call('browser_localstorage_list')).not.toContain('main-fixture');
+  await call('browser_cookie_set', { name: 'named-only', value: 'alpha-fixture' });
+  await call('browser_localstorage_set', { key: 'context-marker', value: 'alpha-fixture' });
+  await call('browser_tabs', { action: 'new', url: server.PREFIX, isolatedContext: 'beta' });
+  expect(await call('browser_cookie_list')).not.toContain('named-only');
+  expect(await call('browser_localstorage_list')).not.toContain('alpha-fixture');
+  await call('browser_tabs', { action: 'new', url: server.PREFIX, isolatedContext: 'alpha' });
+  expect(await call('browser_cookie_get', { name: 'named-only' })).toContain('alpha-fixture');
+  expect(await call('browser_localstorage_get', { key: 'context-marker' })).toContain('alpha-fixture');
+  await call('browser_tabs', { action: 'select', index: 0 });
+  expect(await call('browser_cookie_list')).not.toContain('named-only');
+  expect(await call('browser_cookie_get', { name: 'main-only' })).toContain('main-fixture');
+  expect(await call('browser_localstorage_get', { key: 'context-marker' })).toContain('main-fixture');
+  await call('browser_close');
+});
