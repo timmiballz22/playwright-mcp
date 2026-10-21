@@ -1,0 +1,17 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Benchmark tool failed (browser_click): {"content":[{"type":"text","text":"### Error\nInvalid arguments for tool \"browser_click\":\n✖ Invalid input: expected string, received undefined\n  → at target"}],"isError":true}
+    at call (file:///workspace/playwright-mcp/scripts/benchmark-local-interfaces.mjs:48:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file:///workspace/playwright-mcp/scripts/benchmark-local-interfaces.mjs:65:51 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: true,
+  expected: true,
+  operator: 'notStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.3

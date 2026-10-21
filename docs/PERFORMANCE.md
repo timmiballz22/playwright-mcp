@@ -108,3 +108,44 @@ The upgraded SDK/driver also passed a real 1000-action stdio MCP regression
 batch): original navigation, discovery25/1, exactly1000 completed, one positive
 batch tool call, four declared steps, zero model turns. Global Codex configuration
 was not modified. This is not measured normal-conversation model usage or tokens.
+
+
+## Interface comparison: 100 correct clicks, one Linux sample
+
+Source runtime a3eccc0 with scripts/benchmark-local-interfaces.mjs, Linux x64,
+Node22.23.3, pinned Playwright1.64.1, managed headless Chromium. Each interface
+uses a fresh browser and the same static owned loopback counter. All100 clicks
+must complete and the final DOM counter must equal100. Batch/CLI also assert
+exact URL (103 declarative actions). No model turn is started on any path.
+
+| Interface | MCP tool calls | Argument JSON bytes | Result JSON bytes | Other input/output | Through audited shutdown |
+|---|---:|---:|---:|---|---:|
+| Original MCP, default snapshot behavior |102|6,914|29,203|One necessary snapshot file read:79 bytes|54,877ms|
+| Companion batch MCP |1|300|1,565|No snapshot file reads|4,765ms|
+| Fork batch CLI |0|n/a|n/a|259-byte workflow file;1,960 stdout bytes|4,442ms|
+
+Original/batch discovery responses are20,910/2,026 JSON bytes, separately from
+action results. Init/discovery including the initial ownership audit takes423/
+243ms. Before endpoint shutdown, measured elapsed times are54,524/4,508ms; CLI
+returns its completed summary in4,273ms. Final totals include independent process
+checks and endpoint shutdown, with zero active owned survivors on all paths.
+
+Bytes are JSON-encoded tools/call parameter objects and CallToolResult objects,
+not wire envelopes, token counts or billed usage. Only the initial snapshot
+needed a local file read; final browser_snapshot returned usable inline content.
+Intermediate click replies are counted even though the fixed loop reuses its
+known button target. The CLI is this fork's batch CLI; official Playwright
+CLI/SKILLS and conversational model behavior are NOT measured. Security/reporting
+semantics differ: batch/CLI enforce strict origin fetch routing; original uses its
+delegated default and produces per-tool reports/snapshots. This is a practical
+interface sample, not an isolated protocol-overhead experiment or a throughput SLA.
+CPU/RSS, medians/p95, warm reuse, multiple samples and transferred model tokens
+remain unmeasured here; earlier soak resource measurements are separate. G12
+remains IN PROGRESS.
+
+Initial benchmark development runs assumed inline navigation snapshots and used
+the obsolete ref input instead of the pinned target parameter. They fail before
+measurements and are retained as interface-benchmark-*-diagnostic/first evidence;
+they are script defects, not product regressions or timing samples. The complete
+JSON sample is evidence/interface-benchmark-local.json. Reproduce with
+`node scripts/benchmark-local-interfaces.mjs`; no global configuration changes.
