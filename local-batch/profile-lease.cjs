@@ -84,4 +84,30 @@ async function acquireProfileLease(profile) {
   };
   return lease;
 }
-module.exports = { acquireProfileLease, profileError };
+// Read-only diagnosis of our guard metadata. A PID alone never verifies its
+// incarnation or authorizes reset/termination; profile contents are not read.
+async function inspectProfileLease(profile) {
+  if (typeof profile !== 'string' || !profile.length || profile.length > 32768) return { ok: false, code: 'profile_unavailable' };
+  let root; let entry;
+  try {
+    root = await fs.realpath(path.resolve(profile));
+    if (root === path.parse(root).root) throw new Error();
+    entry = await fs.lstat(root, { bigint: true });
+    if (!entry.isDirectory() || typeof process.getuid === 'function' && (entry.uid !== BigInt(process.getuid()) || entry.mode & 0o022n)) throw new Error();
+  } catch (error) {
+    return error.code === 'ENOENT' ? { ok: true, profile: 'missing', guardLock: 'absent', identityVerified: false } : { ok: false, code: 'profile_unavailable' };
+  }
+  const result = { ok: true, profile: 'present', directoryPermissions: typeof process.getuid === 'function' ? entry.mode & 0o077n ? 'shared' : 'private' : 'windows_acl_unverified', guardLock: 'absent', recordedProcess: 'not_checked', identityVerified: false };
+  const directory = path.join(root, '.playwright-mcp-owner');
+  try { await fs.lstat(directory); }
+  catch (error) { return error.code === 'ENOENT' ? result : { ...result, ok: false, code: 'profile_cleanup_unknown', guardLock: 'unreadable', recordedProcess: 'unknown' }; }
+  let owner;
+  try { owner = await readOwner(directory); }
+  catch { return { ...result, ok: false, code: 'profile_cleanup_unknown', guardLock: 'unreadable', recordedProcess: 'unknown' }; }
+  let recordedProcess = 'present';
+  try { process.kill(owner.pid, 0); }
+  catch (error) { recordedProcess = error.code === 'ESRCH' ? 'absent' : 'unknown'; }
+  const local = held.get(root);
+  return { ...result, ok: false, code: recordedProcess === 'present' && !local?.uncertain ? 'profile_in_use' : 'profile_cleanup_unknown', guardLock: 'present', recordedProcess, identityVerified: false };
+}
+module.exports = { acquireProfileLease, profileError, inspectProfileLease };

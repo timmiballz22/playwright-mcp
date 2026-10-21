@@ -1,3 +1,4 @@
+import { spawnSync } from 'node:child_process';
 // Installed original endpoint: real persistent profile plus cross-client guard.
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
@@ -15,6 +16,11 @@ const fixture = createServer((_request, response) => { response.writeHead(200, {
 fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
 const origin = `http://127.0.0.1:${fixture.address().port}`;
 const clients = []; const roots = []; let observed = []; let verified = false;
+const doctor = () => {
+  const result = spawnSync(process.execPath, [path.join(target, 'cli.js'), 'profile-doctor', profile], { encoding: 'utf8', timeout: 5000 });
+  assert.ifError(result.error); assert.equal(result.stderr, '');
+  return { status: result.status, value: JSON.parse(result.stdout), text: result.stdout };
+};
 const open = async () => {
   const client = new Client({ name: 'installed-profile', version: '1.0.0' });
   const transport = new StdioClientTransport({ command: process.execPath, args: [path.join(target, 'cli.js'), '--browser=chromium', '--headless', '--caps=storage', '--user-data-dir', profile], stderr: 'pipe', cwd: root });
@@ -28,6 +34,10 @@ try {
   const first = await open(); await call(first.client, 'browser_navigate', { url: origin });
   const ownerPath = path.join(profile, '.playwright-mcp-owner', 'owner.json');
   const owner = JSON.parse(await readFile(ownerPath, 'utf8')); assert.equal(owner.pid, first.pid);
+  const diagnosis = doctor(); assert.equal(diagnosis.status, 1);
+  assert.equal(diagnosis.value.guardLock, 'present'); assert.equal(diagnosis.value.identityVerified, false);
+  assert.equal(diagnosis.value.recordedProcess, 'present');
+  assert.equal(diagnosis.text.includes(owner.token) || diagnosis.text.includes(profile), false);
   if (process.platform !== 'win32') assert.equal((await lstat(ownerPath)).mode & 0o777, 0o600);
   await call(first.client, 'browser_cookie_set', { name: 'fake-persistent', value: 'fake-profile-value', expires: Math.floor(Date.now() / 1000) + 3600 });
   observed = await ownedDescendants(roots, { rememberLiveRoots: true });
@@ -36,6 +46,7 @@ try {
   assert.equal(blocked.isError, true); assert.match(JSON.stringify(blocked.content), /already in use/);
   await call(first.client, 'browser_close');
   await assert.rejects(lstat(path.dirname(ownerPath)), { code: 'ENOENT' });
+  const unheld = doctor(); assert.equal(unheld.status, 0); assert.equal(unheld.value.guardLock, 'absent');
   const restored = await open(); await call(restored.client, 'browser_navigate', { url: origin });
   assert.ok((await call(restored.client, 'browser_cookie_get', { name: 'fake-persistent' })).includes('fake-profile-value'));
   observed.push(...await ownedDescendants(roots, { rememberLiveRoots: true }));
@@ -55,4 +66,4 @@ try {
     if (clean && verified) await rm(root, { recursive: true, force: true });
   }
 }
-console.log(JSON.stringify({ component: 'delegated_profile_guard', production: true, realBrowser: 'chromium', contentionDenied: true, persistentCookieRestored: true, leaseReleasedAfterClose: true, activeOwnedProcesses: 0 }));
+console.log(JSON.stringify({ component: 'delegated_profile_guard', production: true, realBrowser: 'chromium', contentionDenied: true, readOnlyDoctor: true, persistentCookieRestored: true, leaseReleasedAfterClose: true, activeOwnedProcesses: 0 }));

@@ -140,3 +140,17 @@ docker run --rm -i --user "$(id -u):$(id -g)" \
 This retains the image's standard headless Chromium setup and keeps shared files
 owned by the host reader. The repository's corresponding native test is pending;
 the prior UID-only attempt failed at Crashpad startup.
+
+
+Inspect a guarded original profile without opening a browser:
+
+```bash
+playwright-mcp profile-doctor /private/project/profile
+```
+
+The single JSON response reports guard metadata and directory permissions. Exit0
+means inspection found no guard (or no directory); it does not prove the profile
+is unused. Exit1 reports a blocked/uncertain guard or unavailable directory; exit2
+means invalid arguments. The recorded process is always identity-unverified.
+Windows ACL privacy is reported as unverified. The command preserves credentials,
+locks and permissions; reset/recovery still requires separate operator review.

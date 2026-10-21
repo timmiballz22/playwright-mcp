@@ -6,7 +6,7 @@ import { randomUUID } from 'node:crypto';
 import path from 'node:path';
 import os from 'node:os';
 const require = createRequire(import.meta.url);
-const { acquireProfileLease } = require('./profile-lease.cjs');
+const { acquireProfileLease, inspectProfileLease } = require('./profile-lease.cjs');
 test('profile lease refuses contention across aliases and releases only its own complete metadata', async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), 'profile-lease-'));
   try {
@@ -46,6 +46,9 @@ test('another process owns the lease; dead owner remains uncertain and is never 
     clearTimeout(timer);
     await assert.rejects(acquireProfileLease(root), { code: 'profile_in_use' });
     child.kill('SIGKILL'); await exited;
+    const diagnosis = await inspectProfileLease(root);
+    assert.equal(diagnosis.recordedProcess, 'absent'); assert.equal(diagnosis.identityVerified, false);
+    assert.equal(diagnosis.code, 'profile_cleanup_unknown');
     await assert.rejects(acquireProfileLease(root), { code: 'profile_cleanup_unknown' });
     assert.deepEqual(await readdir(path.join(root, '.playwright-mcp-owner')), ['owner.json']);
   } finally {

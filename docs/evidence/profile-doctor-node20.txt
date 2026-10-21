@@ -1,0 +1,55 @@
+TAP version 13
+# Subtest: profile doctor reports a missing path without creating it
+ok 1 - profile doctor reports a missing path without creating it
+  ---
+  duration_ms: 102.746071
+  ...
+# Subtest: profile doctor preserves active ownership and hides path, PID and token from CLI output
+ok 2 - profile doctor preserves active ownership and hides path, PID and token from CLI output
+  ---
+  duration_ms: 181.285096
+  ...
+# Subtest: profile doctor retains malformed, oversized and linked guard metadata without leaking contents
+ok 3 - profile doctor retains malformed, oversized and linked guard metadata without leaking contents
+  ---
+  duration_ms: 191.073096
+  ...
+# Subtest: profile doctor does not repair a writable profile directory
+ok 4 - profile doctor does not repair a writable profile directory
+  ---
+  duration_ms: 1.650972
+  ...
+# Subtest: profile doctor rejects extra CLI actions without accepting a reset request
+ok 5 - profile doctor rejects extra CLI actions without accepting a reset request
+  ---
+  duration_ms: 149.080311
+  ...
+# Subtest: profile lease refuses contention across aliases and releases only its own complete metadata
+ok 6 - profile lease refuses contention across aliases and releases only its own complete metadata
+  ---
+  duration_ms: 17.669103
+  ...
+# Subtest: profile lease never deletes malformed or changed ownership records
+ok 7 - profile lease never deletes malformed or changed ownership records
+  ---
+  duration_ms: 39.390899
+  ...
+# Subtest: another process owns the lease; dead owner remains uncertain and is never silently reclaimed
+ok 8 - another process owns the lease; dead owner remains uncertain and is never silently reclaimed
+  ---
+  duration_ms: 133.153098
+  ...
+# Subtest: linked ownership directory cannot change or delete an outside marker
+ok 9 - linked ownership directory cannot change or delete an outside marker
+  ---
+  duration_ms: 6.302644
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 747.766361
