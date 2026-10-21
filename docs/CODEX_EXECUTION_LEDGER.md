@@ -2,21 +2,24 @@
 
 ## Resume checkpoint — 2026-10-21
 
-Branch feat/local-production-hardening; last pushed de9c924; local a178e5b follows. Native57 complete:
-wrapper39648589224 FAILURE435/2; batch39648588946 FAILURE1,166/4. Combined1,601
-reported passes/six failed tests, plus separate macOS Codex timeout954/1k.
-All17 executed jobs conclude; functional_soak intentionally skipped. No reported
-test skips/cancellations. All five173-file installs and native components78/79 pass.
+Branch feat/local-production-hardening; last pushed de9c924. Local artifact-receipt
+and retained-quota commits follow it (use git log for exact current SHA). Native58
+CI39654189022/batch39654188940 remain active; do not supersede them by pushing.
+Latest complete native57 at b62740e:1,601 reported passes/six failed tests plus
+separate macOS Codex954/1k timeout. Details and failed receipts retained below.
 
-Local temporary-cleanup candidate: bounded owned-handle stop confirmation, drained
-IPC, strict receipts, monotonic deadline and repeated-error handling. Final85/85
-components each Node22/24, focused7/7 Node20, fresh173-file production install,
-normal/linger independent controller-death audits and lint pass. Before-controls
-are retained separately. Native verification of this candidate is pending.
+Local candidate bounds artifact-helper receipts and adds512MiB default durable
+retained logical-byte admission before browser launch. Final runtime96/96 component
+cases each Node22/24; additional entry-boundary case makes final quota file9/9 each
+Node22/24,8/8 Node20 (SQLite case not registered). Fresh174-file production install,
+normal/linger death audits, lint and public jobs1k test2/2 Node22 pass. Private
+quota test/fault fixture excluded from package. Runtime/default quotas need native
+verification;97 component cases expected next matrix (Windows98), verify logs.
 
-**Not release-ready. NEXT ACTION: inspect active native58, then push artifact-receipt candidate.**
-Managed reset, cumulative quotas, hard OS resource bounds, graphical annotation
-and remaining feature acceptance stay open. Detailed phase-specific receipts below.
+**Not release-ready. NEXT ACTION: capture complete native58, then push candidate.**
+Managed reset, automatic retention/operator repair, hard OS resource bounds,
+graphical annotation and remaining feature acceptance stay open. Detailed
+phase-specific receipts and limitations below; earlier failures remain unresolved.
 
 ## Historical checkpoints
 
@@ -3792,3 +3795,10 @@ The final quota test file passes9/9 each Node22/24 and8/8 Node20 (SQLite case no
 registered), retained-entry-bound-*. The96-case component receipts precede only
 this additional test case; runtime source is identical. Native59 should include
 all97 component cases (Windows expected98, verify actual logs).
+
+Final retained-quota public jobs integration2/2 passes Node22, including the actual
+1,000-action stdio workflow, duplicate key/no replay, owner isolation, reconnect,
+EOF cancellation, artifacts and bounded result-wait capacity. This is an SDK client
+integration, not a Codex model turn or native cross-OS proof. Receipt
+retained-final-public-jobs1k-node22.txt. Package boundary receipt confirms174 files,
+quota runtime included, private quota test and stalled-scan fixture excluded.
