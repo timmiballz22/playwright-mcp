@@ -11,10 +11,12 @@ const browsers = (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefo
 if (!browsers.length || browsers.some(browser => !['chromium', 'firefox', 'webkit'].includes(browser)) || new Set(browsers).size !== browsers.length)
   throw new TypeError('Invalid test browser selection');
 for (const browser of browsers) {
+  // Retain headless acceptance and compare Windows' native headed path.
+  for (const mode of browser === 'firefox' && process.platform === 'win32' ? ['headless', 'headed'] : ['headless']) {
   const clicks = browser === 'chromium' ? 997 : 20;
   const freshRuns = browser === 'firefox' ? Number(process.env.PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS ?? (process.platform === 'win32' ? 5 : 1)) : 1;
   if (!Number.isInteger(freshRuns) || freshRuns < 1 || freshRuns > 20) throw new TypeError('Invalid test run count');
-  test(`real ${browser}: ${freshRuns} fresh runs, navigation, ${clicks} clicks, assertion, screenshot, cleanup`, {
+  test(`real ${browser}${mode === 'headed' ? ' headed' : ''}: ${freshRuns} fresh runs, navigation, ${clicks} clicks, assertion, screenshot, cleanup`, {
     skip: process.env.RUN_BROWSER_TESTS !== '1' ? 'Set RUN_BROWSER_TESTS=1 with Playwright installed' : false,
   }, async () => {
     const server = createServer((_req, res) => {
@@ -27,6 +29,12 @@ for (const browser of browsers) {
     const dir = await mkdtemp(path.join(os.tmpdir(), 'pw-batch-'));
     let diagnostic;
     let probe;
+    const provider = mode === 'headed' ? await import('playwright').then(({ firefox }) => ({
+      firefox: {
+        launchServer: options => firefox.launchServer({ ...options, headless: false }),
+        connect: (...args) => firefox.connect(...args),
+      },
+    })) : undefined;
     try {
       const steps = [{ type: 'goto', url: origin + '/' },
         ...Array.from({ length: clicks }, () => ({ type: 'click', selector: { role: 'button', name: 'Add' } })),
@@ -38,6 +46,7 @@ for (const browser of browsers) {
         diagnostic = undefined; probe = undefined;
         const result = await runWorkflow({ browser, schemaVersion: 1, steps, timeoutMs: 120000 },
           { artifactsDir: dir, allowedOrigins: [origin], allowSensitiveArtifacts: true,
+            ...(provider ? { playwright: provider } : {}),
             // This fixture has only static local data and no credentials. Raw call
             // logs stay in trusted test diagnostics, outside model-visible results.
             onActionFailure: (error, step, page) => {
@@ -62,4 +71,5 @@ for (const browser of browsers) {
     }
   });
 
+}
 }

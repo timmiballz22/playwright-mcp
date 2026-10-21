@@ -175,7 +175,9 @@ const handlers = new Map([
     if ((await assertPrivate(filename)).size > 16777216) error('store_too_large');
     identity = { owner: mac('owner:' + data.ownerId), instance: data.instanceId, pid: data.pid };
     db = new DatabaseSync(filename, { allowExtension: false });
-    db.exec('PRAGMA busy_timeout=250');
+    // Wait for the write lock before mutation; never reissue an ambiguous command.
+    // This remains inside the unchanged two-second journal RPC watchdog.
+    db.exec('PRAGMA busy_timeout=750');
     const keyId = createHash('sha256').update(key).digest('hex');
     // Validate the marker before any journal-mode or schema write. A filename
     // alone is not authority to initialize an unrelated application's database.
