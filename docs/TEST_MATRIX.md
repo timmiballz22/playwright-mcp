@@ -57,3 +57,10 @@ codex-client-operator.txt prove Linux plain CLI and actual Codex app-server
 configuration/discovery/navigation/1,000-operation tool call. No model turn was
 started. Native Windows/macOS interactive Codex and bootstrap scripts are not
 certified by these SDK/browser CI jobs.
+
+Native c7ae948: wrapper39540474669 (211 pass/1 fail), batch39540476877
+(493 pass/0 test fail plus Windows installed verification failure before batch
+browser tests). All68 original tests per OS and Docker2 passed. Windows legacy
+Node20 Firefox direct-pipe remains a failure. Creation-time-aware read-only
+process auditing and an unwired Windows ACL prototype await native confirmation;
+local Linux evidence is not Windows ACL proof. See worker-ci-twentyfourth evidence.

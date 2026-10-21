@@ -55,3 +55,11 @@ writer-lock fixture fails journal_busy before this change and reads successfully
 afterward while the writer still holds the lock. Internal error diagnostics now
 include only the fixed command verb, never its arguments. This reduces needless
 poll contention; it is not proof that all native journal_busy causes are resolved.
+
+The Windows private-storage helper (`private-windows.mjs`/`.ps1`) is an
+**unwired prototype**. It uses Windows PowerShell/.NET Framework to create
+protected owner/System DACLs at directory creation, rejects reparse points and
+unsafe existing grants without repairing them, and namespaces by current SID
+and canonical project. Native CI independently inspects ACLs and tests widened
+ACL/junction rejection. Until that evidence and configuration integration pass,
+public Windows startup continues to reject `unsupported_private_storage`.

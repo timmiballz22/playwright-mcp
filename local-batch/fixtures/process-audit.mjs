@@ -2,13 +2,15 @@
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
+import { windowsOwnedProcesses } from './windows-process-graph.mjs';
+const identities = new Map();
 const exec = promisify(execFile);
-export async function ownedDescendants(roots) {
+export async function ownedDescendants(roots, { rememberLiveRoots = false } = {}) {
   const owned = new Set(roots.filter(pid => Number.isSafeInteger(pid) && pid > 1));
   let rows;
   if (process.platform === 'win32') {
     const executable = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
-    const script = 'Get-CimInstance -ClassName Win32_Process -Property ProcessId,ParentProcessId | Select-Object ProcessId,ParentProcessId | ConvertTo-Json -Compress';
+    const script = "Get-CimInstance -ClassName Win32_Process -Property ProcessId,ParentProcessId,CreationDate | Select-Object ProcessId,ParentProcessId,@{Name='Started';Expression={if ($_.CreationDate) {$_.CreationDate.ToUniversalTime().ToString('o')} else {$null}}} | ConvertTo-Json -Compress";
     let stdout;
     try {
       // Native cold WMI startup exceeded the previous five-second test audit
@@ -21,7 +23,8 @@ export async function ownedDescendants(roots) {
       throw new Error('process_audit_windows_cim_' + kind);
     }
     const parsed = JSON.parse(stdout);
-    rows = (Array.isArray(parsed) ? parsed : [parsed]).map(row => ({ pid: Number(row.ProcessId), parent: Number(row.ParentProcessId) }));
+    rows = (Array.isArray(parsed) ? parsed : [parsed]).map(row => ({ pid: Number(row.ProcessId), parent: Number(row.ParentProcessId), started: row.Started }));
+    return windowsOwnedProcesses(roots, rows, identities, rememberLiveRoots);
   } else {
     const { stdout } = await exec('/bin/ps', ['-A', '-o', 'pid=,ppid=,pgid=,stat='], { timeout: 2000, maxBuffer: 1048576 });
     rows = stdout.trim().split('\n').map(line => {

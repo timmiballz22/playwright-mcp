@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: ${{ matrix.node }}
-      - run: node --test --test-concurrency=1 local-batch/jobs/journal.test.mjs local-batch/jobs/guardian.test.mjs local-batch/jobs/workflow-snapshot.test.mjs local-batch/jobs/controller.test.mjs local-batch/jobs/contention.test.mjs local-batch/jobs/config.test.mjs local-batch/jobs/artifact-cleanup.test.mjs local-batch/jobs/queue-clock.test.mjs scripts/ci-test-counts.test.mjs
+      - run: node --test --test-concurrency=1 local-batch/jobs/journal.test.mjs local-batch/jobs/guardian.test.mjs local-batch/jobs/workflow-snapshot.test.mjs local-batch/jobs/controller.test.mjs local-batch/jobs/contention.test.mjs local-batch/jobs/config.test.mjs local-batch/jobs/private-windows.test.mjs local-batch/jobs/artifact-cleanup.test.mjs local-batch/jobs/queue-clock.test.mjs scripts/ci-test-counts.test.mjs
   batch:
     strategy:
       fail-fast: false

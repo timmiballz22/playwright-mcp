@@ -1,21 +1,20 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native7e2c9cb:708 passed/eight failed, zero test skips/
-cancellations. All installed package checks passed, confirming the macOS CLI
-alias fix. New tests found real WebKit profile contention on all OSs, plus Mac
-Firefox lock wording, Windows Firefox contention timeout, Mac WebKit native-button
-focus assumptions and two Windows raw Firefox stalls.
+Latest completed native `c7ae948`: **704 test passes, one test failure**, zero
+test skips/cancellations, plus a Windows installed-package verification failure.
+Wrapper run39540474669 passed211/failed1: all68 original tests passed on each
+OS and Docker passed2/2; legacy Windows Node20 Firefox direct-pipe still stalled.
+Batch run39540476877 passed493/failed0 tests; Windows installed-profile process
+auditing failed before its browser suite ran. Its numeric-parent audit reported
+many unrelated-looking system PIDs; process leakage versus PID reuse was not
+established by that output. Current candidate records creation-time identities
+while owned roots are live, with synthetic orphan/reuse regressions and local
+real Chromium proof; native verification is pending. The Windows ACL helper is
+an unwired prototype with native tests, not public Windows jobs support.
+Screenshot byte budgets and read-only recovery passed where executed. Last full
+green remains d71c91e. Full quotas/retention, Windows driver/ACLs, managed profile
+recovery, DNS/OS egress and other gates still block release.
 
-A new public-API guard composes delegated persistent launches with cross-process
-leases and acknowledged context close; no monorepo implementation is copied.
-Seven focused Node20/22/24 tests,16 real Chromium/Firefox library/profile/schema
-cases, six WebKit discovery cases and fresh115-file production package pass
-locally. The unchanged strict profile regression awaits native confirmation.
-Native-button focus assumptions are replaced by explicitly keyboard-accessible
-ARIA widgets; new media reset cases pass locally. Actual Codex six-tool jobs
-client confirms1,000 actions, owner denial, cancellation, cleanup and zero model
-turns. Last full green remains d71c91e. NOT RELEASE-READY: Windows driver/ACLs,
-managed profiles/reset, full quotas/retention, DNS/OS egress and other gates remain.
 The following opening sections preserve the earlier green milestone and its
 measurements; they do not certify current HEAD.
 

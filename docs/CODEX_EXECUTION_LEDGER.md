@@ -2,17 +2,20 @@
 
 Updated 2026-10-21. Baseline `804bc7e`. Branch `feat/local-production-hardening`.
 **NOT RELEASE-READY.** Status labels below describe whole gates, not isolated tests.
-Latest completed native7e2c9cb:708 tests passed/eight failed, zero test
-skips/cancellations. Batch520/2; wrapper188/6. All native installed package checks
-now pass, including macOS CLI alias fix. WebKit accepted a contending persistent
-profile on all OSs; Mac Firefox lock wording, Windows Firefox contention timeout
-and Mac WebKit native-button Tab assumptions also failed. Windows raw Firefox
-headless/headed stalls remain. Profile ownership guard and explicit-tabindex ARIA
-fixture are local candidates; native confirmation is pending. Last full green
-remains d71c91e. Public POSIX six-tool jobs/foreground CLI, bounded terminal
-cleanup, actual Codex1,000-action/no-model-turn client and monotonic queue deadlines
-are implemented with scoped evidence. Full quotas/retention, Windows ACLs, profiles,
-egress and other conditions still block release.
+Latest completed native `c7ae948`: **704 test passes, one test failure**, zero
+test skips/cancellations, plus a Windows installed-package verification failure.
+Wrapper run39540474669 passed211/failed1: all68 original tests passed on each
+OS and Docker passed2/2; legacy Windows Node20 Firefox direct-pipe still stalled.
+Batch run39540476877 passed493/failed0 tests; Windows installed-profile process
+auditing failed before its browser suite ran. Its numeric-parent audit reported
+many unrelated-looking system PIDs; process leakage versus PID reuse was not
+established by that output. Current candidate records creation-time identities
+while owned roots are live, with synthetic orphan/reuse regressions and local
+real Chromium proof; native verification is pending. The Windows ACL helper is
+an unwired prototype with native tests, not public Windows jobs support.
+Screenshot byte budgets and read-only recovery passed where executed. Last full
+green remains d71c91e. Full quotas/retention, Windows driver/ACLs, managed profile
+recovery, DNS/OS egress and other gates still block release.
 All 45 mandatory scenarios are
 mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 

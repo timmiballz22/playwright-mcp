@@ -30,7 +30,7 @@ try {
   const owner = JSON.parse(await readFile(ownerPath, 'utf8')); assert.equal(owner.pid, first.pid);
   if (process.platform !== 'win32') assert.equal((await lstat(ownerPath)).mode & 0o777, 0o600);
   await call(first.client, 'browser_cookie_set', { name: 'fake-persistent', value: 'fake-profile-value', expires: Math.floor(Date.now() / 1000) + 3600 });
-  observed = await ownedDescendants(roots);
+  observed = await ownedDescendants(roots, { rememberLiveRoots: true });
   const contender = await open();
   const blocked = await contender.client.callTool({ name: 'browser_navigate', arguments: { url: origin } });
   assert.equal(blocked.isError, true); assert.match(JSON.stringify(blocked.content), /already in use/);
@@ -38,13 +38,13 @@ try {
   await assert.rejects(lstat(path.dirname(ownerPath)), { code: 'ENOENT' });
   const restored = await open(); await call(restored.client, 'browser_navigate', { url: origin });
   assert.ok((await call(restored.client, 'browser_cookie_get', { name: 'fake-persistent' })).includes('fake-profile-value'));
-  observed.push(...await ownedDescendants(roots));
+  observed.push(...await ownedDescendants(roots, { rememberLiveRoots: true }));
   await call(restored.client, 'browser_close');
   await assert.rejects(lstat(path.dirname(ownerPath)), { code: 'ENOENT' }); verified = true;
 } finally {
   let clean = false;
   try {
-    observed.push(...await ownedDescendants(roots));
+    observed.push(...await ownedDescendants(roots, { rememberLiveRoots: true }));
     await Promise.allSettled(clients.map(client => client.close()));
     const end = performance.now() + 10000;
     while ((await ownedDescendants([...roots, ...observed])).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 50));
