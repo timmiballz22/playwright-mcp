@@ -14,6 +14,10 @@ const server = new Server({ name: 'local-playwright-batch', version: '0.1.0' }, 
 const allowedOrigins = (process.env.PLAYWRIGHT_BATCH_ALLOWED_ORIGINS || '')
   .split(',').map(s => s.trim()).filter(Boolean);
 const artifactsDir = path.resolve(process.env.PLAYWRIGHT_BATCH_ARTIFACTS_DIR || '.local-batch-output');
+const navigationRetryCount = process.env.PLAYWRIGHT_BATCH_NAVIGATION_RETRIES;
+if (navigationRetryCount !== undefined && !/^[0-2]$/.test(navigationRetryCount))
+  throw new TypeError('PLAYWRIGHT_BATCH_NAVIGATION_RETRIES must be 0, 1 or 2');
+const navigationRetry = navigationRetryCount === undefined ? undefined : { maxRetries: Number(navigationRetryCount) };
 let busy = false;
 let cleanupBlocked = false;
 let activeAbort;
@@ -86,7 +90,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
   if (extra.signal.aborted) abort();
   try {
     const summary = await executeWorkflow(request.params.arguments, {
-      allowedOrigins, artifactsDir, allowSensitiveArtifacts: process.env.PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS === '1', signal: activeAbort.signal,
+      allowedOrigins, artifactsDir, navigationRetry, allowSensitiveArtifacts: process.env.PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS === '1', signal: activeAbort.signal,
     });
     if (summary.execution?.cleanup === 'failed') cleanupBlocked = true;
     return { isError: !summary.ok, content: [{ type: 'text', text: JSON.stringify(summary) }] };

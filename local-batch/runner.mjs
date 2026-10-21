@@ -4,6 +4,8 @@ import { mkdir, mkdtemp } from 'node:fs/promises';
 import path from 'node:path';
 import { performance } from 'node:perf_hooks';
 import { classifyActionFailure } from './failure.mjs';
+import { navigationRetryPolicy, navigationRetryDelay, parseRetryAfter } from './navigation-retry.mjs';
+import { setTimeout as delay } from 'node:timers/promises';
 
 export const MAX_STEPS = 1000;
 export const MAX_ITERATIONS = 100;
@@ -142,7 +144,7 @@ async function perform(page, step, index, artifactsDir) {
         const safeCode = status === 429 ? 'rate_limited' : status === 401 ? 'http_401' :
           status === 403 ? 'http_403' : status === 404 ? 'http_404' : status >= 500 ? 'http_5xx' : 'http_4xx';
         const rawRetryAfter = response.headers()['retry-after'];
-        const parsed = rawRetryAfter && /^\d+$/.test(rawRetryAfter) ? Number(rawRetryAfter) * 1000 : Date.parse(rawRetryAfter) - Date.now();
+        const parsed = parseRetryAfter(rawRetryAfter);
         const retryAfterMs = Number.isSafeInteger(Math.ceil(parsed)) && parsed >= 0 && parsed <= 86400000 ? Math.ceil(parsed) : undefined;
         throw Object.assign(new Error('HTTP navigation failed'), { safeCode, httpStatus: status, retryAfterMs });
       }
@@ -192,10 +194,12 @@ export async function runWorkflow(workflow, {
   allowSensitiveArtifacts = false,
   onBrowserProcess,
   onProgress,
+  navigationRetry, // Trusted operator opt-in for safe GET navigation only.
   onActionFailure, // Trusted source diagnostics only; never accepted in workflow JSON.
 } = {}) {
   const spec = validateWorkflow(workflow);
   const allowed = parseOrigins(allowedOrigins);
+  const retryPolicy = navigationRetryPolicy(navigationRetry);
   if (spec.steps.some(step => step.type === 'screenshot') && allowSensitiveArtifacts !== true)
     throw new TypeError('Sensitive artifact capture requires local operator approval');
   for (const step of spec.steps) {
@@ -215,6 +219,8 @@ export async function runWorkflow(workflow, {
   const cleanupFailures = [];
   let blockedRequests = 0;
   let closing = false;
+  let currentNavigation;
+  const retryAbort = new AbortController();
   let rejectStopped;
   const stopped = new Promise((_, reject) => { rejectStopped = reject; });
   // A stop can arrive between operations; mark rejection handled immediately.
@@ -223,6 +229,7 @@ export async function runWorkflow(workflow, {
     if (cancelled || timedOut) return;
     cancelled = reason === 'cancelled';
     timedOut = reason === 'timeout';
+    retryAbort.abort();
     rejectStopped(new Error(reason));
     void context?.close().catch(() => {});
     void browser?.close().catch(() => {});
@@ -272,8 +279,21 @@ export async function runWorkflow(workflow, {
           blockedRequests++;
           return await route.abort('blockedbyclient');
         }
-        const response = await route.fetch({ maxRedirects: 0, maxRetries: 0,
-          timeout: Math.max(1, spec.timeoutMs - (performance.now() - started)) });
+        let response;
+        for (let attempt = 0; ; attempt++) {
+          if (closing || cancelled || timedOut) throw new Error('stopped');
+          response = await route.fetch({ maxRedirects: 0, maxRetries: 0,
+            timeout: Math.max(1, spec.timeoutMs - (performance.now() - started)) });
+          const request = route.request();
+          const eligible = retryPolicy && currentNavigation && request.method() === 'GET' &&
+            request.isNavigationRequest() && request.frame() === page.mainFrame() &&
+            request.url() === currentNavigation;
+          const wait = eligible ? navigationRetryDelay(response.status(), response.headers()['retry-after'], attempt, retryPolicy) : null;
+          const remaining = spec.timeoutMs - (performance.now() - started);
+          if (wait === null || wait >= remaining) break;
+          await response.dispose();
+          await delay(wait, undefined, { signal: retryAbort.signal });
+        }
         if (response.status() >= 300 && response.status() < 400 && response.headers().location) {
           blockedRequests++;
           await route.abort('blockedbyclient');
@@ -299,7 +319,13 @@ export async function runWorkflow(workflow, {
         const start = performance.now();
         index++;
         try {
+          currentNavigation = undefined;
+          if (step.type === 'goto') {
+            const target = new URL(step.url); target.hash = '';
+            currentNavigation = target.href;
+          }
           const metadata = await bounded(perform(page, step, index, artifactsDir));
+          currentNavigation = undefined;
           results.push({ index, repetition: repetition + 1, type: step.type,
             ok: true, durationMs: Math.round(performance.now() - start), ...metadata });
           onProgress?.({ completed: results.length });
@@ -321,6 +347,7 @@ export async function runWorkflow(workflow, {
       results.push({ index: 0, type: 'setup', ok: false, error: 'setup_failed' });
   } finally {
     closing = true;
+    retryAbort.abort();
     if (timer) clearTimeout(timer);
     if (abortListener) signal?.removeEventListener('abort', abortListener);
     for (const [name, resource] of [['context', context], ['browser', browser], ['server', browserServer]]) {

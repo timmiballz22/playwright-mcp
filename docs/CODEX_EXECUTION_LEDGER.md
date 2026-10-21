@@ -19,7 +19,7 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | G02 MCP | IN PROGRESS | local-batch/mcp.test.mjs real compact 1000-action call, EOF/SIGTERM and actual Codex operator evidence; production-smoke.mjs | Test concurrent calls, malformed protocol and full resource ownership |
 | G03 FEATURE PARITY | IN PROGRESS | evidence/discovery-*.json: 25 default / 72 extended tools per configured browser; tests/capabilities.spec.ts | Add representative behavior tests for every capability group |
 | G04 BATCH | VERIFIED PASS | local-batch/mcp.test.mjs + integration.test.mjs; evidence/codex-client-operator.txt: exact 1000 actions / 997 clicks | Extend real long workflow to other browsers |
-| G05 RETRIES | IN PROGRESS | route.fetch maxRetries:0 avoids automatic replay; no 429/503 policy | Implement tested Retry-After handling without unsafe replay |
+| G05 RETRIES | IN PROGRESS | Operator-only bounded GET goto 429/503 policy; real Chromium/Firefox no-POST-replay tests | Native retry coverage, fairness and bounded metrics |
 | G06 JOBS | IN PROGRESS | Native independent supervisor/admission/journal proof; internal guardian has local lifecycle/installed-browser evidence; public jobs absent | Native guardian proof, public IDs/queue/status/result/cancel/cleanup and real controller death/recovery |
 | G07 SECURITY | FAILED | security.test.mjs reproduces/fixes redirect SSRF on Chromium/Firefox; unknown origins/fields denied | DNS rebinding, credential-canary screenshot safeguards, upload rules, all negative fixtures |
 | G08 STORAGE | IN PROGRESS | runner.mjs mkdtemp private per-run artifacts; report.mjs exclusive report write | Atomic artifacts, quotas, retention and native Windows ACL evidence; 20-run uniqueness already passed |
@@ -785,3 +785,42 @@ This tests the internal guardian, not a public durable MCP controller. The same
 check is now part of fresh installed-package verification; native results pending.
 GitHub API retrieval/PR update is blocked by HTTP 401 credentials, not an approval
 review rejection. Full release gates remain open.
+
+## Bounded navigation throttling candidate (2026-10-21)
+
+Source base c3183fe. `local-batch/navigation-retry.mjs` and runner routing add an
+operator-only opt-in for known-safe top-level GET goto retry after 429/503.
+Default is disabled. Maximum two retries, bounded exponential backoff/jitter,
+Retry-After minimum, no shortening excessive server waits, and the existing
+cancelable global deadline. No click, form/POST, subresource, redirect, network
+exception or other-status retry. Each route.fetch keeps maxRetries/maxRedirects=0.
+CLI --navigation-retries and MCP PLAYWRIGHT_BATCH_NAVIGATION_RETRIES accept 0–2;
+workflow/tool JSON cannot enable the policy. GET replay safety requires operator
+knowledge; this is not an assertion that all GET endpoints are harmless.
+
+A real browser test against isolated copies of the previous runner/executor
+failed before the change on the first throttled navigation. After implementation,
+Chromium and Firefox passed two real supervised cases covering 429/503 recovery,
+Retry-After elapsed time, huge delay rejection, exhausted retry cap, cancellation
+while waiting and exactly one form POST. Node 20/22 each passed six policy and
+ownership tests. Local Node 24 runner/policy/ownership: 21 passed; HTTP/policy/
+supervisor/report regression: 19 passed. Separate MCP/HTTP/policy regression:
+five passed including the exact 1000-action stdio workflow, 41.574s total.
+All these commands had zero failed/skipped/cancelled tests. Fresh installed
+production tarball passed original discovery/navigation, retry-enabled batch MCP
+and CLI, seven-action guardian and storage smoke, and real controller SIGKILL
+cleanup. Evidence files: evidence/navigation-retry-*.txt. Native retry coverage
+is pending; the new real fixture defaults to all three browser engines in CI.
+G05 remains IN PROGRESS pending native evidence and broader fairness controls.
+
+GitHub API credentials recovered. Restored fourteenth wrapper metadata/logs show
+162 passes and all five jobs successful, including the ten-fresh Windows Node 20
+Firefox case. Together with available batch logs this confirms 468 passes and
+one failure; Linux Node 24 batch/journal summaries are still absent from retrieved
+fourteenth logs, so no full-run total is asserted. Fifteenth native runtime
+candidate 4855acb is not green: Windows Node 20 Firefox fresh run 4 failed step16
+while waiting for visible/enabled/stable; fixture counter was 14, cleanupFailures
+empty. Shared BrowserServer ownership does not establish a native stability fix.
+Linux Node24 also failed browser installation before tests; log diagnosis pending.
+Do not certify new HEAD from historical green d71c91e. Jobs/public controller,
+profiles, quotas/retention, DNS/OS egress and remaining gates remain open.

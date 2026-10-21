@@ -5,10 +5,11 @@ import { randomUUID } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validateWorkflow } from './runner.mjs';
+import { navigationRetryPolicy } from './navigation-retry.mjs';
 import { terminateOwnedProcesses } from './process-tree.mjs';
 
 export async function executeWorkflow(input, {
-  allowedOrigins = [], artifactsDir = path.resolve('.local-batch-output'), allowSensitiveArtifacts = false, signal,
+  allowedOrigins = [], artifactsDir = path.resolve('.local-batch-output'), allowSensitiveArtifacts = false, navigationRetry, signal,
   workerModule = new URL('./execution-worker.mjs', import.meta.url), onEvent, beforeWorkerStart,
 } = {}) {
   const started = process.hrtime.bigint();
@@ -17,6 +18,7 @@ export async function executeWorkflow(input, {
     throw new TypeError('Workflow must be JSON of at most 1 MiB');
   const workflow = JSON.parse(encoded);
   const spec = validateWorkflow(workflow);
+  const retryPolicy = navigationRetryPolicy(navigationRetry);
   const total = spec.steps.length * spec.iterations;
   const runId = randomUUID();
   const elapsed = () => Math.round(Number(process.hrtime.bigint() - started) / 1000000);
@@ -113,7 +115,7 @@ export async function executeWorkflow(input, {
     });
     if (signal?.aborted) abort();
     else if (elapsed() >= spec.timeoutMs) void force('timeout');
-    else supervisor.send({ type: 'start', workflow, options: { allowedOrigins, artifactsDir, allowSensitiveArtifacts },
+    else supervisor.send({ type: 'start', workflow, options: { allowedOrigins, artifactsDir, allowSensitiveArtifacts, navigationRetry: retryPolicy ?? undefined },
       workerModule: workerURL.href, requireReadyAck: Boolean(beforeWorkerStart), runId, total, timeoutMs: spec.timeoutMs, deadlineNs: String(deadlineNs) }, () => {});
   });
 }

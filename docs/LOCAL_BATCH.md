@@ -144,7 +144,7 @@ Worker V8 heap limits do not cap browser RSS. Reports use atomic publication;
 there is no durable job journal or automatic replay of uncertain actions.
 Screenshots use an exclusively created per-run directory. There is no retention
 quota or guaranteed screenshot secret masking yet: capture only approved data.
-HTTP requests are fetched without automatic redirects/retries and fulfilled to
+HTTP requests are fetched without automatic redirects or driver retries and fulfilled to
 the browser to prevent Playwright's redirect routing bypass. All redirects are
 currently rejected, including same-origin redirects. This is a compatibility
 restriction of the companion only; the upstream entrypoint is unchanged.
@@ -156,3 +156,11 @@ Screenshot capture is disabled unless the local operator sets
 capture of potentially sensitive page pixels; it does not perform secret masking.
 See [WORKFLOW_SCHEMA.md](WORKFLOW_SCHEMA.md) for v1 limits and exact accessible
 role/name, label, placeholder, test-id and text selectors.
+
+Operator opt-in for safe throttled navigation: pass `--navigation-retries 1` to
+CLI or set `PLAYWRIGHT_BATCH_NAVIGATION_RETRIES=1` in the batch MCP environment.
+Default is disabled; maximum is two retries. Enable this only for destinations
+where repeating GET navigation is safe. It handles 429/503 for explicit top-level
+goto actions, with bounded backoff and Retry-After, inside the same deadline.
+Clicks, forms and POST are never replayed. See [WORKFLOW_SCHEMA.md](WORKFLOW_SCHEMA.md)
+for exact limits. This does not change website or model usage allowances.

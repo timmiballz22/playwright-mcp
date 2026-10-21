@@ -49,7 +49,7 @@ last 10 steps + first failure and a local report path; full report stays on disk
 Reasons include cancelled, timeout, cleanup_failed, policy_blocked, action_failed;
 setup errors are scrubbed as setup_failed steps. HTTP navigation failures report
 httpStatus and safe codes http_401/http_403/http_404/http_4xx/http_5xx/rate_limited.
-A valid Retry-After header becomes retryAfterMs metadata without echoing headers.
+A bounded valid Retry-After header becomes retryAfterMs metadata without echoing headers.
 There is no automatic retry or durable cross-call backoff scheduler. Durable job IDs are not available.
 
 Supervised CLI/MCP replies also include `schemaVersion`, opaque `runId`, and
@@ -79,3 +79,17 @@ into success or authorizes replay.
 Clicks use the standard Locator.click action with its normal checks and deadlines.
 The one-millisecond Windows Firefox input experiment failed native validation
 and was reverted. No force, automatic replay or deadline increase is enabled.
+
+Navigation retries are a separate trusted operator setting, disabled by default.
+CLI `--navigation-retries 1` or MCP environment
+`PLAYWRIGHT_BATCH_NAVIGATION_RETRIES=1` permits one retry; only 0, 1 or 2 is valid.
+This applies only to the current explicit goto's top-level GET request on HTTP
+429/503. The operator must establish that repeating those GET navigations is safe.
+It never retries clicks, forms, POST, subresources, redirects, transport errors or
+other HTTP statuses. Each fetch disables Playwright's own automatic retries.
+Backoff starts at 500ms, doubles, and adds up to 250ms jitter. A valid Retry-After
+(delta seconds or IMF-fixdate) is a minimum; if the wait exceeds the 10s local cap
+or remaining execution budget, the response fails without retry. Waiting is
+cancelable and shares the execution deadline. The trusted source API additionally
+accepts navigationRetry with maxRetries (0–2), baseDelayMs (100–10000), and
+maxDelayMs (at least baseDelayMs and at most 30000). None are workflow fields.

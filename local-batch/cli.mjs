@@ -12,6 +12,11 @@ function argsOf(argv) {
       args.workflow = argv[++i];
     else if (arg === '--allow-origin')
       args.origins.push(argv[++i]);
+    else if (arg === '--navigation-retries') {
+      const count = argv[++i];
+      if (!/^[0-2]$/.test(count ?? '')) throw new TypeError('navigation-retries must be 0, 1 or 2');
+      args.navigationRetry = { maxRetries: Number(count) };
+    }
     else if (arg === '--allow-sensitive-artifacts')
       args.allowSensitiveArtifacts = true;
     else if (arg === '--artifacts')
@@ -35,6 +40,7 @@ async function main() {
   try {
     const summary = await executeWorkflow(input, {
       allowedOrigins: options.origins,
+      navigationRetry: options.navigationRetry,
       allowSensitiveArtifacts: options.allowSensitiveArtifacts === true,
       artifactsDir,
       signal: abort.signal,

@@ -32,3 +32,9 @@ processes await host reaping; simultaneous controller loss, uninterruptible kern
 I/O and host-level failures require external supervision. CLI input ingestion still
 precedes this boundary. Durable jobs and persistent companion profiles remain
 unimplemented. Do not expose either stdio process as a public service.
+
+Operator-enabled navigation retries are restricted to the current explicit goto's
+GET main-document request after 429/503. A GET is not guaranteed harmless on every
+application; the operator must establish replay safety before enabling the local
+setting. Tool input and page content cannot enable it. No action/POST replay or
+redirect following is authorized; every attempt retains exact-origin checks.
