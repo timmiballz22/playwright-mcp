@@ -1,3 +1,4 @@
+import { stepFailureDiagnostic } from './failure.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, rm } from 'node:fs/promises';
@@ -63,4 +64,20 @@ test('all three close failures plus final server kill failure remain bounded fix
     assert.deepEqual(result.cleanupFailures, ['context_error', 'browser_error', 'server_error', 'server_kill_error']);
     assert.equal(JSON.stringify(result).includes('fake-all-cleanup-private-canary'), false);
   } finally { await rm(directory, { recursive: true, force: true }); }
+});
+
+
+test('client step failure receipts retain fixed taxonomy without private step fields', () => {
+  const canary = 'fake-private-step-canary';
+  const safe = stepFailureDiagnostic({ index: 2, repetition: 1, type: 'click', error: 'action_failed',
+    failureKind: 'locator_timeout', durationMs: 5000, selector: canary, url: canary, value: canary,
+    artifact: canary, message: canary, nested: { token: canary } });
+  assert.deepEqual(JSON.parse(JSON.stringify(safe)), { index: 2, repetition: 1, type: 'click', error: 'action_failed', failureKind: 'locator_timeout', durationMs: 5000 });
+  assert.equal(JSON.stringify(safe).includes(canary), false);
+  const unknown = stepFailureDiagnostic({ index: 1001, repetition: 101, type: canary, error: canary,
+    failureKind: canary, durationMs: Infinity, httpStatus: 200 });
+  assert.deepEqual(JSON.parse(JSON.stringify(unknown)), { type: 'unknown', error: 'unknown', failureKind: 'unknown' });
+  assert.equal(stepFailureDiagnostic(null), null); assert.equal(stepFailureDiagnostic([]), null);
+  const http = stepFailureDiagnostic({ index: 1, type: 'goto', error: 'http_404', failureKind: 'http_failure', httpStatus: 404 });
+  assert.equal(http.httpStatus, 404);
 });

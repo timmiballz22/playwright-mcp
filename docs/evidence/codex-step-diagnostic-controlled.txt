@@ -1,0 +1,21 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: {"phase":"codex_primary_job","failedStep":{"index":2,"repetition":1,"type":"click","error":"action_failed","failureKind":"locator_timeout","durationMs":5004},"state":"FAILED","jobReason":"action_failed","jobStage":"complete","jobCompleted":1,"resultAvailable":true,"operatorAttentionRequired":false,"guardianFailures":[],"journalFailures":[],"guardianExits":[],"forced":false,"completed":1,"reason":"action_failed","cleanup":"terminated","tempCleanup":"removed"}
++ actual - expected
+
++ 'FAILED'
+- 'SUCCEEDED'
+
+    at file:///workspace/playwright-mcp/scripts/codex-step-fault.tmp.mjs:140:10
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'FAILED',
+  expected: 'SUCCEEDED',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

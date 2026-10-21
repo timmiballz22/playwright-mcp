@@ -2928,3 +2928,22 @@ All eight cleanup adapter/EOF tests pass independently on Node20/22/24 on Linux,
 with zero skips/cancellations. This covers simulated async filesystem stalling,
 not a kernel-uninterruptible process or a durable cross-controller maintenance
 lease. Native Windows/macOS execution is pending. Receipts: artifact-parent-death-*.
+
+## Fixed step diagnostics in actual Codex failure receipts
+
+During native retention CI, macOS actual-Codex annotation reports FAILED,
+action_failed/completed1 with readable result and clean cleanup, but omits the
+failed action metadata already available in that result. Added a bounded shared
+projection to the client receipt: valid action/index/repetition, fixed failure
+code/kind, bounded duration and HTTP error status only. Unknowns become fixed
+unknown/omitted numeric fields. URLs, selectors, inputs, paths, raw errors and
+extra fields never copy. No workflow/tool schema or execution timing changes.
+
+Five cleanup/diagnostic tests pass on each Node20/22/24, including seeded fake
+secrets and malformed numeric/enum inputs. Real Codex0.163 zero-model probe still
+completes1,000 actions in38.343s, dedup/owner isolation/cancel/terminal cleanup and
+independent zero-owned audit pass. Private missing-button control intentionally
+exits1 after navigation: fixed receipt identifies index2/click/action_failed/
+locator_timeout5004ms, readable result and terminated/removed cleanup. Existing
+failure artifacts remain. Temporary fault script removed; lint/diff checks pass.
+Native failure cause is not inferred from the synthetic control.
