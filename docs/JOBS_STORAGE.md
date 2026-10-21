@@ -1,10 +1,12 @@
 # Internal durable journal storage
 
-The SQLite journal in `local-batch/jobs/` is an internal metadata component.
-It does not expose job tools, schedule workflows, or make the durable jobs gate
-complete. The synchronous companion still exposes one batch tool. The internal execution bridge is described in [JOBS_GUARDIAN.md](JOBS_GUARDIAN.md).
-Public scheduling/status/cancel/result tools, retention and recovery operator
-flows remain unfinished; see [JOBS_DESIGN.md](JOBS_DESIGN.md).
+The SQLite journal in `local-batch/jobs/` stores bounded durable metadata.
+The separate POSIX jobs MCP and foreground CLI now expose scheduling, status,
+result, cancel, list and bounded terminal artifact cleanup; the synchronous
+companion still exposes one batch tool. See [JOBS_MCP_PREVIEW.md](JOBS_MCP_PREVIEW.md)
+and [JOBS_CONTROLLER.md](JOBS_CONTROLLER.md). These scoped endpoints do not make
+the durable jobs gate complete: Windows private storage, full retention and
+recovery operator flows remain unfinished.
 
 The journal requires Node 22.13 or newer and runs SQLite in a bounded child process.
 Node 20 synchronous execution remains available. Use a local filesystem; network
@@ -17,8 +19,7 @@ queue/history, monotonic progress and one project execution lease. Raw workflows
 credentials and action error text are not stored. Request keys and workflow
 fingerprints are keyed hashes. Responses omit private identity and lease tokens. Persisted results accept only
 validated numeric/boolean/enum metadata and run UUIDs. Report paths and artifact
-paths are excluded; future execution integration must project those fields out
-before storing a result.
+paths are excluded; the guardian/controller project those fields out before storing a result.
 A timed-out journal RPC kills its owned child handle and never retries a mutation.
 Only idempotent schema initialization has bounded busy retries.
 
@@ -44,7 +45,7 @@ activation, uncertain cleanup blocking and rejected late success after durable
 cancellation/deadline. Native Windows
 runs omit the POSIX-only mode test. Installed-package smoke verifies both existing
 browser endpoints plus journal creation, owner isolation and cancellation. Native
-CI results for this component are pending.
+c7ae948 core journal/controller component suites passed on all three OSs; the new Windows ACL prototype has separate pending acceptance.
 
 Live recovery now performs a read-only preflight. If no unstarted record expired
 and all recorded holders/controllers remain live, it returns without a write lock.
