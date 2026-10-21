@@ -1652,3 +1652,23 @@ malformed/oversized/link metadata, unreadable fake credential bytes, permission
 preservation, no stdout canaries and rejected reset arguments. Evidence:
 profile-doctor-node20/22/24.txt. This is scoped diagnosis for scenario35, not a
 new profile store or completed managed-profile/reset/retention acceptance.
+
+
+## Owned routing/cache comparison (RISK-013)
+
+A static local Chromium fixture performs six navigations and six DOM assertions
+per fresh context, with one cacheable262,201-byte script and no-store documents.
+The standard strict supervised runtime requests the script six times; a source-
+defined trusted fixture disables HTTP interception only for the approved control
+and requests it once. Both execute12 operations and independently verify zero
+owned survivors. No public tool/config field can select the control or disable
+production routing. Service-worker blocking remains enabled in both modes.
+
+One isolated Linux Node24 sample: control cold navigation29ms, subsequent
+11–13ms; strict cold48ms, subsequent28–56ms. Script response payloads are262,201
+versus1,573,206 bytes, not wire/model-token counts. This demonstrates caching
+semantics and one hardware sample, not a general latency SLA or causal estimate
+for startup/client overhead. Existing interface benchmark separately measures
+client/setup cost. Node20/22 functional repetitions also pass1/1 each (run in
+parallel, so their timings are not cross-version comparisons). Native confirmation
+remains pending. Evidence: routing-cache-node20/22/24.txt.
