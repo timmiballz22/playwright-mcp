@@ -60,6 +60,7 @@ for (const mode of process.platform === 'win32' ? ['inherited', 'codex_core'] : 
       const traced = script.replace("$ErrorActionPreference = 'Stop'", "$ErrorActionPreference = 'Stop';[Console]::Error.WriteLine('helper_phase:entered')")
         .replace('$base = Ensure-PrivateDirectory', "[Console]::Error.WriteLine('helper_phase:storage');$base = Ensure-PrivateDirectory")
         .replace('$project = Ensure-PrivateDirectory', "[Console]::Error.WriteLine('helper_phase:base_ready');$project = Ensure-PrivateDirectory")
+        .replace('$null = [Reflection.Assembly]::Load(', "[Console]::Error.WriteLine('helper_phase:serialization');$null = [Reflection.Assembly]::Load(")
         .replace('[Console]::WriteLine((@{ok=$true;', "[Console]::Error.WriteLine('helper_phase:serialization');[Console]::WriteLine((@{ok=$true;");
       const phasesOf = value => [...new Set([...String(value ?? '').matchAll(/helper_phase:(entered|storage|base_ready|serialization)/g)].map(match => match[1]))];
       for (const variant of mode === 'codex_core' ? ['unchanged', 'system_modules'] : ['unchanged']) {

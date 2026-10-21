@@ -42,6 +42,19 @@ else {
       assert.equal((await prepareWindowsJobDirectories({ base, projectRoot, ownerHash })).directory, first.directory);
     } finally { await rm(root, { recursive: true, force: true }); }
   });
+  test('Windows helper JSON preserves Unicode and spaces in private paths', { timeout: 15000 }, async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'acl-json-'));
+    try {
+      const project = path.join(root, 'project é 日本語 😀'); await mkdir(project);
+      const projectRoot = await realpath(project); const base = path.join(root, 'state é 日本語 😀');
+      const value = await prepareWindowsJobDirectories({ base, projectRoot, ownerHash: hash(randomUUID()) });
+      assert.equal(value.projectId, hash(value.ownerSid + ':' + projectRoot));
+      assert.equal(value.temporaryBase, await realpath(base));
+      assert.ok(value.directory.startsWith(await realpath(base)));
+      const acl = await inspect(value.directory); assert.equal(acl.protected, true);
+      assert.ok(acl.rules.every(rule => [value.ownerSid, 'S-1-5-18'].includes(rule.sid) && rule.type === 'Allow'));
+    } finally { await rm(root, { recursive: true, force: true }); }
+  });
   test('Windows artifact allocation supports a deep owned path without relying on mkdtemp', { timeout: 15000 }, async () => {
     const root = await mkdtemp(path.join(os.tmpdir(), 'artifact-long-'));
     try {

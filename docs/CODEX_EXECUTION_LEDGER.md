@@ -1477,3 +1477,29 @@ Node20/22/24 each exit0 and show4 pass/0 fail/0 skip/cancel; see
 audit-lifecycle-corrected-node*.txt. Every underlying process-audit check remains
 strict. The positive native four-factor comparison is independent evidence of the
 caller correction; it does not resolve strict Firefox failures.
+
+
+## Filtered Windows environment: serialization candidate after native phase proof
+
+Nativea3eccc0 actual Codex still reports helper timeout. Both unchanged and
+system-modules-only direct controls reach entered,storage,base_ready,serialization
+then time out. Inherited control succeeds. Therefore the stall is in the final
+ConvertTo-Json operation; selecting the system module path alone does not fix it.
+No browser or Codex containment is needed for this reproducer.
+
+The candidate removes that PowerShell cmdlet/module-discovery dependency and uses
+the standard .NET Framework DataContractJsonSerializer with simple dictionary
+format. JSON escaping is handled by the framework, not interpolated strings.
+The constant system assembly is loaded through the normal CLR API; host language/
+execution policy and all owner/System ACL, ancestor and reparse checks remain.
+No deadline increase, environment widening, policy override, elevation, PInvoke
+or ACL repair is introduced. The output contract/namespace/hash is unchanged.
+A native-only fixture verifies Unicode/spaces in project/storage paths and
+independently inspects private ACLs. The diagnostic phase marker now precedes
+framework serializer initialization.
+
+Linux Node24/22 helper/config guard suites each pass5 tests; these do NOT execute
+PowerShell or verify the candidate serializer. Native Windows actual client,
+restricted-environment control and Unicode fixture remain pending. The existing
+Windows installed-package success in a3eccc0 validates atomic artifact changes,
+not this unpushed helper candidate.

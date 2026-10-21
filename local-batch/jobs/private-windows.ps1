@@ -76,7 +76,21 @@ try {
   $project = Ensure-PrivateDirectory ([IO.Path]::Combine($base, 'projects', $projectId))
   $journal = Ensure-PrivateDirectory ([IO.Path]::Combine($project, 'journal'))
   $artifacts = Ensure-PrivateDirectory ([IO.Path]::Combine($project, 'artifacts', $env:PLAYWRIGHT_PRIVATE_OWNER_HASH))
-  [Console]::WriteLine((@{ok=$true;ownerSid=$sid;projectId=$projectId;directory=$journal;artifactsDir=$artifacts}|ConvertTo-Json -Compress))
+  # Keep startup independent of PowerShell cmdlet discovery/module autoloading.
+  # All values are serialized by the framework JSON implementation, never by
+  # interpolating paths into JSON. Assembly loading respects the host policy.
+  $null = [Reflection.Assembly]::Load('System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089')
+  $settings = [Runtime.Serialization.Json.DataContractJsonSerializerSettings]::new()
+  $settings.UseSimpleDictionaryFormat = $true
+  $result = [Collections.Generic.Dictionary[string,object]]::new()
+  $result.Add('ok', $true); $result.Add('ownerSid', $sid); $result.Add('projectId', $projectId)
+  $result.Add('directory', $journal); $result.Add('artifactsDir', $artifacts)
+  $serializer = [Runtime.Serialization.Json.DataContractJsonSerializer]::new([Collections.Generic.Dictionary[string,object]], $settings)
+  $stream = [IO.MemoryStream]::new()
+  try {
+    $serializer.WriteObject($stream, $result)
+    [Console]::WriteLine([Text.Encoding]::UTF8.GetString($stream.ToArray()))
+  } finally { $stream.Dispose() }
 } catch {
   [Console]::WriteLine('{"ok":false,"code":"unsafe_storage"}')
   exit 1
