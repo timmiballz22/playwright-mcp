@@ -1,29 +1,34 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native65 at b4fa75c: **1,625 reported passes/twelve failed tests**,
-plus Ubuntu wrapper browser-install failure. Batch39681280828:1,337/7;
-wrapper39681280843:288/5. Ubuntu original suite is unexecuted after TLS hostname
-mismatch; macOS modal step is unexecuted after host-suite failure. Zero reported
-test-level skips never promotes those scopes. Five175-file companion installs,
-components105/106 and all three actual Codex1k clients pass. **Not release-ready.**
+Latest completed native66 at24f0e84:
+batch39685019051 FAILURE1,350/3; wrapper39685018785 FAILURE432/2 =>1,782 reported
+passes/five failed tests, plus separate macOS actual-Codex TIMED_OUT968/1k.
+All17 non-soak jobs conclude; functional_soak intentionally skipped. Windows
+legacy and macOS modal steps are unexecuted after main-suite failures. Zero TAP
+skips/cancellations does not establish those omitted scopes. Five175-file
+production installs and components106/107 pass.
 
-Native POSIX freeze and bounded readiness controls pass. macOS marked WebKit GET
-cancellation has one request but cleanup_failed with signal_permission_denied and
-browser_group_signal_failed; POST half unexecuted. Uncertainty stays fenced; no
-broader signal or missing-PID hint clears it. Mac raw980/jobs980/batch965 deadlines,
-Firefox retry cleanup, two original highlight captures and Windows raw/legacy
-Firefox cases fail. Historical133/4-process observations remain unresolved.
+All five real20-screenshot fixtures pass unchanged assertions and60s ceiling,
+retaining all20 factory scopes through teardown. Windows captures six verified
+live root births per pair. Same-snapshot legacy differences retain all candidates;
+replacement PID births are explicit, but one current parent row is missing.
+No universal ancestry proof or retrospective clearance of historical133/four
+observations follows. Linux/Windows actual Codex1k pass; macOS times out968 with
+known cleanup. Mac raw979 and Windows raw headless/direct-pipe fixtures fail;
+original Mac screenshot capture and Windows Firefox connection-close also fail.
+Healthy diagnostic comparisons do not establish a causal fix.
 
-Later local3c077f3 gates actual factory handles before screenshot effects, records
-live roots, retains all20 execution scopes and compares legacy/scoped candidates
-on the same snapshot without changing matching. Existing20 PNG/hash/inode/report
-assertions and15s/60s ceilings remain. Controlled owned orphan is detected after
-worker exit; private self-exit requests finish teardown. Full screenshots pass
-locally Node22/24; final focused13/13 each Node20/22/24, pre-comparison-hook
-components106/106 Node22/24 and175-file boundary pass. Windows birth capture and
-observation cost are native-unverified. Retry cleanup metadata/workspace follow-up
-passes4/4 local Chromium/Firefox cases. Next native proof is pending.
-Exact phases/receipts and G00–G18: CODEX_EXECUTION_LEDGER.md.
+Local2066647 fixes private observation teardown after identity-publication EEXIST,
+preserving the original error and releasing the assigned gate. Final focused
+controls pass14/14 each Node20/22/24. Next diagnostic projection retains current
+root rows and actual query-helper constructor PID without filtering candidates,
+changing matching, adding queries or granting signal authority. Focused15/15
+each Node20/22/24 and lint pass. These local changes are not verified by native66.
+Historical permission/TLS failures remain preserved; no bypass or retry.
+
+**Not release-ready. NEXT ACTION: push native67 for local teardown/diagnostic verification.**
+
+Exact phases and G00–G18: CODEX_EXECUTION_LEDGER.md.
 
 The following records are historical checkpoints.
 

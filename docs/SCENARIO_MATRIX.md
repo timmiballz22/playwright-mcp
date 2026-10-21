@@ -2,8 +2,9 @@
 
 Current status and exact candidate evidence are maintained in
 [CODEX_EXECUTION_REPORT.md](CODEX_EXECUTION_REPORT.md) and the G00–G18 table in
-[CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md). Native65 is failed;
-later live-factory lifetime observation awaits native proof.
+[CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md). Native66 failed;
+all five live-factory screenshot fixtures pass, while local teardown/diagnostic
+changes await next-candidate verification.
 Per-scenario historical proofs below do not imply final same-SHA acceptance.
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a

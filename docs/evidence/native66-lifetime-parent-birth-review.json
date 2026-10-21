@@ -1,0 +1,70 @@
+{
+  "candidate": "24f0e84b7fb1257fcf3134a4115b2e212c9090e4",
+  "reviews": [
+    {
+      "phase": "pair_5",
+      "row": {
+        "pid": 9904,
+        "parent": 8004,
+        "started": "2026-10-21T22:28:35.1252990Z"
+      },
+      "capturedPidLifetimes": [
+        {
+          "runId": "1f02384b-da7f-4961-8bca-7d2472526d1c",
+          "capturedBirth": "2026-10-21T22:28:27.9796510Z",
+          "sameIncarnation": false
+        }
+      ],
+      "capturedParentLifetimes": [],
+      "currentParentRowInProjection": null
+    },
+    {
+      "phase": "pair_5",
+      "row": {
+        "pid": 6132,
+        "parent": 9904,
+        "started": "2026-10-21T22:28:35.1276690Z"
+      },
+      "capturedPidLifetimes": [],
+      "capturedParentLifetimes": [
+        {
+          "runId": "1f02384b-da7f-4961-8bca-7d2472526d1c",
+          "capturedParentBirth": "2026-10-21T22:28:27.9796510Z"
+        }
+      ],
+      "currentParentRowInProjection": {
+        "pid": 9904,
+        "parent": 8004,
+        "started": "2026-10-21T22:28:35.1252990Z"
+      }
+    },
+    {
+      "phase": "pair_9",
+      "row": {
+        "pid": 7952,
+        "parent": 624,
+        "started": "2026-10-21T22:28:41.4010900Z"
+      },
+      "capturedPidLifetimes": [
+        {
+          "runId": "190c3e0c-9ea2-4a74-a37d-9f6e0d2821f6",
+          "capturedBirth": "2026-10-21T22:28:36.9731710Z",
+          "sameIncarnation": false
+        }
+      ],
+      "capturedParentLifetimes": [
+        {
+          "runId": "588a23e0-d1b3-4986-84e0-3101192bcbbe",
+          "capturedParentBirth": "2026-10-21T22:28:36.9761010Z"
+        }
+      ],
+      "currentParentRowInProjection": null
+    }
+  ],
+  "findings": [
+    "9904 and7952 have later current births than their captured instances.",
+    "6132 is born after the recorded replacement of parent9904.",
+    "Current parent624 row was not part of the legacy-only projection; complete ancestry is not independently reconstructed from this receipt."
+  ],
+  "limitation": "Historical native64 133 and earlier four-process observations lack these verified births and remain unclassified. No PID hint or comparison authorizes a signal or release."
+}

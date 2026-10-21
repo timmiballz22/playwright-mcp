@@ -38,7 +38,13 @@ $json = $rows | ConvertTo-Json -Compress
     rows = (Array.isArray(parsed) ? parsed : [parsed]).map(row => ({ pid: Number(row.ProcessId), parent: Number(row.ParentProcessId), started: row.Started }));
     const result = identityScopes ? windowsOwnedProcessScopes(identityScopes, rows, rememberLiveRoots) : windowsOwnedProcesses(roots, rows, identities, rememberLiveRoots);
     if (compareLegacyRoots) {
-      try { onLegacyObservation?.(windowsLegacyComparison(compareLegacyRoots, rows, result)); } catch {}
+      const reviewRoots = identityScopes ? identityScopes.flatMap(scope => [...scope.roots]) : [...compareLegacyRoots];
+      if (Number.isSafeInteger(helperPid)) reviewRoots.push(helperPid);
+      try {
+        const legacy = windowsLegacyComparison(compareLegacyRoots, rows, result, reviewRoots);
+        onLegacyObservation?.({ ...legacy, auditHelperPid: Number.isSafeInteger(helperPid) ? helperPid : null,
+          auditHelperMatched: Number.isSafeInteger(helperPid) && legacy.observed.includes(helperPid) });
+      } catch {}
     }
     // Diagnostic only: a matching audit helper remains in the conservative
     // result. Never hide a possible orphan based on its role or PID reuse.

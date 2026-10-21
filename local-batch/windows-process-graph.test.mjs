@@ -129,3 +129,12 @@ test('legacy comparison preserves old candidates while scoped birth facts retain
   assert.deepEqual(comparison.observed, [101, 102]); assert.deepEqual(comparison.legacyOnly, [101]);
   assert.deepEqual(comparison.rows, rows); assert.deepEqual(scoped, [102]);
 });
+
+
+test('comparison records a replacement parent row even when it is outside legacy candidates', async () => {
+  const { windowsLegacyComparison } = await import('./fixtures/windows-process-graph.mjs');
+  const rows = [row(100, 99, 40), row(200, 100, 50)];
+  const result = windowsLegacyComparison([200], rows, [], [100, 200]);
+  assert.deepEqual(result.observed, [200]); assert.deepEqual(result.rows, [rows[1]]);
+  assert.deepEqual(result.rootRows, rows); assert.deepEqual(result.legacyOnly, [200]);
+});

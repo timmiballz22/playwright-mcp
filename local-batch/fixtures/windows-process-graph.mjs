@@ -88,9 +88,10 @@ export function windowsOwnedProcessScopes(scopes, rows, rememberLiveRoots = fals
 
 // Diagnostic comparison only: retain every legacy candidate and its projected
 // row. This never changes the scoped result or grants termination authority.
-export function windowsLegacyComparison(roots, rows, scopedObserved) {
+export function windowsLegacyComparison(roots, rows, scopedObserved, reviewRoots = roots) {
   const observed = windowsOwnedProcesses(roots, rows, new Map());
-  const legacy = new Set(observed); const scoped = new Set(scopedObserved);
+  const legacy = new Set(observed); const scoped = new Set(scopedObserved); const review = new Set(reviewRoots);
   return { observed, legacyOnly: observed.filter(pid => !scoped.has(pid)),
-    rows: rows.filter(row => legacy.has(row.pid)).map(row => ({ pid: row.pid, parent: row.parent, started: row.started })) };
+    rows: rows.filter(row => legacy.has(row.pid)).map(row => ({ pid: row.pid, parent: row.parent, started: row.started })),
+    rootRows: rows.filter(row => review.has(row.pid)).map(row => ({ pid: row.pid, parent: row.parent, started: row.started })) };
 }
