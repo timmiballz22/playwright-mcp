@@ -139,7 +139,13 @@ process.once('message', async message => {
     process.exitCode = 1;
   } finally {
     clearInterval(polling);
-    if (journal) await journal.close();
+    if (journal) {
+      try { await journal.close(); }
+      catch (error) {
+        send({ type: 'failed', code: 'guardian_failed', diagnostic: guardianDiagnostic(error, 'journal_close', error?.command) });
+        process.exitCode = 1;
+      }
+    }
     if (process.connected) process.disconnect();
   }
 });

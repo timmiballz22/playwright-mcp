@@ -8,12 +8,13 @@ const PROCESS_INSTANCE = randomUUID();
 // SQLite became flag-free in22.13 and23.4; early23.x still needs a flag.
 export const supportsJournal = major >= 24 || major === 23 && minor >= 4 || major === 22 && minor >= 13;
 export class JournalError extends Error {
-  constructor(code, journalFailure, journalFailureCommand) {
+  constructor(code, journalFailure, journalFailureCommand, journalExitConfirmed) {
     super(code); this.name = 'JournalError'; this.code = code;
     if (JOURNAL_FAILURE_CAUSES.includes(journalFailure)) {
       this.journalFailure = journalFailure;
       this.journalFailureCommand = COMMAND_FIELDS.has(journalFailureCommand) ? journalFailureCommand : 'none';
     }
+    if (typeof journalExitConfirmed === 'boolean') this.journalExitConfirmed = journalExitConfirmed;
   }
 }
 
@@ -29,7 +30,10 @@ export class JobJournal {
           ownerId: options.ownerId, instanceId, pid: process.pid });
         return journal;
       } catch (error) {
-        journal.abort(); await journal.exited;
+        journal.abort();
+        const confirmed = await journal.waitForExit();
+        error.journalExitConfirmed = confirmed;
+        if (!confirmed) { journal.detachUnknownWorker(); throw error; }
         // Only schema initialization is retried. Job mutations are never replayed.
         if (error.code !== 'journal_busy' || attempt >= 2) throw error;
         await new Promise(resolve => setTimeout(resolve, 20 * 2 ** attempt));
@@ -48,7 +52,7 @@ export class JobJournal {
     this.child = fork(fileURLToPath(new URL(workerModule)), [], {
       stdio: ['ignore', 'ignore', 'ignore', 'ipc'], execArgv: ['--max-old-space-size=64'], windowsHide: true,
     });
-    this.exited = new Promise(resolve => this.child.once('close', () => { this.failAll('journal_unavailable', 'worker_exit'); resolve(); }));
+    this.exited = new Promise(resolve => this.child.once('close', () => { this.exitConfirmed = true; this.failAll('journal_unavailable', 'worker_exit'); resolve(); }));
     this.child.once('error', () => this.abort('worker_error'));
     this.child.on('message', message => {
       if (message.type) { try { onEvent?.(message); } catch {} return; }
@@ -67,7 +71,7 @@ export class JobJournal {
 
   call(command, data = {}) {
     if (this.closed) {
-      const error = new JournalError('journal_unavailable', this.failureCause ?? 'closed', this.failureCommand);
+      const error = new JournalError('journal_unavailable', this.failureCause ?? 'closed', this.failureCommand, this.exitConfirmed);
       if (COMMAND_FIELDS.has(command)) error.command = command;
       return Promise.reject(error);
     }
@@ -91,17 +95,46 @@ export class JobJournal {
     this.closed = true;
     for (const request of this.pending.values()) {
       clearTimeout(request.timer);
-      const error = new JournalError(code, this.failureCause, this.failureCommand); error.command = request.command;
+      const error = new JournalError(code, this.failureCause, this.failureCommand, this.exitConfirmed); error.command = request.command;
       request.reject(error);
     }
     this.pending.clear();
   }
 
-  abort(cause = 'aborted', command) { this.failAll('journal_unavailable', cause, command); this.child.kill('SIGKILL'); }
+  abort(cause = 'aborted', command) {
+    this.failAll('journal_unavailable', cause, command);
+    try { this.child.kill('SIGKILL'); } catch {}
+  }
+  async waitForExit() {
+    let timer;
+    const exited = await Promise.race([this.exited.then(() => true), new Promise(resolve => { timer = setTimeout(() => resolve(false), 1000); })]);
+    clearTimeout(timer);
+    this.exitConfirmed = exited || this.exitConfirmed === true;
+    return this.exitConfirmed;
+  }
+  detachUnknownWorker() {
+    // No PID-based fallback or successful shutdown claim. Release only the
+    // parent's event-loop references after bounded owned-handle termination.
+    if (this.child.connected) { try { this.child.disconnect(); } catch {} }
+    this.child.unref();
+  }
   async close() {
+    if (!this.closing) this.closing = this.closeWorker();
+    return this.closing;
+  }
+  async closeWorker() {
     if (!this.closed) {
       try { await this.call('close'); } catch { this.abort(); }
     }
-    await this.exited;
+    const alreadyStopped = this.closed;
+    if (await this.waitForExit()) return;
+    if (!alreadyStopped) {
+      this.abort('closed', 'close');
+      if (await this.waitForExit()) return;
+    }
+    this.detachUnknownWorker();
+    const error = new JournalError('journal_unavailable', this.failureCause ?? 'closed', this.failureCommand, false);
+    error.command = 'close';
+    throw error;
   }
 }

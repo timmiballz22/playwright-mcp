@@ -3243,3 +3243,43 @@ normal/linger controller-death cleanup receipts remain retained. The child-owner
 case proves interrupted reservation handling, not an uninterruptible filesystem
 process. Native verification remains pending beyond active43de15b. Evidence:
 maintenance-holder-*. The before-control intentionally fails and is not a pass.
+
+
+## Bounded journal shutdown and drained guardian diagnostics (local after c4732d0)
+
+Failed initialization and close previously could await worker exit forever.
+Two pre-fix fault controls fail; three final isolated fake-handle cases cover
+init timeout, close receipt without exit, and busy init without confirmed prior
+exit. Initialization now bounds owned-handle exit confirmation to1s and prohibits
+retry if unconfirmed. Close retains2s RPC,1s graceful and1s forced-confirmation
+budgets. Unknown exit disconnects/unrefs, throws fixed journalExitConfirmed:false,
+retains first transport cause, and never signals a persisted PID. No action or
+RPC deadline increases, mutation replay, public schema or table change.
+
+Guardian close failures send sanitized journal_close diagnostics; controller
+fences its local queue even after prior terminal success. Finalization requires
+BOTH process exit and IPC disconnect, so queued failure messages drain first.
+An exit-only clone fails the synthetic race control. An intermediate close-event
+implementation failed three controller cases because IPC-only forks may omit
+close after parent disconnect; that failed receipt is retained, not counted green.
+Jobs MCP attempts transport close even if controller close fails, preserves both
+errors internally, and emits only fixed stderr metadata. This local fence is NOT
+a durable cross-controller lease for a post-completion journal helper failure.
+
+Full final components:71/71 on Linux Node22.23.3 and24.19, zero skips/cancellations,
+exit0 each. A separate parent-death fixture race surfaced on BOTH full runs:
+readiness marker existed before write completion (70/71 each). The fixture now
+publishes the complete marker by rename; its unchanged assertion/deadline remain.
+Fresh172-file production-only Node22 install exits0, real Chromium plus original
+25-tool and jobs six-tool handshakes pass; both normal/linger controller-death
+checks independently observe zero owned processes before observer recovery.
+Lint and diff checks pass. Evidence journal-stop-* separates expected-negative,
+intermediate failure and final pass receipts. Synthetic handle/metadata controls
+do not claim an actual uninterruptible OS child or browser action execution.
+
+GitHub run inspection now returns HTTP401 Bad credentials, blocking native54
+status/log verification, pushes and PR refresh. Last pushed43de15b native runs:
+CI39632536343 and Local Batch39632535660. Their conclusions are UNKNOWN here;
+local changes are not claimed natively verified. No credential bypass attempted.
+Release gates remain open, including prior native browser failures, Windows
+journal-init uncertainty, hard OS quotas and operator repair.

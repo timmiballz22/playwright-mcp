@@ -106,3 +106,18 @@ is observed dead, retaining the lease and the original execution metadata. Live
 or ambiguously reused holder PIDs keep the busy reservation; presence is never
 authority to release it, and no persisted PID is killed. This improves diagnosis,
 not automatic operator repair.
+
+Journal worker termination is also bounded. Failed initialization waits at most
+one second for the owned child handle to confirm exit; an unconfirmed worker is
+not followed by another initialization attempt, including journal_busy. Close
+keeps the existing two-second RPC watchdog, allows one second for graceful exit,
+then requests owned-handle termination and allows one more second. No persisted
+PID is signalled. Missing exit confirmation disconnects/unrefs the handle and
+throws a fixed journalExitConfirmed:false diagnostic; it never claims shutdown.
+The guardian forwards that diagnostic before IPC disconnect. Its controller
+waits for both process exit and IPC drain before finalizing, and fences its local
+queue on uncertainty even if prior terminal metadata says SUCCEEDED. This does
+not add a durable cross-controller lease for a post-completion journal helper;
+that residual limitation and manual recovery remain open. The jobs MCP shutdown
+still closes its transport when controller close fails and emits fixed stderr
+metadata only. Public tool schemas and action/RPC deadlines are unchanged.

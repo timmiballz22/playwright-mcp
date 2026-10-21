@@ -78,7 +78,7 @@ test('actual artifact worker exits after controller death while filesystem await
     // filesystem boundary rather than a fabricated success/error receipt.
     await writeFile(wrapper, `import fs from 'node:fs/promises';
 import { syncBuiltinESMExports } from 'node:module';
-fs.lstat = async () => { await fs.writeFile(${JSON.stringify(marker)}, 'pending'); return await new Promise(() => {}); };
+fs.lstat = async () => { await fs.writeFile(${JSON.stringify(marker + '.tmp')}, 'pending'); await fs.rename(${JSON.stringify(marker + '.tmp')}, ${JSON.stringify(marker)}); return await new Promise(() => {}); };
 syncBuiltinESMExports();
 await import(${JSON.stringify(actualWorker)});`);
     // A private surrogate parent isolates EOF handling from the adapter's

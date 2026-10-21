@@ -14,3 +14,14 @@ test('journal transport diagnostics retain only fixed causes and originating ver
   assert.equal(guardianDiagnosticLine({ code: 'journal_unavailable', stage: 'poll', command: 'read', journalFailure: 'private-canary', journalFailureCommand: 'private-canary' }).includes('private-canary'), false);
   assert.equal(guardianDiagnosticLine({ ...safe, journalFailureCommand: 'private-canary' }), 'Local job guardian failed (poll/journal_unavailable/read).\nLocal job journal unavailable (rpc_timeout/none).\n');
 });
+
+
+test('unconfirmed journal exit is a fixed boolean diagnostic without raw values', () => {
+  const value = guardianDiagnostic({ code: 'journal_unavailable', journalFailure: 'closed', journalFailureCommand: 'close',
+    journalExitConfirmed: false, message: 'fake-stop-private-canary' }, 'journal_close', 'close');
+  assert.equal(value.journalExitConfirmed, false); assert.equal(value.stage, 'journal_close');
+  assert.equal(guardianDiagnosticLine(value), 'Local job guardian failed (journal_close/journal_unavailable/close).\nLocal job journal unavailable (closed/close).\nLocal job journal worker exit unconfirmed.\n');
+  const bad = guardianDiagnostic({ journalExitConfirmed: 'fake-stop-private-canary' }, 'unknown', 'unknown');
+  assert.equal(bad.journalExitConfirmed, undefined);
+  assert.equal(JSON.stringify(value).includes('fake-stop-private-canary'), false);
+});

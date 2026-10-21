@@ -216,7 +216,11 @@ export class JobController {
     this.active = active;
     this.notify({ type: 'guardianSpawned', jobId: id, pid: child.pid });
     child.on('message', event => {
-      if (event?.type === 'failed') this.notify({ type: 'guardianFailed', diagnostic: guardianDiagnostic(event.diagnostic, event.diagnostic?.stage, event.diagnostic?.command) });
+      if (event?.type === 'failed') {
+        const diagnostic = guardianDiagnostic(event.diagnostic, event.diagnostic?.stage, event.diagnostic?.command);
+        if (diagnostic.journalExitConfirmed === false) this.blocked = true;
+        this.notify({ type: 'guardianFailed', diagnostic });
+      }
       if (['supervisorSpawned', 'workerSpawned', 'ownedProcess'].includes(event?.type) && Number.isInteger(event.pid) && event.pid > 1)
         this.notify({ type: event.type, jobId: id, pid: event.pid });
     });
@@ -225,8 +229,8 @@ export class JobController {
       if (handled) return;
       handled = true;
       if (code !== 0) this.notify({ type: 'guardianExited', code: Number.isInteger(code) ? code : null, signal: ['SIGKILL', 'SIGTERM', 'SIGABRT', 'SIGSEGV', 'SIGINT'].includes(signal) ? signal : 'none' });
-      // Cleanup/results are authoritative only after the owned guardian exits.
-      // Do not trust a complete message as permission to launch another browser.
+      // Drain IPC before finalizing, including an unconfirmed journal-exit
+      // diagnostic which may arrive after the process exit notification.
       const finalize = async () => {
         try {
           let current = await this.journal.call('read', { id });
@@ -251,7 +255,12 @@ export class JobController {
       // Lifecycle bookkeeping cannot be shed by the public admission bound.
       this.operations = this.operations.then(finalize, finalize);
     };
-    child.once('exit', exited);
+    // IPC-only forks may omit close after parent-initiated disconnect.
+    // Both exit and disconnect receipts are needed; neither alone is enough.
+    let exitReceipt; let ipcDrained = !child.connected;
+    const finalizeDrained = () => { if (exitReceipt && ipcDrained) exited(...exitReceipt); };
+    child.once('exit', (...receipt) => { exitReceipt = receipt; finalizeDrained(); });
+    child.once('disconnect', () => { ipcDrained = true; finalizeDrained(); });
     child.once('error', () => {
       if (!child.pid) exited();
       else if (child.connected) child.disconnect();

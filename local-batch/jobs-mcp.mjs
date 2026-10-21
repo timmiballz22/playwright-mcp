@@ -45,10 +45,19 @@ async function main() {
   let closing;
   const shutdown = () => {
     if (!closing) closing = (async () => {
-      const result = await controller.close();
-      await server.close();
-      if (!result.cleanupConfirmed) process.exitCode = 1;
-    })().catch(() => { process.exitCode = 1; });
+      let failure;
+      try {
+        const result = await controller.close();
+        if (!result.cleanupConfirmed) process.exitCode = 1;
+      } catch (error) { failure = error; }
+      try { await server.close(); }
+      catch (error) {
+        if (!failure) failure = error;
+        else failure = Object.assign(new AggregateError([failure, error], 'Jobs controller and transport close failed', { cause: failure }),
+          { journalFailure: failure.journalFailure, journalFailureCommand: failure.journalFailureCommand, journalExitConfirmed: failure.journalExitConfirmed });
+      }
+      if (failure) throw failure;
+    })().catch(error => { process.stderr.write(journalFailureLine(error)); process.exitCode = 1; });
     return closing;
   };
   server.onclose = () => { process.stdin.destroy(); void shutdown(); };
