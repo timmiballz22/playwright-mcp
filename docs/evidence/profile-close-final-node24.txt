@@ -1,0 +1,22 @@
+✔ profile doctor reports a missing path without creating it (56.930477ms)
+✔ profile doctor preserves active ownership and hides path, PID and token from CLI output (94.989258ms)
+✔ profile doctor retains malformed, oversized and linked guard metadata without leaking contents (130.397544ms)
+✔ profile doctor does not repair a writable profile directory (1.66309ms)
+✔ profile doctor rejects extra CLI actions without accepting a reset request (102.457899ms)
+✔ guard composes public persistent API, refuses another launch and releases after confirmed public close (17.329271ms)
+✔ failed launch and disconnected context retain uncertain ownership without stale deletion (6.484791ms)
+✔ closed event before acknowledged shutdown cannot free a profile, and failed hook setup closes its allocation (6.793682ms)
+✔ concurrent context and browser close share shutdown acknowledgement before releasing profile (3.37929ms)
+✔ failed close acknowledgement stays primary for repeated closes and retains ownership (3.197611ms)
+✔ profile lease refuses contention across aliases and releases only its own complete metadata (15.3269ms)
+✔ profile lease never deletes malformed or changed ownership records (6.111271ms)
+✔ another process owns the lease; dead owner remains uncertain and is never silently reclaimed (45.702099ms)
+✔ linked ownership directory cannot change or delete an outside marker (3.053364ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 679.116445

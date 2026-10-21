@@ -19,12 +19,18 @@ function installProfileGuard(playwright) {
       let closeContext;
       try {
         closeContext = context.close.bind(context);
-        context.close = async (...options) => {
-          if (context.isClosed() && !lease.released) { lease.markUncertain(); throw profileError('profile_cleanup_unknown'); }
-          try {
-            const result = await closeContext(...options);
-            await lease.release(); return result;
-          } catch (error) { lease.markUncertain(); throw error; }
+        let closing;
+        context.close = (...options) => {
+          // A close event can precede the public shutdown acknowledgement.
+          // Concurrent closes share that acknowledgement, including failure.
+          if (!closing) closing = (async () => {
+            if (context.isClosed() && !lease.released) { lease.markUncertain(); throw profileError('profile_cleanup_unknown'); }
+            try {
+              const result = await closeContext(...options);
+              await lease.release(); return result;
+            } catch (error) { lease.markUncertain(); throw error; }
+          })();
+          return closing;
         };
         const browser = context.browser();
         if (browser) {

@@ -1,0 +1,42 @@
+✔ guard composes public persistent API, refuses another launch and releases after confirmed public close (14.098735ms)
+✔ failed launch and disconnected context retain uncertain ownership without stale deletion (4.947468ms)
+✔ closed event before acknowledged shutdown cannot free a profile, and failed hook setup closes its allocation (8.721343ms)
+✖ concurrent context and browser close share shutdown acknowledgement before releasing profile (3.486754ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.858512
+
+✖ failing tests:
+
+test at local-batch/profile-guard.test.mjs:64:1
+✖ concurrent context and browser close share shutdown acknowledgement before releasing profile (3.486754ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'profile_cleanup_unknown'
+  -   code: 'profile_in_use'
+    }
+  
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/profile-guard.test.mjs:77:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Profile cleanup could not be confirmed (profile_cleanup_unknown)
+        at profileError (/workspace/playwright-mcp/local-batch/profile-lease.cjs:12:24)
+        at acquireProfileLease (/workspace/playwright-mcp/local-batch/profile-lease.cjs:45:29)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/profile-guard.test.mjs:77:5)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:960:7),
+    expected: { code: 'profile_in_use' },
+    operator: 'rejects',
+    diff: 'simple'
+  }

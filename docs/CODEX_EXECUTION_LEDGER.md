@@ -167,7 +167,7 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 discovery,six jobs schemas; latest fully logged c88171e native53:1,310 passes/six failed tests plus Windows install failure | Verify final clean SHA; native54 status blocked by HTTP401 |
+| G00 BASELINE | IN PROGRESS | BASELINE_AUDIT.md;25/72 discovery,six jobs schemas; latest fully logged c88171e native53:1,310 passes/six failed tests plus Windows install failure | Verify final clean SHA; native54 logged:1,331/4 plus macOS install failure |
 | G01 INSTALL | FAILED | scripts/verify-package.mjs; local4153227 172-file production pass; native53 four installs pass, Windows init/rpc_timeout fails | Diagnose Windows initialization without raising2s watchdog; recover GitHub access |
 | G02 MCP | IN PROGRESS | scripts/verify-codex-jobs.mjs; native53 actual clients all3 pass1k/zero model/zero owned; prior macOS failure retained | Complete remaining malformed/concurrent/disconnect acceptance and final native candidate |
 | G03 FEATURE PARITY | FAILED | native53 Windows Firefox action-recording timeout; macOS screenshot and trusted100 failures;25/72 inventory preserved | Diagnose upstream runtime failures; finish capability-specific positive/negative coverage |
@@ -184,8 +184,8 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md;worker-ci-fiftythird-*,maintenance-holder-*,journal-stop-*; native54 conclusions UNKNOWN | Keep current SHA/counts; recover GitHub access without credential bypass |
-| G18 CLEAN MERGE | FAILED | Draft PR2; last full green d71c91e(14 jobs); native53 failures retained; native54 unknown; local4153227 unpushed | Resolve critical gaps and require complete green final SHA; HTTP401 blocks push/CI inspection |
+| G17 AUDIT EVIDENCE | IN PROGRESS | SCENARIO_MATRIX.md;worker-ci-fiftythird-*,maintenance-holder-*,journal-stop-*; native54 completed failure | Keep current SHA/counts; verify next clean candidate without credential bypass |
+| G18 CLEAN MERGE | FAILED | Draft PR2; last full green d71c91e(14 jobs); native53 failures retained; native54 failures; current candidate pending | Resolve critical gaps and require complete green final SHA; authentication recovered; final native verification pending |
 
 ## Defects and risk register
 
@@ -3324,3 +3324,59 @@ by scripts/test-batch.mjs on native lanes; native remains BLOCKED by HTTP401.
 Evidence jobs-protocol-node*. NEXT ACTION: native verification once authentication
 works; remaining managed profiles, quotas, capability negatives and acceptance
 failures remain open. The goal is not complete or release-ready.
+
+
+## Persistent close acknowledgement coalescing (after5214c8a, local)
+
+Concurrent persistent-context closes could observe isClosed before the first
+public close acknowledgement and incorrectly mark the profile uncertain. The
+new delayed-ack control fails before the fix. profile-guard.cjs now caches the
+first context close operation for context/browser callers, including its original
+failure. A failed acknowledgement retains ownership and repeated calls do not
+replay close. No stale deletion or disconnected-event release is introduced.
+
+Profile guard/lease/doctor14/14 pass each on Node20/22/24, zero skips/cancellations.
+Real Chromium and Firefox each complete three simultaneous context/context/browser
+closes, verify lease absent and reopen successfully (inline public API check).
+Existing original profile parity passes2/2 on Chromium/Firefox in21.4s. WebKit
+not run locally because known missing host libraries; no WebKit pass inferred.
+Fresh Node22 production172 install exits0 with installed persistent cookie/lock/
+doctor and independent owned shutdown receipts; lint/diff pass. Evidence
+profile-close-* preserves before failure and exact final receipts separately.
+
+## Native54 completed at43de15b; authentication recovered
+
+GitHub HTTP401 was temporary; ordinary API/log access now works. Both runs
+completed failure: wrapper39632536343 and batch39632535660. All17 executed jobs
+conclude, one functional_soak job intentionally skipped, no test skips/cancels or
+job cancellations reported. Executed test totals: wrapper435/2 (includes Windows
+legacy3), batch896/2 =>1,331 passes/four failed tests. Separately macOS production
+smoke fails; macOS main batch acceptance is UNEXECUTED and excluded from totals.
+
+All journal components65/65 Linux22/24/macOS and66/66 Windows pass, including
+durable terminal-maintenance reservation and corrected valid-past auth control.
+No claim that the formatter split caused the healthy Windows init observation.
+Local dead-holder recovery c4732d0, journal shutdown4153227, recovery aggregation
+b07b414, protocol5214c8a and close coalescing above are outside native54.
+
+Four172-file production installs pass (Linux20/22/24,Windows). macOS installed
+batch MCP gets goto success then click locator_timeout at step2, completed1/5,
+14.181s, cleanup terminated/temp removed, lower-bound completion, not a pass.
+Its installed original25-tool handshake succeeded before the failure; later
+production subsmokes and main batch acceptance are unexecuted. Actual Codex
+all3 source clients pass1k/zero-model/zero-owned: Linux36.767s, macOS86.326s,
+Windows37.851s. Those successes do not certify the failed installed macOS case.
+
+Windows main157/2: Firefox canonical-localhost positive control timeout after
+completed1 and click locator_timeout, forced cleanup terminated/temp removed;
+Firefox429 positive control timeout completed0/hits2, clean terminated/removed.
+Its lifetime-scope/public jobs/HTTP cases pass this run; prior orphan/root-identity
+failures remain unexplained, no role/birth-time filter or blanket fix claim.
+Linux main20/22/24 all160/159/159 pass. Wrapper Linux144, Windows144+legacy3,
+Docker2 pass; macOS142/2 fails Chromium highlight screenshot Unable capture and
+Firefox storage-state test30s deadline/connection closed. Extra macOS modal
+step is unexecuted after main failure. Evidence worker-ci-fiftyfourth-*.
+
+NEXT ACTION: push a reviewed candidate with these locally verified fixes, wait
+for native55, investigate browser runtime failures without unsafe retries,
+forced actions or timeout growth. Release gates remain FAILED/IN PROGRESS.

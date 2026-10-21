@@ -14,7 +14,10 @@ must belong to the current user and must not permit group/other writes. The
 filesystem root is refused. Existing profile contents are never repaired/deleted.
 
 A normal public persistent-context close acknowledges browser/process cleanup
-before releasing the exact owned record. Browser close uses that same public
+before releasing the exact owned record. Concurrent context/browser closes share
+that first close operation: an early close event does not turn a still-pending
+acknowledgement into an uncertain failure. If the acknowledgement fails, repeated
+closes keep the original failure and do not replay shutdown or release the lease. Browser close uses that same public
 context-close path. Disconnected events alone are insufficient. Failed launch,
 failed close, unexpected disconnect, changed metadata or dead owner retain the
 lease; a disk PID never authorizes killing or stale deletion. Empty-string public

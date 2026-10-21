@@ -60,3 +60,39 @@ test('closed event before acknowledged shutdown cannot free a profile, and faile
     assert.equal(frozen.isClosed(), true); assert.deepEqual(await readdir(root), []);
   } finally { await rm(root, { recursive: true, force: true }); }
 });
+
+test('concurrent context and browser close share shutdown acknowledgement before releasing profile', async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'profile-close-concurrent-'));
+  let finish; let settling;
+  try {
+    let closed = false; let closes = 0;
+    const ack = new Promise(resolve => { finish = resolve; });
+    const browser = { close: async () => { throw new Error('Must compose persistent context shutdown'); } };
+    const context = { isClosed: () => closed, browser: () => browser,
+      close: async () => { closes++; closed = true; await ack; } };
+    const type = { launchPersistentContext: async () => context }; installProfileGuard({ chromium: type });
+    await type.launchPersistentContext(root);
+    const first = context.close(); const second = context.close(); const third = browser.close();
+    const all = settling = Promise.allSettled([first, second, third]);
+    await assert.rejects(acquireProfileLease(root), { code: 'profile_in_use' });
+    finish();
+    assert.deepEqual((await all).map(result => result.status), ['fulfilled', 'fulfilled', 'fulfilled']);
+    assert.equal(closes, 1); assert.deepEqual(await readdir(root), []);
+  } finally { finish?.(); await settling; await rm(root, { recursive: true, force: true }); }
+});
+
+test('failed close acknowledgement stays primary for repeated closes and retains ownership', async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'profile-close-failed-'));
+  const failure = new Error('private-close-failure'); let closes = 0;
+  try {
+    const browser = { close: async () => {} };
+    const context = { isClosed: () => false, browser: () => browser, close: async () => { closes++; throw failure; } };
+    const type = { launchPersistentContext: async () => context }; installProfileGuard({ firefox: type });
+    await type.launchPersistentContext(root);
+    for (const close of [() => context.close(), () => context.close(), () => browser.close()])
+      await assert.rejects(close(), error => error === failure);
+    assert.equal(closes, 1);
+    await assert.rejects(acquireProfileLease(root), { code: 'profile_cleanup_unknown' });
+    assert.deepEqual(await readdir(root), ['.playwright-mcp-owner']);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
