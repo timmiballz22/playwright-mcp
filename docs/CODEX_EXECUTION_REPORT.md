@@ -1672,3 +1672,23 @@ for startup/client overhead. Existing interface benchmark separately measures
 client/setup cost. Node20/22 functional repetitions also pass1/1 each (run in
 parallel, so their timings are not cross-version comparisons). Native confirmation
 remains pending. Evidence: routing-cache-node20/22/24.txt.
+
+
+## Complete bounded cooperative-close metadata
+
+A second producer/validator mismatch is reproduced: the runner can retain three
+resource close failures plus one final server-kill failure, but the journal
+accepted at most three and omitted server_kill_timeout/server_kill_error. The
+SQLite RPC regression fails before correction and passes after: at most four
+entries from the eight fixed close/kill codes, rejecting unknown codes and larger
+arrays. The failed result, operator attention and blocked lease remain intact.
+This repairs result preservation, not actual cleanup success.
+
+A trusted mock executes the real runner's four failing close/kill stages and
+verifies the exact four fixed codes and no raw canary. Four cleanup diagnostics
+tests pass each Node20/22/24;36 journal/guardian/termination/executor checks pass
+each Node22/24. Fresh157-file production-only Node22 install passes the combined
+termination/close metadata regression and all browser/CLI/MCP/profile/parent-death
+smokes. Evidence: journal-cleanup-metadata-* and cleanup-stages-node*. Dependency
+audit after the dev-only PNG pin reports zero advisories across99 dependencies;
+this is registry advisory evidence, not a general supply-chain guarantee.

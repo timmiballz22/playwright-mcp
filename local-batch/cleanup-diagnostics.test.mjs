@@ -46,3 +46,21 @@ test('untrusted Retry-After hints cannot exceed bounded durable result metadata'
     }
   } finally { await rm(directory, { recursive: true, force: true }); }
 });
+
+test('all three close failures plus final server kill failure remain bounded fixed metadata', async () => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'cleanup-all-stages-'));
+  const fail = async () => { throw new Error('fake-all-cleanup-private-canary'); };
+  const page = { locator: () => ({ click: async () => {} }) };
+  const context = { setDefaultTimeout() {}, setDefaultNavigationTimeout() {}, route: async () => {}, newPage: async () => page, close: fail };
+  const browser = { newContext: async () => context, close: fail };
+  const server = { process: () => ({ pid: process.pid }), wsEndpoint: () => 'ws://127.0.0.1/owned-mock', close: fail, kill: fail };
+  try {
+    const result = await runWorkflow({ steps: [{ type: 'click', selector: 'button' }] }, {
+      artifactsDir: directory, playwright: { chromium: { launchServer: async () => server, connect: async () => browser } },
+    });
+    assert.equal(result.ok, false); assert.equal(result.reason, 'cleanup_failed');
+    assert.equal(result.actionsSucceeded, true); assert.equal(result.completed, 1);
+    assert.deepEqual(result.cleanupFailures, ['context_error', 'browser_error', 'server_error', 'server_kill_error']);
+    assert.equal(JSON.stringify(result).includes('fake-all-cleanup-private-canary'), false);
+  } finally { await rm(directory, { recursive: true, force: true }); }
+});

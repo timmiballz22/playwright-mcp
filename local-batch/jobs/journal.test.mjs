@@ -25,10 +25,14 @@ if (!supportsJournal) {
       assert.equal((await journal.call('reserve', { id, nonce })).acquired, true);
       await journal.call('activate', { id, nonce });
       const summary = { ok: false, reason: 'cleanup_failed', completed: 0, total: 1,
+        cleanupFailures: ['context_timeout', 'browser_timeout', 'server_timeout', 'server_kill_timeout'],
         execution: { mode: 'supervised', forced: true, cleanup: 'failed', tempCleanup: 'removed', terminationFailures: ['wait_timeout'] } };
       for (const invalid of [['fake-private-diagnostic-canary'], Array(9).fill('wait_timeout'), [42], 'wait_timeout'])
         await assert.rejects(journal.call('finish', { id, nonce, state: 'FAILED', completed: 0, cleanupOk: false,
           summary: { ...summary, execution: { ...summary.execution, terminationFailures: invalid } } }), { code: 'invalid_metadata' });
+      for (const invalid of [['fake-private-cleanup-canary'], Array(5).fill('server_timeout')])
+        await assert.rejects(journal.call('finish', { id, nonce, state: 'FAILED', completed: 0, cleanupOk: false,
+          summary: { ...summary, cleanupFailures: invalid } }), { code: 'invalid_metadata' });
       const finished = await journal.call('finish', { id, nonce, state: 'FAILED', completed: 0, cleanupOk: false, summary });
       assert.equal(finished.state, 'FAILED'); assert.equal(finished.operatorAttentionRequired, true);
       assert.deepEqual(await journal.call('result', { id }), summary);

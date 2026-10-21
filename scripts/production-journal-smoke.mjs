@@ -72,6 +72,7 @@ if (supportsJournal) {
     assert.equal((await owner.call('reserve', { id: uncertainId, nonce: uncertainNonce })).acquired, true);
     await owner.call('activate', { id: uncertainId, nonce: uncertainNonce });
     const uncertainSummary = { ok: false, reason: 'cleanup_failed', completed: 0, total: 1,
+      cleanupFailures: ['context_timeout', 'browser_timeout', 'server_timeout', 'server_kill_timeout'],
       execution: { mode: 'supervised', forced: true, cleanup: 'failed', tempCleanup: 'removed', terminationFailures: ['wait_timeout'] } };
     const uncertain = await owner.call('finish', { id: uncertainId, nonce: uncertainNonce, state: 'FAILED', completed: 0, cleanupOk: false, summary: uncertainSummary });
     assert.equal(uncertain.operatorAttentionRequired, true);

@@ -133,7 +133,7 @@ function validateSummary(value, row, state, completed) {
   optional(result, 'completionCertainty', value => ['exact', 'confirmed_lower_bound'].includes(value));
   optional(result, 'retrySafe', value => value === false);
   optional(result, 'stage', value => ['workspace', 'execution', 'report'].includes(value));
-  optional(result, 'cleanupFailures', value => Array.isArray(value) && value.length <= 3 && value.every(code => ['context_timeout', 'context_error', 'browser_timeout', 'browser_error', 'server_timeout', 'server_error'].includes(code)));
+  optional(result, 'cleanupFailures', value => Array.isArray(value) && value.length <= 4 && value.every(code => ['context_timeout', 'context_error', 'browser_timeout', 'browser_error', 'server_timeout', 'server_error', 'server_kill_timeout', 'server_kill_error'].includes(code)));
   if (result.actionsSucceeded !== undefined && typeof result.actionsSucceeded !== 'boolean' ||
       state === 'SUCCEEDED' && result.actionsSucceeded === false ||
       result.reportScope !== undefined && result.reportScope !== 'worker_execution') error('invalid_metadata');
