@@ -104,3 +104,14 @@ QA evidence, tests and arbitrary local files are excluded. This does not validat
 a production image or change the Dockerfile's installs, entrypoint or default
 browser. Native product Docker/hash/browser verification is still required.
 See evidence/native88-docker-context-proof.json and actual BuildKit log.
+
+Native90 retains a separate Mac Chromium gray-frame failure: source PNG red, first
+browser-decoded sample128/128/128/255; all three metadata copies retain gray with
+identical encoded streams. The primaries fix still passes Mac WebKit. No gray-frame
+producer fix is established. Local follow-up logs five points from the source PNG
+and same first browser canvas plus an independent ffmpeg frame-zero decode, sharing
+the original5s diagnostic budget. Strict pixel/readiness/counter assertions remain.
+An eligible actual Mac Chromium mismatch can trigger three fresh isolated controls
+with separate nested outputs; source echo cannot trigger them. Local calibration
+passes and original files retain bytes/inodes/mtime. Native measurements pending.
+See native90-independent-frame-proof.json; no header/capture patch follows yet.

@@ -1,5 +1,68 @@
 # Mandatory scenario evidence
 
+## Latest completed checkpoint — native90 at58edfce; acceptance incomplete
+
+[Batch39803246586](https://github.com/timmiballz22/playwright-mcp/actions/runs/39803246586)
+reports1403 passes/6 failures; [original39803246848](https://github.com/timmiballz22/playwright-mcp/actions/runs/39803246848)
+reports578/3. Completed summaries total1981/9, reported test skips/cancels0.
+Node20 main/package checks were unexecuted after dependency installation cancelled
+at the unchanged30m job limit. Four executed installed-package steps pass.
+Linux22/24 main211/0 each, Windows202/1, Mac207/4 (full211 outcomes recovered).
+Components Linux22/24/Mac143/0 each, Windows143/1. All17 job logs were nonempty
+on the first ordinary read after both workflows and their jobs were terminal.
+
+Actual Codex1k passes on Linux36.145s, Windows39.741s, Mac79.104s, model turns0
+and owned roots0. These do not clear native89 Windows CRASHED750/no result,
+its unconfirmed worker/browser exits, native87 scoped observation, or historical
+136/142 PID counts with missing birth facts. Windows private/inherited/protocol-
+headed/stock-headed controls each pass10 fresh runs/230 actions, with zero owned
+roots before force/finally. Mac server/pipe1k pass118.822s/109.420s, owned0.
+All three full legacy comparisons retain rows and identities without role filtering.
+
+Mac raw1k stops982, then failed-click cleanup test is interrupted at983; SDK jobs
+stops970 and sync stdio977. Both MCP receipts time out and report forcedfalse,
+terminated/removed; SDK resultAvailabletrue/operatorAttentionfalse. These are
+separate observations from the successful actual client. Firefox retry fragment
+case completes1 with2 hits then times out; later cases unexecuted. Windows privacy
+verifies1/8, reaches /403 without GET/finished receipts, then times out; request
+classification was not reached. Its audit confirms cleanup. Windows component
+forced schema_tables timeout is expected; the following normal reopen fails with
+rpc_timeout/init, last-received stage schema_commit, exitConfirmedtrue. That stage
+is a lower bound, not proof of a blocked COMMIT/fsync. The failed store is retained.
+
+Original Linux192/0, Mac191/1, Windows190/2; Docker2/0 and Windows legacy3/0.
+Mac modal repeats are unexecuted. All12 independent trace and12 PDF behavior
+cases pass. Mac Chromium first browser sample is gray[128,128,128,255] at320×240,
+ready4, while source PNG is red[255,0,0,255]. All three metadata-copy controls
+remain gray with unchanged encoded bytes. Mac WebKit producer still passes;
+Windows WebKit WAV/VP9 readiness failures remain. No producer fix is established.
+
+All four executed main lanes emit checkpoints25 through200. Final Mac check API
+annotations independently retain all eight numbers. Persistence for a cancelled
+main job with unavailable logs remains unverified. The batch aggregate remained
+in_progress after all13 jobs were terminal; a normal cancel request then finalized
+it as failure. All job end times predate that request; no running test was cancelled
+by it and no cleanup causality is inferred. Snapshots and request receipt are retained.
+
+Correction to earlier mirror wording: a successful old rewrite step and native89
+35–48s setup did not prove an actual URI switch. The published runner script uses
+mirror+file:/etc/apt/apt-mirrors.txt, omitted by that step. Native90 Node20 still
+fetches Azure for about28m before cancellation. Pending correction covers the
+indirect mirror list with five exact-shell fixtures, preserving canonical/security
+fallbacks, signing and unrelated entries. Actual runner rewrite/performance pending.
+
+Next-source local verification: schema identity/version revalidation under the
+existing write lock rejects three real connection races;41 journal/controller
+regressions pass each Node22/24 and fresh installed-package checks pass. CI-only
+bootstrap phase notices pass Bash syntax; PowerShell awaits native execution.
+Independent ffmpeg frame-zero decoding plus five-point grids pass diagnostics on
+Node20/22/24; three fresh controls preserve two prior recordings exactly. Four
+actual-receipt gate cases pass. These diagnostics retain the strict original pixel
+assertion and five-second shared budget; they do not explain the native gray frame.
+No timeout increase, unsafe replay, lease clearance or default transport change.
+See [native90 summary](evidence/native90-summary.json), full per-job logs and
+corresponding schema-race, first-frame, gate and mirror proof files. No release claim.
+
 ## Latest completed checkpoint — native89 at8416021; acceptance incomplete
 
 [Batch39795946998](https://github.com/timmiballz22/playwright-mcp/actions/runs/39795946998)

@@ -1,0 +1,245 @@
+lint	Set up job	﻿2026-10-22T15:16:25.1914875Z Current runner version: '2.338.0'
+lint	Set up job	2026-10-22T15:16:25.1934433Z ##[group]Runner Image Provisioner
+lint	Set up job	2026-10-22T15:16:25.1935131Z Hosted Compute Agent
+lint	Set up job	2026-10-22T15:16:25.1935543Z Version: 20261015.610
+lint	Set up job	2026-10-22T15:16:25.1936051Z Commit: 267fdb4e8bbec4ab5ea31367f3a00d5c480c7656
+lint	Set up job	2026-10-22T15:16:25.1936574Z Build Date: 2026-10-14T17:06:54Z
+lint	Set up job	2026-10-22T15:16:25.1937337Z Worker ID: {fa1ff903-d660-4e68-a0d0-71d6fed080ae}
+lint	Set up job	2026-10-22T15:16:25.1937854Z Region: centralus
+lint	Set up job	2026-10-22T15:16:25.1938240Z Cloud: Azure
+lint	Set up job	2026-10-22T15:16:25.1938727Z ##[endgroup]
+lint	Set up job	2026-10-22T15:16:25.1939967Z ##[group]Operating System
+lint	Set up job	2026-10-22T15:16:25.1940437Z Ubuntu
+lint	Set up job	2026-10-22T15:16:25.1940817Z 24.04.5
+lint	Set up job	2026-10-22T15:16:25.1941188Z LTS
+lint	Set up job	2026-10-22T15:16:25.1941577Z ##[endgroup]
+lint	Set up job	2026-10-22T15:16:25.1941958Z ##[group]Runner Image
+lint	Set up job	2026-10-22T15:16:25.1942408Z Image: ubuntu-24.04
+lint	Set up job	2026-10-22T15:16:25.1942928Z Version: 20261018.339.1
+lint	Set up job	2026-10-22T15:16:25.1943681Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261018.339/images/ubuntu/Ubuntu2404-Readme.md
+lint	Set up job	2026-10-22T15:16:25.1944923Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261018.339
+lint	Set up job	2026-10-22T15:16:25.1945620Z ##[endgroup]
+lint	Set up job	2026-10-22T15:16:25.1946395Z ##[group]GITHUB_TOKEN Permissions
+lint	Set up job	2026-10-22T15:16:25.1948456Z Contents: read
+lint	Set up job	2026-10-22T15:16:25.1948899Z Metadata: read
+lint	Set up job	2026-10-22T15:16:25.1949346Z ##[endgroup]
+lint	Set up job	2026-10-22T15:16:25.1950926Z Secret source: Actions
+lint	Set up job	2026-10-22T15:16:25.1951610Z Cache mode: write
+lint	Set up job	2026-10-22T15:16:25.1952133Z Prepare workflow directory
+lint	Set up job	2026-10-22T15:16:25.2229644Z Prepare all required actions
+lint	Set up job	2026-10-22T15:16:25.2267190Z Getting action download info
+lint	Set up job	2026-10-22T15:16:25.5228778Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+lint	Set up job	2026-10-22T15:16:25.6127850Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+lint	Set up job	2026-10-22T15:16:25.7678133Z Complete job name: lint
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T15:16:25.8219545Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8220306Z with:
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8220767Z   repository: timmiballz22/playwright-mcp
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8223492Z   token: ***
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8223888Z   ssh-strict: true
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8224312Z   ssh-user: git
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8224665Z   persist-credentials: true
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8225095Z   clean: true
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8225472Z   sparse-checkout-cone-mode: true
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8225908Z   fetch-depth: 1
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8226279Z   fetch-tags: false
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8226643Z   show-progress: true
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8227221Z   lfs: false
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8227579Z   submodules: false
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8227953Z   set-safe-directory: true
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8228422Z   allow-unsafe-pr-checkout: false
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.8229038Z ##[endgroup]
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9053840Z Syncing repository: timmiballz22/playwright-mcp
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9056179Z ##[group]Getting Git version info
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9057673Z Working directory is '/home/runner/work/playwright-mcp/playwright-mcp'
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9059114Z [command]/usr/bin/git version
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9090322Z git version 2.55.0
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9104984Z ##[endgroup]
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9112253Z Temporarily overriding HOME='/home/runner/work/_temp/dcf67b3e-e7c8-4d94-af74-d1fe0484f6eb' before making global git config changes
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9114304Z Adding repository directory to the temporary git global config as a safe directory
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9117394Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/playwright-mcp/playwright-mcp
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9157601Z Deleting the contents of '/home/runner/work/playwright-mcp/playwright-mcp'
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9160073Z ##[group]Determining repository object format
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9161237Z ##[endgroup]
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9162173Z ##[group]Initializing the repository
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9164187Z [command]/usr/bin/git init /home/runner/work/playwright-mcp/playwright-mcp
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9259562Z hint: Using 'master' as the name for the initial branch. This default branch name
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9260776Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9262063Z hint: to use in all of your new repositories, which will suppress this warning,
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9263518Z hint: call:
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9264267Z hint:
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9265066Z hint: 	git config --global init.defaultBranch <name>
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9265820Z hint:
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9266599Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9267930Z hint: 'development'. The just-created branch can be renamed via this command:
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9268769Z hint:
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9269408Z hint: 	git branch -m <name>
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9270060Z hint:
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9270741Z hint: Disable this message with "git config set advice.defaultBranchName false"
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9271781Z Initialized empty Git repository in /home/runner/work/playwright-mcp/playwright-mcp/.git/
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9274395Z [command]/usr/bin/git remote add origin https://github.com/timmiballz22/playwright-mcp
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9309924Z ##[endgroup]
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9310788Z ##[group]Disabling automatic garbage collection
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9312614Z [command]/usr/bin/git config --local gc.auto 0
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9340372Z ##[endgroup]
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9341448Z ##[group]Setting up auth
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9342329Z Removing SSH command configuration
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9343539Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9366140Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9737432Z Removing HTTP extra header
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9743539Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9778455Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9932257Z Removing includeIf entries pointing to credentials config files
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9938055Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:25.9962471Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.0113670Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-b48d9458-2024-4ff0-bfd3-974b4a9cb2cd.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.0148159Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path /home/runner/work/_temp/git-credentials-b48d9458-2024-4ff0-bfd3-974b4a9cb2cd.config
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.0167189Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-b48d9458-2024-4ff0-bfd3-974b4a9cb2cd.config
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.0195273Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-b48d9458-2024-4ff0-bfd3-974b4a9cb2cd.config
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.0220754Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-b48d9458-2024-4ff0-bfd3-974b4a9cb2cd.config
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.0246052Z ##[endgroup]
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.0247286Z ##[group]Fetching the repository
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.0252272Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +4f90a7f88b11adbcaf6266be22ca3e09e2c89084:refs/remotes/pull/2/merge
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.8807116Z From https://github.com/timmiballz22/playwright-mcp
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.8808631Z  * [new ref]         4f90a7f88b11adbcaf6266be22ca3e09e2c89084 -> pull/2/merge
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.8849848Z ##[endgroup]
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.8850756Z ##[group]Determining the checkout info
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.8851514Z ##[endgroup]
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.8852035Z [command]/usr/bin/git sparse-checkout disable
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.8909151Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.8941626Z ##[group]Checking out the ref
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.8943326Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/2/merge
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1589624Z Note: switching to 'refs/remotes/pull/2/merge'.
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1590594Z 
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1591063Z You are in 'detached HEAD' state. You can look around, make experimental
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1592171Z changes and commit them, and you can discard any commits you make in this
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1593069Z state without impacting any branches by switching back to a branch.
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1593566Z 
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1593988Z If you want to create a new branch to retain commits you create, you may
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1594993Z do so (now or later) by using -c with the switch command. Example:
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1595520Z 
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1595802Z   git switch -c <new-branch-name>
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1596220Z 
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1596548Z Or undo this operation with:
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1597243Z 
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1597513Z   git switch -
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1597844Z 
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1598429Z Turn off this advice by setting config variable advice.detachedHead to false
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1608153Z 
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1609457Z HEAD is now at 4f90a7f Merge 58edfce67a883f637af53bd34554951615b376b7 into 804bc7ef7a07248a150c98fb5bf417e925ba8033
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1612812Z ##[endgroup]
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1660533Z [command]/usr/bin/git log -1 --format=%H
+lint	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:31.1685200Z 4f90a7f88b11adbcaf6266be22ca3e09e2c89084
+lint	Use Node.js 20	﻿2026-10-22T15:16:31.1934528Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+lint	Use Node.js 20	2026-10-22T15:16:31.1935122Z with:
+lint	Use Node.js 20	2026-10-22T15:16:31.1935443Z   node-version: 20
+lint	Use Node.js 20	2026-10-22T15:16:31.1935763Z   cache: npm
+lint	Use Node.js 20	2026-10-22T15:16:31.1936082Z   check-latest: false
+lint	Use Node.js 20	2026-10-22T15:16:31.1938567Z   token: ***
+lint	Use Node.js 20	2026-10-22T15:16:31.1938962Z   package-manager-cache: true
+lint	Use Node.js 20	2026-10-22T15:16:31.1939352Z ##[endgroup]
+lint	Use Node.js 20	2026-10-22T15:16:31.3031313Z Attempting to download 20...
+lint	Use Node.js 20	2026-10-22T15:16:32.0783342Z Acquiring 20.20.2 - x64 from https://github.com/actions/node-versions/releases/download/20.20.2-23521894959/node-20.20.2-linux-x64.tar.gz
+lint	Use Node.js 20	2026-10-22T15:16:32.5441829Z Extracting ...
+lint	Use Node.js 20	2026-10-22T15:16:32.5524075Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/cdec22dc-5140-4b7c-961e-e06b9e925fd3 -f /home/runner/work/_temp/81e1c986-c905-492b-bd59-f84d2620a390
+lint	Use Node.js 20	2026-10-22T15:16:33.3479742Z Adding to the cache ...
+lint	Use Node.js 20	2026-10-22T15:16:35.5567284Z ##[group]Environment details
+lint	Use Node.js 20	2026-10-22T15:16:35.7309583Z node: v20.20.2
+lint	Use Node.js 20	2026-10-22T15:16:35.7310383Z npm: 10.8.2
+lint	Use Node.js 20	2026-10-22T15:16:35.7310705Z yarn: 1.22.22
+lint	Use Node.js 20	2026-10-22T15:16:35.7312817Z ##[endgroup]
+lint	Use Node.js 20	2026-10-22T15:16:35.7324918Z [command]/opt/hostedtoolcache/node/20.20.2/x64/bin/npm config get cache
+lint	Use Node.js 20	2026-10-22T15:16:35.8201573Z /home/runner/.npm
+lint	Use Node.js 20	2026-10-22T15:16:35.9802454Z Cache hit for: node-cache-Linux-x64-npm-e0b72ab14bf176ab905de84052b5da34dfbad59ce1f9a689a6e5c17c0a67a6f9
+lint	Use Node.js 20	2026-10-22T15:16:37.1796233Z Received 8080093 of 12274397 (65.8%), 7.7 MBs/sec
+lint	Use Node.js 20	2026-10-22T15:16:38.1800163Z Received 8080093 of 12274397 (65.8%), 3.9 MBs/sec
+lint	Use Node.js 20	2026-10-22T15:16:39.1807408Z Received 8080093 of 12274397 (65.8%), 2.6 MBs/sec
+lint	Use Node.js 20	2026-10-22T15:16:39.8622475Z Received 12274397 of 12274397 (100.0%), 3.2 MBs/sec
+lint	Use Node.js 20	2026-10-22T15:16:39.8624327Z Cache Size: ~12 MB (12274397 B)
+lint	Use Node.js 20	2026-10-22T15:16:39.8729525Z [command]/usr/bin/tar -xf /home/runner/work/_temp/e985741a-9e26-4f37-8eda-03035a9af2f6/cache.tzst -P -C /home/runner/work/playwright-mcp/playwright-mcp --use-compress-program unzstd
+lint	Use Node.js 20	2026-10-22T15:16:39.8990067Z Cache restored successfully
+lint	Use Node.js 20	2026-10-22T15:16:39.8998777Z Cache restored from key: node-cache-Linux-x64-npm-e0b72ab14bf176ab905de84052b5da34dfbad59ce1f9a689a6e5c17c0a67a6f9
+lint	Run npm ci	﻿2026-10-22T15:16:39.9171115Z ##[group]Run npm ci
+lint	Run npm ci	2026-10-22T15:16:39.9171567Z [36;1mnpm ci[0m
+lint	Run npm ci	2026-10-22T15:16:39.9299989Z shell: /usr/bin/bash -e {0}
+lint	Run npm ci	2026-10-22T15:16:39.9300372Z ##[endgroup]
+lint	Run npm ci	2026-10-22T15:16:40.9682043Z 
+lint	Run npm ci	2026-10-22T15:16:40.9688703Z > @timmiballz22/playwright-mcp-local@0.0.83 prepare
+lint	Run npm ci	2026-10-22T15:16:40.9689404Z > node scripts/prepare-vp9-metadata.cjs
+lint	Run npm ci	2026-10-22T15:16:40.9689646Z 
+lint	Run npm ci	2026-10-22T15:16:41.0949686Z {"component":"private_vp9_metadata_patch","version":"1.64.1","changed":true,"sha256":"3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192"}
+lint	Run npm ci	2026-10-22T15:16:41.1019490Z 
+lint	Run npm ci	2026-10-22T15:16:41.1020607Z added 103 packages, and audited 104 packages in 1s
+lint	Run npm ci	2026-10-22T15:16:41.1021438Z 
+lint	Run npm ci	2026-10-22T15:16:41.1021850Z 31 packages are looking for funding
+lint	Run npm ci	2026-10-22T15:16:41.1022410Z   run `npm fund` for details
+lint	Run npm ci	2026-10-22T15:16:41.1031815Z 
+lint	Run npm ci	2026-10-22T15:16:41.1032353Z found 0 vulnerabilities
+lint	Run npm run lint	﻿2026-10-22T15:16:41.2022008Z ##[group]Run npm run lint
+lint	Run npm run lint	2026-10-22T15:16:41.2022345Z [36;1mnpm run lint[0m
+lint	Run npm run lint	2026-10-22T15:16:41.2053960Z shell: /usr/bin/bash -e {0}
+lint	Run npm run lint	2026-10-22T15:16:41.2054272Z ##[endgroup]
+lint	Run npm run lint	2026-10-22T15:16:41.3086543Z 
+lint	Run npm run lint	2026-10-22T15:16:41.3087859Z > @timmiballz22/playwright-mcp-local@0.0.83 lint
+lint	Run npm run lint	2026-10-22T15:16:41.3088358Z > node update-readme.js
+lint	Run npm run lint	2026-10-22T15:16:41.3088524Z 
+lint	Run npm run lint	2026-10-22T15:16:41.5580370Z Loading tool information from compiled modules...
+lint	Run npm run lint	2026-10-22T15:16:41.5598066Z Updating tools for capability: Core automation
+lint	Run npm run lint	2026-10-22T15:16:41.5613993Z Updating tools for capability: Tab management
+lint	Run npm run lint	2026-10-22T15:16:41.5614998Z Updating tools for capability: Browser installation
+lint	Run npm run lint	2026-10-22T15:16:41.5616009Z Updating tools for capability: Configuration (opt-in via --caps=config)
+lint	Run npm run lint	2026-10-22T15:16:41.5616939Z Updating tools for capability: Network (opt-in via --caps=network)
+lint	Run npm run lint	2026-10-22T15:16:41.5617635Z Updating tools for capability: Storage (opt-in via --caps=storage)
+lint	Run npm run lint	2026-10-22T15:16:41.5627970Z Updating tools for capability: DevTools (opt-in via --caps=devtools)
+lint	Run npm run lint	2026-10-22T15:16:41.5633104Z Updating tools for capability: Coordinate-based (opt-in via --caps=vision)
+lint	Run npm run lint	2026-10-22T15:16:41.5635878Z Updating tools for capability: PDF generation (opt-in via --caps=pdf)
+lint	Run npm run lint	2026-10-22T15:16:41.5636660Z Updating tools for capability: Test assertions (opt-in via --caps=testing)
+lint	Run npm run lint	2026-10-22T15:16:41.5647603Z Listing options...
+lint	Run npm run lint	2026-10-22T15:16:41.8324356Z Updating config schema from config.d.ts...
+lint	Run npm run lint	2026-10-22T15:16:41.8428986Z README updated successfully
+lint	Run npm run typecheck	﻿2026-10-22T15:16:41.9543421Z ##[group]Run npm run typecheck
+lint	Run npm run typecheck	2026-10-22T15:16:41.9543834Z [36;1mnpm run typecheck[0m
+lint	Run npm run typecheck	2026-10-22T15:16:41.9581129Z shell: /usr/bin/bash -e {0}
+lint	Run npm run typecheck	2026-10-22T15:16:41.9581740Z ##[endgroup]
+lint	Run npm run typecheck	2026-10-22T15:16:42.1363183Z 
+lint	Run npm run typecheck	2026-10-22T15:16:42.1364179Z > @timmiballz22/playwright-mcp-local@0.0.83 typecheck
+lint	Run npm run typecheck	2026-10-22T15:16:42.1364782Z > tsc --project tsconfig.json
+lint	Run npm run typecheck	2026-10-22T15:16:42.1364931Z 
+lint	Ensure no changes	﻿2026-10-22T15:16:47.5104284Z ##[group]Run git diff --exit-code
+lint	Ensure no changes	2026-10-22T15:16:47.5104725Z [36;1mgit diff --exit-code[0m
+lint	Ensure no changes	2026-10-22T15:16:47.5138614Z shell: /usr/bin/bash -e {0}
+lint	Ensure no changes	2026-10-22T15:16:47.5139080Z ##[endgroup]
+lint	Post Use Node.js 20	﻿2026-10-22T15:16:48.1000250Z Post job cleanup.
+lint	Post Use Node.js 20	2026-10-22T15:16:48.1910712Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-e0b72ab14bf176ab905de84052b5da34dfbad59ce1f9a689a6e5c17c0a67a6f9, not saving cache.
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T15:16:48.2098445Z Post job cleanup.
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.2741963Z [command]/usr/bin/git version
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.2774059Z git version 2.55.0
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.2800802Z Temporarily overriding HOME='/home/runner/work/_temp/a6222741-f500-4749-ba42-e3913cabbebf' before making global git config changes
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.2802064Z Adding repository directory to the temporary git global config as a safe directory
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.2804727Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/playwright-mcp/playwright-mcp
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3088643Z Removing SSH command configuration
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3095639Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3138725Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3329353Z Removing HTTP extra header
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3338201Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3413381Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3606405Z Removing includeIf entries pointing to credentials config files
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3611972Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3645591Z includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3646564Z includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3647405Z includeif.gitdir:/github/workspace/.git.path
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3647984Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3650627Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3672191Z /home/runner/work/_temp/git-credentials-b48d9458-2024-4ff0-bfd3-974b4a9cb2cd.config
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3681480Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-b48d9458\-2024\-4ff0\-bfd3\-974b4a9cb2cd\.config
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3813475Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3824511Z /home/runner/work/_temp/git-credentials-b48d9458-2024-4ff0-bfd3-974b4a9cb2cd.config
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3832509Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-b48d9458\-2024\-4ff0\-bfd3\-974b4a9cb2cd\.config
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3894248Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3913632Z /github/runner_temp/git-credentials-b48d9458-2024-4ff0-bfd3-974b4a9cb2cd.config
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.3920083Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-b48d9458\-2024\-4ff0\-bfd3\-974b4a9cb2cd\.config
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.4098932Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.4119475Z /github/runner_temp/git-credentials-b48d9458-2024-4ff0-bfd3-974b4a9cb2cd.config
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.4124189Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-b48d9458\-2024\-4ff0\-bfd3\-974b4a9cb2cd\.config
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.4305320Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+lint	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:48.4471027Z Removing credentials config '/home/runner/work/_temp/git-credentials-b48d9458-2024-4ff0-bfd3-974b4a9cb2cd.config'
+lint	Complete job	﻿2026-10-22T15:16:48.4615069Z Cleaning up orphan processes

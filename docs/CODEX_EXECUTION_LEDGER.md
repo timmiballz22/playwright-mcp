@@ -1,5 +1,14 @@
 # Execution ledger
 
+Local follow-ups excluded from native90 correct the Ubuntu mirror indirection
+(published runner script uses /etc/apt/apt-mirrors.txt). Old step success and35–48s
+native89 setup did not prove a URI switch; native90 still used Azure and cancelled
+Node20 setup. Five extracted-shell cases preserve canonical/security fallback and
+signing bytes; changed-file counts/postcondition await native. Independent frame-zero
+ffmpeg/pixel-grid diagnostics and four-case actual-receipt gate are calibrated on
+all LTSs; three fresh controls preserve two original files exactly. They do not
+establish a gray-frame producer fix. See corresponding native90 proof files.
+
 Local follow-up excluded from native90 adds three CI-only bootstrap phase notices
 (dependencies/browsers/tests), because the main step repeats setup before invoking
 the test harness. Missing numeric test checkpoints alone cannot identify that
@@ -8,6 +17,69 @@ calls and limits unchanged; native annotation persistence pending. Separate actu
 SQLite-connection race probes now reject version/identity changes under the schema
 write lock;41 regressions each22/24 and fresh installed-runtime checks pass. See
 native90-bootstrap-phase-proof.json and native90-schema-race-proof.json.
+
+## Latest completed checkpoint — native90 at58edfce; acceptance incomplete
+
+[Batch39803246586](https://github.com/timmiballz22/playwright-mcp/actions/runs/39803246586)
+reports1403 passes/6 failures; [original39803246848](https://github.com/timmiballz22/playwright-mcp/actions/runs/39803246848)
+reports578/3. Completed summaries total1981/9, reported test skips/cancels0.
+Node20 main/package checks were unexecuted after dependency installation cancelled
+at the unchanged30m job limit. Four executed installed-package steps pass.
+Linux22/24 main211/0 each, Windows202/1, Mac207/4 (full211 outcomes recovered).
+Components Linux22/24/Mac143/0 each, Windows143/1. All17 job logs were nonempty
+on the first ordinary read after both workflows and their jobs were terminal.
+
+Actual Codex1k passes on Linux36.145s, Windows39.741s, Mac79.104s, model turns0
+and owned roots0. These do not clear native89 Windows CRASHED750/no result,
+its unconfirmed worker/browser exits, native87 scoped observation, or historical
+136/142 PID counts with missing birth facts. Windows private/inherited/protocol-
+headed/stock-headed controls each pass10 fresh runs/230 actions, with zero owned
+roots before force/finally. Mac server/pipe1k pass118.822s/109.420s, owned0.
+All three full legacy comparisons retain rows and identities without role filtering.
+
+Mac raw1k stops982, then failed-click cleanup test is interrupted at983; SDK jobs
+stops970 and sync stdio977. Both MCP receipts time out and report forcedfalse,
+terminated/removed; SDK resultAvailabletrue/operatorAttentionfalse. These are
+separate observations from the successful actual client. Firefox retry fragment
+case completes1 with2 hits then times out; later cases unexecuted. Windows privacy
+verifies1/8, reaches /403 without GET/finished receipts, then times out; request
+classification was not reached. Its audit confirms cleanup. Windows component
+forced schema_tables timeout is expected; the following normal reopen fails with
+rpc_timeout/init, last-received stage schema_commit, exitConfirmedtrue. That stage
+is a lower bound, not proof of a blocked COMMIT/fsync. The failed store is retained.
+
+Original Linux192/0, Mac191/1, Windows190/2; Docker2/0 and Windows legacy3/0.
+Mac modal repeats are unexecuted. All12 independent trace and12 PDF behavior
+cases pass. Mac Chromium first browser sample is gray[128,128,128,255] at320×240,
+ready4, while source PNG is red[255,0,0,255]. All three metadata-copy controls
+remain gray with unchanged encoded bytes. Mac WebKit producer still passes;
+Windows WebKit WAV/VP9 readiness failures remain. No producer fix is established.
+
+All four executed main lanes emit checkpoints25 through200. Final Mac check API
+annotations independently retain all eight numbers. Persistence for a cancelled
+main job with unavailable logs remains unverified. The batch aggregate remained
+in_progress after all13 jobs were terminal; a normal cancel request then finalized
+it as failure. All job end times predate that request; no running test was cancelled
+by it and no cleanup causality is inferred. Snapshots and request receipt are retained.
+
+Correction to earlier mirror wording: a successful old rewrite step and native89
+35–48s setup did not prove an actual URI switch. The published runner script uses
+mirror+file:/etc/apt/apt-mirrors.txt, omitted by that step. Native90 Node20 still
+fetches Azure for about28m before cancellation. Pending correction covers the
+indirect mirror list with five exact-shell fixtures, preserving canonical/security
+fallbacks, signing and unrelated entries. Actual runner rewrite/performance pending.
+
+Next-source local verification: schema identity/version revalidation under the
+existing write lock rejects three real connection races;41 journal/controller
+regressions pass each Node22/24 and fresh installed-package checks pass. CI-only
+bootstrap phase notices pass Bash syntax; PowerShell awaits native execution.
+Independent ffmpeg frame-zero decoding plus five-point grids pass diagnostics on
+Node20/22/24; three fresh controls preserve two prior recordings exactly. Four
+actual-receipt gate cases pass. These diagnostics retain the strict original pixel
+assertion and five-second shared budget; they do not explain the native gray frame.
+No timeout increase, unsafe replay, lease clearance or default transport change.
+See [native90 summary](evidence/native90-summary.json), full per-job logs and
+corresponding schema-race, first-frame, gate and mirror proof files. No release claim.
 
 ## Latest completed checkpoint — native89 at8416021; acceptance incomplete
 
@@ -1832,25 +1904,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native89 completed summaries1967/6; all Linux main lanes pass; Mac main cancelled/log unavailable | Next native candidate; no full-matrix or old-debt clearance |
-| G01 INSTALL | VERIFIED PASS | native89 all five package steps pass, Mac via REST only; Docker hash pass; final runtime local297-file install passes | Preserve Mac log gap and Node20 SQLite unsupported scope |
-| G02 MCP | FAILED | native89 Windows actual CRASHED750 recorded/no result/operator attention; Mac943 timeout; Linux1k passes | No replay/lease clearance; pending local redundant header-write reduction is not cause proof |
-| G03 FEATURE PARITY | FAILED | native89 original582/2;12 native traces and12 PDF behaviors pass; Windows WebKit PCM/VP9 remain | Keep strict media tests and all earlier failure evidence |
-| G04 BATCH | FAILED | native89 Windows199/4; deadline browser launch unobserved, headed cleanup, locator14/19, retry429 partial; Mac main unobserved | Checkpoint notices pending native; no force click, timeout increase or role filtering |
-| G05 RETRIES | FAILED | native89 Windows429 two GETs/finished responses but0 completed actions, then timeout; later cases unexecuted | Preserve unsafe-write refusal and exact route scopes |
-| G06 JOBS | FAILED | native89 component139/140 pass but actual Windows journal rpc_timeout/progress crashes at750; worker/browser exits unconfirmed | Three more fixture preservation guards, conditional schema header write and bounded checkpoints local; no historical clearance |
+| G00 BASELINE | IN PROGRESS | native90 completed summaries1981/9; Node20 main/package unexecuted; all17 logs recovered | Next native candidate; no full-matrix or old-debt clearance |
+| G01 INSTALL | VERIFIED PASS | native90 four executed package steps and Docker hash pass; fresh local next-source package passes | Node20 native90 install cancelled; SQLite unsupported on20 |
+| G02 MCP | FAILED | native90 actual1k passes all3 OS; Mac raw982/SDK970/sync977 time out | Preserve native89 Windows750 crash and unconfirmed exits; no replay/lease clearance |
+| G03 FEATURE PARITY | FAILED | native90 original578/3; all12 traces/PDF behaviors pass; Mac Chromium gray, Windows WebKit readiness fails | Strict media checks retained; independent decoder diagnostics await native |
+| G04 BATCH | FAILED | native90 Windows202/1 privacy timeout; Mac207/4 raw/MCP/retry failures | No force click, budget increase or role filtering |
+| G05 RETRIES | FAILED | native90 Mac Firefox fragment case1 completed/2 hits then timeout; later cases unexecuted | Preserve unsafe-write refusal and exact route scopes |
+| G06 JOBS | FAILED | native90 Win component normal reopen rpc_timeout/init at schema_commit, exit confirmed; all actual1k pass | Local write-lock identity race fix validated41 each22/24; old750 crash unresolved |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
 | G08 STORAGE | BLOCKED | native83 one deadline candidate lacks births/rows; one full comparison proves narrow same-PID birth mismatch only; old136/142 unknown | No retrospective reconstruction, coalescence or debt clearance |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native89 Mac WebKit frame passes again; native trace/PDF all12 each pass; Windows WebKit readiness remains | No codec waiver or hidden assertion change; other parameter/interactive variants open |
-| G11 CROSS-OS | FAILED | native89 Linux207/211/211 main pass, Windows199/4, Mac main cancelled/unobserved; actual Windows/Mac clients fail | Next native candidate; metadata snapshots and missing log scope retained |
+| G10 CROSS-BROWSER | FAILED | native90 Mac WebKit frame passes; Chromium gray and Windows WebKit readiness fail | Independent frame-zero diagnostics pending native; no codec waiver |
+| G11 CROSS-OS | FAILED | native90 Linux22/24 main211/0 each, Windows202/1, Mac207/4; Node20 unexecuted | Correct indirect mirror pending; preserve metadata and full log evidence |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
-| G14 ADVANCED | FAILED | native89 original Mac/Linux192/0 each; independent traces12, PDFs6 positive/6 unsupported pass; Windows media fails | Remaining variants and interactive approvals; no broad gamut/PDF render claim |
+| G14 ADVANCED | FAILED | native90 Linux192/0 Mac191/1; traces12 and PDF12 pass; Mac/Windows media failures | Remaining variants and interactive approvals; no broad gamut/render claim |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | native90 bounded audit:25 top-level docs,175 local targets,2 Markdown anchors, explicit full reference links;0 issues;91 external targets not fetched | Full parser/external/shortcut-reference coverage and interactive operator walkthroughs remain |
-| G17 AUDIT EVIDENCE | IN PROGRESS | native89 all17 reads attempted,16 nonempty first reads; Mac empty retry; full legacy rows and stale snapshots retained | Historical136/142, native87 scoped observation and new750-action crash remain unresolved |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native89 failed/incomplete; next source includes real WAL-write regression and bounded checkpoints | All critical gates before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | native90 all17 first log reads nonempty; Mac full main and8 annotations recovered; full legacy rows retained | Historical136/142, native87 scoped observation and native89 crash unresolved |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native90 failed/incomplete; validated journal race fix and diagnostic/setup followups pending native | All critical gates before merge/release |
 
 ## Defects and risk register
 

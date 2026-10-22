@@ -28,7 +28,10 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
   const pixel = [...source.data.subarray(offset, offset + 4)];
   expect(pixel[0]).toBeGreaterThanOrEqual(230); expect(pixel[1]).toBeLessThanOrEqual(20);
   expect(pixel[2]).toBeLessThanOrEqual(20); expect(pixel[3]).toBe(255);
-  console.log(JSON.stringify({ fixture: 'owned_video_source_paint', project, width: 320, height: 240, pixel }));
+  const sourcePoints = [[0, 0], [1, 1], [10, 10], [100, 100], [319, 239]].map(([x, y]) => {
+    const offset = (y * source.width + x) * 4; return { x, y, pixel: [...source.data.subarray(offset, offset + 4)] };
+  });
+  console.log(JSON.stringify({ fixture: 'owned_video_source_paint', project, width: 320, height: 240, pixel, points: sourcePoints }));
   const filename = testInfo.outputPath('owned-frame.webm');
   await call('browser_start_video', { filename, fps: 10 });
   await call('browser_run_code_unsafe', { code: `async page => {
@@ -56,7 +59,8 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
     const frame = await page.locator('#recording').evaluate(video => {
       const canvas=document.createElement('canvas');canvas.width=video.videoWidth;canvas.height=video.videoHeight;
       const context=canvas.getContext('2d');context.drawImage(video,0,0);
-      return { width:video.videoWidth,height:video.videoHeight,ready:video.readyState,pixel:Array.from(context.getImageData(100,100,1,1).data) };
+      return { width:video.videoWidth,height:video.videoHeight,ready:video.readyState,pixel:Array.from(context.getImageData(100,100,1,1).data),
+        points:[[0,0],[1,1],[10,10],[100,100],[319,239]].map(([x,y])=>({x,y,pixel:Array.from(context.getImageData(x,y,1,1).data)})) };
     });
     if (frame.width!==320 || frame.height!==240 || frame.ready<2 || frame.pixel[0]<230 || frame.pixel[1]>20 || frame.pixel[2]>20 || frame.pixel[3]!==255) throw new Error('Owned decoded frame mismatch '+JSON.stringify(frame));
     return { width:frame.width,height:frame.height,decodedRedFrame:true };
@@ -70,7 +74,7 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
     if (failure) {
       const frame = JSON.parse(failure[1]);
       console.log(JSON.stringify({ fixture: 'owned_video_original_decode_failure', project,
-        width: frame.width, height: frame.height, ready: frame.ready, pixel: frame.pixel }));
+        width: frame.width, height: frame.height, ready: frame.ready, pixel: frame.pixel, points: frame.points }));
     }
     const diagnostic = new AbortController();
     const timer = setTimeout(() => diagnostic.abort(), 5000);
@@ -79,6 +83,23 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
     const command = (args: string[]) => execute('ffmpeg', ['-v', 'error', '-nostdin', ...args], { timeout: 5000, signal: diagnostic.signal, maxBuffer: 1024 * 1024 });
     const controls: Record<string, unknown>[] = [];
     try {
+      try {
+        // Decode frame zero independently. No seeking, playback, frame skipping
+        // or replacement of the original browser's strict result.
+        const first = await execute('ffmpeg', ['-v', 'error', '-nostdin', '-i', filename, '-frames:v', '1', '-pix_fmt', 'rgba', '-f', 'image2pipe', '-c:v', 'png', 'pipe:1'],
+          { timeout: 5000, signal: diagnostic.signal, maxBuffer: 1024 * 1024, encoding: 'buffer' });
+        const png = first.stdout;
+        if (png.length < 24 || png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a' || png.readUInt32BE(16) !== 320 || png.readUInt32BE(20) !== 240) throw new Error('Invalid independent owned frame');
+        const image = PNG.sync.read(png);
+        const points = [[0, 0], [1, 1], [10, 10], [100, 100], [319, 239]].map(([x, y]) => {
+          const offset = (y * image.width + x) * 4;
+          return { x, y, pixel: [...image.data.subarray(offset, offset + 4)] };
+        });
+        console.log(JSON.stringify({ fixture: 'owned_video_independent_first_frame', project, available: true, sampled: true,
+          decoder: 'ffmpeg', width: image.width, height: image.height, points }));
+      } catch (error: any) {
+        console.log(JSON.stringify({ fixture: 'owned_video_independent_first_frame', project, available: error.code !== 'ENOENT', sampled: false }));
+      }
       const originalHash = (await command(['-i', filename, '-map', '0:v:0', '-c:v', 'copy', '-f', 'hash', '-hash', 'sha256', '-'])).stdout.trim();
       if (!/^SHA256=[0-9a-f]{64}$/.test(originalHash)) throw new Error('Invalid owned stream hash');
       for (const [variant, flags] of [
