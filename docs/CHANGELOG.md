@@ -1,5 +1,16 @@
 # Fork changes (unreleased)
 
+- Fail SDK startup diagnostics on client-close errors and retain failed stores;
+  preserve primary plus cleanup causes in actual Codex verification. Record
+  bounded init-phase/worker-exit hints and actual app-server close observation.
+  No journal timeouts, SQLite settings, retry or cleanup authority change.
+- Preserve failed group-hint control evidence and report fixed failure phases;
+  optional snapshot-failure callbacks keep the original coverage/row/byte limits.
+  Full-host row-cap failures remain invalid; isolated namespace QA is not a
+  production isolation or global-cleanup guarantee.
+- Native96 still has320×98 input/gray recording. Failed headless alternatives
+  were rejected and9f975 restored; no additional browser fix ships.
+
 - Add one same-deadline read-only retry for Chromium's exact capture-unavailable
   protocol error. Persistent/other/closed/timeout failures remain failures.
   Real-browser calibrated controls and fresh Node22 production package pass

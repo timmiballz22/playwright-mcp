@@ -1,0 +1,26 @@
+{"os":"linux","mode":"inherited","iteration":1,"clients":2,"connected":2,"durationMs":808,"startupCodes":[],"journalFailures":[],"journalInitStages":[],"journalExitUnconfirmed":false,"guardianFailures":[],"guardianExits":[],"diagnosticCoverage":"bounded_stderr_tail","stderrTailTruncated":false,"diagnosticCapped":false,"browserActions":0}
+{"fixture":"sdk_startup_workspace_preserved","mode":"inherited","iteration":1,"workspace":"sdk-jobs-startup-yeB0OP","primaryFailed":true,"registeredClients":2,"closeFailures":0,"auditFailures":1,"finalAuditConfirmed":false}
+file:///workspace/playwright-mcp/scripts/diagnose-jobs-startup.mjs:123
+    if (cleanupFailures.length) throw new AggregateError(primaryFailure ? [primaryFailure, ...cleanupFailures] : cleanupFailures,
+                                      ^
+
+AggregateError: SDK startup fixture cleanup failed
+    at file:///workspace/playwright-mcp/scripts/diagnose-jobs-startup.mjs:123:39
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  [cause]: Error: owned_sdk_primary_fault_after_actual_startup
+      at assert.equal (file:///tmp/native97-sdk-cleanup-preload-v2.mjs:8:253)
+      at file:///workspace/playwright-mcp/scripts/diagnose-jobs-startup.mjs:100:12
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5),
+  [errors]: [
+    Error: owned_sdk_primary_fault_after_actual_startup
+        at assert.equal (file:///tmp/native97-sdk-cleanup-preload-v2.mjs:8:253)
+        at file:///workspace/playwright-mcp/scripts/diagnose-jobs-startup.mjs:100:12
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5),
+    Error: owned_sdk_audit_fault_after_actual_zero
+        at assert.deepEqual (file:///tmp/native97-sdk-cleanup-preload-v2.mjs:9:310)
+        at file:///workspace/playwright-mcp/scripts/diagnose-jobs-startup.mjs:115:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+  ]
+}
+
+Node.js v24.19.0

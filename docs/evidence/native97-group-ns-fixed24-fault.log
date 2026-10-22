@@ -1,0 +1,33 @@
+✔ group hint retains members after reported leader disappears without declaring ownership (2.282523ms)
+✔ group hint bounds and rejects raw diagnostics without leaking or signaling (23.878237ms)
+✔ failure process hint distinguishes reported state counts without leaking diagnostic text or granting identity (0.634115ms)
+✔ read-only process hint observes this live test process (12.077191ms)
+{"fixture":"group_hint_control_failure","workspace":"group-hint-orphan-CtcIJK","factoryExitCode":0,"primaryPhase":"leader_hint","cleanupPhase":"fixture_remove","removalAttempted":false,"selfExitConfirmed":true,"invalidSnapshotReason":null,"leaderHint":{"coverage":"reported_pids_only","nonZombie":0,"zombie":0,"missing":1,"identityVerified":false},"groupHint":null,"selfExitHint":{"coverage":"reported_pids_only","nonZombie":0,"zombie":1,"missing":0,"identityVerified":false},"failureFacts":[{"phase":"leader_hint","kind":"Error","code":"unclassified"}]}
+✖ group hint observes a real member after its actual factory leader exits (96.990021ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 202.753761
+
+✖ failing tests:
+
+test at local-batch/process-state-hint.test.mjs:39:53
+✖ group hint observes a real member after its actual factory leader exits (96.990021ms)
+  Error [AggregateError]: Group hint fixture verification or cleanup failed
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-state-hint.test.mjs:98:11)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    [errors]: [
+      Error: owned_group_primary_after_actual_leader_hint
+          at assert.equal (file:///tmp/native97-group-retention-preload.mjs:4:266)
+          at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-state-hint.test.mjs:64:12)
+          at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at async Test.run (node:internal/test_runner/test:1389:7)
+          at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+    ]
+  }

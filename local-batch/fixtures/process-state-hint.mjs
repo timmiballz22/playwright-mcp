@@ -30,21 +30,28 @@ async function queryGroups() {
 // Group IDs can also be reused. Membership/UID counts are hints only, never
 // proof of ownership, permission to signal, or permission to clear cleanup debt.
 // A later snapshot does not establish membership at the time signaling failed.
-export async function reportedProcessGroupHint(pids, { platform = process.platform, effectiveUid = process.geteuid?.(), query = queryGroups } = {}) {
+export async function reportedProcessGroupHint(pids, { platform = process.platform, effectiveUid = process.geteuid?.(), query = queryGroups, onSnapshotFailure } = {}) {
   if (!['linux', 'darwin'].includes(platform)) return { coverage: 'not_collected' };
   if (!Array.isArray(pids) || !pids.length || pids.length > 16 || pids.some(pid => !Number.isSafeInteger(pid) || pid <= 1 || pid > 2147483647) || !Number.isSafeInteger(effectiveUid) || effectiveUid < 0)
     return { coverage: 'invalid_metadata' };
+  const invalid = (reason, coverage = 'invalid_snapshot') => {
+    try { onSnapshotFailure?.(reason); } catch { /* observational callback only */ }
+    return { coverage };
+  };
   let text;
-  try { text = await query(); } catch { return { coverage: 'unavailable' }; }
-  if (typeof text !== 'string' || Buffer.byteLength(text, 'utf8') > 1048576) return { coverage: 'invalid_snapshot' };
+  try { text = await query(); } catch { return invalid('query_unavailable', 'unavailable'); }
+  if (typeof text !== 'string') return invalid('output_type');
+  if (Buffer.byteLength(text, 'utf8') > 1048576) return invalid('output_limit');
   const groups = new Map([...new Set(pids)].map(pid => [pid, { reportedGroup: pid, leaderPresent: false, members: 0, nonZombie: 0, zombie: 0, sameEffectiveUid: 0, differentEffectiveUid: 0 }]));
   const seen = new Set();
   for (const line of text.split(/\r?\n/).filter(line => line.trim())) {
     const match = /^\s*(\d+)\s+(\d+)\s+(\d+)\s+([RSTtPZXIDUW][A-Za-z+<>=-]{0,15})\s*$/.exec(line);
-    if (!match) return { coverage: 'invalid_snapshot' };
+    if (!match) return invalid('row_format');
     const [pid, pgid, uid] = match.slice(1, 4).map(Number);
-    if (![pid, pgid, uid].every(Number.isSafeInteger) || pid < 0 || pid > 2147483647 || pgid < 0 || pgid > 2147483647 || uid < 0 || seen.has(pid) || seen.size >= 16384)
-      return { coverage: 'invalid_snapshot' };
+    if (![pid, pgid, uid].every(Number.isSafeInteger) || pid < 0 || pid > 2147483647 || pgid < 0 || pgid > 2147483647 || uid < 0)
+      return invalid('row_identity');
+    if (seen.has(pid)) return invalid('duplicate_pid');
+    if (seen.size >= 16384) return invalid('row_limit');
     seen.add(pid);
     const group = groups.get(pgid);
     if (!group) continue;

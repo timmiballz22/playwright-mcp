@@ -12,8 +12,13 @@ test('group hint retains members after reported leader disappears without declar
 });
 test('group hint bounds and rejects raw diagnostics without leaking or signaling', async () => {
   const tooManyRows = Array.from({ length: 16385 }, (_, index) => `${index + 1} 10 50 S\n`).join('');
-  for (const output of ['fake-private-group-canary', '11 10 50 S\n11 20 50 Z\n', 'x'.repeat(1048577), '€'.repeat(400000), tooManyRows])
-    assert.deepEqual(await hints.reportedProcessGroupHint([10], { platform: 'darwin', effectiveUid: 50, query: async () => output }), { coverage: 'invalid_snapshot' });
+  for (const [output, expectedReason] of [['fake-private-group-canary', 'row_format'], ['11 10 50 S\n11 20 50 Z\n', 'duplicate_pid'],
+    ['x'.repeat(1048577), 'output_limit'], ['€'.repeat(400000), 'output_limit'], [tooManyRows, 'row_limit']]) {
+    let reason;
+    assert.deepEqual(await hints.reportedProcessGroupHint([10], { platform: 'darwin', effectiveUid: 50, query: async () => output,
+      onSnapshotFailure: value => { reason = value; } }), { coverage: 'invalid_snapshot' });
+    assert.equal(reason, expectedReason);
+  }
   assert.deepEqual(await hints.reportedProcessGroupHint([10], { platform: 'darwin', effectiveUid: 50, query: async () => { throw new Error('fake-private-group-canary'); } }), { coverage: 'unavailable' });
   assert.deepEqual(await hints.reportedProcessGroupHint([0], { platform: 'darwin' }), { coverage: 'invalid_metadata' });
   assert.deepEqual(await hints.reportedProcessGroupHint(Array.from({ length: 17 }, (_, index) => index + 10), { platform: 'darwin', effectiveUid: 50 }), { coverage: 'invalid_metadata' });
@@ -40,34 +45,56 @@ if (['linux', 'darwin'].includes(process.platform)) test('group hint observes a 
     const child=spawn(process.execPath,[process.argv[1],process.argv[2]],{stdio:'ignore'});child.on('error',()=>process.exit(1));child.unref();
     (async()=>{for(;;){try{if(/^\\d+$/.test(await readFile(path.join(process.argv[2],'child-ready'),'utf8')))process.exit(0);}catch{}await new Promise(r=>setTimeout(r,20));}})();`;
   const parent = spawn(process.execPath, ['-e', program, fileURLToPath(new URL('./jobs/fixtures/unreported-child.mjs', import.meta.url)), directory], { detached: true, stdio: 'ignore' });
-  const exited = once(parent, 'close'); const errors = []; let timer; let orphanPid; let gone = false;
+  const exited = once(parent, 'close'); const errors = []; const failureFacts = [];
+  let timer, orphanPid, factoryExitCode = null, leaderHint, groupHint, selfExitHint;
+  let invalidSnapshotReason = null;
+  let gone = false, removalAttempted = false, primaryPhase = 'factory_exit', cleanupPhase = 'not_started';
+  const failureFact = (error, phase) => ({ phase,
+    kind: ['AssertionError', 'Error', 'AggregateError', 'TypeError', 'RangeError'].includes(error?.name) ? error.name : 'other',
+    code: ['ERR_ASSERTION', 'ENOENT', 'EACCES', 'EPERM', 'ENOMEM', 'EAGAIN', 'ETIMEDOUT'].includes(error?.code) ? error.code : 'unclassified',
+    ...(typeof error?.actual === 'number' || typeof error?.actual === 'boolean' ? { actual: error.actual } : {}),
+    ...(typeof error?.expected === 'number' || typeof error?.expected === 'boolean' ? { expected: error.expected } : {}) });
   try {
     const [code] = await Promise.race([exited, new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Factory leader did not exit')), 5000); })]);
-    clearTimeout(timer); assert.equal(code, 0);
+    factoryExitCode = code; clearTimeout(timer); assert.equal(code, 0);
+    primaryPhase = 'child_ready';
     orphanPid = Number(await readFile(path.join(directory, 'child-ready'), 'utf8')); assert.ok(Number.isSafeInteger(orphanPid) && orphanPid > 1);
-    assert.equal((await reportedProcessStateHint([parent.pid])).missing, 1);
-    const result = await hints.reportedProcessGroupHint([parent.pid]);
+    primaryPhase = 'leader_hint';
+    leaderHint = await reportedProcessStateHint([parent.pid]);
+    assert.equal(leaderHint.missing, 1);
+    primaryPhase = 'group_hint';
+    const result = groupHint = await hints.reportedProcessGroupHint([parent.pid], { onSnapshotFailure: reason => { invalidSnapshotReason = reason; } });
     assert.equal(result.coverage, 'reported_group_ids_only'); assert.equal(result.identityVerified, false);
     assert.equal(result.groups[0].leaderPresent, false); assert.equal(result.groups[0].nonZombie, 1);
     assert.equal(result.groups[0].sameEffectiveUid, 1); assert.equal(result.groups[0].differentEffectiveUid, 0);
-  } catch (error) { errors.push(error); }
+  } catch (error) { errors.push(error); failureFacts.push(failureFact(error, primaryPhase)); }
   finally {
     clearTimeout(timer);
     try {
       // Private self-exit request only; the observed orphan PID grants no signal authority.
+      cleanupPhase = 'self_exit_request';
       await writeFile(path.join(directory, 'stop-child'), '', { mode: 0o600 });
+      cleanupPhase = 'factory_close';
       if (parent.exitCode === null && parent.signalCode === null) { parent.kill('SIGKILL'); await exited; }
+      cleanupPhase = 'child_ready';
       orphanPid ??= Number(await readFile(path.join(directory, 'child-ready'), 'utf8'));
+      cleanupPhase = 'self_exit_wait';
       const end = performance.now() + 8000;
       do {
-        const hint = await reportedProcessStateHint([orphanPid]);
+        const hint = selfExitHint = await reportedProcessStateHint([orphanPid]);
         gone = hint.coverage === 'reported_pids_only' && hint.nonZombie === 0;
         if (gone) break;
         await new Promise(resolve => setTimeout(resolve, 20));
       } while (performance.now() < end);
       assert.ok(gone, 'Controlled group member self-exit must be confirmed');
-      await rm(directory, { recursive: true, force: true });
-    } catch (error) { errors.push(error); }
+      cleanupPhase = 'fixture_remove';
+      if (!errors.length) { removalAttempted = true; await rm(directory, { recursive: true, force: true }); }
+    } catch (error) { errors.push(error); failureFacts.push(failureFact(error, cleanupPhase)); }
   }
-  if (errors.length) throw new AggregateError(errors, 'Group hint fixture failure; uncertain control directory retained');
+  if (errors.length) {
+    console.error(JSON.stringify({ fixture: 'group_hint_control_failure', workspace: path.basename(directory),
+      factoryExitCode, primaryPhase, cleanupPhase, removalAttempted, selfExitConfirmed: gone, invalidSnapshotReason,
+      leaderHint: leaderHint ?? null, groupHint: groupHint ?? null, selfExitHint: selfExitHint ?? null, failureFacts }));
+    throw new AggregateError(errors, 'Group hint fixture verification or cleanup failed');
+  }
 });

@@ -1,0 +1,9 @@
+{
+  "experiment": "Unshipped146 headless-window branch",
+  "preparedCore": "146b03adb15d6b92730212ee3160041624719a39af9aa378ad540c5dd8fde4d2",
+  "shipped": false,
+  "restoredCore": "9f9750ae24604e2099e1c1f6564d5d6cb3d19d30dfbc8b5ec61ba18c0989e25a",
+  "reason": "Local first JPEG320x180 while requested/metadata320x240, plus a display-free headed-branch attempt actually stayed headless and did not exercise headed behavior. No native headed GUI verification claimed.",
+  "attemptedCorrections": "Repeated explicit dontSetVisibleSize:false and direct Emulation.setVisibleSize controls gave mixed first-frame geometry; neither is a reliable source fix. Original first-frame assertions remain strict.",
+  "scope": "A separate controlled short-visible-surface intervention can turn gray to red; it does not prove a general resize/start-recording fix. No warmup, frame discard, seek, encoder change or new default channel/transport ships."
+}

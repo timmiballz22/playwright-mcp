@@ -1,6 +1,25 @@
 # Private Playwright reliability patches
 
-## Current local candidate: capture recovery and viewport ordering
+## Reviewed9f975: native96 remains incomplete
+
+Core9f975 is the current reviewed implementation. Native96 cc9562b confirms
+the ordered-window change is insufficient:117 JPEG headers include16 at320×98
+across main/fresh Chromium streams; gray frame zero remains failed. Source
+Mac capture-unavailable errors do not recur in this sample, without proof a
+native retry fired or a broad recovery guarantee.
+
+A later unshipped146 headless-window experiment fails local first-JPEG geometry
+(320×180 against320×240 requested/metadata). Its attempted display-free headed
+calibration actually remained headless and provides no headed-GUI verification.
+Repeated explicit-flag and direct visible-size controls also yield mixed first
+frames. These alternatives are rejected, never pushed; clean npm installation
+restores9f975. No new warmup, seek/skip, capture-backend/encoder replacement,
+default channel/transport change or deadline increase is retained. Original
+first-frame assertions remain strict.
+[Rejected experiments](evidence/native97-rejected-browser-experiments.json).
+
+The historical native95 and local source-order evidence follows. Its controlled
+positive does not establish an unforced macOS clipping fix.
 
 Native95 original workflow39837569201 atfdd83e0 completes600/8, including its
 separate fresh/legacy controls. Mac main196/4 includes two capture-unavailable
@@ -36,8 +55,7 @@ injection follows successful owned PNG captures and uses a real ProtocolError;
 it proves selection/bounds, not the native error's cause or native recovery.
 Original video and stock PNG/PCM cases pass6/6 locally on Chromium/Firefox.
 Fresh production installation/smokes pass on Node22 with the final9f975 core and
-unchanged source hashes during verification. Native95 still uses metadata-only
-3eb, and cannot validate either current code change.
+unchanged source hashes during verification. Native95 uses metadata-only3eb. Native96 tests9f975 and still fails gray recording; neither run proves the original clipping cause is fixed.
 
 Prepared source identities:
 

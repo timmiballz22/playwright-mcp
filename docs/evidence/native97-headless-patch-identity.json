@@ -1,0 +1,6 @@
+{
+  "orderedHash": "9f9750ae24604e2099e1c1f6564d5d6cb3d19d30dfbc8b5ec61ba18c0989e25a",
+  "patchedHash": "146b03adb15d6b92730212ee3160041624719a39af9aa378ad540c5dd8fde4d2",
+  "hiddenWindowNeedle": "        if (!preserveWindowBoundaries && this._windowId) {",
+  "hiddenWindowReplacement": "        // Headless metrics own the visible surface. A late hidden-window resize\n        // can otherwise shrink it after emulation has configured the viewport.\n        if (!preserveWindowBoundaries && this._windowId && this._crPage._browserContext._browser.options.headful) {"
+}

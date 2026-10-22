@@ -41,17 +41,20 @@ const child = spawn(codexCommand, [...codexArguments, 'app-server', '--stdio', '
   // bounded private buffer; only the endpoint's fixed startup code is emitted.
   env: { ...process.env, RUST_LOG: [process.env.RUST_LOG, 'codex_rmcp_client::stdio_server_launcher=info'].filter(Boolean).join(',') },
 });
-const closed = once(child, 'close').catch(() => []);
+let appServerCloseObserved = false;
+const closed = once(child, 'close').then(value => { appServerCloseObserved = true; return value; }).catch(() => []);
 // Keep raw client diagnostics private; emit only our fixed startup code format.
 const guardianFailures = new Set(); const guardianExits = new Set(); const journalFailures = new Set(); const journalInitStages = new Set();
+let journalExitUnconfirmed = false;
 const rememberJournalFailures = value => {
   const facts = guardianStderrFacts(value);
+  journalExitUnconfirmed ||= facts.journalExitUnconfirmed;
   for (const entry of facts.journalFailures)
     if (journalFailures.size < 16) journalFailures.add(entry);
   for (const stage of facts.journalInitStages ?? [])
     if (journalInitStages.size < 16) journalInitStages.add(stage);
 };
-const startupCodes = new Set(); const helperFailures = new Set(); const startupStates = new Map(); let stderrTail = '';
+const startupCodes = new Set(); const helperFailures = new Set(); const startupStates = new Map(); let stderrTail = ''; let stderrTailTruncated = false;
 const startupCategory = value => {
   if (typeof value !== 'string') return undefined;
   if (/Local jobs startup failed \([a-z_]{1,40}\)/.test(value)) return 'jobs_startup_rejected';
@@ -62,7 +65,9 @@ const startupCategory = value => {
   return 'unclassified_startup_error';
 };
 child.stderr.on('data', chunk => {
-  stderrTail = (stderrTail + chunk.toString()).slice(-4096);
+  const combined = stderrTail + chunk.toString();
+  stderrTailTruncated ||= combined.length > 4096;
+  stderrTail = combined.slice(-4096);
   rememberJournalFailures(stderrTail);
   const facts = guardianStderrFacts(stderrTail);
   for (const entry of facts.guardianFailures) if (guardianFailures.size < 16) guardianFailures.add(entry);
@@ -100,7 +105,7 @@ const rpc = (method, params, timeoutMs = 20000) => new Promise((resolve, reject)
   const id = next++; const timer = setTimeout(() => { pending.delete(id); reject(new Error('Codex RPC timed out')); }, timeoutMs);
   pending.set(id, { resolve, reject, timer, method }); send({ id, method, params });
 });
-let verified;
+let verified; let primaryFailure;
 try {
   await rpc('initialize', { clientInfo: { name: 'local-jobs-acceptance', version: '1.0.0' }, capabilities: { experimentalApi: true } });
   send({ method: 'initialized', params: {} });
@@ -121,7 +126,7 @@ try {
       if (tools.length || startupCodes.size || ['failed', 'cancelled'].includes(startupStates.get(name)?.status) || performance.now() >= discoveryEnd) break;
       await new Promise(resolve => setTimeout(resolve, 200));
     } while (polls < 100);
-    const diagnostic = JSON.stringify({ server: name, tools: tools.length, polls, startup: startupStates.get(name), startupCodes: [...startupCodes].sort(), helperFailures: [...helperFailures].sort(), journalFailures: [...journalFailures].sort(), journalInitStages: [...journalInitStages].sort() });
+    const diagnostic = JSON.stringify({ server: name, tools: tools.length, polls, startup: startupStates.get(name), startupCodes: [...startupCodes].sort(), helperFailures: [...helperFailures].sort(), journalFailures: [...journalFailures].sort(), journalInitStages: [...journalInitStages].sort(), journalExitUnconfirmed, diagnosticCoverage: 'bounded_stderr_tail', stderrTailTruncated });
     if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Codex tool discovery::' + diagnostic);
     assert.deepEqual(tools, expectedTools, diagnostic);
   }
@@ -145,7 +150,7 @@ try {
     // execution status, assertions, signaling or durable cleanup uncertainty.
     [cleanupProcessHint, cleanupGroupHint] = await Promise.all([reportedProcessStateHint(reported), reportedProcessGroupHint(reported)]);
   }
-  const receipt = JSON.stringify({ phase: 'codex_primary_job', failedStep: stepFailureDiagnostic(result.result?.failedStep), state: result.job?.state, jobReason: result.job?.reason, jobStage: result.job?.stage, jobCompleted: result.job?.completed, resultAvailable: !!result.result, operatorAttentionRequired: result.job?.operatorAttentionRequired, guardianFailures: [...guardianFailures], journalFailures: [...journalFailures].sort(), journalInitStages: [...journalInitStages].sort(), guardianExits: [...guardianExits], forced: result.result?.execution?.forced, workerCleanupFailed: result.result?.execution?.workerCleanupFailed, cleanupProcessHint, cleanupGroupHint, terminationFailures: Array.isArray(result.result?.execution?.terminationFailures) ? result.result.execution.terminationFailures.filter(code => TERMINATION_FAILURE_CODES.includes(code)).slice(0, 8) : undefined, completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup });
+  const receipt = JSON.stringify({ phase: 'codex_primary_job', failedStep: stepFailureDiagnostic(result.result?.failedStep), state: result.job?.state, jobReason: result.job?.reason, jobStage: result.job?.stage, jobCompleted: result.job?.completed, resultAvailable: !!result.result, operatorAttentionRequired: result.job?.operatorAttentionRequired, guardianFailures: [...guardianFailures], journalFailures: [...journalFailures].sort(), journalInitStages: [...journalInitStages].sort(), journalExitUnconfirmed, diagnosticCoverage: 'bounded_stderr_tail', stderrTailTruncated, guardianExits: [...guardianExits], forced: result.result?.execution?.forced, workerCleanupFailed: result.result?.execution?.workerCleanupFailed, cleanupProcessHint, cleanupGroupHint, terminationFailures: Array.isArray(result.result?.execution?.terminationFailures) ? result.result.execution.terminationFailures.filter(code => TERMINATION_FAILURE_CODES.includes(code)).slice(0, 8) : undefined, completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup });
   if (process.env.GITHUB_ACTIONS === 'true' && result.job?.state !== 'SUCCEEDED') console.error('::error title=Codex jobs receipt::' + receipt.replaceAll('%', '%25').replaceAll('\r', '%0D').replaceAll('\n', '%0A'));
   assert.equal(result.job.state, 'SUCCEEDED', receipt); assert.equal(result.result.completed, 1000);
   assert.equal(result.result.recentSteps.length, 10); assert.equal(result.result.reportPath, undefined);
@@ -163,27 +168,44 @@ try {
   const cancelled = await call('get_workflow_result', { jobId: cancellable.jobId, waitMs: 10000 });
   assert.equal(cancelled.job.state, 'CANCELLED'); assert.equal(cancelled.job.completed, 1); assert.equal(cancelled.job.operatorAttentionRequired, false);
   verified = { client: version, os: process.platform, launcher: codexArguments.length ? 'node' : 'native', tools: 6, completed: 1000, startMs, resultCalls, durationMs: Math.round(performance.now() - startedAt), duplicateExecuted: false, foreignOwnerDenied: true, terminalCleanup: true, activeCancel: true, cancelledJobCompleted: cancelled.job.completed, modelTurns: 0, temporaryConfigOnly: true };
+} catch (error) {
+  primaryFailure = error;
+  throw error;
 } finally {
-  let clean = false;
+  let clean = false, cleanupFailure, removalAttempted = false;
   try {
-    observed.push(...await ownedDescendants([child.pid], { rememberLiveRoots: true }));
-    rejectPending(); child.stdin.end();
-    let timer;
-    const exited = await Promise.race([closed.then(() => true), new Promise(resolve => { timer = setTimeout(() => resolve(false), 3000); })]);
-    clearTimeout(timer);
-    if (!exited) await terminateOwnedProcesses(child.pid, [], child.exitCode === null && child.signalCode === null);
-    const end = performance.now() + 10000;
-    while ((await ownedDescendants([child.pid, ...observed])).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 50));
-    assert.deepEqual(await ownedDescendants([child.pid, ...observed]), []); clean = true;
-  } finally {
     try {
-      rejectPending();
-      if (child.exitCode === null && child.signalCode === null) await terminateOwnedProcesses(child.pid, [], true);
+      observed.push(...await ownedDescendants([child.pid], { rememberLiveRoots: true }));
+      rejectPending(); child.stdin.end();
+      let timer;
+      const exited = await Promise.race([closed.then(() => true), new Promise(resolve => { timer = setTimeout(() => resolve(false), 3000); })]);
+      clearTimeout(timer);
+      if (!exited) await terminateOwnedProcesses(child.pid, [], child.exitCode === null && child.signalCode === null);
+      const end = performance.now() + 10000;
+      while ((await ownedDescendants([child.pid, ...observed])).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 50));
+      assert.deepEqual(await ownedDescendants([child.pid, ...observed]), []); clean = true;
     } finally {
-      lines.close(); fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
-      // Failed verification retains private artifacts even after a clean audit.
-      if (clean && verified) await rm(directory, { recursive: true, force: true });
+      try {
+        rejectPending();
+        if (child.exitCode === null && child.signalCode === null) await terminateOwnedProcesses(child.pid, [], true);
+      } finally {
+        lines.close(); fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
+      }
     }
+    // Removal follows every cleanup stage, not just a successful process audit.
+    if (clean && verified && !primaryFailure) {
+      removalAttempted = true;
+      await rm(directory, { recursive: true, force: true });
+    }
+  } catch (error) {
+    cleanupFailure = error;
+    if (primaryFailure) throw new AggregateError([primaryFailure, error], 'Codex verification and cleanup both failed', { cause: primaryFailure });
+    throw error;
+  } finally {
+    if (!verified || !clean || primaryFailure || cleanupFailure) console.error(JSON.stringify({ fixture: 'codex_client_workspace_retention',
+      workspace: path.basename(directory), acceptanceVerified: !!verified, primaryFailed: !!primaryFailure,
+      cleanupFailed: !!cleanupFailure, removalAttempted, processAuditConfirmed: clean, appServerCloseObserved,
+      journalExitUnconfirmed, journalInitStages: [...journalInitStages].sort(), diagnosticCoverage: 'bounded_stderr_tail', stderrTailTruncated }));
   }
 }
 console.log(JSON.stringify({ ...verified, activeOwnedProcesses: 0 }));
