@@ -1,0 +1,50 @@
+
+Running 2 tests using 1 worker
+
+(node:1031716) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"owned_lazy_append","initialRows":10,"finalRows":30,"pageRequests":1,"confirmedPostEffects":2,"originalReferenceUsed":true}
+{"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":13,"pending":0,"active":[],"recent":[{"tool":"browser_snapshot","outcome":"returned","durationMs":9},{"tool":"browser_click","outcome":"returned","durationMs":1048},{"tool":"browser_snapshot","outcome":"returned","durationMs":8},{"tool":"browser_close","outcome":"returned","durationMs":96}]}]}
+  ✘  1 [chromium] › tests/dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once (3.3s)
+(node:1031859) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"owned_lazy_append","initialRows":10,"finalRows":30,"pageRequests":1,"confirmedPostEffects":2,"originalReferenceUsed":true}
+{"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":13,"pending":0,"active":[],"recent":[{"tool":"browser_snapshot","outcome":"returned","durationMs":15},{"tool":"browser_click","outcome":"returned","durationMs":1069},{"tool":"browser_snapshot","outcome":"returned","durationMs":15},{"tool":"browser_close","outcome":"returned","durationMs":385}]}]}
+  ✘  2 [firefox] › tests/dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once (4.6s)
+
+
+  1) [chromium] › tests/dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once 
+
+    Error: Cannot set headers after they are sent to the client
+
+      129 |     server.route('/next-page', (_request, response) => {
+      130 |       pageRequests++;
+    > 131 |       releasePage = () => { response.setHeader('Content-Type', 'application/json'); response.end(JSON.stringify(Array.from({ length: 20 }, (_, n) => n + 10))); };
+          |                                      ^
+      132 |       resolve();
+      133 |     });
+      134 |   });
+        at _releasePage (/workspace/playwright-mcp/tests/dynamic-dom.spec.ts:131:38)
+        at /workspace/playwright-mcp/tests/dynamic-dom.spec.ts:183:15
+
+    Error Context: test-results/dynamic-dom-original-wheel-37433--activates-the-new-row-once-chromium/error-context.md
+
+  2) [firefox] › tests/dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once 
+
+    Error: Cannot set headers after they are sent to the client
+
+      129 |     server.route('/next-page', (_request, response) => {
+      130 |       pageRequests++;
+    > 131 |       releasePage = () => { response.setHeader('Content-Type', 'application/json'); response.end(JSON.stringify(Array.from({ length: 20 }, (_, n) => n + 10))); };
+          |                                      ^
+      132 |       resolve();
+      133 |     });
+      134 |   });
+        at _releasePage (/workspace/playwright-mcp/tests/dynamic-dom.spec.ts:131:38)
+        at /workspace/playwright-mcp/tests/dynamic-dom.spec.ts:183:15
+
+    Error Context: test-results/dynamic-dom-original-wheel-37433--activates-the-new-row-once-firefox/error-context.md
+
+  2 failed
+    [chromium] › tests/dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once 
+    [firefox] › tests/dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once 

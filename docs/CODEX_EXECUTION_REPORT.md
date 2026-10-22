@@ -1,5 +1,15 @@
 # Execution report — verified milestone, incomplete mission
 
+Further local fixtures excluded from active native85: owned lazy append preserves
+an old ref while exposing20 new rows after one response-gated request; exactly
+two explicitly requested clicks produce two POST effects. Explicitly allowed
+original-MCP service worker serves an owned document while offline with zero
+network fallback, then a real ref click changes its DOM. Each fixture passes2
+Chromium/Firefox tests each Node20/22/24; complete dynamic suite8 passes Node24.
+Initial fixture cleanup/worker-script quoting failures remain archived; no runtime
+policy, retry, assertions or deadline changes. See native85-lazy-proof.json and
+native85-service-worker-proof.json. Native WebKit and broad PWA support unproven.
+
 Local follow-up excluded from native85: original disabled snapshot references
 remain usable after response-gated hydration and an explicit ready wait. Exactly
 one click produces one independently observed POST; no effect occurs before

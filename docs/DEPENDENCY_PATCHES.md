@@ -25,7 +25,10 @@ The tarball uses npm's bundled dependencies for Playwright and core, so both
 resolve the same prepared core inside this fork. A production tarball install
 with `--omit=dev --ignore-scripts` needs no patch execution. Installed-package
 verification checks that module provenance/hash before exercising real endpoints.
-Browser downloads remain separate. This increases the package payload to carry
+Browser downloads remain separate. The combined local dry pack contains297 files,
+4,525,569 compressed bytes and20,115,348 unpacked bytes. The earlier unbundled
+119-file media checkpoint was434,950/1,376,883 bytes; these are different source
+checkpoints, not an isolated size benchmark. This increases the payload to carry
 its own runtime pair; it avoids relying on a consumer's shared core installation.
 
 For a source checkout installed with scripts disabled, run `npm run prepare`

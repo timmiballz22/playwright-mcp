@@ -121,3 +121,68 @@ test('original disabled snapshot reference remains actionable after gated hydrat
     releaseHydration?.();
   }
 });
+
+test('original wheel-triggered lazy append preserves existing references and activates the new row once', async ({ startClient, server }) => {
+  let releasePage!: () => void;
+  let pageRequests = 0, effects = 0;
+  const requested = new Promise<void>(resolve => {
+    server.route('/next-page', (_request, response) => {
+      pageRequests++;
+      releasePage = () => {
+        if (response.writableEnded || response.destroyed) return;
+        response.setHeader('Content-Type', 'application/json');
+        response.end(JSON.stringify(Array.from({ length: 20 }, (_, n) => n + 10)));
+      };
+      resolve();
+    });
+  });
+  server.route('/append-effect', (request, response) => {
+    expect(request.method).toBe('POST'); effects++; response.end('ok');
+  });
+  server.setContent('/', `<!doctype html><title>Owned lazy append</title><style>
+    body{margin:0}#list{position:absolute;top:80px;left:0;width:320px;height:160px;overflow:auto}button{display:block;height:28px}
+    </style><output id="status">Initial rows</output><output id="effect">No effects</output>
+    <div id="list" role="region" aria-label="Lazy list"></div><script>
+    const list=document.querySelector('#list'),status=document.querySelector('#status');let count=0,requested=false;
+    function append(n){const b=document.createElement('button');b.textContent='Append row '+String(n).padStart(4,'0');b.onclick=()=>{document.querySelector('#effect').textContent='Last row'+n+':'+String(++count);fetch('/append-effect',{method:'POST'})};list.append(b)}
+    for(let n=0;n<10;n++)append(n);
+    list.onscroll=()=>{if(!requested&&list.scrollTop+list.clientHeight>=list.scrollHeight-2){requested=true;status.textContent='Loading rows';fetch('/next-page').then(r=>r.json()).then(rows=>{rows.forEach(append);status.textContent='Ready 30 rows'})}};
+  </script>`, 'text/html; charset=utf-8');
+  const { client } = await startClient({ args: ['--isolated', '--caps=vision'], config: {
+    browser: { contextOptions: { viewport: { width: 640, height: 480 } } },
+  } });
+  const call = async (name: string, args: Record<string, unknown> = {}) => {
+    const result = await client.callTool({ name, arguments: args });
+    expect(result.isError, JSON.stringify(result)).not.toBe(true);
+    return result.content.filter(item => item.type === 'text').map(item => item.text).join('\n');
+  };
+  try {
+    await call('browser_navigate', { url: server.PREFIX });
+    const initial = await call('browser_snapshot');
+    expect(initial.match(/button "Append row \d+"/g)).toHaveLength(10);
+    const first = initial.match(/button "Append row 0000" \[ref=([^\]]+)\]/);
+    expect(first, initial).toBeTruthy();
+    await call('browser_mouse_move_xy', { x: 100, y: 150 });
+    await call('browser_mouse_wheel', { deltaX: 0, deltaY: 400 });
+    await requested;
+    const pending = await call('browser_snapshot');
+    expect(pending).toContain('Loading rows');
+    expect(pending.match(/button "Append row \d+"/g)).toHaveLength(10);
+    expect(effects).toBe(0);
+    releasePage();
+    await call('browser_wait_for', { text: 'Ready 30 rows' });
+    const appended = await call('browser_snapshot');
+    expect(appended.match(/button "Append row \d+"/g)).toHaveLength(30);
+    const last = (await call('browser_find', { text: 'Append row 0029', maxResults: 1 })).match(/button "Append row 0029" \[ref=([^\]]+)\]/);
+    expect(last).toBeTruthy();
+    await call('browser_click', { target: last![1] });
+    expect(await call('browser_snapshot')).toContain('Last row29:1');
+    await call('browser_click', { target: first![1] });
+    expect(await call('browser_snapshot')).toContain('Last row0:2');
+    await expect.poll(() => effects).toBe(2);
+    expect(pageRequests).toBe(1);
+    await call('browser_close');
+    console.log(JSON.stringify({ fixture: 'owned_lazy_append', initialRows: 10, finalRows: 30,
+      pageRequests, confirmedPostEffects: effects, originalReferenceUsed: true }));
+  } finally { releasePage?.(); }
+});
