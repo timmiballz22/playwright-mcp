@@ -1,0 +1,45 @@
+Preparing worktree (detached HEAD fdd83e0)
+HEAD is now at fdd83e0 test: observe native recording JPEG geometry and archive native94
+
+> @timmiballz22/playwright-mcp-local@0.0.83 prepare
+> node scripts/prepare-vp9-metadata.cjs
+
+{"component":"private_vp9_metadata_patch","version":"1.64.1","changed":true,"sha256":"3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192"}
+
+added 103 packages in 1s
+✖ real full Chromium applies device metrics after the existing window-bounds request completes (567.069924ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 933.146223
+
+✖ failing tests:
+
+test at local-batch/chromium-viewport-order.test.mjs:7:1
+✖ real full Chromium applies device metrics after the existing window-bounds request completes (567.069924ms)
+  AssertionError [ERR_ASSERTION]: {"fixture":"chromium_viewport_first_input","firstInput":{"width":320,"height":153,"viewportWidth":320,"viewportHeight":153},"metricsBeforeBoundsCompleted":true}
+  + actual - expected
+  
+    {
+  +   height: 153,
+  +   viewportHeight: 153,
+  -   height: 240,
+  -   viewportHeight: 240,
+      viewportWidth: 320,
+      width: 320
+    }
+  
+      at TestContext.<anonymous> (file:///tmp/playwright-viewport-input-baseline-2etee545/local-batch/chromium-viewport-order.test.mjs:44:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { width: 320, height: 153, viewportWidth: 320, viewportHeight: 153 },
+    expected: { width: 320, height: 240, viewportWidth: 320, viewportHeight: 240 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -7102,3 +7102,21 @@ samples frame zero without seeking/skipping. This verifies a visible-surface
 mechanism and a controlled metrics intervention, not macOS's initial resize
 cause or the prospective source-order fix.
 [Three-case comparison](evidence/native96-visible-surface-comparison.json).
+
+## Stronger first-JPEG regression after native96 starts
+
+A controlled100ms delay before actual window-command dispatch makes the two
+concurrent public CDP setup requests produce320×153 input and gray frame-zero
+tail pixels on local full Chromium. Ordering those same requests produces
+320×240 input/red tail. There is no fabricated acknowledgment or encoder change.
+[Actual public-CDP control](evidence/native96-viewport-race-surface-proof.json).
+
+The checked-in viewport test now delays real dispatch, then verifies the first
+actual JPEG and metadata are320×240 before taking a screenshot. The same test
+on a genuine unmodified fdd83e0 checkout/prepared3eb fails with actual first
+JPEG320×153. Current9f975 passes on Node20/22/24 with first JPEG320×240.
+Temporary baseline checkout is removed. This is controlled scheduling, not
+unforced macOS reproduction. This stronger test was added after active native96
+cc9562b; native96 runs the earlier request-order version. Product code remains
+9f975 unchanged. [Actual old baseline](evidence/native96-first-input-order-baseline-proof.json),
+[fixed LTS first frames](evidence/native96-first-input-order-fixed-proof.json).

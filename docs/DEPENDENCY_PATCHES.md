@@ -76,6 +76,16 @@ or changing original tests. It does not establish macOS's initial window cause,
 native recovery or reliability of the source-order fix.
 [Complete actual comparison](evidence/native96-visible-surface-comparison.json).
 
+A further real-CDP control delays actual window dispatch100ms: concurrent setup
+produces a153-high JPEG/gray encoded tail; ordered setup produces240-high/red.
+The stronger checked-in viewport regression now checks the actual first JPEG
+before any screenshot. It fails on an unmodified old3eb checkout with153-high
+input, and passes on9f975 across Node20/22/24 with240-high input. This version
+postdates active native96; product code is unchanged. Controlled scheduling
+proves this intervention, not the unforced native macOS initial-window cause.
+[Old API baseline](evidence/native96-first-input-order-baseline-proof.json),
+[fixed first inputs](evidence/native96-first-input-order-fixed-proof.json).
+
 ## Earlier metadata-only evidence
 
 Native88 original workflow39788239509 at702b616 verifies the actual Mac WebKit
