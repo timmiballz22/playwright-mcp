@@ -1,11 +1,59 @@
 # Execution report — verified milestone, incomplete mission
 
-Native84 is running at `096b617`:
-[batch39757905116](https://github.com/timmiballz22/playwright-mcp/actions/runs/39757905116),
-[original39757905160](https://github.com/timmiballz22/playwright-mcp/actions/runs/39757905160).
-It includes the119-file package, locator/PCM fixtures, lifecycle evidence follow-up
-and known failing Firefox VP9 color regression. Pending outcomes are not PASS;
-no shipped encoder fix or assertion/deadline waiver. Hold pushes while it runs.
+## Current checkpoint — native84 complete; combined fix awaiting native verification
+
+Combined local validation: PCM/video4/4 each Node20/22/24; fresh297-file
+production install with scripts disabled and all actual endpoint/guardian checks
+passes; actual Codex0.163 app-server1k actions in37.4s, zero model turns and
+zero owned processes. Strict typecheck/lint/actionlint and14 build/reporter guards
+pass. Exact logs: evidence/native85-combined-proof.json. Native outcomes pending.
+
+Native84 tested `096b617`: [batch39757905116](https://github.com/timmiballz22/playwright-mcp/actions/runs/39757905116)
+and [original39757905160](https://github.com/timmiballz22/playwright-mcp/actions/runs/39757905160).
+Both failed. Batch reported1287 passed/2 failed; original486 passed/8 failed,
+combined1773/10. Windows main batch never ran because installed-package guardian
+initialization failed before ready (`journal_open/init`, `rpc_timeout`, stateunknown).
+Four other installed119-file packages completed. Mac modal repeats and Windows
+legacy followups were unexecuted. Reduced coverage prevents a global improvement
+claim. All17 nonoptional job logs were collected; one wrapper log required an
+ordinary retry after unexpected EOF, with the failed first read retained.
+
+Mac raw and SDK jobs1k cases failed; actual Codex timed out at880 completed actions
+with click881 interrupted. Four separate Mac pipe/server controls completed1k
+with zero owned roots before force and finally. These controls do not establish
+a causal fix or change defaults. New media cases account for8 original failures:
+Firefox decoded red as255/24/0 on Linux and Windows; Mac video failures include
+gray Chromium frames and shifted Firefox/WebKit pixels. Windows WebKit PCM/video
+failed the original5s visible marker wait; missing state diagnostics prevent an
+unsupported-codec conclusion. All prior156 original cases per OS passed. Docker's
+two original endpoint cases passed on that older, unpatched source.
+
+The current branch adds a deterministic private build-time encoder patch,
+`-colorspace smpte170m`, and bundles the pinned Playwright/core pair so scripts-
+disabled production installs use the reviewed bytes. Exact source/prepared hashes,
+upgrade rules and external BrowserContext limitations are in DEPENDENCY_PATCHES.md.
+Isolated source-painted color controls improved4/8→8/8 across two producers,
+two decoders and two resolutions. Earlier no-paint controls remained2/8→4/8;
+those failures stay retained. This is evidence for the matrix-tag fix, not proof
+that native gray frames or all codecs are fixed. Strict decoded-pixel thresholds,
+readiness deadlines and action limits remain unchanged. A source PNG now proves
+the recording fixture painted before capture; readiness failures expose bounded
+state diagnostics while retaining the exact original visible wait.
+
+Local Docker build failed npm certificate validation (`SELF_SIGNED_CERT_IN_CHAIN`).
+No trust/TLS workaround was attempted; the new image hash check and browser tests
+still require normal native CI. Journal init diagnostics now retain a fixed last-
+received phase without resetting the watchdog or acknowledging state. Local real
+stall/protocol tests pass, but the Windows cause remains unresolved. Independent
+Windows legacy followups may run after completed original-suite failures; failed
+cases are not retried. Nested-shadow, virtual-list and schema-bound changes also
+await their first native run. Native84 has no new legacy comparison records;
+older missing birth evidence,136/142 cohorts and cleanup uncertainty remain open.
+
+Evidence: `evidence/native84-followup-archive.json` lists exact collected logs and
+isolated control files; `evidence/native84-journal-init-proof.json` records journal
+phase tests. Earlier checkpoint sections below describe their own historical source.
+
 
 
 ## Nested open shadow and virtualized DOM references

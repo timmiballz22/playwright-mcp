@@ -43,10 +43,13 @@ const child = spawn(codexCommand, [...codexArguments, 'app-server', '--stdio', '
 });
 const closed = once(child, 'close').catch(() => []);
 // Keep raw client diagnostics private; emit only our fixed startup code format.
-const guardianFailures = new Set(); const guardianExits = new Set(); const journalFailures = new Set();
+const guardianFailures = new Set(); const guardianExits = new Set(); const journalFailures = new Set(); const journalInitStages = new Set();
 const rememberJournalFailures = value => {
-  for (const entry of guardianStderrFacts(value).journalFailures)
+  const facts = guardianStderrFacts(value);
+  for (const entry of facts.journalFailures)
     if (journalFailures.size < 16) journalFailures.add(entry);
+  for (const stage of facts.journalInitStages ?? [])
+    if (journalInitStages.size < 16) journalInitStages.add(stage);
 };
 const startupCodes = new Set(); const helperFailures = new Set(); const startupStates = new Map(); let stderrTail = '';
 const startupCategory = value => {
@@ -118,7 +121,7 @@ try {
       if (tools.length || startupCodes.size || ['failed', 'cancelled'].includes(startupStates.get(name)?.status) || performance.now() >= discoveryEnd) break;
       await new Promise(resolve => setTimeout(resolve, 200));
     } while (polls < 100);
-    const diagnostic = JSON.stringify({ server: name, tools: tools.length, polls, startup: startupStates.get(name), startupCodes: [...startupCodes].sort(), helperFailures: [...helperFailures].sort(), journalFailures: [...journalFailures].sort() });
+    const diagnostic = JSON.stringify({ server: name, tools: tools.length, polls, startup: startupStates.get(name), startupCodes: [...startupCodes].sort(), helperFailures: [...helperFailures].sort(), journalFailures: [...journalFailures].sort(), journalInitStages: [...journalInitStages].sort() });
     if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Codex tool discovery::' + diagnostic);
     assert.deepEqual(tools, expectedTools, diagnostic);
   }
@@ -142,7 +145,7 @@ try {
     // execution status, assertions, signaling or durable cleanup uncertainty.
     [cleanupProcessHint, cleanupGroupHint] = await Promise.all([reportedProcessStateHint(reported), reportedProcessGroupHint(reported)]);
   }
-  const receipt = JSON.stringify({ phase: 'codex_primary_job', failedStep: stepFailureDiagnostic(result.result?.failedStep), state: result.job?.state, jobReason: result.job?.reason, jobStage: result.job?.stage, jobCompleted: result.job?.completed, resultAvailable: !!result.result, operatorAttentionRequired: result.job?.operatorAttentionRequired, guardianFailures: [...guardianFailures], journalFailures: [...journalFailures].sort(), guardianExits: [...guardianExits], forced: result.result?.execution?.forced, workerCleanupFailed: result.result?.execution?.workerCleanupFailed, cleanupProcessHint, cleanupGroupHint, terminationFailures: Array.isArray(result.result?.execution?.terminationFailures) ? result.result.execution.terminationFailures.filter(code => TERMINATION_FAILURE_CODES.includes(code)).slice(0, 8) : undefined, completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup });
+  const receipt = JSON.stringify({ phase: 'codex_primary_job', failedStep: stepFailureDiagnostic(result.result?.failedStep), state: result.job?.state, jobReason: result.job?.reason, jobStage: result.job?.stage, jobCompleted: result.job?.completed, resultAvailable: !!result.result, operatorAttentionRequired: result.job?.operatorAttentionRequired, guardianFailures: [...guardianFailures], journalFailures: [...journalFailures].sort(), journalInitStages: [...journalInitStages].sort(), guardianExits: [...guardianExits], forced: result.result?.execution?.forced, workerCleanupFailed: result.result?.execution?.workerCleanupFailed, cleanupProcessHint, cleanupGroupHint, terminationFailures: Array.isArray(result.result?.execution?.terminationFailures) ? result.result.execution.terminationFailures.filter(code => TERMINATION_FAILURE_CODES.includes(code)).slice(0, 8) : undefined, completed: result.result?.completed, reason: result.result?.reason, cleanup: result.result?.execution?.cleanup, tempCleanup: result.result?.execution?.tempCleanup });
   if (process.env.GITHUB_ACTIONS === 'true' && result.job?.state !== 'SUCCEEDED') console.error('::error title=Codex jobs receipt::' + receipt.replaceAll('%', '%25').replaceAll('\r', '%0D').replaceAll('\n', '%0A'));
   assert.equal(result.job.state, 'SUCCEEDED', receipt); assert.equal(result.result.completed, 1000);
   assert.equal(result.result.recentSteps.length, 10); assert.equal(result.result.reportPath, undefined);
