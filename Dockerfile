@@ -21,6 +21,7 @@ WORKDIR /app
 RUN --mount=type=cache,target=/root/.npm,sharing=locked,id=npm-cache \
     --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=bind,source=scripts/prepare-vp9-metadata.cjs,target=/app/scripts/prepare-vp9-metadata.cjs \
     --mount=type=secret,id=npmrc,target=/root/.npmrc,required=false \
   npm ci --omit=dev && \
   # Install system dependencies for playwright. apt is pointed at the mirror only for
@@ -40,6 +41,7 @@ FROM base AS builder
 RUN --mount=type=cache,target=/root/.npm,sharing=locked,id=npm-cache \
     --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=bind,source=scripts/prepare-vp9-metadata.cjs,target=/app/scripts/prepare-vp9-metadata.cjs \
     --mount=type=secret,id=npmrc,target=/root/.npmrc,required=false \
   npm ci
 

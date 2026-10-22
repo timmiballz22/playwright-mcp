@@ -1,5 +1,8 @@
 import { execFileSync } from 'node:child_process';
-import { existsSync, realpathSync } from 'node:fs';
+import { existsSync, realpathSync, readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { createHash } from 'node:crypto';
+import patchInfo from './prepare-vp9-metadata.cjs';
 import { mkdtemp, writeFile, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -23,7 +26,7 @@ const npm = (args, cwd) => execFileSync(process.execPath, [npmCli, ...args], { c
 
 try {
   const [packed] = JSON.parse(npm(['pack', '--pack-destination', dir, '--json'], root));
-  for (const required of ['local-batch/fixtures/process-audit.mjs', 'local-batch/fixtures/process-state-hint.mjs', 'local-batch/fixtures/windows-process-graph.mjs', 'local-batch/jobs/private-windows.mjs', 'local-batch/jobs/private-windows.ps1', 'local-batch/screenshot-budget.mjs', 'local-batch/retained-artifact-budget.mjs', 'local-batch/page-budget.mjs', 'scripts/diagnose-raw-runner.mjs', 'scripts/step-failure-diagnostic.mjs', 'local-batch/profile-guard.cjs', 'local-batch/profile-lease.cjs', 'local-batch/mcp.mjs', 'local-batch/jobs-mcp.mjs', 'local-batch/jobs-cli.mjs', 'local-batch/jobs/config.mjs', 'local-batch/jobs/artifact-cleanup.mjs', 'local-batch/jobs/artifact-cleanup-supervisor.mjs', 'local-batch/jobs/artifact-cleanup-worker.mjs', 'local-batch/policy.mjs', 'local-batch/workflow-contract.mjs', 'local-batch/runner.mjs', 'local-batch/cli.mjs', 'local-batch/executor.mjs', 'local-batch/execution-supervisor.mjs', 'local-batch/execution-worker.mjs', 'local-batch/process-tree.mjs', 'local-batch/failure.mjs', 'local-batch/navigation-retry.mjs', 'local-batch/cleanup.mjs', 'local-batch/cleanup-worker.mjs', 'local-batch/workflow-file.mjs', 'local-batch/jobs/controller.mjs', 'local-batch/jobs/journal.mjs', 'local-batch/jobs/journal-worker.mjs', 'local-batch/jobs/journal-protocol.mjs', 'local-batch/jobs/guardian.mjs', 'local-batch/jobs/guardian-diagnostic.mjs', 'local-batch/jobs/workflow-snapshot.mjs', 'local-batch/fixtures/guardian-real-owner.mjs', 'local-batch/fixtures/linger-journal-worker.mjs', 'scripts/verify-guardian-parent-death.mjs', 'scripts/production-controller-smoke.mjs', 'scripts/production-profile-smoke.mjs', 'scripts/bootstrap-local-batch.ps1', 'scripts/bootstrap-local-batch.sh']) {
+  for (const required of ['scripts/prepare-vp9-metadata.cjs', 'local-batch/fixtures/process-audit.mjs', 'local-batch/fixtures/process-state-hint.mjs', 'local-batch/fixtures/windows-process-graph.mjs', 'local-batch/jobs/private-windows.mjs', 'local-batch/jobs/private-windows.ps1', 'local-batch/screenshot-budget.mjs', 'local-batch/retained-artifact-budget.mjs', 'local-batch/page-budget.mjs', 'scripts/diagnose-raw-runner.mjs', 'scripts/step-failure-diagnostic.mjs', 'local-batch/profile-guard.cjs', 'local-batch/profile-lease.cjs', 'local-batch/mcp.mjs', 'local-batch/jobs-mcp.mjs', 'local-batch/jobs-cli.mjs', 'local-batch/jobs/config.mjs', 'local-batch/jobs/artifact-cleanup.mjs', 'local-batch/jobs/artifact-cleanup-supervisor.mjs', 'local-batch/jobs/artifact-cleanup-worker.mjs', 'local-batch/policy.mjs', 'local-batch/workflow-contract.mjs', 'local-batch/runner.mjs', 'local-batch/cli.mjs', 'local-batch/executor.mjs', 'local-batch/execution-supervisor.mjs', 'local-batch/execution-worker.mjs', 'local-batch/process-tree.mjs', 'local-batch/failure.mjs', 'local-batch/navigation-retry.mjs', 'local-batch/cleanup.mjs', 'local-batch/cleanup-worker.mjs', 'local-batch/workflow-file.mjs', 'local-batch/jobs/controller.mjs', 'local-batch/jobs/journal.mjs', 'local-batch/jobs/journal-worker.mjs', 'local-batch/jobs/journal-protocol.mjs', 'local-batch/jobs/guardian.mjs', 'local-batch/jobs/guardian-diagnostic.mjs', 'local-batch/jobs/workflow-snapshot.mjs', 'local-batch/fixtures/guardian-real-owner.mjs', 'local-batch/fixtures/linger-journal-worker.mjs', 'scripts/verify-guardian-parent-death.mjs', 'scripts/production-controller-smoke.mjs', 'scripts/production-profile-smoke.mjs', 'scripts/bootstrap-local-batch.ps1', 'scripts/bootstrap-local-batch.sh']) {
     if (!packed.files.some(f => f.path === required)) throw new Error(`Missing distribution entry: ${required}`);
   }
   if (packed.files.some(file => file.path.endsWith('.test.mjs') || /^(?:tests|qa)\//.test(file.path)))
@@ -31,6 +34,17 @@ try {
   await writeFile(path.join(dir, 'package.json'), '{"private":true}\n');
   npm(['install', '--omit=dev', '--ignore-scripts', path.join(dir, packed.filename)], dir);
   const target = path.join(dir, 'node_modules/@timmiballz22/playwright-mcp-local');
+  const fromFork = createRequire(path.join(target, 'package.json'));
+  const fromPlaywright = createRequire(fromFork.resolve('playwright/package.json'));
+  const core = realpathSync(fromFork.resolve('playwright-core/lib/coreBundle'));
+  const linkedCore = realpathSync(fromPlaywright.resolve('playwright-core/lib/coreBundle'));
+  const relativeCore = path.relative(realpathSync(target), core);
+  if (core !== linkedCore || relativeCore.startsWith('..') || path.isAbsolute(relativeCore))
+    throw new Error('Installed fork must use its own shared bundled Playwright core');
+  if (createHash('sha256').update(readFileSync(core)).digest('hex') !== patchInfo.patchedHash)
+    throw new Error('Installed bundled encoder metadata patch is missing');
+  console.log(JSON.stringify({ component: 'installed_vp9_metadata_patch', version: patchInfo.version,
+    sharedBundledCore: true, sha256: patchInfo.patchedHash, installScriptsDisabled: true }));
   process.stdout.write(execFileSync(process.execPath, ['scripts/production-smoke.mjs', target], { cwd: root, encoding: 'utf8' }));
   process.stdout.write(execFileSync(process.execPath, ['scripts/production-profile-smoke.mjs', target], { cwd: root, encoding: 'utf8', timeout: 120000 }));
   process.stdout.write(execFileSync(process.execPath, ['scripts/production-jobs-smoke.mjs', target], { cwd: root, encoding: 'utf8' }));

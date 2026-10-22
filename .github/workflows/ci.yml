@@ -126,6 +126,8 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         load: true
+    - name: Verify private encoder patch in built image
+      run: node scripts/verify-docker-patch.cjs
     - name: Run tests
       shell: bash
       run: |

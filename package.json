@@ -21,14 +21,15 @@
     "ftest": "playwright test --project=firefox",
     "wtest": "playwright test --project=webkit",
     "dtest": "MCP_IN_DOCKER=1 playwright test --project=chromium-docker",
-    "build": "echo OK",
+    "build": "node scripts/prepare-vp9-metadata.cjs",
     "npm-publish": "node scripts/publish-disabled.cjs",
     "docker-build": "docker build --no-cache -t playwright-mcp-dev:latest .",
     "docker-rm": "docker rm playwright-mcp-dev",
     "docker-run": "docker run -it -p 8080:8080 --name playwright-mcp-dev playwright-mcp-dev:latest",
     "roll": "node roll.js",
     "test:batch": "node scripts/test-batch.mjs",
-    "typecheck": "tsc --project tsconfig.json"
+    "typecheck": "tsc --project tsconfig.json",
+    "prepare": "node scripts/prepare-vp9-metadata.cjs"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -86,5 +87,10 @@
     "local-batch/jobs/guardian.mjs",
     "local-batch/jobs/guardian-diagnostic.mjs",
     "local-batch/jobs/workflow-snapshot.mjs"
-  ]
+  ],
+  "bundleDependencies": [
+    "playwright",
+    "playwright-core"
+  ],
+  "playwrightCorePatch": "vp9-bt601-1"
 }
