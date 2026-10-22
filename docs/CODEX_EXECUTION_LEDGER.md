@@ -2,6 +2,85 @@
 
 ## Resume checkpoint — 2026-10-22
 
+Latest completed native79 at `d357c385203c342a3f39a927ff06eba9eabded59`:
+batch39735545547 reports1,446 passes/6 failures; original39735545519 reports459/2.
+Combined **1,905 reported test passes/8 failures**, plus Mac actual-Codex
+TIMED_OUT973 and two failed Windows diagnostic controls. Both workflows fail.
+All17 non-soak jobs conclude; optional soak skips; reported test skips/cancels0.
+Not release-ready.
+
+AllLinux batch199/203/203 pass; Mac202/1, Windows191/4. Journal Linux/Mac112 pass;
+Windows112/1 fails the guardian disconnect ownership assertion. Five175-file
+installs, five strict ownership units,15 cancellation cases (60 scenarios), five
+supervised20-run integrity and five raw20-screenshot cases pass. All-action14/15:
+Windows Firefox stops9/23, step10 check pointer timeout, forced:true,18.101s,
+cleanup terminated/temp removed. Later effects/assertions in that case unexecuted.
+
+Other failures and ownership uncertainty:
+- Guardian disconnect reaches canonical cancellation/result checks but its final
+  legacy descendant assertion returns136 PID candidates. No live birth ledger or
+  full process rows were captured by that fixture. All136 remain UNCLASSIFIED;
+  no role/name/age/window exclusion or retrospective analogy is permitted.
+- Windows WebKit HTTP privacy verifies all8 HTTP scenarios and redaction checks,
+  then fails its ownership audit with142 observed candidates. Only summary counts
+  survive: helperMatched:true, remembered roots24, before-window139. Neither role
+  nor window counts classify any candidate; overlap with the136 is unknown.
+  HTTP response/error preservation itself did not fail in this case.
+- Mac SDK reaches971/1,000 and TIMED_OUT at118.898s receipt, forced:false,
+  attention:false, cleanup terminated/temp removed. Later scenarios unexecuted.
+  Mac raw and synchronous1k pass this sample; not a causal fix for older failures.
+- Windows raw Firefox direct-pipe fresh5 stops12/23, locator click13 at9.323s,
+  counter11, cleanupFailures[]. Headless/headed cases pass; actual public-server
+  root diagnostic therefore has no natural failure branch in this native run.
+- Windows FF429 acknowledges1 navigation after two GETs/two finished responses,
+  first2.744s/last5.871s, browser report1.224s, but lifecycle times out with
+  terminated/removed cleanup, forced:false; later retry scenarios unexecuted.
+- Original Windows Firefox responsive screenshot times out5s after fonts loaded,
+  and popup click times out5s waiting for stability. Main150/2; legacy follow-up
+  unexecuted. Original Linux/Mac152 each, Docker2 and Mac modal3 pass.
+
+Actual Codex Linux35.329s/Windows38.103s complete1k, model0/owned0. Mac973 stops at
+click974, TIMED_OUT, known terminated/removed cleanup, forced:false/attention:false,
+no guardian/journal fault facts. Later Mac client pipe/server1k109.390/117.863s and
+batch server/pipe114.725/103.455s pass; healthy controls do not identify the cause.
+
+Separate Windows private-temp9/10 executes all230 actions but tenth close fails
+server_timeout/server_kill_timeout at12.075s. Inherited9/10 stops tenth7/23 locator
+at13.138s. Both fail despite owned residual before parent force0/final0; protocol-
+headed/stock-headed10/10=230 each pass. No input replay or default transport change.
+
+All17 ordinary job logs are saved; one Windows client read retried after EOF.
+No artifact download/auth/TLS workaround. No new factory legacy comparisons were
+emitted this round. Older unclassified observations/debt remain unresolved.
+Evidence: worker-ci-seventyninth-* and native79-*.
+
+Local public-root negative control (Node22) imports the existing real Firefox
+fixture unchanged, invokes actual close/kill then withholds return ACKs: exit1
+as expected, all23 actions, cleanup_failed/two failures, captured:true/exitObserved:
+true. This verifies diagnostic failure reporting; root exit still does not prove
+tree cleanup or explain native failure. Positive23-action case passes each LTS.
+
+Local follow-up reuses the existing factory observer in HTTP privacy: actual
+supervisor/worker/browser births before HTTP effects, full same-snapshot legacy
+rows/root rows retained, unchanged eight response/privacy checks,15s workflow/
+3s action/120s case budgets and zero-owned assertion. Source checkout QA only;
+private factory fixture remains excluded from the175-file runtime distribution.
+Guardian disconnect now captures the actual fork live before start and all owned
+model descendants before disconnect, retaining complete comparisons and checking
+all reported child births on Windows. Same20s case/2s journal/12s job budgets,
+canonical outcomes, canary checks and zero-owned assertion; failed workspaces
+are preserved. No generic process matching/termination/runtime behavior changed.
+Final local guardian/graph/cleanup24/24 eachNode22/24; HTTP2/2 eachNode20/22/24,
+16 individual HTTP scenarios per lane. Linux only; local WebKit unexecuted.
+Intermediate tests have separate phase/hash receipts and are not final proof.
+Fresh175-file production install, syntax, lint and diff checks exit0; no runtime
+entrypoint/dependency/default/schema changes.
+**NEXT ACTION: full native verification of live ownership evidence. Do not classify
+native79's136/142 candidates retrospectively, raise budgets, replay effects, or
+clear historical debt.**
+
+### Archived native78 checkpoint
+
 Latest completed native78 at `92c626108ad59c80cd2f814dc064d3a0c34f4499`:
 batch39732651064 reports1,448 passes/4 failures; original39732651058 reports459/2.
 Combined **1,907 reported test passes/6 failures**, plus Mac actual-Codex
@@ -62,7 +141,13 @@ Local follow-up now records only captured/exitObserved booleans from the existin
 Firefox adapter's actual public ChildProcess handle when a raw workflow fails.
 No added OS query, wait, signal or authority; existing failure status/limits remain.
 False means no observed exit, not proof alive; root exit never proves tree cleanup.
-**NEXT ACTION: verify the bounded owned-root diagnostic and inspect native failure
+Local Node22 negative imports the existing real Firefox test unchanged, invokes
+original server close/kill then withholds return ACKs: expected exit1,23/23 actions,
+cleanup_failed/two failures, captured:true/exitObserved:true. Failure remains failed;
+no native cause or tree-cleanup claim. Bootstrap/log/hash receipt native79-owned-root-negative-*.
+**Native79 is running atd357c385203c342a3f39a927ff06eba9eabded59:
+batch39735545547 and original39735545519. Hold further pushes; no pending PASS.
+NEXT ACTION: verify the bounded owned-root diagnostic and inspect native failure
 facts. Do not raise budgets, force/replay input or clear historical uncertainty.**
 
 ### Archived native77 checkpoint
@@ -871,25 +956,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native78 reports1,907/6 plus Mac actual928 and2 failed JSON controls; both workflows fail | Verify fixed owned-root diagnostics without weakening checks |
+| G00 BASELINE | IN PROGRESS | native79 reports1,905/8 plus Mac actual973 and2 failed JSON controls; both workflows fail | Native live ownership follow-up; all uncertainty retained |
 | G01 INSTALL | VERIFIED PASS | native76 five175-file production installs and original host installs at9591621 | Keep supported modes and TLS verification |
-| G02 MCP | FAILED | native78 Linux/Win actual1k pass; Mac actual928 and SDKall1k lifecycle timeout | Retain termination facts and older uncertainty/debt |
-| G03 FEATURE PARITY | FAILED | native78 Linux/Win normal152; Mac151/1 capture protocol; Windows legacy2/1 locator failure | Exact provider facts; no failed-input replay |
-| G04 BATCH | FAILED | native78 action15/15/unit5/5 pass; Mac raw995/SDKlifecycle and Winheadedclose/429 fail | Observe actual owned root exit without changing cleanup status |
-| G05 RETRIES | FAILED | native78 Win4290nav,2GET/2finished,known cleanup; cancel15/15 pass | No input/POST replay or deadline raises |
-| G06 JOBS | FAILED | native78 components112/113 pass; SDKall1k still TIMED_OUT; two instrumented cases pass but negative paths unexercised | Keep native77 journal/connection cause unresolved |
+| G02 MCP | FAILED | native79 Linux/Win actual1k pass; Mac actual973/SDK971 timeout | Preserve exact cleanup and old debt |
+| G03 FEATURE PARITY | FAILED | native79 originalLinux/Mac152 each/modal3; Windows150/2 screenshot/popup failures; legacy unexecuted | No historical causal fix or input replay |
+| G04 BATCH | FAILED | native79 action14/15: WinFFcheck9/23 timeout; SDK971 and pipe/retry failures | Exact native proof without budget/assertion weakening |
+| G05 RETRIES | FAILED | native79 Win4291nav but lifecycle timeout after2GET/2finished; cancel15/15 pass | No input/POST replay or deadline raises |
+| G06 JOBS | FAILED | native79 Win guardian disconnect audit136 candidates; components112/1; SDK971/actual973 timeouts | Live actual-fork/child records before disconnect; retain old unknowns |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
-| G08 STORAGE | FAILED | native78 supervised/raw5×20 pass; headedFFserverclose+kill timeout; legacy1different recorded incarnation | No root-exit or historical debt clearance from hints |
+| G08 STORAGE | FAILED | native79 guardian136 and HTTP142 candidates unclassified; overlap unknown; five supervised/raw20-run cases pass | No role/window exclusion; full new birth and legacy comparisons |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native78 action/cancel3-engine proofs pass; WinFFclose/retry/legacy and Maccapture/lifecycle failures | No force/replay/default transport workaround |
-| G11 CROSS-OS | FAILED | native78 allLinux pass; Macbatch2/actual928/original1; Winbatch2/legacy1 | Bounded diagnostics and actual provider evidence |
+| G10 CROSS-BROWSER | FAILED | native79 action14/15 and HTTPWebKit audit fail; native cancel15/15 passes | Actual factory lifetime evidence; no forced/replayed input |
+| G11 CROSS-OS | FAILED | native79 allLinux pass; Macbatch1/actual973; Winbatch4/journal1/original2 | Native live ownership verification with unchanged budgets |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-seventyeighth-* and native78-* retain17 final logs/retry/birth/failure receipts | Next source proof; no unexecuted-as-PASS |
-| G18 CLEAN MERGE | FAILED | Draft PR2; native78 workflows fail; owned-root diagnostic tested locally only | Accepted green source and critical gaps before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-seventyninth-* and native79-* preserve17 final logs/retry/136candidate list and142summary | New live records cannot classify old candidates retroactively |
+| G18 CLEAN MERGE | FAILED | Draft PR2; native79 workflows fail; HTTP/guardian fixture follow-up locally verified | Whole accepted source and remaining critical gaps before merge/release |
 
 ## Defects and risk register
 

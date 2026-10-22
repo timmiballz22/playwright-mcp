@@ -1,5 +1,84 @@
 # Execution report — verified milestone, incomplete mission
 
+Latest completed native79 at `d357c385203c342a3f39a927ff06eba9eabded59`:
+batch39735545547 reports1,446 passes/6 failures; original39735545519 reports459/2.
+Combined **1,905 reported test passes/8 failures**, plus Mac actual-Codex
+TIMED_OUT973 and two failed Windows diagnostic controls. Both workflows fail.
+All17 non-soak jobs conclude; optional soak skips; reported test skips/cancels0.
+Not release-ready.
+
+AllLinux batch199/203/203 pass; Mac202/1, Windows191/4. Journal Linux/Mac112 pass;
+Windows112/1 fails the guardian disconnect ownership assertion. Five175-file
+installs, five strict ownership units,15 cancellation cases (60 scenarios), five
+supervised20-run integrity and five raw20-screenshot cases pass. All-action14/15:
+Windows Firefox stops9/23, step10 check pointer timeout, forced:true,18.101s,
+cleanup terminated/temp removed. Later effects/assertions in that case unexecuted.
+
+Other failures and ownership uncertainty:
+- Guardian disconnect reaches canonical cancellation/result checks but its final
+  legacy descendant assertion returns136 PID candidates. No live birth ledger or
+  full process rows were captured by that fixture. All136 remain UNCLASSIFIED;
+  no role/name/age/window exclusion or retrospective analogy is permitted.
+- Windows WebKit HTTP privacy verifies all8 HTTP scenarios and redaction checks,
+  then fails its ownership audit with142 observed candidates. Only summary counts
+  survive: helperMatched:true, remembered roots24, before-window139. Neither role
+  nor window counts classify any candidate; overlap with the136 is unknown.
+  HTTP response/error preservation itself did not fail in this case.
+- Mac SDK reaches971/1,000 and TIMED_OUT at118.898s receipt, forced:false,
+  attention:false, cleanup terminated/temp removed. Later scenarios unexecuted.
+  Mac raw and synchronous1k pass this sample; not a causal fix for older failures.
+- Windows raw Firefox direct-pipe fresh5 stops12/23, locator click13 at9.323s,
+  counter11, cleanupFailures[]. Headless/headed cases pass; actual public-server
+  root diagnostic therefore has no natural failure branch in this native run.
+- Windows FF429 acknowledges1 navigation after two GETs/two finished responses,
+  first2.744s/last5.871s, browser report1.224s, but lifecycle times out with
+  terminated/removed cleanup, forced:false; later retry scenarios unexecuted.
+- Original Windows Firefox responsive screenshot times out5s after fonts loaded,
+  and popup click times out5s waiting for stability. Main150/2; legacy follow-up
+  unexecuted. Original Linux/Mac152 each, Docker2 and Mac modal3 pass.
+
+Actual Codex Linux35.329s/Windows38.103s complete1k, model0/owned0. Mac973 stops at
+click974, TIMED_OUT, known terminated/removed cleanup, forced:false/attention:false,
+no guardian/journal fault facts. Later Mac client pipe/server1k109.390/117.863s and
+batch server/pipe114.725/103.455s pass; healthy controls do not identify the cause.
+
+Separate Windows private-temp9/10 executes all230 actions but tenth close fails
+server_timeout/server_kill_timeout at12.075s. Inherited9/10 stops tenth7/23 locator
+at13.138s. Both fail despite owned residual before parent force0/final0; protocol-
+headed/stock-headed10/10=230 each pass. No input replay or default transport change.
+
+All17 ordinary job logs are saved; one Windows client read retried after EOF.
+No artifact download/auth/TLS workaround. No new factory legacy comparisons were
+emitted this round. Older unclassified observations/debt remain unresolved.
+Evidence: worker-ci-seventyninth-* and native79-*.
+
+Local public-root negative control (Node22) imports the existing real Firefox
+fixture unchanged, invokes actual close/kill then withholds return ACKs: exit1
+as expected, all23 actions, cleanup_failed/two failures, captured:true/exitObserved:
+true. This verifies diagnostic failure reporting; root exit still does not prove
+tree cleanup or explain native failure. Positive23-action case passes each LTS.
+
+Local follow-up reuses the existing factory observer in HTTP privacy: actual
+supervisor/worker/browser births before HTTP effects, full same-snapshot legacy
+rows/root rows retained, unchanged eight response/privacy checks,15s workflow/
+3s action/120s case budgets and zero-owned assertion. Source checkout QA only;
+private factory fixture remains excluded from the175-file runtime distribution.
+Guardian disconnect now captures the actual fork live before start and all owned
+model descendants before disconnect, retaining complete comparisons and checking
+all reported child births on Windows. Same20s case/2s journal/12s job budgets,
+canonical outcomes, canary checks and zero-owned assertion; failed workspaces
+are preserved. No generic process matching/termination/runtime behavior changed.
+Final local guardian/graph/cleanup24/24 eachNode22/24; HTTP2/2 eachNode20/22/24,
+16 individual HTTP scenarios per lane. Linux only; local WebKit unexecuted.
+Intermediate tests have separate phase/hash receipts and are not final proof.
+Fresh175-file production install, syntax, lint and diff checks exit0; no runtime
+entrypoint/dependency/default/schema changes.
+**NEXT ACTION: full native verification of live ownership evidence. Do not classify
+native79's136/142 candidates retrospectively, raise budgets, replay effects, or
+clear historical debt.**
+
+### Archived native78 checkpoint
+
 Latest completed native78 at `92c626108ad59c80cd2f814dc064d3a0c34f4499`:
 batch39732651064 reports1,448 passes/4 failures; original39732651058 reports459/2.
 Combined **1,907 reported test passes/6 failures**, plus Mac actual-Codex
@@ -60,7 +139,13 @@ Local follow-up now records only captured/exitObserved booleans from the existin
 Firefox adapter's actual public ChildProcess handle when a raw workflow fails.
 No added OS query, wait, signal or authority; existing failure status/limits remain.
 False means no observed exit, not proof alive; root exit never proves tree cleanup.
-**NEXT ACTION: verify the bounded owned-root diagnostic and inspect native failure
+Local Node22 negative imports the existing real Firefox test unchanged, invokes
+original server close/kill then withholds return ACKs: expected exit1,23/23 actions,
+cleanup_failed/two failures, captured:true/exitObserved:true. Failure remains failed;
+no native cause or tree-cleanup claim. Bootstrap/log/hash receipt native79-owned-root-negative-*.
+**Native79 is running atd357c385203c342a3f39a927ff06eba9eabded59:
+batch39735545547 and original39735545519. Hold further pushes; no pending PASS.
+NEXT ACTION: verify the bounded owned-root diagnostic and inspect native failure
 facts. Do not raise budgets, force/replay input or clear historical uncertainty.**
 
 ### Archived native77 checkpoint

@@ -1,0 +1,33 @@
+{
+  "phase": "local_after_native79_push",
+  "sourceHead": "d357c385203c342a3f39a927ff06eba9eabded59",
+  "exit": 1,
+  "expectedExit": 1,
+  "checksExit": 0,
+  "receipts": [
+    {
+      "fixture": "raw_browser_failure",
+      "browser": "firefox",
+      "mode": "headless",
+      "freshRun": 1,
+      "reason": "cleanup_failed",
+      "completed": 23,
+      "total": 23,
+      "durationMs": 8566,
+      "actionsSucceeded": true,
+      "cleanupFailureCount": 2,
+      "failedStep": null
+    },
+    {
+      "fixture": "raw_owned_root_exit",
+      "browser": "firefox",
+      "mode": "headless",
+      "freshRun": 1,
+      "captured": true,
+      "exitObserved": true
+    }
+  ],
+  "bootstrapSha256": "a6c9133236cfec3fb30df62d10f196bafd2985685e152a04520560b899732e51",
+  "testSha256": "9d5c9a2f01e424d64bdb98c7f5c1fa662a052f4e15f352b07ffc5d5d73724be1",
+  "scope": "Existing real Firefox23-action fixture; original close and kill invoked, then only their return acknowledgements withheld. No fake browser, new workflow fields, extra OS queries/waits/signals, source clone or budget change. Root exit observation does not prove tree cleanup or explain native failure."
+}

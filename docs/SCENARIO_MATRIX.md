@@ -1,5 +1,16 @@
 # Mandatory scenario evidence
 
+Latest completed native79 atd357c38:1,905 reported passes/8 failures, plus Mac
+actual timeout973 and two failed Windows JSON controls. Guardian disconnect136
+and HTTP privacy142 ownership candidates remain unclassified; no birth ledgers
+permit retrospective classification. Windows all-action14/15 fails check step10;
+Mac SDK971, Windows pipe/retry and two original Firefox failures remain. Five175-
+file installs,15 cancellation cases and five supervised/raw20-screenshot cases pass.
+Local live-ownership follow-up passes scoped Linux checks, not native verification.
+See the execution ledger for exact phases and remaining uncertainty.
+
+Previous native78 checkpoint:
+
 Latest completed native78 at92c6261:1,907 reported passes/6 failures, plus Mac
 actual-Codex timeout928 and two failed Windows JSON controls. Five175-file installs,
 15 all-action/15 cancellation cases and five supervised/raw20-screenshot cases pass.

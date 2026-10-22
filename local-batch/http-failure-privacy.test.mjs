@@ -5,7 +5,7 @@ import { once } from 'node:events';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { executeWorkflow } from './executor.mjs';
+import { createLifetimeObserver } from './jobs/fixtures/lifetime-observer.mjs';
 import { ownedScopeDescendants } from './fixtures/process-audit.mjs';
 
 for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',')) {
@@ -26,6 +26,7 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
     server.listen(0, '127.0.0.1'); await once(server, 'listening');
     const origin = `http://127.0.0.1:${server.address().port}`;
     const directory = await mkdtemp(path.join(os.tmpdir(), 'http-privacy-'));
+    const observer = await createLifetimeObserver(path.join(directory, 'factory-control'));
     const scopes = [];
     const sinceMs = Date.now();
     let verifiedCases = 0;
@@ -40,9 +41,9 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
         const started = performance.now(); const phases = { workerMs: null, browserMs: null, startAuditMs: null };
         const scope = { roots: new Set(), identities: new Map() }; scopes.push(scope);
         let startAuditFailure;
-        const result = await executeWorkflow({ browser, timeoutMs: 15000, actionTimeoutMs: 3000,
+        const [execution] = await observer.run([{ workflow: { browser, timeoutMs: 15000, actionTimeoutMs: 3000,
           steps: [{ type: 'goto', url: `${origin}${route}?secret=${canaries[0]}` },
-            { type: 'assertText', selector: '#script-ran', equals: canaries[2] }] }, {
+            { type: 'assertText', selector: '#script-ran', equals: canaries[2] }] }, options: {
           allowedOrigins: [origin], artifactsDir: directory,
           onEvent: event => {
             if (event.pid) scope.roots.add(event.pid);
@@ -58,8 +59,10 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
             catch (error) { startAuditFailure = error; throw error; }
             finally { phases.startAuditMs = Math.round(performance.now() - auditStarted); }
           },
-        });
+        } }]);
         if (startAuditFailure) throw startAuditFailure;
+        assert.equal(execution.status, 'fulfilled');
+        const result = execution.value;
         primaryStage = 'summary';
         outcome = { ok: result.ok, reason: result.reason, completed: result.completed,
           failureCode: result.failedStep?.error ?? null, failureKind: result.failedStep?.failureKind ?? null,
@@ -102,8 +105,10 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
       let auditReceipt = null;
       let auditFailure = null;
       try {
-        const survivors = await ownedScopeDescendants(scopes, { sinceMs, onReceipt: receipt => { auditReceipt = receipt; } });
-        assert.equal(survivors.length, 0, JSON.stringify({ fixture: 'http_privacy_ownership', verifiedCases, audit: auditReceipt }));
+        // The actual factory gate records browser births before HTTP effects.
+        // close() retains every lifetime and full same-snapshot legacy rows;
+        // its unchanged zero-survivor assertion never grants kill authority.
+        await observer.close();
         audited = true;
       } catch (error) {
         auditFailure = error.code === 'ERR_ASSERTION' ? 'owned_processes_observed' :
