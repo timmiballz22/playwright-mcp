@@ -73,7 +73,7 @@ test('original disabled snapshot reference remains actionable after gated hydrat
   let effectHits = 0;
   const hydrationRequested = new Promise<void>(resolve => {
     server.route('/hydrate', (_request, response) => {
-      releaseHydration = () => response.end('ready');
+      releaseHydration = () => { if (!response.writableEnded && !response.destroyed) response.end('ready'); };
       resolve();
     });
   });
