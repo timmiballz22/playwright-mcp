@@ -3,6 +3,7 @@ import { readdir } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import { StringDecoder } from 'node:string_decoder';
 import { fileURLToPath } from 'node:url';
+import { createBatchCheckpoints } from './ci-test-counts.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const files = (await readdir(new URL('../local-batch/', import.meta.url)))
   .filter(file => file.endsWith('.test.mjs')).sort().map(file => `local-batch/${file}`);
@@ -14,9 +15,12 @@ const child = spawn(process.execPath, ['--test', '--test-concurrency=' + concurr
 const decoder = new StringDecoder('utf8');
 let pending = '';
 const annotated = new Set();
+const checkpoint = createBatchCheckpoints();
 const emit = line => {
   process.stdout.write(line + '\n');
   if (process.env.GITHUB_ACTIONS === 'true') {
+    const notice = checkpoint(line);
+    if (notice) process.stdout.write(notice);
     // Only static test names and fixed-field cleanup receipts become annotations.
     // Never annotate arbitrary browser messages or workflow input.
     const receipt = line.match(/(?:Temporary cleanup incomplete:|Missing expected rejection:) (\[?\{\"receipt\":\"unavailable\"\}\]?)/);

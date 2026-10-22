@@ -459,3 +459,23 @@ if (supportsJournal) test('monotonic queue expiry cannot release another executi
     if (failures.length) throw new AggregateError(primary ? [primary, ...failures] : failures, 'Queue-clock fixture journal close failed', { cause: primary ?? failures[0] });
   }
 });
+
+if (supportsJournal) test('reopening a validated journal preserves WAL bytes and existing durable state', { timeout: 10000 }, async () => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-warm-open-'));
+  const clients = []; let verified = false; let primary;
+  const config = { directory, projectId: '2'.repeat(64), ownerId: 'warm-open-owner' };
+  try {
+    const initial = await JobJournal.open(config); clients.push(initial);
+    const job = await initial.call('create', { id: randomUUID(), requestKey: randomUUID(), workflowDigest: '3'.repeat(64), total: 1, deadlineAt: Date.now() + 30000 });
+    const before = await readFile(path.join(directory, 'jobs.sqlite-wal'));
+    assert.ok(before.length > 0 && before.length <= 1048576);
+    const reopened = await JobJournal.open(config); clients.push(reopened);
+    const after = await readFile(path.join(directory, 'jobs.sqlite-wal'));
+    assert.deepEqual(after, before, 'Opening the validated v1 store must not append another WAL frame');
+    assert.equal((await reopened.call('read', { id: job.jobId })).state, 'QUEUED');
+    assert.equal((await reopened.call('read', { id: job.jobId })).revision, job.revision);
+    assert.deepEqual(await reopened.call('integrity'), { ok: true });
+    verified = true;
+  } catch (error) { primary = error; throw error; }
+  finally { await closeJournalFixture(directory, clients, verified, primary); }
+});

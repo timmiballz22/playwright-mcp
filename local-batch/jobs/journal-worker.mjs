@@ -232,8 +232,10 @@ const handlers = new Map([
         "CREATE TABLE IF NOT EXISTS jobs (id TEXT PRIMARY KEY,owner TEXT NOT NULL,request_key TEXT NOT NULL,fingerprint TEXT NOT NULL,state TEXT NOT NULL CHECK(state IN ('CREATED','VALIDATING','QUEUED','RUNNING','SUCCEEDED','FAILED','CANCELLED','TIMED_OUT','CRASHED')),revision INTEGER NOT NULL,stage TEXT NOT NULL,created_at INTEGER NOT NULL,updated_at INTEGER NOT NULL,deadline_at INTEGER NOT NULL,total INTEGER NOT NULL,completed INTEGER NOT NULL DEFAULT 0,controller_pid INTEGER NOT NULL,instance TEXT NOT NULL,cancel_requested INTEGER NOT NULL DEFAULT 0,started INTEGER NOT NULL DEFAULT 0,supervisor_pid INTEGER,worker_pid INTEGER,browser_pids TEXT NOT NULL DEFAULT '[]',reason TEXT,summary TEXT,uncertain INTEGER NOT NULL DEFAULT 0,UNIQUE(owner,request_key))",
         'CREATE TABLE IF NOT EXISTS events (job_id TEXT NOT NULL REFERENCES jobs(id),revision INTEGER NOT NULL,state TEXT NOT NULL,stage TEXT NOT NULL,completed INTEGER NOT NULL,created_at INTEGER NOT NULL,PRIMARY KEY(job_id,revision))',
         'CREATE TABLE IF NOT EXISTS execution_lease (singleton INTEGER PRIMARY KEY CHECK(singleton=1),job_id TEXT NOT NULL REFERENCES jobs(id),nonce TEXT NOT NULL,instance TEXT NOT NULL,holder_pid INTEGER NOT NULL,uncertain INTEGER NOT NULL DEFAULT 0)',
-        'PRAGMA user_version=1',
       ].join(';'));
+      // Repeating user_version=1 dirties SQLite's header even on a valid v1 store.
+      // Keep fresh schema creation/versioning in this same transaction.
+      if (db.prepare('PRAGMA user_version').get().user_version !== 1) db.exec('PRAGMA user_version=1');
       report?.('schema_metadata');
       const bind = db.prepare('INSERT OR IGNORE INTO meta(key,value) VALUES(?,?)');
       bind.run('project', data.projectId);

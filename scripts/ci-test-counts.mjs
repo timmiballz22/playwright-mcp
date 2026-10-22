@@ -2,6 +2,27 @@
 // Job conclusions and installation failures are separate evidence, not test counts.
 import { readFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
+// Checkpoint only receipt numbers, never pass counts, payloads or cleanup claims.
+// Keep notices useful even when a cancelled job's eventual log is unavailable.
+export function createBatchCheckpoints() {
+  let completed = 0, notices = 0, finished = false;
+  return line => {
+    if (typeof line !== 'string' || finished || notices >= 16) return '';
+    line = line.replace(/\u001b\[[0-?]*[ -/]*[@-~]/g, '');
+    if (/^(?:#|ℹ) tests \d+$/.test(line) || line === '✖ failing tests:') { finished = true; return ''; }
+    const tap = line.match(/^(?:not )?ok ([1-9]\d{0,5}) - /);
+    if (tap) {
+      const index = Number(tap[1]);
+      if (index <= completed || index > 100000) return '';
+      completed = index;
+    } else if (/^[✔✖] /.test(line)) completed++;
+    else return '';
+    if (completed % 25 || completed > 100000) return '';
+    notices++;
+    return '::notice title=Batch test progress::completedTestNumber=' + completed + '\n';
+  };
+}
+
 export function countCITests(log) {
   const groups = new Map();
   for (const line of log.split(/\r?\n/)) {

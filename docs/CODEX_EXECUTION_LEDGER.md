@@ -1,5 +1,14 @@
 # Execution ledger
 
+Local follow-up excluded from native89 adds bounded batch CI receipt notices,
+every25 top-level tests, maximum16 notices. They expose only receipt numbers,
+never pass totals, names, payloads or cleanup authority. Parser5/5 each Node20/22/24;
+replay of three actual native88 logs gives eight markers25–200 each with unchanged
+summary counts. Future GitHub notice persistence on cancelled jobs is unverified.
+A separate measured warm-open journal header-write reduction passes38 real
+regressions each22/24; no Windows timeout cause claim. See corresponding native89
+checkpoint and warm-journal evidence; native89 itself remains active.
+
 Local follow-up excluded from native89 extends failed-store preservation to three
 other journal fixtures that discarded close rejections (PID reuse, competing
 writers and owner isolation). Existing assertions and limits unchanged; three

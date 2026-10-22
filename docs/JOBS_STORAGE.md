@@ -175,3 +175,20 @@ marks these cases
 new admission remains fenced even if a later read-only PID hint finds nothing.
 This reports uncertainty; it does not claim to terminate an unreported child or
 authorize killing a PID recovered from storage. Exact-key results still deduplicate.
+
+## Local warm-open follow-up after native89
+
+Reopening a validated v1 journal no longer assigns the same SQLite user_version.
+That assignment appends a4,120-byte WAL frame even when the version is unchanged.
+The conditional assignment stays inside the existing schema transaction; fresh
+schema creation, project/key validation, FULL synchronous mode, busy timeout,
+checkpoint configuration and two-second RPC budget remain unchanged. The normal
+schema and metadata checks still run. This is not a fix claim for the native89
+Windows progress timeout or its unresolved resources.
+
+An actual Node22 baseline warm open grows WAL37,112→41,232 bytes. After the local
+change, Node22/24 warm opens preserve exact37,112-byte WAL contents, with two
+actual journal exits confirmed per observation. A real existing-job regression
+preserves QUEUED state/revision and integrity; all38 journal/contention/controller
+cases pass each Node22/24. Native effect is pending. Evidence:
+native89-warm-journal-proof.json and native89-warm-journal-regression*.log.
