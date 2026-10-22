@@ -50,7 +50,7 @@ owned-media responses and six HTTP cases are included; Windows effect is pending
 Latest scoped-retention QA passes actual Chromium/Firefox20 and focused fixtures
 on all three Nodes. No product process-ownership algorithm was changed.
 
-Native136/142 historical PID debt, missing births/rows, prior unconfirmed exits,
+Historical legacy PID counts136/142, missing births/rows, prior unconfirmed exits,
 security/resource/operator gates remain open. No process role/name/age/window
 filter, extra signal authority or lease/debt clearance is introduced. Native88
 verification is pending. Full receipts: evidence/native87-summary.json and

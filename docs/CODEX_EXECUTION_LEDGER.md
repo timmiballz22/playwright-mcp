@@ -50,7 +50,7 @@ owned-media responses and six HTTP cases are included; Windows effect is pending
 Latest scoped-retention QA passes actual Chromium/Firefox20 and focused fixtures
 on all three Nodes. No product process-ownership algorithm was changed.
 
-Native136/142 historical PID debt, missing births/rows, prior unconfirmed exits,
+Historical legacy PID counts136/142, missing births/rows, prior unconfirmed exits,
 security/resource/operator gates remain open. No process role/name/age/window
 filter, extra signal authority or lease/debt clearance is introduced. Native88
 verification is pending. Full receipts: evidence/native87-summary.json and
@@ -1672,25 +1672,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native86 combined2118/11; all5 main lanes and17 logs; explicit OS case difference retained | Next candidate; no global improvement or old-debt clearance |
-| G01 INSTALL | VERIFIED PASS | native86 five297-file install checks and Docker encoder hash pass; Node20 SQLite explicitly unsupported | Retain native85 unconfirmed worker exit separately; no cause-fix claim |
-| G02 MCP | FAILED | native86 all actual1k clients pass; Mac SDK979/sync989 fail; server/pipe1k controls pass | Existing deadline diagnosis; preserve defaults and failed samples |
-| G03 FEATURE PARITY | FAILED | native86 Linux184/0 Win182/2 Mac182/2 Docker2;36 new cases pass; WebKit/screenshot failures remain | Fix probe source-echo gate and provision optional Mac tool; strict assertions retained |
-| G04 BATCH | FAILED | native86 Windows4 and Mac2 main failures; privacy429 saw0 requests after slow browser startup | Preserve budget and unsafe-replay refusal; scope partial cases |
+| G00 BASELINE | IN PROGRESS | native87 completed summaries1913/9; Node20 main partial94 pass receipts excluded; all17 logs retained | Native88 queued at702b616; no full-lane or old-debt clearance |
+| G01 INSTALL | VERIFIED PASS | native87 all five297-file checks and Docker hash pass; integrated3eb local scripts-disabled install passes | Native88 producer package verification pending; Node20 storage explicitly unsupported |
+| G02 MCP | FAILED | native87 actual Linux/Windows1k pass, Mac895 timeout; SDK/sync1k pass this sample | Preserve120s budget and all failed samples; Mac control server988 also times out |
+| G03 FEATURE PARITY | FAILED | native87 original Linux184/0 Win181/3 Mac182/2 Docker2; strict media/capture failures retained | Native88 primaries producer and owned media ranges await native verification |
+| G04 BATCH | FAILED | native87 Windows201/2 includes one scoped audit observation with private rows unavailable; Mac210/1 | Retain observation; prospective full audit diagnostics; no replay or filtering |
 | G05 RETRIES | FAILED | native83 Win429 has0 navigation ACK/2 GETs/2 finished responses; later cap/POST cases unexecuted | Preserve route scopes and unsafe-write refusal |
-| G06 JOBS | FAILED | native86 component132/133 and5 installs pass; Mac SDK979 timeout; old schema exit unconfirmed | No historical worker/lease clearance from new healthy runs |
+| G06 JOBS | FAILED | native87 component132/133 and five installs pass; Mac actual895 timeout; old schema exit unconfirmed | No historical worker/lease clearance from healthy current samples |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
 | G08 STORAGE | BLOCKED | native83 one deadline candidate lacks births/rows; one full comparison proves narrow same-PID birth mismatch only; old136/142 unknown | No retrospective reconstruction, coalescence or debt clearance |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native86 Mac WebKit248/37/0, Windows WebKit readiness, Mac Chromium capture; Firefox Windows pointer failures | Pinned upstream scope documented; native metadata copies still unexecuted |
-| G11 CROSS-OS | FAILED | native86 all Linux lanes pass; Windows4 batch/2 original/1 legacy; Mac2 batch/2 original | Next native source and diagnostic tools without deadline increases |
+| G10 CROSS-BROWSER | FAILED | native87 Mac WebKit248/37/0 corrected255/2/0 by primaries-only metadata control with same encoded bytes; Windows readiness remains | Integrated encoder primaries flag and range fixture pending native88; screenshot/input failures open |
+| G11 CROSS-OS | FAILED | native87 Node20 main cancelled after94 pass receipts; Windows2 main/3 original/1 legacy; Mac1 main/2 original plus actual client | Complete native88 without raising time limits or weakening assertions |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
-| G14 ADVANCED | FAILED | All36 hydration/lazy/offline cases pass; video diagnostic tool absent; original pixel failures retained | Provision optional Mac ffmpeg; default healthy probe gate locally corrected |
+| G14 ADVANCED | FAILED | native87 optional Mac ffmpeg succeeds; encoded-byte-preserving primaries control corrects strict red sample | Native88 actual encoder output verification; no broad gamut claim |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
-| G16 DOCUMENTATION | IN PROGRESS | 30 tracked Markdown files/173 inline relative targets exist; external/anchor/reference links untested | Complete verified operator walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | native86 all17 logs/EOF retry; full new legacy rows and narrow birth mismatch retained | No role/name/age/window filtering or historical identity reconstruction |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native86 failed; local probe-gate/setup/witness followups await native | All critical gates before merge/release |
+| G16 DOCUMENTATION | IN PROGRESS | native88 bounded audit:25 top-level docs,172 local targets,2 Markdown anchors, explicit full reference links;0 issues;67 external targets not fetched | Full parser/external/shortcut-reference coverage and interactive operator walkthroughs remain |
+| G17 AUDIT EVIDENCE | IN PROGRESS | native87 all17 logs first-read success; full legacy comparison rows preserved; new scoped audit private rows unavailable | Prospective full matched-observation retention; historical136/142 missing identities remain unresolved |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native87 failed; native88 queued at702b616 | All critical gates before merge/release |
 
 ## Defects and risk register
 

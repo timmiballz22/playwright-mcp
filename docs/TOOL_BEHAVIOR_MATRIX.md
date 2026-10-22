@@ -1,5 +1,12 @@
 # Original tool behavior review index
 
+Local follow-up excluded from native88 adds independent trace/PDF behavior cases
+without changing the combined advanced case. Chromium/Firefox4/4 each Node20/22/24
+pass; tracing checks an acknowledged click in real NDJSON and inactive-stop errors,
+PDF checks a Chromium document and explicit Firefox rejection/no file. Native and
+WebKit verification pending; no rendered PDF-content claim. See
+evidence/native88-independent-artifacts-proof.json.
+
 ## Latest completed checkpoint — native87 at b279f0d; acceptance incomplete
 
 [Batch39778440595](https://github.com/timmiballz22/playwright-mcp/actions/runs/39778440595)
@@ -50,7 +57,7 @@ owned-media responses and six HTTP cases are included; Windows effect is pending
 Latest scoped-retention QA passes actual Chromium/Firefox20 and focused fixtures
 on all three Nodes. No product process-ownership algorithm was changed.
 
-Native136/142 historical PID debt, missing births/rows, prior unconfirmed exits,
+Historical legacy PID counts136/142, missing births/rows, prior unconfirmed exits,
 security/resource/operator gates remain open. No process role/name/age/window
 filter, extra signal authority or lease/debt clearance is introduced. Native88
 verification is pending. Full receipts: evidence/native87-summary.json and
