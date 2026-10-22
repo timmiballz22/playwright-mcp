@@ -10,6 +10,16 @@ import { createInterface } from 'node:readline';
 import { fileURLToPath } from 'node:url';
 import { JobJournal, supportsJournal } from './journal.mjs';
 
+// Preserve fixture storage until acceptance and every actual journal close
+// succeed. A rejected open may own an unconfirmed child not in the client list.
+async function closeJournalFixture(directory, clients, verified, primary) {
+  const closed = await Promise.allSettled(clients.map(client => client.close()));
+  const failures = closed.filter(item => item.status === 'rejected').map(item => item.reason);
+  if (verified && !failures.length) await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+  else console.error('Journal fixture preserved: acceptance or cleanup not confirmed');
+  if (failures.length) throw new AggregateError(primary ? [primary, ...failures] : failures, 'Journal fixture close failed', { cause: primary ?? failures[0] });
+}
+
 if (!supportsJournal) {
   test('durable journal explicitly requires Node 22.13 or later', async () => {
     await assert.rejects(JobJournal.open({}), { code: 'unsupported_runtime' });
@@ -149,7 +159,7 @@ if (!supportsJournal) {
   }
   test('a simulated reused PID cannot resume old work or clear uncertain active resources', { timeout: 10000 }, async () => {
     const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-pid-reuse-'));
-    const clients = [];
+    const clients = []; let verified = false; let primary;
     try {
       const config = { directory, projectId: '3'.repeat(64), ownerId: 'owner' };
       const old = await JobJournal.open({ ...config, instanceId: randomUUID() }); clients.push(old);
@@ -168,7 +178,9 @@ if (!supportsJournal) {
       const next = await create(current);
       assert.deepEqual(await current.call('reserve', { id: next.jobId, nonce: randomUUID() }), { acquired: false, reason: 'cleanup_blocked' });
       await assert.rejects(old.call('finish', { id: active.jobId, nonce, state: 'SUCCEEDED', completed: 1, cleanupOk: true }), { code: 'invalid_transition' });
-    } finally { await Promise.allSettled(clients.map(client => client.close())); await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
+      verified = true;
+    } catch (error) { primary = error; throw error; }
+    finally { await closeJournalFixture(directory, clients, verified, primary); }
   });
   test('cancelled reservations never start and uncertain active cancellation keeps the project blocked', { timeout: 10000 }, async () => {
     const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-cancel-states-'));
@@ -236,7 +248,7 @@ if (!supportsJournal) {
   });
   test('competing writers initialize consistently and cannot overfill the project queue', { timeout: 15000 }, async () => {
     const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-competing-'));
-    const clients = [];
+    const clients = []; let verified = false; let primary;
     try {
       await Promise.all(['owner-a', 'owner-b'].map(async ownerId => {
         clients.push(await JobJournal.open({ directory, projectId: '1'.repeat(64), ownerId }));
@@ -249,7 +261,9 @@ if (!supportsJournal) {
       const count = (await clients[0].call('list')).length + (await clients[1].call('list')).length;
       assert.ok(count > 0 && count <= 8);
       assert.deepEqual(await clients[0].call('integrity'), { ok: true });
-    } finally { await Promise.allSettled(clients.map(client => client.close())); await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
+      verified = true;
+    } catch (error) { primary = error; throw error; }
+    finally { await closeJournalFixture(directory, clients, verified, primary); }
   });
   test('killed transaction rolls back without a partial job or duplicate request', { timeout: 15000 }, async () => {
     const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-rollback-'));
@@ -335,7 +349,7 @@ if (!supportsJournal) {
   test('journal preserves idempotency, owner isolation and a single project execution lease', { timeout: 15000 }, async () => {
     const directory = await mkdtemp(path.join(os.tmpdir(), 'journal spaces-'));
     const projectId = createHash('sha256').update('project-fixture').digest('hex');
-    const clients = [];
+    const clients = []; let verified = false; let primary;
     const open = async ownerId => {
       const client = await JobJournal.open({ directory, projectId, ownerId }); clients.push(client); return client;
     };
@@ -407,10 +421,9 @@ if (!supportsJournal) {
         assert.equal(data.includes(Buffer.from('fake-workflow-secret-canary')), false, 'Workflow input persisted');
         assert.equal(data.includes(Buffer.from('fake-request-secret-canary')), false, 'Request key persisted in plaintext');
       }
-    } finally {
-      await Promise.allSettled(clients.map(client => client.close()));
-      await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
-    }
+      verified = true;
+    } catch (error) { primary = error; throw error; }
+    finally { await closeJournalFixture(directory, clients, verified, primary); }
   });
 }
 

@@ -1,5 +1,13 @@
 # Execution ledger
 
+Local follow-up excluded from native89 extends failed-store preservation to three
+other journal fixtures that discarded close rejections (PID reuse, competing
+writers and owner isolation). Existing assertions and limits unchanged; three
+positive cases pass each Node22/24. Trusted negative close faults run only after
+six actual journal instances confirm exit: all three tests fail as expected and
+retain nonempty stores. This is fixture behavior proof, not historical worker
+reconstruction or product cleanup authority. See native89-journal-preservation-proof.json.
+
 ## Latest completed checkpoint — native88 at702b616; acceptance incomplete
 
 [Batch39788239513](https://github.com/timmiballz22/playwright-mcp/actions/runs/39788239513)
