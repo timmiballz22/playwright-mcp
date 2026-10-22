@@ -290,7 +290,7 @@ export async function runWorkflow(workflow, {
         }
         for (let attempt = 0; ; attempt++) {
           if (closing || cancelled || timedOut || resourceExceeded) throw new Error('stopped');
-          response = await route.fetch({ maxRedirects: 0, maxRetries: 0,
+          response = await route.fetch({ maxRedirects: 0, maxRetries: 0, signal: retryAbort.signal,
             timeout: Math.max(1, spec.timeoutMs - (performance.now() - started)) });
           const eligible = retryPolicy && isCurrentMainGet();
           const wait = eligible ? navigationRetryDelay(response.status(), response.headers()['retry-after'], attempt, retryPolicy) : null;

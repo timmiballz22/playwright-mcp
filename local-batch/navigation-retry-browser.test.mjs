@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { executeWorkflow } from './executor.mjs';
@@ -95,8 +95,8 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
     const fixture = createServer((request, response) => {
       const row = { method: request.method, path: request.url, fetchId: request.headers['x-pwmcp-private-fetch'] ?? null, at: performance.now() };
       records.push(row);
-      if (request.url === '/form') { response.setHeader('Content-Type', 'text/html'); response.end('<form method="post" action="/commit"><button>Commit</button></form>'); return; }
-      if (request.url === '/commit' || request.url === '/cancel') {
+      if (request.url === '/form' || request.url === '/form-stalled') { response.setHeader('Content-Type', 'text/html'); response.end('<form method="post" action="' + (request.url === '/form-stalled' ? '/commit-stalled' : '/commit') + '"><button>Commit</button></form>'); return; }
+      if (request.url === '/commit' || request.url === '/commit-stalled' || request.url === '/cancel') {
         // /commit is a committed local ledger entry with no response: abort
         // cannot establish whether the client observed its effect.
         if (request.url === '/cancel') { response.writeHead(429, { 'Retry-After': '1' }); response.end('fixed fixture'); }
@@ -107,10 +107,14 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
     });
     fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
     const origin = `http://127.0.0.1:${fixture.address().port}`;
+    const previousCloseStall = process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL;
     try {
-      for (const scenario of ['cancel', 'commit']) {
+      for (const scenario of ['cancel', 'commit', 'commit-stalled']) {
+        if (scenario === 'commit-stalled') process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL = '1';
+        else delete process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL;
+        const committed = scenario !== 'cancel';
         active = { abort: new AbortController(), scheduled: false };
-        pending = executeWorkflow({ browser, timeoutMs: 10000, steps: [{ type: 'goto', url: origin + (scenario === 'commit' ? '/form' : '/cancel') }, ...(scenario === 'commit' ? [{ type: 'click', selector: 'button' }] : [])] }, {
+        pending = executeWorkflow({ browser, timeoutMs: 10000, steps: [{ type: 'goto', url: origin + (committed ? scenario === 'commit-stalled' ? '/form-stalled' : '/form' : '/cancel') }, ...(committed ? [{ type: 'click', selector: 'button' }] : [])] }, {
           artifactsDir: root, allowedOrigins: [origin], navigationRetry: policy, signal: active.abort.signal,
           workerModule: new URL('./jobs/fixtures/marked-fetch-worker.mjs', import.meta.url),
           onEvent: event => { if (event.pid) owned.push(event.pid); },
@@ -123,14 +127,20 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
         assert.equal(result.reason, 'cancelled', JSON.stringify(receipt));
         assert.equal(requests.length, 1, JSON.stringify(receipt));
         assert.match(requests[0].fetchId, /^[1-9]\d*$/);
-        assert.equal(requests[0].method, scenario === 'commit' ? 'POST' : 'GET');
-        assert.equal(result.retrySafe, false); assert.equal(result.completed, scenario === 'commit' ? 1 : 0);
+        assert.equal(requests[0].method, committed ? 'POST' : 'GET');
+        assert.equal(result.retrySafe, false); assert.equal(result.completed, committed ? 1 : 0);
         assert.equal(result.execution.cleanup, 'terminated'); assert.equal(result.execution.tempCleanup, 'removed');
+        if (scenario === 'commit-stalled') {
+          assert.deepEqual(JSON.parse(await readFile(path.join(root, 'exec-' + result.runId, 'fetch-abort-witness.json'), 'utf8')),
+            { signalAborted: true, browserConnected: true, method: 'POST' });
+        }
         console.log(JSON.stringify({ component: 'private_fetch_cancel_witness', browser, ...receipt }));
       }
       verified = true;
     } catch (error) { primary = error; throw error; }
     finally {
+      if (previousCloseStall === undefined) delete process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL;
+      else process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL = previousCloseStall;
       try {
         active?.abort.abort(); if (pending) await pending;
         fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
