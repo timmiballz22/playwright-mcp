@@ -55,6 +55,30 @@ Windows production-package step has failed, cause awaits completed-workflow logs
 Do not attribute that failure to packaging or declare a native fix from this
 local success. Evidence: native84-contract-proof.json and exact logs/hashes.
 
+
+## Native media readiness and source-paint follow-up
+
+Completed native84 original suites report486 passes/8 failures. All pre-existing
+156 normal cases pass per OS; the new PCM/frame fixtures contribute16 passes/8
+failures. Firefox decodes[255,24,0] on all three OSs. Mac Chrome/Chromium first
+frames show[128,128,128], Mac WebKit[248,37,0]; Windows WebKit PCM/video readiness
+time out at the existing5s wait. These are distinct observations, not one proven
+cause or an unsupported-codec classification. Legacy Windows follow-up and Mac
+modal repeats are unexecuted after normal-suite failure.
+
+Local follow-up keeps the exact visible-marker waiter/5000ms and all pixel/state
+assertions. On failure it now retains fixed ready/network/error/canPlayType fields;
+late readiness cannot convert a timeout into success. The successful wait/state
+inspection path uses one fewer RPC. A single bounded pre-recording PNG now proves
+the320x240 owned source is red before requiring the unchanged first decoded-frame
+assertion. This is a test precondition, not a runtime warm-up or a skipped frame.
+Unmodified dependency baseline remains3 passes/1 Firefox failure locally; initial
+readyState-only polling was replaced by the exact original visible-marker waiter
+before shipping. Evidence: native84-media-state-proof.json and phase logs/hashes.
+
+The separate private bundled-dependency experiment is still in an isolated
+checkout. No encoder patch has yet been applied to this branch's installed core.
+
 Latest completed native83 at `e95f0298030fd97b460d8798a2fd57a770123873`:
 [batch39753138604](https://github.com/timmiballz22/playwright-mcp/actions/runs/39753138604)
 reports1,469 passes/5 failures; [original39753138605](https://github.com/timmiballz22/playwright-mcp/actions/runs/39753138605)

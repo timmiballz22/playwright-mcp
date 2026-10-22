@@ -34,9 +34,12 @@ test('original muted PCM media advances, pauses and reports a missing media sour
     expect(result.isError, JSON.stringify(result)).not.toBe(true); return result;
   };
   await call('browser_navigate', { url: server.PREFIX });
-  await call('browser_wait_for', { text: 'Media ready' });
   await call('browser_run_code_unsafe', { code: `async page => {
-    const initial = await page.locator('#player').evaluate(audio => ({ paused: audio.paused, muted: audio.muted, duration: audio.duration, ready: audio.readyState }));
+    let readinessTimedOut=false;
+    try { await page.getByText('Media ready').first().waitFor({state:'visible',timeout:5000}); }
+    catch(error) { if(error.name!=='TimeoutError') throw error;readinessTimedOut=true; }
+    const initial = await page.locator('#player').evaluate(audio => ({ paused:audio.paused,muted:audio.muted,duration:Number.isFinite(audio.duration)?audio.duration:null,ready:audio.readyState,network:audio.networkState,error:audio.error?.code??0,wav:audio.canPlayType('audio/wav') }));
+    if(readinessTimedOut || initial.error || initial.ready<2) throw new Error('Owned media readiness failed '+JSON.stringify({readinessTimedOut,...initial}));
     if (!initial.paused || !initial.muted || initial.duration !== 2 || initial.ready < 2) throw new Error('Owned media initial state mismatch');
     return { initialStateVerified: true };
   }` });
