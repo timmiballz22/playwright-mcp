@@ -1,5 +1,63 @@
 # Execution ledger
 
+## Latest completed checkpoint — native86 atfd1939c; acceptance incomplete
+
+[Batch39773672301](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672301)
+reports1566 passes/6 failures; [original39773672308](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672308)
+reports552/5 including Windows legacy. Combined2118/11, reported skips/cancels0.
+All five configured main lanes ran. Windows203 vs other Node22/24 main211 reflects
+explicit OS case definitions; exact case differences are retained. This recovers
+coverage missing from native85, not a global reliability-improvement claim.
+All17 job logs were collected; Windows Codex's first EOF/partial read and ordinary
+successful retry remain retained. No artifact download or authentication workaround.
+
+All five297-file installed-package checks completed (Node20 SQLite/guardian
+features explicitly unsupported). Docker encoder-hash and two endpoint cases pass.
+Component lanes132/132 each Linux22/24 and Mac22, Windows133/133 pass. All three
+actual Codex1k clients pass with model0/owned0: Linux36.077s, Windows38.424s,
+Mac113.470s. Healthy initialization does not explain or clear native85's schema
+RPC timeout/unconfirmed exit or older guardian failures. Original Linux184/0,
+Mac182/2, Windows182/2; all36 new hydration/lazy/offline-worker instances pass.
+
+Mac main raw1k passes, SDK979 and synchronous989 time out. Separate server1k
+114.886s and pipe1k106.955s controls pass with zero owned roots before force/finally.
+Windows HTTP privacy verifies4/8 cases then times out before any /429 request:
+0 GET/finished responses, browser event10.809s within15s workflow; owned audit
+confirms zero. It is not evidence for a new HTTP classification defect. Firefox
+locator positive stops16/19 at pointer step17, forcedtrue/terminated/removed;
+its later ambiguity cases are unexecuted. Retry /429 completes1 with2 GETs and
+finished responses, then timeout; later cases unexecuted. Direct-pipe raw fresh9
+stops15/23 at step16, no counter value; independent Node20 legacy fresh5 stops6/23
+at step7, counter probe timeout. No effect/replay inference. Private/inherited/
+protocol-headed controls each10 fresh/230 actions pass; stock-headed stops5 with
+context_timeout. All controls report zero owned roots before force/finally.
+
+Original Mac failures are Chromium advanced-case screenshot protocol capture and
+WebKit decoded248/37/0. Windows failures are WebKit WAV/VP9 readiness. Pinned
+upstream explicitly excludes Windows WebKit WebM/audio tests, with a hosted Media
+Pack note, but exact WAV mechanism remains unknown and our strict failures remain.
+Mac/Windows modal/other feature successes do not clear old failures. One full
+legacy comparison retains a candidate whose current birth differs from one
+captured same-PID incarnation; another root row has no matching captured birth.
+These narrow facts do not classify all ownership or clear debt/old136/142 cohorts.
+
+Native color-copy controls were unexecuted because stock ffmpeg was absent.
+A probe-condition bug also matched source echoed in healthy tool replies; local
+fix now requires isError plus marker (or explicit trusted mode), with project
+labels. Default healthy2/2 emits0 control receipts; explicit2/2 samples6 variants;
+actual unpatched Firefox negative still exits1 with3 controls, restored isolated
+and unchanged main core. Next candidate provisions optional Mac diagnostic ffmpeg
+inside a5m step budget; setup failure stays visible and original tests continue.
+No existing action/RPC/test/job budget, default transport, pixel assertion, SQL,
+lease/debt rule, skip or xfail changes. Upload effect-witness and highlight phase
+labels have separate local proofs; native verification is pending.
+
+Evidence: evidence/native86-summary.json and native86-completed-archive.json;
+source-specific local corrections are in native86-video-probe-gate-proof.json.
+Full release remains blocked by execution, historical identity, unsupported/untested
+scope and remaining resource/security/profile/operator gates.
+
+
 Read-only pinned upstream review now establishes a platform support limitation:
 Playwright v1.64.1 capabilities tests exclude WebKit/Windows WebM as unsupported
 and mark audio playback as a known issue, with a hosted Windows Server Media
@@ -8,9 +66,9 @@ Our strict failures remain visible; this is not the exact WAV-load cause, a
 blanket codec claim, skip/xfail, assertion waiver or native success promotion.
 Mac WebKit pixel fidelity remains separate.
 
-Native86 is running atfd1939c: [batch39773672301](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672301)
+Native86 ran atfd1939c: [batch39773672301](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672301)
 and [original39773672308](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672308).
-Pending outcomes are not passes; hold further pushes during the pair.
+The pair completed/failure; later local follow-ups require new native verification.
 
 Further local follow-up excluded from native86 instruments the owned upload
 fixture with click-event POST counts and one bounded read-only snapshot after a
@@ -21,7 +79,7 @@ is replayed. The1s snapshot did not return. Counts are lower bounds, not proof
 of chooser opening, file selection or absence of effects. No retrospective
 native85 cause claim. Evidence: native86-upload-witness-proof.json.
 
-## Latest completed checkpoint — native85 at23b07fd; acceptance incomplete
+## Historical native85 checkpoint at23b07fd; acceptance incomplete
 
 [Batch39768881695](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881695)
 reports1131 passes/3 failures; [original39768881668](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881668)
@@ -1549,25 +1607,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native85 combined1646/9; Windows main and Linux22 package/main unexecuted;17 logs retained | Verify next candidate; retain reduced coverage and canceled install |
-| G01 INSTALL | FAILED | native85 three297-file installs complete; Windows controller init/schema rpc_timeout, exit unconfirmed; Linux22 install canceled | Refined phase/preservation diagnostics; no deadline or lease changes |
-| G02 MCP | FAILED | native85 all three actual1k clients pass; Mac SDK995/sync973 and server997 fail, pipe1k pass | Diagnose existing lifecycle deadlines without default changes |
-| G03 FEATURE PARITY | FAILED | native85 original Linux172/0 Win169/3 Mac170/2 Docker2; Firefox color fixed sample, WebKit media still fails | Native metadata-copy controls and remaining negative/operator review |
-| G04 BATCH | FAILED | native85 Mac raw902/SDK995/sync973 timeouts; Windows and Linux22 main unexecuted | Preserve unchanged limits and incomplete identity evidence |
+| G00 BASELINE | IN PROGRESS | native86 combined2118/11; all5 main lanes and17 logs; explicit OS case difference retained | Next candidate; no global improvement or old-debt clearance |
+| G01 INSTALL | VERIFIED PASS | native86 five297-file install checks and Docker encoder hash pass; Node20 SQLite explicitly unsupported | Retain native85 unconfirmed worker exit separately; no cause-fix claim |
+| G02 MCP | FAILED | native86 all actual1k clients pass; Mac SDK979/sync989 fail; server/pipe1k controls pass | Existing deadline diagnosis; preserve defaults and failed samples |
+| G03 FEATURE PARITY | FAILED | native86 Linux184/0 Win182/2 Mac182/2 Docker2;36 new cases pass; WebKit/screenshot failures remain | Fix probe source-echo gate and provision optional Mac tool; strict assertions retained |
+| G04 BATCH | FAILED | native86 Windows4 and Mac2 main failures; privacy429 saw0 requests after slow browser startup | Preserve budget and unsafe-replay refusal; scope partial cases |
 | G05 RETRIES | FAILED | native83 Win429 has0 navigation ACK/2 GETs/2 finished responses; later cap/POST cases unexecuted | Preserve route scopes and unsafe-write refusal |
-| G06 JOBS | FAILED | native85 Windows controller init reached schema then rpc_timeout/exit unconfirmed; component lanes126/127 pass | Four finer schema diagnostics locally48/48 LTS; native cause unresolved |
+| G06 JOBS | FAILED | native86 component132/133 and5 installs pass; Mac SDK979 timeout; old schema exit unconfirmed | No historical worker/lease clearance from new healthy runs |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
 | G08 STORAGE | BLOCKED | native83 one deadline candidate lacks births/rows; one full comparison proves narrow same-PID birth mismatch only; old136/142 unknown | No retrospective reconstruction, coalescence or debt clearance |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native85 Firefox video passes all OS; Mac WebKit248/37/0; Windows WebKit readiness/FF upload and Mac capture fail | Collect strict failing-case metadata controls; no unsupported blanket label |
-| G11 CROSS-OS | FAILED | native85 Mac3 batch/2 original; Windows package/3 original/1 legacy; Linux22 install canceled at30m | Next native source verification; no budget increases |
+| G10 CROSS-BROWSER | FAILED | native86 Mac WebKit248/37/0, Windows WebKit readiness, Mac Chromium capture; Firefox Windows pointer failures | Pinned upstream scope documented; native metadata copies still unexecuted |
+| G11 CROSS-OS | FAILED | native86 all Linux lanes pass; Windows4 batch/2 original/1 legacy; Mac2 batch/2 original | Next native source and diagnostic tools without deadline increases |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
-| G14 ADVANCED | FAILED | Bundled VP9 matrix fix verified native Firefox; remaining WebKit fidelity/readiness; new local offline-worker fixtures pass | Native diagnostic metadata variants; operator/interactive gaps remain |
+| G14 ADVANCED | FAILED | All36 hydration/lazy/offline cases pass; video diagnostic tool absent; original pixel failures retained | Provision optional Mac ffmpeg; default healthy probe gate locally corrected |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | 30 tracked Markdown files/173 inline relative targets exist; external/anchor/reference links untested | Complete verified operator walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | native85 all17 logs plus initial EOF retained; schema stage and original media facts archived | Retain unknown exit and historical birth gaps without coalescence |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native85 failed with two main lanes unexecuted; local diagnostic followups await native | All critical gates before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | native86 all17 logs/EOF retry; full new legacy rows and narrow birth mismatch retained | No role/name/age/window filtering or historical identity reconstruction |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native86 failed; local probe-gate/setup/witness followups await native | All critical gates before merge/release |
 
 ## Defects and risk register
 

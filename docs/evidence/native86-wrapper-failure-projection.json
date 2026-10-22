@@ -1,0 +1,38 @@
+[
+  {
+    "job": "test (macos-15-intel)",
+    "case": "1) [chromium] \u203a tests/advanced.spec.ts:6:5 \u203a original storage, screenshot, trace, video, tabs and Chromium PDF behavior ",
+    "captureProtocolError": true,
+    "timeout30s": false,
+    "timeout5s": false,
+    "decodedPixelMismatch": false,
+    "readinessFailure": false
+  },
+  {
+    "job": "test (macos-15-intel)",
+    "case": "2) [webkit] \u203a tests/video-playback.spec.ts:8:5 \u203a original recorded WebM decodes an owned frame with the expected dimensions and pixels ",
+    "captureProtocolError": false,
+    "timeout30s": false,
+    "timeout5s": false,
+    "decodedPixelMismatch": true,
+    "readinessFailure": false
+  },
+  {
+    "job": "test (windows-latest)",
+    "case": "1) [webkit] \u203a tests\\media.spec.ts:18:5 \u203a original muted PCM media advances, pauses and reports a missing media source ",
+    "captureProtocolError": false,
+    "timeout30s": false,
+    "timeout5s": false,
+    "decodedPixelMismatch": false,
+    "readinessFailure": true
+  },
+  {
+    "job": "test (windows-latest)",
+    "case": "2) [webkit] \u203a tests\\video-playback.spec.ts:8:5 \u203a original recorded WebM decodes an owned frame with the expected dimensions and pixels ",
+    "captureProtocolError": false,
+    "timeout30s": false,
+    "timeout5s": true,
+    "decodedPixelMismatch": false,
+    "readinessFailure": true
+  }
+]

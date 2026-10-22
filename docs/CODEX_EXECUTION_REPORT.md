@@ -1,5 +1,63 @@
 # Execution report — verified milestone, incomplete mission
 
+## Latest completed checkpoint — native86 atfd1939c; acceptance incomplete
+
+[Batch39773672301](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672301)
+reports1566 passes/6 failures; [original39773672308](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672308)
+reports552/5 including Windows legacy. Combined2118/11, reported skips/cancels0.
+All five configured main lanes ran. Windows203 vs other Node22/24 main211 reflects
+explicit OS case definitions; exact case differences are retained. This recovers
+coverage missing from native85, not a global reliability-improvement claim.
+All17 job logs were collected; Windows Codex's first EOF/partial read and ordinary
+successful retry remain retained. No artifact download or authentication workaround.
+
+All five297-file installed-package checks completed (Node20 SQLite/guardian
+features explicitly unsupported). Docker encoder-hash and two endpoint cases pass.
+Component lanes132/132 each Linux22/24 and Mac22, Windows133/133 pass. All three
+actual Codex1k clients pass with model0/owned0: Linux36.077s, Windows38.424s,
+Mac113.470s. Healthy initialization does not explain or clear native85's schema
+RPC timeout/unconfirmed exit or older guardian failures. Original Linux184/0,
+Mac182/2, Windows182/2; all36 new hydration/lazy/offline-worker instances pass.
+
+Mac main raw1k passes, SDK979 and synchronous989 time out. Separate server1k
+114.886s and pipe1k106.955s controls pass with zero owned roots before force/finally.
+Windows HTTP privacy verifies4/8 cases then times out before any /429 request:
+0 GET/finished responses, browser event10.809s within15s workflow; owned audit
+confirms zero. It is not evidence for a new HTTP classification defect. Firefox
+locator positive stops16/19 at pointer step17, forcedtrue/terminated/removed;
+its later ambiguity cases are unexecuted. Retry /429 completes1 with2 GETs and
+finished responses, then timeout; later cases unexecuted. Direct-pipe raw fresh9
+stops15/23 at step16, no counter value; independent Node20 legacy fresh5 stops6/23
+at step7, counter probe timeout. No effect/replay inference. Private/inherited/
+protocol-headed controls each10 fresh/230 actions pass; stock-headed stops5 with
+context_timeout. All controls report zero owned roots before force/finally.
+
+Original Mac failures are Chromium advanced-case screenshot protocol capture and
+WebKit decoded248/37/0. Windows failures are WebKit WAV/VP9 readiness. Pinned
+upstream explicitly excludes Windows WebKit WebM/audio tests, with a hosted Media
+Pack note, but exact WAV mechanism remains unknown and our strict failures remain.
+Mac/Windows modal/other feature successes do not clear old failures. One full
+legacy comparison retains a candidate whose current birth differs from one
+captured same-PID incarnation; another root row has no matching captured birth.
+These narrow facts do not classify all ownership or clear debt/old136/142 cohorts.
+
+Native color-copy controls were unexecuted because stock ffmpeg was absent.
+A probe-condition bug also matched source echoed in healthy tool replies; local
+fix now requires isError plus marker (or explicit trusted mode), with project
+labels. Default healthy2/2 emits0 control receipts; explicit2/2 samples6 variants;
+actual unpatched Firefox negative still exits1 with3 controls, restored isolated
+and unchanged main core. Next candidate provisions optional Mac diagnostic ffmpeg
+inside a5m step budget; setup failure stays visible and original tests continue.
+No existing action/RPC/test/job budget, default transport, pixel assertion, SQL,
+lease/debt rule, skip or xfail changes. Upload effect-witness and highlight phase
+labels have separate local proofs; native verification is pending.
+
+Evidence: evidence/native86-summary.json and native86-completed-archive.json;
+source-specific local corrections are in native86-video-probe-gate-proof.json.
+Full release remains blocked by execution, historical identity, unsupported/untested
+scope and remaining resource/security/profile/operator gates.
+
+
 Read-only pinned upstream review now establishes a platform support limitation:
 Playwright v1.64.1 capabilities tests exclude WebKit/Windows WebM as unsupported
 and mark audio playback as a known issue, with a hosted Windows Server Media
@@ -8,9 +66,9 @@ Our strict failures remain visible; this is not the exact WAV-load cause, a
 blanket codec claim, skip/xfail, assertion waiver or native success promotion.
 Mac WebKit pixel fidelity remains separate.
 
-Native86 is running atfd1939c: [batch39773672301](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672301)
+Native86 ran atfd1939c: [batch39773672301](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672301)
 and [original39773672308](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672308).
-Pending outcomes are not passes; hold further pushes during the pair.
+The pair completed/failure; later local follow-ups require new native verification.
 
 Further local follow-up excluded from native86 instruments the owned upload
 fixture with click-event POST counts and one bounded read-only snapshot after a
@@ -21,7 +79,7 @@ is replayed. The1s snapshot did not return. Counts are lower bounds, not proof
 of chooser opening, file selection or absence of effects. No retrospective
 native85 cause claim. Evidence: native86-upload-witness-proof.json.
 
-## Latest completed checkpoint — native85 at23b07fd; acceptance incomplete
+## Historical native85 checkpoint at23b07fd; acceptance incomplete
 
 [Batch39768881695](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881695)
 reports1131 passes/3 failures; [original39768881668](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881668)

@@ -1,0 +1,990 @@
+journal (windows-latest, 22)	Set up job	﻿2026-10-22T11:50:58.6183961Z Current runner version: '2.338.0'
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6238109Z ##[group]Runner Image Provisioner
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6239298Z Hosted Compute Agent
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6240294Z Version: 20261002.596
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6241328Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6242673Z Build Date: 2026-10-02T22:28:27Z
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6243870Z Worker ID: {863c9750-7b7a-4395-b9e4-926a8e594999}
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6245053Z Region: centralus
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6246028Z Cloud: Azure
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6246953Z ##[endgroup]
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6249431Z ##[group]Operating System
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6250503Z Microsoft Windows Server 2025
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6251462Z 10.0.26100
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6252365Z Datacenter
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6253243Z ##[endgroup]
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6254170Z ##[group]Runner Image
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6255141Z Image: windows-2025-vs2026
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6256162Z Version: 20261007.264.1
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6258245Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261007.264/images/windows/Windows2025-VS2026-Readme.md
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6261839Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261007.264
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6263563Z ##[endgroup]
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6265348Z ##[group]GITHUB_TOKEN Permissions
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6267892Z Contents: read
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6268822Z Metadata: read
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6270273Z ##[endgroup]
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6273141Z Secret source: Actions
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6274590Z Cache mode: write
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6275849Z Prepare workflow directory
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6643176Z Prepare all required actions
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.6709537Z Getting action download info
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:58.9102292Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:59.0419157Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:59.5056704Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+journal (windows-latest, 22)	Set up job	2026-10-22T11:50:59.8222953Z Complete job name: journal (windows-latest, 22)
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T11:50:59.9740764Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9742113Z with:
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9742622Z   repository: timmiballz22/playwright-mcp
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9746655Z   token: ***
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9747181Z   ssh-strict: true
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9747661Z   ssh-user: git
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9748624Z   persist-credentials: true
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9749149Z   clean: true
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9749662Z   sparse-checkout-cone-mode: true
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9750244Z   fetch-depth: 1
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9750713Z   fetch-tags: false
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9751230Z   show-progress: true
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9751708Z   lfs: false
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9752185Z   submodules: false
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9752673Z   set-safe-directory: true
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9753214Z   allow-unsafe-pr-checkout: false
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:50:59.9754150Z ##[endgroup]
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.1270507Z Syncing repository: timmiballz22/playwright-mcp
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.1272411Z ##[group]Getting Git version info
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.1273311Z Working directory is 'D:\a\playwright-mcp\playwright-mcp'
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.2149616Z [command]"C:\Program Files\Git\bin\git.exe" version
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.5648689Z git version 2.56.0.windows.2
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.5719969Z ##[endgroup]
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.5736868Z Temporarily overriding HOME='D:\a\_temp\2d123c5f-508a-4736-8510-c4fff8be1bef' before making global git config changes
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.5739616Z Adding repository directory to the temporary git global config as a safe directory
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.5771997Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\playwright-mcp\playwright-mcp
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.6728389Z Deleting the contents of 'D:\a\playwright-mcp\playwright-mcp'
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.6734165Z ##[group]Determining repository object format
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.6738326Z ##[endgroup]
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.6740453Z ##[group]Initializing the repository
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.6754162Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\playwright-mcp\playwright-mcp
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.7971707Z Initialized empty Git repository in D:/a/playwright-mcp/playwright-mcp/.git/
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.8029462Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/timmiballz22/playwright-mcp
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.9135198Z ##[endgroup]
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.9138733Z ##[group]Disabling automatic garbage collection
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.9140295Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.9698557Z ##[endgroup]
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.9700104Z ##[group]Setting up auth
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.9701331Z Removing SSH command configuration
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:00.9711233Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:01.0267156Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:02.6196040Z Removing HTTP extra header
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:02.6205402Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:02.6582854Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:03.2072768Z Removing includeIf entries pointing to credentials config files
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:03.2083784Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:03.2453094Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:03.7685376Z [command]"C:\Program Files\Git\bin\git.exe" config --file D:\a\_temp\git-credentials-892560fe-b177-4d01-a7ef-e988dda7d461.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:03.8066814Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path D:\a\_temp\git-credentials-892560fe-b177-4d01-a7ef-e988dda7d461.config
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:03.8449270Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path D:\a\_temp\git-credentials-892560fe-b177-4d01-a7ef-e988dda7d461.config
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:03.8854068Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-892560fe-b177-4d01-a7ef-e988dda7d461.config
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:03.9243498Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-892560fe-b177-4d01-a7ef-e988dda7d461.config
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:03.9623982Z ##[endgroup]
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:03.9624515Z ##[group]Fetching the repository
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:03.9635306Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +154b16927753c02ed9d8a502f7094dcb2fcebe01:refs/remotes/pull/2/merge
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:05.5030664Z From https://github.com/timmiballz22/playwright-mcp
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:05.5031851Z  * [new ref]         154b16927753c02ed9d8a502f7094dcb2fcebe01 -> pull/2/merge
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:05.5077074Z ##[endgroup]
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:05.5077713Z ##[group]Determining the checkout info
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:05.5078714Z ##[endgroup]
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:05.5087532Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:05.5626628Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:05.6008788Z ##[group]Checking out the ref
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:05.6017264Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/2/merge
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4896079Z Note: switching to 'refs/remotes/pull/2/merge'.
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4896871Z 
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4897226Z You are in 'detached HEAD' state. You can look around, make experimental
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4898059Z changes and commit them, and you can discard any commits you make in this
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4898818Z state without impacting any branches by switching back to a branch.
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4899295Z 
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4899597Z If you want to create a new branch to retain commits you create, you may
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4900082Z do so (now or later) by using -c with the switch command. Example:
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4900431Z 
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4900581Z   git switch -c <new-branch-name>
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4900787Z 
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4900886Z Or undo this operation with:
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4901129Z 
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4901255Z   git switch -
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4901464Z 
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4901821Z Turn off this advice by setting config variable advice.detachedHead to false
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4902141Z 
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.4902475Z HEAD is now at 154b169 Merge fd1939c7995860b7528c836efb1133b03670f380 into 804bc7ef7a07248a150c98fb5bf417e925ba8033
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.5032939Z ##[endgroup]
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.5560542Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+journal (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:51:06.5913080Z 154b16927753c02ed9d8a502f7094dcb2fcebe01
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-22T11:51:06.6393244Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:06.6393713Z with:
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:06.6393917Z   node-version: 22
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:06.6394148Z   check-latest: false
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:06.6396765Z   token: ***
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:06.6396975Z   package-manager-cache: true
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:06.6397217Z ##[endgroup]
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:06.8116682Z Found in cache @ C:\hostedtoolcache\windows\node\22.23.3\x64
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:07.6859108Z ##[group]Environment details
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:11.8394989Z node: v22.23.3
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:11.8395430Z npm: 10.9.9
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:11.8395610Z yarn: 1.22.22
+journal (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:51:11.8396015Z ##[endgroup]
+journal (windows-latest, 22)	Run durable component tests	﻿2026-10-22T11:51:11.8757767Z ##[group]Run node --test --test-concurrency=1 --test-reporter=tap --test-reporter-destination=stdout --test-reporter=./scripts/component-ci-reporter.mjs --test-reporter-destination=stderr local-batch/jobs/journal.test.mjs local-batch/jobs/journal-stop.test.mjs local-batch/jobs/temporary-cleanup-stop.test.mjs local-batch/jobs/launch-ownership.test.mjs local-batch/jobs/lifetime-observer.test.mjs local-batch/jobs/http-early-metadata.test.mjs local-batch/cleanup.test.mjs local-batch/jobs/guardian.test.mjs local-batch/jobs/guardian-stop.test.mjs local-batch/jobs/guardian-diagnostic.test.mjs local-batch/jobs/guardian-readiness-diagnostic.test.mjs local-batch/jobs/workflow-snapshot.test.mjs local-batch/jobs/controller.test.mjs local-batch/jobs/controller-open.test.mjs local-batch/jobs/component-ci-reporter.test.mjs local-batch/jobs/contention.test.mjs local-batch/jobs/config.test.mjs local-batch/jobs/private-windows.test.mjs local-batch/jobs/artifact-cleanup.test.mjs local-batch/jobs/artifact-cleanup-supervisor.test.mjs local-batch/jobs/artifact-cleanup-receipt.test.mjs local-batch/jobs/retention.test.mjs local-batch/jobs/retained-artifact-budget.test.mjs local-batch/jobs/maintenance.test.mjs local-batch/jobs/queue-clock.test.mjs scripts/ci-test-counts.test.mjs qa/bounded-stderr.test.mjs qa/prepare-vp9-metadata.test.mjs 2>&1 | tee component-tests.log
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:11.8768444Z [36;1mnode --test --test-concurrency=1 --test-reporter=tap --test-reporter-destination=stdout --test-reporter=./scripts/component-ci-reporter.mjs --test-reporter-destination=stderr local-batch/jobs/journal.test.mjs local-batch/jobs/journal-stop.test.mjs local-batch/jobs/temporary-cleanup-stop.test.mjs local-batch/jobs/launch-ownership.test.mjs local-batch/jobs/lifetime-observer.test.mjs local-batch/jobs/http-early-metadata.test.mjs local-batch/cleanup.test.mjs local-batch/jobs/guardian.test.mjs local-batch/jobs/guardian-stop.test.mjs local-batch/jobs/guardian-diagnostic.test.mjs local-batch/jobs/guardian-readiness-diagnostic.test.mjs local-batch/jobs/workflow-snapshot.test.mjs local-batch/jobs/controller.test.mjs local-batch/jobs/controller-open.test.mjs local-batch/jobs/component-ci-reporter.test.mjs local-batch/jobs/contention.test.mjs local-batch/jobs/config.test.mjs local-batch/jobs/private-windows.test.mjs local-batch/jobs/artifact-cleanup.test.mjs local-batch/jobs/artifact-cleanup-supervisor.test.mjs local-batch/jobs/artifact-cleanup-receipt.test.mjs local-batch/jobs/retention.test.mjs local-batch/jobs/retained-artifact-budget.test.mjs local-batch/jobs/maintenance.test.mjs local-batch/jobs/queue-clock.test.mjs scripts/ci-test-counts.test.mjs qa/bounded-stderr.test.mjs qa/prepare-vp9-metadata.test.mjs 2>&1 | tee component-tests.log[0m
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:11.8795612Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:11.8796018Z ##[endgroup]
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:12.2363617Z TAP version 13
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:12.4886178Z # Subtest: temporary cleanup completes in a separate process and reports a startup deadline
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:12.4887076Z ok 1 - temporary cleanup completes in a separate process and reports a startup deadline
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:12.4887521Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:12.4887724Z   duration_ms: 171.0777
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:12.4887944Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:12.4888136Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.3540378Z # Subtest: actual temporary cleanup worker exits on parent death while filesystem awaits
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.3541661Z ok 2 - actual temporary cleanup worker exits on parent death while filesystem awaits
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.3542495Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.3542922Z   duration_ms: 3868.5877
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.3543354Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.3543711Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4493956Z # Subtest: artifact cleanup drain: drained deadline and repeated-error controls
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4495098Z ok 3 - artifact cleanup drain: drained deadline and repeated-error controls
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4495712Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4495991Z   duration_ms: 15.4291
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4498832Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4499123Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4499771Z # Subtest: artifact cleanup late: drained deadline and repeated-error controls
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4500741Z ok 4 - artifact cleanup late: drained deadline and repeated-error controls
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4501375Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4501664Z   duration_ms: 1.2954
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4501984Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4502257Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4503138Z # Subtest: artifact cleanup error: drained deadline and repeated-error controls
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4504183Z ok 5 - artifact cleanup error: drained deadline and repeated-error controls
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4504819Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4505098Z   duration_ms: 2.9598
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4505424Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.4505729Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.9092921Z # Subtest: bounded artifact worker previews, removes and preserves fixed safe errors
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.9094133Z ok 6 - bounded artifact worker previews, removes and preserves fixed safe errors
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.9094833Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.9095122Z   duration_ms: 375.1893
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.9095454Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:16.9095790Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:17.6856069Z # Subtest: artifact worker before-result: independent deadline and natural-exit confirmation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:17.6858067Z ok 7 - artifact worker before-result: independent deadline and natural-exit confirmation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:17.6859078Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:17.6859982Z   duration_ms: 770.5303
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:17.6860506Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:17.6861124Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.4614147Z # Subtest: artifact worker after-result: independent deadline and natural-exit confirmation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.4615778Z ok 8 - artifact worker after-result: independent deadline and natural-exit confirmation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.4616820Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.4617403Z   duration_ms: 779.8927
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.4617981Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.4618516Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.5563368Z # Subtest: artifact worker invalid-result: independent deadline and natural-exit confirmation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.5564829Z ok 9 - artifact worker invalid-result: independent deadline and natural-exit confirmation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.5565629Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.5565947Z   duration_ms: 86.7002
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.5566280Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.5566574Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.6377817Z # Subtest: artifact worker failed-result: independent deadline and natural-exit confirmation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.6379245Z ok 10 - artifact worker failed-result: independent deadline and natural-exit confirmation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.6380020Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.6380315Z   duration_ms: 92.0942
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.6380650Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.6381256Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7328833Z # Subtest: artifact worker signal-exit: independent deadline and natural-exit confirmation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7330128Z ok 11 - artifact worker signal-exit: independent deadline and natural-exit confirmation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7330891Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7331180Z   duration_ms: 93.8921
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7331510Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7332056Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7336658Z # Subtest: an unconfirmed cleanup blocks further scopes in the same controller
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7338362Z ok 12 - an unconfirmed cleanup blocks further scopes in the same controller
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7340010Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7340750Z   duration_ms: 1.1736
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7341112Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:18.7341404Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.8413220Z # Subtest: actual artifact worker exits after controller death while filesystem awaits
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.8416955Z ok 13 - actual artifact worker exits after controller death while filesystem awaits
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.8417801Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.8418270Z   duration_ms: 1100.2757
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.8418834Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.8419259Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9527391Z # Subtest: bounded artifact cleanup previews, removes only one scope and is idempotent
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9528573Z ok 14 - bounded artifact cleanup previews, removes only one scope and is idempotent
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9529225Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9529507Z   duration_ms: 18.9044
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9529814Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9530078Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9530874Z # Subtest: controller rejects active, uncertain and expired-result cleanup before filesystem access
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9532073Z ok 15 - controller rejects active, uncertain and expired-result cleanup before filesystem access
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9532747Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9532991Z   duration_ms: 13.964
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9533284Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:19.9533529Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0313599Z # Subtest: component CI annotations retain only known source location and numeric test index
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0315236Z ok 16 - component CI annotations retain only known source location and numeric test index
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0318614Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0319803Z   duration_ms: 1.3657
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0320369Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0321091Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0321940Z # Subtest: unknown CI paths, malformed fields and error text cannot enter annotations
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0323168Z ok 17 - unknown CI paths, malformed fields and error text cannot enter annotations
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0323983Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0324423Z   duration_ms: 1.046
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0326053Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0326488Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0327477Z # Subtest: component annotation reporter stays silent outside explicit GitHub Actions mode
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0331093Z ok 18 - component annotation reporter stays silent outside explicit GitHub Actions mode
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0332115Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0335551Z   duration_ms: 1.0565
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0336196Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0336491Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0337255Z # Subtest: component annotations classify bounded Node failure metadata without error payloads
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0338349Z ok 19 - component annotations classify bounded Node failure metadata without error payloads
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0338784Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0339394Z   duration_ms: 0.4037
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0339683Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0339855Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0340340Z # Subtest: component failure metadata ignores unknown codes and invalid durations with bounded traversal
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0341118Z ok 20 - component failure metadata ignores unknown codes and invalid durations with bounded traversal
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0341561Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0341727Z   duration_ms: 0.2242
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0341920Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0342091Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0342522Z # Subtest: component classification never invokes error getters and stops before deep causes
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0343350Z ok 21 - component classification never invokes error getters and stops before deep causes
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0343809Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0343980Z   duration_ms: 0.3103
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0344171Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:20.0344347Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9322774Z # Subtest: operator owner/project namespaces are stable, private and independent of tool data
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9324568Z ok 22 - operator owner/project namespaces are stable, private and independent of tool data
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9325384Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9325727Z   duration_ms: 2822.9858
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9326078Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9326374Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9327023Z # Subtest: invalid owner/policy config is rejected before any storage creation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9328039Z ok 23 - invalid owner/policy config is rejected before any storage creation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9328682Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9328966Z   duration_ms: 3.3786
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9329288Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:22.9329570Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:23.8022967Z # Subtest: Windows configuration rejects a junction before writing outside its private namespace
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:23.8024425Z ok 24 - Windows configuration rejects a junction before writing outside its private namespace
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:23.8025238Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:23.8025559Z   duration_ms: 870.3104
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:23.8025940Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:23.8026253Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:24.8644443Z # Subtest: bounded writer contention waits before one mutation without replay
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:24.8645144Z ok 25 - bounded writer contention waits before one mutation without replay
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:24.8645521Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:24.8645695Z   duration_ms: 982.3887
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:24.8645894Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:24.8646058Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.0864362Z # Subtest: recovery with live unexpired records is read-only while another writer owns the lock
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.0865238Z ok 26 - recovery with live unexpired records is read-only while another writer owns the lock
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.0865746Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.0865942Z   duration_ms: 218.7317
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.0866165Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.0866354Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1812683Z # Subtest: controller recovery failure remains primary if journal shutdown also fails
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1813887Z ok 27 - controller recovery failure remains primary if journal shutdown also fails
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1814514Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1814792Z   duration_ms: 2.7174
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1815477Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1815763Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1816538Z # Subtest: controller recovery failure identity is unchanged after confirmed journal shutdown
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1817770Z ok 28 - controller recovery failure identity is unchanged after confirmed journal shutdown
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1818526Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1818825Z   duration_ms: 0.3843
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1819149Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:25.1819434Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:27.5596649Z # Subtest: internal job controller queue-success
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:27.5598067Z ok 29 - internal job controller queue-success
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:27.5598637Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:27.5599119Z   duration_ms: 2297.5853
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:27.5599624Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:27.5600047Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:29.2881607Z # Subtest: internal job controller cancel-and-reconnect
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:29.2882463Z ok 30 - internal job controller cancel-and-reconnect
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:29.2883056Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:29.2883350Z   duration_ms: 1725.4844
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:29.2883700Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:29.2883975Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:32.0321313Z # Subtest: internal job controller queue-pressure
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:32.0322138Z ok 31 - internal job controller queue-pressure
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:32.0322632Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:32.0322941Z   duration_ms: 2749.1263
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:32.0323329Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:32.0323626Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:34.6765730Z # Subtest: internal job controller queue-expiry
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:34.6766669Z ok 32 - internal job controller queue-expiry
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:34.6767361Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:34.6767708Z   duration_ms: 2642.5584
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:34.6768085Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:34.6768369Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:36.9134795Z # Subtest: internal job controller guardian-crash
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:36.9135295Z ok 33 - internal job controller guardian-crash
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:36.9135579Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:36.9135909Z   duration_ms: 2232.8241
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:36.9136176Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:36.9136349Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:38.1491323Z # Subtest: internal job controller close-before-dequeue
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:38.1492129Z ok 34 - internal job controller close-before-dequeue
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:38.1492573Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:38.1492825Z   duration_ms: 1241.7337
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:38.1493149Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:38.1493402Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.2895073Z # Subtest: internal job controller cancel-during-guardian-start
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.2896235Z ok 35 - internal job controller cancel-during-guardian-start
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.2896748Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.2897003Z   duration_ms: 1135.1556
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.2897309Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.2897553Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3695612Z # Subtest: guardian diagnostics retain fixed journal metadata and discard private values
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3696970Z ok 36 - guardian diagnostics retain fixed journal metadata and discard private values
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3697765Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3698083Z   duration_ms: 1.8543
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3698440Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3698732Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3699475Z # Subtest: journal transport diagnostics retain only fixed causes and originating verbs
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3700675Z ok 37 - journal transport diagnostics retain only fixed causes and originating verbs
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3701402Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3701691Z   duration_ms: 0.8938
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3702061Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3702355Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3703075Z # Subtest: unconfirmed journal exit is a fixed boolean diagnostic without raw values
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3704154Z ok 38 - unconfirmed journal exit is a fixed boolean diagnostic without raw values
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3704774Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3705037Z   duration_ms: 0.318
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3705353Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3705622Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3706315Z # Subtest: stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3707741Z ok 39 - stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3708407Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3708676Z   duration_ms: 0.9164
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3709000Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3709272Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3709870Z # Subtest: stderr facts cap distinct metadata and process only a bounded tail
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3710810Z ok 40 - stderr facts cap distinct metadata and process only a bounded tail
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3711397Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3711660Z   duration_ms: 0.9878
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3711978Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3712245Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3713319Z # Subtest: initialization phase diagnostics retain only fixed stages and remain bounded
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3714442Z ok 41 - initialization phase diagnostics retain only fixed stages and remain bounded
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3715103Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3715379Z   duration_ms: 0.5668
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3715711Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3715984Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3716621Z # Subtest: schema subphases round-trip within the existing fixed diagnostic bounds
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3717646Z ok 42 - schema subphases round-trip within the existing fixed diagnostic bounds
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3718296Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3718550Z   duration_ms: 0.3666
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3718865Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.3719130Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.8607539Z # Subtest: controller fixture failure before readiness preserves fixed cause without private stderr
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.8609522Z ok 43 - controller fixture failure before readiness preserves fixed cause without private stderr
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.8611999Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.8612283Z   duration_ms: 411.8804
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.8612624Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:39.8612873Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:40.6223457Z # Subtest: unconfirmed guardian journal exit stops the next queued job even after terminal metadata
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:40.6225440Z ok 44 - unconfirmed guardian journal exit stops the next queued job even after terminal metadata
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:40.6226262Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:40.6226551Z   duration_ms: 668.3592
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:40.6226913Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:40.6227092Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:41.8780365Z # Subtest: durable guardian success: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:41.8781618Z ok 45 - durable guardian success: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:41.8783591Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:41.8784044Z   duration_ms: 1184.1797
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:41.8805970Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:41.8806292Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:43.7789916Z # Subtest: durable guardian cancel: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:43.7790955Z ok 46 - durable guardian cancel: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:43.7791578Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:43.7791883Z   duration_ms: 1892.7865
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:43.7792298Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:43.7792591Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:46.6312463Z # Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:46.6313616Z ok 47 - durable guardian disconnect: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:46.6314243Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:46.6314534Z   duration_ms: 2850.8259
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:46.6314878Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:46.6315173Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:48.7752052Z # Subtest: durable guardian crash: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:48.7752835Z ok 48 - durable guardian crash: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:48.7753188Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:48.7753363Z   duration_ms: 2145.5536
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:48.7753585Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:48.7753765Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:49.6170945Z # Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:49.6172311Z ok 49 - durable guardian mismatch: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:49.6173890Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:49.6174384Z   duration_ms: 844.7957
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:49.6174903Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:49.6175363Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:50.6148012Z # Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:50.6149165Z ok 50 - durable guardian admissionFailure: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:50.6149811Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:50.6150081Z   duration_ms: 992.4309
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:50.6150442Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:50.6150716Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:53.5183594Z # Subtest: durable guardian admissionTimeout: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:53.5184778Z ok 51 - durable guardian admissionTimeout: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:53.5185463Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:53.5185759Z   duration_ms: 2913.0394
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:53.5186121Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:53.5186418Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:54.3544045Z # Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:54.3545264Z ok 52 - durable guardian preDisconnected: cleanup and canonical journal outcome
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:54.3545912Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:54.3546200Z   duration_ms: 829.4706
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:54.3546530Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:54.3546810Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:57.0002337Z # Subtest: early HTTP known projection preserves timeout and fixed validated facts
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:57.0003573Z ok 53 - early HTTP known projection preserves timeout and fixed validated facts
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:57.0004306Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:57.0004602Z   duration_ms: 2559.7089
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:57.0004938Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:57.0005225Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:59.5651702Z # Subtest: early HTTP bad_status projection preserves timeout and fixed validated facts
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:59.5652882Z ok 54 - early HTTP bad_status projection preserves timeout and fixed validated facts
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:59.5653583Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:59.5653904Z   duration_ms: 2562.3641
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:59.5654245Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:51:59.5654524Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1148568Z # Subtest: early HTTP bad_retry projection preserves timeout and fixed validated facts
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1149735Z ok 55 - early HTTP bad_retry projection preserves timeout and fixed validated facts
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1150444Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1150738Z   duration_ms: 2559.6679
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1151095Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1151741Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1940941Z # Subtest: journal init timeout reports unconfirmed exit without waiting forever or losing first cause
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1942737Z ok 56 - journal init timeout reports unconfirmed exit without waiting forever or losing first cause
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1943559Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1943872Z   duration_ms: 8.105
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1944222Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.1946115Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2099400Z # Subtest: journal closed receipt alone cannot confirm worker shutdown
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2100383Z ok 57 - journal closed receipt alone cannot confirm worker shutdown
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2100918Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2101178Z   duration_ms: 4.3814
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2101482Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2101747Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2102669Z # Subtest: busy initialization is not retried while its prior worker exit is unconfirmed
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2103766Z ok 58 - busy initialization is not retried while its prior worker exit is unconfirmed
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2104429Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2104689Z   duration_ms: 3.445
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2104988Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2105264Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2106004Z # Subtest: malformed journal IPC fails pending init safely instead of throwing outside its promise
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2107203Z ok 59 - malformed journal IPC fails pending init safely instead of throwing outside its promise
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2107895Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2109396Z   duration_ms: 1.4463
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2109772Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:02.2110082Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:04.4579430Z # Subtest: real init timeout retains phase configure and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:04.4580361Z ok 60 - real init timeout retains phase configure and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:04.4581292Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:04.4582055Z   duration_ms: 2167.4862
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:04.4582751Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:04.4582946Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:06.5951602Z # Subtest: real init timeout retains phase schema and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:06.5952768Z ok 61 - real init timeout retains phase schema and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:06.5953325Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:06.5953595Z   duration_ms: 2143.8649
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:06.5953916Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:06.5954166Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:08.7476477Z # Subtest: real init timeout retains phase schema_tables and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:08.7477700Z ok 62 - real init timeout retains phase schema_tables and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:08.7478382Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:08.7478698Z   duration_ms: 2150.7427
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:08.7479062Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:08.7479358Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:10.8993739Z # Subtest: real init timeout retains phase schema_metadata and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:10.8994532Z ok 63 - real init timeout retains phase schema_metadata and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:10.8994971Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:10.8995194Z   duration_ms: 2149.8211
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:10.8995431Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:10.8995625Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:13.0337002Z # Subtest: real init timeout retains phase schema_verify and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:13.0337738Z ok 64 - real init timeout retains phase schema_verify and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:13.0338141Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:13.0338337Z   duration_ms: 2139.8716
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:13.0338560Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:13.0338773Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:15.1873990Z # Subtest: real init timeout retains phase schema_commit and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:15.1875121Z ok 65 - real init timeout retains phase schema_commit and confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:15.1875746Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:15.1875975Z   duration_ms: 2151.4741
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:15.1876196Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:15.1876372Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.3570692Z # Subtest: malformed phase packets cannot leak values or become a journal acknowledgment
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.3571991Z ok 66 - malformed phase packets cannot leak values or become a journal acknowledgment
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.3572494Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.3572709Z   duration_ms: 2163.5652
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.3572960Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.3573162Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6131649Z # Subtest: unexpected journal worker exit remains distinct from an RPC timeout
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6132695Z ok 67 - unexpected journal worker exit remains distinct from an RPC timeout
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6133356Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6133683Z   duration_ms: 262.6904
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6133929Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6134118Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6906807Z # Subtest: malformed actual worker IPC is rejected and owned shutdown is confirmed
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6907680Z ok 68 - malformed actual worker IPC is rejected and owned shutdown is confirmed
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6908143Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6908359Z   duration_ms: 75.3217
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6908640Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.6908844Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.8810720Z # Subtest: termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.8811610Z ok 69 - termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.8812080Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.8812269Z   duration_ms: 186.8829
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.8812479Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:17.8812660Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.4995134Z # Subtest: managed directory links and database hardlinks cannot modify another file
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.4996590Z ok 70 - managed directory links and database hardlinks cannot modify another file
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.4997468Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.4997874Z   duration_ms: 620.6355
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.4998311Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.4998686Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.7850002Z # Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.7851475Z ok 71 - a simulated reused PID cannot resume old work or clear uncertain active resources
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.7852217Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.7852555Z   duration_ms: 281.032
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.7852905Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.7853210Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.9910283Z # Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.9911772Z ok 72 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.9912444Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.9912786Z   duration_ms: 203.8487
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.9913132Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:18.9913437Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.1647953Z # Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.1649699Z ok 73 - a success mutation after the persisted deadline cannot commit or release the lease
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.1650624Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.1652236Z   duration_ms: 176.7364
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.1653066Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.1653615Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.3870072Z # Subtest: competing writers initialize consistently and cannot overfill the project queue
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.3871361Z ok 74 - competing writers initialize consistently and cannot overfill the project queue
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.3872092Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.3872379Z   duration_ms: 230.6012
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.3872722Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.3873048Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.7536092Z # Subtest: killed transaction rolls back without a partial job or duplicate request
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.7537399Z ok 75 - killed transaction rolls back without a partial job or duplicate request
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.7538062Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.7538371Z   duration_ms: 367.7605
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.7538710Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:19.7538998Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.1165296Z # Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.1166975Z ok 76 - reconnect marks a dead controller queued job crashed and never requeues its request
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.1167702Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.1167989Z   duration_ms: 362.6328
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.1168321Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.1168586Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.3722289Z # Subtest: corrupt journal is rejected without silently erasing the file
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.3723196Z ok 77 - corrupt journal is rejected without silently erasing the file
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.3723777Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.3723969Z   duration_ms: 254.3006
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.3724183Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.3724355Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.4177496Z # (node:9084) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.4178334Z # (Use `node --trace-warnings ...` to show where the warning was created)
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.5283857Z # Subtest: an unrelated SQLite file is rejected without changing its bytes
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.5284977Z ok 78 - an unrelated SQLite file is rejected without changing its bytes
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.5285601Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.5285917Z   duration_ms: 142.4515
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.5286268Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.5286564Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.9250265Z # Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.9251589Z ok 79 - journal preserves idempotency, owner isolation and a single project execution lease
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.9252684Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.9252983Z   duration_ms: 410.097
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.9253334Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:20.9253653Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:21.3064967Z # Subtest: monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:21.3066394Z ok 80 - monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:21.3067272Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:21.3067623Z   duration_ms: 378.9767
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:21.3068681Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:21.3069480Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:23.1785320Z # Subtest: unexpected exit cannot certify an unreported live browser model as cleaned
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:23.1786087Z ok 81 - unexpected exit cannot certify an unreported live browser model as cleaned
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:23.1786498Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:23.1786681Z   duration_ms: 1771.9556
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:23.1786898Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:23.1787101Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:25.4633699Z # Subtest: unexpected exit unreported browser uncertainty retains durable admission fence after child self-exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:25.4635338Z ok 82 - unexpected exit unreported browser uncertainty retains durable admission fence after child self-exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:25.4636207Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:25.4636535Z   duration_ms: 2295.3026
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:25.4636917Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:25.4637233Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:27.2399967Z # Subtest: reported failure cannot certify an unreported live browser model as cleaned
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:27.2401148Z ok 83 - reported failure cannot certify an unreported live browser model as cleaned
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:27.2401759Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:27.2401967Z   duration_ms: 1766.394
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:27.2402186Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:27.2402359Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:29.5242318Z # Subtest: reported failure unreported browser uncertainty retains durable admission fence after child self-exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:29.5243327Z ok 84 - reported failure unreported browser uncertainty retains durable admission fence after child self-exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:29.5243834Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:29.5244024Z   duration_ms: 2297.7738
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:29.5244241Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:29.5244427Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:30.2680987Z # {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":4,"rememberedRootBirths":3}
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:30.8872077Z # {"fixture":"factory_lifetime_orphan","detected":true,"cleanup":"failed"}
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:31.3793272Z # {"fixture":"factory_lifetime_audit","phase":"self_exit","lifetimes":1,"observed":0}
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:31.8400808Z # {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:31.8558321Z # Subtest: live factory facts retain an owned orphan after its worker exits
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:31.8559890Z ok 85 - live factory facts retain an owned orphan after its worker exits
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:31.8560576Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:31.8560889Z   duration_ms: 2236.0511
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:31.8561266Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:31.8561563Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:32.4904708Z # {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":4,"rememberedRootBirths":3}
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:33.1098621Z # {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:33.6172587Z # {"fixture":"factory_lifetime_audit","phase":"collision_teardown","lifetimes":1,"observed":0}
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:33.6174001Z # Subtest: capture publication failure still releases its assigned factory gate and preserves the collision
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:33.6174830Z ok 86 - capture publication failure still releases its assigned factory gate and preserves the collision
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:33.6175307Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:33.6175499Z   duration_ms: 1767.9939
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:33.6175709Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:33.6175881Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.1419217Z # Subtest: terminal cleanup reservation fences new admissions and other actors without changing history
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.1420402Z ok 87 - terminal cleanup reservation fences new admissions and other actors without changing history
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.1420873Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.1421058Z   duration_ms: 428.468
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.1421265Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.1421443Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.4318998Z # Subtest: unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.4320433Z ok 88 - unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.4321150Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.4321424Z   duration_ms: 303.6761
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.4321740Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:34.4322030Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:35.3324751Z # Subtest: unconfirmed artifact worker is fenced durably from another controller
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:35.3325886Z ok 89 - unconfirmed artifact worker is fenced durably from another controller
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:35.3326570Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:35.3326863Z   duration_ms: 893.991
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:35.3327201Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:35.3327498Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.2360181Z # Subtest: unconfirmed artifact worker is fenced durably from another controller after lost finalization
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.2361103Z ok 90 - unconfirmed artifact worker is fenced durably from another controller after lost finalization
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.2361594Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.2361804Z   duration_ms: 896.9394
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.2362017Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.2362193Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.6964076Z # Subtest: dead maintenance holder becomes uncertain without releasing its reservation or execution history
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.6965367Z ok 91 - dead maintenance holder becomes uncertain without releasing its reservation or execution history
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.6966031Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.6966287Z   duration_ms: 474.0044
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.6966605Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:36.6966791Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:40.2605010Z # Subtest: native Windows storage is protected for current SID/System and namespace remains stable across owners
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:40.2606534Z ok 92 - native Windows storage is protected for current SID/System and namespace remains stable across owners
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:40.2607373Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:40.2607669Z   duration_ms: 3477.1804
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:40.2608027Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:40.2608301Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0371956Z # Subtest: Windows helper JSON preserves Unicode and spaces in private paths
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0372637Z ok 93 - Windows helper JSON preserves Unicode and spaces in private paths
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0373009Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0373188Z   duration_ms: 779.5924
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0373405Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0373591Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0374052Z # ::notice title=Windows directory allocation::{"characters":300,"legacyMkdtemp":"ENOENT"}
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0528572Z # Subtest: Windows artifact allocation supports a deep owned path without relying on mkdtemp
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0529932Z ok 94 - Windows artifact allocation supports a deep owned path without relying on mkdtemp
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0530696Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0530980Z   duration_ms: 10.2372
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0531320Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:41.0531581Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8281688Z # Subtest: unsafe existing ACLs and junctions fail closed without modifying outside state
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8283552Z ok 95 - unsafe existing ACLs and junctions fail closed without modifying outside state
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8284325Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8284663Z   duration_ms: 1784.0569
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8286000Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8286326Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8287083Z # Subtest: Windows helper failure diagnostics contain only fixed process categories
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8288266Z ok 96 - Windows helper failure diagnostics contain only fixed process categories
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8289382Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8289703Z   duration_ms: 0.4271
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8290053Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:42.8290363Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.0983869Z # Subtest: controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.0984852Z ok 97 - controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.0985379Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.0985605Z   duration_ms: 166.2113
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.0985824Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.0986012Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1935207Z # Subtest: retained admission accepts the exact reserved boundary and preserves prior bytes when full
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1937027Z ok 98 - retained admission accepts the exact reserved boundary and preserves prior bytes when full
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1937878Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1938170Z   duration_ms: 15.4792
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1938503Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1938827Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1939407Z # Subtest: retained admission rejects symbolic entries without mutation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1940294Z ok 99 - retained admission rejects symbolic entries without mutation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1940871Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1941147Z   duration_ms: 5.9622
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1941467Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.1941748Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2094275Z # Subtest: retained admission rejects hard entries without mutation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2095482Z ok 100 - retained admission rejects hard entries without mutation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2095898Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2096089Z   duration_ms: 6.2188
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2096303Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2096479Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2252429Z # Subtest: retained admission rejects depth entries without mutation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2253427Z ok 101 - retained admission rejects depth entries without mutation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2253999Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2254314Z   duration_ms: 16.4702
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2254652Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2254939Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2255466Z # Subtest: retained limit rejects malformed trusted configuration
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2256275Z ok 102 - retained limit rejects malformed trusted configuration
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2256819Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2257100Z   duration_ms: 0.4201
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2257430Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.2257722Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.3995919Z # Subtest: real supervised admission denies before browser launch and preserves prior artifacts
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.3997598Z ok 103 - real supervised admission denies before browser launch and preserves prior artifacts
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.3998351Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.3998641Z   duration_ms: 174.7625
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.3998988Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:43.3999264Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:44.9383116Z # Subtest: a stalled retained scan stays inside the existing supervised workflow deadline
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:44.9384475Z ok 104 - a stalled retained scan stays inside the existing supervised workflow deadline
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:44.9385220Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:44.9385546Z   duration_ms: 1545.9014
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:44.9385914Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:44.9386208Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1744669Z # Subtest: retained inventory stops at its entry boundary and closes the directory iterator
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1745915Z ok 105 - retained inventory stops at its entry boundary and closes the directory iterator
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1746650Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1746938Z   duration_ms: 225.1495
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1747264Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1747553Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1748293Z # Subtest: retained admission accepts host temp aliases but rejects caller directory links
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1749475Z ok 106 - retained admission accepts host temp aliases but rejects caller directory links
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1750116Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1750373Z   duration_ms: 5.2194
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1751073Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.1751369Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4605386Z # Subtest: retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4606212Z ok 107 - retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4606659Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4606861Z   duration_ms: 199.993
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4607069Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4607243Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4607570Z # Subtest: invalid or pre-aborted retention does not query storage
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4608093Z ok 108 - invalid or pre-aborted retention does not query storage
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4608406Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4608575Z   duration_ms: 0.7508
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4608771Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.4608942Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5719723Z # (node:9936) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5720936Z # (Use `node --trace-warnings ...` to show where the warning was created)
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5722532Z # Subtest: retention interruption completes one authorized scope and preserves the continuation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5723330Z ok 109 - retention interruption completes one authorized scope and preserves the continuation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5723774Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5723954Z   duration_ms: 102.2521
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5724168Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5724338Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5724784Z # Subtest: artifact retention never conceals a blocked project even when no old artifacts qualify
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5725526Z ok 110 - artifact retention never conceals a blocked project even when no old artifacts qualify
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5725953Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5726126Z   duration_ms: 0.471
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5726329Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5726497Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5726877Z # Subtest: retention stops on lost journal transport without touching later scopes
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5727473Z ok 111 - retention stops on lost journal transport without touching later scopes
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5727934Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5728238Z   duration_ms: 0.5828
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5728484Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:45.5728659Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:46.6336178Z # Subtest: read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:46.6337716Z ok 112 - read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:46.6338886Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:46.6339211Z   duration_ms: 1067.5422
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:46.6339594Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:46.6339904Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.7758281Z # Subtest: actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.7759908Z ok 113 - actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.7760802Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.7761104Z   duration_ms: 2142.7111
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.7762396Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.7762742Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8552989Z # Subtest: temporary cleanup receipt cannot authorize success without confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8554020Z ok 114 - temporary cleanup receipt cannot authorize success without confirmed worker exit
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8554448Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8554637Z   duration_ms: 9.8213
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8554857Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8555072Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8571903Z # Subtest: temporary cleanup repeated IPC errors retain owned-handle termination and uncertainty
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8573034Z ok 115 - temporary cleanup repeated IPC errors retain owned-handle termination and uncertainty
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8573653Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8573889Z   duration_ms: 1.5355
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8574167Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8574436Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8711080Z # Subtest: malformed cleanup receipt fails closed without an uncaught message handler exception
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8712548Z ok 116 - malformed cleanup receipt fails closed without an uncaught message handler exception
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8713102Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8713349Z   duration_ms: 2.2688
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8713609Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8713828Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8870629Z # Subtest: temporary cleanup drains its final receipt after process exit before confirming success
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8871913Z ok 117 - temporary cleanup drains its final receipt after process exit before confirming success
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8872656Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8873325Z   duration_ms: 14.8429
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8873697Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8873991Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8874649Z # Subtest: a late natural cleanup receipt cannot win before a delayed timeout callback
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8875951Z ok 118 - a late natural cleanup receipt cannot win before a delayed timeout callback
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8876702Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8876906Z   duration_ms: 1.356
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8877114Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.8877296Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9661906Z # Subtest: workflow identity ignores object key order, defaults and equivalent repeat expansion
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9663350Z ok 119 - workflow identity ignores object key order, defaults and equivalent repeat expansion
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9664164Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9664486Z   duration_ms: 2.5653
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9664880Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9665190Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9666107Z # Subtest: captured workflow input cannot change after submission and oversized or unknown data is rejected
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9667612Z ok 120 - captured workflow input cannot change after submission and oversized or unknown data is rejected
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9668496Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9668812Z   duration_ms: 4.5869
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9669187Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:48.9669522Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0463455Z # Subtest: stderr capture preserves split UTF-8 bytes and owns its bounded storage
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0464306Z ok 121 - stderr capture preserves split UTF-8 bytes and owns its bounded storage
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0464704Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0464897Z   duration_ms: 2.0201
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0465107Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0465286Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0465760Z # Subtest: stderr capture accepts its exact byte boundary and rejects overflow without leaking text
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0466823Z ok 122 - stderr capture accepts its exact byte boundary and rejects overflow without leaking text
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0467263Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0467446Z   duration_ms: 4.6479
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0467650Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0467823Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0468257Z # Subtest: one oversized stderr chunk is bounded immediately and invalid chunks are rejected
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0468953Z ok 123 - one oversized stderr chunk is bounded immediately and invalid chunks are rejected
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0469397Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0469583Z   duration_ms: 2.0612
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0469785Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.0469961Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.1884309Z # Subtest: build patch refuses extra caller arguments before touching dependencies
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.1885943Z ok 124 - build patch refuses extra caller arguments before touching dependencies
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.1886638Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.1887014Z   duration_ms: 70.6837
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.1887416Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.1887731Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.2517147Z # Subtest: build patch refuses an unreviewed dependency version without mutation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.2518161Z ok 125 - build patch refuses an unreviewed dependency version without mutation
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.2518577Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.2518769Z   duration_ms: 61.1164
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.2518978Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.2519158Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3154330Z # Subtest: build patch refuses unknown source bytes and keeps JSON stdout clean
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3155503Z ok 126 - build patch refuses unknown source bytes and keeps JSON stdout clean
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3156223Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3156528Z   duration_ms: 63.501
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3156758Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3156951Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3790149Z # Subtest: build patch refuses dependency junctions outside its own node_modules
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3791329Z ok 127 - build patch refuses dependency junctions outside its own node_modules
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3791762Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3791952Z   duration_ms: 64.2193
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3792165Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.3792340Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.4425040Z # Subtest: build patch refuses multiply linked source files
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.4426342Z ok 128 - build patch refuses multiply linked source files
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.4427430Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.4427729Z   duration_ms: 64.1513
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.4428072Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.4428349Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5217981Z # Subtest: build patch refuses a linked node_modules shared with another source tree
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5219150Z ok 129 - build patch refuses a linked node_modules shared with another source tree
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5219579Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5219775Z   duration_ms: 68.2917
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5220002Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5220187Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5734651Z # Subtest: build patch preserves incomplete private output and refuses to package it
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5735460Z ok 130 - build patch preserves incomplete private output and refuses to package it
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5735870Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5736060Z   duration_ms: 63.7006
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5736284Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.5736461Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.6488862Z # Subtest: build patch refuses a dependency link to another directory inside node_modules
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.6490170Z ok 131 - build patch refuses a dependency link to another directory inside node_modules
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.6490899Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.6491206Z   duration_ms: 62.3098
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.6491571Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.6491870Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7124659Z # Subtest: CI totals include TAP, Node24 spec and original Playwright summaries
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7125861Z ok 132 - CI totals include TAP, Node24 spec and original Playwright summaries
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7126557Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7127269Z   duration_ms: 2.3562
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7127634Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7127949Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7128664Z # Subtest: a repeated summary is counted once and incomplete Node totals fail closed
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7129773Z ok 133 - a repeated summary is counted once and incomplete Node totals fail closed
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7130415Z   ---
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7130693Z   duration_ms: 0.8408
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7131016Z   type: 'test'
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7131329Z   ...
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7282750Z 1..133
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7283089Z # tests 133
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7283356Z # suites 0
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7283643Z # pass 133
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7283917Z # fail 0
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7284221Z # cancelled 0
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7284551Z # skipped 0
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7284835Z # todo 0
+journal (windows-latest, 22)	Run durable component tests	2026-10-22T11:52:49.7285146Z # duration_ms 97554.0613
+journal (windows-latest, 22)	Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-22T11:52:49.7587322Z Post job cleanup.
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T11:52:49.9273402Z Post job cleanup.
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:50.1251970Z [command]"C:\Program Files\Git\bin\git.exe" version
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:50.1595591Z git version 2.56.0.windows.2
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:50.1665620Z Temporarily overriding HOME='D:\a\_temp\f1df5943-3cae-45b2-984f-c9fbeff37ef2' before making global git config changes
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:50.1667048Z Adding repository directory to the temporary git global config as a safe directory
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:50.1676525Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\playwright-mcp\playwright-mcp
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:50.2046882Z Removing SSH command configuration
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:50.2056807Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:50.2449058Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:50.8897383Z Removing HTTP extra header
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:50.8907533Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:50.9306806Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.5074188Z Removing includeIf entries pointing to credentials config files
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.5085298Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.5430607Z includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.5431401Z includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.5432124Z includeif.gitdir:/github/workspace/.git.path
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.5433251Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.5471381Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.5814386Z D:\a\_temp\git-credentials-892560fe-b177-4d01-a7ef-e988dda7d461.config
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.5868945Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path D\:\\a\\_temp\\git\-credentials\-892560fe\-b177\-4d01\-a7ef\-e988dda7d461\.config
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.6260322Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.6617439Z D:\a\_temp\git-credentials-892560fe-b177-4d01-a7ef-e988dda7d461.config
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.6664055Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path D\:\\a\\_temp\\git\-credentials\-892560fe\-b177\-4d01\-a7ef\-e988dda7d461\.config
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.7051916Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git.path
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.7392834Z /github/runner_temp/git-credentials-892560fe-b177-4d01-a7ef-e988dda7d461.config
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.7436812Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-892560fe\-b177\-4d01\-a7ef\-e988dda7d461\.config
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.7835199Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.8255545Z /github/runner_temp/git-credentials-892560fe-b177-4d01-a7ef-e988dda7d461.config
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.8307708Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-892560fe\-b177\-4d01\-a7ef\-e988dda7d461\.config
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:51.8748572Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+journal (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:52:52.4236944Z Removing credentials config 'D:\a\_temp\git-credentials-892560fe-b177-4d01-a7ef-e988dda7d461.config'
+journal (windows-latest, 22)	Complete job	﻿2026-10-22T11:52:52.4433819Z Cleaning up orphan processes

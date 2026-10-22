@@ -61,3 +61,11 @@ ready0/network2/error0 sample or every Windows host/codec. This fork retains its
 strict playback failures; no skip, xfail or assertion/deadline change follows.
 Mac WebKit decoded-color fidelity remains a separate failure under investigation.
 Exact source blob and scope: evidence/native86-upstream-webkit-media-proof.json.
+
+Metadata-copy diagnostics use an optional external ffmpeg tool, not a product
+runtime dependency or fix. CI can install it on macOS within a separate5m step
+budget; the existing30m job and all test/action limits remain unchanged. Optional
+setup failure is retained without hiding original browser tests. Copies never
+replace the original recording or its strict decoded-pixel result. Native86 had
+no stock ffmpeg; its empty controls prove no metadata hypothesis. Local gate fix
+requires an actual failed result because successful tool replies echo source.

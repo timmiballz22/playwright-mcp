@@ -1,0 +1,175 @@
+{
+  "source": "fd1939c",
+  "batch": {
+    "run": 39773672301,
+    "pass": 1566,
+    "fail": 6
+  },
+  "originalIncludingLegacy": {
+    "run": 39773672308,
+    "pass": 552,
+    "fail": 5
+  },
+  "combined": {
+    "pass": 2118,
+    "fail": 11,
+    "testSkips": 0,
+    "testCancels": 0
+  },
+  "configuredMainLanes": "All five executed; Windows203 vs Linux22/24 and Mac211 reflect explicit platform case differences, not8 missing tests",
+  "installedPackages": {
+    "complete": 5,
+    "files": 297,
+    "node20SQLite": "explicitly unsupported; no storage/guardian feature PASS inferred"
+  },
+  "actualClients": [
+    {
+      "job": "codex_client (windows-latest)",
+      "completed": 1000,
+      "durationMs": 38424,
+      "modelTurns": 0,
+      "activeOwnedProcesses": 0
+    },
+    {
+      "job": "codex_client (macos-15-intel)",
+      "completed": 1000,
+      "durationMs": 113470,
+      "modelTurns": 0,
+      "activeOwnedProcesses": 0
+    },
+    {
+      "job": "codex_client (ubuntu-latest)",
+      "completed": 1000,
+      "durationMs": 36077,
+      "modelTurns": 0,
+      "activeOwnedProcesses": 0
+    }
+  ],
+  "mac": {
+    "sdkCompleted": 979,
+    "syncCompleted": 989,
+    "raw1k": "passed",
+    "serverControl": {
+      "completed": 1000,
+      "durationMs": 114886
+    },
+    "pipeControl": {
+      "completed": 1000,
+      "durationMs": 106955
+    },
+    "controlsBeforeForceAndFinalOwned": 0
+  },
+  "windows": {
+    "privacy": {
+      "verifiedCases": 4,
+      "route": "/429",
+      "reason": "timeout",
+      "completed": 0,
+      "requestsSeen": 0,
+      "responsesFinished": 0,
+      "browserEventMs": 10809,
+      "budgetMs": 15000,
+      "ownedAuditConfirmed": true
+    },
+    "locatorPositive": {
+      "completed": 16,
+      "total": 19,
+      "failedStep": 17,
+      "failureKind": "pointer_action_timeout",
+      "forced": true,
+      "cleanup": "terminated",
+      "tempCleanup": "removed",
+      "laterAmbiguityCases": "unexecuted for Firefox"
+    },
+    "retry429": {
+      "completed": 1,
+      "hits": 2,
+      "responsesFinished": 2,
+      "cleanup": "terminated",
+      "tempCleanup": "removed",
+      "laterCases": "unexecuted for Firefox"
+    },
+    "legacyInputs": [
+      {
+        "job": "batch (windows-latest, 22)",
+        "freshRun": 9,
+        "completed": 15,
+        "total": 23,
+        "failedStep": 16,
+        "failureKind": "locator_timeout",
+        "cleanupFailures": [],
+        "counterProbe": null
+      },
+      {
+        "job": "test (windows-latest)",
+        "freshRun": 5,
+        "completed": 6,
+        "total": 23,
+        "failedStep": 7,
+        "failureKind": "locator_timeout",
+        "cleanupFailures": [],
+        "counterProbe": "timeout"
+      }
+    ],
+    "controls": {
+      "private": {
+        "freshRuns": 10,
+        "confirmedActions": 230,
+        "ok": true
+      },
+      "inherited": {
+        "freshRuns": 10,
+        "confirmedActions": 230,
+        "ok": true
+      },
+      "protocolHeaded": {
+        "freshRuns": 10,
+        "confirmedActions": 230,
+        "ok": true
+      },
+      "stockHeaded": {
+        "freshRuns": 0,
+        "confirmedActions": 5,
+        "ok": false,
+        "failure": "context_timeout"
+      },
+      "beforeForceAndFinalOwned": 0
+    }
+  },
+  "original": {
+    "linux": {
+      "pass": 184,
+      "fail": 0
+    },
+    "mac": {
+      "pass": 182,
+      "fail": 2,
+      "failures": [
+        "Chromium screenshot protocol capture in advanced case",
+        "WebKit decoded pixel248/37/0"
+      ]
+    },
+    "windows": {
+      "pass": 182,
+      "fail": 2,
+      "failures": [
+        "WebKit PCM readiness",
+        "WebKit VP9 readiness"
+      ]
+    },
+    "docker": {
+      "pass": 2,
+      "fail": 0,
+      "encoderHashVerified": true
+    },
+    "newHydrationLazyWorkerCases": 36,
+    "newCasesPassed": 36
+  },
+  "metadataProbe": "All unexecuted, stock ffmpeg absent; healthy source-echo matching defect fixed locally; no color causality claimed from these empty controls",
+  "ownership": "One full legacy comparison retained. Current candidate birth differs from one captured same-PID incarnation; another root row lacks matching captured birth. Narrow facts only, no broad ownership/debt clearance. Old136/142 and missing original births remain unresolved.",
+  "unexecuted": [
+    "Mac modal repeats after original failure",
+    "Firefox later privacy/retry/locator-negative subcases after primary failures"
+  ],
+  "acceptance": "incomplete"
+}

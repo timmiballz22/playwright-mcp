@@ -1,6 +1,14 @@
 # Release acceptance is blocked
 
-Latest completed native85 at23b07fd:1646 reported passes/9 failures; Windows
+Latest completed native86 atfd1939c:2118 reported passes/11 failures, all five
+main lanes executed; five297-file package checks and all three actual1k clients
+pass with scoped Node20 storage unsupported. Windows/Mac input/lifecycle,
+WebKit media and Mac screenshot failures remain. Native metadata controls were
+unexecuted (ffmpeg absent); source-echo probe gate is corrected locally. Current
+strict failures and historical ownership/exit uncertainty stay open. Exact scope:
+CODEX_EXECUTION_REPORT.md, ledger and evidence/native86-summary.json.
+
+Historical native85 at23b07fd:1646 reported passes/9 failures; Windows
 main batch and Linux22 package/main remain unexecuted (schema init timeout with
 worker exit unconfirmed; install canceled at30m job limit respectively). All
 three actual Codex1k probes pass this sample. Firefox VP9 shift passes all OS;
