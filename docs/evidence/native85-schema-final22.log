@@ -1,0 +1,300 @@
+TAP version 13
+# Subtest: controller recovery failure remains primary if journal shutdown also fails
+ok 1 - controller recovery failure remains primary if journal shutdown also fails
+  ---
+  duration_ms: 2.50255
+  type: 'test'
+  ...
+# Subtest: controller recovery failure identity is unchanged after confirmed journal shutdown
+ok 2 - controller recovery failure identity is unchanged after confirmed journal shutdown
+  ---
+  duration_ms: 0.606136
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-success
+ok 3 - internal job controller queue-success
+  ---
+  duration_ms: 2046.823643
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-and-reconnect
+ok 4 - internal job controller cancel-and-reconnect
+  ---
+  duration_ms: 1178.161782
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-pressure
+ok 5 - internal job controller queue-pressure
+  ---
+  duration_ms: 1702.690633
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-expiry
+ok 6 - internal job controller queue-expiry
+  ---
+  duration_ms: 1721.921181
+  type: 'test'
+  ...
+# Subtest: internal job controller guardian-crash
+ok 7 - internal job controller guardian-crash
+  ---
+  duration_ms: 1959.953222
+  type: 'test'
+  ...
+# Subtest: internal job controller close-before-dequeue
+ok 8 - internal job controller close-before-dequeue
+  ---
+  duration_ms: 817.411268
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-during-guardian-start
+ok 9 - internal job controller cancel-during-guardian-start
+  ---
+  duration_ms: 790.279904
+  type: 'test'
+  ...
+# Subtest: guardian diagnostics retain fixed journal metadata and discard private values
+ok 10 - guardian diagnostics retain fixed journal metadata and discard private values
+  ---
+  duration_ms: 1.757051
+  type: 'test'
+  ...
+# Subtest: journal transport diagnostics retain only fixed causes and originating verbs
+ok 11 - journal transport diagnostics retain only fixed causes and originating verbs
+  ---
+  duration_ms: 0.44607
+  type: 'test'
+  ...
+# Subtest: unconfirmed journal exit is a fixed boolean diagnostic without raw values
+ok 12 - unconfirmed journal exit is a fixed boolean diagnostic without raw values
+  ---
+  duration_ms: 1.45671
+  type: 'test'
+  ...
+# Subtest: stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+ok 13 - stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+  ---
+  duration_ms: 0.891816
+  type: 'test'
+  ...
+# Subtest: stderr facts cap distinct metadata and process only a bounded tail
+ok 14 - stderr facts cap distinct metadata and process only a bounded tail
+  ---
+  duration_ms: 2.02502
+  type: 'test'
+  ...
+# Subtest: initialization phase diagnostics retain only fixed stages and remain bounded
+ok 15 - initialization phase diagnostics retain only fixed stages and remain bounded
+  ---
+  duration_ms: 0.661457
+  type: 'test'
+  ...
+# Subtest: schema subphases round-trip within the existing fixed diagnostic bounds
+ok 16 - schema subphases round-trip within the existing fixed diagnostic bounds
+  ---
+  duration_ms: 0.504217
+  type: 'test'
+  ...
+# Subtest: controller fixture failure before readiness preserves fixed cause without private stderr
+ok 17 - controller fixture failure before readiness preserves fixed cause without private stderr
+  ---
+  duration_ms: 131.672747
+  type: 'test'
+  ...
+# Subtest: unconfirmed guardian journal exit stops the next queued job even after terminal metadata
+ok 18 - unconfirmed guardian journal exit stops the next queued job even after terminal metadata
+  ---
+  duration_ms: 120.787596
+  type: 'test'
+  ...
+# Subtest: durable guardian success: cleanup and canonical journal outcome
+ok 19 - durable guardian success: cleanup and canonical journal outcome
+  ---
+  duration_ms: 736.30115
+  type: 'test'
+  ...
+# Subtest: durable guardian cancel: cleanup and canonical journal outcome
+ok 20 - durable guardian cancel: cleanup and canonical journal outcome
+  ---
+  duration_ms: 1493.755508
+  type: 'test'
+  ...
+# Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+ok 21 - durable guardian disconnect: cleanup and canonical journal outcome
+  ---
+  duration_ms: 2501.337477
+  type: 'test'
+  ...
+# Subtest: durable guardian crash: cleanup and canonical journal outcome
+ok 22 - durable guardian crash: cleanup and canonical journal outcome
+  ---
+  duration_ms: 1463.214717
+  type: 'test'
+  ...
+# Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+ok 23 - durable guardian mismatch: cleanup and canonical journal outcome
+  ---
+  duration_ms: 572.683886
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+ok 24 - durable guardian admissionFailure: cleanup and canonical journal outcome
+  ---
+  duration_ms: 577.656532
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionTimeout: cleanup and canonical journal outcome
+ok 25 - durable guardian admissionTimeout: cleanup and canonical journal outcome
+  ---
+  duration_ms: 2526.764548
+  type: 'test'
+  ...
+# Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+ok 26 - durable guardian preDisconnected: cleanup and canonical journal outcome
+  ---
+  duration_ms: 432.928499
+  type: 'test'
+  ...
+# Subtest: real init timeout retains phase configure and confirmed worker exit
+ok 27 - real init timeout retains phase configure and confirmed worker exit
+  ---
+  duration_ms: 2077.874633
+  type: 'test'
+  ...
+# Subtest: real init timeout retains phase schema and confirmed worker exit
+ok 28 - real init timeout retains phase schema and confirmed worker exit
+  ---
+  duration_ms: 2076.119689
+  type: 'test'
+  ...
+# Subtest: real init timeout retains phase schema_tables and confirmed worker exit
+ok 29 - real init timeout retains phase schema_tables and confirmed worker exit
+  ---
+  duration_ms: 2079.453838
+  type: 'test'
+  ...
+# Subtest: real init timeout retains phase schema_metadata and confirmed worker exit
+ok 30 - real init timeout retains phase schema_metadata and confirmed worker exit
+  ---
+  duration_ms: 2078.656039
+  type: 'test'
+  ...
+# Subtest: real init timeout retains phase schema_verify and confirmed worker exit
+ok 31 - real init timeout retains phase schema_verify and confirmed worker exit
+  ---
+  duration_ms: 2076.786376
+  type: 'test'
+  ...
+# Subtest: real init timeout retains phase schema_commit and confirmed worker exit
+ok 32 - real init timeout retains phase schema_commit and confirmed worker exit
+  ---
+  duration_ms: 2097.851371
+  type: 'test'
+  ...
+# Subtest: malformed phase packets cannot leak values or become a journal acknowledgment
+ok 33 - malformed phase packets cannot leak values or become a journal acknowledgment
+  ---
+  duration_ms: 2092.472631
+  type: 'test'
+  ...
+# Subtest: unexpected journal worker exit remains distinct from an RPC timeout
+ok 34 - unexpected journal worker exit remains distinct from an RPC timeout
+  ---
+  duration_ms: 181.838288
+  type: 'test'
+  ...
+# Subtest: malformed actual worker IPC is rejected and owned shutdown is confirmed
+ok 35 - malformed actual worker IPC is rejected and owned shutdown is confirmed
+  ---
+  duration_ms: 48.002033
+  type: 'test'
+  ...
+# Subtest: termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+ok 36 - termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+  ---
+  duration_ms: 95.634934
+  type: 'test'
+  ...
+# Subtest: managed directory links and database hardlinks cannot modify another file
+ok 37 - managed directory links and database hardlinks cannot modify another file
+  ---
+  duration_ms: 447.266068
+  type: 'test'
+  ...
+# Subtest: POSIX journal directory must exclude group and other access
+ok 38 - POSIX journal directory must exclude group and other access
+  ---
+  duration_ms: 66.752348
+  type: 'test'
+  ...
+# Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+ok 39 - a simulated reused PID cannot resume old work or clear uncertain active resources
+  ---
+  duration_ms: 157.910167
+  type: 'test'
+  ...
+# Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+ok 40 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+  ---
+  duration_ms: 77.067669
+  type: 'test'
+  ...
+# Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+ok 41 - a success mutation after the persisted deadline cannot commit or release the lease
+  ---
+  duration_ms: 65.65698
+  type: 'test'
+  ...
+# Subtest: competing writers initialize consistently and cannot overfill the project queue
+ok 42 - competing writers initialize consistently and cannot overfill the project queue
+  ---
+  duration_ms: 93.220385
+  type: 'test'
+  ...
+# Subtest: killed transaction rolls back without a partial job or duplicate request
+ok 43 - killed transaction rolls back without a partial job or duplicate request
+  ---
+  duration_ms: 217.194616
+  type: 'test'
+  ...
+# Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+ok 44 - reconnect marks a dead controller queued job crashed and never requeues its request
+  ---
+  duration_ms: 158.349655
+  type: 'test'
+  ...
+# Subtest: corrupt journal is rejected without silently erasing the file
+ok 45 - corrupt journal is rejected without silently erasing the file
+  ---
+  duration_ms: 121.758455
+  type: 'test'
+  ...
+# (node:1061453) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: an unrelated SQLite file is rejected without changing its bytes
+ok 46 - an unrelated SQLite file is rejected without changing its bytes
+  ---
+  duration_ms: 70.04313
+  type: 'test'
+  ...
+# Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+ok 47 - journal preserves idempotency, owner isolation and a single project execution lease
+  ---
+  duration_ms: 201.176492
+  type: 'test'
+  ...
+# Subtest: monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+ok 48 - monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+  ---
+  duration_ms: 188.154126
+  type: 'test'
+  ...
+1..48
+# tests 48
+# suites 0
+# pass 48
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 38179.379761

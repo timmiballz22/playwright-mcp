@@ -1,4 +1,4 @@
-export const JOURNAL_INIT_STAGES = Object.freeze(['not_observed','spawned','received','directory','key','file','open','identity','configure','schema','ready']);
+export const JOURNAL_INIT_STAGES = Object.freeze(['not_observed','spawned','received','directory','key','file','open','identity','configure','schema','schema_tables','schema_metadata','schema_verify','schema_commit','ready']);
 export const JOURNAL_FAILURE_CAUSES = Object.freeze(['rpc_timeout', 'worker_exit', 'worker_error', 'send_failure', 'closed', 'aborted', 'worker_rejected', 'invalid_response']);
 export const COMMAND_FIELDS = new Map([
   ['init', ['directory', 'projectId', 'ownerId', 'instanceId', 'pid']],

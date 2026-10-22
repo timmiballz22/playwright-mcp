@@ -1,13 +1,22 @@
 # Release acceptance is blocked
 
+Latest completed native85 at23b07fd:1646 reported passes/9 failures; Windows
+main batch and Linux22 package/main remain unexecuted (schema init timeout with
+worker exit unconfirmed; install canceled at30m job limit respectively). All
+three actual Codex1k probes pass this sample. Firefox VP9 shift passes all OS;
+Mac WebKit color, Windows WebKit readiness, screenshot/input and Mac1k lifecycle
+failures remain. Next local schema/metadata/preservation fixtures await native
+verification. Historical ownership/resource/security/operator gates remain open.
+See CODEX_EXECUTION_REPORT.md, ledger and evidence/native85-summary.json.
+
 The mission is incomplete. Do not merge or publish this candidate as release-ready.
-Latest completed native84 at `096b617` reports1773 passes/10 failures, with
+Historical native84 at `096b617` reports1773 passes/10 failures, with
 Windows main batch unexecuted after installed guardian initialization failed.
 Original media failures include shifted/gray frames and Windows WebKit readiness;
 Mac raw/SDK/actual-client deadlines remain. Full evidence and reduced-coverage
 limits are in CODEX_EXECUTION_REPORT.md and evidence/native84-summary.json.
 
-Native85 is running at `23b07fd` ([batch39768881695](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881695),
+Native85 later ran at `23b07fd` ([batch39768881695](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881695),
 [original39768881668](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881668)).
 It contains a deterministic, hash-pinned build-time VP9 matrix patch and bundled
 Playwright runtime. Local scripts-disabled297-file production installation and

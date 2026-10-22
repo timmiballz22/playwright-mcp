@@ -226,6 +226,7 @@ const handlers = new Map([
     db.exec('PRAGMA max_page_count=4096; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA foreign_keys=ON; PRAGMA trusted_schema=OFF; PRAGMA wal_autocheckpoint=128; PRAGMA journal_size_limit=1048576');
     report?.('schema');
     transaction(() => {
+      report?.('schema_tables');
       db.exec([
         'CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY,value TEXT NOT NULL)',
         "CREATE TABLE IF NOT EXISTS jobs (id TEXT PRIMARY KEY,owner TEXT NOT NULL,request_key TEXT NOT NULL,fingerprint TEXT NOT NULL,state TEXT NOT NULL CHECK(state IN ('CREATED','VALIDATING','QUEUED','RUNNING','SUCCEEDED','FAILED','CANCELLED','TIMED_OUT','CRASHED')),revision INTEGER NOT NULL,stage TEXT NOT NULL,created_at INTEGER NOT NULL,updated_at INTEGER NOT NULL,deadline_at INTEGER NOT NULL,total INTEGER NOT NULL,completed INTEGER NOT NULL DEFAULT 0,controller_pid INTEGER NOT NULL,instance TEXT NOT NULL,cancel_requested INTEGER NOT NULL DEFAULT 0,started INTEGER NOT NULL DEFAULT 0,supervisor_pid INTEGER,worker_pid INTEGER,browser_pids TEXT NOT NULL DEFAULT '[]',reason TEXT,summary TEXT,uncertain INTEGER NOT NULL DEFAULT 0,UNIQUE(owner,request_key))",
@@ -233,11 +234,14 @@ const handlers = new Map([
         'CREATE TABLE IF NOT EXISTS execution_lease (singleton INTEGER PRIMARY KEY CHECK(singleton=1),job_id TEXT NOT NULL REFERENCES jobs(id),nonce TEXT NOT NULL,instance TEXT NOT NULL,holder_pid INTEGER NOT NULL,uncertain INTEGER NOT NULL DEFAULT 0)',
         'PRAGMA user_version=1',
       ].join(';'));
+      report?.('schema_metadata');
       const bind = db.prepare('INSERT OR IGNORE INTO meta(key,value) VALUES(?,?)');
       bind.run('project', data.projectId);
       bind.run('key_id', keyId);
+      report?.('schema_verify');
       if (db.prepare('SELECT value FROM meta WHERE key=?').get('project').value !== data.projectId ||
           db.prepare('SELECT value FROM meta WHERE key=?').get('key_id').value !== keyId) error('store_identity_mismatch');
+      report?.('schema_commit');
     });
     report?.('ready');
     return { schemaVersion: 1 };

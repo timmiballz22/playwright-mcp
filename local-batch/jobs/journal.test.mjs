@@ -15,18 +15,19 @@ if (!supportsJournal) {
     await assert.rejects(JobJournal.open({}), { code: 'unsupported_runtime' });
   });
 } else {
-  test('real init timeout retains the last received phase and confirmed worker exit', async () => {
+  for (const [mode, stage] of [['1', 'configure'], ...['schema', 'schema_tables', 'schema_metadata', 'schema_verify', 'schema_commit'].map(stage => [stage, stage])])
+  test('real init timeout retains phase ' + stage + ' and confirmed worker exit', async () => {
     const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-init-phase-'));
     const config = { directory, projectId: '7'.repeat(64), ownerId: 'init-phase-owner' };
     const previous = process.env.PLAYWRIGHT_TEST_JOURNAL_INIT_PAUSE; let journal; let verified = false; let primary;
     try {
-      process.env.PLAYWRIGHT_TEST_JOURNAL_INIT_PAUSE = '1';
+      process.env.PLAYWRIGHT_TEST_JOURNAL_INIT_PAUSE = mode;
       await assert.rejects(JobJournal.open({ ...config, workerModule: new URL('./fixtures/transaction-fault.mjs', import.meta.url) }), error => {
         assert.equal(error.code, 'journal_unavailable'); assert.equal(error.journalFailure, 'rpc_timeout');
-        assert.equal(error.journalFailureCommand, 'init'); assert.equal(error.journalInitStage, 'configure');
+        assert.equal(error.journalFailureCommand, 'init'); assert.equal(error.journalInitStage, stage);
         assert.equal(error.journalExitConfirmed, true); return true;
       });
-      await stat(path.join(directory, 'init-configure-paused'));
+      await stat(path.join(directory, 'init-' + stage + '-paused'));
       delete process.env.PLAYWRIGHT_TEST_JOURNAL_INIT_PAUSE;
       journal = await JobJournal.open(config);
       assert.deepEqual(await journal.call('integrity'), { ok: true }); assert.deepEqual(await journal.call('list'), []);

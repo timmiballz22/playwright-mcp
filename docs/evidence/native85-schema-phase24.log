@@ -1,0 +1,51 @@
+✔ guardian diagnostics retain fixed journal metadata and discard private values (1.884997ms)
+✔ journal transport diagnostics retain only fixed causes and originating verbs (0.35675ms)
+✔ unconfirmed journal exit is a fixed boolean diagnostic without raw values (0.313031ms)
+✔ stderr facts accept only fixed endpoint diagnostics and discard unrelated text (2.126907ms)
+✔ stderr facts cap distinct metadata and process only a bounded tail (3.177159ms)
+✔ initialization phase diagnostics retain only fixed stages and remain bounded (0.532837ms)
+✔ controller fixture failure before readiness preserves fixed cause without private stderr (133.516841ms)
+✔ real init timeout retains phase configure and confirmed worker exit (2106.011291ms)
+✔ real init timeout retains phase schema and confirmed worker exit (2053.07366ms)
+✔ real init timeout retains phase schema_tables and confirmed worker exit (2057.19252ms)
+✔ real init timeout retains phase schema_metadata and confirmed worker exit (2076.939744ms)
+✔ real init timeout retains phase schema_verify and confirmed worker exit (2064.11983ms)
+✔ real init timeout retains phase schema_commit and confirmed worker exit (2056.684013ms)
+✖ malformed phase packets cannot leak values or become a journal acknowledgment (2067.59638ms)
+✔ unexpected journal worker exit remains distinct from an RPC timeout (101.039775ms)
+✔ malformed actual worker IPC is rejected and owned shutdown is confirmed (33.747594ms)
+✔ termination failure diagnostics persist without losing uncertain cleanup or releasing the lease (69.88584ms)
+✔ managed directory links and database hardlinks cannot modify another file (346.149536ms)
+✔ POSIX journal directory must exclude group and other access (42.414849ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (107.376606ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (57.960167ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (57.132987ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (82.321667ms)
+✔ killed transaction rolls back without a partial job or duplicate request (196.159428ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (137.748765ms)
+✔ corrupt journal is rejected without silently erasing the file (104.253747ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (50.395229ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (164.683407ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (147.596263ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 28
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16512.142765
+
+✖ failing tests:
+
+test at local-batch/jobs/journal.test.mjs:48:3
+✖ malformed phase packets cannot leak values or become a journal acknowledgment (2067.59638ms)
+  ReferenceError: stage is not defined
+      at Object.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal.test.mjs:65:49)
+      at expectedException (node:assert:578:17)
+      at expectsError (node:assert:703:21)
+      at strict.rejects (node:assert:769:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal.test.mjs:63:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

@@ -1,0 +1,512 @@
+batch (ubuntu-latest, 22)	Set up job	﻿2026-10-22T11:12:55.7468981Z Current runner version: '2.338.0'
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7497991Z ##[group]Runner Image Provisioner
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7498926Z Hosted Compute Agent
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7499604Z Version: 20261015.610
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7500285Z Commit: 267fdb4e8bbec4ab5ea31367f3a00d5c480c7656
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7501090Z Build Date: 2026-10-14T17:06:54Z
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7501846Z Worker ID: {8089f0c8-38b5-4a86-9e8e-5c86871561fa}
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7502611Z Region: westus
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7503264Z Cloud: Azure
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7503842Z ##[endgroup]
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7505307Z ##[group]Operating System
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7506433Z Ubuntu
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7507048Z 24.04.5
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7507572Z LTS
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7508183Z ##[endgroup]
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7508763Z ##[group]Runner Image
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7509417Z Image: ubuntu-24.04
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7510099Z Version: 20261018.339.1
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7511190Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261018.339/images/ubuntu/Ubuntu2404-Readme.md
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7513020Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261018.339
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7514020Z ##[endgroup]
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7515209Z ##[group]GITHUB_TOKEN Permissions
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7517572Z Contents: read
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7518246Z Metadata: read
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7518816Z ##[endgroup]
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7521050Z Secret source: Actions
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7522041Z Cache mode: write
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7522886Z Prepare workflow directory
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7873130Z Prepare all required actions
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.7946916Z Getting action download info
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:56.1649987Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:56.2959485Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:56.3798943Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+batch (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:56.5886622Z Complete job name: batch (ubuntu-latest, 22)
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T11:12:56.6746504Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6747732Z with:
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6748286Z   repository: timmiballz22/playwright-mcp
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6752245Z   token: ***
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6752741Z   ssh-strict: true
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6753238Z   ssh-user: git
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6753738Z   persist-credentials: true
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6754290Z   clean: true
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6754799Z   sparse-checkout-cone-mode: true
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6755390Z   fetch-depth: 1
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6756072Z   fetch-tags: false
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6756584Z   show-progress: true
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6757085Z   lfs: false
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6757552Z   submodules: false
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6758082Z   set-safe-directory: true
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6758676Z   allow-unsafe-pr-checkout: false
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.6759540Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7786318Z Syncing repository: timmiballz22/playwright-mcp
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7789481Z ##[group]Getting Git version info
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7791051Z Working directory is '/home/runner/work/playwright-mcp/playwright-mcp'
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7793051Z [command]/usr/bin/git version
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7855514Z git version 2.55.0
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7879958Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7891980Z Temporarily overriding HOME='/home/runner/work/_temp/2adbdda9-64ab-41b0-871e-c5f29fa03a8a' before making global git config changes
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7894919Z Adding repository directory to the temporary git global config as a safe directory
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7901067Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/playwright-mcp/playwright-mcp
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7956956Z Deleting the contents of '/home/runner/work/playwright-mcp/playwright-mcp'
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7959658Z ##[group]Determining repository object format
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7961935Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7963463Z ##[group]Initializing the repository
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.7965136Z [command]/usr/bin/git init /home/runner/work/playwright-mcp/playwright-mcp
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8070634Z hint: Using 'master' as the name for the initial branch. This default branch name
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8074634Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8077350Z hint: to use in all of your new repositories, which will suppress this warning,
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8079455Z hint: call:
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8080791Z hint:
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8082345Z hint: 	git config --global init.defaultBranch <name>
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8084144Z hint:
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8085917Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8088215Z hint: 'development'. The just-created branch can be renamed via this command:
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8090259Z hint:
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8092752Z hint: 	git branch -m <name>
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8094080Z hint:
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8095976Z hint: Disable this message with "git config set advice.defaultBranchName false"
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8098386Z Initialized empty Git repository in /home/runner/work/playwright-mcp/playwright-mcp/.git/
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8102722Z [command]/usr/bin/git remote add origin https://github.com/timmiballz22/playwright-mcp
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8147700Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8149525Z ##[group]Disabling automatic garbage collection
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8154215Z [command]/usr/bin/git config --local gc.auto 0
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8199634Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8201668Z ##[group]Setting up auth
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8203159Z Removing SSH command configuration
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8207666Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8248883Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8739606Z Removing HTTP extra header
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8741928Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.8748435Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.9038640Z Removing includeIf entries pointing to credentials config files
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.9044385Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.9098400Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.9361892Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-883b98c0-d5d9-4dff-94e6-4d7bc5aa37b9.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.9413752Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path /home/runner/work/_temp/git-credentials-883b98c0-d5d9-4dff-94e6-4d7bc5aa37b9.config
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.9459714Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-883b98c0-d5d9-4dff-94e6-4d7bc5aa37b9.config
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.9507661Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-883b98c0-d5d9-4dff-94e6-4d7bc5aa37b9.config
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.9553588Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-883b98c0-d5d9-4dff-94e6-4d7bc5aa37b9.config
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.9598596Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.9600234Z ##[group]Fetching the repository
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:56.9607757Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +13bedb8f462337cee5e4c414f5f4fb3bbd74e925:refs/remotes/pull/2/merge
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:00.8801122Z From https://github.com/timmiballz22/playwright-mcp
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:00.8803705Z  * [new ref]         13bedb8f462337cee5e4c414f5f4fb3bbd74e925 -> pull/2/merge
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:00.8808148Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:00.8809331Z ##[group]Determining the checkout info
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:00.8812463Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:00.8813793Z [command]/usr/bin/git sparse-checkout disable
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:00.8877369Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:00.8921266Z ##[group]Checking out the ref
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:00.8924676Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/2/merge
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1515018Z Note: switching to 'refs/remotes/pull/2/merge'.
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1516692Z 
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1517895Z You are in 'detached HEAD' state. You can look around, make experimental
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1520638Z changes and commit them, and you can discard any commits you make in this
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1523334Z state without impacting any branches by switching back to a branch.
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1524955Z 
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1526283Z If you want to create a new branch to retain commits you create, you may
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1528818Z do so (now or later) by using -c with the switch command. Example:
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1530242Z 
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1530851Z   git switch -c <new-branch-name>
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1531909Z 
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1532690Z Or undo this operation with:
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1533802Z 
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1534511Z   git switch -
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1535452Z 
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1537081Z Turn off this advice by setting config variable advice.detachedHead to false
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1539123Z 
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1541424Z HEAD is now at 13bedb8 Merge 23b07fdd2431023f620b60806548a7b4f2fc7039 into 804bc7ef7a07248a150c98fb5bf417e925ba8033
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1558311Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1615399Z [command]/usr/bin/git log -1 --format=%H
+batch (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:01.1653310Z 13bedb8f462337cee5e4c414f5f4fb3bbd74e925
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-22T11:13:01.2060879Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.2062622Z with:
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.2063522Z   node-version: 22
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.2064498Z   cache: npm
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.2065442Z   check-latest: false
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.2075148Z   token: ***
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.2076271Z   package-manager-cache: true
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.2077438Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.3399019Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.4265050Z ##[group]Environment details
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.7654906Z node: v22.23.3
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.7655351Z npm: 10.9.9
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.7655886Z yarn: 1.22.22
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.7656522Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:01.7674353Z [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:02.1313071Z /home/runner/.npm
+batch (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:02.3889763Z npm cache is not found
+batch (ubuntu-latest, 22)	Run npm ci	﻿2026-10-22T11:13:02.4045950Z ##[group]Run npm ci
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:02.4046337Z [36;1mnpm ci[0m
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:02.4220932Z shell: /usr/bin/bash -e {0}
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:02.4221235Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.1539825Z 
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.1545331Z > @timmiballz22/playwright-mcp-local@0.0.83 prepare
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.1546205Z > node scripts/prepare-vp9-metadata.cjs
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.1546420Z 
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.2270746Z {"component":"private_vp9_metadata_patch","version":"1.64.1","changed":true,"sha256":"b46a37ecb04912c639ffd32f890269ea33a612dfdcb43f518bac76b85cc0fa9f"}
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.2358566Z 
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.2359223Z added 103 packages, and audited 104 packages in 4s
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.2359715Z 
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.2359952Z 31 packages are looking for funding
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.2360317Z   run `npm fund` for details
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.2369281Z 
+batch (ubuntu-latest, 22)	Run npm ci	2026-10-22T11:13:06.2369868Z found 0 vulnerabilities
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	﻿2026-10-22T11:13:06.2869282Z ##[group]Run npx playwright install --with-deps chromium firefox webkit
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:06.2869863Z [36;1mnpx playwright install --with-deps chromium firefox webkit[0m
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:06.2920735Z shell: /usr/bin/bash -e {0}
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:06.2920998Z ##[endgroup]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.1734339Z Installing dependencies...
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.1855062Z Switching to root user to install dependencies...
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.3112141Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.3297396Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.3570358Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.3578888Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.3668365Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.3747639Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.4854038Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [567 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.5016646Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [630 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.6110180Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1400 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.6207142Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [310 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.6236881Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1706 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.6328631Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [342 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.7152898Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1146 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.7216996Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [231 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:07.7230810Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1222 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:14.3144690Z Fetched 7936 kB in 1s (8679 kB/s)
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.3266882Z Reading package lists...
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.3629094Z Reading package lists...
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5556727Z Building dependency tree...
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5563162Z Reading state information...
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5717093Z libasound2t64 is already the newest version (1.2.11-1ubuntu0.3).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5718128Z libasound2t64 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5719268Z libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5720506Z libatk-bridge2.0-0t64 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5721693Z libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5722761Z libatk1.0-0t64 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5723833Z libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5724949Z libatspi2.0-0t64 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5726063Z libcairo2 is already the newest version (1.18.0-3build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5726949Z libcairo2 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5727968Z libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.14).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5729010Z libcups2t64 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5729876Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5730731Z libdbus-1-3 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5731637Z libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.2).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5732569Z libdrm2 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5733347Z libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.4).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5733843Z libgbm1 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5734329Z libnspr4 is already the newest version (2:4.35-1.1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5734806Z libnspr4 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5736014Z libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5737302Z libpango-1.0-0 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5738096Z libx11-6 is already the newest version (2:1.8.7-1ubuntu0.1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5738821Z libx11-6 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5739481Z libxcb1 is already the newest version (1.15-1ubuntu2).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5740154Z libxcb1 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5740876Z libxcomposite1 is already the newest version (1:0.4.5-1build3).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5741743Z libxcomposite1 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5742486Z libxdamage1 is already the newest version (1:1.1.6-1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5742898Z libxdamage1 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5743307Z libxext6 is already the newest version (2:1.3.4-1build2).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5743698Z libxext6 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5744086Z libxfixes3 is already the newest version (1:6.0.0-2build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5744493Z libxfixes3 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5744890Z libxkbcommon0 is already the newest version (1.6.0-1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5745296Z libxkbcommon0 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5746029Z libxrandr2 is already the newest version (2:1.5.2-2build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5746424Z libxrandr2 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5746916Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5747485Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5747902Z libfontconfig1 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5748350Z libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.2).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5748776Z libfreetype6 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5749191Z fonts-liberation is already the newest version (1:2.1.5-3).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5749619Z fonts-liberation set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5750074Z libcairo-gobject2 is already the newest version (1.18.0-3build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5750512Z libcairo-gobject2 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5751006Z libgdk-pixbuf-2.0-0 is already the newest version (2.42.10+dfsg-3ubuntu3.3).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5751475Z libgdk-pixbuf-2.0-0 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5751920Z libgtk-3-0t64 is already the newest version (3.24.41-4ubuntu1.3).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5752336Z libgtk-3-0t64 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5752779Z libpangocairo-1.0-0 is already the newest version (1.52.1+ds-1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5753239Z libpangocairo-1.0-0 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5753677Z libx11-xcb1 is already the newest version (2:1.8.7-1ubuntu0.1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5754079Z libx11-xcb1 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5754464Z libxcb-shm0 is already the newest version (1.15-1ubuntu2).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5754838Z libxcb-shm0 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5755231Z libxcursor1 is already the newest version (1:1.2.1-1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5755878Z libxcursor1 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5756273Z libxi6 is already the newest version (2:1.8.1-1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5756634Z libxi6 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5757024Z libxrender1 is already the newest version (1:0.9.10-1.1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5757489Z libxrender1 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5757930Z libicu74 is already the newest version (74.2-1ubuntu3.1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5758405Z libatomic1 is already the newest version (14.2.0-4ubuntu2~24.04.1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5758810Z libatomic1 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5759209Z libenchant-2-2 is already the newest version (2.3.3-2build2).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5759604Z libenchant-2-2 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5759996Z libepoxy0 is already the newest version (1.5.10-1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5760364Z libepoxy0 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5760780Z libgstreamer1.0-0 is already the newest version (1.24.2-1ubuntu0.1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5761407Z libgstreamer1.0-0 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5761955Z libharfbuzz0b is already the newest version (8.3.0-2build2).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5762344Z libharfbuzz0b set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5762760Z libjpeg-turbo8 is already the newest version (2.1.5-2ubuntu2).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5763160Z libjpeg-turbo8 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5763565Z liblcms2-2 is already the newest version (2.14-2ubuntu0.1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.5763956Z liblcms2-2 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7033678Z libpng16-16t64 is already the newest version (1.6.43-5ubuntu0.7).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7034769Z libpng16-16t64 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7035482Z libwayland-client0 is already the newest version (1.22.0-2.1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7036940Z libwayland-client0 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7037691Z libwayland-egl1 is already the newest version (1.22.0-2.1build1).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7038250Z libwayland-egl1 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7038756Z libwebp7 is already the newest version (1.3.2-0.4build3).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7039358Z libwebp7 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7039955Z libwebpdemux2 is already the newest version (1.3.2-0.4build3).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7040468Z libwebpdemux2 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7041002Z libxml2 is already the newest version (2.9.14+dfsg-1.3ubuntu3.10).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7041506Z libxml2 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7042034Z libxslt1.1 is already the newest version (1.1.39-0exp1ubuntu0.24.04.3).
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7042566Z libxslt1.1 set to manually installed.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7043041Z The following additional packages will be installed:
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7043559Z   gir1.2-glib-2.0 glib-networking glib-networking-common
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7044224Z   glib-networking-services gsettings-desktop-schemas libaa1 libabsl20220623t64
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7044933Z   libass9 libasyncns0 libavc1394-0 libavfilter9 libavformat60 libavtp0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7045498Z   libavutil58 libblas3 libbluray2 libbs2b0 libcaca0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7046439Z   libcairo-script-interpreter2 libcdparanoia0 libchromaprint1 libcjson1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7047256Z   libcodec2-1.2 libdav1d7 libdc1394-25 libdca0 libde265-0 libdecor-0-0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7047892Z   libdirectfb-1.7-7t64 libdv4t64 libdvdnav4 libdvdread8t64 libegl-mesa0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7048452Z   libegl1 libfaad2 libflac12t64 libfluidsynth3 libfreeaptx0 libgav1-1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7048940Z   libglib2.0-bin libglib2.0-data libgme0 libgraphene-1.0-0 libgsm1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7049687Z   libgssdp-1.6-0 libgstreamer-plugins-good1.0-0 libgtk-4-common libgupnp-1.6-0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7050242Z   libgupnp-igd-1.6-0 libhwy1t64 libiec61883-0 libimath-3-1-29t64
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7050733Z   libinstpatch-1.0-2 libjack-jackd2-0 libjxl0.7 liblapack3 liblc3-1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7051267Z   libldacbt-enc2 liblilv-0-0 liblrdf0 libltc11 libmbedcrypto7t64 libmfx1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7051850Z   libmjpegutils-2.1-0t64 libmodplug1 libmp3lame0 libmpcdec6
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7052334Z   libmpeg2encpp-2.1-0t64 libmpg123-0t64 libmplex2-2.1-0t64 libmysofa1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7052814Z   libneon27t64 libnice10 libnss3-tools libopenal-data libopenal1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7053340Z   libopenexr-3-1-30 libopenh264-7 libopenmpt0t64 libopenni2-0 liborc-0.4-0t64
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7053876Z   libpipewire-0.3-0t64 libplacebo338 libpocketsphinx3 libpostproc57
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7054388Z   libproxy1v5 libpulse0 libqrencode4 libraptor2-0 librav1e0 libraw1394-11
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7054925Z   librist4 librsvg2-2 librubberband2 libsamplerate0 libsbc1 libsdl2-2.0-0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7055462Z   libsecret-common libserd-0-0 libshine3 libshout3 libsndfile1 libsndio7.0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7056254Z   libsord-0-0 libsoundtouch1 libsoup-3.0-0 libsoup-3.0-common libsoxr0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7056795Z   libspa-0.2-modules libspandsp2t64 libspeex1 libsphinxbase3t64 libsratom-0-0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7057698Z   libsrt1.5-gnutls libsrtp2-1 libssh-gcrypt-4 libsvtav1enc1d1 libswresample4
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7058397Z   libswscale7 libtag1v5 libtag1v5-vanilla libtheora0 libtwolame0 libudfread0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7058951Z   libunibreak5 libv4l-0t64 libv4lconvert0t64 libva-drm2 libva-x11-2 libva2
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7059485Z   libvdpau1 libvidstab1.1 libvisual-0.4-0 libvo-aacenc0 libvo-amrwbenc0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7060031Z   libvorbisenc2 libvpl2 libwavpack1 libwebrtc-audio-processing1 libwildmidi2
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7060591Z   libx265-199 libxcb-xkb1 libxkbcommon-x11-0 libxvidcore4 libyuv0 libzbar0t64
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7061149Z   libzimg2 libzix-0-0 libzvbi-common libzvbi0t64 libzxing3 ocl-icd-libopencl1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7061694Z   session-migration timgm6mb-soundfont xfonts-encodings xfonts-utils
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7062072Z   xserver-common
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7062318Z Suggested packages:
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7062700Z   frei0r-plugins gvfs libcuda1 libnvcuvid1 libnvidia-encode1 libbluray-bdj
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7063247Z   libdirectfb-extra libdv-bin oss-compat libdvdcss2 low-memory-monitor
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7063807Z   libvisual-0.4-plugins jackd2 liblrdf0-dev libportaudio2 opus-tools pipewire
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7064357Z   pulseaudio raptor2-utils libraw1394-doc librsvg2-bin serdi sndiod sordi
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7064835Z   speex libwildmidi-config opencl-icd fluid-soundfont-gm
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7065181Z Recommended packages:
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7065519Z   fonts-ipafont-mincho fonts-tlwg-loma gstreamer1.0-x libaacs0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7066296Z   default-libdecor-0-plugin-1 | libdecor-0-plugin-1 gstreamer1.0-gl
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7066863Z   libgtk-4-bin librsvg2-common libgtk-4-media-gstreamer libpipewire-0.3-common
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7067447Z   pocketsphinx-en-us va-driver-all | va-driver vdpau-driver-all | vdpau-driver
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7067896Z   libmagickcore-6.q16-7-extra xfonts-base
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7787052Z The following NEW packages will be installed:
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7788229Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7789314Z   fonts-wqy-zenhei glib-networking glib-networking-common
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7789910Z   glib-networking-services gsettings-desktop-schemas gstreamer1.0-libav
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7790589Z   gstreamer1.0-plugins-bad gstreamer1.0-plugins-base gstreamer1.0-plugins-good
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7791411Z   libaa1 libabsl20220623t64 libass9 libasyncns0 libavc1394-0 libavcodec60
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7792343Z   libavfilter9 libavformat60 libavif16 libavtp0 libavutil58 libblas3
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7792968Z   libbluray2 libbs2b0 libcaca0 libcairo-script-interpreter2 libcdparanoia0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7793706Z   libchromaprint1 libcjson1 libcodec2-1.2 libdav1d7 libdc1394-25 libdca0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7794310Z   libde265-0 libdecor-0-0 libdirectfb-1.7-7t64 libdv4t64 libdvdnav4
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7794940Z   libdvdread8t64 libegl-mesa0 libegl1 libevent-2.1-7t64 libfaad2 libflac12t64
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7795903Z   libflite1 libfluidsynth3 libfreeaptx0 libgav1-1 libgles2 libgme0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7796495Z   libgraphene-1.0-0 libgsm1 libgssdp-1.6-0 libgstreamer-gl1.0-0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7797049Z   libgstreamer-plugins-bad1.0-0 libgstreamer-plugins-base1.0-0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7797654Z   libgstreamer-plugins-good1.0-0 libgtk-4-1 libgtk-4-common libgupnp-1.6-0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7798293Z   libgupnp-igd-1.6-0 libharfbuzz-icu0 libhwy1t64 libhyphen0 libiec61883-0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7798935Z   libimath-3-1-29t64 libinstpatch-1.0-2 libjack-jackd2-0 libjxl0.7 liblapack3
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7799689Z   liblc3-1 libldacbt-enc2 liblilv-0-0 liblrdf0 libltc11 libmanette-0.2-0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7800224Z   libmbedcrypto7t64 libmfx1 libmjpegutils-2.1-0t64 libmodplug1 libmp3lame0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7800755Z   libmpcdec6 libmpeg2encpp-2.1-0t64 libmpg123-0t64 libmplex2-2.1-0t64
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7801398Z   libmysofa1 libneon27t64 libnice10 libopenal-data libopenal1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7801913Z   libopenexr-3-1-30 libopenh264-7 libopenmpt0t64 libopenni2-0 libopus0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7802797Z   liborc-0.4-0t64 libpipewire-0.3-0t64 libplacebo338 libpocketsphinx3
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7803467Z   libpostproc57 libproxy1v5 libpulse0 libqrencode4 libraptor2-0 librav1e0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7804000Z   libraw1394-11 librist4 librsvg2-2 librubberband2 libsamplerate0 libsbc1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7804541Z   libsdl2-2.0-0 libsecret-1-0 libsecret-common libserd-0-0 libshine3 libshout3
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7805209Z   libsndfile1 libsndio7.0 libsord-0-0 libsoundtouch1 libsoup-3.0-0
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7806073Z   libsoup-3.0-common libsoxr0 libspa-0.2-modules libspandsp2t64 libspeex1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7806634Z   libsphinxbase3t64 libsratom-0-0 libsrt1.5-gnutls libsrtp2-1 libssh-gcrypt-4
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7827781Z   libsvtav1enc1d1 libswresample4 libswscale7 libtag1v5 libtag1v5-vanilla
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7828597Z   libtheora0 libtwolame0 libudfread0 libunibreak5 libv4l-0t64
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7829410Z   libv4lconvert0t64 libva-drm2 libva-x11-2 libva2 libvdpau1 libvidstab1.1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7830309Z   libvisual-0.4-0 libvo-aacenc0 libvo-amrwbenc0 libvorbisenc2 libvpl2 libvpx9
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7831342Z   libwavpack1 libwayland-server0 libwebrtc-audio-processing1 libwildmidi2
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7832158Z   libwoff1 libx264-164 libx265-199 libxcb-xkb1 libxkbcommon-x11-0 libxvidcore4
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7832740Z   libyuv0 libzbar0t64 libzimg2 libzix-0-0 libzvbi-common libzvbi0t64 libzxing3
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7833322Z   ocl-icd-libopencl1 session-migration timgm6mb-soundfont xfonts-cyrillic
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7833796Z   xfonts-encodings xfonts-scalable xfonts-utils
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7834183Z The following packages will be upgraded:
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7834611Z   gir1.2-glib-2.0 libglib2.0-0t64 libglib2.0-bin libglib2.0-data libnss3
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.7835022Z   libnss3-tools xserver-common xvfb
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.8057788Z 8 upgraded, 181 newly installed, 0 to remove and 47 not upgraded.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.8058576Z Need to get 119 MB of archives.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.8059374Z After this operation, 364 MB of additional disk space will be used.
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:15.8060248Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:31.2042361Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:13:53.5677202Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-data all 2.80.0-6ubuntu3.10 [50.2 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:14:23.7357247Z Ign:4 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-bin amd64 2.80.0-6ubuntu3.10
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:14:53.7573712Z Ign:5 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 gir1.2-glib-2.0 amd64 2.80.0-6ubuntu3.10
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:15:08.3876441Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-0t64 amd64 2.80.0-6ubuntu3.10 [1548 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:15:53.1927120Z Ign:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:15:53.4822010Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:15:54.3658837Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1 [2993 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:16:15.6997366Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:16:55.2024060Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libproxy1v5 amd64 0.5.4-4build1 [26.5 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:17:10.5888357Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 glib-networking-common all 2.80.0-1build1 [6702 B]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:17:40.6211045Z Ign:13 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 glib-networking-services amd64 2.80.0-1build1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:18:10.6533522Z Ign:14 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 session-migration amd64 0.3.9build1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:18:10.8886055Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 gsettings-desktop-schemas all 46.1-0ubuntu1 [35.6 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:18:40.9747878Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 glib-networking amd64 2.80.0-1build1 [64.1 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:18:55.8001085Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva2 amd64 2.20.0-2ubuntu0.2 [66.4 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:18:58.1845907Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva-drm2 amd64 2.20.0-2ubuntu0.2 [7124 B]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:18:59.0392621Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva-x11-2 amd64 2.20.0-2ubuntu0.2 [12.0 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:18:59.3673563Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libvdpau1 amd64 1.5-2build1 [27.8 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:19:00.2925995Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libvpl2 amd64 2023.3.0-1build1 [99.8 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:19:16.4642045Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 ocl-icd-libopencl1 amd64 2.3.2-1build1 [38.5 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:19:17.2749301Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavutil58 amd64 7:6.1.1-3ubuntu5 [401 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:19:34.8182807Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libcodec2-1.2 amd64 1.2.0-2build1 [8998 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:21:58.7931224Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libdav1d7 amd64 1.4.1-1build1 [604 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:22:05.0895346Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libgsm1 amd64 1.0.22-1build1 [27.8 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:22:35.2954619Z Ign:27 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libhwy1t64 amd64 1.0.7-8.1build1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:22:50.0340011Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libjxl0.7 amd64 0.7.0-10.2ubuntu6.1 [1001 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:22:59.4117875Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libmp3lame0 amd64 3.100-6build1 [142 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:23:00.5992228Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libopus0 amd64 1.4-1build1 [208 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:23:17.0100764Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librav1e0 amd64 0.7.1-2 [1022 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:23:54.3844043Z Ign:32 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 librsvg2-2 amd64 2.58.0+dfsg-1ubuntu0.1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:24:04.3162146Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libshine3 amd64 3.1.1-2build1 [23.2 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:24:05.4350738Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libspeex1 amd64 1.2.1-2ubuntu2.24.04.1 [59.6 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:24:22.7580743Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsvtav1enc1d1 amd64 1.7.0+dfsg-2build1 [2425 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:24:44.8412031Z Get:36 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsoxr0 amd64 0.1.3-4build3 [80.0 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:24:45.5229247Z Get:37 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libswresample4 amd64 7:6.1.1-3ubuntu5 [63.8 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:24:45.8042040Z Get:38 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtheora0 amd64 1.1.1+dfsg.1-16.1build3 [211 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:24:46.2364076Z Get:39 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtwolame0 amd64 0.4.0-2build3 [52.3 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:24:46.5688374Z Get:40 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libvorbisenc2 amd64 1.3.7-1build3 [80.8 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:24:46.9216980Z Get:41 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libvpx9 amd64 1.14.0-1ubuntu2.3 [1143 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:24:50.8313519Z Get:42 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libx264-164 amd64 2:0.164.3108+git31e19f9-1 [604 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:25:22.8515115Z Ign:43 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libx265-199 amd64 3.5-2build1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:25:52.2570680Z Get:44 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libxvidcore4 amd64 2:1.3.7-1build1 [219 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:25:54.0427576Z Get:45 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzvbi-common all 0.2.42-2 [42.4 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:25:54.5128441Z Get:46 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzvbi0t64 amd64 0.2.42-2 [261 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:26:26.6247418Z Ign:47 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavcodec60 amd64 7:6.1.1-3ubuntu5
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:26:56.5047715Z Get:48 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libunibreak5 amd64 5.1-2build1 [25.0 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:26:57.1451692Z Get:49 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libass9 amd64 1:0.17.1-2build1 [104 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:26:59.0280722Z Get:50 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libudfread0 amd64 1.1.2-1build1 [19.0 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:26:59.6650581Z Get:51 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libbluray2 amd64 1:1.3.4-1build1 [159 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:27:01.6881756Z Get:52 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libchromaprint1 amd64 1.5.1-5 [30.5 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:27:32.0537987Z Ign:53 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libgme0 amd64 0.6.3-7build1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:27:46.5031718Z Get:54 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libmpg123-0t64 amd64 1.32.5-1ubuntu1.1 [169 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:27:48.5357821Z Get:55 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libopenmpt0t64 amd64 0.7.3-1.1build3 [647 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:27:54.4479104Z Get:56 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libcjson1 amd64 1.7.17-1 [24.8 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:27:55.3985917Z Get:57 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libmbedcrypto7t64 amd64 2.28.8-1 [209 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:27:57.7348832Z Get:58 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librist4 amd64 0.2.10+dfsg-2 [74.9 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:27:58.5950768Z Get:59 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsrt1.5-gnutls amd64 1.5.3-1build2 [316 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:28:02.0134263Z Get:60 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libssh-gcrypt-4 amd64 0.10.6-2ubuntu0.5 [226 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:28:33.6689033Z Ign:61 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavformat60 amd64 7:6.1.1-3ubuntu5
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:29:03.6932837Z Ign:62 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libbs2b0 amd64 3.1.0+dfsg-7build1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:29:33.5881244Z Get:63 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libflite1 amd64 2.2-6build3 [13.6 MB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:31:49.9483888Z Get:64 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libserd-0-0 amd64 0.32.2-1 [43.6 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:32:01.3089603Z Get:65 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzix-0-0 amd64 0.4.2-2build1 [23.6 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:32:12.9943358Z Get:66 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsord-0-0 amd64 0.16.16-2build1 [15.8 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:32:13.5850578Z Get:67 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsratom-0-0 amd64 0.6.16-1build1 [17.3 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:32:14.0717953Z Get:68 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 liblilv-0-0 amd64 0.24.22-1build1 [41.0 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:32:14.9223612Z Get:69 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libmysofa1 amd64 1.3.2+dfsg-2ubuntu2 [1158 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:32:43.8076953Z Get:70 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libplacebo338 amd64 6.338.2-2build1 [2654 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:33:33.3348693Z Get:71 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libblas3 amd64 3.12.0-3build1.1 [238 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:33:35.9041658Z Get:72 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 liblapack3 amd64 3.12.0-3build1.1 [2646 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:33:53.4886020Z Get:73 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libasyncns0 amd64 0.8-6build4 [11.3 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:33:53.8970974Z Get:74 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libflac12t64 amd64 1.4.3+ds-2.1ubuntu2 [197 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:33:55.9881056Z Get:75 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libsndfile1 amd64 1.2.2-1ubuntu5.24.04.1 [209 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:33:58.0432366Z Get:76 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libpulse0 amd64 1:16.1+dfsg1-2ubuntu10.1 [292 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:34:00.8782871Z Get:77 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsphinxbase3t64 amd64 0.8+5prealpha+1-17build2 [126 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:34:02.1927059Z Get:78 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libpocketsphinx3 amd64 0.8.0+real5prealpha+1-15ubuntu5 [133 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:34:17.9600434Z Get:79 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libpostproc57 amd64 7:6.1.1-3ubuntu5 [49.9 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:34:18.9688053Z Get:80 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libsamplerate0 amd64 0.2.2-4build1 [1344 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:35:49.0824412Z Get:81 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librubberband2 amd64 3.3.0+dfsg-2build1 [130 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:35:51.4039837Z Get:82 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libswscale7 amd64 7:6.1.1-3ubuntu5 [193 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:36:09.4384697Z Get:83 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libvidstab1.1 amd64 1.1.0-2build1 [38.5 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:36:24.2902498Z Get:84 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzimg2 amd64 3.0.5+ds1-1build1 [254 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:36:29.2786699Z Get:85 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavfilter9 amd64 7:6.1.1-3ubuntu5 [4235 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:37:21.0164767Z Get:86 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 liborc-0.4-0t64 amd64 1:0.4.38-1ubuntu0.1 [207 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:37:38.0769595Z Get:87 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libgstreamer-plugins-base1.0-0 amd64 1.24.2-1ubuntu0.5 [862 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:37:47.9811005Z Get:88 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 gstreamer1.0-libav amd64 1.24.1-1build1 [103 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:37:49.7407731Z Get:89 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libcdparanoia0 amd64 3.10.2+debian-14build3 [48.5 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:38:20.5516687Z Ign:90 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libvisual-0.4-0 amd64 0.4.2-2build1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:38:48.9318572Z Get:91 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 gstreamer1.0-plugins-base amd64 1.24.2-1ubuntu0.5 [721 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:38:56.0490170Z Get:92 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libaa1 amd64 1.4p5-51.1 [49.9 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:39:25.6376288Z Get:93 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libraw1394-11 amd64 2.1.2-2build3 [26.2 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:39:26.7479835Z Get:94 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libavc1394-0 amd64 0.5.4-5build3 [15.4 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:39:41.3130953Z Get:95 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libcaca0 amd64 0.99.beta20-4ubuntu0.2 [209 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:40:14.5292763Z Ign:96 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libdv4t64 amd64 1.0.0-17.1build1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:40:44.5545387Z Ign:97 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libgstreamer-plugins-good1.0-0 amd64 1.24.2-1ubuntu1.8
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:41:02.0470103Z Get:98 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libiec61883-0 amd64 1.2.0-6build1 [24.5 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:41:18.2674193Z Get:99 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libshout3 amd64 2.4.6-1build2 [50.3 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:41:48.2586616Z Get:100 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtag1v5-vanilla amd64 1.13.1-1build1 [326 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:42:21.1304476Z Ign:101 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtag1v5 amd64 1.13.1-1build1
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:42:50.8972785Z Get:102 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libv4lconvert0t64 amd64 1.26.1-4build3 [87.6 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:42:52.4572998Z Get:103 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libv4l-0t64 amd64 1.26.1-4build3 [46.9 kB]
+batch (ubuntu-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T11:43:10.2246175Z ##[error]The operation was canceled.
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T11:43:10.2431005Z Post job cleanup.
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.3307031Z [command]/usr/bin/git version
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.3348551Z git version 2.55.0
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.3390897Z Temporarily overriding HOME='/home/runner/work/_temp/5fdf8f24-c7c2-4f02-8756-39224027eabf' before making global git config changes
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.3392650Z Adding repository directory to the temporary git global config as a safe directory
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.3397334Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/playwright-mcp/playwright-mcp
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.3435053Z Removing SSH command configuration
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.3441167Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.3481960Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.3741874Z Removing HTTP extra header
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.3747869Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.3789914Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4059452Z Removing includeIf entries pointing to credentials config files
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4066204Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4105352Z includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4106933Z includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4108015Z includeif.gitdir:/github/workspace/.git.path
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4108960Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4116953Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4155204Z /home/runner/work/_temp/git-credentials-883b98c0-d5d9-4dff-94e6-4d7bc5aa37b9.config
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4183610Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-883b98c0\-d5d9\-4dff\-94e6\-4d7bc5aa37b9\.config
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4267712Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4316749Z /home/runner/work/_temp/git-credentials-883b98c0-d5d9-4dff-94e6-4d7bc5aa37b9.config
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4337723Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-883b98c0\-d5d9\-4dff\-94e6\-4d7bc5aa37b9\.config
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4392885Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4443642Z /github/runner_temp/git-credentials-883b98c0-d5d9-4dff-94e6-4d7bc5aa37b9.config
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4447532Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-883b98c0\-d5d9\-4dff\-94e6\-4d7bc5aa37b9\.config
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4526992Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4564647Z /github/runner_temp/git-credentials-883b98c0-d5d9-4dff-94e6-4d7bc5aa37b9.config
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4572431Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-883b98c0\-d5d9\-4dff\-94e6\-4d7bc5aa37b9\.config
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4620261Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+batch (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:43:10.4887967Z Removing credentials config '/home/runner/work/_temp/git-credentials-883b98c0-d5d9-4dff-94e6-4d7bc5aa37b9.config'
+batch (ubuntu-latest, 22)	Complete job	﻿2026-10-22T11:43:10.5100446Z Cleaning up orphan processes
+batch (ubuntu-latest, 22)	Complete job	2026-10-22T11:43:10.5294562Z Terminate orphan process: pid (2421) (npm exec playwright install --with-deps chromium firefox webkit)
+batch (ubuntu-latest, 22)	Complete job	2026-10-22T11:43:10.5322433Z Terminate orphan process: pid (2433) (sh)
+batch (ubuntu-latest, 22)	Complete job	2026-10-22T11:43:10.5362906Z Terminate orphan process: pid (2434) (node)

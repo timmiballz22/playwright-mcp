@@ -1,0 +1,32 @@
+{
+  "scope": "Diagnostic-only fixed schema subphases; SQL/transactions, deadlines, retries and cleanup authority unchanged",
+  "results": {
+    "node22": {
+      "pass": 48,
+      "fail": 0
+    },
+    "node24": {
+      "pass": 48,
+      "fail": 0
+    },
+    "node20": {
+      "pass": 14,
+      "fail": 0,
+      "sqlite": "unsupported; real phase checks unexecuted"
+    }
+  },
+  "phases": [
+    "configure",
+    "schema (before transaction begin)",
+    "schema_tables",
+    "schema_metadata",
+    "schema_verify",
+    "schema_commit"
+  ],
+  "workerInitPacketsMax": 13,
+  "enumSize": 15,
+  "stderrSetExistingCap": 16,
+  "negativeInitial": "28/1: broad test-edit accidentally replaced unrelated configure literal with undefined stage variable. Restored literal; six real stalls already passed in that run. Final48/48 accepted.",
+  "nativeCause": "schema lower bound only; no exact blocked operation or worker exit proof for native85",
+  "excludedFromNative85": true
+}

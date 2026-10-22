@@ -1,5 +1,51 @@
 # Execution report — verified milestone, incomplete mission
 
+## Latest completed checkpoint — native85 at23b07fd; acceptance incomplete
+
+[Batch39768881695](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881695)
+reports1131 passes/3 failures; [original39768881668](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881668)
+reports515/6 including Windows legacy. Combined1646/9, reported test skips/cancels0.
+Windows main batch never ran after installed controller-smoke init timeout;
+Linux22 install exceeded its unchanged30m job limit and package/main tests never
+ran. Mac modal repeats were unexecuted. This reduced coverage prevents any global
+improvement claim. All17 nonoptional job logs were saved; one Linux20 EOF read
+failed initially, then an ordinary retry succeeded with both reads retained.
+
+Three native297-file production installs completed (Linux20/24, Mac22; Node20
+SQLite/guardian features explicitly unsupported). Windows resolved the correct
+bundled core and passed original/profile/jobs smokes, then journal init reached
+`schema`, timed out, and worker exit remained unconfirmed. This is a last-received
+lower bound, not the exact blocked operation; it differs from native84's later
+guardian readiness failure. The old verifier removed its installation on failure;
+local follow-up now retains failed installations without signaling PIDs, releasing
+leases or clearing debt. Missing historical runtime evidence is not reconstructed.
+
+All three actual Codex clients completed1k with model0/owned0: Linux36.128s,
+Windows38.964s, Mac96.833s. Mac main raw902, SDK995 and synchronous973 still timed
+out. Separate server control997 timed out; pipe1k passed109.821s; both had zero
+owned processes before force/finally. No default transport/channel or budget changes.
+
+Original Linux172/0, Windows169/3, Mac170/2; Docker2/0 plus built-image encoder
+hash passed. Firefox VP9 red fidelity passed all three OSes, and prior Mac gray
+cases passed this sample with source-paint witnesses. No retrospective gray-cause
+claim. Mac WebKit still decodes248/37/0; Windows WebKit WAV is loading with
+ready0/network2/error0 and canPlayType probably, while VP9 has ready0/network3/
+error4 and probably. Neither is classified simply unsupported. Separate Windows
+Firefox upload click times out; Mac Chrome highlight screenshot has capture
+protocol error. All24 new shadow/virtual instances passed. Windows legacy headless
+and headed passed; pipe fresh-run10 fails step9/23 with8 completed, counter probe
+timed out and cleanupFailures empty. No unsafe effect/replay inference.
+
+Next local candidate adds gated hydration/lazy append/offline-worker fixtures,
+failed-install preservation, diagnostic-only metadata copies that never replace
+original pixel assertions, and four fixed schema subphases. Real phase checks
+48/48 each Node22/24 and14 applicable Node20 checks pass; exact source/evidence
+phases below retain initial fixture mistakes. New native verification is required.
+Older missing births,136/142 cohorts, unknown worker exit, hard resource/egress,
+managed profile repair and remaining acceptance gates remain open. Full details:
+evidence/native85-summary.json and evidence/native85-completed-archive.json.
+
+
 Local diagnostic follow-up excluded from native85: on a decoded-pixel failure,
 up to3 metadata-only primaries/transfer copies are sampled within a5s abort
 budget using optional stock ffmpeg. Encoded-stream concatenation hashes must
@@ -35,7 +81,7 @@ initialization. Chromium/Firefox2 tests each Node20/22/24 and strict typecheck p
 This does not make premature clicks on enabled-but-unhydrated controls safe or
 change product waiting/retry behavior. Evidence: native85-hydration-proof.json.
 
-## Current checkpoint — native84 complete; combined fix awaiting native verification
+## Historical checkpoint — native84 complete; combined fix awaiting native verification
 
 Combined local validation: PCM/video4/4 each Node20/22/24; fresh297-file
 production install with scripts disabled and all actual endpoint/guardian checks

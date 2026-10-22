@@ -64,3 +64,10 @@ It identifies the last received worker phase within the unchanged RPC deadline;
 it does not identify a proven blocked operation, reset a watchdog, acknowledge
 a database write, or authorize lease release or process cleanup. The worker
 sends no paths, SQL, credentials or user metadata in these phase messages.
+
+Schema initialization diagnostics distinguish `schema` (before transaction begin),
+`schema_tables`, `schema_metadata`, `schema_verify`, and `schema_commit`. These
+fixed reports bracket existing operations without changing SQL, transactions,
+watchdogs, ACKs or lease decisions. The final `ready` report follows commit.
+At most13 worker init reports and15 allowed parent/worker states fit the existing
+16-entry stderr diagnostic cap. A received report remains a lower bound only.

@@ -1,6 +1,15 @@
 # Current acceptance coverage
 
-Current checkpoint: native84 at096b617 reports1773 passes/10 failures with
+Latest completed native85 at23b07fd:1646 reported passes/9 failures; Windows
+main batch and Linux22 package/main remain unexecuted (schema init timeout with
+worker exit unconfirmed; install canceled at30m job limit respectively). All
+three actual Codex1k probes pass this sample. Firefox VP9 shift passes all OS;
+Mac WebKit color, Windows WebKit readiness, screenshot/input and Mac1k lifecycle
+failures remain. Next local schema/metadata/preservation fixtures await native
+verification. Historical ownership/resource/security/operator gates remain open.
+See CODEX_EXECUTION_REPORT.md, ledger and evidence/native85-summary.json.
+
+Historical checkpoint: native84 at096b617 reports1773 passes/10 failures with
 Windows main batch unexecuted after package guardian initialization failure.
 Native85 at23b07fd is running with a locally verified packaged VP9 metadata fix,
 source-paint/readiness diagnostics and bounded journal init phases. Pending native
@@ -22,7 +31,7 @@ coverage remain unexecuted. Evidence: native83-{local,media}-proof.json.
 
 Archived native81 checkpoint:
 
-Latest completed native81 at93da4be reports1,904 test passes/9 failures, plus Mac
+Historical native81 at93da4be reports1,904 test passes/9 failures, plus Mac
 actual-Codex timeout994 and one failed diagnostic control. See execution ledger
 for exact scopes. No incomplete gate is promoted.
 

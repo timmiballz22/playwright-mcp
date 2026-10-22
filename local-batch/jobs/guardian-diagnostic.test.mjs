@@ -54,3 +54,15 @@ test('initialization phase diagnostics retain only fixed stages and remain bound
   assert.equal(diagnostics.guardianStderrFacts('Local job journal init phase (private-canary).').journalInitStages, undefined);
   assert.equal(diagnostics.guardianStderrFacts(('Local job journal init phase (configure).\n').repeat(200)).journalInitStages.length, 1);
 });
+
+test('schema subphases round-trip within the existing fixed diagnostic bounds', () => {
+  const stages = ['schema', 'schema_tables', 'schema_metadata', 'schema_verify', 'schema_commit'];
+  const lines = stages.map(journalInitStage => guardianDiagnosticLine({
+    stage: 'journal_open', code: 'journal_unavailable', command: 'init',
+    journalFailure: 'rpc_timeout', journalFailureCommand: 'init', journalInitStage,
+  })).join('');
+  const facts = diagnostics.guardianStderrFacts(lines);
+  assert.deepEqual(facts.journalInitStages, stages);
+  assert.equal(facts.capped, false);
+  assert.ok(JSON.stringify(facts).length < 2048);
+});
