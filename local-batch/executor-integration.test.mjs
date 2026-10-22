@@ -1,3 +1,4 @@
+import { stepFailureDiagnostic } from '../scripts/step-failure-diagnostic.mjs';
 import { createLifetimeObserver } from './jobs/fixtures/lifetime-observer.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -36,7 +37,16 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
       assert.equal(result.execution.cleanup, 'terminated');
       assert.equal(result.execution.tempCleanup, 'removed');
       await assert.rejects(stat(path.join(dir, 'exec-' + result.runId, 'tmp')), { code: 'ENOENT' });
-      await observer.audit('supervised_' + browser);
+      try { await observer.audit('supervised_' + browser); }
+      catch (error) {
+        // The audit precedes action assertions; retain the bounded execution
+        // outcome as well as its same-snapshot ownership facts, without replay.
+        console.error(JSON.stringify({ fixture: 'supervised_integrity_audit_failure', browser,
+          ok: result.ok, reason: result.reason, completed: result.completed, total: result.total,
+          failedStep: stepFailureDiagnostic(result.failedStep), forced: result.execution.forced,
+          cleanup: result.execution.cleanup, tempCleanup: result.execution.tempCleanup }));
+        throw error;
+      }
       assert.equal(result.ok, true, JSON.stringify(result));
       assert.equal(result.completed, 23);
       const report = JSON.parse(await readFile(result.reportPath, 'utf8'));

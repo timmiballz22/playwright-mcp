@@ -46,8 +46,10 @@ export async function createLifetimeObserver(directory) {
     const facts = entries.map(entry => ({ runId: entry.runId, roots: [...entry.scope.roots], identities: [...entry.scope.identities] }));
     if (process.platform === 'win32') assert.ok(legacy, 'Same-snapshot legacy comparison missing');
     await writeFile(path.join(directory, 'audit-' + (++auditSequence) + '.json'), JSON.stringify({ phase, observed, legacy, audit: receipt, lifetimes: facts }), { flag: 'wx', mode: 0o600 });
-    if (legacy?.legacyOnly.length) {
-      const comparison = JSON.stringify({ fixture: 'factory_lifetime_comparison', phase, legacy, lifetimes: facts });
+    // A scoped failure need not have legacy-only rows. Keep the same-snapshot
+    // root rows and captured births before the unchanged survivor assertion.
+    if (observed.length || legacy?.legacyOnly.length) {
+      const comparison = JSON.stringify({ fixture: legacy ? 'factory_lifetime_comparison' : 'factory_lifetime_scoped_failure', phase, observed, legacy, lifetimes: facts });
       assert.ok(Buffer.byteLength(comparison, 'utf8') <= 65536, 'Factory comparison receipt byte bound exceeded');
       console.log(comparison);
     }
