@@ -1,5 +1,14 @@
 # Execution ledger
 
+Local follow-up excluded from native90 adds three CI-only bootstrap phase notices
+(dependencies/browsers/tests), because the main step repeats setup before invoking
+the test harness. Missing numeric test checkpoints alone cannot identify that
+phase. Bash syntax passes; local PowerShell execution is unavailable. Setup, test
+calls and limits unchanged; native annotation persistence pending. Separate actual
+SQLite-connection race probes now reject version/identity changes under the schema
+write lock;41 regressions each22/24 and fresh installed-runtime checks pass. See
+native90-bootstrap-phase-proof.json and native90-schema-race-proof.json.
+
 ## Latest completed checkpoint — native89 at8416021; acceptance incomplete
 
 [Batch39795946998](https://github.com/timmiballz22/playwright-mcp/actions/runs/39795946998)
