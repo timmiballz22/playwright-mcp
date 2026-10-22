@@ -1,5 +1,70 @@
 # Execution report — verified milestone, incomplete mission
 
+Latest completed native78 at `92c626108ad59c80cd2f814dc064d3a0c34f4499`:
+batch39732651064 reports1,448 passes/4 failures; original39732651058 reports459/2.
+Combined **1,907 reported test passes/6 failures**, plus Mac actual-Codex
+TIMED_OUT928 and two failed Windows diagnostic JSON controls. Both workflows
+fail. All17 non-soak jobs conclude; optional soak skips; reported test
+skips/cancels0. Not release-ready.
+
+AllLinux batch lanes199/203/203 and journal112/113 pass; Mac201/2, Windows193/2.
+Five175-file installs, all5 strict ownership units,15 all-action fixtures,
+15 cancellation cases (60 scenarios), five supervised20-run integrity fixtures
+and five raw20-screenshot cases pass. Both instrumented jobs cases pass4/4
+supported lanes each; their new failure diagnostics are unexercised. This does
+not explain native77's journal RPC/connection/raw screenshot failures.
+
+Six test failures:
+- Mac raw Chromium995/1,000, interrupted click996 at120.030s; cleanupFailures[].
+  Mac SDK completes all1,000 but lifecycle TIMED_OUT,118.902s receipt, forced:false,
+  attention:false, cleanup terminated/temp removed. Later scenarios in that case
+  unexecuted. Synchronous MCP1k passes; not a causal fix for older timeouts.
+- Windows headed Firefox fresh5 completes all23 then cleanup_failed with
+  server_timeout and server_kill_timeout (12.363s). Later fresh runs unexecuted;
+  no actual root-exit record yet, so process-exit identity is unestablished.
+- Windows FF429 timeout completes0 navigation: two GETs/two finished responses,
+  first3.093s/last6.754s, browser report1.596s, cleanup terminated/temp removed,
+  forced:false. Remaining retry scenarios in that case unexecuted. No replay.
+- Original Mac Chromium advanced case returns Page.captureScreenshot protocol
+  error after fonts loaded. Main151/1; later modal follow-up unexecuted.
+- Original Windows normal152 passes, but Node20 legacy headless fresh6 stops14/23,
+  locator step15,9.446s, counter13, cleanupFailures[]. Counter matches13 prior
+  click acknowledgements in this observation; still never replay failed input.
+  Other two legacy modes pass; later fresh runs in failed case unexecuted.
+
+Original Linux152 and Docker2 pass. Actual Codex Linux36.156s/Windows38.004s1k,
+model0/owned0; Mac928, interrupted click929, TIMED_OUT, forced:false/attention:false,
+cleanup terminated/temp removed, no guardian/journal fault/exit facts. Separate
+Mac client pipe/server1k89.455/117.178s and batch server/pipe118.408/106.104s pass.
+Healthy later controls do not identify the original failure cause or justify a
+default transport/channel switch or raised deadline.
+
+Two failed JSON controls remain outside TAP counts: Windows private-temp4/10,
+fifth6/23 pointer timeout12.834s,98 cumulative actions; protocol-headed2/10,
+third7/23 locator timeout14.008s,53 cumulative actions. Both cleanupFailures[],
+owned before parent force0/final0. Inherited and stock-headed10/10=230 each pass.
+No historical cause/fix claim.
+
+Pair9 retains one legacy PID556 row born06:31:59.4934040Z, while actual owned556
+was recorded born06:31:50.0479780Z. All rows/root rows and18 lifetime ledgers remain.
+This is actual incarnation evidence, not role/name/age/window exclusion. Earlier
+unclassified candidates and debt remain unresolved; no hints authorize signaling
+or lease release. Scoped matching unchanged.
+
+All17 standard per-job logs are saved; one Mac batch read retried after EOF.
+No artifact download/auth/TLS workaround. Exact evidence: worker-ci-seventyeighth-*
+and native78-*. Linux resource100/600 proof remains at runtime9591621, partial FD
+coverage; no repeated probe or new cross-OS quota claim.
+
+Local follow-up now records only captured/exitObserved booleans from the existing
+Firefox adapter's actual public ChildProcess handle when a raw workflow fails.
+No added OS query, wait, signal or authority; existing failure status/limits remain.
+False means no observed exit, not proof alive; root exit never proves tree cleanup.
+**NEXT ACTION: verify the bounded owned-root diagnostic and inspect native failure
+facts. Do not raise budgets, force/replay input or clear historical uncertainty.**
+
+### Archived native77 checkpoint
+
 Latest completed native77 at `1329418caf04aab783bdd56606cb7279a6df1856`:
 batch39729771216 reports1,448 passes/4 failures; original39729771276 reports
 458/3. Combined **1,906 reported test passes/7 failures**, plus separate Mac
@@ -67,7 +132,9 @@ facts from two bounded4096-character stderr tails. Original errors are rethrown.
 Both existing cases2/2 pass each Node22/24; fresh175-file production install,
 fixed-diagnostic tests, lint and diff checks exit0. These are observability changes, not
 native fixes. **Not release-ready. NEXT ACTION: retain complete native77 evidence,
-verify diagnostic-only follow-up natively, and investigate exact startup/cleanup
+native78 is running at92c626108ad59c80cd2f814dc064d3a0c34f4499:
+batch39732651064 and original39732651058. AllLinux batch and four journal jobs
+pass; Mac actual-Codex fails (details pending). Hold further pushes. Investigate exact startup/cleanup
 facts without raising budgets, replaying effects or clearing uncertainty.**
 
 ### Archived native76 checkpoint

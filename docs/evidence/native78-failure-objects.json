@@ -1,0 +1,151 @@
+[
+  {
+    "file": "native78-batch-job-119670987081.log",
+    "data": {
+      "fixture": "raw_browser_failure",
+      "browser": "firefox",
+      "mode": "headed",
+      "freshRun": 5,
+      "reason": "cleanup_failed",
+      "completed": 23,
+      "total": 23,
+      "durationMs": 12363,
+      "actionsSucceeded": true,
+      "cleanupFailureCount": 2,
+      "failedStep": null
+    }
+  },
+  {
+    "file": "native78-batch-job-119670987081.log",
+    "data": {
+      "route": "/429",
+      "reason": "timeout",
+      "completed": 0,
+      "failedStep": {
+        "index": 1,
+        "type": "goto",
+        "ok": false,
+        "error": "cancelled",
+        "failureKind": "interrupted"
+      },
+      "execution": {
+        "mode": "supervised",
+        "forced": false,
+        "cleanup": "terminated",
+        "tempCleanup": "removed",
+        "supervisorPid": 8200,
+        "workerPid": 5144,
+        "browserPids": [
+          2528
+        ]
+      },
+      "hits": 2,
+      "timing": {
+        "supervisorEventMs": 5,
+        "workerEventMs": 63,
+        "browserEventMs": 1596,
+        "requestsSeen": 2,
+        "responsesFinished": 2,
+        "firstRequestMs": 3093,
+        "lastResponseFinishedMs": 6754
+      }
+    }
+  },
+  {
+    "file": "native78-batch-job-119670987078.log",
+    "data": {
+      "phase": "codex_primary_job",
+      "failedStep": {
+        "index": 929,
+        "type": "click",
+        "error": "cancelled",
+        "failureKind": "interrupted"
+      },
+      "state": "TIMED_OUT",
+      "jobReason": "timeout",
+      "jobStage": "complete",
+      "jobCompleted": 928,
+      "resultAvailable": true,
+      "operatorAttentionRequired": false,
+      "guardianFailures": [],
+      "journalFailures": [],
+      "guardianExits": [],
+      "forced": false,
+      "completed": 928,
+      "reason": "timeout",
+      "cleanup": "terminated",
+      "tempCleanup": "removed"
+    }
+  },
+  {
+    "file": "native78-batch-job-119670987049.log",
+    "data": {
+      "fixture": "raw_browser_failure",
+      "browser": "chromium",
+      "mode": "headless",
+      "freshRun": 1,
+      "reason": "timeout",
+      "completed": 995,
+      "total": 1000,
+      "durationMs": 120030,
+      "actionsSucceeded": false,
+      "cleanupFailureCount": 0,
+      "failedStep": {
+        "index": 996,
+        "type": "click",
+        "error": "timeout",
+        "failureKind": "interrupted"
+      }
+    }
+  },
+  {
+    "file": "native78-batch-job-119670987049.log",
+    "data": {
+      "job": {
+        "jobId": "73d2b873-ce71-464a-9975-af3c5f01db82",
+        "state": "TIMED_OUT",
+        "revision": 46,
+        "stage": "complete",
+        "completed": 1000,
+        "total": 1000,
+        "createdAt": "2026-10-22T06:21:56.939Z",
+        "updatedAt": "2026-10-22T06:23:56.086Z",
+        "deadlineAt": "2026-10-22T06:23:56.932Z",
+        "cancelRequested": false,
+        "reason": "timeout",
+        "resultAvailable": true,
+        "completionCertainty": "confirmed_lower_bound",
+        "retrySafe": false,
+        "operatorAttentionRequired": false,
+        "progressPercent": 100
+      },
+      "ready": true,
+      "result": {
+        "schemaVersion": 1,
+        "runId": "7a8389c4-7924-4710-ac0f-819bf7f283d5",
+        "browser": "chromium",
+        "total": 1000,
+        "ok": false,
+        "reason": "timeout",
+        "completed": 1000,
+        "recentSteps": [],
+        "failedStep": null,
+        "execution": {
+          "mode": "supervised",
+          "forced": false,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "supervisorPid": 16010,
+          "workerPid": 16011,
+          "browserPids": [
+            16012
+          ]
+        },
+        "completionCertainty": "confirmed_lower_bound",
+        "retrySafe": false,
+        "durationMs": 118902
+      },
+      "isError": false
+    }
+  }
+]

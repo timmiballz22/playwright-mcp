@@ -1,5 +1,15 @@
 # Mandatory scenario evidence
 
+Latest completed native78 at92c6261:1,907 reported passes/6 failures, plus Mac
+actual-Codex timeout928 and two failed Windows JSON controls. Five175-file installs,
+15 all-action/15 cancellation cases and five supervised/raw20-screenshot cases pass.
+Mac raw995/SDK all1k lifecycle, Windows headed close/FF429, Mac screenshot protocol
+and Windows legacy locator failures remain. Both instrumented jobs cases pass;
+their diagnostic failure paths are unexercised. No old cause is declared fixed.
+See execution ledger for exact source, failed controls and remaining uncertainty.
+
+Previous native77 checkpoint:
+
 Latest completed native77 at1329418:1,906 reported passes/7 failures, plus Mac
 actual-Codex timeout968 and one failed inherited-temp Firefox diagnostic control.
 All5 ownership-unit contracts,15 all-action and15 extended cancellation cases,

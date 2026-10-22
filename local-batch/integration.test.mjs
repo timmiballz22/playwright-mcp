@@ -30,6 +30,7 @@ for (const browser of browsers) {
     const dir = await mkdtemp(path.join(os.tmpdir(), 'pw-batch-'));
     let diagnostic;
     let probe;
+    let ownedRootReceipt;
     let browserLogs = '';
     const recordBrowserLog = value => { browserLogs = (browserLogs + String(value) + '\n').slice(-4096); };
     const logger = { isEnabled: name => name === 'browser', log: (_name, _severity, message) => recordBrowserLog(message) };
@@ -41,7 +42,11 @@ for (const browser of browsers) {
         launchServer: async options => {
           const server = await firefox.launchServer({ ...options, ...(mode === 'headed' ? { headless: false } : {}), logger });
           // Public owned child handle, static fixture only. No production log path.
-          server.process().stderr?.on('data', recordBrowserLog);
+          const child = server.process();
+          const receipt = { captured: true, exitObserved: child.exitCode !== null || child.signalCode !== null };
+          ownedRootReceipt = receipt;
+          child.once('exit', () => { receipt.exitObserved = true; });
+          child.stderr?.on('data', recordBrowserLog);
           return server;
         },
         connect: (...args) => firefox.connect(...args),
@@ -55,7 +60,7 @@ for (const browser of browsers) {
       const captures = new Set();
       // Each iteration must succeed before the next starts; no failed action is retried.
       for (let freshRun = 0; freshRun < freshRuns; freshRun++) {
-        diagnostic = undefined; probe = undefined; browserLogs = '';
+        diagnostic = undefined; probe = undefined; browserLogs = ''; ownedRootReceipt = undefined;
         const result = await runWorkflow({ browser, schemaVersion: 1, steps, timeoutMs: 120000 },
           { artifactsDir: dir, allowedOrigins: [origin], allowSensitiveArtifacts: true,
             ...(provider ? { playwright: provider } : {}),
@@ -73,6 +78,9 @@ for (const browser of browsers) {
         if (!result.ok) {
           const receipt = rawWorkflowFailureDiagnostic(result, diagnostic, { browser, mode, freshRun: freshRun + 1 });
           console.error((process.env.GITHUB_ACTIONS === 'true' ? '::error title=Raw browser workflow failure::' : '') + JSON.stringify(receipt));
+          // Actual public child handle only. False means no exit was observed,
+          // not proof the root is alive; root exit never proves tree cleanup.
+          if (ownedRootReceipt) console.error(JSON.stringify({ fixture: 'raw_owned_root_exit', browser, mode, freshRun: freshRun + 1, ...ownedRootReceipt }));
         }
         assert.equal(result.ok, true, JSON.stringify({ freshRun: freshRun + 1, result, cleanupFailures: result.cleanupFailures, diagnostic, ...(browserLogs ? { browserLogs } : {}) }).slice(-11000));
         assert.equal(result.completed, clicks + 3);

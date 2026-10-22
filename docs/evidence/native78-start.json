@@ -1,0 +1,47 @@
+{
+  "headSha": "92c626108ad59c80cd2f814dc064d3a0c34f4499",
+  "runtimeSource": "9591621349e34149944a27caf39e61d9dd9d52c8",
+  "state": "completed_failure",
+  "runs": [
+    {
+      "conclusion": "",
+      "databaseId": 39732651058,
+      "headSha": "92c626108ad59c80cd2f814dc064d3a0c34f4499",
+      "status": "queued",
+      "workflowName": "CI"
+    },
+    {
+      "conclusion": "",
+      "databaseId": 39732651064,
+      "headSha": "92c626108ad59c80cd2f814dc064d3a0c34f4499",
+      "status": "queued",
+      "workflowName": "Local batch QA"
+    }
+  ],
+  "observedStepFailure": {
+    "jobId": 119670987078,
+    "job": "codex_client (macos-15-intel)",
+    "failedSteps": [
+      "Exercise actual Codex jobs client with zero model turns"
+    ],
+    "details": "Pending completed-workflow logs"
+  },
+  "finalRuns": [
+    {
+      "id": 39732651064,
+      "head_sha": "92c626108ad59c80cd2f814dc064d3a0c34f4499",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-22T06:13:48Z",
+      "updated_at": "2026-10-22T06:35:38Z"
+    },
+    {
+      "id": 39732651058,
+      "head_sha": "92c626108ad59c80cd2f814dc064d3a0c34f4499",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-22T06:13:48Z",
+      "updated_at": "2026-10-22T06:32:30Z"
+    }
+  ]
+}
