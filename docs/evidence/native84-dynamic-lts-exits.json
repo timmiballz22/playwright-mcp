@@ -1,0 +1,34 @@
+{
+  "sourceSha256": "4d9a6720d681b9f77cda50670ad58e16f391d7890105812d534b966b32571911",
+  "runs": [
+    {
+      "nodeMajor": "20",
+      "exit": 0,
+      "argv": [
+        "/home/agent/.npm/_npx/ebaba8b9e55fd0a9/node_modules/node/bin/node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "tests/dynamic-dom.spec.ts",
+        "--project=chromium",
+        "--project=firefox",
+        "--workers=2"
+      ],
+      "matchingNodeBinFirstOnPath": true
+    },
+    {
+      "nodeMajor": "22",
+      "exit": 0,
+      "argv": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "tests/dynamic-dom.spec.ts",
+        "--project=chromium",
+        "--project=firefox",
+        "--workers=2"
+      ],
+      "matchingNodeBinFirstOnPath": true
+    }
+  ],
+  "ordering": "Sequential Playwright runners; no shared fixed-port overlap"
+}

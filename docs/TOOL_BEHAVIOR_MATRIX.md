@@ -180,3 +180,10 @@ then restarts it and verifies a sibling profile's persisted values remain intact
 Local Chromium/Firefox2/2 pass within the unchanged90s test limit; other projects/
 native evidence is pending. This covers logical state for the fixture origin,
 not full filesystem profile erasure or stale ownership recovery.
+
+Local original dynamic DOM acceptance now covers nested open shadow snapshot refs
+and Unicode activation, plus a400-logical/20-rendered-row fixture with actual
+wheel materialization and stale-ref no-duplicate check. Chromium/Firefox4 each
+Node20/22/24 pass; source/runtime defaults remain intact. This does not cover
+closed roots, asynchronous infinite loading or native/WebKit variants. Initial
+fixture quoting/tool-name/charset failures are retained in native84-dynamic-proof.json.

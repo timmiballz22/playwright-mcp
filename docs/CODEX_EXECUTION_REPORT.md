@@ -1,5 +1,34 @@
 # Execution report — verified milestone, incomplete mission
 
+Native84 is running at `096b617`:
+[batch39757905116](https://github.com/timmiballz22/playwright-mcp/actions/runs/39757905116),
+[original39757905160](https://github.com/timmiballz22/playwright-mcp/actions/runs/39757905160).
+It includes the119-file package, locator/PCM fixtures, lifecycle evidence follow-up
+and known failing Firefox VP9 color regression. Pending outcomes are not PASS;
+no shipped encoder fix or assertion/deadline waiver. Hold pushes while it runs.
+
+
+## Nested open shadow and virtualized DOM references
+
+Local tests/dynamic-dom.spec.ts adds real original-MCP coverage for two nested
+open shadow roots, Unicode accessible name/output and exactly one activated
+effect. A second fixture uses actual vision mouse move/wheel to replace a20-row
+window in a400-row logical list. Only20 rows appear before/after; last-row find/ref
+click succeeds, the detached initial reference returns a tool error and final
+effect count stays1. No expert-code capability or source runtime change required.
+
+Final Chromium/Firefox4 tests pass each Node20/22/24; strict typecheck passes.
+Initial4 failures are fixture quoting/wrong discovered mouse-tool-name mistakes;
+a second2-pass/2-fail run isolates missing UTF-8 charset, with garbled labels.
+Both failures and phase hashes remain retained. Fixed HTML construction, actual
+mouse_move_xy name and explicit UTF-8 header preserve all original assertions
+and deadlines. Node20/22 runners execute sequentially with matching child Node.
+
+These tests are excluded from native84 at096b617. WebKit/native new fixtures,
+closed shadows, delayed hydration/infinite loading and physical-device behavior
+remain unexecuted. No release gate or broad Unicode/virtual-list guarantee is
+promoted. Evidence: native84-dynamic-proof.json and exact per-phase/per-Node logs.
+
 Latest completed native83 at `e95f0298030fd97b460d8798a2fd57a770123873`:
 [batch39753138604](https://github.com/timmiballz22/playwright-mcp/actions/runs/39753138604)
 reports1,469 passes/5 failures; [original39753138605](https://github.com/timmiballz22/playwright-mcp/actions/runs/39753138605)

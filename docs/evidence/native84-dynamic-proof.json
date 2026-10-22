@@ -1,0 +1,57 @@
+{
+  "baseHead": "096b6179061ca5903f83d6786aeb35a37b4ac5bc",
+  "phase": "Local follow-up while native84 runs; excluded from native84",
+  "sourceSha256": {
+    "tests/dynamic-dom.spec.ts": "4d9a6720d681b9f77cda50670ad58e16f391d7890105812d534b966b32571911"
+  },
+  "initial": {
+    "exit": 1,
+    "pass": 0,
+    "fail": 4,
+    "causes": [
+      "Fixture inline quoting syntax error",
+      "Wrong mouse tool name; corrected to discovered browser_mouse_move_xy"
+    ]
+  },
+  "second": {
+    "exit": 1,
+    "pass": 2,
+    "fail": 2,
+    "cause": "Missing UTF-8 charset garbled nested button label; corrected response header, same assertions"
+  },
+  "final": {
+    "node20": {
+      "exit": 0,
+      "pass": 4
+    },
+    "node22": {
+      "exit": 0,
+      "pass": 4
+    },
+    "node24": {
+      "exit": 0,
+      "pass": 4
+    },
+    "scope": "Original MCP Linux Chromium/Firefox, nested open shadow references and exact Unicode effect; actual coordinate mouse move/wheel materialize20 of400 virtual rows, last-row ref works and detached old ref returns tool error without another effect. No unsafe tool capability required. Closed shadows, delayed hydration/infinite loading, physical mobile, WebKit and native new cases unexecuted."
+  },
+  "typecheck": {
+    "initial": 0,
+    "final": 0,
+    "strict": true,
+    "skipLibCheck": false
+  },
+  "runtimeChanged": false,
+  "assertionsOrBudgetsWeakened": false,
+  "evidenceSha256": {
+    "native84-dynamic-first.log": "48b68956fa2e880c5dfe2794960698cdc89df78b49044d62edad498042fcfd5c",
+    "native84-dynamic-first-receipt.json": "fbb54d96f229f52650db1c311afc6a6494ab8bb0e43765ed0f243f674fea440a",
+    "native84-dynamic-corrected.log": "d2458ae2a6236b9ecdc5e4483f604de21d236091ad78da116c38d3b5d14a0cf6",
+    "native84-dynamic-corrected-receipt.json": "9989008c6bdbef4ccad3fb68cbd76feedb5bd8e0596c0c43924944ebaa22ec73",
+    "native84-dynamic-final24.log": "fc74cd536d7d0efa2f21b24d2c488ae1a7b9b0c950ebe5d083d9134019f8417f",
+    "native84-dynamic-node20.log": "b21b35b96166a167029148727e890fc199297eb68bfabbb2671acb0d267d34dc",
+    "native84-dynamic-node22.log": "dc5b1a7cea840dfa743e706238594c7a0a6fb9b932316545615a8f8c388a4d51",
+    "native84-dynamic-lts-exits.json": "d9d9dcc0f641565358e9d95e79336c4a92daef8921e12cda1fbf3209343b2b85",
+    "native84-dynamic-typecheck.log": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f",
+    "native84-dynamic-final-typecheck.log": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f"
+  }
+}
