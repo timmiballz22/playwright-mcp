@@ -346,7 +346,8 @@ the origin in its snapshot; trusted code, batch and CLI assert the exact URL. Al
 exited 0. These are separately encoded payload texts using js-tiktoken 1.0.21
 and o200k_base, **not actual model context, wire framing, or billed usage**.
 Encoding runs after the timed lifetime; optional bounded text collection still
-occurs during it. No runtime dependency was added.
+occurs during it. Tokenizer initialization precedes the fixture and is excluded
+from these timings. No runtime dependency was added.
 
 | Interface | Calls | Parameter/workflow tokens | Result/stdout tokens | Discovery tokens | Read snapshot tokens | Median action/setup time (range), seconds |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |

@@ -5,6 +5,24 @@ import path from 'node:path';
 import { windowsOwnedProcesses, windowsOwnedProcessScopes, windowsCimFailurePhase, windowsAuditReceipt, windowsLegacyComparison } from './windows-process-graph.mjs';
 const identities = new Map();
 const exec = promisify(execFile);
+// Fixed CIM scalar fields only. Avoid PowerShell's general object-graph JSON
+// serializer in this read-only audit; native74 timed out in that exact phase.
+export const windowsAuditSerialization = String.raw`$builder = New-Object System.Text.StringBuilder
+$null = $builder.Append('[')
+$separator = ''
+foreach ($row in $rows) {
+  $started = 'null'
+  if ($null -ne $row.Started) {
+    if ($row.Started -notmatch '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{7}Z$') { throw 'invalid_audit_timestamp' }
+    $started = '"' + $row.Started + '"'
+  }
+  $pidText = ([uint32]$row.ProcessId).ToString([Globalization.CultureInfo]::InvariantCulture)
+  $parentText = ([uint32]$row.ParentProcessId).ToString([Globalization.CultureInfo]::InvariantCulture)
+  $null = $builder.Append($separator).Append('{"ProcessId":').Append($pidText).Append(',"ParentProcessId":').Append($parentText).Append(',"Started":').Append($started).Append('}')
+  $separator = ','
+}
+$null = $builder.Append(']')
+$json = $builder.ToString()`;
 export async function ownedDescendants(roots, { rememberLiveRoots = false, onReceipt, sinceMs, identityScopes, compareLegacyRoots, onLegacyObservation } = {}) {
   const owned = new Set(roots.filter(pid => Number.isSafeInteger(pid) && pid > 1));
   let rows;
@@ -17,7 +35,7 @@ $processes = Get-CimInstance -ClassName Win32_Process -Property ProcessId,Parent
 [Console]::Error.WriteLine('PWMCP_AUDIT_PHASE=projection')
 $rows = $processes | Select-Object ProcessId,ParentProcessId,@{Name='Started';Expression={if ($_.CreationDate) {$_.CreationDate.ToUniversalTime().ToString('o')} else {$null}}}
 [Console]::Error.WriteLine('PWMCP_AUDIT_PHASE=serialization')
-$json = $rows | ConvertTo-Json -Compress
+${windowsAuditSerialization}
 [Console]::Error.WriteLine('PWMCP_AUDIT_PHASE=done')
 [Console]::Out.Write($json)`;
     let stdout;

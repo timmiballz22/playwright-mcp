@@ -13,8 +13,11 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
     let accepted = false; let primary;
     const fixture = createServer((request, response) => {
       response.writeHead(200, { 'Content-Type': 'text/html' });
+      // Closure is a browser lifecycle fact, independent of rendered frames.
+      // The reuse fixture suppresses RAF so a background-tab observer must
+      // still verify child.closed and all three exact DOM transitions.
       if (request.url === '/popup-close') response.end('<!doctype html><script>opener.childStarted(window);window.close()</script>');
-      else if (request.url === '/reuse') response.end('<!doctype html><button onclick="document.querySelector(\'output\').id=\'pending\';window.open(\'/popup-close\')">Open and close</button><output>waiting</output><script>let n=0;window.childStarted=child=>{const check=()=>{if(child.closed){const output=document.querySelector("output");output.id="closed-"+(++n);output.textContent="closed:"+n}else requestAnimationFrame(check)};requestAnimationFrame(check)}</script>');
+      else if (request.url === '/reuse') response.end('<!doctype html><button onclick="document.querySelector(\'output\').id=\'pending\';window.open(\'/popup-close\')">Open and close</button><output>waiting</output><script>window.requestAnimationFrame=()=>0;let n=0;window.childStarted=child=>{const check=()=>{if(child.closed){const output=document.querySelector("output");output.id="closed-"+(++n);output.textContent="closed:"+n}else setTimeout(check, 10)};setTimeout(check, 10)}</script>');
       else if (request.url.startsWith('/popup')) response.end('<!doctype html><script>opener.done()</script>');
       else if (request.url === '/next') { nextHits++; response.end('next'); }
       else response.end('<!doctype html><button onclick="for(let i=0;i<3;i++)window.open(\'/popup?i=\'+i)">Open three</button><output>waiting</output><script>let pending=3;window.done=()=>{if(!--pending){document.querySelector("output").id="ready";document.querySelector("output").textContent="ready"}}</script>');

@@ -1,0 +1,40 @@
+TAP version 13
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"page_limit_firefox_quota_4","lifetimes":1,"observed":0}
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"page_limit_firefox_quota_2","lifetimes":2,"observed":0}
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":3,"observed":0}
+# Page-limit fixture workspace preserved: acceptance or cleanup not confirmed
+# Subtest: firefox: operator page limit stops an approved popup burst without executing the next step
+not ok 1 - firefox: operator page limit stops an approved popup burst without executing the next step
+  ---
+  duration_ms: 13774.092364
+  type: 'test'
+  location: '/workspace/playwright-mcp/local-batch/page-limit.test.mjs:11:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"schemaVersion":1,"runId":"df86be97-fbae-41d0-944f-c3246ea8c216","browser":"firefox","total":10,"reportScope":"worker_execution","ok":false,"reason":"action_failed","blockedRequests":0,"actionsSucceeded":false,"cleanupFailures":[],"completed":2,"durationMs":7579,"reportPath":"/tmp/page-limit-1Dk4f0/exec-df86be97-fbae-41d0-944f-c3246ea8c216/run-b8c25116-6419-4da1-baaf-cc60c02ec76f.json","recentSteps":[{"index":1,"repetition":1,"type":"goto","ok":true,"durationMs":120},{"index":2,"repetition":1,"type":"click","ok":true,"durationMs":292},{"index":3,"repetition":1,"type":"waitFor","ok":false,"durationMs":5002,"error":"action_failed","failureKind":"locator_timeout"}],"failedStep":{"index":3,"repetition":1,"type":"waitFor","ok":false,"durationMs":5002,"error":"action_failed","failureKind":"locator_timeout"},"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":871615,"workerPid":871622,"browserPids":[871634]},"completionCertainty":"confirmed_lower_bound","retrySafe":false}
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/page-limit.test.mjs:52:14)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13853.753656

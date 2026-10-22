@@ -1,8 +1,40 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+import path from 'node:path';
+import { windowsAuditSerialization } from './fixtures/process-audit.mjs';
 import { windowsOwnedProcesses, windowsOwnedProcessScopes, windowsCimFailurePhase, windowsAuditReceipt } from './fixtures/windows-process-graph.mjs';
 const time = value => '2026-10-21T00:00:00.' + String(value).padStart(7, '0') + 'Z';
 const row = (pid, parent, started) => ({ pid, parent, started: started === null ? null : time(started) });
+// Only a native PowerShell execution verifies its serializer. Other hosts do
+// not register this case and must not report it as a pass.
+if (process.platform === 'win32') test('native fixed CIM serialization matches legacy scalar rows and rejects malformed timestamps', { timeout: 15000 }, async () => {
+  const cases = [[], [{ ProcessId: 0, ParentProcessId: 0, Started: null }],
+    [{ ProcessId: 1, ParentProcessId: 0, Started: time(1) }],
+    [{ ProcessId: 4294967295, ParentProcessId: 7, Started: time(1234567) }, { ProcessId: 8, ParentProcessId: 4294967295, Started: null }]];
+  const input = JSON.stringify(cases.map(rows => ({ rows })));
+  const script = `$ErrorActionPreference = 'Stop'
+$cases = ConvertFrom-Json '${input}'
+$results = @(foreach ($case in $cases) {
+  $rows = @($case.rows)
+  $legacy = ConvertTo-Json -InputObject $rows -Compress
+  ${windowsAuditSerialization}
+  [pscustomobject]@{legacy=$legacy;current=$json}
+})
+$rejected = $false
+$rows = @([pscustomobject]@{ProcessId=7;ParentProcessId=0;Started='not-a-date'})
+try { ${windowsAuditSerialization} } catch { $rejected = $_.Exception.Message -eq 'invalid_audit_timestamp' }
+[pscustomobject]@{results=$results;malformedRejected=$rejected} | ConvertTo-Json -Depth 4 -Compress`;
+  const executable = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
+  const { stdout } = await promisify(execFile)(executable, ['-NoProfile', '-NonInteractive', '-Command', script], { timeout: 10000, maxBuffer: 1048576, windowsHide: true });
+  const result = JSON.parse(stdout);
+  assert.equal(result.malformedRejected, true); assert.equal(result.results.length, cases.length);
+  result.results.forEach((row, index) => {
+    assert.deepEqual(JSON.parse(row.current), cases[index]);
+    assert.deepEqual(JSON.parse(row.current), JSON.parse(row.legacy));
+  });
+});
 test('audit receipts describe reused IDs without hiding possible processes or exposing identities', () => {
   const rows = [{ pid: 900, parent: 1, started: '2026-10-21T00:00:02.0000000Z', command: 'fake-audit-private-canary' },
     { pid: 901, parent: 900, started: '2026-10-21T00:00:01.0000000Z' }];

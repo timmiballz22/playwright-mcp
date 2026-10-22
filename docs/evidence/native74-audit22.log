@@ -1,0 +1,100 @@
+TAP version 13
+# Subtest: temporary cleanup completes in a separate process and reports a startup deadline
+ok 1 - temporary cleanup completes in a separate process and reports a startup deadline
+  ---
+  duration_ms: 53.712688
+  type: 'test'
+  ...
+# Subtest: actual temporary cleanup worker exits on parent death while filesystem awaits
+ok 2 - actual temporary cleanup worker exits on parent death while filesystem awaits
+  ---
+  duration_ms: 503.297552
+  type: 'test'
+  ...
+# Subtest: audit receipts describe reused IDs without hiding possible processes or exposing identities
+ok 3 - audit receipts describe reused IDs without hiding possible processes or exposing identities
+  ---
+  duration_ms: 1.877865
+  type: 'test'
+  ...
+# Subtest: older processes with recycled parent IDs are excluded while real live descendants remain
+ok 4 - older processes with recycled parent IDs are excluded while real live descendants remain
+  ---
+  duration_ms: 0.43617
+  type: 'test'
+  ...
+# Subtest: reused root identity excludes its replacement but still reports earlier surviving children
+ok 5 - reused root identity excludes its replacement but still reports earlier surviving children
+  ---
+  duration_ms: 0.197463
+  type: 'test'
+  ...
+# Subtest: missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+ok 6 - missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+  ---
+  duration_ms: 0.575878
+  type: 'test'
+  ...
+# Subtest: live-root snapshots retain exited browser identities for the final orphan scan
+ok 7 - live-root snapshots retain exited browser identities for the final orphan scan
+  ---
+  duration_ms: 0.234667
+  type: 'test'
+  ...
+# Subtest: CIM error phase keeps only exact fixed markers and never raw diagnostics
+ok 8 - CIM error phase keeps only exact fixed markers and never raw diagnostics
+  ---
+  duration_ms: 0.287859
+  type: 'test'
+  ...
+# Subtest: separate owned lifetimes retain old orphans when a new client reuses its PID
+ok 9 - separate owned lifetimes retain old orphans when a new client reuses its PID
+  ---
+  duration_ms: 0.513298
+  type: 'test'
+  ...
+# Subtest: new client may reuse an earlier observed descendant without losing either orphan lineage
+ok 10 - new client may reuse an earlier observed descendant without losing either orphan lineage
+  ---
+  duration_ms: 0.178494
+  type: 'test'
+  ...
+# Subtest: live controller anchors retain exited browser roots and reject changes within that lifetime
+ok 11 - live controller anchors retain exited browser roots and reject changes within that lifetime
+  ---
+  duration_ms: 0.351958
+  type: 'test'
+  ...
+# Subtest: live anchor refresh preserves an old orphan before recording a new owned browser incarnation
+ok 12 - live anchor refresh preserves an old orphan before recording a new owned browser incarnation
+  ---
+  duration_ms: 0.464649
+  type: 'test'
+  ...
+# Subtest: historical PID links cannot rewrite a live controller identity before validation
+ok 13 - historical PID links cannot rewrite a live controller identity before validation
+  ---
+  duration_ms: 0.28984
+  type: 'test'
+  ...
+# Subtest: legacy comparison preserves old candidates while scoped birth facts retain an owned orphan
+ok 14 - legacy comparison preserves old candidates while scoped birth facts retain an owned orphan
+  ---
+  duration_ms: 0.284328
+  type: 'test'
+  ...
+# Subtest: comparison records a replacement parent row even when it is outside legacy candidates
+ok 15 - comparison records a replacement parent row even when it is outside legacy candidates
+  ---
+  duration_ms: 0.153312
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 670.660072

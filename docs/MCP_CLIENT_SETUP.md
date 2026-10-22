@@ -185,6 +185,8 @@ opt-in profile to confirm the chosen state is absent.
 
 The extended profile fixture verifies persistence of this reset and preservation
 of a second operator-selected private profile: local Chromium/Firefox2/2 on
-Node22. Native/Chrome/WebKit verification of the extension is pending. This is
+Node22. Native74 at e410516 also passes all12 original-test combinations:
+Chrome, Chromium, Firefox and WebKit on Linux, Windows and macOS
+(evidence/native74-profile-reset.json). This is
 logical state clearing, not secure disk erasure, IndexedDB/other-origin clearing,
 filesystem profile deletion, ACL repair or recovery of an uncertain guard lock.

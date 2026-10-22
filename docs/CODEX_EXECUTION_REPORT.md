@@ -1,5 +1,83 @@
 # Execution report — verified milestone, incomplete mission
 
+Latest completed native74 at `e4105166cb09e3f7f693d1db95d6b3c3bca97d99`:
+batch39716046694 reports1,424 passes/7 failures; original CI39716046688 reports
+458/3. Total: **1,882 reported test passes/10 failures**. Both workflows fail.
+All17 non-soak jobs conclude; optional functional_soak is skipped, with zero
+reported test skips/cancels. No release gate is cleared by this result.
+
+All three actual Codex clients complete1,000 actions: Linux36.166s, Windows39.009s,
+Mac108.793s, model turns0/owned survivors0. Five175-file production installs,
+all25 response-disposal regressions, all five20-run screenshot/factory fixtures
+and12 original routing-negative executions pass. The extended original profile
+fixture passes all12 OS/browser combinations, including Chrome and WebKit:
+scoped logical reset persists across restart, and sibling state remains intact.
+This does not establish secure erasure, filesystem profile reset or stale-lock repair.
+
+Main Linux20/22/24:195/199/199 pass; Mac197/2; Windows186/4. Components Linux/Mac112
+pass each; Windows112/1. Seven batch failures retain their scope:
+- Windows actual cleanup-worker owner-death audit fails at10.142s with
+  process_audit_windows_cim_timeout_phase_serialization. The query/projection
+  stages were reached; this is not a demonstrated worker leak.
+- Mac raw Chromium reaches990/1,000 at120.048s, interrupted step991. Mac SDK jobs
+  reports all1,000 completed but TIMED_OUT (118.895s worker receipt), with known
+  terminated/removed cleanup, forced:false, attention:false; bounded stderr facts
+  show no guardian/journal failure. Success after the deadline is not inferred.
+- Windows raw FF headless/headed fresh2 both complete11/23 and fail pointer step12
+  (9.401/11.290s); headless counter10, headed counter probe times out.
+- Windows FF429 times out before navigation acknowledgement: one GET/one finished
+  response at3.154s; known cleanup. Later scenarios in that case are unexecuted.
+- Windows FF page-limit quota4/quota2 pass with exact next-navigation checks and
+  zero owned survivors. Reuse fails on its third closure wait (step9,8 completed,
+  locator_timeout), with known cleanup and zero-survivor three-lifetime teardown.
+
+Three original-workflow failures: Mac Chromium advanced screenshot returns
+Page.captureScreenshot Unable to capture screenshot after fonts load; its later
+video/trace/PDF assertions and conditional Mac modal control are unexecuted.
+An artifact-upload request also times out, separately from that functional error.
+Windows Node20 legacy FF headless fresh6 completes7/23, locator8 and failed counter
+probe (9.809s); headed fresh10 completes23/23 but server_timeout plus
+server_kill_timeout (14.379s). Normal original Linux/Windows152 each, Mac151/1,
+Docker2 and legacy1/2. Chrome-install fallback remains unexercised.
+
+New actual-factory audit scopes pass all supervised browser and cache cases.
+The Windows20-run pair10 retains legacy candidates1908/3868 in its comparison:
+factory PID1908 birth03:40:12.6910040Z versus actual audit-helper incarnation
+03:40:35.3194540Z; child3868 starts03:40:35.3225980Z. Full rows/root rows/lifetimes
+are retained. This is factual incarnation evidence, not a role/name/window filter.
+All six native73 historical candidates remain unclassified. Production matching,
+signal authority, lease fencing and transport defaults are unchanged.
+Windows private/inherited/protocol-headed/stock-headed controls each10/10=230,
+owned0/residual0. Mac server/pipe controls complete1,000 in114.560/106.227s with
+owned0. Healthy controls do not causally resolve earlier failures.
+
+Follow-up after native74:
+- Commit8ba3c77 adds optional offline o200k_base payload encoding with three
+  successful four-interface samples, exact counters/owned0/model0, pinned external
+  tokenizer provenance and default compatibility. These are reference payload
+  counts, not actual model context/wire/billing. No runtime dependency is added.
+- A controlled suspended-frame fixture first fails its RAF closure observer,
+  then passes timer polling while retaining child.closed, exact three transitions,
+  quotas, workflow/test budgets and next-navigation assertions. Retain suspended
+  frames as the regression control. Local Node22 page/cache3/3 and Node24 page2/2
+  pass; native74's closure cause remains unproven.
+- Replace only read-only CIM general JSON serialization with fixed scalar output,
+  preserving the query,10s/1MiB bounds and every process row. Native PowerShell
+  parity covers zero/maximum PID, missing timestamps and malformed rejection;
+  that Windows-only case is **unexecuted locally**. Linux graph/cleanup15/15 each
+  Node20/22/24, fresh175-file production install, lint/diff pass. Native validation
+  of the serializer and suspended-frame fixture is pending the next matrix.
+- Pinned upstream source review confirms synchronous Windows taskkill; raw-runner
+  timers cannot preempt synchronous dependency work. Independent companion
+  supervision already exists. This is not proof of the historical shutdown cause.
+
+Evidence: worker-ci-seventyfourth-*, native74-*, reference-tokens-*.
+**Not release-ready. NEXT ACTION: commit/push the concrete fixture/serializer
+follow-up and inspect the complete next native matrix. Do not raise budgets,
+weaken assertions, discard candidates or clear historical uncertainty.**
+
+### Archived native73 checkpoint
+
 Latest completed native73 at `ca638b05b67b2551eebc0fe56ebbfbd766ffe080`:
 batch39710461938 reports1,424 passes/7 failures; original CI39710461813 reports
 458/3. Total: **1,882 reported test passes/10 failures**, plus separate Mac actual
@@ -74,9 +152,10 @@ Evidence: worker-ci-seventythird-*, native73-*, sdk-drain-*,
 guardian-stderr-windows-code-* and profile-reset-*. Earlier source/runtime fixes,
 permission uncertainty and failed tests are preserved below.
 
-**Not release-ready. NEXT ACTION: commit/push native74 with the validated follow-up;
-inspect actual lifetime/legacy comparisons without budget raises, assertion
-weakening, role/window filtering, debt clearing or default transport changes.**
+**Not release-ready. Native74 running at e410516: batch39716046694 and
+CI39716046688. NEXT ACTION: inspect completed matrices and actual lifetime/legacy
+comparisons; no budget raises, assertion weakening, role/window filtering,
+debt clearing or default transport changes.**
 
 The following records are historical checkpoints.
 

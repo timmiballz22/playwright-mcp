@@ -139,7 +139,11 @@ CLI and MCP execute through an independent supervisor and worker. A monotonic
 execution deadline covers browser setup, actions, report publication and worker
 exit; stalled cleanup triggers scoped process termination. Uncertain cleanup
 fails closed and blocks new MCP work. Direct source calls to the raw runner use
-cooperative cleanup. CLI input accepts regular files up to 1 MiB with strict UTF-8
+cooperative cleanup: same-thread timers cannot preempt synchronous dependency
+work. Pinned Playwright1.64.1 uses synchronous `taskkill` in its Windows browser
+kill path; this source finding does not establish the cause of historical close
+failures. The independent supervisor is required for companion deadline claims
+(see evidence/native74-upstream-kill-review.json). CLI input accepts regular files up to 1 MiB with strict UTF-8
 validation, but filesystem ingestion latency precedes the execution deadline.
 The supervisor starts cancellation before the deadline to reserve cleanup time:
 up to three seconds on Windows and one second elsewhere (scaled for short runs).
