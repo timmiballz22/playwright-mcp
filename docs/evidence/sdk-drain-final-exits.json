@@ -1,0 +1,47 @@
+[
+  {
+    "name": "mcp",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "local-batch/mcp.test.mjs",
+      "local-batch/jobs-mcp.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "production",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "scripts/verify-package.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "listeners",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "scripts/verify-stdio-listeners.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "lint",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "diff",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exitCode": 0
+  }
+]

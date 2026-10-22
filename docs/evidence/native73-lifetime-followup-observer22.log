@@ -1,0 +1,29 @@
+TAP version 13
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":3,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_orphan","detected":true,"cleanup":"failed"}
+# {"fixture":"factory_lifetime_audit","phase":"self_exit","lifetimes":1,"observed":0}
+# {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+# Subtest: live factory facts retain an owned orphan after its worker exits
+ok 1 - live factory facts retain an owned orphan after its worker exits
+  ---
+  duration_ms: 993.172841
+  type: 'test'
+  ...
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":3,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+# {"fixture":"factory_lifetime_audit","phase":"collision_teardown","lifetimes":1,"observed":0}
+# Subtest: capture publication failure still releases its assigned factory gate and preserves the collision
+ok 2 - capture publication failure still releases its assigned factory gate and preserves the collision
+  ---
+  duration_ms: 756.413279
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1811.05532

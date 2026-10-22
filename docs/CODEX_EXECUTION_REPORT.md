@@ -1,5 +1,87 @@
 # Execution report — verified milestone, incomplete mission
 
+Latest completed native73 at `ca638b05b67b2551eebc0fe56ebbfbd766ffe080`:
+batch39710461938 reports1,424 passes/7 failures; original CI39710461813 reports
+458/3. Total: **1,882 reported test passes/10 failures**, plus separate Mac actual
+Codex TIMED_OUT at913 completed actions. All17 non-soak jobs conclude; optional
+functional_soak is skipped. No reported test skips/cancels. Both workflows fail.
+
+Five175-file production installs, all25 response-disposal regressions, all five
+20-run supervised screenshot/factory-lifetime fixtures and all12 routing-negative
+executions pass. No legacy comparison is emitted by those20-run fixtures. This
+does not classify historical candidates. Components pass112 Linux/Mac and113
+Windows. Linux main20/22/24:195/199/199 pass; Mac197/2; Windows185/5. SDK jobs
+passes this sample: native72 Windows CRASHED375/debt and component failures remain
+unexplained; consuming stderr is a demonstrated transport fix, not a proven cause
+of those older failures. New component failure branches are not naturally hit.
+
+Linux/Windows actual Codex1k pass36.410/38.233s, model0/owned0. Mac actual913
+reports forced:false, operatorAttention:false, cleanup terminated/temp removed;
+guardian/journal/exit arrays empty. Missing hints do not clear any older failure.
+Mac separate server/pipe1k controls pass116.166/105.517s for the client job and
+114.257/106.689s for batch. Healthy controls are not causal fixes.
+
+Ten failed tests retain their distinct scope:
+- Mac raw Chromium reaches968/1,000 at120.069s; synchronous MCP reaches981 with
+  known terminated/removed cleanup. Both hit their unchanged deadlines.
+- Windows supervised FF20-click case fails a legacy process audit after known
+  cleanup; its later counter/report assertions are unexecuted. Candidates:
+  6276/6388/6712/6776, without a live factory-birth ledger.
+- Windows FF raw pipe fresh10 completes23/23 but context_timeout (11.560s).
+- Windows FF429 times out before navigation acknowledgement despite two GETs/two
+  finished responses (first4.402s/last5.421s); known cleanup. Later scenarios in
+  that case are unexecuted; separate marked traffic controls still run.
+- Windows FF page-limit case fails legacy audit (4216/4872); the remaining quota/
+  reuse flow is not established. Cache control also fails audit with the same
+  four candidates as FF20; strict-cache comparison is unexecuted in that failed case.
+  All six unique historical PID candidates remain unclassified, never filtered
+  by role, name, age or observation window.
+- Original Mac Chromium highlight screenshot returns Page.captureScreenshot
+  Unable to capture screenshot after fonts load. Mac modal is unexecuted.
+- Original-workflow legacy Windows Node20 FF headless fresh1 completes3/23,
+  pointer4 plus context_timeout (14.972s); headed fresh2 completes3/23, pointer4
+  (9.188s). In the headed case only two clicks are acknowledged, but counter3
+  confirms the failed third click delivered its effect. Never replay it.
+
+Normal original Linux/Windows152 each pass; Mac151/1, Docker2, legacy1/2.
+Chrome-install fallback is unexercised. Windows private/inherited/protocol-headed/
+stock-headed controls each10/10=230 with owned0. Stock close fallback is not
+naturally exercised this sample; native72's six residual processes remain valid
+historical failure evidence. No production default transport or policy changed.
+
+Current uncommitted follow-up:
+- Drain/discard the remaining seven SDK verification-client stderr pipes. All14
+  constructors now have consumers; six25/72 discovery snapshots are byte-identical.
+  Local MCP3/3, fresh175-file install, Linux owned TCP listeners0, lint/diff pass.
+- Correct stderr diagnostic exit-status bounds for unsigned Windows NTSTATUS,
+  without changing PID/signal authority. Regression before4/1; after5/5 each
+  Node20/22/24. Native73 still uses the prior narrower diagnostic range.
+- Reuse the established actual-factory lifetime observer for supervised browser,
+  page-limit and cache fixtures. Preserve same-snapshot legacy candidates/rows,
+  strict ownership assertions, counters/PNGs/reports/quotas/cache counts and all
+  workflow/test budgets. The ungated cache worker first fails for missing live
+  factory evidence; composing its existing control with the gate passes.
+  Local selected executor Chromium/Firefox2/2 (WebKit unexecuted, not a TAP skip),
+  page/cache3/3, Node20 cache1/1, observer orphan/collision2/2 and fresh175-file
+  production install pass. No old candidate is retroactively classified.
+- Extend the existing90s profile test using upstream clear tools: current-origin
+  logical reset survives restart and a sibling private profile retains state.
+  Local Chromium/Firefox2/2 pass; Chrome/WebKit/native extension pending. This
+  does not implement secure erasure, other-origin/IndexedDB clearing, filesystem
+  profile deletion, ACL repair or stale-lock recovery.
+
+Evidence: worker-ci-seventythird-*, native73-*, sdk-drain-*,
+guardian-stderr-windows-code-* and profile-reset-*. Earlier source/runtime fixes,
+permission uncertainty and failed tests are preserved below.
+
+**Not release-ready. NEXT ACTION: commit/push native74 with the validated follow-up;
+inspect actual lifetime/legacy comparisons without budget raises, assertion
+weakening, role/window filtering, debt clearing or default transport changes.**
+
+The following records are historical checkpoints.
+
+### Archived native72 checkpoint
+
 Latest completed native72 at `e37c5064666a9c39f22cad1171a52091a6effb7c`:
 batch run39706350916 fails with1,401 passes/10 failed tests; original CI39706350869
 fails with460 passes/one failure. Total: **1,861 reported passes/11 failed tests**,
@@ -46,7 +128,7 @@ classify close timeout versus rejection. Protocol-headed/private/inherited contr
 all pass10/10=230; Mac server1k118.270s/pipe1k109.714s pass. Healthy controls are
 not causal fixes; logging and screenshot retention differ between controls.
 
-Uncommitted follow-up after native72:
+Follow-up committed at ca638b0 (native73 running):
 - Fixed component failure classes and bounded durations, with no error getters,
   messages or arbitrary fields. Before:4/1; after:6/6 on each Node20/22/24. Real
   assertion/missing-path/timeout calibrations intentionally exit1 and classify correctly.
@@ -70,11 +152,27 @@ workflow logs supply the results. One watcher HTTP401 recovered on ordinary read
 without credential changes. Evidence: worker-ci-seventysecond-*, native72-*,
 component-reporter-*, guardian-stderr-*, firefox-stock-close-*.
 
-**Not release-ready. NEXT ACTION: archive/commit the validated diagnostic follow-up,
-then native73 to capture journal/cleanup causes without raising budgets, weakening
-assertions, clearing debt or switching default transport.**
+Separate uncommitted follow-up after ca638b0 consumes/discards the remaining
+seven SDK verification-client stderr pipes. Existing draining/capturing clients
+are unchanged. Six discovery snapshots are byte-identical (25 default/72 extended
+per browser configuration). Local MCP3/3, fresh175-file production install,
+Linux owned TCP listeners0, lint and diff checks pass. This is not in native73;
+no causal fix for earlier provider/journal failures is claimed. Exact source hashes
+and commands: sdk-drain-provenance.json and sdk-drain-final-exits.json.
 
-The following records are historical checkpoints.
+The pending follow-up also corrects the stderr hint parser's exit-status bound:
+Windows unsigned NTSTATUS values, including0xC0000005, must remain readable.
+Before the boundary correction:4/1; after:5/5 each Node20/22/24. This changes only
+diagnostic exit-status strings, not PID validation or signal authority. Native73
+still tests the narrower prior parser; missing captured exits cannot clear failures.
+Original native73 CI is complete at458/3; Mac actual Codex timed out913 with known
+cleanup. The companion workflow is still active, so full native73 totals are pending.
+
+**Not release-ready. Native73 running at ca638b0: batch39710461938 and
+CI39710461813. NEXT ACTION: inspect completed matrices and safe error receipts;
+no budget raises, assertion weakening, debt clearing or default transport switch.**
+
+
 
 ### Archived native71 checkpoint
 

@@ -164,3 +164,10 @@ implementation or security policy changed. Evidence: original-route-negative-*.
 Native72 closes the scoped routing-negative verification above: all12 executions
 pass on four engine projects across three OSs. Other route parameters and the
 remaining per-tool negative/operator gaps stay open. See native72-route-negative-tests.json.
+
+Pending profile contract extension reuses browser_cookie_clear,
+browser_localstorage_clear and browser_sessionstorage_clear in an opt-in profile,
+then restarts it and verifies a sibling profile's persisted values remain intact.
+Local Chromium/Firefox2/2 pass within the unchanged90s test limit; other projects/
+native evidence is pending. This covers logical state for the fixture origin,
+not full filesystem profile erasure or stale ownership recovery.

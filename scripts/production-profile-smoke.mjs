@@ -24,6 +24,7 @@ const doctor = () => {
 const open = async () => {
   const client = new Client({ name: 'installed-profile', version: '1.0.0' });
   const transport = new StdioClientTransport({ command: process.execPath, args: [path.join(target, 'cli.js'), '--browser=chromium', '--headless', '--caps=storage', '--user-data-dir', profile], stderr: 'pipe', cwd: root });
+  transport.stderr.resume();
   clients.push(client); await client.connect(transport); roots.push(transport.pid); return { client, pid: transport.pid };
 };
 const call = async (client, name, args = {}) => {

@@ -37,6 +37,7 @@ try {
       args: [path.join(target, entry), ...(original ? ['--browser=chromium', '--isolated', '--headless'] : [])],
       cwd: target, stderr: 'pipe', env: { ...process.env, PLAYWRIGHT_BATCH_ALLOWED_ORIGINS: origin, PLAYWRIGHT_BATCH_ARTIFACTS_DIR: dir, ...(!original ? { PLAYWRIGHT_BATCH_NAVIGATION_RETRIES: '1', PLAYWRIGHT_BATCH_MAX_PAGES: '1' } : {}) },
     });
+    transport.stderr.resume();
     let primaryFailure;
     try {
       await client.connect(transport); await client.ping();

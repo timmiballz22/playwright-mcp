@@ -5,11 +5,11 @@ import { once } from 'node:events';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { executeWorkflow } from './executor.mjs';
-import { ownedDescendants } from './fixtures/process-audit.mjs';
+import { createLifetimeObserver } from './jobs/fixtures/lifetime-observer.mjs';
 
 test('owned cache comparison keeps strict routing enabled and measures its repeated resource requests', { timeout: 45000 }, async () => {
-  const hits = { control: 0, strict: 0 }; const owned = []; const receipts = [];
+  const hits = { control: 0, strict: 0 }; const receipts = [];
+  let verified = false; let primary;
   const asset = 'document.querySelector("output").textContent="ready";/*' + 'x'.repeat(262144) + '*/';
   const fixture = createServer((request, response) => {
     const url = new URL(request.url, 'http://fixture'); const mode = url.searchParams.get('mode');
@@ -24,15 +24,17 @@ test('owned cache comparison keeps strict routing enabled and measures its repea
   fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
   const origin = `http://127.0.0.1:${fixture.address().port}`;
   const directory = await mkdtemp(path.join(os.tmpdir(), 'routing-cache-'));
+  const observer = await createLifetimeObserver(path.join(directory, 'factory-control'));
   try {
     for (const mode of ['control', 'strict']) {
       const workflow = { timeoutMs: 15000, steps: Array.from({ length: 6 }, () => [
         { type: 'goto', url: `${origin}/?mode=${mode}` }, { type: 'assertText', selector: 'output', equals: 'ready' },
       ]).flat() };
-      const result = await executeWorkflow(workflow, { allowedOrigins: [origin], artifactsDir: directory,
+      const [outcome] = await observer.run([{ workflow, options: { allowedOrigins: [origin], artifactsDir: directory,
         ...(mode === 'control' ? { workerModule: new URL('./fixtures/cache-routing-control.mjs', import.meta.url) } : {}),
-        onEvent: event => { if (event.pid) owned.push(event.pid); },
-      });
+      } }]);
+      if (outcome.status === 'rejected') throw outcome.reason;
+      const result = outcome.value;
       assert.equal(result.ok, true, JSON.stringify(result)); assert.equal(result.completed, 12);
       assert.equal(result.execution.cleanup, 'terminated'); assert.equal(result.execution.tempCleanup, 'removed');
       const report = JSON.parse(await readFile(result.reportPath, 'utf8'));
@@ -40,15 +42,19 @@ test('owned cache comparison keeps strict routing enabled and measures its repea
       assert.equal(navigationMs.length, 6);
       assert.equal(hits[mode], mode === 'control' ? 1 : 6);
       receipts.push({ mode, navigations: 6, assetRequests: hits[mode], assetResponseBytes: hits[mode] * Buffer.byteLength(asset), coldNavigationMs: navigationMs[0], subsequentNavigationMs: navigationMs.slice(1) });
-      assert.deepEqual(await ownedDescendants(owned), []);
+      await observer.audit('routing_cache_' + mode);
     }
     console.log(JSON.stringify({ fixture: 'routing_cache', os: process.platform, browser: 'chromium', samplesPerMode: 1, receipts, activeOwnedProcesses: 0, modelTurns: 0 }));
+    verified = true;
+  } catch (error) { primary = error; throw error;
   } finally {
     let clean = false;
-    try { assert.deepEqual(await ownedDescendants(owned), []); clean = true; }
+    try { await observer.close(); clean = true; }
+    catch (error) { if (primary) throw new AggregateError([primary, error], 'Cache acceptance and lifetime audit failed'); throw error; }
     finally {
       fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
-      if (clean) await rm(directory, { recursive: true, force: true });
+      if (clean && verified) await rm(directory, { recursive: true, force: true });
+      else console.error('Routing cache fixture preserved: acceptance or cleanup not confirmed');
     }
   }
 });

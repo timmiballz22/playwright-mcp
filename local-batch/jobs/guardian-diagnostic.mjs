@@ -31,7 +31,8 @@ export function guardianStderrFacts(value) {
     if (JOURNAL_FAILURE_CAUSES.includes(match[1]) && (COMMAND_FIELDS.has(match[2]) || match[2] === 'none')) add(journals, match.slice(1).join('/'));
   }
   for (const match of text.matchAll(/Local job guardian exited \((unknown|-?[0-9]{1,10})\/(none|SIGKILL|SIGTERM|SIGABRT|SIGSEGV|SIGINT)\)/g)) {
-    if (match[1] === 'unknown' || Number.isSafeInteger(Number(match[1])) && Math.abs(Number(match[1])) <= 2147483647) add(exits, match.slice(1).join('/'));
+    // Windows may report unsigned NTSTATUS values (for example 0xC0000005).
+    if (match[1] === 'unknown' || Number.isSafeInteger(Number(match[1])) && Number(match[1]) >= -2147483648 && Number(match[1]) <= 4294967295) add(exits, match.slice(1).join('/'));
   }
   return { coverage: 'bounded_stderr_tail', guardianFailures: [...failures], journalFailures: [...journals], guardianExits: [...exits],
     journalExitUnconfirmed: text.includes('Local job journal worker exit unconfirmed.'), inputTruncated: typeof value === 'string' && value.length > 4096, capped };

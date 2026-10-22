@@ -5,18 +5,12 @@ import { once } from 'node:events';
 import { mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { executeWorkflow } from './executor.mjs';
-import { ownedDescendants } from './fixtures/process-audit.mjs';
+import { createLifetimeObserver } from './jobs/fixtures/lifetime-observer.mjs';
 
 for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',')) {
   test(`${browser}: operator page limit stops an approved popup burst without executing the next step`, { timeout: 45000 }, async () => {
-    let nextHits = 0; const owned = []; const sinceMs = Date.now();
+    let nextHits = 0; const sinceMs = Date.now();
     let accepted = false; let primary;
-    const auditOwned = async phase => {
-      let receipt = null;
-      const observed = await ownedDescendants(owned, { sinceMs, onReceipt: value => { receipt = value; } });
-      assert.deepEqual(observed, [], JSON.stringify({ fixture: 'page_limit_ownership', browser, phase, audit: receipt }));
-    };
     const fixture = createServer((request, response) => {
       response.writeHead(200, { 'Content-Type': 'text/html' });
       if (request.url === '/popup-close') response.end('<!doctype html><script>opener.childStarted(window);window.close()</script>');
@@ -28,15 +22,20 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
     fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
     const origin = `http://127.0.0.1:${fixture.address().port}`;
     const directory = await mkdtemp(path.join(os.tmpdir(), 'page-limit-'));
+    const observer = await createLifetimeObserver(path.join(directory, 'factory-control'));
+    const run = async (workflow, options) => {
+      const [outcome] = await observer.run([{ workflow, options }]);
+      if (outcome.status === 'rejected') throw outcome.reason;
+      return outcome.value;
+    };
+    const auditOwned = phase => observer.audit('page_limit_' + browser + '_' + phase, sinceMs);
     try {
       for (const maxPages of [4, 2]) {
-        const result = await executeWorkflow({ browser, timeoutMs: 15000, steps: [
+        const result = await run({ browser, timeoutMs: 15000, steps: [
           { type: 'goto', url: origin }, { type: 'click', selector: 'button' },
           { type: 'waitFor', selector: '#ready' }, { type: 'assertText', selector: 'output', equals: 'ready' },
           { type: 'goto', url: origin + '/next' },
-        ] }, { allowedOrigins: [origin], artifactsDir: directory, maxPages,
-          onEvent: event => { if (event.pid) owned.push(event.pid); },
-        });
+        ] }, { allowedOrigins: [origin], artifactsDir: directory, maxPages });
         assert.equal(result.ok, maxPages === 4, JSON.stringify(result));
         if (maxPages === 2) {
           assert.equal(result.reason, 'resource_limit'); assert.equal(result.retrySafe, false);
@@ -46,10 +45,10 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
         assert.equal(result.execution.cleanup, 'terminated'); assert.equal(result.execution.tempCleanup, 'removed');
         await auditOwned(maxPages === 4 ? 'quota_4' : 'quota_2');
       }
-      const reuse = await executeWorkflow({ browser, timeoutMs: 15000, steps: [
+      const reuse = await run({ browser, timeoutMs: 15000, steps: [
         { type: 'goto', url: origin + '/reuse' },
         ...[1, 2, 3].flatMap(index => [{ type: 'click', selector: 'button' }, { type: 'waitFor', selector: '#closed-' + index }, { type: 'assertText', selector: 'output', equals: 'closed:' + index }]),
-      ] }, { allowedOrigins: [origin], artifactsDir: directory, maxPages: 2, onEvent: event => { if (event.pid) owned.push(event.pid); } });
+      ] }, { allowedOrigins: [origin], artifactsDir: directory, maxPages: 2 });
       assert.equal(reuse.ok, true, JSON.stringify(reuse)); assert.equal(reuse.completed, 10);
       assert.equal(reuse.execution.cleanup, 'terminated'); assert.equal(reuse.execution.tempCleanup, 'removed');
       assert.equal(nextHits, 1); await auditOwned('reuse');
@@ -57,7 +56,7 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
     } catch (error) { primary = error; throw error; }
     finally {
       let clean = false;
-      try { await auditOwned('teardown'); clean = true; }
+      try { await observer.close(); clean = true; }
       catch (error) { if (primary) throw new AggregateError([primary, error], 'Page-limit acceptance and teardown failed'); throw error; }
       finally {
         fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));

@@ -173,3 +173,18 @@ action effects may have occurred and must not be automatically replayed. This
 reactive limit can observe allocation after it happens; CPU/RAM/process-tree and
 global project quotas remain separate open requirements. Original upstream MCP
 page behavior is unchanged.
+
+### Clear a selected profile's browser state
+
+With the original server's `--caps=storage`, navigate to the origin whose web
+storage you choose to clear. Call `browser_cookie_clear`,
+`browser_localstorage_clear` and `browser_sessionstorage_clear` with empty
+arguments, then `browser_close`. Cookie clearing covers the browser context;
+local/session storage clearing covers the active page's origin. Reopen the same
+opt-in profile to confirm the chosen state is absent.
+
+The extended profile fixture verifies persistence of this reset and preservation
+of a second operator-selected private profile: local Chromium/Firefox2/2 on
+Node22. Native/Chrome/WebKit verification of the extension is pending. This is
+logical state clearing, not secure disk erasure, IndexedDB/other-origin clearing,
+filesystem profile deletion, ACL repair or recovery of an uncertain guard lock.

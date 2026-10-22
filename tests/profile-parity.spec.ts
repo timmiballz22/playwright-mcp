@@ -2,7 +2,7 @@
 import fs from 'node:fs/promises';
 import { test, expect } from './fixtures';
 
-test('original opt-in profile locks, cookie/local storage restore and independent profile isolation', async ({ startClient, server }, testInfo) => {
+test('original opt-in profile locks, restore, reset and independent profile isolation', async ({ startClient, server }, testInfo) => {
   test.setTimeout(90000);
   server.setContent('/', '<!doctype html><title>Profile fixture</title><button>Ready</button>', 'text/html');
   const profile = testInfo.outputPath('private-profile');
@@ -36,5 +36,32 @@ test('original opt-in profile locks, cookie/local storage restore and independen
   await call(isolated, 'browser_navigate', { url: server.PREFIX });
   expect(JSON.stringify(await call(isolated, 'browser_cookie_get', { name: 'fake-profile-cookie' }))).not.toContain('fake-profile-cookie-value');
   expect(JSON.stringify(await call(isolated, 'browser_localstorage_get', { key: 'fake-profile-key' }))).not.toContain('fake-profile-local-value');
+  await call(isolated, 'browser_cookie_set', { name: 'fake-other-cookie', value: 'fake-other-cookie-value', expires: Math.floor(Date.now() / 1000) + 3600 });
+  await call(isolated, 'browser_localstorage_set', { key: 'fake-other-key', value: 'fake-other-local-value' });
   await call(isolated, 'browser_close');
+
+  // Reuse upstream clear tools. Resetting this profile must persist after close
+  // and must not erase the independently persisted sibling profile's state.
+  const reset = (await open(profile)).client;
+  await call(reset, 'browser_navigate', { url: server.PREFIX });
+  expect(JSON.stringify(await call(reset, 'browser_cookie_get', { name: 'fake-profile-cookie' }))).toContain('fake-profile-cookie-value');
+  expect(JSON.stringify(await call(reset, 'browser_localstorage_get', { key: 'fake-profile-key' }))).toContain('fake-profile-local-value');
+  await call(reset, 'browser_sessionstorage_set', { key: 'fake-profile-session', value: 'fake-profile-session-value' });
+  await call(reset, 'browser_cookie_clear');
+  await call(reset, 'browser_localstorage_clear');
+  await call(reset, 'browser_sessionstorage_clear');
+  expect(JSON.stringify(await call(reset, 'browser_cookie_get', { name: 'fake-profile-cookie' }))).not.toContain('fake-profile-cookie-value');
+  expect(JSON.stringify(await call(reset, 'browser_localstorage_get', { key: 'fake-profile-key' }))).not.toContain('fake-profile-local-value');
+  expect(JSON.stringify(await call(reset, 'browser_sessionstorage_get', { key: 'fake-profile-session' }))).not.toContain('fake-profile-session-value');
+  await call(reset, 'browser_close');
+  const resetRestored = (await open(profile)).client;
+  await call(resetRestored, 'browser_navigate', { url: server.PREFIX });
+  expect(JSON.stringify(await call(resetRestored, 'browser_cookie_get', { name: 'fake-profile-cookie' }))).not.toContain('fake-profile-cookie-value');
+  expect(JSON.stringify(await call(resetRestored, 'browser_localstorage_get', { key: 'fake-profile-key' }))).not.toContain('fake-profile-local-value');
+  await call(resetRestored, 'browser_close');
+  const otherRestored = (await open(otherProfile)).client;
+  await call(otherRestored, 'browser_navigate', { url: server.PREFIX });
+  expect(JSON.stringify(await call(otherRestored, 'browser_cookie_get', { name: 'fake-other-cookie' }))).toContain('fake-other-cookie-value');
+  expect(JSON.stringify(await call(otherRestored, 'browser_localstorage_get', { key: 'fake-other-key' }))).toContain('fake-other-local-value');
+  await call(otherRestored, 'browser_close');
 });

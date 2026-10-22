@@ -29,6 +29,7 @@ test('local stdio MCP: handshake, tool list, rejection, browser workflow', {
     env: { ...process.env, PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS: '1', PLAYWRIGHT_BATCH_ARTIFACTS_DIR: dir, PLAYWRIGHT_BATCH_ALLOWED_ORIGINS: new URL(url).origin },
     stderr: 'pipe',
   });
+  transport.stderr.resume();
   const client = new Client({ name: 'local-batch-verification', version: '1.0.0' });
   let verified = false; let stage = 'connect'; let outcome = null; let primaryFailure;
   try {

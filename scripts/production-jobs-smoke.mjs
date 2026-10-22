@@ -31,6 +31,7 @@ if (!supportsJournal) {
     PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: origin, PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: '0', PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS: '0',
   };
   const transport = new StdioClientTransport({ command: process.execPath, args: [path.join(target, 'local-batch/jobs-mcp.mjs')], stderr: 'pipe', env });
+  transport.stderr.resume();
   const call = async (name, args) => {
     const response = await client.callTool({ name, arguments: args });
     assert.notEqual(response.isError, true, 'Production jobs tool failed'); return JSON.parse(response.content[0].text);

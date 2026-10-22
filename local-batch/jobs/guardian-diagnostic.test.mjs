@@ -28,8 +28,8 @@ test('unconfirmed journal exit is a fixed boolean diagnostic without raw values'
 });
 
 test('stderr facts accept only fixed endpoint diagnostics and discard unrelated text', () => {
-  const value = diagnostics.guardianStderrFacts('private-ci-canary\nLocal job guardian failed (poll/journal_unavailable/read).\nLocal job journal unavailable (rpc_timeout/read).\nLocal job guardian exited (1/none).\nLocal job journal worker exit unconfirmed.\nLocal job guardian failed (private_ci_canary/private_ci_canary/read).\nLocal job guardian exited (2147483648/none).\n');
-  assert.deepEqual(value, { coverage: 'bounded_stderr_tail', guardianFailures: ['poll/journal_unavailable/read'], journalFailures: ['rpc_timeout/read'], guardianExits: ['1/none'], journalExitUnconfirmed: true, inputTruncated: false, capped: false });
+  const value = diagnostics.guardianStderrFacts('private-ci-canary\nLocal job guardian failed (poll/journal_unavailable/read).\nLocal job journal unavailable (rpc_timeout/read).\nLocal job guardian exited (1/none).\nLocal job journal worker exit unconfirmed.\nLocal job guardian failed (private_ci_canary/private_ci_canary/read).\nLocal job guardian exited (2147483648/none).\nLocal job guardian exited (3221225477/none).\nLocal job guardian exited (4294967295/none).\nLocal job guardian exited (-2147483648/none).\nLocal job guardian exited (4294967296/none).\nLocal job guardian exited (-2147483649/none).\n');
+  assert.deepEqual(value, { coverage: 'bounded_stderr_tail', guardianFailures: ['poll/journal_unavailable/read'], journalFailures: ['rpc_timeout/read'], guardianExits: ['1/none', '2147483648/none', '3221225477/none', '4294967295/none', '-2147483648/none'], journalExitUnconfirmed: true, inputTruncated: false, capped: false });
   assert.equal(JSON.stringify(value).includes('private'), false);
 });
 

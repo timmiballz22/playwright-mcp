@@ -205,7 +205,9 @@ if (supportsJournal) test('preview stdio jobs: bounded result wait calls preserv
     const id = randomUUID();
     await journal.call('create', { id, requestKey: 'wait-cap', workflowDigest: 'a'.repeat(64), total: 1, deadlineAt: Date.now() + 60000 });
     client = new Client({ name: 'jobs-wait-cap', version: '1' });
-    await client.connect(new StdioClientTransport({ command: process.execPath, args: [entry], env, stderr: 'pipe' }));
+    const transport = new StdioClientTransport({ command: process.execPath, args: [entry], env, stderr: 'pipe' });
+    transport.stderr.resume();
+    await client.connect(transport);
     const call = async (name, args) => {
       const reply = await client.callTool({ name, arguments: args }, undefined, { signal: t.signal });
       return { ...JSON.parse(reply.content[0].text), isError: reply.isError === true };

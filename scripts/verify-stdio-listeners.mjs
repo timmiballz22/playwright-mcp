@@ -23,6 +23,7 @@ try {
     const transport = new StdioClientTransport({ command: process.execPath, args: [path.join(target, entry), ...args], stderr: 'pipe', cwd: root,
       env: { ...process.env, PLAYWRIGHT_JOBS_OWNER_ID: randomUUID(), PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'state'), PLAYWRIGHT_JOBS_PROJECT_DIR: root },
     });
+    transport.stderr.resume();
     await client.connect(transport); roots.push(transport.pid);
     assert.equal((await client.listTools()).tools.length, count); discoveries.push({ entry, tools: count });
   }

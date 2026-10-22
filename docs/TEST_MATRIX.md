@@ -1,6 +1,13 @@
 # Current acceptance coverage
 
-Latest native72 at e37c506:1,861 reported passes/11 failed tests, plus a failed
+Latest native73 at ca638b0:1,882 reported passes/10 failed tests plus Mac actual
+Codex timeout913. Five175-file installs, components112/113, all25 response-disposal
+cases, five20-run factory-lifetime integrity fixtures and12 routing negatives pass.
+Three other Windows legacy audits observe six unique unclassified PID candidates;
+remaining follow-up reuses actual live factory evidence and preserves legacy rows.
+Profile reset extension passes locally2/2; native verification remains pending.
+
+Previous native72 at e37c506:1,861 reported passes/11 failed tests, plus a failed
 stock headed Firefox close control (six owned residual processes before parent
 cleanup; final0). Actual Codex1k passes on all three OSs; five175-file production
 installs, all25 response-disposal cases, all five supervised20-run integrity

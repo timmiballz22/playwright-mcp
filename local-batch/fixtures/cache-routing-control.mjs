@@ -12,4 +12,9 @@ chromium.connect = async (...args) => {
   };
   return browser;
 };
-await import('../execution-worker.mjs');
+// Compose the existing cache control with checkout-only live factory evidence.
+// Normal installed execution never selects this worker or this private flag.
+if (process.env.PLAYWRIGHT_TEST_LIFETIME_CONTROL)
+  await import('../jobs/fixtures/lifetime-gated-worker.mjs');
+else
+  await import('../execution-worker.mjs');

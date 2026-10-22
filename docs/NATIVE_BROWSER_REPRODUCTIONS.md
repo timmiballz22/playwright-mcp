@@ -125,3 +125,29 @@ failure. The failed run remains FAILED even when fallback cleanup succeeds.
 allocation and normal actions occur, then the close promise is deliberately held.
 Local Node22 reports server_timeout/23 completed, owned0 before parent force;
 healthy control230 passes. No production runner/default transport change.
+
+Native73 legacy Windows Node20 headed fresh2: failed step4 is the third click.
+Only goto plus two clicks were acknowledged (completed3), but the post-failure
+read-only counter is3. The call log ends at performing click action, with no
+click-action-done receipt. Thus an unacknowledged failed click can still deliver
+its effect. The fixture never retries it; public workflows remain retrySafe:false.
+This is a raw Playwright/runWorkflow witness, not an original MCP tool invocation
+or a root-cause diagnosis. See native73-unacknowledged-click-effect.json.
+
+Native73 also records three legacy audit assertions with six unique PID candidates:
+four in supervised FF20 and again in cache control, two in page-limit. No factory
+birth ledger exists for those assertions; they remain unclassified. The follow-up
+reuses createLifetimeObserver for all three existing fixtures, composing the cache
+control with the existing gated worker. Each actual supervisor/worker/BrowserServer
+lifetime is held for observation before effects; separate identity scopes retain
+older orphan ancestry. Same-snapshot legacy candidates and projected rows remain
+in bounded comparison receipts. No role/name/age/window exclusion or production
+signal/ownership logic changes. Counters, PNG/report checks, positive/negative
+popup behavior, cache1-versus6 requests and all deadlines stay unchanged.
+
+The ungated cache worker fails the new integration for missing live factory
+observation; the composed worker passes locally. Selected Chromium/Firefox
+executor2/2, page/cache3/3, Node20 cache1/1, orphan/collision2/2 and fresh175-file
+production checks pass. WebKit is not selected locally due missing host libraries;
+Node22 reports2 selected executor cases and0 TAP skips, not a WebKit pass. Native
+verification of this wiring remains pending. Timing includes the observation gate.

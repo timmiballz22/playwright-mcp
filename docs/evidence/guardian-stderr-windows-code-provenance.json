@@ -1,0 +1,22 @@
+{
+  "phase": "uncommitted follow-up after ca638b0/native73",
+  "before": "new unsigned/signed-boundary regression:4 pass/1 fail",
+  "after": "5/5 each Node20/22/24",
+  "range": {
+    "min": -2147483648,
+    "max": 4294967295
+  },
+  "examples": [
+    "2147483648",
+    "3221225477 (0xC0000005)",
+    "4294967295",
+    "-2147483648"
+  ],
+  "rejected": [
+    "4294967296",
+    "-2147483649"
+  ],
+  "scope": "Diagnostic exit-status strings only; no PID acceptance, signal authority, budget or production execution change",
+  "sourceSha256": "6bab691e0278e748b29b4a0982db6a5b82564d3ab878460ccc1483f994df4088",
+  "native73Limitation": "ca638b0 still has the narrower prior range; absent captured exits cannot clear a native failure"
+}
