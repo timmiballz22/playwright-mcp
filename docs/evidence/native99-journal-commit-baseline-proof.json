@@ -1,0 +1,46 @@
+{
+  "scope": "Actual checkout journal and actual SQLite worker. Controlled pause immediately before real COMMIT or after completed COMMIT but before ready/ACK. Real original RPC timer/owned kill/close; no fake journal response or worker exit.",
+  "rows": [
+    {
+      "phase": "before",
+      "opened": false,
+      "elapsedMs": 2008.8393959999999,
+      "code": "journal_unavailable",
+      "journalFailure": "rpc_timeout",
+      "journalCommand": "init",
+      "journalInitStage": "schema_commit",
+      "journalExitConfirmed": true,
+      "attempts": [
+        {
+          "phase": "before",
+          "pause": true
+        }
+      ],
+      "retained": "commit-retry-baseline-t9tTLW"
+    },
+    {
+      "phase": "after",
+      "opened": false,
+      "elapsedMs": 2004.611665,
+      "code": "journal_unavailable",
+      "journalFailure": "rpc_timeout",
+      "journalCommand": "init",
+      "journalInitStage": "schema_commit",
+      "journalExitConfirmed": true,
+      "attempts": [
+        {
+          "phase": "after",
+          "pause": true
+        }
+      ],
+      "retained": "commit-retry-baseline-NuctWo"
+    }
+  ],
+  "baselineSource": "732c913b144bee6010bbb4febf63089c30ba4dfd",
+  "sourceSha256": {
+    "local-batch/jobs/journal.mjs": "d31b7403a6b737456fca59e5c814fd35c9810f584ca2e73d5529c2758ddffceb",
+    "local-batch/jobs/journal-worker.mjs": "1525c43e575fbe774522e03d2f917a4f49f6ced35b6bdc604e7ea1e9038e495a",
+    "local-batch/jobs/fixtures/commit-timeout-once.mjs": "918912d169734ba46029a77c492023c25d5cc5eac7d3a74cf34c58b12ad9fa51"
+  },
+  "workerAndCalibrationMatchCurrent": true
+}

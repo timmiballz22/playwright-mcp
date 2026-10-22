@@ -20,7 +20,8 @@ const pauses = new Map([
 function pause(method, sql) {
   const entry = pauses.get(process.env.PLAYWRIGHT_TEST_JOURNAL_INIT_PAUSE);
   if (!armed && entry && entry[1] === method && entry[2](sql)) {
-    writeFileSync(path.join(directory, 'init-' + entry[0] + '-paused'), '', { mode: 0o600, flag: 'wx' });
+    try { writeFileSync(path.join(directory, 'init-' + entry[0] + '-paused'), '', { mode: 0o600, flag: 'wx' }); }
+    catch (error) { if (error.code !== 'EEXIST') throw error; } // Retain the first marker across bounded init retries.
     Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0);
   }
 }

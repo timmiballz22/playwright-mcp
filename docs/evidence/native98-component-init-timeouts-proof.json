@@ -1,0 +1,26 @@
+{
+  "source": "732c913b144bee6010bbb4febf63089c30ba4dfd",
+  "scope": "Both guardian cancel/disconnect tests fail in initial setup before those scenario semantics run. Real init rpc_timeout at last observed schema_commit, actual owned-worker close confirmed. Phase is a lower bound; COMMIT completion and OS cause are not established. No DB/key exported. Prospective retry is not in this source.",
+  "failures": [
+    {
+      "test": "not ok 47 - durable guardian cancel: cleanup and canonical journal outcome",
+      "testNumber": 47,
+      "failureClass": "journal_unavailable",
+      "durationMs": 2327,
+      "journalFailure": "rpc_timeout",
+      "journalCommand": "init",
+      "journalInitStage": "schema_commit",
+      "journalExitConfirmed": true
+    },
+    {
+      "test": "not ok 48 - durable guardian disconnect: cleanup and canonical journal outcome",
+      "testNumber": 48,
+      "failureClass": "journal_unavailable",
+      "durationMs": 2535,
+      "journalFailure": "rpc_timeout",
+      "journalCommand": "init",
+      "journalInitStage": "schema_commit",
+      "journalExitConfirmed": true
+    }
+  ]
+}

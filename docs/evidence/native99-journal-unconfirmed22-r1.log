@@ -1,0 +1,27 @@
+TAP version 13
+# {"fixture":"journal_commit_retry_workspace_unconfirmed","workspace":"journal-commit-retry-99WHEM","removalAttempted":false,"primaryFailed":false,"cleanupFailures":1,"workers":[{"closed":false,"exitCode":null,"signalCode":"SIGKILL","killed":true,"connected":false}]}
+# Subtest: actual unconfirmed worker exit never authorizes an initialization retry
+not ok 1 - actual unconfirmed worker exit never authorizes an initialization retry
+  ---
+  duration_ms: 5017.429055
+  type: 'test'
+  location: '/workspace/playwright-mcp/local-batch/jobs/journal-init-retry.test.mjs:110:3'
+  failureType: 'testCodeFailure'
+  error: 'Commit retry calibration or cleanup failed'
+  code: 'ERR_TEST_FAILURE'
+  name: 'AggregateError'
+  stack: |-
+    fixture (file:///workspace/playwright-mcp/local-batch/jobs/journal-init-retry.test.mjs:61:32)
+    async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal-init-retry.test.mjs:111:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5080.40908

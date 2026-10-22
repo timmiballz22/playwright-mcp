@@ -89,7 +89,7 @@ test(`real ${browser}: supervised navigation respects throttling and never repla
 // remain unchanged; marked traffic never leaves this private local server.
 for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,firefox,webkit').split(',')) {
   test(`real ${browser}: cancellation preserves a committed POST once and identifies public fetch calls`, { timeout: 40000 }, async () => {
-    const records = []; let active; let pending; let verified = false; let primary;
+    const records = []; let active; let pending; let verified = false; let primary; let currentScenario;
     const root = await mkdtemp(path.join(os.tmpdir(), 'cancel-fetch-witness-'));
     const owned = [];
     const fixture = createServer((request, response) => {
@@ -111,6 +111,7 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
     const previousCloseStall = process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL;
     try {
       for (const scenario of ['cancel', 'commit', 'commit-stalled', 'action-stalled']) {
+        currentScenario = scenario;
         if (scenario.endsWith('-stalled')) process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL = '1';
         else delete process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL;
         const committed = scenario.startsWith('commit');
@@ -137,12 +138,22 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
         assert.equal(requests[0].method, committed ? 'POST' : 'GET');
         assert.equal(result.retrySafe, false); assert.equal(result.completed, scenario === 'cancel' ? 0 : 1);
         assert.equal(result.execution.cleanup, 'terminated'); assert.equal(result.execution.tempCleanup, 'removed');
+        const readWitness = async name => {
+          let bytes;
+          try { bytes = await readFile(path.join(root, 'exec-' + result.runId, name)); return JSON.parse(bytes.toString('utf8')); }
+          catch (error) {
+            console.error(JSON.stringify({ fixture: 'private_fetch_witness_read_failure', browser, scenario,
+              bytes: bytes?.length ?? null, kind: error.name === 'SyntaxError' ? 'syntax_error' : 'read_error',
+              code: ['ENOENT', 'EACCES', 'EPERM'].includes(error.code) ? error.code : 'unclassified' }));
+            throw error;
+          }
+        };
         if (scenario === 'commit-stalled') {
-          assert.deepEqual(JSON.parse(await readFile(path.join(root, 'exec-' + result.runId, 'fetch-abort-witness.json'), 'utf8')),
+          assert.deepEqual(await readWitness('fetch-abort-witness.json'),
             { signalAborted: true, browserConnected: true, method: 'POST' });
         }
         if (actionStalled) {
-          assert.deepEqual(JSON.parse(await readFile(path.join(root, 'exec-' + result.runId, 'action-abort-witness.json'), 'utf8')),
+          assert.deepEqual(await readWitness('action-abort-witness.json'),
             { signalAborted: true, browserConnected: true, action: 'click' });
         }
         console.log(JSON.stringify({ component: 'private_fetch_cancel_witness', browser, ...receipt }));
@@ -155,11 +166,22 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
       try {
         active?.abort.abort(); if (pending) await pending;
         fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
-        assert.deepEqual(await ownedDescendants(owned), []);
+        let legacy = null, audit = null;
+        const observed = await ownedDescendants(owned, { compareLegacyRoots: owned,
+          onLegacyObservation: value => { legacy = value; }, onReceipt: value => { audit = value; } });
+        if (observed.length || legacy?.legacyOnly.length) console.log(JSON.stringify({ fixture: 'private_fetch_cancel_lifetime_comparison',
+          browser, scenario: currentScenario, reportedRoots: owned, observed, legacy, audit,
+          identityCoverage: 'reported_roots_no_additional_birth_verification' }));
+        assert.deepEqual(observed, []);
         if (verified) await rm(root, { recursive: true, force: true });
       } catch (error) {
+        console.error(JSON.stringify({ fixture: 'private_fetch_cancel_workspace_unconfirmed', browser,
+          scenario: currentScenario, workspace: path.basename(root), primaryFailed: Boolean(primary), cleanupFailed: true }));
         if (primary) throw new AggregateError([primary, error], 'Cancellation witness and teardown failed');
         throw error;
+      } finally {
+        if (primary) console.error(JSON.stringify({ fixture: 'private_fetch_cancel_workspace_unconfirmed', browser,
+          scenario: currentScenario, workspace: path.basename(root), primaryFailed: true }));
       }
     }
   });

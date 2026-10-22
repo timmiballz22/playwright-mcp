@@ -1,6 +1,114 @@
 # Mandatory scenario evidence
 
-## Latest completed checkpoint — native97 at953ba87; acceptance incomplete
+## Latest completed checkpoint — native98 at732c913; acceptance incomplete
+
+[Batch39859258163](https://github.com/timmiballz22/playwright-mcp/actions/runs/39859258163)
+reports **1,626 passes / 12 failures**; [original39859258064](https://github.com/timmiballz22/playwright-mcp/actions/runs/39859258064)
+reports **599 / 6**. Completed summaries total **2,225 / 18**, reported skips/cancels0.
+The three primary actual-client jobs and separate Mac timing control pass and
+remain outside TAP/Playwright summary counts. Both workflows/all jobs are terminal.
+All18 logs resolve:17 first reads succeed; Windows actual-client first read is
+empty with unexpected EOF, and its ordinary retry succeeds. Both attempts remain.
+This retrieval error is not an observed fixture-stderr EOF or browser crash.
+
+All five installed-package steps/both parent-death variants pass. Components are
+Linux22/24/Mac146/0 each, Windows145/2; all12 actual schema races pass. Both Windows
+guardian cancel/disconnect cases fail during initial setup with rpc_timeout/init,
+last observed schema_commit, and actual owned-worker close confirmed. Those
+scenario semantics are not reached. The phase is a lower bound; COMMIT completion
+and OS cause are unknown. Node20 durable SQLite/jobs remain unsupported.
+
+Main batch Linux20/22/24 is209/0,212/1,212/1; Mac210/3, Windows200/5. Mac/Linux22
+first-JPEG assertions fail at320×98 (native viewport metadata500×153) and320×153
+(metadata320×240), despite completed request ordering. Mac SDK job times out984,
+failed985 interrupted, result available/operatorAttentionRequiredfalse and execution
+cleanup terminated/temp removed; sync MCP times out980. Linux24's Firefox witness
+read throws unexpected-end JSON; original bytes/length are not logged. Windows
+three ten-fresh Firefox variants fail. The locator positive19-action/six-effect
+checks finish before a negative case fails live factory observation, before its
+result is validated; no successful ambiguous selector is inferred.
+
+Windows Firefox cancellation-witness body assertions pass all four scenarios,
+including one committed POST each and controlled stalls. Its final legacy/root-PID
+absence assertion reports **5520,6136,6452,6484**. Same-snapshot rows and original
+births were not logged by that fixture, so all four remain unclassified/unresolved.
+A separate pair4 snapshot is scoped0/legacy-only2, with both legacy rows and both
+root rows retained; auditHelperMatchedtrue is a label, not exclusion authority.
+These snapshots are separate. No role/name/age/window filtering, signal authority
+from hints, lease/debt or retrospective clearance follows from later zero counts.
+Earlier native94 survivor, native89/96 exits and136/142 gaps remain open.
+
+Actual primary Codex1000 passes Linux36.088s, Windows38.229s, Mac73.890s,
+modelTurns0/owned0. The separate instrumented Mac control passes81.674s with four
+normally exiting process receipts and timing-directory removal confirmed. It
+observes42 progress RPCs (max5.846ms),907 reads (max19.914ms), and four init calls
+(max183.518ms). These are completed-call observations, not complete OS-process
+inventory, disk-only latency or a profile of the prior failed host. They do not
+explain Windows commit stalls or clear native96's CRASHED75 progress timeout.
+Separate Mac server/direct-pipe controls pass1000 in118.322/110.720s, scoped0 before
+force/final. Windows private/inherited/protocol-headed each pass10 fresh/230 actions;
+stock-headed completes seven fresh plus3/23 in the next (164 confirmed), then
+fails with context_timeout. Scoped zero cleanup does not establish input acceptance.
+
+Original main Linux200/0, Mac199/1, Windows197/3 includes8 additive stock references
+each. Stock PNG12/12, PCM11/12, video decode10/12. Windows WebKit remains ready0
+after preload and actual activation, play pending. Mac Chrome video is gray at
+source-red y100/y239, independently confirmed in encoded frame zero. Actual93
+recorder-input headers contain85 at320×240 and eight at320×98, including frame1
+of the Chrome stream. The old fresh gate only selects chromium, so no matching
+Chrome fresh controls run. Original trusted-code cases pass this sample. Windows
+legacy1/2 fails headless/direct-pipe, headed passes; Docker2/0 passes. Separate
+controls never waive strict main failures or establish transport superiority.
+
+[Native98 full evidence](evidence/native98-summary.json),
+[Windows init setup failures](evidence/native98-component-init-timeouts-proof.json),
+[four unresolved PID observations](evidence/native98-private-fetch-ownership-proof.json),
+[full separate pair4 rows](evidence/native98-pair4-process-observation-proof.json),
+[actual native Mac timing](evidence/native98-journal-qa-native-proof.json) and
+[video input/independent decode](evidence/native98-video-input-native-proof.json)
+retain these scopes. G18 remains BLOCKED; no merge/publication.
+
+### Local follow-ups excluded from native98
+
+Initialization now retries the exact init/rpc_timeout/schema_commit case only
+following actual owned-worker close, within the existing three-attempt budget.
+RPC2000ms, close wait1000ms, backoff20/40ms, SQLite settings and action/test/job
+limits are unchanged. A fresh worker revalidates identity/version; no job mutation
+is replayed. An actual732c913 Git checkout fails controlled pauses before COMMIT
+and after real COMMIT but before ready/ACK. The candidate recovers both; tests
+preserve existing jobs/key, exhaust persistent failure after three attempts,
+refuse a real intervening future schema without repair, and never retry an
+unconfirmed exit or non-COMMIT timeout. Test cleanup separately observes a late
+real process exit without changing production's wire-close retry requirement.
+
+Checkout-only cancellation witnesses now publish complete private JSON with an
+atomic no-replace link. Actual interruption before publication leaves no final
+file; preexisting targets remain unchanged. The same original JSON/request/effect
+assertions remain. Future parse failures log byte counts; the unchanged process
+absence assertion now retains full same-snapshot Windows legacy/root rows. No
+new audit query, filtering, signaling or retrospective clearance is introduced.
+A matching Chrome diagnostic runs three fresh cases, alongside the unchanged
+Chromium control, with existing limits preserved and original failures retained.
+
+[Local verification](evidence/native99-local-verification-proof.json) covers154
+component tests each on ordinary-host Node22/24, six real initialization tests
+each, publication/interruption checks on20/22/24, actual Chromium/Firefox witness
+cases on all three LTSs,30 gate calibration cases, and fresh Node22 production
+install/all runtime smokes.194 final source hashes match; core9f975 is unchanged.
+Node20 jobs remain unsupported; focused local Node20 browser selection reports
+two nonmatching tests skipped, not a CI skip or waiver. Initial unconfirmed-case
+calibrations remain failed and retained. Initial namespace component runs hit five
+unsafe_storage cases per LTS because host-root ancestors appear unmapped; guards
+remain unchanged. Their original full local logs were accidentally overwritten
+by a driver filename bug; visible facts/loss are recorded, not reconstructed as
+raw logs. Ordinary-host reruns pass; all18 native CI logs are retained. Native99
+verification of these changes is pending; no general capture-fidelity claim.
+A [bounded passive viewport trace](evidence/native99-viewport-trace-proof.json)
+adds real command ACK/resize/first-native-frame timing to the unchanged strict
+first-JPEG assertion. Controlled20/22/24 cases pass; native traces remain pending.
+No extra protocol request, timer, renderer warmup or frame discard is introduced.
+
+## Previous completed checkpoint — native97 at953ba87; acceptance incomplete
 
 [Batch39853792171](https://github.com/timmiballz22/playwright-mcp/actions/runs/39853792171)
 reports **1,631 passes / 7 failures**; [original39853792190](https://github.com/timmiballz22/playwright-mcp/actions/runs/39853792190)

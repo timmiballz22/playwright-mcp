@@ -1,0 +1,38 @@
+TAP version 13
+# Subtest: real chromium: supervised navigation respects throttling and never replays form POST or over-cap waits
+ok 1 - real chromium: supervised navigation respects throttling and never replays form POST or over-cap waits # SKIP test name does not match pattern
+  ---
+  duration_ms: 1.619777
+  ...
+# Subtest: real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits
+ok 2 - real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.237203
+  ...
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1195678,"workerPid":1195704,"browserPids":[1195715]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":104}
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1195789,"workerPid":1195800,"browserPids":[1195850]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"commit-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1195944,"workerPid":1195960,"browserPids":[1195971]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"action-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1196061,"workerPid":1196076,"browserPids":[1196098]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":119}
+# Subtest: real chromium: cancellation preserves a committed POST once and identifies public fetch calls
+ok 3 - real chromium: cancellation preserves a committed POST once and identifies public fetch calls
+  ---
+  duration_ms: 5380.297315
+  ...
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1196179,"workerPid":1196190,"browserPids":[1196212]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":100}
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1196394,"workerPid":1196405,"browserPids":[1196448]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"commit-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1196681,"workerPid":1196702,"browserPids":[1196843]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":101}
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"action-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1197688,"workerPid":1197703,"browserPids":[1197762]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":343}
+# Subtest: real firefox: cancellation preserves a committed POST once and identifies public fetch calls
+ok 4 - real firefox: cancellation preserves a committed POST once and identifies public fetch calls
+  ---
+  duration_ms: 14585.441952
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 2
+# todo 0
+# duration_ms 20071.546042

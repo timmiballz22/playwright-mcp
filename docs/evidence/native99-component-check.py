@@ -1,0 +1,5 @@
+from pathlib import Path
+import subprocess,os,shlex,json,sys
+r=Path('/workspace/playwright-mcp');major=sys.argv[1];node=Path('/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node') if major=='22' else Path(__import__('shutil').which('node'));line=next(x.strip()[5:] for x in (r/'.github/workflows/local-batch.yml').read_text().splitlines() if 'run: node --test --test-concurrency=1' in x);args=shlex.split(line.split(' 2>&1',1)[0]);args[0]=str(node);env=os.environ.copy();env['PATH']=str(node.parent)+os.pathsep+env['PATH'];cmd=args
+with Path('/tmp/native99-components'+major+'.log').open('w') as f:p=subprocess.run(cmd,cwd=r,env=env,stdout=f,stderr=subprocess.STDOUT,timeout=180)
+Path('/tmp/native99-components'+major+'-exit.json').write_text(json.dumps({'exit':p.returncode,'scope':'Exact workflow component command on the ordinary actual Linux host user, with unchanged storage/identity guards, assertions and runtime limits. Earlier user-namespace runs remain separately retained and fail ownership checks on unmapped host ancestors.','node':str(node),'testCommand':args})+'\n');print(json.dumps({'nodeMajor':major,'exit':p.returncode}));sys.exit(p.returncode)

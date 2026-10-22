@@ -1,5 +1,7 @@
 # Fork changes (unreleased)
 
+- Retry only confirmed-close init COMMIT timeouts within the existing initialization attempt budget; preserve store identity and never replay job mutations. Publish checkout-only cancellation witnesses atomically, retain full failure audit rows, and add matching Chrome first-frame diagnostics. Native98 failures remain open; native99 verification pending.
+
 - Archive native97 failures and retained client evidence. Add a checkout-only actual-client journal timing preload and separate Mac diagnostic job; production runtime, existing jobs and limits remain unchanged. Retain a portable public-API first-JPEG reproducer.
 
 - Fail SDK startup diagnostics on client-close errors and retain failed stores;

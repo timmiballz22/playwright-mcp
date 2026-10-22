@@ -1,0 +1,198 @@
+{
+  "scope": "Actual unchanged strict first-JPEG/order/pixel regression on20/22/24 with bounded passive trace. Existing100ms dispatch-lag calibration remains. No added protocol request, timer, frame discard, renderer warmup, fake response or default browser change. These passing controlled cases do not clear unforced native failures.",
+  "sourceSha256": "cb5d43c81189ae5aac63f77ff75222f80154206c5fe6c9ff1e70726aebaa94ad",
+  "cases": [
+    {
+      "nodeMajor": "20",
+      "exit": 0,
+      "log": "native99-viewport-trace20.log",
+      "receipt": {
+        "fixture": "chromium_viewport_order_calibration",
+        "engine": "chromium",
+        "channel": "chromium",
+        "bounds": 1,
+        "metrics": 1,
+        "boundsCompleted": true,
+        "metricsBeforeBoundsCompleted": false,
+        "firstInput": {
+          "width": 320,
+          "height": 240,
+          "viewportWidth": 320,
+          "viewportHeight": 240
+        },
+        "trace": [
+          {
+            "stage": "window_sent",
+            "offsetMs": 103.848,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "window_ack",
+            "offsetMs": 106.93
+          },
+          {
+            "stage": "metrics_sent",
+            "offsetMs": 106.944,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "frame_resized",
+            "offsetMs": 108.507
+          },
+          {
+            "stage": "metrics_ack",
+            "offsetMs": 108.529
+          },
+          {
+            "stage": "viewport_api_resolved",
+            "offsetMs": 108.706
+          },
+          {
+            "stage": "first_native_frame",
+            "offsetMs": 117.161,
+            "deviceWidth": 320,
+            "deviceHeight": 240,
+            "pageScaleFactor": 1,
+            "offsetTop": 0
+          }
+        ],
+        "traceDropped": 0,
+        "platform": "linux",
+        "width": 320,
+        "height": 240,
+        "redPixel": true,
+        "scope": "Actual first JPEG after controlled window-request dispatch lag on this executing host; unforced native macOS cause remains separate."
+      }
+    },
+    {
+      "nodeMajor": "22",
+      "exit": 0,
+      "log": "native99-viewport-trace22.log",
+      "receipt": {
+        "fixture": "chromium_viewport_order_calibration",
+        "engine": "chromium",
+        "channel": "chromium",
+        "bounds": 1,
+        "metrics": 1,
+        "boundsCompleted": true,
+        "metricsBeforeBoundsCompleted": false,
+        "firstInput": {
+          "width": 320,
+          "height": 240,
+          "viewportWidth": 320,
+          "viewportHeight": 240
+        },
+        "trace": [
+          {
+            "stage": "window_sent",
+            "offsetMs": 101.35,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "window_ack",
+            "offsetMs": 104.48
+          },
+          {
+            "stage": "metrics_sent",
+            "offsetMs": 104.499,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "frame_resized",
+            "offsetMs": 105.427
+          },
+          {
+            "stage": "metrics_ack",
+            "offsetMs": 105.452
+          },
+          {
+            "stage": "viewport_api_resolved",
+            "offsetMs": 105.661
+          },
+          {
+            "stage": "first_native_frame",
+            "offsetMs": 113.275,
+            "deviceWidth": 320,
+            "deviceHeight": 240,
+            "pageScaleFactor": 1,
+            "offsetTop": 0
+          }
+        ],
+        "traceDropped": 0,
+        "platform": "linux",
+        "width": 320,
+        "height": 240,
+        "redPixel": true,
+        "scope": "Actual first JPEG after controlled window-request dispatch lag on this executing host; unforced native macOS cause remains separate."
+      }
+    },
+    {
+      "nodeMajor": "24",
+      "exit": 0,
+      "log": "native99-viewport-trace24.log",
+      "receipt": {
+        "fixture": "chromium_viewport_order_calibration",
+        "engine": "chromium",
+        "channel": "chromium",
+        "bounds": 1,
+        "metrics": 1,
+        "boundsCompleted": true,
+        "metricsBeforeBoundsCompleted": false,
+        "firstInput": {
+          "width": 320,
+          "height": 240,
+          "viewportWidth": 320,
+          "viewportHeight": 240
+        },
+        "trace": [
+          {
+            "stage": "window_sent",
+            "offsetMs": 102.086,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "window_ack",
+            "offsetMs": 104.33
+          },
+          {
+            "stage": "metrics_sent",
+            "offsetMs": 104.343,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "frame_resized",
+            "offsetMs": 105.997
+          },
+          {
+            "stage": "metrics_ack",
+            "offsetMs": 106.019
+          },
+          {
+            "stage": "viewport_api_resolved",
+            "offsetMs": 106.16
+          },
+          {
+            "stage": "first_native_frame",
+            "offsetMs": 123.311,
+            "deviceWidth": 320,
+            "deviceHeight": 240,
+            "pageScaleFactor": 1,
+            "offsetTop": 0
+          }
+        ],
+        "traceDropped": 0,
+        "platform": "linux",
+        "width": 320,
+        "height": 240,
+        "redPixel": true,
+        "scope": "Actual first JPEG after controlled window-request dispatch lag on this executing host; unforced native macOS cause remains separate."
+      }
+    }
+  ]
+}

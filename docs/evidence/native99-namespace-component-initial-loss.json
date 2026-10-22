@@ -1,0 +1,28 @@
+{
+  "scope": "Initial full user-namespace component calibration only. A local driver output-name substitution missed its absolute-path literal and host reruns overwrote the original namespace raw logs and exit-record files. These original scalar facts were already observed in tool output; full raw logs are not recovered or claimed retained.",
+  "rawLogsLost": true,
+  "runs": [
+    {
+      "nodeMajor": 22,
+      "pass": 147,
+      "fail": 5,
+      "durationMs": 65912.053662
+    },
+    {
+      "nodeMajor": 24,
+      "pass": 147,
+      "fail": 5,
+      "durationMs": 63120.147724
+    }
+  ],
+  "failedCases": [
+    "operator owner/project namespaces are stable, private and independent of tool data",
+    "unconfirmed guardian journal exit stops the next queued job even after terminal metadata",
+    "unconfirmed artifact worker is fenced durably from another controller",
+    "unconfirmed artifact worker is fenced durably from another controller after lost finalization",
+    "actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency"
+  ],
+  "reportedCode": "unsafe_storage",
+  "source": "Previously visible tool projection; not a replacement for the lost original logs. Ordinary-host reruns and all native CI logs remain separately retained.",
+  "exitRecordsAlsoOverwritten": true
+}

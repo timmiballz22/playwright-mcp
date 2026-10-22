@@ -1,7 +1,7 @@
 // Checkout-only public API observation; no production hook or workflow option.
 // Set the same private temporary location before Playwright's first import.
 import path from 'node:path';
-import { writeFile } from 'node:fs/promises';
+import { writePrivateWitness } from './write-private-witness.mjs';
 process.once('message', async packet => {
   if (packet.type !== 'start') return;
   const temporary = packet.temporaryRoot ?? path.join(packet.workspaceRoot, 'tmp');
@@ -39,7 +39,7 @@ process.once('message', async packet => {
               try { return await click(options); }
               catch (error) {
                 if (options?.signal?.aborted && browser.isConnected()) {
-                  await writeFile(path.join(packet.workspaceRoot, 'action-abort-witness.json'), JSON.stringify({ signalAborted: true, browserConnected: true, action: 'click' }), { flag: 'wx', mode: 0o600 });
+                  writePrivateWitness(packet.workspaceRoot, 'action-abort-witness.json', { signalAborted: true, browserConnected: true, action: 'click' });
                 }
                 throw error;
               }
@@ -62,7 +62,7 @@ process.once('message', async packet => {
           try { return await invoke(); }
           catch (error) {
             if (heldClose && options.signal?.aborted && browser.isConnected() && route.request().method() === 'POST') {
-              await writeFile(path.join(packet.workspaceRoot, 'fetch-abort-witness.json'), JSON.stringify({ signalAborted: true, browserConnected: true, method: 'POST' }), { flag: 'wx', mode: 0o600 });
+              writePrivateWitness(packet.workspaceRoot, 'fetch-abort-witness.json', { signalAborted: true, browserConnected: true, method: 'POST' });
             }
             throw error;
           }

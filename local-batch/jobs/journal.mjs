@@ -35,8 +35,12 @@ export class JobJournal {
         const confirmed = await journal.waitForExit();
         error.journalExitConfirmed = confirmed;
         if (!confirmed) { journal.detachUnknownWorker(); throw error; }
-        // Only schema initialization is retried. Job mutations are never replayed.
-        if (error.code !== 'journal_busy' || attempt >= 2) throw error;
+        // Only initialization is retried, after the owned worker actually closes.
+        // COMMIT may have completed before its ready/ACK reaches the parent.
+        // A fresh worker revalidates the store; it never replays job mutations.
+        const commitTimeout = error.code === 'journal_unavailable' && error.journalFailure === 'rpc_timeout' &&
+          error.journalFailureCommand === 'init' && error.journalInitStage === 'schema_commit';
+        if (error.code !== 'journal_busy' && !commitTimeout || attempt >= 2) throw error;
         await new Promise(resolve => setTimeout(resolve, 20 * 2 ** attempt));
       }
     }

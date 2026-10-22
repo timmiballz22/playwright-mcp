@@ -1,0 +1,18 @@
+{"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1185485,"workerPid":1185492,"browserPids":[1185504]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":105}
+{"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1185573,"workerPid":1185580,"browserPids":[1185592]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+{"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"commit-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1185664,"workerPid":1185671,"browserPids":[1185683]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+{"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"action-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1185767,"workerPid":1185774,"browserPids":[1185786]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":117}
+✔ real chromium: cancellation preserves a committed POST once and identifies public fetch calls (4263.385472ms)
+{"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1185865,"workerPid":1185872,"browserPids":[1185884]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":101}
+{"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1186051,"workerPid":1186058,"browserPids":[1186070]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+{"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"commit-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1186256,"workerPid":1186263,"browserPids":[1186275]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":102}
+{"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"action-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":1186462,"workerPid":1186469,"browserPids":[1186481]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":183}
+✔ real firefox: cancellation preserves a committed POST once and identifies public fetch calls (8967.865282ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13330.724201

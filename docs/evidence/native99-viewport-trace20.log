@@ -1,0 +1,16 @@
+TAP version 13
+# {"fixture":"chromium_viewport_order_calibration","engine":"chromium","channel":"chromium","bounds":1,"metrics":1,"boundsCompleted":true,"metricsBeforeBoundsCompleted":false,"firstInput":{"width":320,"height":240,"viewportWidth":320,"viewportHeight":240},"trace":[{"stage":"window_sent","offsetMs":103.848,"width":320,"height":240},{"stage":"window_ack","offsetMs":106.93},{"stage":"metrics_sent","offsetMs":106.944,"width":320,"height":240},{"stage":"frame_resized","offsetMs":108.507},{"stage":"metrics_ack","offsetMs":108.529},{"stage":"viewport_api_resolved","offsetMs":108.706},{"stage":"first_native_frame","offsetMs":117.161,"deviceWidth":320,"deviceHeight":240,"pageScaleFactor":1,"offsetTop":0}],"traceDropped":0,"platform":"linux","width":320,"height":240,"redPixel":true,"scope":"Actual first JPEG after controlled window-request dispatch lag on this executing host; unforced native macOS cause remains separate."}
+# Subtest: real full Chromium applies device metrics after the existing window-bounds request completes
+ok 1 - real full Chromium applies device metrics after the existing window-bounds request completes
+  ---
+  duration_ms: 626.711953
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1126.69761

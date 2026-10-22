@@ -96,27 +96,7 @@ jobs:
       timeout-minutes: 3
       if: ${{ !cancelled() && runner.os == 'macOS' && (steps.wrapper.outcome == 'failure' || steps.available_wrapper.outcome == 'failure') }}
       run: |
-        if node <<'NODE_VIDEO_GATE'
-        const fs = require('node:fs');
-        let eligible = false, inspectedBytes = 0, truncated = false;
-        for (const name of ['wrapper-tests.log', 'wrapper-available-tests.log']) {
-          if (!fs.existsSync(name)) continue;
-          const fd = fs.openSync(name, 'r');
-          let bytes;
-          try {
-            const size = fs.fstatSync(fd).size, length = Math.min(size, 2 * 1024 * 1024);
-            bytes = Buffer.alloc(length); fs.readSync(fd, bytes, 0, length, size - length);
-            inspectedBytes += length; truncated ||= size > length;
-          } finally { fs.closeSync(fd); }
-          for (const raw of bytes.toString('utf8').split('\n')) {
-            const line = raw.replace(/\u001b\[[0-?]*[ -/]*[@-~]/g, '').trim();
-            let data; try { data = JSON.parse(line); } catch { continue; }
-            if (data?.fixture === 'owned_video_original_decode_failure' && data.project === 'chromium' && data.width === 320 && data.height === 240 && Number.isInteger(data.ready) && data.ready >= 2 && data.ready <= 4 && Array.isArray(data.pixel) && data.pixel.length === 4 && data.pixel.every(value => Number.isInteger(value) && value >= 0 && value <= 255)) eligible = true;
-          }
-        }
-        console.log(JSON.stringify({ fixture: 'video_first_frame_control_gate', eligible, inspectedBytes, truncated }));
-        process.exitCode = eligible ? 0 : 1;
-        NODE_VIDEO_GATE
+        if node scripts/qa/video-control-gate.mjs chromium
         then
           # Fresh isolated owned cases; keep the original failed result and files.
           PLAYWRIGHT_TEST_VIDEO_COLOR_DIAGNOSTICS=1 npx playwright test tests/video-playback.spec.ts --project=chromium --repeat-each=3 --workers=1 --output=test-results/first-frame-controls 2>&1 | tee first-frame-controls.log
@@ -126,6 +106,17 @@ jobs:
       shell: bash
       if: ${{ !cancelled() && runner.os == 'macOS' && (steps.wrapper.outcome == 'success' || steps.available_wrapper.outcome == 'success') }}
       run: npx playwright test tests/interactions.spec.ts --project=chromium --grep="original dialogs" --repeat-each=3 --workers=2 2>&1 | tee modal-tests.log
+    - name: Collect three fresh first-frame controls after macOS Chrome mismatch
+      id: chrome_first_frame_controls
+      shell: bash
+      timeout-minutes: 3
+      if: ${{ !cancelled() && runner.os == 'macOS' && (steps.wrapper.outcome == 'failure' || steps.available_wrapper.outcome == 'failure') }}
+      run: |
+        if node scripts/qa/video-control-gate.mjs chrome
+        then
+          # Fresh owned Chrome cases; the original failed result/files remain intact.
+          PLAYWRIGHT_TEST_VIDEO_COLOR_DIAGNOSTICS=1 npx playwright test tests/video-playback.spec.ts --project=chrome --repeat-each=3 --workers=1 --output=test-results/chrome-first-frame-controls 2>&1 | tee chrome-first-frame-controls.log
+        fi
     - name: Exercise legacy Windows Node 20 Firefox cleanup
       id: legacy
       shell: bash
@@ -147,6 +138,7 @@ jobs:
           wrapper-available-tests.log
           modal-tests.log
           first-frame-controls.log
+          chrome-first-frame-controls.log
           legacy-firefox.log
         retention-days: 1
         if-no-files-found: error
