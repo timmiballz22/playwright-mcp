@@ -27,7 +27,8 @@
     "docker-rm": "docker rm playwright-mcp-dev",
     "docker-run": "docker run -it -p 8080:8080 --name playwright-mcp-dev playwright-mcp-dev:latest",
     "roll": "node roll.js",
-    "test:batch": "node scripts/test-batch.mjs"
+    "test:batch": "node scripts/test-batch.mjs",
+    "typecheck": "tsc --project tsconfig.json"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -43,8 +44,11 @@
   },
   "devDependencies": {
     "@playwright/test": "1.64.1",
+    "@types/debug": "4.1.13",
     "@types/node": "^24.3.0",
-    "pngjs": "7.0.0"
+    "@types/pngjs": "6.0.5",
+    "pngjs": "7.0.0",
+    "typescript": "6.0.3"
   },
   "bin": {
     "playwright-mcp": "cli.js",

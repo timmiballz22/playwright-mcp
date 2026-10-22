@@ -1,0 +1,134 @@
+{
+  "baseHead": "bbf4764e001095d42aecaa7e3ce671fb21fa568d",
+  "phase": "Local follow-up, not part of native82 CI",
+  "sourceSha256": {
+    "local-batch/fixtures/windows-process-graph.mjs": "e7a949209147ff3b45223d75aa3123d2af224250651ba2f2026b1cf4c5b169e1",
+    "local-batch/windows-process-graph.test.mjs": "d50728f371ca927266388b5342e03a66c9b107917c558102c010cb9992eed0ac",
+    "scripts/diagnose-raw-runner.mjs": "0f813a14598ceaccaa1369fab6f2a481d7d6bf14fa764330c40acebc646115cc",
+    "tests/fixtures.ts": "3457d5dffc54b040e73ad6ad9a18b9aca97e0ca93ca8f0c8a5472cbd1e1c3e93",
+    "tests/testserver/index.ts": "d56ce92e554c4b8d75b9eecdb1bf82285feed2b6243b6c33c3f361a401a41374",
+    "tsconfig.json": "53b94aea3097de0111f7353dcb42d194c6baa279cdd15631a9e60989504933e4",
+    "package.json": "ccfc317e125fa3cff87ce4583cac2c6a98023f136f76e30a141bbeefc20eba8d",
+    "package-lock.json": "552b4366a5e88129dffc708bbbe4f718608495c925e6464d5216af82dccc8fd4",
+    ".github/workflows/ci.yml": "1644a8e512698c5bfbf6f7b4730b27f8d4ddd6b4b14ddbd984ba1169ed22f88c"
+  },
+  "anchor": {
+    "baseline": {
+      "exit": 1,
+      "pass": 14,
+      "fail": 2,
+      "receipt": "native82-anchor-before.json"
+    },
+    "after": {
+      "node20": {
+        "exit": 0,
+        "pass": 18
+      },
+      "node22": {
+        "exit": 0,
+        "pass": 26
+      },
+      "node24": {
+        "exit": 0,
+        "pass": 26
+      }
+    },
+    "callerRegression": {
+      "exit": 0,
+      "pass": 2,
+      "phase": "before TypeScript fixture overload"
+    },
+    "runnerControls": {
+      "exit": 0,
+      "freshRuns": 20,
+      "confirmedActions": 460
+    },
+    "negativeControl": {
+      "exit": 1,
+      "expectedExit": 1,
+      "receipt": "native82-anchor-negative-receipt.json"
+    },
+    "scope": "Synthetic Windows graph tests plus real Linux factory controls; native Windows pending. Seed only actual validated live-root births before historical traversal. Unknown roots remain conservative, full legacy candidates/rows/rootRows retained, no termination authority or historical classification."
+  },
+  "typecheck": {
+    "compiler": "6.0.3, matching Playwright v1.64.1 development compiler",
+    "baseline": {
+      "exit": 2,
+      "diagnostics": 32,
+      "skipLibCheck": true,
+      "note": "Exploratory baseline did not explicitly include playwright.config.ts.",
+      "fullDeclarationBaseline": {
+        "diagnostics": 32,
+        "exit": "not retained after context compaction; not counted as an exit-code proof"
+      }
+    },
+    "final": {
+      "node20": 0,
+      "node22": 0,
+      "node24": 0,
+      "strict": true,
+      "skipLibCheck": false,
+      "noEmit": true,
+      "includes": "all tests/**/*.ts, playwright.config.ts, index.d.ts, config.d.ts",
+      "javascript": "Imported JS signatures inferred; checkJs false, not full JS static checking"
+    },
+    "browserRegression": {
+      "exit": 0,
+      "pass": 32,
+      "projects": [
+        "chromium",
+        "firefox"
+      ]
+    },
+    "dependencyScope": "Exact development-only TypeScript/@types/debug/@types/pngjs matching upstream versions; production dependencies unchanged",
+    "runtimeScope": "Test-only Client overload forwards once to SDK validation, preserves explicit compatibility schema signature. Request subscriber promises receive properly typed synchronous resolvers; assertions and timeouts unchanged."
+  },
+  "checks": {
+    "lint": 0,
+    "actionlint": 0,
+    "shellcheckExecuted": false,
+    "pyflakesExecuted": false,
+    "productionPackage": {
+      "exit": 0,
+      "fileCount": 176,
+      "runtimeDependenciesUnchanged": true
+    }
+  },
+  "evidenceSha256": {
+    "native82-batch.log": "abcb5aaf633fed329edbcedc3d2c27d08198d32bad5707f93d6cb6330473876a",
+    "native82-wrapper.log": "90e15de21de304632f3b8c0d09e32dc918021a0dacb18742f6e74903c1b2a771",
+    "native82-batch-counts.json": "8dd79e511749fcb0e48f5e910c26d3c0115facb020ca954068262eda79553a15",
+    "native82-wrapper-counts.json": "043816eb753ebc9b961946fa6e7c31dd2bc00deecafad5101e00e21476c574c8",
+    "native82-failure-blocks.json": "6b3465ba33d1fac27477e8621447fd86d2d510521307314d2700333ac0b162bc",
+    "native82-failure-projection.json": "752ccb5be25404df988727b77bffb07f26689fe967790d471f04874b47fbc632",
+    "native82-legacy-comparisons.json": "408f60bcdb4fb54212a17d9e9d79093a05ee58bf3875db0a495eb127b7043460",
+    "native82-controls-summary.json": "e9bc79ecbdcf3567e2d86be60a43e7bf17dd929c8e17586cb31810e0de6bbdec",
+    "native82-projection-errors.json": "71ab3b034a7bb6adc9b1a5a0aa774e446ec7944558066b156c55a697da50f708",
+    "native82-batch-job-log-exits.json": "24211336d60139471c73b5ee8946c3314b5989181d93d7402f600de827004cc0",
+    "native82-wrapper-job-log-exits.json": "534723c246e18daf67d6e98e37c211e5a433393b48b0da94216bd62151a9be63",
+    "native82-batch-job-log-exits-first-read.json": "c6ede6dbf69f02556aba3a6a4da5d7a3708a6bc20fa1881008684279fa293f03",
+    "native82-batch-job-log-exits-wrong-cwd.json": "758132210672cbfa6d3f30028841d7d74e9ee78293421cfb843319cb5ce6a810",
+    "native82-wrapper-job-log-exits-wrong-cwd.json": "f279ef0f703c38480c2fd5db747e469ea9c245992dbb75ce483e66ce13b43510",
+    "native82-anchor-before.log": "1051fd3fe3542c185efe2094cafa018e5d3e855fa798a7ebf851626dfff44b4d",
+    "native82-anchor-before.json": "cdc7f529d1ece77dec9b0a1a97255ed820f1be9ab8061e095dd291bd801b0c48",
+    "native82-anchor-after20.log": "715110164cd406ab4fcab1c10df0ebc11527a8abc5baede90f608ac2f9deb7d3",
+    "native82-anchor-after22.log": "ae90c4a79b5b770885ec3256e8beffaf8cd95bac2569d75008ed417db0c128f1",
+    "native82-anchor-after24.log": "c8d8496b4eeace6a2533be3a81c08a9350974c7386b09b3a375886b14a883b93",
+    "native82-anchor-final24.log": "245f6839350f2dc17dfe0f3aeac8bc2a19dc862572767f4cf38e428474f0af30",
+    "native82-anchor-original-callers.log": "6c8a5280d900a6cf03b73ef14cfddc3574dd7ef52c4a02bb79df369d03d0afcb",
+    "native82-anchor-real-controls.log": "8d7ab0daed6325b0efec87d115b4213c45e73a7d7173c9fb3414a7df5995bbd4",
+    "native82-anchor-negative.log": "a9e486cf10d90534c769fdaf029e478d4b165101fb12b45e08ae59cff31aa692",
+    "native82-anchor-negative-receipt.json": "aa527f3b3e6a3349a4f2f74f3d7d54f94331968ca9b4218f564f4dc2f6356531",
+    "native82-typecheck-before.log": "130344d0bd1065aeb116ff41c28d836376ef663782d032dbfc5cd3dcf6d6eef1",
+    "native82-typecheck-full-before.log": "130344d0bd1065aeb116ff41c28d836376ef663782d032dbfc5cd3dcf6d6eef1",
+    "native82-typecheck-install.log": "24b1c182ff3c37ab3a92d1e68c8cc141892a2c97f121f1970581577075b4f4d6",
+    "native82-typecheck-final.log": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f",
+    "native82-typecheck-node20.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native82-typecheck-node22.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native82-typecheck-browser.log": "5ca14bebe344cf208f84c9123d5d2e6f02bd4ed64f39e86b34a4741642f96daa",
+    "native82-upstream-type-tools.json": "ded46ff5852e85c7fd383fb8afaf54ad77ddecc31e2e1010dcb0d6152f2f3947",
+    "native82-lint.log": "698f906495a1870aa5f78f1336a0860b67002c0c4d3597b3eb364371bf242878",
+    "native82-actionlint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native82-package.log": "594d5765ee125c38fc46ee93062ff246b19e7ffb096ea617323ba050cef1ea0a"
+  }
+}

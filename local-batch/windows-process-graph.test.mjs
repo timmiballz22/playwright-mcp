@@ -4,7 +4,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
 import { windowsAuditSerialization, windowsCimRows } from './fixtures/process-audit.mjs';
-import { windowsOwnedProcesses, windowsOwnedProcessScopes, windowsCimFailurePhase, windowsAuditReceipt } from './fixtures/windows-process-graph.mjs';
+import { windowsOwnedProcesses, windowsOwnedProcessScopes, windowsCimFailurePhase, windowsAuditReceipt, windowsLegacyComparison } from './fixtures/windows-process-graph.mjs';
 const time = value => '2026-10-21T00:00:00.' + String(value).padStart(7, '0') + 'Z';
 const row = (pid, parent, started) => ({ pid, parent, started: started === null ? null : time(started) });
 test('an empty CIM snapshot fails the audit while a kernel PID row and singleton shape are retained', () => {
@@ -136,6 +136,30 @@ test('live controller anchors retain exited browser roots and reject changes wit
   assert.deepEqual(windowsOwnedProcessScopes([scope], [row(900, 1, 100), row(902, 901, 120), row(910, 900, 200)], true), [900, 902, 910]);
   assert.throws(() => windowsOwnedProcessScopes([scope], [row(900, 1, 300), row(902, 901, 120)], true), /root_birth_changed/);
   assert.throws(() => windowsOwnedProcessScopes([scope], [row(902, 901, 120)], true), /root_missing/);
+});
+
+test('first live-anchor capture uses its birth before historical traversal and retains unknown legacy roots', () => {
+  const scope = { roots: new Set([800, 900]), liveRoots: new Set([900]), identities: new Map() };
+  const rows = [row(900, 1, 100), row(100, 900, 10), row(901, 900, 110), row(800, 1, 5), row(801, 800, 6)];
+  const observed = windowsOwnedProcessScopes([scope], rows, true);
+  assert.deepEqual(observed, [800, 801, 900, 901]);
+  assert.equal(scope.identities.get(900), time(100));
+  assert.equal(scope.identities.has(800), false, 'An unknown historical root must not acquire an invented birth');
+  assert.equal(scope.roots.has(100), false, 'Invalid parent incarnation must not poison future scope roots');
+  const legacy = windowsLegacyComparison([800, 900], rows, observed, [800, 900]);
+  assert.deepEqual(legacy.observed, [100, 800, 801, 900, 901]);
+  assert.deepEqual(legacy.legacyOnly, [100]); assert.deepEqual(legacy.rows, rows);
+  assert.deepEqual(legacy.rootRows, [rows[0], rows[3]]);
+});
+
+test('first live-anchor capture preserves recorded orphan births across another root replacement', () => {
+  const scope = { roots: new Set([700, 900]), liveRoots: new Set([900]), identities: new Map([[700, time(20)]]) };
+  const rows = [row(700, 1, 80), row(701, 700, 40), row(702, 700, 90),
+    row(900, 1, 100), row(100, 900, 10), row(901, 900, 110)];
+  assert.deepEqual(windowsOwnedProcessScopes([scope], rows, true), [701, 900, 901]);
+  assert.equal(scope.identities.get(700), time(20));
+  assert.equal(scope.identities.get(701), time(40));
+  assert.deepEqual(windowsOwnedProcessScopes([scope], [row(701, 700, 40), row(901, 900, 110)]), [701, 901]);
 });
 
 test('live anchor refresh preserves an old orphan before recording a new owned browser incarnation', () => {

@@ -1,15 +1,17 @@
 # Release acceptance is blocked
 
 The mission is incomplete. Do not merge or publish this candidate as release-ready.
-Latest completed native source is `93da4be7034effa08a280fd877ef12c1f34e2f6a`
-(native81):1,904 reported test passes/9 failures, plus Mac actual-Codex timeout994
-and one failed diagnostic JSON control; both workflows fail. The draft is
+Latest completed native source is `bbf4764e001095d42aecaa7e3ce671fb21fa568d`
+(native82):1,929 reported test passes/11 failures, plus four failed Windows
+JSON controls. Both workflows fail. The draft is
 [PR2](https://github.com/timmiballz22/playwright-mcp/pull/2).
 
-Independent work continues: a real unbounded test-stderr retention gap was
-reproduced and fixed locally, with positive/negative proof and native verification
-pending. Missing historical evidence does not prevent independent implementation
-or authorize skipping remaining work.
+Bounded stderr now passes native probes on all three platforms. Independent
+follow-up fixes a reproduced fresh-anchor QA graph defect and adds strict static
+checking; local graph, real browser and production-package checks pass, native
+verification pending. Full evidence and limits are in the execution report.
+Missing historical evidence does not prevent independent implementation or
+authorize skipping remaining work.
 
 ## Historical ownership evidence cannot be reconstructed
 

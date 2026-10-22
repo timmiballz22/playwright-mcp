@@ -1,0 +1,166 @@
+TAP version 13
+# Subtest: temporary cleanup completes in a separate process and reports a startup deadline
+ok 1 - temporary cleanup completes in a separate process and reports a startup deadline
+  ---
+  duration_ms: 127.31743
+  type: 'test'
+  ...
+# Subtest: actual temporary cleanup worker exits on parent death while filesystem awaits
+ok 2 - actual temporary cleanup worker exits on parent death while filesystem awaits
+  ---
+  duration_ms: 1266.701995
+  type: 'test'
+  ...
+# Subtest: durable guardian success: cleanup and canonical journal outcome
+ok 3 - durable guardian success: cleanup and canonical journal outcome
+  ---
+  duration_ms: 778.336113
+  type: 'test'
+  ...
+# Subtest: durable guardian cancel: cleanup and canonical journal outcome
+ok 4 - durable guardian cancel: cleanup and canonical journal outcome
+  ---
+  duration_ms: 1244.868322
+  type: 'test'
+  ...
+# Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+ok 5 - durable guardian disconnect: cleanup and canonical journal outcome
+  ---
+  duration_ms: 2192.875821
+  type: 'test'
+  ...
+# Subtest: durable guardian crash: cleanup and canonical journal outcome
+ok 6 - durable guardian crash: cleanup and canonical journal outcome
+  ---
+  duration_ms: 1645.764825
+  type: 'test'
+  ...
+# Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+ok 7 - durable guardian mismatch: cleanup and canonical journal outcome
+  ---
+  duration_ms: 451.110381
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+ok 8 - durable guardian admissionFailure: cleanup and canonical journal outcome
+  ---
+  duration_ms: 534.336881
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionTimeout: cleanup and canonical journal outcome
+ok 9 - durable guardian admissionTimeout: cleanup and canonical journal outcome
+  ---
+  duration_ms: 2500.763689
+  type: 'test'
+  ...
+# Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+ok 10 - durable guardian preDisconnected: cleanup and canonical journal outcome
+  ---
+  duration_ms: 417.527187
+  type: 'test'
+  ...
+# Subtest: an empty CIM snapshot fails the audit while a kernel PID row and singleton shape are retained
+ok 11 - an empty CIM snapshot fails the audit while a kernel PID row and singleton shape are retained
+  ---
+  duration_ms: 1.68795
+  type: 'test'
+  ...
+# Subtest: audit receipts describe reused IDs without hiding possible processes or exposing identities
+ok 12 - audit receipts describe reused IDs without hiding possible processes or exposing identities
+  ---
+  duration_ms: 1.145149
+  type: 'test'
+  ...
+# Subtest: older processes with recycled parent IDs are excluded while real live descendants remain
+ok 13 - older processes with recycled parent IDs are excluded while real live descendants remain
+  ---
+  duration_ms: 0.458063
+  type: 'test'
+  ...
+# Subtest: reused root identity excludes its replacement but still reports earlier surviving children
+ok 14 - reused root identity excludes its replacement but still reports earlier surviving children
+  ---
+  duration_ms: 0.236905
+  type: 'test'
+  ...
+# Subtest: missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+ok 15 - missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+  ---
+  duration_ms: 0.357919
+  type: 'test'
+  ...
+# Subtest: live-root snapshots retain exited browser identities for the final orphan scan
+ok 16 - live-root snapshots retain exited browser identities for the final orphan scan
+  ---
+  duration_ms: 0.243253
+  type: 'test'
+  ...
+# Subtest: CIM error phase keeps only exact fixed markers and never raw diagnostics
+ok 17 - CIM error phase keeps only exact fixed markers and never raw diagnostics
+  ---
+  duration_ms: 0.302394
+  type: 'test'
+  ...
+# Subtest: separate owned lifetimes retain old orphans when a new client reuses its PID
+ok 18 - separate owned lifetimes retain old orphans when a new client reuses its PID
+  ---
+  duration_ms: 0.537589
+  type: 'test'
+  ...
+# Subtest: new client may reuse an earlier observed descendant without losing either orphan lineage
+ok 19 - new client may reuse an earlier observed descendant without losing either orphan lineage
+  ---
+  duration_ms: 0.331589
+  type: 'test'
+  ...
+# Subtest: live controller anchors retain exited browser roots and reject changes within that lifetime
+ok 20 - live controller anchors retain exited browser roots and reject changes within that lifetime
+  ---
+  duration_ms: 1.213095
+  type: 'test'
+  ...
+# Subtest: first live-anchor capture uses its birth before historical traversal and retains unknown legacy roots
+ok 21 - first live-anchor capture uses its birth before historical traversal and retains unknown legacy roots
+  ---
+  duration_ms: 0.39935
+  type: 'test'
+  ...
+# Subtest: first live-anchor capture preserves recorded orphan births across another root replacement
+ok 22 - first live-anchor capture preserves recorded orphan births across another root replacement
+  ---
+  duration_ms: 0.132228
+  type: 'test'
+  ...
+# Subtest: live anchor refresh preserves an old orphan before recording a new owned browser incarnation
+ok 23 - live anchor refresh preserves an old orphan before recording a new owned browser incarnation
+  ---
+  duration_ms: 0.112532
+  type: 'test'
+  ...
+# Subtest: historical PID links cannot rewrite a live controller identity before validation
+ok 24 - historical PID links cannot rewrite a live controller identity before validation
+  ---
+  duration_ms: 0.112592
+  type: 'test'
+  ...
+# Subtest: legacy comparison preserves old candidates while scoped birth facts retain an owned orphan
+ok 25 - legacy comparison preserves old candidates while scoped birth facts retain an owned orphan
+  ---
+  duration_ms: 0.310896
+  type: 'test'
+  ...
+# Subtest: comparison records a replacement parent row even when it is outside legacy candidates
+ok 26 - comparison records a replacement parent row even when it is outside legacy candidates
+  ---
+  duration_ms: 0.147649
+  type: 'test'
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11453.534763

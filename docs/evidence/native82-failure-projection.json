@@ -1,0 +1,170 @@
+[
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "not ok 1 - 20 real screenshots across concurrent runs have unique private directories",
+    "scalars": [
+      "  duration_ms: 12509.7962",
+      "  failureType: 'testCodeFailure'",
+      "  error: |-",
+      {
+        "reason": "cleanup_failed",
+        "completed": 1,
+        "total": 1,
+        "durationMs": 6074,
+        "actionsSucceeded": true
+      },
+      "  code: 'ERR_ASSERTION'",
+      "  name: 'AssertionError'"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "not ok 23 - firefox: canonical localhost aliases cannot escape an unapproved port",
+    "scalars": [
+      "  duration_ms: 11402.8475",
+      "  failureType: 'testCodeFailure'",
+      "  error: |-",
+      {},
+      "  code: 'ERR_ASSERTION'",
+      "  name: 'AssertionError'"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "not ok 33 - supervised firefox: all declarative action types preserve exact owned DOM effects",
+    "scalars": [
+      "  duration_ms: 18300.8589",
+      "  failureType: 'testCodeFailure'",
+      "  error: |-",
+      {
+        "reason": "timeout",
+        "completed": 9,
+        "total": 23,
+        "durationMs": 17970,
+        "failedStep": {
+          "index": 10,
+          "type": "check",
+          "ok": false,
+          "error": "action_failed",
+          "failureKind": "pointer_action_timeout"
+        }
+      },
+      "  code: 'ERR_ASSERTION'",
+      "  name: 'AssertionError'"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "not ok 62 - real firefox: HTTP error codes and script exceptions keep response secrets out of reports",
+    "scalars": [
+      "  duration_ms: 13213.2444",
+      "  failureType: 'testCodeFailure'",
+      "  error: |-",
+      "  code: 'ERR_ASSERTION'",
+      "  name: 'AssertionError'"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "not ok 96 - real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits",
+    "scalars": [
+      "  duration_ms: 7287.6379",
+      "  failureType: 'testCodeFailure'",
+      "  error: |-",
+      {
+        "reason": "timeout",
+        "completed": 0,
+        "failedStep": {
+          "index": 1,
+          "type": "goto",
+          "ok": false,
+          "error": "cancelled",
+          "failureKind": "interrupted"
+        }
+      },
+      "  code: 'ERR_ASSERTION'",
+      "  name: 'AssertionError'"
+    ]
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "test": "not ok 1 - 20 real screenshots across concurrent runs have unique private directories",
+    "scalars": [
+      "  duration_ms: 5647.619924",
+      "  failureType: 'testCodeFailure'",
+      "  error: |-",
+      {
+        "reason": "action_failed",
+        "completed": 0,
+        "total": 1,
+        "durationMs": 723,
+        "actionsSucceeded": false
+      },
+      "  code: 'ERR_ASSERTION'",
+      "  name: 'AssertionError'"
+    ]
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "test": "not ok 79 - real chromium: 1 fresh runs, navigation, 997 clicks, assertion, screenshot, cleanup",
+    "scalars": [
+      "  duration_ms: 120051.871353",
+      "  failureType: 'testCodeFailure'",
+      "  error: |-",
+      "  code: 'ERR_ASSERTION'",
+      "  name: 'AssertionError'"
+    ]
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "test": "not ok 91 - local stdio MCP: handshake, tool list, rejection, browser workflow",
+    "scalars": [
+      "  duration_ms: 119449.631421",
+      "  failureType: 'testCodeFailure'",
+      "  error: |-",
+      "    {\"ok\":false,\"reason\":\"timeout\",\"completed\":986,\"cleanup\":\"terminated\",\"tempCleanup\":\"removed\"}",
+      {
+        "reason": "timeout",
+        "completed": 986
+      },
+      "  code: 'ERR_ASSERTION'",
+      "  name: 'AssertionError'"
+    ]
+  },
+  {
+    "job": "test (windows-latest)",
+    "test": "not ok 1 - real firefox: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "scalars": [
+      "  duration_ms: 20058.1039",
+      "  failureType: 'testCodeFailure'",
+      "  error: |-",
+      {},
+      "  code: 'ERR_ASSERTION'",
+      "  name: 'AssertionError'"
+    ]
+  },
+  {
+    "job": "test (windows-latest)",
+    "test": "not ok 2 - real firefox headed: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "scalars": [
+      "  duration_ms: 10149.1621",
+      "  failureType: 'testCodeFailure'",
+      "  error: |-",
+      {},
+      "  code: 'ERR_ASSERTION'",
+      "  name: 'AssertionError'"
+    ]
+  },
+  {
+    "job": "test (windows-latest)",
+    "test": "not ok 3 - real firefox direct-pipe: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "scalars": [
+      "  duration_ms: 10583.585",
+      "  failureType: 'testCodeFailure'",
+      "  error: |-",
+      {},
+      "  code: 'ERR_ASSERTION'",
+      "  name: 'AssertionError'"
+    ]
+  }
+]

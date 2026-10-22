@@ -1,0 +1,81 @@
+✔ an empty CIM snapshot fails the audit while a kernel PID row and singleton shape are retained (1.868577ms)
+✔ audit receipts describe reused IDs without hiding possible processes or exposing identities (0.656006ms)
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (0.495312ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (0.246884ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (0.440591ms)
+✔ live-root snapshots retain exited browser identities for the final orphan scan (0.1941ms)
+✔ CIM error phase keeps only exact fixed markers and never raw diagnostics (0.382873ms)
+✔ separate owned lifetimes retain old orphans when a new client reuses its PID (0.458872ms)
+✔ new client may reuse an earlier observed descendant without losing either orphan lineage (0.408272ms)
+✔ live controller anchors retain exited browser roots and reject changes within that lifetime (1.351445ms)
+✖ first live-anchor capture uses its birth before historical traversal and retains unknown legacy roots (1.146123ms)
+✖ first live-anchor capture preserves recorded orphan births across another root replacement (0.400869ms)
+✔ live anchor refresh preserves an old orphan before recording a new owned browser incarnation (0.158054ms)
+✔ historical PID links cannot rewrite a live controller identity before validation (0.171228ms)
+✔ legacy comparison preserves old candidates while scoped birth facts retain an owned orphan (0.323973ms)
+✔ comparison records a replacement parent row even when it is outside legacy candidates (0.285596ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 14
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78.868833
+
+✖ failing tests:
+
+test at local-batch/windows-process-graph.test.mjs:141:1
+✖ first live-anchor capture uses its birth before historical traversal and retains unknown legacy roots (1.146123ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   100,
+      800,
+      801,
+      900,
+      901
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/windows-process-graph.test.mjs:145:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 100, 800, 801, 900, 901 ],
+    expected: [ 800, 801, 900, 901 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/windows-process-graph.test.mjs:155:1
+✖ first live-anchor capture preserves recorded orphan births across another root replacement (0.400869ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   100,
+      701,
+      900,
+      901
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/windows-process-graph.test.mjs:159:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 100, 701, 900, 901 ],
+    expected: [ 701, 900, 901 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

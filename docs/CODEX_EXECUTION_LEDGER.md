@@ -2,6 +2,73 @@
 
 ## Resume checkpoint — 2026-10-22
 
+Latest completed native82 at `bbf4764e001095d42aecaa7e3ce671fb21fa568d`:
+[batch39748755708](https://github.com/timmiballz22/playwright-mcp/actions/runs/39748755708)
+reports1,456 passes/8 failures; [original39748755718](https://github.com/timmiballz22/playwright-mcp/actions/runs/39748755718)
+reports473/3. Combined **1,929 reported test passes/11 failures**, plus four failed
+Windows diagnostic JSON controls. All17 non-soak jobs finish; optional soak skips,
+reported test skips/cancels0. Both workflows fail. Native82 includes the bounded
+stderr fix; the fresh-anchor and TypeScript follow-up below is not included.
+
+All three original platforms pass156 tests, Docker2 and Mac modal3 pass. All12
+original stderr probes retain983,040 bytes under1,048,576 without overflow;
+four journal jobs pass115/116 tests. All three actual-Codex clients complete1,000
+actions, model0: Linux36.132s, Windows39.296s, Mac119.534s. These results do not
+establish that earlier native failures are fixed.
+
+Linux batch199/203/203 pass. Windows190/5: raw screenshot completes its action
+then server_timeout; canonical localhost Firefox fails2/4; supervised all-action
+Firefox stops9/23 at check10 pointer timeout; HTTP privacy stops before any /401
+request (browser allocation7.771s), failureCode:null instead of http_401, known
+terminated/removed cleanup and auditConfirmed:true; retry navigation stops0
+at cancelled goto. Later cases in the failed sequences are unexecuted.
+Mac200/3: initial Chromium screenshot fails unknown; raw1k stops985 and syncMCP986
+at existing deadlines with known cleanup. Mac separate server/pipe1k controls pass
+117.561/101.529s. No timeout or transport default changed.
+
+Windows original legacy Firefox headless fresh2 stops13/23, headed fresh1 stops9,
+pipe fresh1 stops14, all cleanup[]. Headless counter13 exceeds12 acknowledged
+clicks; headed counter9 exceeds8. The failed clicks delivered effects: no replay.
+Public root-exit evidence exists for two server modes, not proof of tree closure.
+All four Windows JSON controls fail (private4/10=96 actions, inherited0/10=2,
+protocol-headed0/10=6, stock-headed1/10=28); all before-force/final residuals0.
+Two full legacy comparisons retain2 and1 candidates, unreviewed/unclassified;
+no historical ownership uncertainty is cleared.
+
+All17 completed-job logs are retained. Initial reads from the wrong working
+directory failed before download; one later ordinary read retried invalid ZIP.
+The failed read receipts and one null-field projection error remain recorded.
+No artifact download or access workaround. Evidence: native82-summary.json,
+native82-{batch,wrapper}.log, native82-native-receipts.json and full comparisons.
+
+Local follow-up fixes a reproduced fresh-live-anchor graph initialization defect:
+validate actual live-root births before historical traversal so a recycled PPID
+cannot permanently seed an older unrelated process into a fresh scope. Unknown
+legacy roots stay conservative; existing historical births never change. New
+synthetic tests fail2/16 before, then graph/cleanup pass18 on Node20 and combined
+guardian tests26 on Node22/24. Full comparisons are saved by the existing original
+MCP and exact-runner observations without another process query or new kill rights.
+Real Linux caller regression2 and private/inherited20 fresh runs/460 actions pass;
+existing forced-close negative exits1 as expected and retains its anchor receipt.
+Native Windows verification remains pending; no historical candidates classified.
+
+Strict static checking is now executable with `npm run typecheck` and required in
+original CI. TS6.0.3 and debug/pngjs declarations match upstream development pins;
+only dev dependencies change. All test TypeScript, runner config and public
+index/config declarations pass Node20/22/24, noEmit, strict, skipLibCheck:false.
+Imported JS signatures are inferred, not fully checked (checkJs:false). Baseline
+had32 diagnostics; accurate SDK default-result overload and typed request
+subscriber resolvers resolve them without casts or assertion/budget changes.
+Final real Chromium/Firefox regression32 passes. Lint/actionlint/diff checks and
+fresh176-file production-only package pass; ShellCheck/Pyflakes unexecuted.
+Evidence: native82-local-proof.json and its exact logs/source hashes.
+
+Mission remains active, **not release-ready**. P0 native browser reliability,
+historical ownership unknowns and hard OS resource/storage boundaries remain;
+G00–G18 are not promoted by these narrower checks. Continue independent work.
+
+Prior completed checkpoint (native81):
+
 Latest completed native81 at `93da4be7034effa08a280fd877ef12c1f34e2f6a`:
 batch39743244640 reports1,446 passes/6 failures; original39743244612 reports458/3.
 Combined **1,904 reported test passes/9 failures**, plus Mac actual-Codex
@@ -65,9 +132,10 @@ install passes; new QA helpers/preload/spec are excluded from the tarball.
 Lint/actionlint/diff pass (ShellCheck/Pyflakes not run). Stable Playwright remains
 1.64.1; upstream issue-search metadata is context only, not a proven cause.
 
-**Mission remains active/incomplete. NEXT ACTION: commit bounded-stderr fix and
-complete its native verification, then tackle the next feasible static/reliability
-gap. Historical missing evidence remains blocked; independent work continues.**
+**Historical native82 launch checkpoint (now completed above) atbbf4764e001095d42aecaa7e3ce671fb21fa568d:
+batch39748755708 and original39748755718. Hold further pushes. NEXT ACTION:
+complete bounded-stderr native proof; local fresh-anchor graph regression/fix is
+independent follow-up, not part of this native source. Historical missing evidence remains blocked; independent work continues.**
 
 ### Archived native80 checkpoint
 

@@ -3,7 +3,7 @@ import { fork, ChildProcess } from 'node:child_process';
 import { channel } from 'node:diagnostics_channel';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
-import { mkdtemp, mkdir, rm } from 'node:fs/promises';
+import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import os from 'node:os';
@@ -181,12 +181,25 @@ if (process.argv[2] === '--owned-child') {
     current = child;
     const closed = once(child, 'close').catch(() => []); const browsers = []; let auditFailure = false;
     const scope = { roots: new Set([child.pid]), liveRoots: new Set([child.pid]), identities: new Map() }; scopes.push(scope);
+    let anchorRecorded = false;
     let audit = Promise.resolve(); let auditing = false; let resolveReceipt;
     const received = new Promise(resolve => { resolveReceipt = resolve; });
     const snapshot = async () => {
       assert.ok(child.exitCode === null && child.signalCode === null, 'Owned diagnostic controller exited before observation');
-      await ownedScopeDescendants([scope], { rememberLiveRoots: true });
+      let legacy;
+      const observed = await ownedScopeDescendants([scope], { rememberLiveRoots: true,
+        ...(!anchorRecorded ? { compareLegacyRoots: [...scope.roots], onLegacyObservation: value => { legacy = value; } } : {}),
+      });
       assert.ok(child.exitCode === null && child.signalCode === null, 'Owned diagnostic controller exited during observation');
+      if (!anchorRecorded) {
+        if (process.platform === 'win32') assert.ok(legacy, 'Initial exact-runner legacy comparison missing');
+        const record = JSON.stringify({ fixture: 'exact_runner_initial_anchor', mode, observed,
+          legacy, roots: [...scope.roots], identities: [...scope.identities] });
+        assert.ok(Buffer.byteLength(record) <= 65536, 'Initial exact-runner audit receipt byte bound exceeded');
+        await writeFile(path.join(directory, 'initial-anchor.json'), record, { flag: 'wx', mode: 0o600 });
+        if (legacy?.legacyOnly.length) console.log(record);
+        anchorRecorded = true;
+      }
     };
     const sample = () => {
       if (!auditing) {

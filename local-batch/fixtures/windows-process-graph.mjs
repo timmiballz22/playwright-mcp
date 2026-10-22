@@ -73,6 +73,11 @@ export function windowsOwnedProcessScopes(scopes, rows, rememberLiveRoots = fals
     if (rememberLiveRoots && scope.liveRoots) {
       const validated = new Map(scope.identities);
       const current = windowsOwnedProcesses([...scope.liveRoots], rows, validated, true);
+      // First capture must use the actual live anchor's validated birth before
+      // historical traversal. Other unknown roots remain conservative; existing
+      // historical identities are never replaced by this initialization.
+      for (const pid of scope.liveRoots)
+        if (!scope.identities.has(pid) && validated.has(pid)) scope.identities.set(pid, validated.get(pid));
       const historical = windowsOwnedProcesses([...scope.roots], rows, scope.identities);
       for (const pid of historical) { scope.roots.add(pid); result.add(pid); }
       for (const pid of current) {

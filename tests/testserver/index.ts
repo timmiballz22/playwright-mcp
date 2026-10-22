@@ -24,13 +24,18 @@ import debug from 'debug';
 const fulfillSymbol = Symbol('fulfil callback');
 const rejectSymbol = Symbol('reject callback');
 
+type RequestSubscriber = Promise<http.IncomingMessage> & {
+  [fulfillSymbol]: (request: http.IncomingMessage) => void;
+  [rejectSymbol]: (error: Error) => void;
+};
+
 export class TestServer {
   private _server: http.Server;
   readonly debugServer: any;
   private _routes = new Map<string, (request: http.IncomingMessage, response: http.ServerResponse) => any>();
   private _csp = new Map<string, string>();
   private _extraHeaders = new Map<string, object>();
-  private _requestSubscribers = new Map<string, Promise<any>>();
+  private _requestSubscribers = new Map<string, RequestSubscriber>();
   readonly PORT: number;
   readonly PREFIX: string;
   readonly CROSS_PROCESS_PREFIX: string;
@@ -105,13 +110,13 @@ export class TestServer {
     let promise = this._requestSubscribers.get(path);
     if (promise)
       return promise;
-    let fulfill, reject;
-    promise = new Promise((f, r) => {
+    let fulfill!: (request: http.IncomingMessage) => void;
+    let reject!: (error: Error) => void;
+    const pending = new Promise<http.IncomingMessage>((f, r) => {
       fulfill = f;
       reject = r;
     });
-    promise[fulfillSymbol] = fulfill;
-    promise[rejectSymbol] = reject;
+    promise = Object.assign(pending, { [fulfillSymbol]: fulfill, [rejectSymbol]: reject });
     this._requestSubscribers.set(path, promise);
     return promise;
   }

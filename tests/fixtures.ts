@@ -20,7 +20,9 @@ import { chromium } from 'playwright';
 
 import { test as baseTest, expect as baseExpect } from '@playwright/test';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
-import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { Client as SDKClient } from '@modelcontextprotocol/sdk/client/index.js';
+import type { CallToolResult, CallToolResultSchema } from '@modelcontextprotocol/sdk/types.js';
+import type { windowsLegacyComparison } from '../local-batch/fixtures/windows-process-graph.mjs';
 import { ListRootsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { TestServer } from './testserver/index';
 import { ownedScopeDescendants } from '../local-batch/fixtures/process-audit.mjs';
@@ -33,6 +35,17 @@ import type { Config } from '../config';
 import type { BrowserContext } from 'playwright';
 import type { Transport } from '@modelcontextprotocol/sdk/shared/transport.js';
 import type { Stream } from 'stream';
+
+// The SDK validates its default result with CallToolResultSchema, but its
+// declaration also includes the explicit compatibility-schema result. Preserve
+// that overload while exposing the already validated default response type.
+class Client extends SDKClient {
+  override callTool(params: Parameters<SDKClient['callTool']>[0], resultSchema?: typeof CallToolResultSchema, options?: Parameters<SDKClient['callTool']>[2]): Promise<CallToolResult>;
+  override callTool(...args: Parameters<SDKClient['callTool']>): ReturnType<SDKClient['callTool']>;
+  override callTool(...args: Parameters<SDKClient['callTool']>): ReturnType<SDKClient['callTool']> {
+    return super.callTool(...args);
+  }
+}
 
 export type TestOptions = {
   mcpArgs: string[] | undefined;
@@ -83,6 +96,7 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
     const clients: Client[] = [];
     const progress: Array<() => unknown> = [];
     const stderrCaptures: Array<{ capture: ReturnType<typeof createStderrCapture>, ended: () => boolean }> = [];
+    let processAuditSequence = 0;
 
     await use(async options => {
       const cwd = testInfo.outputPath();
@@ -129,8 +143,17 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
         if (!Number.isSafeInteger(pid) || !pid || pid <= 1) throw new Error('source_observation_unavailable');
         scope ??= { roots: new Set([pid]), liveRoots: new Set([pid]), identities: new Map() };
         if (!scope.liveRoots.has(pid)) throw new Error('source_transport_changed');
-        const observed = await ownedScopeDescendants([scope], { rememberLiveRoots: true });
+        let legacy: ReturnType<typeof windowsLegacyComparison> | undefined;
+        const observed = await ownedScopeDescendants([scope], { rememberLiveRoots: true,
+          compareLegacyRoots: [...scope.roots], onLegacyObservation: (value: ReturnType<typeof windowsLegacyComparison>) => { legacy = value; },
+        });
         if (transport.pid !== pid) throw new Error('source_transport_changed');
+        if (process.platform === 'win32') baseExpect(legacy).toBeTruthy();
+        const record = JSON.stringify({ fixture: 'original_mcp_lifetime_comparison', observed,
+          legacy, roots: [...scope.roots], identities: [...scope.identities] });
+        baseExpect(Buffer.byteLength(record)).toBeLessThanOrEqual(65536);
+        await fs.promises.writeFile(testInfo.outputPath(`source-process-audit-${++processAuditSequence}.json`), record, { flag: 'wx', mode: 0o600 });
+        if (legacy?.legacyOnly.length) console.log(record);
         // Read-only diagnostic: all observed identities stay in this lifetime's
         // scope. No name/role filter, PID signalling or cleanup authorization.
         return { observedCount: observed.length, transportRootMatches: observed.includes(pid) ? 1 : 0 };
