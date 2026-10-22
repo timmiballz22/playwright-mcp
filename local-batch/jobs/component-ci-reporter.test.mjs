@@ -65,3 +65,16 @@ test('component classification never invokes error getters and stops before deep
   assert.equal(annotation({ cause: { cause: { cause: { code: 'ERR_ASSERTION' } } } }), '::error title=Durable component test did not pass::testNumber=2\n');
   assert.equal(annotation(new Proxy({}, { getOwnPropertyDescriptor() { throw new Error('private-ci-canary'); } })), '::error title=Durable component test did not pass::testNumber=2\n');
 });
+
+test('component journal annotations retain fixed phases and exit uncertainty without messages', () => {
+  const annotation = error => componentFailureAnnotation({ type: 'test:fail', data: { testNumber: 80, details: { error } } });
+  const journal = { code: 'journal_unavailable', journalFailure: 'rpc_timeout', journalFailureCommand: 'init', journalInitStage: 'schema_metadata', journalExitConfirmed: false, message: 'private-ci-canary', directory: 'private-ci-canary' };
+  assert.equal(annotation({ cause: journal }), '::error title=Durable component test did not pass::testNumber=80 failureClass=journal_unavailable journalFailure=rpc_timeout journalCommand=init journalInitStage=schema_metadata journalExitConfirmed=false\n');
+  assert.equal(annotation({ cause: { cause: { cause: journal } } }).includes('journalInitStage'), false);
+  assert.equal(annotation({ ...journal, journalFailure: 'private-ci-canary', journalFailureCommand: 'private-ci-canary', journalInitStage: 'private-ci-canary', journalExitConfirmed: 'private-ci-canary' }), '::error title=Durable component test did not pass::testNumber=80 failureClass=journal_unavailable\n');
+  let invoked = 0;
+  const guarded = { code: 'journal_unavailable' };
+  for (const key of ['journalFailure', 'journalFailureCommand', 'journalInitStage', 'journalExitConfirmed']) Object.defineProperty(guarded, key, { get() { invoked++; throw new Error('private-ci-canary'); } });
+  assert.equal(annotation(guarded), '::error title=Durable component test did not pass::testNumber=80 failureClass=journal_unavailable\n');
+  assert.equal(invoked, 0);
+});

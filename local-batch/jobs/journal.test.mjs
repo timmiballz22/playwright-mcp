@@ -417,7 +417,7 @@ if (!supportsJournal) {
 if (supportsJournal) test('monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries', async () => {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-queue-clock-'));
   const config = { directory, projectId: '8'.repeat(64), ownerId: 'owner' };
-  let journal; let foreign; let other;
+  let journal; let foreign; let other; let verified = false; let primary;
   try {
     journal = await JobJournal.open(config);
     const create = key => journal.call('create', { id: randomUUID(), requestKey: key, workflowDigest: key.repeat(64), total: 1, deadlineAt: Date.now() + 15000 });
@@ -436,8 +436,13 @@ if (supportsJournal) test('monotonic queue expiry cannot release another executi
     assert.equal((await journal.call('read', { id: active.jobId })).state, 'RUNNING');
     await journal.call('finish', { id: active.jobId, nonce, state: 'CANCELLED', completed: 0, cleanupOk: true });
     assert.equal((await journal.call('reserve', { id: third.jobId, nonce: randomUUID() })).acquired, true);
-  } finally {
-    await Promise.allSettled([journal?.close(), foreign?.close(), other?.close()]);
-    await rm(directory, { recursive: true, force: true });
+    verified = true;
+  } catch (error) { primary = error; throw error; }
+  finally {
+    const closed = await Promise.allSettled([journal?.close(), foreign?.close(), other?.close()]);
+    const failures = closed.filter(item => item.status === 'rejected').map(item => item.reason);
+    if (verified && !failures.length) await rm(directory, { recursive: true, force: true });
+    else console.error('Journal queue-clock fixture preserved: acceptance or cleanup not confirmed');
+    if (failures.length) throw new AggregateError(primary ? [primary, ...failures] : failures, 'Queue-clock fixture journal close failed', { cause: primary ?? failures[0] });
   }
 });

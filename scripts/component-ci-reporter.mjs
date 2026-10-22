@@ -3,6 +3,7 @@
 // outside the explicit component source set.
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { COMMAND_FIELDS, JOURNAL_FAILURE_CAUSES, JOURNAL_INIT_STAGES } from '../local-batch/jobs/journal-protocol.mjs';
 const repository = fileURLToPath(new URL('../', import.meta.url));
 const files = new Set([
   ...['journal', 'journal-stop', 'temporary-cleanup-stop', 'launch-ownership', 'lifetime-observer', 'http-early-metadata', 'artifact-cleanup-receipt', 'retained-artifact-budget', 'guardian', 'guardian-stop', 'guardian-diagnostic', 'guardian-readiness-diagnostic',
@@ -31,6 +32,20 @@ function failureClass(error) {
     if (known) return known;
   }
 }
+function journalMetadata(error) {
+  for (let depth = 0; error && depth < 3; depth++, error = ownValue(error, 'cause')) {
+    if (ownValue(error, 'code') !== 'journal_unavailable') continue;
+    const failure = ownValue(error, 'journalFailure');
+    const command = ownValue(error, 'journalFailureCommand');
+    const stage = ownValue(error, 'journalInitStage');
+    const exited = ownValue(error, 'journalExitConfirmed');
+    return (JOURNAL_FAILURE_CAUSES.includes(failure) ? ' journalFailure=' + failure : '') +
+      (COMMAND_FIELDS.has(command) || command === 'none' ? ' journalCommand=' + command : '') +
+      (JOURNAL_INIT_STAGES.includes(stage) ? ' journalInitStage=' + stage : '') +
+      (typeof exited === 'boolean' ? ' journalExitConfirmed=' + exited : '');
+  }
+  return '';
+}
 export function componentFailureAnnotation(event) {
   if (event?.type !== 'test:fail') return '';
   const data = event.data ?? {};
@@ -46,7 +61,7 @@ export function componentFailureAnnotation(event) {
   const kind = failureClass(ownValue(details, 'error'));
   const duration = ownValue(details, 'duration_ms');
   const metadata = (kind ? ' failureClass=' + kind : '') +
-    (Number.isFinite(duration) && duration >= 0 && duration <= 1800000 ? ' durationMs=' + Math.floor(duration) : '');
+    (Number.isFinite(duration) && duration >= 0 && duration <= 1800000 ? ' durationMs=' + Math.floor(duration) : '') + journalMetadata(ownValue(details, 'error'));
   return '::error title=Durable component test did not pass' + location + '::' + index + metadata + '\n';
 }
 export default async function* report(events) {

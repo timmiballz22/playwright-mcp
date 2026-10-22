@@ -1,5 +1,71 @@
 # Execution ledger
 
+## Latest completed checkpoint — native88 at702b616; acceptance incomplete
+
+[Batch39788239513](https://github.com/timmiballz22/playwright-mcp/actions/runs/39788239513)
+reports1167 passes/7 failures; [original39788239509](https://github.com/timmiballz22/playwright-mcp/actions/runs/39788239509)
+reports550/7 including legacy. Completed summaries total1717/14; reported test
+skips/cancels0. Two CI jobs cancelled at unchanged30m budgets: Linux22 during
+Ubuntu dependency fetching (package/main unexecuted), Mac during main suite.
+Mac main log is empty on first read and ordinary retry; its test outcomes and
+cleanup remain unobserved. No partial Mac counts are invented. Node20 main207/0
+completes. Linux24 main210/1, Windows198/5. Components138/0 each Linux22/24 and
+Mac, Windows138/1. Four installed-package step successes; Mac success is REST
+metadata because its job log is unavailable; Node20 SQLite/jobs/guardian unsupported.
+
+Actual Mac WebKit producer now passes the unchanged320×240 strict decoded-red
+threshold and six-click recording case with prepared core3eb. Exact successful
+pixel is not logged. Eleven of twelve native cases pass for each PCM and WebM;
+Windows WebKit is the failure in each. Windows WAV remains ready0/network2/error0/durationnull
+after one206; WebM ready0/network3/error4 after two206. Correct ranges alone
+did not repair Windows media. Docker prepared-hash and two endpoint cases pass.
+Original Linux184/0, Windows181/3, Mac183/1; legacy Windows0/3. Windows first
+prompt click times out before uploads. Mac Firefox trusted100click case stops86;
+its screenshot/advanced case passes this sample, not an explanation of older failures.
+
+Linux24 WebKit alias test fails the explicitly approved control: timeout0/4,
+forcedfalse, terminated/removed. Its unapproved-port phase is unexecuted; this
+is not evidence of an allowlist escape. Windows privacy stops at/401, verified0/8,
+with one request/finished response and typed401 fact retained before timeout;
+scoped audit confirms zero. Raw direct-pipe fresh8 stops9/23 at click10. Locator
+case reports19/19 but timeout/forcedtrue; later ambiguity checks unexecuted.
+Retry/429 reports one completed action/two GETs and finished responses, then
+timeout/forcedtrue. Popup quota case stops2/10 at waitFor3; quota assertion is
+not reached. These are incomplete feature checks, not proof of new policy errors.
+
+Windows queue-expiry/lease component fails journal_unavailable at2047ms; command,
+init phase and worker-exit facts were not projected in this log. Its fixture
+silently discarded close rejections and removed storage even on acceptance
+failure. Prospective QA correction preserves failed/uncertain storage and throws
+cleanup failures with original cause. Bounded non-getter component annotations
+now retain allowlisted journal command/phase/exit facts; no RPC/runtime change.
+Reporter7/7 each Node20/22/24; queue case1/1 each22/24 locally. Historical unknown
+worker state is not reconstructed or cleared by these changes.
+
+Actual Codex1k passes Linux35.710s/Windows38.162s with model0/owned0; Mac times
+out951, forcedfalse/terminated/removed. Mac direct-pipe control1k89.249s passes;
+server stops999 at120.055s. Windows private/inherited/protocol-headed controls
+all10fresh/230 pass; stock-headed8 successful fresh/191 actions then context
+timeout. Controls report zero owned roots before force/finally; old samples stay.
+
+All17 nonoptional job log reads attempted;16 nonempty recovered. Lint invalid
+ZIP/zero-byte first read and successful ordinary retry retained; Mac empty reads
+both retained. Collectors ran sequentially with max3 reads; no artifact download
+or authentication workaround. Normal cancellation requested after stale-reported
+Mac activity exceeded42m; final job completion timestamp predates that request.
+Both jobs have30m timeout annotations. No claim that the request caused termination,
+proved cleanup or changed a limit. Historical136/142 PID counts and other ownership
+debt stay open; full current legacy comparison rows retained without role filters.
+
+Local follow-ups excluded from native88: independent trace/PDF4/4 each Node20/22/24,
+verified16-file Docker context93,192B, and Linux batch-only canonical HTTPS Ubuntu
+archive substitution after two measured25–30m Azure fetch stalls. Apt signing,
+package requirements and job/action/RPC limits unchanged; native mirror effect
+pending. Three actual sed transformation fixtures preserve unrelated repositories
+and signing configuration. Next candidate requires native validation. Evidence:
+native88-summary.json, native88-original-checkpoint-proof.json and complete logs.
+
+
 ## Latest completed checkpoint — native87 at b279f0d; acceptance incomplete
 
 [Batch39778440595](https://github.com/timmiballz22/playwright-mcp/actions/runs/39778440595)
@@ -1672,25 +1738,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native87 completed summaries1913/9; Node20 main partial94 pass receipts excluded; all17 logs retained | Native88 queued at702b616; no full-lane or old-debt clearance |
-| G01 INSTALL | VERIFIED PASS | native87 all five297-file checks and Docker hash pass; integrated3eb local scripts-disabled install passes | Native88 producer package verification pending; Node20 storage explicitly unsupported |
-| G02 MCP | FAILED | native87 actual Linux/Windows1k pass, Mac895 timeout; SDK/sync1k pass this sample | Preserve120s budget and all failed samples; Mac control server988 also times out |
-| G03 FEATURE PARITY | FAILED | native87 original Linux184/0 Win181/3 Mac182/2 Docker2; strict media/capture failures retained | Native88 primaries producer and owned media ranges await native verification |
-| G04 BATCH | FAILED | native87 Windows201/2 includes one scoped audit observation with private rows unavailable; Mac210/1 | Retain observation; prospective full audit diagnostics; no replay or filtering |
+| G00 BASELINE | IN PROGRESS | native88 completed summaries1717/14; Linux22 package/main unexecuted; cancelled Mac main log unavailable | Next candidate; retain incomplete lanes and no old-debt clearance |
+| G01 INSTALL | IN PROGRESS | native88 four package step successes, Mac from REST only; Linux22 skipped after install cancellation; Docker3eb hash passes | Linux batch canonical HTTPS Ubuntu mirror; no limit/signature changes |
+| G02 MCP | FAILED | native88 actual Linux/Windows1k pass, Mac951 timeout; separate Mac pipe1k pass/server999 timeout | Preserve limits/defaults, failed samples and absent Mac main evidence |
+| G03 FEATURE PARITY | FAILED | native88 original550/7; actual Mac WebKit decoded-red producer passes; Windows PCM/VP9 still fail with206 responses | Native independent trace/PDF followups and input/lifecycle investigation |
+| G04 BATCH | FAILED | native88 Linux24 approved WebKit alias control0/4 timeout; Windows5 main failures; Mac outcomes unavailable | Blocked alias phase unexecuted; no policy-escape claim or weakened checks |
 | G05 RETRIES | FAILED | native83 Win429 has0 navigation ACK/2 GETs/2 finished responses; later cap/POST cases unexecuted | Preserve route scopes and unsafe-write refusal |
-| G06 JOBS | FAILED | native87 component132/133 and five installs pass; Mac actual895 timeout; old schema exit unconfirmed | No historical worker/lease clearance from healthy current samples |
+| G06 JOBS | FAILED | native88 Windows queue expiry journal_unavailable2047ms; phase/command/exit absent; actual Mac951 timeout | Retain unknown historical workers; fixture store preservation and bounded phase annotations pending native |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
 | G08 STORAGE | BLOCKED | native83 one deadline candidate lacks births/rows; one full comparison proves narrow same-PID birth mismatch only; old136/142 unknown | No retrospective reconstruction, coalescence or debt clearance |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native87 Mac WebKit248/37/0 corrected255/2/0 by primaries-only metadata control with same encoded bytes; Windows readiness remains | Integrated encoder primaries flag and range fixture pending native88; screenshot/input failures open |
-| G11 CROSS-OS | FAILED | native87 Node20 main cancelled after94 pass receipts; Windows2 main/3 original/1 legacy; Mac1 main/2 original plus actual client | Complete native88 without raising time limits or weakening assertions |
+| G10 CROSS-BROWSER | FAILED | native88 actual Mac WebKit frame passes with3eb; Windows WebKit still unready after valid ranges; FF input fails | No codec-support waiver, force click, skipped assertion or historical failure erasure |
+| G11 CROSS-OS | FAILED | native88 Linux22 install and Mac main cancelled; latter logs unavailable after normal reads/REST Forbidden | Mirror-only Linux setup followup and complete next native evidence |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
-| G14 ADVANCED | FAILED | native87 optional Mac ffmpeg succeeds; encoded-byte-preserving primaries control corrects strict red sample | Native88 actual encoder output verification; no broad gamut claim |
+| G14 ADVANCED | FAILED | native88 strict Mac WebKit native producer frame passes; Mac FF100click stops86; standalone trace/PDF local4/4 each LTS | Native independent feature verification; no broad color/PDF content guarantee |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
-| G16 DOCUMENTATION | IN PROGRESS | native88 bounded audit:25 top-level docs,175 local targets,2 Markdown anchors, explicit full reference links;0 issues;67 external targets not fetched | Full parser/external/shortcut-reference coverage and interactive operator walkthroughs remain |
-| G17 AUDIT EVIDENCE | IN PROGRESS | native87 all17 logs first-read success; full legacy comparison rows preserved; new scoped audit private rows unavailable | Prospective full matched-observation retention; historical136/142 missing identities remain unresolved |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native87 failed; native88 queued at702b616 | All critical gates before merge/release |
+| G16 DOCUMENTATION | IN PROGRESS | native88 bounded audit:25 top-level docs,175 local targets,2 Markdown anchors, explicit full reference links;0 issues;79 external targets not fetched | Full parser/external/shortcut-reference coverage and interactive operator walkthroughs remain |
+| G17 AUDIT EVIDENCE | IN PROGRESS | native88 all17 job reads attempted,16 nonempty; lint retry success; Mac twice empty and REST Forbidden | Retain missing Mac cleanup/outcomes and all legacy observations without filters |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native88 failed/incomplete; next QA/context/mirror followups local | All critical gates before merge/release |
 
 ## Defects and risk register
 

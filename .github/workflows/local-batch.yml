@@ -107,6 +107,17 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: npm
       - run: npm ci
+      - name: Use canonical Ubuntu archive for browser dependencies
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          # Native87/88 Azure package fetching exhausted the unchanged job budget.
+          # Only replace this public Ubuntu mirror; apt signatures stay enforced.
+          for source_file in /etc/apt/sources.list /etc/apt/sources.list.d/ubuntu.sources; do
+            if [[ -f "$source_file" ]]; then
+              sudo sed -i -E 's#https?://azure[.]archive[.]ubuntu[.]com/ubuntu/?([[:space:]]|$)#https://archive.ubuntu.com/ubuntu\1#g' "$source_file"
+            fi
+          done
       - run: npx playwright install --with-deps chromium firefox webkit
       - name: Verify installed production package
         id: installed
