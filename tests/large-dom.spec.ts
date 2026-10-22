@@ -13,12 +13,24 @@ test('original large DOM can use explicit snapshot files and bounded find withou
     new MutationObserver(()=>fetch('/activated',{method:'POST',body:output.textContent}).catch(()=>{})).observe(output,{childList:true});
   </script>`, 'text/html');
   const { client } = await startClient({ args: ['--isolated', '--snapshot-mode=none'] });
+  const started = performance.now();
   let callToolRequests = 0;
   const call = async (name: string, args: Record<string, unknown> = {}) => {
     callToolRequests++;
-    const result = await client.callTool({ name, arguments: args });
-    expect(result.isError, JSON.stringify(result)).not.toBe(true);
-    return result.content.filter((item: any) => item.type === 'text').map((item: any) => item.text).join('\n');
+    const callStarted = performance.now();
+    let responseState = 'not_received';
+    try {
+      const result = await client.callTool({ name, arguments: args });
+      responseState = result.isError ? 'tool_error' : 'tool_result';
+      expect(result.isError, JSON.stringify(result)).not.toBe(true);
+      return result.content.filter((item: any) => item.type === 'text').map((item: any) => item.text).join('\n');
+    } catch (error) {
+      const project = ['chrome', 'chromium', 'firefox', 'webkit'].includes(testInfo.project.name) ? testInfo.project.name : 'other';
+      const tool = ['browser_navigate', 'browser_snapshot', 'browser_find', 'browser_click', 'browser_close'].includes(name) ? name : 'other';
+      console.log(JSON.stringify({ fixture: 'large_dom_call_failure', project, tool, responseState, callNumber: callToolRequests,
+        callDurationMs: Math.min(300000, Math.round(performance.now() - callStarted)), elapsedMs: Math.min(300000, Math.round(performance.now() - started)) }));
+      throw error;
+    }
   };
   expect((await call('browser_navigate', { url: server.PREFIX })).length).toBeLessThan(4096);
   const filename = testInfo.outputPath('owned-large-snapshot.md');

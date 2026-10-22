@@ -1,5 +1,79 @@
 # Execution report — verified milestone, incomplete mission
 
+## Latest completed checkpoint — native91 at74497b1; acceptance incomplete
+
+[Batch39813834089](https://github.com/timmiballz22/playwright-mcp/actions/runs/39813834089)
+reports1624 passes/4 failures; [original39813834126](https://github.com/timmiballz22/playwright-mcp/actions/runs/39813834126)
+reports570/11. Completed summaries total2194/15, reported test skips/cancels0.
+All five installed-package steps pass. Linux20/22/24 main207/211/211 pass;
+Mac210/1 and Windows200/3. Components Linux22/24/Mac146/0 each, Windows147/0.
+All12 actual second-connection schema/version/identity race cases pass natively.
+This verifies the scoped write-lock fix, not a cause/fix for old initialization timeouts.
+Node20 durable SQLite/jobs remain unsupported. Both workflows terminate normally;
+no aggregate cancellation is requested. All17 job logs recovered:16 first reads
+succeed, one Linux24 component read is partial with EOF and succeeds on ordinary
+retry. Both files, exits and metadata snapshots are retained.
+
+Actual Codex1k passes Linux36.389s/Windows38.721s, model0/owned0. Mac actual job
+TIMED_OUT958, failed click959 interrupted, resultAvailabletrue/operatorAttentionfalse,
+forcedfalse/terminated/removed; no guardian/journal failure strings recorded.
+Mac sync stdio MCP times out969, reports terminated/removed and client close succeeds;
+its compact outcome does not record forced. Other Mac raw1k and SDK jobs tests pass.
+Separate Mac client controls server/pipe1k pass117.353s/105.021s; Mac main controls
+pass119.184s/108.011s. All control owned roots zero before force/finally. These are
+separate samples, not proof of a transport fix or clearance for native89 Windows
+CRASHED750, native87 scoped observation or historical136/142 birth-record gaps.
+
+Windows direct-pipe raw case fails first fresh run after5 actions. Locator case
+stops8/19 at waitFor9, timeout/forcedfalse/terminated/removed; ambiguity cases are
+unexecuted. Retry first /429 case has one GET/finished response at2.997/2.998s,
+then10s workflow timeout with0 completed actions; later cases unexecuted. Private
+control completes3 successful fresh runs/74 total confirmed actions including the
+failed next run; last5 actions with server_timeout. Inherited/protocol-headed/
+stock-headed controls have0 successful fresh runs and7/4/5 confirmed actions.
+All report zero owned roots before force/finally; these audits do not turn failed
+workflow/cleanup checks into successes. No role/name/age/window PID filtering.
+
+Original Linux192/0, Windows189/3, Mac186/6; Docker2/0 and Windows legacy1/2.
+Legacy server fails fresh5 after23 actions with context_timeout; direct-pipe fails
+fresh1 after12 with context_timeout. Original Windows Firefox independent trace
+case times out30s/connection closed:11/12 trace cases pass; all12 PDF behavior cases
+pass. Windows WebKit WAV/VP9 readiness failures remain despite Media Foundation
+installation success/no restart. Mac Chromium highlight capture fails; Firefox
+trusted100clicks stops81, large DOM times out with masked reference error, profile
+case times out90s, storage/video cases time out30s. Remaining profile/video phases
+are not inferred. Core targetLocators masks every normalization error as ref-not-found,
+so the large-DOM message does not establish an actually stale reference.
+
+Mac Chrome/Chromium/WebKit strict recorded-frame cases pass this round. Firefox
+video never reaches a successful decoded-frame receipt. Actual-gray gate is
+ineligible; three fresh controls and independent ffmpeg diagnostics are unexecuted.
+The native90 gray-frame cause remains unresolved; no speculative encoder patch.
+Mac modal repeats are unexecuted. Full failure blocks and structured receipts retained.
+Six scoped factory-failure observations/four orphan receipts belong to deliberate-
+orphan/self-exit negative controls; they are not six unexpected ownership failures.
+One Windows full legacy comparison and all observed rows/lifetimes remain retained.
+
+All five main lanes retain raw checkpoints25 through200. Final API annotations
+retain25 through175 plus all three bootstrap phases, including PowerShell. In-progress
+annotation reads were empty. Do not infer unexecuted tests from that or claim200
+was persisted in the API. Cancelled-main/missing-log persistence remains unverified.
+Three Linux batch mirror notices each report changedFiles1 and no remaining matched
+Azure URI. Their dependency installs succeed80/67/56s for Node20/22/24. File identity
+is not logged, and this is not an isolated causal/performance guarantee. Original
+Linux still uses separate setup and later reaches tests.
+
+Next local follow-up shares the exact validated mirror body across all five host
+Linux browser-install paths; five shell fixtures, byte comparison, YAML/Bash syntax
+and actionlint pass (shellcheck/pyflakes disabled),297-file package excludes action
+and evidence. Failure-only large-DOM call timings add no RPC, retry, wait or deadline
+change; original Chromium/Firefox scenarios2/2 and typecheck pass locally. Failure
+branch awaits native execution. Actual local Codex1k passes38.896s, model0/owned0,
+with foreign-owner rejection, active cancellation and terminal cleanup. Native
+follow-up remains pending. See [native91 summary](evidence/native91-summary.json),
+full logs and schema-race/checkpoint/install/first-frame/control proof files.
+No merge, publication, unsafe replay, default transport change or ownership-debt clearance.
+
 ## Latest completed checkpoint — native90 at58edfce; acceptance incomplete
 
 [Batch39803246586](https://github.com/timmiballz22/playwright-mcp/actions/runs/39803246586)

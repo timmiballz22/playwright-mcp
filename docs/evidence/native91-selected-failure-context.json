@@ -1,0 +1,55 @@
+[
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "data": {
+      "fixture": "batch_mcp_workspace_preserved",
+      "stage": "summary",
+      "outcome": {
+        "ok": false,
+        "reason": "timeout",
+        "completed": 969,
+        "cleanup": "terminated",
+        "tempCleanup": "removed"
+      },
+      "aborted": false,
+      "primaryFailed": true,
+      "closeFailed": false
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "data": {
+      "route": "/429",
+      "reason": "timeout",
+      "completed": 0,
+      "failedStep": {
+        "index": 1,
+        "type": "goto",
+        "ok": false,
+        "error": "cancelled",
+        "failureKind": "interrupted"
+      },
+      "execution": {
+        "mode": "supervised",
+        "forced": false,
+        "cleanup": "terminated",
+        "tempCleanup": "removed",
+        "supervisorPid": 1896,
+        "workerPid": 3088,
+        "browserPids": [
+          1068
+        ]
+      },
+      "hits": 1,
+      "timing": {
+        "supervisorEventMs": 4,
+        "workerEventMs": 52,
+        "browserEventMs": 1207,
+        "requestsSeen": 1,
+        "responsesFinished": 1,
+        "firstRequestMs": 2997,
+        "lastResponseFinishedMs": 2998
+      }
+    }
+  }
+]
