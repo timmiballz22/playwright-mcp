@@ -1,5 +1,13 @@
 # Execution ledger
 
+Local follow-up excluded from native87 adds correct owned-media single-range/HEAD
+responses and fixed request/partial-response counters; exact WAV/WebM bytes,
+visible readiness deadlines and playback assertions stay intact. Six real HTTP
+cases plus six reporter cases pass each Node20/22/24; media4/4 each Node and final
+Node24 helper4/4 pass. Unknown/multipart ranges are ignored, invalid/unsatisfiable
+single ranges416. Native Windows WAV mechanism/effect remains unexecuted. See
+native87-media-range-proof.json and source phases.
+
 ## Latest completed checkpoint — native86 atfd1939c; acceptance incomplete
 
 [Batch39773672301](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672301)

@@ -4,6 +4,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { PNG } from 'pngjs';
 import { test, expect } from './fixtures';
+import { serveMedia } from './fixtures/media-response.mjs';
 
 test('original recorded WebM decodes an owned frame with the expected dimensions and pixels', async ({ startClient, server }, testInfo) => {
   const project = ['chrome', 'chromium', 'firefox', 'webkit'].includes(testInfo.project.name) ? testInfo.project.name : 'other';
@@ -38,9 +39,10 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
   await call('browser_stop_video');
   const stat = await fs.stat(filename);
   expect(stat.size).toBeGreaterThan(0); expect(stat.size).toBeLessThanOrEqual(8 * 1024 * 1024);
-  const recording = await fs.readFile(filename); let playbackRequests = 0;
-  server.route('/owned.webm', (_request, response) => {
-    playbackRequests++; response.writeHead(200, { 'Content-Type': 'video/webm', 'Content-Length': recording.length }); response.end(recording);
+  const recording = await fs.readFile(filename); let playbackRequests = 0, rangeRequests = 0, partialResponses = 0;
+  server.route('/owned.webm', (request, response) => {
+    playbackRequests++; if (request.headers.range !== undefined) rangeRequests++;
+    serveMedia(request, response, recording, 'video/webm'); if (response.statusCode === 206) partialResponses++;
   });
   server.setContent('/playback', `<!doctype html><title>Owned WebM playback</title>
     <video id="recording" muted preload="auto" src="/owned.webm" onloadeddata="document.querySelector('output').textContent='Owned video decoded'"></video><output>Loading</output>`, 'text/html');
@@ -59,6 +61,7 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
     if (frame.width!==320 || frame.height!==240 || frame.ready<2 || frame.pixel[0]<230 || frame.pixel[1]>20 || frame.pixel[2]>20 || frame.pixel[3]!==255) throw new Error('Owned decoded frame mismatch '+JSON.stringify(frame));
     return { width:frame.width,height:frame.height,decodedRedFrame:true };
   }` } });
+  if (decoded.isError) console.log(JSON.stringify({ fixture: 'owned_video_http_failure', project, playbackRequests, rangeRequests, partialResponses, requestCountsAreLowerBounds: true }));
   const decodedText = decoded.content.filter(item => item.type === 'text').map(item => item.text).join('\n');
   // Diagnostic copies never replace the original recording or its assertion.
   // Explicit trusted test mode exercises this path locally even on a healthy decoder.
@@ -90,8 +93,8 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
         if (hash !== originalHash) throw new Error('Owned encoded stream changed');
         const bytes = await fs.readFile(copy);
         const route = '/owned-' + variant + '.webm';
-        server.route(route, (_request, response) => {
-          response.writeHead(200, { 'Content-Type': 'video/webm', 'Content-Length': bytes.length }); response.end(bytes);
+        server.route(route, (request, response) => {
+          serveMedia(request, response, bytes, 'video/webm');
         });
         const sampled = await client.callTool({ name: 'browser_run_code_unsafe', arguments: { code: `async page => {
           await page.locator('#recording').evaluate((video,url)=>{video.src=url;video.load()},${JSON.stringify(new URL('/owned-', server.PREFIX).href)}+${JSON.stringify(variant)}+'.webm');
@@ -127,5 +130,5 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
   expect(playbackRequests).toBeGreaterThan(0);
   await call('browser_close');
   console.log(JSON.stringify({ fixture: 'owned_webm_frame', project, width: 320, height: 240,
-    recordedClicks: 6, decodedRedFrame: true, bytes: recording.length }));
+    recordedClicks: 6, decodedRedFrame: true, playbackRequests, rangeRequests, partialResponses, bytes: recording.length }));
 });

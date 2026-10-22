@@ -1,5 +1,6 @@
 /** Copyright 2026 contributors. Licensed under Apache-2.0. */
 import { test, expect } from './fixtures';
+import { serveMedia } from './fixtures/media-response.mjs';
 
 // Generated PCM avoids external assets, codec downloads and microphone access.
 function wave() {
@@ -15,10 +16,12 @@ function wave() {
   return bytes;
 }
 
-test('original muted PCM media advances, pauses and reports a missing media source', async ({ startClient, server }) => {
-  const audio = wave(); let mediaRequests = 0; let missingRequests = 0;
-  server.route('/tone.wav', (_request, response) => {
-    mediaRequests++; response.writeHead(200, { 'Content-Type': 'audio/wav', 'Content-Length': audio.length }); response.end(audio);
+test('original muted PCM media advances, pauses and reports a missing media source', async ({ startClient, server }, testInfo) => {
+  const project = ['chrome', 'chromium', 'firefox', 'webkit'].includes(testInfo.project.name) ? testInfo.project.name : 'other';
+  const audio = wave(); let mediaRequests = 0, rangeRequests = 0, partialResponses = 0; let missingRequests = 0;
+  server.route('/tone.wav', (request, response) => {
+    mediaRequests++; if (request.headers.range !== undefined) rangeRequests++;
+    serveMedia(request, response, audio, 'audio/wav'); if (response.statusCode === 206) partialResponses++;
   });
   server.route('/missing.wav', (_request, response) => {
     missingRequests++; response.writeHead(404, { 'Content-Type': 'audio/wav' }); response.end();
@@ -31,6 +34,7 @@ test('original muted PCM media advances, pauses and reports a missing media sour
   const { client } = await startClient({ args: ['--isolated', '--caps=unsafe'] });
   const call = async (name: string, args: Record<string, unknown> = {}) => {
     const result = await client.callTool({ name, arguments: args });
+    if (result.isError) console.log(JSON.stringify({ fixture: 'owned_pcm_http_failure', project, tool: name, mediaRequests, rangeRequests, partialResponses, requestCountsAreLowerBounds: true }));
     expect(result.isError, JSON.stringify(result)).not.toBe(true); return result;
   };
   await call('browser_navigate', { url: server.PREFIX });
@@ -63,6 +67,6 @@ test('original muted PCM media advances, pauses and reports a missing media sour
   }` });
   expect(mediaRequests).toBeGreaterThan(0); expect(missingRequests).toBe(1);
   await call('browser_close');
-  console.log(JSON.stringify({ fixture: 'owned_pcm_media', durationSeconds: 2, initialPaused: true,
+  console.log(JSON.stringify({ fixture: 'owned_pcm_media', project, mediaRequests, rangeRequests, partialResponses, durationSeconds: 2, initialPaused: true,
     mutedPlaybackAdvanced: true, explicitPause: true, missingMediaCode: 4, missingMediaRequests: missingRequests }));
 });

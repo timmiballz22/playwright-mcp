@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: component CI annotations retain only known source location and numeric test index
+ok 1 - component CI annotations retain only known source location and numeric test index
+  ---
+  duration_ms: 5.921516
+  ...
+# Subtest: unknown CI paths, malformed fields and error text cannot enter annotations
+ok 2 - unknown CI paths, malformed fields and error text cannot enter annotations
+  ---
+  duration_ms: 0.548971
+  ...
+# Subtest: component annotation reporter stays silent outside explicit GitHub Actions mode
+ok 3 - component annotation reporter stays silent outside explicit GitHub Actions mode
+  ---
+  duration_ms: 0.643294
+  ...
+# Subtest: component annotations classify bounded Node failure metadata without error payloads
+ok 4 - component annotations classify bounded Node failure metadata without error payloads
+  ---
+  duration_ms: 2.81837
+  ...
+# Subtest: component failure metadata ignores unknown codes and invalid durations with bounded traversal
+ok 5 - component failure metadata ignores unknown codes and invalid durations with bounded traversal
+  ---
+  duration_ms: 0.381842
+  ...
+# Subtest: component classification never invokes error getters and stops before deep causes
+ok 6 - component classification never invokes error getters and stops before deep causes
+  ---
+  duration_ms: 0.276775
+  ...
+# Subtest: owned media full GET and bodyless HEAD describe the same exact representation
+ok 7 - owned media full GET and bodyless HEAD describe the same exact representation
+  ---
+  duration_ms: 58.184918
+  ...
+# Subtest: owned media range delivery supports middle, suffix, open and clamped ranges
+ok 8 - owned media range delivery supports middle, suffix, open and clamped ranges
+  ---
+  duration_ms: 11.085217
+  ...
+# Subtest: owned media malformed or unsatisfiable ranges return no representation bytes
+ok 9 - owned media malformed or unsatisfiable ranges return no representation bytes
+  ---
+  duration_ms: 9.132193
+  ...
+# Subtest: owned media ranges reconstruct original bytes and unmatched If-Range returns full data
+ok 10 - owned media ranges reconstruct original bytes and unmatched If-Range returns full data
+  ---
+  duration_ms: 7.19753
+  ...
+# Subtest: owned media endpoint rejects unsupported methods without serving media
+ok 11 - owned media endpoint rejects unsupported methods without serving media
+  ---
+  duration_ms: 1.692342
+  ...
+# Subtest: owned media full and ranged responses preserve nulls and non-UTF8 binary bytes
+ok 12 - owned media full and ranged responses preserve nulls and non-UTF8 binary bytes
+  ---
+  duration_ms: 8.516056
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 332.293785
