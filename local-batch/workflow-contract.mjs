@@ -19,14 +19,14 @@ export const workflowInputSchema = {
               type: { type: 'string', enum: ['goto','click','fill','press','check',
                 'uncheck','hover','waitFor','assertText','assertURL','scroll','screenshot'] },
               repeat: { type: 'integer', minimum: 1, maximum: 1000 },
-              url: { type: 'string' }, selector: { oneOf: [
+              url: { type: 'string', minLength: 1, maxLength: 2000 }, selector: { oneOf: [
                 { type: 'string', minLength: 1, maxLength: 500 },
                 { type: 'object', additionalProperties: false, required: ['role', 'name'], properties: { role: { type: 'string', minLength: 1, maxLength: 100 }, name: { type: 'string', minLength: 1, maxLength: 500 } } },
                 ...['testId', 'label', 'placeholder', 'text'].map(key => ({ type: 'object', additionalProperties: false, required: [key], properties: { [key]: { type: 'string', minLength: 1, maxLength: 500 } } })),
               ] },
-              value: { type: 'string' }, key: { type: 'string' },
-              contains: { type: 'string' }, equals: { type: 'string', maxLength: 2000 },
-              deltaX: { type: 'integer' }, deltaY: { type: 'integer' },
+              value: { type: 'string', maxLength: 10000 }, key: { type: 'string', minLength: 1, maxLength: 100 },
+              contains: { type: 'string', minLength: 1, maxLength: 2000 }, equals: { type: 'string', maxLength: 2000 },
+              deltaX: { type: 'integer', minimum: -10000, maximum: 10000 }, deltaY: { type: 'integer', minimum: -10000, maximum: 10000 },
             },
           },
         },

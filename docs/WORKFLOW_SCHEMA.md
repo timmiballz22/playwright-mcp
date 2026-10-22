@@ -15,6 +15,12 @@ performs 1,000 operations on an operator-approved counter fixture. Every run
 starts a fresh context/page; navigation and assertions count toward the cap. Action timeouts use Playwright auto-wait;
 assertText currently reads once and is NOT a retrying expect assertion.
 
+Discovery advertises the existing string and scroll scalar bounds, allowing
+clients to reject those oversized values before RPC. Runtime validation remains
+authoritative for per-action field combinations, expanded count and origin
+policy. Runtime string lengths use JavaScript UTF-16 units; JSON Schema maxLength
+counts Unicode code points, so schema acceptance alone is not execution approval.
+
 | Action type | Required fields | Meaning |
 |---|---|---|
 | goto | url | HTTP(S), exact locally approved origin; wait DOMContentLoaded for non-error responses |

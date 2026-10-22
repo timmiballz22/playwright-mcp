@@ -29,6 +29,30 @@ closed shadows, delayed hydration/infinite loading and physical-device behavior
 remain unexecuted. No release gate or broad Unicode/virtual-list guarantee is
 promoted. Evidence: native84-dynamic-proof.json and exact per-phase/per-Node logs.
 
+
+## Advertised workflow bounds match existing scalar caps
+
+The shared JSON schema omitted min/max constraints already enforced by the
+runtime. Public SDK Ajv validation admitted11 oversized/empty/out-of-range
+ASCII/string/scroll cases that validateWorkflow rejected before allocation.
+Baseline contract tests2/1 fail; now19 contract/runtime unit tests pass each
+Node20/22/24. Twelve structural boundary documents stay valid,12 invalid cases
+are rejected and six caller-controlled security fields remain forbidden.
+
+Added only standard minLength/maxLength/minimum/maximum on URL, fill value,
+key, contains and scroll deltas. Runtime validation/caps, approval policy, retries,
+version1 compatibility and tool/action counts are unchanged. Serialized schema
+grows1769→1945 bytes (+176), not a token/model billing measurement. No dependency
+or conditional/union schema expansion introduced. Required field combinations,
+expanded count, origin approval and UTF-16 runtime lengths remain authoritative;
+JSON Schema maxLength uses code points. This is not complete validator equivalence.
+
+Fresh119-file Linux Node24 production-only install passes all installed smoke/
+profile/jobs/journal/guardian checks. Native84 is testing earlier096b617; its
+Windows production-package step has failed, cause awaits completed-workflow logs.
+Do not attribute that failure to packaging or declare a native fix from this
+local success. Evidence: native84-contract-proof.json and exact logs/hashes.
+
 Latest completed native83 at `e95f0298030fd97b460d8798a2fd57a770123873`:
 [batch39753138604](https://github.com/timmiballz22/playwright-mcp/actions/runs/39753138604)
 reports1,469 passes/5 failures; [original39753138605](https://github.com/timmiballz22/playwright-mcp/actions/runs/39753138605)
