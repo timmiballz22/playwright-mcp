@@ -1,6 +1,98 @@
 # Mandatory scenario evidence
 
-## Latest completed checkpoint — native96 atcc9562b; acceptance incomplete
+## Latest completed checkpoint — native97 at953ba87; acceptance incomplete
+
+[Batch39853792171](https://github.com/timmiballz22/playwright-mcp/actions/runs/39853792171)
+reports **1,631 passes / 7 failures**; [original39853792190](https://github.com/timmiballz22/playwright-mcp/actions/runs/39853792190)
+reports **599 / 6**. Completed test summaries total **2,230 / 13**, with reported
+skips/cancels zero. The failed macOS actual-client job is separate from those
+summary counts. All workflows/jobs are terminal. All17 logs resolve:16 first
+reads succeed; Linux22's first read ends EOF after3,545 bytes and its ordinary
+retry succeeds. Both attempts remain available. This is retrieval evidence,
+not a fixture-stderr EOF finding.
+
+All five installed-package steps and both parent-death variants pass. Component
+lanes pass146/146/146/147, including12 real concurrent schema races. Node20 durable
+SQLite/jobs remain unsupported. Main batch Linux20/22/24 is209/0,212/1,212/1;
+Mac212/1 and Windows201/4. The three Linux22/24/Mac failures are the stronger
+first-JPEG assertion: respectively320×180,320×153 and131×98 (Mac native viewport
+metadata500×153). Every receipt says metrics were dispatched after bounds
+completion. Ordered requests do not guarantee capture readiness. Assertions,
+original action/RPC/test/job limits and default browser/transport remain intact.
+
+Actual Codex1000 passes Linux35.816s and Windows38.197s, modelTurns0/owned0.
+Mac times out at969 confirmed, failed step970 interrupted, result available,
+operatorAttentionRequiredfalse, execution cleanup terminated/temp removed. Its
+failed acceptance workspace is not removed; the final audit and app-server close
+are observed. Empty hints/false journalExitUnconfirmed do not independently prove
+all journal exits. This is not native96's Windows CRASHED75 journal failure,
+which remains unresolved. Windows SDK startup diagnostics are not selected this
+round because its primary client passes. The real Mac group-hint control passes;
+it does not recover native96's missing nested failure facts.
+
+Windows main failures are Firefox supervised11/23 actions, declarative9/23,
+negative ambiguity returning timeout instead of action_failed, and429 navigation
+at0 completed/one hit. The locator positive19-action/six-effect assertions finish
+before the failing negative; the failed negative's exact step/effect counters
+are not logged. Independent factory audits report zero in these paths, without
+claiming input completion. Separate private/inherited/stock-headed controls each
+pass10 fresh/230 actions. Protocol-headed completes one fresh run, then3/23 in
+the next (26 confirmed across those two); pointer timeout leaves five projected
+requests pending at failure and one mouse-dispatch request after cleanup.
+Bounded protocol receipts are not complete wire/OS-exit proofs. Both scoped
+cleanup observations are zero. Four separate Mac transport controls pass1000,
+with durations106.346/116.486s in the client job and117.994/109.530s in batch.
+These controls do not waive primary failures or prove transport superiority.
+
+Original main Linux200/0, Mac198/2, Windows196/4 includes8 additive stock
+references each. PNG12/12, PCM10/12. Windows WebKit remains ready0 after preload
+and real activation. Mac stock Chromium misses its preload deadline, then is
+ready4 and plays after activation; the timeout remains failed. Both Firefox
+trusted-code cases exceed30s. Mac's100-click assertions finish and browser_close
+is pending at termination; Windows unsafe tool is still pending, with no confirmed
+click count recovered. Video decode11/12 passes, including original Mac Chromium;
+all93 actual recorder-input headers are320×240 this sample. Mac fresh-video gate
+is ineligible, so no fresh controls run. Windows legacy3/0 and Docker2/0 pass.
+
+Eleven full factory observations are deliberate negative-control evidence; no
+unexpected current ownership comparison is logged. Full rows remain retained.
+There is no role/name/age/window filtering, signal authority from hints, replay,
+or retrospective clearance of native94's survivor, native89 exits or136/142 gaps.
+[Complete native97 evidence](evidence/native97-summary.json),
+[viewport failures](evidence/native97-viewport-native-failure-proof.json),
+[Mac client failure/retention](evidence/native97-primary-macos-failure-proof.json)
+and [original diagnostics](evidence/native97-original-diagnostic-projection.json)
+retain the scope. G18 remains BLOCKED; no merge/publication.
+
+### Local follow-ups excluded from native97
+
+The [portable public-API reproducer](evidence/native97-chromium-capture-repro.md)
+returns seven short first JPEGs in eight Linux full-Chromium cases. Passive resize
+metadata and explicit contents-size controls also fail to establish reliable
+first-frame readiness. No frame discard, renderer warmup, hidden-window
+experiment146 or encoder rewrite is shipped. The reviewed9f975 core is unchanged.
+An [actual Linux Codex journal timing control](evidence/native97-journal-latency-proof.json)
+finishes1000 steps in36.686s;42 progress RPCs max1.389ms and416 reads max8.437ms.
+This sample does not diagnose the earlier Windows timeout or native Mac pacing.
+
+A checkout-only QA preload and separate macOS diagnostic job now
+measure completed RPCs from normally exiting instrumented processes in a fresh
+owned actual-client run. No per-action file writes, existing deadline/settings
+change, workflow replay, fake response or default MCP configuration change.
+Missing process receipts confer no exit/completeness authority. The diagnostic
+job follows the normal client matrix regardless of its result; it is a separate
+fresh control, not a profile of the earlier failing host.
+The earlier client/transport jobs and their limits remain unchanged. This loader
+and the portable reproducer are excluded from the297-file production package;
+native verification of the new diagnostic is pending.
+Local actual Node22/24 runs of the [QA preload](../scripts/qa/journal-latency.mjs)
+finish1000 steps in37.273/39.045s, modelTurns0/owned0, and confirm timing-directory
+removal. A controlled failure after real two-endpoint discovery and a real zero
+audit preserves both primary/cleanup causes, the failed Codex workspace and the
+timing directory. [Exact local probe evidence](evidence/native98-journal-qa-local-proof.json)
+records variable normal-exit receipt coverage; it is not native98 CI acceptance.
+
+## Previous completed checkpoint — native96 atcc9562b; acceptance incomplete
 
 [Batch39842071053](https://github.com/timmiballz22/playwright-mcp/actions/runs/39842071053)
 reports1,634 passes/4 failures; [original39842070912](https://github.com/timmiballz22/playwright-mcp/actions/runs/39842070912)

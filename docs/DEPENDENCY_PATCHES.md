@@ -222,3 +222,7 @@ with separate nested outputs; source echo cannot trigger them. Local calibration
 passes and original files retain bytes/inodes/mtime. Native91/92 actual-gray gates
 are ineligible; independent decoder measurements remain unexecuted.
 See native90-independent-frame-proof.json; no header/capture patch follows yet.
+
+## Native97 capture-readiness limit
+
+Three stronger first-JPEG tests fail despite correct request ordering; original Mac recording passes this sample. The public portable reproducer still returns seven short inputs in eight cases. See [the scoped reproduction](evidence/native97-chromium-capture-repro.md). Core9f975 is unchanged. No additional browser patch or general capture-fidelity claim follows.

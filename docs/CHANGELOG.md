@@ -1,5 +1,7 @@
 # Fork changes (unreleased)
 
+- Archive native97 failures and retained client evidence. Add a checkout-only actual-client journal timing preload and separate Mac diagnostic job; production runtime, existing jobs and limits remain unchanged. Retain a portable public-API first-JPEG reproducer.
+
 - Fail SDK startup diagnostics on client-close errors and retain failed stores;
   preserve primary plus cleanup causes in actual Codex verification. Record
   bounded init-phase/worker-exit hints and actual app-server close observation.

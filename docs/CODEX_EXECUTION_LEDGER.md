@@ -1,5 +1,97 @@
 # Execution ledger
 
+## Latest completed checkpoint — native97 at953ba87; acceptance incomplete
+
+[Batch39853792171](https://github.com/timmiballz22/playwright-mcp/actions/runs/39853792171)
+reports **1,631 passes / 7 failures**; [original39853792190](https://github.com/timmiballz22/playwright-mcp/actions/runs/39853792190)
+reports **599 / 6**. Completed test summaries total **2,230 / 13**, with reported
+skips/cancels zero. The failed macOS actual-client job is separate from those
+summary counts. All workflows/jobs are terminal. All17 logs resolve:16 first
+reads succeed; Linux22's first read ends EOF after3,545 bytes and its ordinary
+retry succeeds. Both attempts remain available. This is retrieval evidence,
+not a fixture-stderr EOF finding.
+
+All five installed-package steps and both parent-death variants pass. Component
+lanes pass146/146/146/147, including12 real concurrent schema races. Node20 durable
+SQLite/jobs remain unsupported. Main batch Linux20/22/24 is209/0,212/1,212/1;
+Mac212/1 and Windows201/4. The three Linux22/24/Mac failures are the stronger
+first-JPEG assertion: respectively320×180,320×153 and131×98 (Mac native viewport
+metadata500×153). Every receipt says metrics were dispatched after bounds
+completion. Ordered requests do not guarantee capture readiness. Assertions,
+original action/RPC/test/job limits and default browser/transport remain intact.
+
+Actual Codex1000 passes Linux35.816s and Windows38.197s, modelTurns0/owned0.
+Mac times out at969 confirmed, failed step970 interrupted, result available,
+operatorAttentionRequiredfalse, execution cleanup terminated/temp removed. Its
+failed acceptance workspace is not removed; the final audit and app-server close
+are observed. Empty hints/false journalExitUnconfirmed do not independently prove
+all journal exits. This is not native96's Windows CRASHED75 journal failure,
+which remains unresolved. Windows SDK startup diagnostics are not selected this
+round because its primary client passes. The real Mac group-hint control passes;
+it does not recover native96's missing nested failure facts.
+
+Windows main failures are Firefox supervised11/23 actions, declarative9/23,
+negative ambiguity returning timeout instead of action_failed, and429 navigation
+at0 completed/one hit. The locator positive19-action/six-effect assertions finish
+before the failing negative; the failed negative's exact step/effect counters
+are not logged. Independent factory audits report zero in these paths, without
+claiming input completion. Separate private/inherited/stock-headed controls each
+pass10 fresh/230 actions. Protocol-headed completes one fresh run, then3/23 in
+the next (26 confirmed across those two); pointer timeout leaves five projected
+requests pending at failure and one mouse-dispatch request after cleanup.
+Bounded protocol receipts are not complete wire/OS-exit proofs. Both scoped
+cleanup observations are zero. Four separate Mac transport controls pass1000,
+with durations106.346/116.486s in the client job and117.994/109.530s in batch.
+These controls do not waive primary failures or prove transport superiority.
+
+Original main Linux200/0, Mac198/2, Windows196/4 includes8 additive stock
+references each. PNG12/12, PCM10/12. Windows WebKit remains ready0 after preload
+and real activation. Mac stock Chromium misses its preload deadline, then is
+ready4 and plays after activation; the timeout remains failed. Both Firefox
+trusted-code cases exceed30s. Mac's100-click assertions finish and browser_close
+is pending at termination; Windows unsafe tool is still pending, with no confirmed
+click count recovered. Video decode11/12 passes, including original Mac Chromium;
+all93 actual recorder-input headers are320×240 this sample. Mac fresh-video gate
+is ineligible, so no fresh controls run. Windows legacy3/0 and Docker2/0 pass.
+
+Eleven full factory observations are deliberate negative-control evidence; no
+unexpected current ownership comparison is logged. Full rows remain retained.
+There is no role/name/age/window filtering, signal authority from hints, replay,
+or retrospective clearance of native94's survivor, native89 exits or136/142 gaps.
+[Complete native97 evidence](evidence/native97-summary.json),
+[viewport failures](evidence/native97-viewport-native-failure-proof.json),
+[Mac client failure/retention](evidence/native97-primary-macos-failure-proof.json)
+and [original diagnostics](evidence/native97-original-diagnostic-projection.json)
+retain the scope. G18 remains BLOCKED; no merge/publication.
+
+### Local follow-ups excluded from native97
+
+The [portable public-API reproducer](evidence/native97-chromium-capture-repro.md)
+returns seven short first JPEGs in eight Linux full-Chromium cases. Passive resize
+metadata and explicit contents-size controls also fail to establish reliable
+first-frame readiness. No frame discard, renderer warmup, hidden-window
+experiment146 or encoder rewrite is shipped. The reviewed9f975 core is unchanged.
+An [actual Linux Codex journal timing control](evidence/native97-journal-latency-proof.json)
+finishes1000 steps in36.686s;42 progress RPCs max1.389ms and416 reads max8.437ms.
+This sample does not diagnose the earlier Windows timeout or native Mac pacing.
+
+A checkout-only QA preload and separate macOS diagnostic job now
+measure completed RPCs from normally exiting instrumented processes in a fresh
+owned actual-client run. No per-action file writes, existing deadline/settings
+change, workflow replay, fake response or default MCP configuration change.
+Missing process receipts confer no exit/completeness authority. The diagnostic
+job follows the normal client matrix regardless of its result; it is a separate
+fresh control, not a profile of the earlier failing host.
+The earlier client/transport jobs and their limits remain unchanged. This loader
+and the portable reproducer are excluded from the297-file production package;
+native verification of the new diagnostic is pending.
+Local actual Node22/24 runs of the [QA preload](../scripts/qa/journal-latency.mjs)
+finish1000 steps in37.273/39.045s, modelTurns0/owned0, and confirm timing-directory
+removal. A controlled failure after real two-endpoint discovery and a real zero
+audit preserves both primary/cleanup causes, the failed Codex workspace and the
+timing directory. [Exact local probe evidence](evidence/native98-journal-qa-local-proof.json)
+records variable normal-exit receipt coverage; it is not native98 CI acceptance.
+
 Local follow-ups excluded from native90 correct the Ubuntu mirror indirection
 (published runner script uses /etc/apt/apt-mirrors.txt). Old step success and35–48s
 native89 setup did not prove a URI switch; native90 still used Azure and cancelled
@@ -48,7 +140,7 @@ proofs. Production-smoke already propagates failed closes and retains failed acc
 Subsequent jobs-smoke auditing finds the ignored final-close/primary-error gap,
 fixed with separate actual SDK calibrations described in the leading checkpoint.
 
-## Latest completed checkpoint — native96 atcc9562b; acceptance incomplete
+## Previous completed checkpoint — native96 atcc9562b; acceptance incomplete
 
 [Batch39842071053](https://github.com/timmiballz22/playwright-mcp/actions/runs/39842071053)
 reports1,634 passes/4 failures; [original39842070912](https://github.com/timmiballz22/playwright-mcp/actions/runs/39842070912)
@@ -2371,25 +2463,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native96 summaries2235/11; separate Windows actual-client failure;17 logs resolved | No fully green matrix |
-| G01 INSTALL | PASS | native96 all five installed-package steps and both parent-death variants pass | Current helper guards locally verified; prior exit/store gaps not cleared |
-| G02 MCP | FAILED | native96 actual1k Linux/Mac pass; Windows CRASHED75/no result/opattentiontrue; fresh SDK1/2 | No retry, debt clearance or inferred effects beyond75 |
-| G03 FEATURE PARITY | FAILED | native96 original Linux200/0 Mac198/2 Windows197/3 incl8 additive references each | Mac gray/Firefox input and Windows media remain failed |
-| G04 BATCH | FAILED | native96 Linux209/213/213 pass, Mac210/3 Windows204/1 | SDK986/sync997, group-hint and HTTP403 failures remain |
-| G05 RETRIES | FAILED | native96 Windows HTTP403 typed fact survives overall timeout, one request/response | Prior429/POST uncertainties not waived by healthier samples |
-| G06 JOBS | FAILED | native96 all components/12 races/package checks pass; Windows actual75 progress RPC timeout | Guardian exits1/read unavailable, no result; fresh SDK init timeout |
+| G00 BASELINE | IN PROGRESS | native97 completed summaries2230/13 plus separate Mac actual-client failure;17 logs resolved | No fully green matrix |
+| G01 INSTALL | PASS | native97 all five package checks/both parent-death variants pass; core9f975 | Old exit/store gaps not cleared |
+| G02 MCP | FAILED | native97 actual1000 Linux/Windows pass; Mac times out969/result present, failed acceptance store retained | Earlier Windows CRASHED75 and native97 Mac timeout remain open |
+| G03 FEATURE PARITY | FAILED | native97 original Linux200/0 Mac198/2 Windows196/4 incl8 stock refs each | Windows media/Firefox and Mac preload/close deadlines fail |
+| G04 BATCH | FAILED | native97 Linux209/0,212/1,212/1; Mac212/1 Windows201/4 | Three first-JPEG failures and four Firefox cases remain |
+| G05 RETRIES | FAILED | native97 Firefox429 goto0/one hit/response at6.540s, interrupted timeout | Healthy retries do not waive failed rate-limit/navigation acceptance |
+| G06 JOBS | FAILED | native97 components/12 races/all packages pass; actual Mac969 timeout with cleanup and retained acceptance store | Old Windows progress/init RPC causes unresolved; QA timing native pending |
 | G07 SECURITY | FAILED | native95 origin controls pass; typed418 retained, privacy fixture overall timeout | DNS/OS egress and full negative requirements remain open |
-| G08 STORAGE | BLOCKED | native96 keeps full separate4/2 legacy-only snapshots; prior94 scoped survivor and136/142 unknowns remain | Prospective retention guards do not reconstruct failed store/exit facts |
+| G08 STORAGE | BLOCKED | native97 Mac acceptance workspace not removed after failure; full factory negative rows retained | Native94 survivor and136/142 unknowns not cleared; no permanent private-store export |
 | G09 AUTH/PROFILES | FAILED | native95 original scoped reset/restart/sibling cases pass12 instances | Managed filesystem deletion/crash repair and operator/Windows ACL requirements remain limited |
-| G10 CROSS-BROWSER | FAILED | native96 stock PNG12/12 PCM11/12; Chromium98-high input persists; Firefox trusted73 | No capture/decoder/OS cause or broad fidelity guarantee |
-| G11 CROSS-OS | FAILED | native96 all package checks pass; Windows actual-client and both main host lanes fail | Healthy separate controls do not waive primary failures |
+| G10 CROSS-BROWSER | FAILED | native97 PNG12/12 PCM10/12 video11/12; three first-JPEG regressions fail | Original Mac video passes one sample; no general capture guarantee |
+| G11 CROSS-OS | FAILED | native97 all package checks pass; Mac client and four main lanes fail | Separate controls do not waive primary failures |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
-| G14 ADVANCED | FAILED | native96 trace/PDF/DOM12 each pass; ordered viewport still emits320x98 input | Experimental headless alternatives rejected; no frame skip/warmup/encoder patch |
+| G14 ADVANCED | FAILED | native97 trace/PDF/DOM12 each pass; first-JPEG failures confirmed despite ordering | Public portable reproduction; no frame skip/warmup/encoder workaround |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
-| G16 DOCUMENTATION | IN PROGRESS | Bounded25-doc audit310 local targets/2 anchors/0 issues;45 earlier plus4 new unique HTTPS targets200 via HEAD | Bodies, full Markdown syntax and interactive operator walkthrough remain unverified |
-| G17 AUDIT EVIDENCE | IN PROGRESS | native96 all17 logs after partial EOF/retry; full rows retained; new fixed failure phases prospective | Old nested group/store facts and worker exits missing; no retrospective clearance |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native96 failed incl CRASHED75; core9f975 restored; helper guards local only | Native verification/all critical gates before merge/release |
+| G16 DOCUMENTATION | IN PROGRESS | Native97 record;26-doc audit363 targets/2 anchors/0 issues; two new HTTPS HEAD200 samples | Bodies/full Markdown and interactive operator walkthrough remain unverified |
+| G17 AUDIT EVIDENCE | IN PROGRESS | native97 all17 logs after partial EOF/retry; full rows and Mac retention receipt preserved | Negative locator step/counters unlogged; no historical clearance |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native97 failed2230/13 plus actual Mac969; unchanged core9f975 | New checkout-only timing control native pending; critical gates remain failed |
 
 ## Defects and risk register
 

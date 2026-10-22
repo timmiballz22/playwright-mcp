@@ -1,0 +1,26 @@
+{"fixture":"codex_client_workspace_retention","workspace":"codex-jobs-slgncR","acceptanceVerified":false,"primaryFailed":true,"cleanupFailed":true,"removalAttempted":false,"processAuditConfirmed":false,"appServerCloseObserved":true,"journalExitUnconfirmed":false,"journalInitStages":[],"diagnosticCoverage":"bounded_stderr_tail","stderrTailTruncated":true}
+{"fixture":"journal_latency_observation_failure","workspace":"journal-timing-BPiMNX","removalAttempted":false,"removalConfirmed":false}
+file:///workspace/playwright-mcp/scripts/verify-codex-jobs.mjs:202
+    if (primaryFailure) throw new AggregateError([primaryFailure, error], 'Codex verification and cleanup both failed', { cause: primaryFailure });
+                              ^
+
+AggregateError: Codex verification and cleanup both failed
+    at file:///workspace/playwright-mcp/scripts/verify-codex-jobs.mjs:202:31
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  [cause]: Error: owned_codex_primary_after_actual_discovery
+      at assert.deepEqual (file:///tmp/native97-codex-cleanup-preload.mjs:6:344)
+      at file:///workspace/playwright-mcp/scripts/verify-codex-jobs.mjs:131:12
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5),
+  [errors]: [
+    Error: owned_codex_primary_after_actual_discovery
+        at assert.deepEqual (file:///tmp/native97-codex-cleanup-preload.mjs:6:344)
+        at file:///workspace/playwright-mcp/scripts/verify-codex-jobs.mjs:131:12
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5),
+    Error: owned_codex_audit_after_actual_zero
+        at assert.deepEqual (file:///tmp/native97-codex-cleanup-preload.mjs:6:575)
+        at file:///workspace/playwright-mcp/scripts/verify-codex-jobs.mjs:186:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+  ]
+}
+
+Node.js v24.19.0

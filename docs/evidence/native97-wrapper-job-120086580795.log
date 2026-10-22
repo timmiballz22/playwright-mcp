@@ -1,0 +1,878 @@
+test (macos-15-intel)	Set up job	﻿2026-10-22T21:01:24.5466710Z Current runner version: '2.338.0'
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5520690Z ##[group]Runner Image Provisioner
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5522470Z Hosted Compute Agent
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5523780Z Version: 20260819.586
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5525650Z Commit: 3cc4a88dfa507ef76119ad1bb3eccc6378bb2b76
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5527080Z Build Date: 2026-08-18T23:20:18Z
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5528130Z Worker ID: {4a9b97b5-b9c3-4058-b299-16f35ffcd749}
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5529290Z Azure Region: westus
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5530130Z ##[endgroup]
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5533530Z ##[group]Operating System
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5534650Z macOS
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5535570Z 15.7.9
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5536850Z 24G830
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5537940Z ##[endgroup]
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5538800Z ##[group]Runner Image
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5539600Z Image: macos-15
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5639930Z Version: 20260824.0482.1
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5645700Z Included Software: https://github.com/actions/runner-images/blob/macos-15/20260824.0482/images/macos/macos-15-Readme.md
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.5868590Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15%2F20260824.0482
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.6166280Z ##[endgroup]
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.6307000Z ##[group]GITHUB_TOKEN Permissions
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.6478440Z Contents: read
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.6729620Z Metadata: read
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.6733690Z ##[endgroup]
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.6755550Z Secret source: Actions
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.6769510Z Cache mode: write
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.6772160Z Prepare workflow directory
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.9432590Z Prepare all required actions
+test (macos-15-intel)	Set up job	2026-10-22T21:01:24.9989110Z Getting action download info
+test (macos-15-intel)	Set up job	2026-10-22T21:01:25.7111790Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+test (macos-15-intel)	Set up job	2026-10-22T21:01:26.4248350Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+test (macos-15-intel)	Set up job	2026-10-22T21:01:27.1028880Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+test (macos-15-intel)	Set up job	2026-10-22T21:01:28.9177310Z Complete job name: test (macos-15-intel)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T21:01:29.3477690Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3481990Z with:
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3483750Z   repository: timmiballz22/playwright-mcp
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3495670Z   token: ***
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3497760Z   ssh-strict: true
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3499640Z   ssh-user: git
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3501280Z   persist-credentials: true
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3503210Z   clean: true
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3504960Z   sparse-checkout-cone-mode: true
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3506800Z   fetch-depth: 1
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3508260Z   fetch-tags: false
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3509820Z   show-progress: true
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3511620Z   lfs: false
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3513860Z   submodules: false
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3515840Z   set-safe-directory: true
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3517990Z   allow-unsafe-pr-checkout: false
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:29.3521380Z ##[endgroup]
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.5940630Z Syncing repository: timmiballz22/playwright-mcp
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.6455270Z ##[group]Getting Git version info
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.6492760Z Working directory is '/Users/runner/work/playwright-mcp/playwright-mcp'
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.6536120Z [command]/usr/local/bin/git version
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.6623790Z git version 2.55.0
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.6867460Z ##[endgroup]
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7224830Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/15b21b81-c697-4f53-b551-3c963b72b271/.gitconfig'
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7281330Z Temporarily overriding HOME='/Users/runner/work/_temp/15b21b81-c697-4f53-b551-3c963b72b271' before making global git config changes
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7415790Z Adding repository directory to the temporary git global config as a safe directory
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7463280Z [command]/usr/local/bin/git config --global --add safe.directory /Users/runner/work/playwright-mcp/playwright-mcp
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7588460Z Deleting the contents of '/Users/runner/work/playwright-mcp/playwright-mcp'
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7623010Z ##[group]Determining repository object format
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7655820Z ##[endgroup]
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7685490Z ##[group]Initializing the repository
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7706420Z [command]/usr/local/bin/git init /Users/runner/work/playwright-mcp/playwright-mcp
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7745480Z hint: Using 'master' as the name for the initial branch. This default branch name
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7776250Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7805090Z hint: to use in all of your new repositories, which will suppress this warning,
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7808620Z hint: call:
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.7938420Z hint:
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8093480Z hint: 	git config --global init.defaultBranch <name>
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8124540Z hint:
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8159250Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8163030Z hint: 'development'. The just-created branch can be renamed via this command:
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8198050Z hint:
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8276530Z hint: 	git branch -m <name>
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8310310Z hint:
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8362730Z hint: Disable this message with "git config set advice.defaultBranchName false"
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8411810Z Initialized empty Git repository in /Users/runner/work/playwright-mcp/playwright-mcp/.git/
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8550680Z [command]/usr/local/bin/git remote add origin https://github.com/timmiballz22/playwright-mcp
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8630530Z ##[endgroup]
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8663350Z ##[group]Disabling automatic garbage collection
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8679070Z [command]/usr/local/bin/git config --local gc.auto 0
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8791300Z ##[endgroup]
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8830170Z ##[group]Setting up auth
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8883700Z Removing SSH command configuration
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.8953780Z [command]/usr/local/bin/git config --local --name-only --get-regexp core\.sshCommand
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.9027330Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.9118290Z Removing HTTP extra header
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.9136000Z [command]/usr/local/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.9211650Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.9273930Z Removing includeIf entries pointing to credentials config files
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.9299760Z [command]/usr/local/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:30.9380850Z [command]/usr/local/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:31.1470890Z [command]/usr/local/bin/git config --file /Users/runner/work/_temp/git-credentials-56552838-dc24-4206-971d-2fd3a3c23135.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:31.1580850Z [command]/usr/local/bin/git config --local includeIf.gitdir:/Users/runner/work/playwright-mcp/playwright-mcp/.git.path /Users/runner/work/_temp/git-credentials-56552838-dc24-4206-971d-2fd3a3c23135.config
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:31.1762330Z [command]/usr/local/bin/git config --local includeIf.gitdir:/Users/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-56552838-dc24-4206-971d-2fd3a3c23135.config
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:31.1910070Z [command]/usr/local/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-56552838-dc24-4206-971d-2fd3a3c23135.config
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:31.2011420Z [command]/usr/local/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-56552838-dc24-4206-971d-2fd3a3c23135.config
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:31.2320650Z ##[endgroup]
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:31.2325640Z ##[group]Fetching the repository
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:31.2367490Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7d6b48ba373bf2c29676b7849155587eaf6bd06b:refs/remotes/pull/2/merge
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:36.7044320Z From https://github.com/timmiballz22/playwright-mcp
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:36.7063840Z  * [new ref]         7d6b48ba373bf2c29676b7849155587eaf6bd06b -> pull/2/merge
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:36.7117180Z ##[endgroup]
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:36.7144940Z ##[group]Determining the checkout info
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:36.7171050Z ##[endgroup]
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:36.7177280Z [command]/usr/local/bin/git sparse-checkout disable
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:36.7219480Z [command]/usr/local/bin/git config --local --unset-all extensions.worktreeConfig
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:36.8026490Z ##[group]Checking out the ref
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:36.8049470Z [command]/usr/local/bin/git checkout --progress --force refs/remotes/pull/2/merge
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:37.7897190Z Updating files:  36% (1534/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:37.8212320Z Updating files:  37% (1546/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:37.8337690Z Updating files:  38% (1588/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:37.8537650Z Updating files:  39% (1630/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:37.8976370Z Updating files:  40% (1672/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:37.9467360Z Updating files:  41% (1713/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:37.9799340Z Updating files:  42% (1755/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.0994550Z Updating files:  43% (1797/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.1279180Z Updating files:  44% (1839/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.1314230Z Updating files:  45% (1881/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.1454020Z Updating files:  46% (1922/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.1593790Z Updating files:  47% (1964/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.1816640Z Updating files:  48% (2006/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.2011630Z Updating files:  49% (2048/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.2148630Z Updating files:  50% (2089/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.2417650Z Updating files:  51% (2131/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.2562230Z Updating files:  52% (2173/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.4123350Z Updating files:  53% (2215/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.4611590Z Updating files:  54% (2257/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.5729180Z Updating files:  55% (2298/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.6277510Z Updating files:  56% (2340/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.6466950Z Updating files:  57% (2382/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.6599530Z Updating files:  58% (2424/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.6802270Z Updating files:  59% (2466/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.7216430Z Updating files:  60% (2507/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.7631110Z Updating files:  61% (2549/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.8203840Z Updating files:  61% (2588/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.9086310Z Updating files:  62% (2591/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:38.9599240Z Updating files:  63% (2633/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.0950850Z Updating files:  64% (2674/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.1733730Z Updating files:  65% (2716/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.1751590Z Updating files:  66% (2758/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.1773390Z Updating files:  67% (2800/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.2523150Z Updating files:  68% (2842/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.2835890Z Updating files:  69% (2883/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.3087380Z Updating files:  70% (2925/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.3277650Z Updating files:  71% (2967/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.3399930Z Updating files:  72% (3009/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.3577050Z Updating files:  73% (3050/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.3777270Z Updating files:  74% (3092/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.3999490Z Updating files:  75% (3134/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.4174080Z Updating files:  76% (3176/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.4334130Z Updating files:  77% (3218/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.4503440Z Updating files:  78% (3259/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.4638510Z Updating files:  79% (3301/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.5125210Z Updating files:  80% (3343/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.5196940Z Updating files:  81% (3385/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.5411670Z Updating files:  82% (3426/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.6091230Z Updating files:  83% (3468/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.6131070Z Updating files:  84% (3510/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.6152560Z Updating files:  85% (3552/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.6453220Z Updating files:  86% (3594/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.8148020Z Updating files:  87% (3635/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:39.9151180Z Updating files:  88% (3677/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.1155090Z Updating files:  88% (3685/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.3170090Z Updating files:  89% (3719/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.3229370Z Updating files:  90% (3761/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.4271120Z Updating files:  91% (3802/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.6029020Z Updating files:  92% (3844/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.6096780Z Updating files:  93% (3886/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.6474550Z Updating files:  94% (3928/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.6924170Z Updating files:  95% (3970/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.7311090Z Updating files:  96% (4011/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.7740120Z Updating files:  97% (4053/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.8274530Z Updating files:  97% (4057/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.8850950Z Updating files:  98% (4095/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.8874950Z Updating files:  99% (4137/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.8934100Z Updating files: 100% (4178/4178)
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.9030340Z Updating files: 100% (4178/4178), done.
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.9041470Z HEAD is now at 7d6b48b Merge 953ba87d140f6e383cd25028e14b53445ac63b81 into 804bc7ef7a07248a150c98fb5bf417e925ba8033
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.9291910Z ##[endgroup]
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.9401010Z [command]/usr/local/bin/git log -1 --format=%H
+test (macos-15-intel)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:01:40.9434120Z 7d6b48ba373bf2c29676b7849155587eaf6bd06b
+test (macos-15-intel)	Use Node.js 20	﻿2026-10-22T21:01:41.0170090Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:41.0170910Z with:
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:41.0171240Z   node-version: 20
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:41.0171580Z   cache: npm
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:41.0171910Z   check-latest: false
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:41.0176670Z   token: ***
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:41.0177080Z   package-manager-cache: true
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:41.0177540Z ##[endgroup]
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:41.3113850Z Attempting to download 20...
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:42.4397520Z Acquiring 20.20.2 - x64 from https://github.com/actions/node-versions/releases/download/20.20.2-23521894959/node-20.20.2-darwin-x64.tar.gz
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:43.1037280Z Extracting ...
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:43.1360220Z [command]/usr/bin/tar xz --strip 1 -C /Users/runner/work/_temp/9633c47c-0726-4f92-8e05-320a179fce45 -f /Users/runner/work/_temp/a47c85bc-f618-4dd4-afd6-473af3eea8b8
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:47.2480410Z Adding to the cache ...
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:54.8016310Z ##[group]Environment details
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:55.5115000Z node: v20.20.2
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:55.5400750Z npm: 10.8.2
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:55.5496870Z yarn: 1.22.22
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:55.5572130Z ##[endgroup]
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:55.5659110Z [command]/Users/runner/hostedtoolcache/node/20.20.2/x64/bin/npm config get cache
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:55.7891900Z /Users/runner/.npm
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:56.1354230Z Cache hit for: node-cache-macOS-x64-npm-e0b72ab14bf176ab905de84052b5da34dfbad59ce1f9a689a6e5c17c0a67a6f9
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:57.4212870Z Received 0 of 160706380 (0.0%), 0.0 MBs/sec
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:58.4244830Z Received 58720256 of 160706380 (36.5%), 28.0 MBs/sec
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:01:59.4664990Z Received 134217728 of 160706380 (83.5%), 42.4 MBs/sec
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:02:00.0115360Z Received 160706380 of 160706380 (100.0%), 43.7 MBs/sec
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:02:00.0585020Z Cache Size: ~153 MB (160706380 B)
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:02:00.0697860Z [command]/usr/local/bin/gtar -xf /Users/runner/work/_temp/6aa6724f-2846-4aaf-aab3-9dea78b98983/cache.tzst -P -C /Users/runner/work/playwright-mcp/playwright-mcp --delay-directory-restore --use-compress-program unzstd
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:02:03.7544450Z Cache restored successfully
+test (macos-15-intel)	Use Node.js 20	2026-10-22T21:02:03.7741670Z Cache restored from key: node-cache-macOS-x64-npm-e0b72ab14bf176ab905de84052b5da34dfbad59ce1f9a689a6e5c17c0a67a6f9
+test (macos-15-intel)	Install dependencies	﻿2026-10-22T21:02:03.8258580Z ##[group]Run npm ci
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:03.8259300Z [36;1mnpm ci[0m
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:03.8424590Z shell: /bin/bash -e {0}
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:03.8427790Z ##[endgroup]
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:09.1562350Z 
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:09.1638960Z > @timmiballz22/playwright-mcp-local@0.0.83 prepare
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:09.1683120Z > node scripts/prepare-vp9-metadata.cjs
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:09.1726620Z 
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.2001400Z {"component":"private_vp9_metadata_patch","version":"1.64.1","changed":true,"sha256":"9f9750ae24604e2099e1c1f6564d5d6cb3d19d30dfbc8b5ec61ba18c0989e25a"}
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.2895230Z 
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.3000160Z added 103 packages, and audited 104 packages in 6s
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.3067310Z 
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.3184380Z 31 packages are looking for funding
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.3275380Z   run `npm fund` for details
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.3561220Z 
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.3571440Z 1 moderate severity vulnerability
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.3749680Z 
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.3874330Z To address all issues, run:
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.3959000Z   npm audit fix
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.4074610Z 
+test (macos-15-intel)	Install dependencies	2026-10-22T21:02:10.4185890Z Run `npm audit` for details.
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	﻿2026-10-22T21:02:10.4350600Z ##[group]Run npx playwright install --with-deps chromium firefox webkit
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:10.4356140Z [36;1mnpx playwright install --with-deps chromium firefox webkit[0m
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:10.4523120Z shell: /bin/bash -e {0}
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:10.4523600Z ##[endgroup]
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:12.8225840Z Downloading Chrome for Testing 156.0.8078.4 (playwright chromium v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-x64/chrome-mac-x64.zip
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:16.0369380Z |                                                                                |   0% of 195.8 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:18.1018680Z |■■■■■■■■                                                                        |  10% of 195.8 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:20.5744870Z |■■■■■■■■■■■■■■■■                                                                |  20% of 195.8 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:21.7454890Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 195.8 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:22.8083570Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 195.8 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:24.8499800Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 195.8 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:27.9027230Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 195.8 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:30.3462450Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 195.8 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:33.0784660Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 195.8 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:35.4157010Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 195.8 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:36.5930930Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 195.8 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:57.8362480Z Chrome for Testing 156.0.8078.4 (playwright chromium v1248) downloaded to /Users/runner/Library/Caches/ms-playwright/chromium-1248
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:57.8519620Z Downloading FFmpeg (playwright ffmpeg v1013) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-mac.zip
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.7887800Z |                                                                                |   1% of 1.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.7980430Z |■■■■■■■■                                                                        |  10% of 1.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.8058330Z |■■■■■■■■■■■■■■■■                                                                |  20% of 1.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.8112170Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 1.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.8140530Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 1.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.8169040Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 1.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.8222340Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 1.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.8271300Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 1.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.8349860Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 1.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.8399150Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 1.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.8469990Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 1.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.8901120Z FFmpeg (playwright ffmpeg v1013) downloaded to /Users/runner/Library/Caches/ms-playwright/ffmpeg-1013
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:58.8946360Z Downloading Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-x64/chrome-headless-shell-mac-x64.zip
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:02:59.8434460Z |                                                                                |   0% of 104.1 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:00.2407330Z |■■■■■■■■                                                                        |  10% of 104.1 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:00.5792160Z |■■■■■■■■■■■■■■■■                                                                |  20% of 104.1 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:00.8450700Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 104.1 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:01.1983090Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 104.1 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:01.4429830Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 104.1 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:01.7097460Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 104.1 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:01.9281650Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 104.1 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:02.2144440Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 104.1 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:02.8183300Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 104.1 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:03.1261410Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 104.1 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:09.2241620Z Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) downloaded to /Users/runner/Library/Caches/ms-playwright/chromium_headless_shell-1248
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:09.2278030Z Downloading Firefox 157.0 (playwright firefox v1555) from https://cdn.playwright.dev/dbazure/download/playwright/builds/firefox/1555/firefox-mac.zip
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:10.0578260Z |                                                                                |   0% of 113.3 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:10.5105410Z |■■■■■■■■                                                                        |  10% of 113.3 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:10.8509330Z |■■■■■■■■■■■■■■■■                                                                |  20% of 113.3 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:11.1694980Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 113.3 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:11.4170140Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 113.3 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:11.7021310Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 113.3 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:11.9868220Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 113.3 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:12.2000590Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 113.3 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:12.4742080Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 113.3 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:12.7133700Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 113.3 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:12.9695660Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 113.3 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:19.5249200Z Firefox 157.0 (playwright firefox v1555) downloaded to /Users/runner/Library/Caches/ms-playwright/firefox-1555
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:19.5253780Z Downloading WebKit 27.2 (playwright webkit v2370) from https://cdn.playwright.dev/dbazure/download/playwright/builds/webkit/2370/webkit-mac-15.zip
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:20.4035690Z |                                                                                |   0% of 84.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:20.6178460Z |■■■■■■■■                                                                        |  10% of 84.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:20.8354190Z |■■■■■■■■■■■■■■■■                                                                |  20% of 84.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:21.0173700Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 84.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:21.2142130Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 84.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:21.4194140Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 84.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:21.5779410Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 84.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:21.7270730Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 84.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:21.8850980Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 84.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:22.0290310Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 84.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:22.1699720Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 84.5 MiB
+test (macos-15-intel)	Install Chromium, Firefox and WebKit	2026-10-22T21:03:44.7953860Z WebKit 27.2 (playwright webkit v2370) downloaded to /Users/runner/Library/Caches/ms-playwright/webkit-2370
+test (macos-15-intel)	Install Chrome	﻿2026-10-22T21:03:44.9325810Z ##[group]Run npx playwright install --with-deps chrome
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:44.9332470Z [36;1mnpx playwright install --with-deps chrome[0m
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:44.9574110Z shell: /bin/bash -e {0}
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:44.9574670Z ##[endgroup]
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:47.0933780Z Switching to root user to install dependencies...
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:47.1781950Z + rm -rf '/Applications/Google Chrome.app'
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:47.3610550Z + cd /tmp
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:47.3621710Z + curl -L --retry 3 -o ./googlechrome.dmg https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:47.5772710Z   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:47.5812880Z                                  Dload  Upload  Total   Spent   Left   Speed
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:47.5815210Z 
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:48.5822670Z   0      0   0      0   0      0      0      0                              0
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:49.5289510Z  39 265.7M  39 105.6M   0      0 96.13M      0   00:02   00:01   00:01 105.6M
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:49.7309340Z  90 265.7M  90 240.0M   0      0 114.3M      0   00:02   00:02         120.0M
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:49.7848960Z 100 265.7M 100 265.7M   0      0 115.9M      0   00:02   00:02         120.0M
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:49.7881120Z 100 265.7M 100 265.7M   0      0 115.9M      0   00:02   00:02         120.0M
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:49.7926000Z 100 265.7M 100 265.7M   0      0 115.9M      0   00:02   00:02         120.0M
+test (macos-15-intel)	Install Chrome	2026-10-22T21:03:49.7940180Z + hdiutil attach -nobrowse -quiet -noautofsck -noautoopen -mountpoint /Volumes/googlechrome.dmg ./googlechrome.dmg
+test (macos-15-intel)	Install Chrome	2026-10-22T21:04:10.3380180Z + cp -pR '/Volumes/googlechrome.dmg/Google Chrome.app' /Applications
+test (macos-15-intel)	Install Chrome	2026-10-22T21:04:37.9805130Z + hdiutil detach /Volumes/googlechrome.dmg
+test (macos-15-intel)	Install Chrome	2026-10-22T21:04:38.9089760Z "disk2" ejected.
+test (macos-15-intel)	Install Chrome	2026-10-22T21:04:38.9097520Z + rm -rf /tmp/googlechrome.dmg
+test (macos-15-intel)	Install Chrome	2026-10-22T21:04:38.9925980Z + '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --version
+test (macos-15-intel)	Install Chrome	2026-10-22T21:04:39.8412970Z Google Chrome 156.0.8078.48 
+test (macos-15-intel)	Build	﻿2026-10-22T21:04:39.9637540Z ##[group]Run npm run build
+test (macos-15-intel)	Build	2026-10-22T21:04:39.9638410Z [36;1mnpm run build[0m
+test (macos-15-intel)	Build	2026-10-22T21:04:39.9757740Z shell: /bin/bash -e {0}
+test (macos-15-intel)	Build	2026-10-22T21:04:39.9758440Z ##[endgroup]
+test (macos-15-intel)	Build	2026-10-22T21:04:40.3775330Z 
+test (macos-15-intel)	Build	2026-10-22T21:04:40.3777340Z > @timmiballz22/playwright-mcp-local@0.0.83 build
+test (macos-15-intel)	Build	2026-10-22T21:04:40.3779250Z > node scripts/prepare-vp9-metadata.cjs
+test (macos-15-intel)	Build	2026-10-22T21:04:40.3780470Z 
+test (macos-15-intel)	Build	2026-10-22T21:04:40.4926260Z {"component":"private_vp9_metadata_patch","version":"1.64.1","changed":false,"sha256":"9f9750ae24604e2099e1c1f6564d5d6cb3d19d30dfbc8b5ec61ba18c0989e25a"}
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	﻿2026-10-22T21:04:40.5212850Z ##[group]Run brew install ffmpeg
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:40.5213620Z [36;1mbrew install ffmpeg[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:40.5214140Z [36;1mffmpeg -version[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:40.5305870Z shell: /bin/bash -e {0}
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:40.5306710Z env:
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:40.5307350Z   HOMEBREW_NO_AUTO_UPDATE: 1
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:40.5308120Z   HOMEBREW_NO_INSTALL_CLEANUP: 1
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:40.5308900Z ##[endgroup]
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.4293740Z [32m==>[0m [1mDownloading bottle manifests[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.4653330Z ✔︎ Bottle Manifest ffmpeg (9.0.1)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.4654520Z [34m==>[0m [1mWould install 1 formula:[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.4655150Z ffmpeg
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.6385400Z [34m==>[0m [1mWould install 9 dependencies for ffmpeg:[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.6387270Z mpg123
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.6387910Z lame
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.6388480Z libvpx
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.6389290Z opus
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.6389870Z sdl3
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.6390390Z sdl2-compat
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.6390890Z svt-av1
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.6391320Z x264
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.6392200Z x265
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:49.8877800Z [32m==>[0m [1mFetching downloads for: [32mffmpeg[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.5139850Z ✔︎ Bottle Manifest mpg123 (1.33.7)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.5348650Z ✔︎ Bottle Manifest lame (4.0)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.5364770Z ✔︎ Bottle Manifest libvpx (1.16.0)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.5368170Z ✔︎ Bottle Manifest opus (1.6.1)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.6356140Z ✔︎ Bottle lame (4.0)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.6850720Z ✔︎ Bottle mpg123 (1.33.7)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.6980970Z ✔︎ Bottle libvpx (1.16.0)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.6985300Z ✔︎ Bottle Manifest sdl3 (3.4.14)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.6994000Z ✔︎ Bottle Manifest sdl2-compat (2.32.70)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.7224590Z ✔︎ Bottle opus (1.6.1)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.7273790Z ✔︎ Bottle Manifest svt-av1 (4.2.0)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.7490890Z ✔︎ Bottle Manifest x264 (r3222)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.8251080Z ✔︎ Bottle Manifest x265 (4.2)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.8839170Z ✔︎ Bottle svt-av1 (4.2.0)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.8840850Z ✔︎ Bottle sdl2-compat (2.32.70)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.9256630Z ✔︎ Bottle x264 (r3222)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:50.9308090Z ✔︎ Bottle sdl3 (3.4.14)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:51.0238600Z ✔︎ Bottle x265 (4.2)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:51.1577700Z ✔︎ Bottle ffmpeg (9.0.1)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:51.2601500Z [32m==>[0m [1mInstalling dependencies for ffmpeg:[0m [32mmpg123[39m, [32mlame[39m, [32mlibvpx[39m, [32mopus[39m, [32msdl3[39m, [32msdl2-compat[39m, [32msvt-av1[39m, [32mx264[39m and [32mx265[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:51.2608900Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mmpg123[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:51.2700900Z [34m==>[0m [1mPouring mpg123--1.33.7.sonoma.bottle.tar.gz[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.0831030Z 🍺  /usr/local/Cellar/mpg123/1.33.7: 34 files, 1.8MB
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.0840700Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mlame[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.1050050Z [34m==>[0m [1mPouring lame--4.0.sonoma.bottle.tar.gz[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.2390400Z 🍺  /usr/local/Cellar/lame/4.0: 29 files, 1.9MB
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.2399560Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mlibvpx[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.2499330Z [34m==>[0m [1mPouring libvpx--1.16.0.sonoma.bottle.tar.gz[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.4146070Z 🍺  /usr/local/Cellar/libvpx/1.16.0: 22 files, 5.8MB
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.4164110Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mopus[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.4232700Z [34m==>[0m [1mPouring opus--1.6.1.sonoma.bottle.tar.gz[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.5115260Z 🍺  /usr/local/Cellar/opus/1.6.1: 16 files, 1.2MB
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.5126010Z [32m==>[0m [1mInstalling ffmpeg dependency: [32msdl3[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.5286780Z [34m==>[0m [1mPouring sdl3--3.4.14.sonoma.bottle.tar.gz[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.7561890Z 🍺  /usr/local/Cellar/sdl3/3.4.14: 103 files, 6.4MB
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.7569040Z [32m==>[0m [1mInstalling ffmpeg dependency: [32msdl2-compat[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.7875490Z [34m==>[0m [1mPouring sdl2-compat--2.32.70.sonoma.bottle.tar.gz[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.9169180Z 🍺  /usr/local/Cellar/sdl2-compat/2.32.70: 117 files, 3.2MB
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.9174320Z [32m==>[0m [1mInstalling ffmpeg dependency: [32msvt-av1[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:52.9280200Z [34m==>[0m [1mPouring svt-av1--4.2.0.sonoma.bottle.tar.gz[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:53.1161030Z 🍺  /usr/local/Cellar/svt-av1/4.2.0: 23 files, 5.7MB
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:53.1171880Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mx264[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:53.1262840Z [34m==>[0m [1mPouring x264--r3222.sonoma.bottle.tar.gz[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:53.2397050Z 🍺  /usr/local/Cellar/x264/r3222: 12 files, 5.9MB
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:53.2408230Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mx265[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:53.2547630Z [34m==>[0m [1mPouring x265--4.2.sonoma.bottle.tar.gz[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:53.4695110Z 🍺  /usr/local/Cellar/x265/4.2: 12 files, 38.5MB
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:53.4711280Z [32m==>[0m [1mInstalling [32mffmpeg[39m[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:53.4715880Z [34m==>[0m [1mPouring ffmpeg--9.0.1.sonoma.bottle.tar.gz[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.7169700Z [34m==>[0m [1mCaveats[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.7171880Z ffmpeg-full includes additional tools and libraries that are not included in the regular ffmpeg formula.
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.7173710Z [34m==>[0m [1mSummary[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.7271410Z 🍺  /usr/local/Cellar/ffmpeg/9.0.1: 290 files, 57.3MB
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.7283330Z [32m==>[0m [1mCaveats[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.7284790Z [34m==>[0m [1mffmpeg[0m
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.7287510Z ffmpeg-full includes additional tools and libraries that are not included in the regular ffmpeg formula.
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8501100Z ffmpeg version 9.0.1 Copyright (c) 2000-2026 the FFmpeg developers
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8502630Z built with Apple clang version 16.0.0 (clang-1600.0.26.6)
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8508840Z configuration: --prefix=/usr/local/Cellar/ffmpeg/9.0.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8514190Z libavutil      61.  1.101 / 61.  1.101
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8515260Z libavcodec     63.  1.101 / 63.  1.101
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8516440Z libavformat    63.  1.101 / 63.  1.101
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8517530Z libavdevice    63.  1.101 / 63.  1.101
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8518580Z libavfilter    12.  1.101 / 12.  1.101
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8519490Z libswscale     10.  1.101 / 10.  1.101
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8520520Z libswresample   7.  1.101 /  7.  1.101
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8521010Z 
+test (macos-15-intel)	Install optional macOS video metadata diagnostic tool	2026-10-22T21:04:56.8521360Z Exiting with exit code 0
+test (macos-15-intel)	Run playwright-mcp tests	﻿2026-10-22T21:04:56.8628910Z ##[group]Run npm test 2>&1 | tee wrapper-tests.log
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:04:56.8629770Z [36;1mnpm test 2>&1 | tee wrapper-tests.log[0m
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:04:56.8743760Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:04:56.8744750Z ##[endgroup]
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:04:57.2500270Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:04:57.2501620Z > @timmiballz22/playwright-mcp-local@0.0.83 test
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:04:57.2502980Z > playwright test
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:04:57.2503370Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:02.7359870Z GitCommitInfo: timeout of 3000ms exceeded while running "git diff 804bc7ef7a07248a150c98fb5bf417e925ba8033 HEAD"
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:04.8476590Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:04.8643330Z Running 200 tests using 2 workers
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:04.8645600Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:19.8875000Z   ✓    2 [chrome] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (13.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:20.0795610Z   ✓    1 [chrome] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (13.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:25.3955300Z   ✓    3 [chrome] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (5.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:29.0102040Z   ✓    4 [chrome] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (8.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:35.4337610Z   ✓    5 [chrome] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (10.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:39.2281100Z {"fixture":"independent_original_trace","project":"chrome","bytes":11327,"clickAcknowledged":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:39.9829940Z   ✓    7 [chrome] › tests/artifact-features.spec.ts:6:5 › original tracing independently retains an acknowledged owned click and rejects inactive stop (4.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:42.7248950Z {"fixture":"independent_original_pdf","project":"chrome","supported":true,"bytes":10815}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:43.2575490Z   ✓    8 [chrome] › tests/artifact-features.spec.ts:37:5 › original PDF independently writes a Chromium document or explicitly rejects the unsupported engine (3.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:43.9464050Z   ✓    9 [chrome] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (672ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:44.6241090Z   ✓   10 [chrome] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (633ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:45.4055230Z   ✓   11 [chrome] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (680ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:46.2759470Z   ✓   12 [chrome] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (943ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:47.0676400Z   ✓   13 [chrome] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (764ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:48.2631810Z   ✓    6 [chrome] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (19.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:48.6262970Z   ✓   14 [chrome] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:49.0049290Z   ✓   15 [chrome] › tests/cli.spec.ts:22:5 › install-browser --help (697ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:53.3813040Z   ✓   16 [chrome] › tests/click.spec.ts:19:5 › browser_click (4.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:53.4593060Z   ✓   17 [chrome] › tests/core.spec.ts:19:5 › browser_navigate (4.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:56.8606150Z {"fixture":"highlight_region","project":"chrome","phase":"plain","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:57.2617120Z {"fixture":"highlight_region","project":"chrome","phase":"highlighted","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:57.5834870Z {"fixture":"highlight_region","project":"chrome","phase":"restored","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:57.7845700Z {"fixture":"highlight_region","project":"chrome","phase":"highlighted-again","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:58.0855590Z {"fixture":"highlight_region","project":"chrome","phase":"restored-all","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:58.3699850Z   ✓   19 [chrome] › tests/devtools.spec.ts:60:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (5.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:05:58.7807800Z   ✓   18 [chrome] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (5.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:02.1041540Z {"fixture":"original_close_processes","phase":"before","observedCount":8,"transportRootMatches":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:02.8232540Z   ✓   20 [chrome] › tests/devtools.spec.ts:81:5 › original resume rejects malformed source locations and leaves the session usable (4.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:03.7565040Z   ✓   21 [chrome] › tests/dynamic-dom.spec.ts:4:5 › original snapshot references cross nested open shadow roots and activate exactly once (5.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:07.5559530Z {"fixture":"owned_virtual_rows","totalRows":400,"renderedRows":20,"finalRow":399,"confirmedEffects":1,"detachedReferenceRejected":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:07.6563470Z   ✓   22 [chrome] › tests/dynamic-dom.spec.ts:28:5 › original wheel input materializes virtual rows and detached references cannot trigger duplicate effects (4.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:09.9337610Z {"fixture":"owned_gated_hydration","initiallyDisabled":true,"originalReferenceUsed":true,"confirmedPostEffects":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:10.0341860Z   ✓   23 [chrome] › tests/dynamic-dom.spec.ts:71:5 › original disabled snapshot reference remains actionable after gated hydration without duplicate effects (6.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:14.0953600Z {"fixture":"owned_lazy_append","initialRows":10,"finalRows":30,"pageRequests":1,"confirmedPostEffects":2,"originalReferenceUsed":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:14.1956030Z   ✓   24 [chrome] › tests/dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once (6.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:15.0953710Z   ✓   25 [chrome] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (5.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:21.6410800Z   ✓   27 [chrome] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (6.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:22.8724190Z   ✓   26 [chrome] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (8.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:29.0805370Z   ✓   28 [chrome] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (7.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:31.7764870Z   ✓   29 [chrome] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (8.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:38.4008350Z   ✓   30 [chrome] › tests/input-parity.spec.ts:98:5 › original slider bounds and step failures preserve sanitized effects without replay (9.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:41.3834620Z   ✓   31 [chrome] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (9.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:43.8656500Z   ✓   32 [chrome] › tests/interactions.spec.ts:92:5 › original iframe snapshot targets stay scoped to the embedded document (5.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:45.2762710Z   ✓   34 [chrome] › tests/library.spec.ts:20:5 › library can be used from CommonJS (1.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:50.1631100Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:50.1947180Z   ✓   33 [chrome] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (8.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:53.5002250Z {"fixture":"owned_pcm_media","project":"chrome","mediaRequests":1,"rangeRequests":1,"partialResponses":1,"durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:53.5409000Z   ✓   35 [chrome] › tests/media.spec.ts:7:5 › original muted PCM media advances, pauses and reports a missing media source (8.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:53.5677230Z   ✓   36 [chrome] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (3.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:06:59.1515810Z   ✓   37 [chrome] › tests/network-routing.spec.ts:4:5 › original malformed route headers and unknown unroute preserve an existing mock (5.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:03.7692010Z   ✓   38 [chrome] › tests/network-routing.spec.ts:38:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (10.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:04.0195970Z   ✓   39 [chrome] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (4.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:09.5432140Z {"fixture":"owned_service_worker_offline","explicitlyAllowed":true,"networkFallbackRequests":0,"offlineDomEffect":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:09.6710250Z   ✓   41 [chrome] › tests/service-worker.spec.ts:4:5 › original explicitly allowed service worker serves an owned offline document without network fallback (5.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:10.4411920Z {"fixture":"original_stderr_budget_probe","byteLimit":1048576,"retainedBytes":983040,"overflow":false}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:10.4701590Z   ✓   42 [chrome] › tests/stdio-stderr.spec.ts:6:5 › original stdio drains substantial stderr before MCP initialization (781ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:13.5079990Z   ✓   43 [chrome] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (3.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:18.8756200Z   ✓   44 [chrome] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (5.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:23.0815390Z   ✓   45 [chrome] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (4.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:35.6609730Z   ✓   46 [chrome] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (12.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:39.7397340Z   ✓   40 [chrome] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, restore, reset and independent profile isolation (35.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:40.6584610Z   ✓   47 [chrome] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (5.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:43.9178670Z {"fixture":"owned_video_source_paint","project":"chrome","width":320,"height":240,"pixel":[255,0,0,255],"points":[{"x":0,"y":0,"pixel":[255,0,0,255]},{"x":1,"y":1,"pixel":[171,171,171,255]},{"x":10,"y":10,"pixel":[36,36,36,255]},{"x":100,"y":100,"pixel":[255,0,0,255]},{"x":319,"y":239,"pixel":[255,0,0,255]}]}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:45.3998020Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":1,"width":320,"height":240,"project":"chrome"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:45.5003400Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":2,"width":320,"height":240,"project":"chrome"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:45.6009190Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":3,"width":320,"height":240,"project":"chrome"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:45.7014290Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":4,"width":320,"height":240,"project":"chrome"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:45.8019430Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":5,"width":320,"height":240,"project":"chrome"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:45.9024600Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":6,"width":320,"height":240,"project":"chrome"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:46.0032530Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":7,"width":320,"height":240,"project":"chrome"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:46.1041370Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":8,"width":320,"height":240,"project":"chrome"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:47.0980620Z {"fixture":"stock_pcm_reference","api":"stock_playwright","project":"chrome","engine":"chromium","mediaRequests":1,"partialResponses":1,"requestCountsAreLowerBounds":true,"preloadTimedOut":false,"preload":{"ready":4,"network":1,"error":0,"paused":true,"muted":true,"currentTime":0,"duration":2,"wav":"maybe"},"activationTimedOut":false,"activated":{"ready":4,"network":1,"error":0,"paused":false,"muted":true,"currentTime":0.128,"duration":2,"wav":"maybe"},"play":{"result":"fulfilled","error":"none"}}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:47.1831840Z   ✓   49 [chrome] › tests/stock-media.spec.ts:19:1 › stock API PCM reference records preload and owned user activation independently (2.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:47.3246510Z {"fixture":"owned_webm_frame","project":"chrome","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"playbackRequests":1,"rangeRequests":1,"partialResponses":1,"bytes":6115}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:47.4248760Z   ✓   48 [chrome] › tests/video-playback.spec.ts:11:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (7.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:48.0799440Z {"fixture":"stock_screenshot_reference","api":"stock_playwright","project":"chrome","engine":"chromium","captured":true,"width":320,"height":240,"pixel":[255,0,0,255],"bytes":761,"durationMs":168}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:48.1800090Z   ✓   50 [chrome] › tests/stock-media.spec.ts:58:1 › stock API screenshot reference captures an owned red viewport (893ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:57.8444340Z   ✓   51 [chromium] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (8.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:07:58.8764490Z   ✓   52 [chromium] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (8.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:01.5578040Z   ✓   53 [chromium] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (3.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:06.5150960Z   ✓   54 [chromium] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (7.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:10.6075090Z   ✓   55 [chromium] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (9.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:14.7845090Z {"fixture":"independent_original_trace","project":"chromium","bytes":11344,"clickAcknowledged":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:15.2444580Z   ✓   57 [chromium] › tests/artifact-features.spec.ts:6:5 › original tracing independently retains an acknowledged owned click and rejects inactive stop (4.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:18.4024840Z {"fixture":"independent_original_pdf","project":"chromium","supported":true,"bytes":10815}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:18.8046800Z   ✓   58 [chromium] › tests/artifact-features.spec.ts:37:5 › original PDF independently writes a Chromium document or explicitly rejects the unsupported engine (3.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:19.5343300Z   ✓   59 [chromium] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (705ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:20.2478290Z   ✓   60 [chromium] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (689ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:21.0578860Z   ✓   61 [chromium] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (789ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:21.8355270Z   ✓   62 [chromium] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (745ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:22.5988950Z   ✓   63 [chromium] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (749ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:24.0198990Z   ✓   56 [chromium] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (17.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:24.1536720Z   ✓   64 [chromium] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:24.8137490Z   ✓   65 [chromium] › tests/cli.spec.ts:22:5 › install-browser --help (741ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:29.0229340Z   ✓   66 [chromium] › tests/click.spec.ts:19:5 › browser_click (4.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:29.2181760Z   ✓   67 [chromium] › tests/core.spec.ts:19:5 › browser_navigate (4.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:33.0004890Z {"fixture":"highlight_region","project":"chromium","phase":"plain","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:33.2432770Z {"fixture":"highlight_region","project":"chromium","phase":"highlighted","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:33.4180210Z {"fixture":"highlight_region","project":"chromium","phase":"restored","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:33.6076900Z {"fixture":"highlight_region","project":"chromium","phase":"highlighted-again","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:33.7851420Z {"fixture":"highlight_region","project":"chromium","phase":"restored-all","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:33.8853600Z   ✓   69 [chromium] › tests/devtools.spec.ts:60:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (4.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:34.1865140Z   ✓   68 [chromium] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (5.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:37.9982340Z {"fixture":"original_close_processes","phase":"before","observedCount":8,"transportRootMatches":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:38.5995620Z   ✓   70 [chromium] › tests/devtools.spec.ts:81:5 › original resume rejects malformed source locations and leaves the session usable (4.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:39.9930550Z   ✓   71 [chromium] › tests/dynamic-dom.spec.ts:4:5 › original snapshot references cross nested open shadow roots and activate exactly once (5.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:43.9334190Z {"fixture":"owned_virtual_rows","totalRows":400,"renderedRows":20,"finalRow":399,"confirmedEffects":1,"detachedReferenceRejected":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:43.9700330Z   ✓   72 [chromium] › tests/dynamic-dom.spec.ts:28:5 › original wheel input materializes virtual rows and detached references cannot trigger duplicate effects (5.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:46.1053690Z {"fixture":"owned_gated_hydration","initiallyDisabled":true,"originalReferenceUsed":true,"confirmedPostEffects":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:46.2057320Z   ✓   73 [chromium] › tests/dynamic-dom.spec.ts:71:5 › original disabled snapshot reference remains actionable after gated hydration without duplicate effects (6.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:49.8872060Z {"fixture":"owned_lazy_append","initialRows":10,"finalRows":30,"pageRequests":1,"confirmedPostEffects":2,"originalReferenceUsed":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:49.9881500Z   ✓   74 [chromium] › tests/dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once (5.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:50.4890330Z   ✓   75 [chromium] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (4.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:56.4834790Z   ✓   77 [chromium] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (6.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:08:59.1656990Z   ✓   76 [chromium] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (9.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:00.5933360Z   ✓   78 [chromium] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (4.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:03.9234610Z   ✓   79 [chromium] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (4.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:08.7145950Z   ✓   80 [chromium] › tests/input-parity.spec.ts:98:5 › original slider bounds and step failures preserve sanitized effects without replay (8.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:10.7169440Z   ✓   81 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (6.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:12.7290360Z   ✓   82 [chromium] › tests/interactions.spec.ts:92:5 › original iframe snapshot targets stay scoped to the embedded document (4.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:14.4130370Z   ✓   84 [chromium] › tests/library.spec.ts:20:5 › library can be used from CommonJS (1.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:18.5955150Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:18.6277370Z   ✓   83 [chromium] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (7.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:21.7033160Z {"fixture":"owned_pcm_media","project":"chromium","mediaRequests":1,"rangeRequests":1,"partialResponses":1,"durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:21.8034820Z   ✓   85 [chromium] › tests/media.spec.ts:7:5 › original muted PCM media advances, pauses and reports a missing media source (7.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:22.3359140Z   ✓   86 [chromium] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (3.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:29.0849520Z   ✓   87 [chromium] › tests/network-routing.spec.ts:4:5 › original malformed route headers and unknown unroute preserve an existing mock (7.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:33.8604850Z   ✓   89 [chromium] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (4.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:34.4223650Z   ✓   88 [chromium] › tests/network-routing.spec.ts:38:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (12.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:40.5831720Z {"fixture":"owned_service_worker_offline","explicitlyAllowed":true,"networkFallbackRequests":0,"offlineDomEffect":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:40.6160920Z   ✓   91 [chromium] › tests/service-worker.spec.ts:4:5 › original explicitly allowed service worker serves an owned offline document without network fallback (6.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:41.3211630Z {"fixture":"original_stderr_budget_probe","byteLimit":1048576,"retainedBytes":983040,"overflow":false}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:41.3594880Z   ✓   92 [chromium] › tests/stdio-stderr.spec.ts:6:5 › original stdio drains substantial stderr before MCP initialization (693ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:44.2964790Z   ✓   93 [chromium] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (2.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:48.2791460Z   ✓   94 [chromium] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (3.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:09:54.5042410Z   ✓   95 [chromium] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (6.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:04.5094370Z   ✓   96 [chromium] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (9.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:08.3835300Z   ✓   90 [chromium] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, restore, reset and independent profile isolation (34.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:09.2829720Z   ✓   97 [chromium] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (4.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:11.8021970Z {"fixture":"owned_video_source_paint","project":"chromium","width":320,"height":240,"pixel":[255,0,0,255],"points":[{"x":0,"y":0,"pixel":[255,0,0,255]},{"x":1,"y":1,"pixel":[171,171,171,255]},{"x":10,"y":10,"pixel":[36,36,36,255]},{"x":100,"y":100,"pixel":[255,0,0,255]},{"x":319,"y":239,"pixel":[255,0,0,255]}]}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:13.2587630Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":1,"width":320,"height":240,"project":"chromium"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:13.3589860Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":2,"width":320,"height":240,"project":"chromium"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:13.4591500Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":3,"width":320,"height":240,"project":"chromium"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:13.5596470Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":4,"width":320,"height":240,"project":"chromium"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:13.5608400Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":5,"width":320,"height":240,"project":"chromium"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:13.6612940Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":6,"width":320,"height":240,"project":"chromium"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:13.6981190Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":7,"width":320,"height":240,"project":"chromium"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:13.7013770Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":8,"width":320,"height":240,"project":"chromium"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:14.2289530Z {"fixture":"owned_webm_frame","project":"chromium","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"playbackRequests":1,"rangeRequests":1,"partialResponses":1,"bytes":6051}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:14.3292420Z   ✓   98 [chromium] › tests/video-playback.spec.ts:11:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (5.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:19.7027750Z {"fixture":"stock_pcm_reference","api":"stock_playwright","project":"chromium","engine":"chromium","mediaRequests":1,"partialResponses":1,"requestCountsAreLowerBounds":true,"preloadTimedOut":true,"preload":{"ready":4,"network":1,"error":0,"paused":true,"muted":true,"currentTime":0,"duration":2,"wav":"maybe"},"activationTimedOut":false,"activated":{"ready":4,"network":1,"error":0,"paused":false,"muted":true,"currentTime":0.067921,"duration":2,"wav":"maybe"},"play":{"result":"fulfilled","error":"none"}}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:19.8372780Z   ✘   99 [chromium] › tests/stock-media.spec.ts:19:1 › stock API PCM reference records preload and owned user activation independently (6.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:19.9341900Z {"fixture":"stock_screenshot_reference","api":"stock_playwright","project":"chromium","engine":"chromium","captured":true,"width":320,"height":240,"pixel":[255,0,0,255],"bytes":761,"durationMs":3177}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:19.9641080Z   ✓  100 [chromium] › tests/stock-media.spec.ts:58:1 › stock API screenshot reference captures an owned red viewport (3.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:34.0748240Z   ✓  102 [firefox] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (12.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:35.3438440Z   ✓  101 [firefox] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (13.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:42.6370130Z   ✓  103 [firefox] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (8.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:10:48.0482520Z   ✓  104 [firefox] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (12.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:00.1089530Z   ✓  105 [firefox] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (17.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:12.1957980Z {"fixture":"independent_original_trace","project":"firefox","bytes":13629,"clickAcknowledged":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:13.1474230Z   ✓  107 [firefox] › tests/artifact-features.spec.ts:6:5 › original tracing independently retains an acknowledged owned click and rejects inactive stop (13.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:18.0472510Z {"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":2,"pending":1,"active":[{"tool":"browser_close","pendingMs":754}],"recent":[{"tool":"browser_run_code_unsafe","outcome":"returned","durationMs":28006}]}]}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:18.1206130Z ##[notice]{"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":2,"pending":1,"active":[{"tool":"browser_close","pendingMs":754}],"recent":[{"tool":"browser_run_code_unsafe","outcome":"returned","durationMs":28006}]}]}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:18.2229090Z   ✘  106 [firefox] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (30.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:19.0694670Z {"fixture":"independent_original_pdf","project":"firefox","supported":false,"rejected":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:20.9582790Z   ✓  108 [firefox] › tests/artifact-features.spec.ts:37:5 › original PDF independently writes a Chromium document or explicitly rejects the unsupported engine (7.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:21.4891760Z   ✓  109 [firefox] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (1.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:21.9812850Z   ✓  110 [firefox] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (1.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:22.5902470Z   ✓  111 [firefox] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (996ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:22.9887400Z   ✓  112 [firefox] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (1.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:23.6080820Z   ✓  113 [firefox] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (1.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:25.2363030Z   ✓  115 [firefox] › tests/cli.spec.ts:22:5 › install-browser --help (1.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:25.7024720Z   ✓  114 [firefox] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (2.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:38.2704760Z   ✓  116 [firefox] › tests/click.spec.ts:19:5 › browser_click (12.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:38.7839120Z   ✓  117 [firefox] › tests/core.spec.ts:19:5 › browser_navigate (13.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:49.5141540Z {"fixture":"highlight_region","project":"firefox","phase":"plain","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:50.0184450Z {"fixture":"highlight_region","project":"firefox","phase":"highlighted","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:50.5684030Z {"fixture":"highlight_region","project":"firefox","phase":"restored","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:50.9431000Z {"fixture":"highlight_region","project":"firefox","phase":"highlighted-again","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:51.2160230Z {"fixture":"highlight_region","project":"firefox","phase":"restored-all","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:52.5392700Z   ✓  118 [firefox] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (14.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:11:55.2215160Z   ✓  119 [firefox] › tests/devtools.spec.ts:60:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (16.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:03.0994780Z {"fixture":"original_close_processes","phase":"before","observedCount":6,"transportRootMatches":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:04.5049000Z   ✓  120 [firefox] › tests/devtools.spec.ts:81:5 › original resume rejects malformed source locations and leaves the session usable (11.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:08.1588690Z   ✓  121 [firefox] › tests/dynamic-dom.spec.ts:4:5 › original snapshot references cross nested open shadow roots and activate exactly once (12.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:19.5461920Z {"fixture":"owned_virtual_rows","totalRows":400,"renderedRows":20,"finalRow":399,"confirmedEffects":1,"detachedReferenceRejected":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:19.5695510Z   ✓  122 [firefox] › tests/dynamic-dom.spec.ts:28:5 › original wheel input materializes virtual rows and detached references cannot trigger duplicate effects (15.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:22.5241340Z {"fixture":"owned_gated_hydration","initiallyDisabled":true,"originalReferenceUsed":true,"confirmedPostEffects":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:22.5321010Z   ✓  123 [firefox] › tests/dynamic-dom.spec.ts:71:5 › original disabled snapshot reference remains actionable after gated hydration without duplicate effects (14.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:33.5056530Z {"fixture":"owned_lazy_append","initialRows":10,"finalRows":30,"pageRequests":1,"confirmedPostEffects":2,"originalReferenceUsed":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:33.5789610Z   ✓  124 [firefox] › tests/dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once (13.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:34.4095960Z   ✓  125 [firefox] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (11.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:49.3784370Z   ✓  127 [firefox] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (15.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:12:52.2104630Z   ✓  126 [firefox] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (18.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:01.7222690Z   ✓  128 [firefox] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (12.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:04.5833710Z   ✓  129 [firefox] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (12.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:16.9048590Z   ✓  130 [firefox] › tests/input-parity.spec.ts:98:5 › original slider bounds and step failures preserve sanitized effects without replay (15.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:21.5605540Z   ✓  131 [firefox] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (16.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:29.1660720Z   ✓  132 [firefox] › tests/interactions.spec.ts:92:5 › original iframe snapshot targets stay scoped to the embedded document (12.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:30.0175530Z   ✓  134 [firefox] › tests/library.spec.ts:20:5 › library can be used from CommonJS (820ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:44.4129440Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:44.4374730Z   ✓  133 [firefox] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (22.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:44.9849570Z {"fixture":"owned_pcm_media","project":"firefox","mediaRequests":1,"rangeRequests":1,"partialResponses":1,"durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:45.0518800Z   ✓  135 [firefox] › tests/media.spec.ts:7:5 › original muted PCM media advances, pauses and reports a missing media source (15.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:54.6435870Z   ✓  136 [firefox] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (10.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:13:57.7856430Z   ✓  137 [firefox] › tests/network-routing.spec.ts:4:5 › original malformed route headers and unknown unroute preserve an existing mock (12.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:14:09.1270410Z   ✓  139 [firefox] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (11.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:14:11.1025050Z   ✓  138 [firefox] › tests/network-routing.spec.ts:38:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (16.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:14:24.8456180Z {"fixture":"owned_service_worker_offline","explicitlyAllowed":true,"networkFallbackRequests":0,"offlineDomEffect":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:14:24.9461960Z   ✓  141 [firefox] › tests/service-worker.spec.ts:4:5 › original explicitly allowed service worker serves an owned offline document without network fallback (13.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:14:25.9502930Z {"fixture":"original_stderr_budget_probe","byteLimit":1048576,"retainedBytes":983040,"overflow":false}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:14:26.1671120Z   ✓  142 [firefox] › tests/stdio-stderr.spec.ts:6:5 › original stdio drains substantial stderr before MCP initialization (1.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:14:37.1965570Z   ✓  143 [firefox] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (11.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:14:47.5147040Z   ✓  144 [firefox] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (10.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:00.2481060Z   ✓  145 [firefox] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (12.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:17.5610540Z   ✓  140 [firefox] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, restore, reset and independent profile isolation (1.1m)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:30.2178730Z   ✓  146 [firefox] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (29.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:30.9830760Z   ✓  147 [firefox] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (13.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:39.4957300Z {"fixture":"owned_video_source_paint","project":"firefox","width":320,"height":240,"pixel":[255,0,0,255],"points":[{"x":0,"y":0,"pixel":[255,0,0,255]},{"x":1,"y":1,"pixel":[171,128,139,255]},{"x":10,"y":10,"pixel":[233,233,237,255]},{"x":100,"y":100,"pixel":[255,0,0,255]},{"x":319,"y":239,"pixel":[255,0,0,255]}]}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:42.1028880Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":1,"width":320,"height":240,"project":"firefox"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:42.2038920Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":2,"width":320,"height":240,"project":"firefox"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:42.3034880Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":3,"width":320,"height":240,"project":"firefox"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:42.4039100Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":4,"width":320,"height":240,"project":"firefox"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:42.4778290Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":5,"width":320,"height":240,"project":"firefox"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:42.5736470Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":6,"width":320,"height":240,"project":"firefox"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:42.6082830Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":7,"width":320,"height":240,"project":"firefox"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:42.6424790Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":8,"width":320,"height":240,"project":"firefox"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:44.4585200Z {"fixture":"stock_pcm_reference","api":"stock_playwright","project":"firefox","engine":"firefox","mediaRequests":1,"partialResponses":1,"requestCountsAreLowerBounds":true,"preloadTimedOut":false,"preload":{"ready":4,"network":1,"error":0,"paused":true,"muted":true,"currentTime":0,"duration":2,"wav":"maybe"},"activationTimedOut":false,"activated":{"ready":4,"network":1,"error":0,"paused":false,"muted":true,"currentTime":0.093621,"duration":2,"wav":"maybe"},"play":{"result":"fulfilled","error":"none"}}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:44.5595020Z {"fixture":"owned_webm_frame","project":"firefox","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"playbackRequests":1,"rangeRequests":1,"partialResponses":1,"bytes":10574}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:44.6597690Z   ✓  148 [firefox] › tests/video-playback.spec.ts:11:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (14.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:44.7599280Z   ✓  149 [firefox] › tests/stock-media.spec.ts:19:1 › stock API PCM reference records preload and owned user activation independently (7.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:54.6735860Z {"fixture":"stock_screenshot_reference","api":"stock_playwright","project":"firefox","engine":"firefox","captured":true,"width":320,"height":240,"pixel":[255,0,0,255],"bytes":832,"durationMs":530}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:54.9308860Z   ✓  151 [webkit] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (7.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:55.0315280Z   ✓  150 [firefox] › tests/stock-media.spec.ts:58:1 › stock API screenshot reference captures an owned red viewport (5.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:15:58.4895440Z   ✓  152 [webkit] › tests/accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (3.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:02.0948690Z   ✓  153 [webkit] › tests/accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (4.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:06.0367140Z   ✓  154 [webkit] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (7.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:08.3083650Z   ✓  155 [webkit] › tests/advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (6.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:12.4131140Z {"fixture":"independent_original_trace","project":"webkit","bytes":11103,"clickAcknowledged":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:12.5306820Z   ✓  157 [webkit] › tests/artifact-features.spec.ts:6:5 › original tracing independently retains an acknowledged owned click and rejects inactive stop (4.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:14.9789010Z {"fixture":"independent_original_pdf","project":"webkit","supported":false,"rejected":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:15.1800290Z   ✓  158 [webkit] › tests/artifact-features.spec.ts:37:5 › original PDF independently writes a Chromium document or explicitly rejects the unsupported engine (2.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:16.5577490Z   ✓  159 [webkit] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (1.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:17.9589140Z   ✓  160 [webkit] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (1.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:18.0638560Z   ✓  156 [webkit] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (12.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:18.8457450Z   ✓  161 [webkit] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (921ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:18.9559010Z   ✓  162 [webkit] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (872ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:19.7477300Z   ✓  163 [webkit] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (893ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:20.6163190Z   ✓  165 [webkit] › tests/cli.spec.ts:22:5 › install-browser --help (839ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:20.8086590Z   ✓  164 [webkit] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:24.0206100Z   ✓  167 [webkit] › tests/core.spec.ts:19:5 › browser_navigate (3.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:24.8521310Z   ✓  166 [webkit] › tests/click.spec.ts:19:5 › browser_click (4.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:27.6032550Z {"fixture":"highlight_region","project":"webkit","phase":"plain","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:28.2988090Z {"fixture":"highlight_region","project":"webkit","phase":"highlighted","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:28.5011220Z {"fixture":"highlight_region","project":"webkit","phase":"restored","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:28.8868750Z {"fixture":"highlight_region","project":"webkit","phase":"highlighted-again","observations":1,"redPixels":512}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:28.9873800Z {"fixture":"highlight_region","project":"webkit","phase":"restored-all","observations":1,"redPixels":0}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:29.2327240Z   ✓  168 [webkit] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (5.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:29.9692400Z   ✓  169 [webkit] › tests/devtools.spec.ts:60:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (5.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:31.8831170Z {"fixture":"original_close_processes","phase":"before","observedCount":3,"transportRootMatches":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:32.1932540Z   ✓  170 [webkit] › tests/devtools.spec.ts:81:5 › original resume rejects malformed source locations and leaves the session usable (2.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:34.2238440Z   ✓  171 [webkit] › tests/dynamic-dom.spec.ts:4:5 › original snapshot references cross nested open shadow roots and activate exactly once (4.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:36.7462490Z {"fixture":"owned_virtual_rows","totalRows":400,"renderedRows":20,"finalRow":399,"confirmedEffects":1,"detachedReferenceRejected":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:36.8463970Z   ✓  172 [webkit] › tests/dynamic-dom.spec.ts:28:5 › original wheel input materializes virtual rows and detached references cannot trigger duplicate effects (4.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:38.8318340Z {"fixture":"owned_gated_hydration","initiallyDisabled":true,"originalReferenceUsed":true,"confirmedPostEffects":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:38.9327090Z   ✓  173 [webkit] › tests/dynamic-dom.spec.ts:71:5 › original disabled snapshot reference remains actionable after gated hydration without duplicate effects (4.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:43.2410890Z {"fixture":"owned_lazy_append","initialRows":10,"finalRows":30,"pageRequests":1,"confirmedPostEffects":2,"originalReferenceUsed":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:44.1174810Z   ✓  174 [webkit] › tests/dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once (6.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:44.2182730Z   ✓  175 [webkit] › tests/held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (5.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:51.2046650Z   ✓  176 [webkit] › tests/input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (6.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:54.6157680Z   ✓  177 [webkit] › tests/input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (10.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:55.5082810Z   ✓  178 [webkit] › tests/input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (4.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:16:59.3229280Z   ✓  179 [webkit] › tests/input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (4.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:02.6248210Z   ✓  180 [webkit] › tests/input-parity.spec.ts:98:5 › original slider bounds and step failures preserve sanitized effects without replay (7.1s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:04.9333360Z   ✓  181 [webkit] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (5.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:06.0519780Z   ✓  182 [webkit] › tests/interactions.spec.ts:92:5 › original iframe snapshot targets stay scoped to the embedded document (3.4s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:07.6475970Z   ✓  184 [webkit] › tests/library.spec.ts:20:5 › library can be used from CommonJS (1.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:11.5907090Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:11.6915610Z   ✓  183 [webkit] › tests/large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (6.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:14.4132160Z   ✓  186 [webkit] › tests/network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (2.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:14.7681600Z {"fixture":"owned_pcm_media","project":"webkit","mediaRequests":2,"rangeRequests":2,"partialResponses":2,"durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:14.8700440Z   ✓  185 [webkit] › tests/media.spec.ts:7:5 › original muted PCM media advances, pauses and reports a missing media source (7.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:18.7961740Z   ✓  187 [webkit] › tests/network-routing.spec.ts:4:5 › original malformed route headers and unknown unroute preserve an existing mock (4.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:22.6585780Z   ✓  189 [webkit] › tests/popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (3.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:23.1897340Z   ✓  188 [webkit] › tests/network-routing.spec.ts:38:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (8.3s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:27.8876280Z {"fixture":"owned_service_worker_offline","explicitlyAllowed":true,"networkFallbackRequests":0,"offlineDomEffect":1}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:27.9903800Z   ✓  191 [webkit] › tests/service-worker.spec.ts:4:5 › original explicitly allowed service worker serves an owned offline document without network fallback (4.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:29.6688750Z {"fixture":"original_stderr_budget_probe","byteLimit":1048576,"retainedBytes":983040,"overflow":false}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:29.8192230Z   ✓  192 [webkit] › tests/stdio-stderr.spec.ts:6:5 › original stdio drains substantial stderr before MCP initialization (1.8s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:33.1478180Z   ✓  193 [webkit] › tests/storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (3.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:36.1036060Z   ✓  194 [webkit] › tests/storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (2.9s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:39.1337030Z   ✓  195 [webkit] › tests/storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (3.0s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:42.4072820Z   ✓  190 [webkit] › tests/profile-parity.spec.ts:5:5 › original opt-in profile locks, restore, reset and independent profile isolation (19.7s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:45.9634600Z   ✓  197 [webkit] › tests/testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (3.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:46.6757370Z   ✓  196 [webkit] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (7.5s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:48.7073810Z {"fixture":"owned_video_source_paint","project":"webkit","width":320,"height":240,"pixel":[255,0,0,255],"points":[{"x":0,"y":0,"pixel":[255,0,0,255]},{"x":1,"y":1,"pixel":[251,0,0,255]},{"x":10,"y":10,"pixel":[51,51,51,255]},{"x":100,"y":100,"pixel":[255,0,0,255]},{"x":319,"y":239,"pixel":[255,0,0,255]}]}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:49.9168380Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":1,"width":320,"height":240,"project":"webkit"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:50.0174420Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":2,"width":320,"height":240,"project":"webkit"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:50.1180130Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":3,"width":320,"height":240,"project":"webkit"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:50.2181410Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":4,"width":320,"height":240,"project":"webkit"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:50.3188860Z {"fixture":"owned_video_encoder_input","encoder":1,"frame":5,"width":320,"height":240,"project":"webkit"}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:50.7281570Z {"fixture":"stock_pcm_reference","api":"stock_playwright","project":"webkit","engine":"webkit","mediaRequests":2,"partialResponses":2,"requestCountsAreLowerBounds":true,"preloadTimedOut":false,"preload":{"ready":4,"network":1,"error":0,"paused":true,"muted":true,"currentTime":0,"duration":2,"wav":"maybe"},"activationTimedOut":false,"activated":{"ready":4,"network":1,"error":0,"paused":false,"muted":true,"currentTime":0.09797185200000058,"duration":2,"wav":"maybe"},"play":{"result":"fulfilled","error":"none"}}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:50.8434790Z   ✓  199 [webkit] › tests/stock-media.spec.ts:19:1 › stock API PCM reference records preload and owned user activation independently (1.6s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.2058070Z {"fixture":"owned_webm_frame","project":"webkit","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"playbackRequests":1,"rangeRequests":0,"partialResponses":0,"bytes":4240}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.3147000Z   ✓  198 [webkit] › tests/video-playback.spec.ts:11:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (5.2s)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.4651400Z {"fixture":"stock_screenshot_reference","api":"stock_playwright","project":"webkit","engine":"webkit","captured":true,"width":320,"height":240,"pixel":[255,0,0,255],"bytes":1936,"durationMs":39}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.5666480Z   ✓  200 [webkit] › tests/stock-media.spec.ts:58:1 › stock API screenshot reference captures an owned red viewport (651ms)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6622290Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6716640Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6762720Z   1) [chromium] › tests/stock-media.spec.ts:19:1 › stock API PCM reference records preload and owned user activation independently 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6813810Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6834300Z     Error: expect(received).toBe(expected) // Object.is equality
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6845850Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6857540Z     Expected: false
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6888000Z     Received: true
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6924570Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6952790Z       49 |   // Both observations are retained even if preload fails. A later successful
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6988880Z       50 |   // activation cannot turn the separate original/MCP preload failure into PASS.
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6992180Z     > 51 |   expect(preloadTimedOut).toBe(false); expect(preload.ready).toBeGreaterThanOrEqual(2);
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6993410Z          |                           ^
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.6997890Z       52 |   expect(preload.paused).toBe(true); expect(preload.muted).toBe(true);
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7021060Z       53 |   expect(preload.duration).toBeGreaterThanOrEqual(1.9); expect(preload.duration).toBeLessThanOrEqual(2.1);
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7040330Z       54 |   expect(activationTimedOut).toBe(false); expect(play.result).toBe('fulfilled');
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7049480Z         at /Users/runner/work/playwright-mcp/playwright-mcp/tests/stock-media.spec.ts:51:27
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7067210Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7090620Z     Error Context: test-results/stock-media-stock-API-PCM--b79a0-er-activation-independently-chromium/error-context.md
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7124020Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7158390Z   2) [firefox] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7164510Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7179750Z     Test timeout of 30000ms exceeded.
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7180870Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7203890Z     McpError: MCP error -32000: Connection closed
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7216900Z         at Function.fromError (/Users/runner/work/playwright-mcp/playwright-mcp/node_modules/@modelcontextprotocol/sdk/src/types.ts:2330:16)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7242850Z         at Client._onclose (/Users/runner/work/playwright-mcp/playwright-mcp/node_modules/@modelcontextprotocol/sdk/src/shared/protocol.ts:667:32)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7252760Z         at StdioClientTransport._transport.onclose (/Users/runner/work/playwright-mcp/playwright-mcp/node_modules/@modelcontextprotocol/sdk/src/shared/protocol.ts:623:18)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7282600Z         at ChildProcess.<anonymous> (/Users/runner/work/playwright-mcp/playwright-mcp/node_modules/@modelcontextprotocol/sdk/src/client/stdio.ts:152:31)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7312030Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7351260Z     Error Context: test-results/advanced-original-trusted--bf820-ct-owned-fixture-assertions-firefox/error-context.md
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7373850Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7388300Z   2 failed
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7412840Z     [chromium] › tests/stock-media.spec.ts:19:1 › stock API PCM reference records preload and owned user activation independently 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7439350Z     [firefox] › tests/advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.7537470Z   198 passed (12.9m)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T21:17:51.8728710Z ##[error]Process completed with exit code 1.
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	﻿2026-10-22T21:17:51.9333560Z ##[group]Run if node <<'NODE_VIDEO_GATE'
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9340820Z [36;1mif node <<'NODE_VIDEO_GATE'[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9341570Z [36;1mconst fs = require('node:fs');[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9342510Z [36;1mlet eligible = false, inspectedBytes = 0, truncated = false;[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9343740Z [36;1mfor (const name of ['wrapper-tests.log', 'wrapper-available-tests.log']) {[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9344740Z [36;1m  if (!fs.existsSync(name)) continue;[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9351740Z [36;1m  const fd = fs.openSync(name, 'r');[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9358120Z [36;1m  let bytes;[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9358710Z [36;1m  try {[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9359500Z [36;1m    const size = fs.fstatSync(fd).size, length = Math.min(size, 2 * 1024 * 1024);[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9360810Z [36;1m    bytes = Buffer.alloc(length); fs.readSync(fd, bytes, 0, length, size - length);[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9362050Z [36;1m    inspectedBytes += length; truncated ||= size > length;[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9363370Z [36;1m  } finally { fs.closeSync(fd); }[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9364120Z [36;1m  for (const raw of bytes.toString('utf8').split('\n')) {[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9365250Z [36;1m    const line = raw.replace(/\u001b\[[0-?]*[ -/]*[@-~]/g, '').trim();[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9366180Z [36;1m    let data; try { data = JSON.parse(line); } catch { continue; }[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9369690Z [36;1m    if (data?.fixture === 'owned_video_original_decode_failure' && data.project === 'chromium' && data.width === 320 && data.height === 240 && Number.isInteger(data.ready) && data.ready >= 2 && data.ready <= 4 && Array.isArray(data.pixel) && data.pixel.length === 4 && data.pixel.every(value => Number.isInteger(value) && value >= 0 && value <= 255)) eligible = true;[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9373530Z [36;1m  }[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9373880Z [36;1m}[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9374890Z [36;1mconsole.log(JSON.stringify({ fixture: 'video_first_frame_control_gate', eligible, inspectedBytes, truncated }));[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9376920Z [36;1mprocess.exitCode = eligible ? 0 : 1;[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9382610Z [36;1mNODE_VIDEO_GATE[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9383210Z [36;1mthen[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9384060Z [36;1m  # Fresh isolated owned cases; keep the original failed result and files.[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9386810Z [36;1m  PLAYWRIGHT_TEST_VIDEO_COLOR_DIAGNOSTICS=1 npx playwright test tests/video-playback.spec.ts --project=chromium --repeat-each=3 --workers=1 --output=test-results/first-frame-controls 2>&1 | tee first-frame-controls.log[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9390340Z [36;1mfi[0m
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9632560Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:51.9633790Z ##[endgroup]
+test (macos-15-intel)	Collect three fresh first-frame controls after macOS Chromium mismatch	2026-10-22T21:17:52.1550120Z {"fixture":"video_first_frame_control_gate","eligible":false,"inspectedBytes":46072,"truncated":false}
+test (macos-15-intel)	Preserve failed wrapper evidence	﻿2026-10-22T21:17:52.2102360Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:52.2103930Z with:
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:52.2104600Z   name: wrapper-tests-macos-15-intel
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:52.2106330Z   path: wrapper-tests.log
+test (macos-15-intel)	Preserve failed wrapper evidence	wrapper-available-tests.log
+test (macos-15-intel)	Preserve failed wrapper evidence	modal-tests.log
+test (macos-15-intel)	Preserve failed wrapper evidence	first-frame-controls.log
+test (macos-15-intel)	Preserve failed wrapper evidence	legacy-firefox.log
+test (macos-15-intel)	Preserve failed wrapper evidence	
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:52.2108110Z   retention-days: 1
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:52.2108800Z   if-no-files-found: error
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:52.2109600Z   compression-level: 6
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:52.2110310Z   overwrite: false
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:52.2111000Z   include-hidden-files: false
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:52.2111760Z ##[endgroup]
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:53.2129080Z (node:22846) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:53.2175350Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:53.2522050Z Multiple search paths detected. Calculating the least common ancestor of all paths
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:53.2559520Z The least common ancestor is /Users/runner/work/playwright-mcp/playwright-mcp. This will be the root directory of the artifact
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:53.2561540Z With the provided path, there will be 1 file uploaded
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:53.2575950Z Artifact name is valid!
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:53.2580760Z Root directory input is valid!
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:53.7950930Z (node:22846) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:53.8281270Z Beginning upload of artifact content to blob storage
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:54.1156890Z Uploaded bytes 6482
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:54.1856130Z Finished uploading artifact content to blob storage!
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:54.1864310Z SHA256 digest of uploaded artifact zip is 08e12fb2fb695e4d4a678bc5b2b73e8f34523d29380b64c46435d28a48ed2f46
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:54.1872790Z Finalizing artifact upload
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:54.7129500Z Artifact wrapper-tests-macos-15-intel.zip successfully finalized. Artifact ID 12459263138
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:54.7133470Z Artifact wrapper-tests-macos-15-intel has been successfully uploaded! Final size is 6482 bytes. Artifact ID is 12459263138
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T21:17:54.7137310Z Artifact download URL: https://github.com/timmiballz22/playwright-mcp/actions/runs/39853792190/artifacts/12459263138
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T21:17:54.7657100Z Post job cleanup.
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.1631910Z [command]/usr/local/bin/git version
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.1731190Z git version 2.55.0
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.2042220Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/e8064666-860e-4531-b605-8c8c6c3ab2f3/.gitconfig'
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.2051190Z Temporarily overriding HOME='/Users/runner/work/_temp/e8064666-860e-4531-b605-8c8c6c3ab2f3' before making global git config changes
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.2055120Z Adding repository directory to the temporary git global config as a safe directory
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.2069650Z [command]/usr/local/bin/git config --global --add safe.directory /Users/runner/work/playwright-mcp/playwright-mcp
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.2134060Z Removing SSH command configuration
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.2141640Z [command]/usr/local/bin/git config --local --name-only --get-regexp core\.sshCommand
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.2195060Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.4401940Z Removing HTTP extra header
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.4415330Z [command]/usr/local/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.4568640Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.6563680Z Removing includeIf entries pointing to credentials config files
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.6573570Z [command]/usr/local/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.6674410Z includeif.gitdir:/Users/runner/work/playwright-mcp/playwright-mcp/.git.path
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.6676750Z includeif.gitdir:/Users/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.6678520Z includeif.gitdir:/github/workspace/.git.path
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.6679940Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.6692290Z [command]/usr/local/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/playwright-mcp/playwright-mcp/.git.path
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.6804000Z /Users/runner/work/_temp/git-credentials-56552838-dc24-4206-971d-2fd3a3c23135.config
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.6822690Z [command]/usr/local/bin/git config --local --unset includeif.gitdir:/Users/runner/work/playwright-mcp/playwright-mcp/.git.path \/Users\/runner\/work\/_temp\/git\-credentials\-56552838\-dc24\-4206\-971d\-2fd3a3c23135\.config
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.6954470Z [command]/usr/local/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.7055810Z /Users/runner/work/_temp/git-credentials-56552838-dc24-4206-971d-2fd3a3c23135.config
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.7074500Z [command]/usr/local/bin/git config --local --unset includeif.gitdir:/Users/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path \/Users\/runner\/work\/_temp\/git\-credentials\-56552838\-dc24\-4206\-971d\-2fd3a3c23135\.config
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.7209350Z [command]/usr/local/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.7346670Z /github/runner_temp/git-credentials-56552838-dc24-4206-971d-2fd3a3c23135.config
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.7364650Z [command]/usr/local/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-56552838\-dc24\-4206\-971d\-2fd3a3c23135\.config
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.7536000Z [command]/usr/local/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.7654910Z /github/runner_temp/git-credentials-56552838-dc24-4206-971d-2fd3a3c23135.config
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.7665620Z [command]/usr/local/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-56552838\-dc24\-4206\-971d\-2fd3a3c23135\.config
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.7819750Z [command]/usr/local/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test (macos-15-intel)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T21:17:55.9848120Z Removing credentials config '/Users/runner/work/_temp/git-credentials-56552838-dc24-4206-971d-2fd3a3c23135.config'
+test (macos-15-intel)	Complete job	﻿2026-10-22T21:17:56.0119440Z Cleaning up orphan processes
+test (macos-15-intel)	Complete job	2026-10-22T21:17:57.2508000Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

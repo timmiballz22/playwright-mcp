@@ -1,0 +1,24 @@
+from pathlib import Path
+import json,shutil,hashlib
+p=Path('/tmp');dest=Path('/workspace/playwright-mcp/docs/evidence');runs={'batch':39853792171,'original':39853792190}
+source=None
+for label,rid in runs.items():
+ run=json.loads((p/f'native97-{rid}-rest-run.json').read_text());jobs=json.loads((p/f'native97-{rid}-rest-jobs.json').read_text())['jobs'];assert run['status']=='completed' and all(j['status']=='completed' for j in jobs)
+ source=source or run['head_sha'];assert source==run['head_sha']
+patterns=['native97-*-job-*.log','native97-*-job-log-exits*.json','native97-*-rest-*.json','native97-*-snapshot-*.json','native97-*-annotations-*.json','native97-*-counts.json','native97-structured-receipts.json','native97-wrapper-structured-receipts.json','native97-failure-blocks.json','native97-wrapper-failure-blocks.json','native97-legacy-comparisons.json','native97-controls-summary.json','native97-native-receipts.json','native97-primary-client-success-receipts.json','native97-primary-client-all-receipts.json','native97-primary-*-failure-proof.json','native97-viewport-native-failure-proof.json','native97-native-schema-race-proof.json','native97-full-factory-observations.json','native97-shared-mirror-native-proof.json','native97-checkpoint-phase-proof.json','native97-linux-install-proof.json','native97-main-failure-projection.json','native97-video-proof.py','native97-video-input-native-proof.json','native97-original-diagnostic-projection.json','native97-chromium-capture-repro.md','native97-public-first-frame-*','native97-new-links-proof.json','native97-first-frame-metadata-proof.json','native97-first-frame-metadata.mjs','native97-first-frame-metadata.log','native97-journal-latency-proof.json','native97-journal-latency-processes.jsonl','native97-journal-latency-preload.mjs','native97-journal-latency-launch-preload.mjs','native97-journal-latency-codex*.log','native97-contents-size-proof.json','native97-contents-size-calibration.mjs','native97-contents-size-calibration.log','native97-archive.py','native97-finish.py','native97-poll.py','native97-collect-completed.py','native97-extract.py','native97-node24-failure-extract.py','native97-wrapper-extract.py','native97-observations.py','native97-extra-proofs.py','native97-annotations.py']
+files={f for pattern in patterns for f in p.glob(pattern) if f.is_file()}
+counts={label:json.loads((p/f'native97-{label}-counts.json').read_text()) for label in ['batch','wrapper']}
+reads=[]
+for label in ['batch','wrapper']:
+ first=json.loads((p/f'native97-{label}-job-log-exits.json').read_text());retry=p/f'native97-{label}-job-log-exits-retry1.json';again=json.loads(retry.read_text()) if retry.exists() else [];resolved={r['jobId']:r for r in first}
+ for r in again:
+  if r['exit']==0 and r['bytes']:resolved[r['jobId']]=r
+ assert all(r['exit']==0 and r['bytes'] for r in resolved.values());reads.append({'label':label,'firstAttempted':len(first),'firstSucceededNonempty':sum(r['exit']==0 and r['bytes']>0 for r in first),'retryAttempted':len(again),'resolvedNonempty':len(resolved)})
+package=[]
+for j in json.loads((p/'native97-39853792171-rest-jobs.json').read_text())['jobs']:
+ for s in j['steps']:
+  if s['name']=='Verify installed production package':package.append({'job':j['name'],'conclusion':s['conclusion']})
+for f in files:shutil.copy2(f,dest/f.name)
+primary_jobs=[{'job':j['name'],'conclusion':j['conclusion']} for j in json.loads((p/'native97-39853792171-rest-jobs.json').read_text())['jobs'] if j['name'].startswith('codex_client')]
+summary={'primaryClientJobs':primary_jobs,'source':source,'runs':runs,'completedSummaries':{label:{key:counts[label][key] for key in ['pass','fail','skipped','cancelled']} for label in counts},'total':{key:sum(c[key] for c in counts.values()) for key in ['pass','fail','skipped','cancelled']},'installedPackageSteps':package,'logReads':reads,'scope':'All counts come from completed log summaries; extra fresh controls and legacy cases stay separate in group counts. This native source includes reviewed9f975 browser core, client/fixture retention and bounded diagnostic guards, and the stronger first-JPEG ordering test. The stricter first-JPEG test fails on Linux22/24 and Mac despite completed ordering; original native97 recording inputs are full size in this sample. Earlier native320x98/gray failure remains open; experimental146 headless changes failed local checks and are rejected/restored, not shipped. First log failures/partial attempts are preserved. Full process observations confer no kill/lease/clearance authority. See diagnostic projection and execution ledger for failures, omissions and unsupported features.','archiveSha256':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(files)}}
+(dest/'native97-summary.json').write_text(json.dumps(summary,indent=2)+'\n');print(json.dumps({'archiveFiles':len(files),'bytes':sum(f.stat().st_size for f in files),'total':summary['total']}))

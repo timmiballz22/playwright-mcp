@@ -1,0 +1,13 @@
+{"fixture":"codex_client_workspace_retention","workspace":"codex-jobs-zmX1zP","acceptanceVerified":false,"primaryFailed":true,"cleanupFailed":false,"removalAttempted":false,"processAuditConfirmed":true,"appServerCloseObserved":true,"journalExitUnconfirmed":false,"journalInitStages":[],"diagnosticCoverage":"bounded_stderr_tail","stderrTailTruncated":false}
+file:///workspace/playwright-mcp/scripts/verify-codex-jobs.mjs:80
+const rejectPending = () => { for (const item of pending.values()) { clearTimeout(item.timer); item.reject(new Error('Codex transport closed')); } pending.clear(); };
+                                                                                                           ^
+
+Error: Codex transport closed
+    at ChildProcess.rejectPending (file:///workspace/playwright-mcp/scripts/verify-codex-jobs.mjs:80:108)
+    at Object.onceWrapper (node:events:631:26)
+    at ChildProcess.emit (node:events:521:24)
+    at maybeClose (node:internal/child_process:1141:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:306:5)
+
+Node.js v24.19.0
