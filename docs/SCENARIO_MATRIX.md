@@ -1,5 +1,13 @@
 # Mandatory scenario evidence
 
+Latest completed native80 atbea4780:1,900 reported passes/10 failures. All actual
+Codex1k clients, journal lanes,15 HTTP/all-action/cancellation cases and five175-
+file installs pass. Mac/Windows provider and lifecycle failures remain; both
+workflows fail. Native79's136/142 ownership candidates and older unknowns remain
+unclassified. Release acceptance is BLOCKED; see RELEASE_BLOCKERS.md and ledger.
+
+Previous native79 checkpoint:
+
 Latest completed native79 atd357c38:1,905 reported passes/8 failures, plus Mac
 actual timeout973 and two failed Windows JSON controls. Guardian disconnect136
 and HTTP privacy142 ownership candidates remain unclassified; no birth ledgers

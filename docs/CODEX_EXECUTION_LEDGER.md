@@ -2,6 +2,69 @@
 
 ## Resume checkpoint — 2026-10-22
 
+Latest completed native80 at `bea4780d370deec0c36ae64c965dfc24157b385d`:
+batch39739439069 reports1,446 passes/6 failures; original39739439372 reports454/4.
+Combined **1,900 reported test passes/10 failures**. Both workflows fail; no
+separate failed JSON controls this round. All17 non-soak jobs conclude; optional
+soak skips; reported test skips/cancels0. **Release acceptance is BLOCKED.**
+
+All three actual Codex clients complete1k: Linux38.751s/Windows38.431s/Mac63.971s,
+model0/owned0. Journal Linux/Mac112 and Windows113 pass, including the revised live
+fork/model-child disconnect capture. AllLinux batch199/203/203 pass; Mac202/1 and
+Windows190/5 fail. Five175-file production installs, five strict ownership units,
+15 all-action fixtures,15 cancellation cases (60 scenarios),15 HTTP privacy cases
+(120 HTTP scenarios), and five supervised20-run integrity fixtures pass. The new
+HTTP factory gates and guardian evidence are natively exercised. They do not
+classify native79's136/142 candidates or resolve earlier unclassified observations.
+
+Ten test failures remain:
+- Windows raw concurrent screenshot fixture fails in its first pair:1/1 action,
+  cleanup_failed/server_timeout,6.692s. The existing actual public-server kill
+  fallback resolves (no kill failure code). Test duration7.457s; later pairs are
+  unexecuted. Other four raw screenshot cases pass; all five supervised cases pass.
+- Windows Firefox headless fresh1 stops4/23, locator click5,11.217s; headed fresh1
+  stops11/23, pointer click12,12.288s; direct-pipe fresh2 stops16/23, locator click17,
+ 9.705s/counter15. CleanupFailures[] for all three; later fresh runs unexecuted.
+  The new actual public child receipt is captured:true/exitObserved:true after
+  cleanup for headless/headed failures. This is root exit only, not tree cleanup,
+  click-cause evidence or permission to replay an unfinished input.
+- Windows FF4290 navigation ACKs despite two GETs/two finished responses,
+  first2.490s/last3.500s, browser report1.122s. Lifecycle timeout, forced:false,
+  cleanup terminated/temp removed. Later retry scenarios unexecuted.
+- Mac synchronous MCP975/1,000 timeout, known terminated/removed cleanup;
+ 119.425s test duration. Mac raw and SDK1k pass this sample; no older cause solved.
+- Original Mac Chromium highlight test fails Page.captureScreenshot protocol
+  capture after fonts loaded. Main151/1; modal follow-up unexecuted.
+- Original Windows Firefox ARIA case loses MCP connection (cause unknown), prompt
+  click times out5s, and popup-open click times out5s. Main149/3; legacy follow-up
+  unexecuted. Original Linux152 and Docker2 pass.
+
+All four separate Windows private/inherited/protocol-headed/stock-headed controls
+pass10/10=230 each, observed residual before parent force0/final0. Mac later batch
+server/pipe1k116.372/101.957s pass. Healthy later controls do not explain prior
+failures or justify a default transport/channel, forced click or deadline change.
+
+A separate20-run lifetime teardown retains two legacy candidates and20 actual
+birth ledgers. Queried PID8544 birth07:38:24.1470280Z differs from recorded owned
+8544 births07:38:15.1689620Z and07:38:20.5364520Z; child7416 is born after the
+replacement at07:38:24.1496150Z. All rows/root rows retained. This is recorded
+incarnation matching, not role/name/age/window filtering. Older unknowns remain
+unknown; no PID hint signals, releases leases or clears debt.
+
+All17 ordinary job log reads succeed without retry or artifact download. Evidence:
+worker-ci-eightieth-* and native80-*. Production source remains9591621; the diff
+throughbea4780 contains only seven non-doc test files. No source/dependency/schema/
+default/termination changes are hidden in this verification round.
+
+The mission is not complete. [RELEASE_BLOCKERS.md](RELEASE_BLOCKERS.md) records
+unrecoverable historical ownership evidence, unresolved native failures under
+unchanged budgets, and unsupported/operator-dependent acceptance. Draft PR2 stays
+unmerged and publishing disabled. No failed/unexecuted gate is promoted. Further
+release decisions require actual native cause/fix evidence and an explicit
+historical-uncertainty disposition; later passes cannot manufacture missing facts.
+
+### Archived native79 checkpoint
+
 Latest completed native79 at `d357c385203c342a3f39a927ff06eba9eabded59`:
 batch39735545547 reports1,446 passes/6 failures; original39735545519 reports459/2.
 Combined **1,905 reported test passes/8 failures**, plus Mac actual-Codex
@@ -75,7 +138,9 @@ Final local guardian/graph/cleanup24/24 eachNode22/24; HTTP2/2 eachNode20/22/24,
 Intermediate tests have separate phase/hash receipts and are not final proof.
 Fresh175-file production install, syntax, lint and diff checks exit0; no runtime
 entrypoint/dependency/default/schema changes.
-**NEXT ACTION: full native verification of live ownership evidence. Do not classify
+**Native80 is running atbea4780d370deec0c36ae64c965dfc24157b385d:
+batch39739439069 and original39739439372. Hold further pushes; pending is not PASS.
+NEXT ACTION: full native verification of live ownership evidence. Do not classify
 native79's136/142 candidates retrospectively, raise budgets, replay effects, or
 clear historical debt.**
 
@@ -956,25 +1021,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native79 reports1,905/8 plus Mac actual973 and2 failed JSON controls; both workflows fail | Native live ownership follow-up; all uncertainty retained |
+| G00 BASELINE | BLOCKED | native80 reports1,900/10; both workflows fail; historical birth evidence unrecoverable | RELEASE_BLOCKERS.md; no acceptance promotion |
 | G01 INSTALL | VERIFIED PASS | native76 five175-file production installs and original host installs at9591621 | Keep supported modes and TLS verification |
-| G02 MCP | FAILED | native79 Linux/Win actual1k pass; Mac actual973/SDK971 timeout | Preserve exact cleanup and old debt |
-| G03 FEATURE PARITY | FAILED | native79 originalLinux/Mac152 each/modal3; Windows150/2 screenshot/popup failures; legacy unexecuted | No historical causal fix or input replay |
-| G04 BATCH | FAILED | native79 action14/15: WinFFcheck9/23 timeout; SDK971 and pipe/retry failures | Exact native proof without budget/assertion weakening |
-| G05 RETRIES | FAILED | native79 Win4291nav but lifecycle timeout after2GET/2finished; cancel15/15 pass | No input/POST replay or deadline raises |
-| G06 JOBS | FAILED | native79 Win guardian disconnect audit136 candidates; components112/1; SDK971/actual973 timeouts | Live actual-fork/child records before disconnect; retain old unknowns |
+| G02 MCP | FAILED | native80 all3 actual1k pass; Mac synchronous975 timeout and originalWindows connection loss | Native cause/fix evidence; retain older debt |
+| G03 FEATURE PARITY | FAILED | native80 Linux152/Docker2 pass; Mac151/1 capture; Windows149/3; follow-ups unexecuted | Provider remediation and remaining tool contracts |
+| G04 BATCH | FAILED | native80 action15/15 and ownership units5/5 pass; Winrawclose/3FFmodes/retry and MacMCP fail | No budget/assertion weakening or replay |
+| G05 RETRIES | FAILED | native80 FF4290nav despite2GET/2finished, known cleanup; cancel15/15 pass | Lifecycle cause remains unresolved |
+| G06 JOBS | FAILED | native80 components112/113 and allactual1k pass; earlier SDK/debt failures unexplained | New guardian capture is not historical clearance |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
-| G08 STORAGE | FAILED | native79 guardian136 and HTTP142 candidates unclassified; overlap unknown; five supervised/raw20-run cases pass | No role/window exclusion; full new birth and legacy comparisons |
+| G08 STORAGE | BLOCKED | native80 current guardian/HTTP and supervised5×20 pass; old136/142 plus earlier unknowns unclassified | Missing old birth ledgers cannot be reconstructed from new tables |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native79 action14/15 and HTTPWebKit audit fail; native cancel15/15 passes | Actual factory lifetime evidence; no forced/replayed input |
-| G11 CROSS-OS | FAILED | native79 allLinux pass; Macbatch1/actual973; Winbatch4/journal1/original2 | Native live ownership verification with unchanged budgets |
+| G10 CROSS-BROWSER | FAILED | native80 action/HTTP/cancel15each pass; Firefox input/close/retry and Chromium capture failures persist | Native remediation under unchanged constraints |
+| G11 CROSS-OS | FAILED | native80 allLinux pass; Macbatch1/original1, Winbatch5/original3 | Exact fixed-source failure scopes retained |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-seventyninth-* and native79-* preserve17 final logs/retry/136candidate list and142summary | New live records cannot classify old candidates retroactively |
-| G18 CLEAN MERGE | FAILED | Draft PR2; native79 workflows fail; HTTP/guardian fixture follow-up locally verified | Whole accepted source and remaining critical gaps before merge/release |
+| G17 AUDIT EVIDENCE | BLOCKED | native80 all17 logs saved; source-only test diff verified; old missing lifetime facts cannot be manufactured | RELEASE_BLOCKERS.md preserves irrecoverable uncertainty |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native80 fails; mission incomplete; no merge/publish | Actual accepted evidence and reviewed scope before release |
 
 ## Defects and risk register
 

@@ -1,5 +1,68 @@
 # Execution report — verified milestone, incomplete mission
 
+Latest completed native80 at `bea4780d370deec0c36ae64c965dfc24157b385d`:
+batch39739439069 reports1,446 passes/6 failures; original39739439372 reports454/4.
+Combined **1,900 reported test passes/10 failures**. Both workflows fail; no
+separate failed JSON controls this round. All17 non-soak jobs conclude; optional
+soak skips; reported test skips/cancels0. **Release acceptance is BLOCKED.**
+
+All three actual Codex clients complete1k: Linux38.751s/Windows38.431s/Mac63.971s,
+model0/owned0. Journal Linux/Mac112 and Windows113 pass, including the revised live
+fork/model-child disconnect capture. AllLinux batch199/203/203 pass; Mac202/1 and
+Windows190/5 fail. Five175-file production installs, five strict ownership units,
+15 all-action fixtures,15 cancellation cases (60 scenarios),15 HTTP privacy cases
+(120 HTTP scenarios), and five supervised20-run integrity fixtures pass. The new
+HTTP factory gates and guardian evidence are natively exercised. They do not
+classify native79's136/142 candidates or resolve earlier unclassified observations.
+
+Ten test failures remain:
+- Windows raw concurrent screenshot fixture fails in its first pair:1/1 action,
+  cleanup_failed/server_timeout,6.692s. The existing actual public-server kill
+  fallback resolves (no kill failure code). Test duration7.457s; later pairs are
+  unexecuted. Other four raw screenshot cases pass; all five supervised cases pass.
+- Windows Firefox headless fresh1 stops4/23, locator click5,11.217s; headed fresh1
+  stops11/23, pointer click12,12.288s; direct-pipe fresh2 stops16/23, locator click17,
+ 9.705s/counter15. CleanupFailures[] for all three; later fresh runs unexecuted.
+  The new actual public child receipt is captured:true/exitObserved:true after
+  cleanup for headless/headed failures. This is root exit only, not tree cleanup,
+  click-cause evidence or permission to replay an unfinished input.
+- Windows FF4290 navigation ACKs despite two GETs/two finished responses,
+  first2.490s/last3.500s, browser report1.122s. Lifecycle timeout, forced:false,
+  cleanup terminated/temp removed. Later retry scenarios unexecuted.
+- Mac synchronous MCP975/1,000 timeout, known terminated/removed cleanup;
+ 119.425s test duration. Mac raw and SDK1k pass this sample; no older cause solved.
+- Original Mac Chromium highlight test fails Page.captureScreenshot protocol
+  capture after fonts loaded. Main151/1; modal follow-up unexecuted.
+- Original Windows Firefox ARIA case loses MCP connection (cause unknown), prompt
+  click times out5s, and popup-open click times out5s. Main149/3; legacy follow-up
+  unexecuted. Original Linux152 and Docker2 pass.
+
+All four separate Windows private/inherited/protocol-headed/stock-headed controls
+pass10/10=230 each, observed residual before parent force0/final0. Mac later batch
+server/pipe1k116.372/101.957s pass. Healthy later controls do not explain prior
+failures or justify a default transport/channel, forced click or deadline change.
+
+A separate20-run lifetime teardown retains two legacy candidates and20 actual
+birth ledgers. Queried PID8544 birth07:38:24.1470280Z differs from recorded owned
+8544 births07:38:15.1689620Z and07:38:20.5364520Z; child7416 is born after the
+replacement at07:38:24.1496150Z. All rows/root rows retained. This is recorded
+incarnation matching, not role/name/age/window filtering. Older unknowns remain
+unknown; no PID hint signals, releases leases or clears debt.
+
+All17 ordinary job log reads succeed without retry or artifact download. Evidence:
+worker-ci-eightieth-* and native80-*. Production source remains9591621; the diff
+throughbea4780 contains only seven non-doc test files. No source/dependency/schema/
+default/termination changes are hidden in this verification round.
+
+The mission is not complete. [RELEASE_BLOCKERS.md](RELEASE_BLOCKERS.md) records
+unrecoverable historical ownership evidence, unresolved native failures under
+unchanged budgets, and unsupported/operator-dependent acceptance. Draft PR2 stays
+unmerged and publishing disabled. No failed/unexecuted gate is promoted. Further
+release decisions require actual native cause/fix evidence and an explicit
+historical-uncertainty disposition; later passes cannot manufacture missing facts.
+
+### Archived native79 checkpoint
+
 Latest completed native79 at `d357c385203c342a3f39a927ff06eba9eabded59`:
 batch39735545547 reports1,446 passes/6 failures; original39735545519 reports459/2.
 Combined **1,905 reported test passes/8 failures**, plus Mac actual-Codex
@@ -73,7 +136,9 @@ Final local guardian/graph/cleanup24/24 eachNode22/24; HTTP2/2 eachNode20/22/24,
 Intermediate tests have separate phase/hash receipts and are not final proof.
 Fresh175-file production install, syntax, lint and diff checks exit0; no runtime
 entrypoint/dependency/default/schema changes.
-**NEXT ACTION: full native verification of live ownership evidence. Do not classify
+**Native80 is running atbea4780d370deec0c36ae64c965dfc24157b385d:
+batch39739439069 and original39739439372. Hold further pushes; pending is not PASS.
+NEXT ACTION: full native verification of live ownership evidence. Do not classify
 native79's136/142 candidates retrospectively, raise budgets, replay effects, or
 clear historical debt.**
 
