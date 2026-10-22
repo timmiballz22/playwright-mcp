@@ -1,0 +1,59 @@
+{
+  "source": "ab4e111badc3b59cdc12fdf6584c6f9ec5b1b364",
+  "scope": "Eight real-SQLite/owned-process/atomic-publication cases in each of four native lanes. Owned wire-close confirmation remains required for production retry; deliberately withheld signal/no-retry and later real test-owned exit remain distinct. This does not establish exact native98 OS cause or clear older exits/debt.",
+  "lanes": [
+    {
+      "job": "journal (ubuntu-latest, 22)",
+      "passedRealBoundaryCases": [
+        "confirmed worker exit after pre-COMMIT timeout permits bounded fresh initialization",
+        "lost init acknowledgement after real COMMIT preserves existing jobs and key",
+        "persistent real COMMIT pause exhausts the unchanged three-attempt initialization cap",
+        "store version changed between confirmed exit and retry is refused without repair",
+        "actual unconfirmed worker exit never authorizes an initialization retry",
+        "non-COMMIT initialization timeout keeps one attempt and its original phase",
+        "private witness publishes complete JSON without replacing a prior target",
+        "actual worker interruption before link cannot expose partial final witness JSON"
+      ]
+    },
+    {
+      "job": "journal (ubuntu-latest, 24)",
+      "passedRealBoundaryCases": [
+        "confirmed worker exit after pre-COMMIT timeout permits bounded fresh initialization",
+        "lost init acknowledgement after real COMMIT preserves existing jobs and key",
+        "persistent real COMMIT pause exhausts the unchanged three-attempt initialization cap",
+        "store version changed between confirmed exit and retry is refused without repair",
+        "actual unconfirmed worker exit never authorizes an initialization retry",
+        "non-COMMIT initialization timeout keeps one attempt and its original phase",
+        "private witness publishes complete JSON without replacing a prior target",
+        "actual worker interruption before link cannot expose partial final witness JSON"
+      ]
+    },
+    {
+      "job": "journal (windows-latest, 22)",
+      "passedRealBoundaryCases": [
+        "confirmed worker exit after pre-COMMIT timeout permits bounded fresh initialization",
+        "lost init acknowledgement after real COMMIT preserves existing jobs and key",
+        "persistent real COMMIT pause exhausts the unchanged three-attempt initialization cap",
+        "store version changed between confirmed exit and retry is refused without repair",
+        "actual unconfirmed worker exit never authorizes an initialization retry",
+        "non-COMMIT initialization timeout keeps one attempt and its original phase",
+        "private witness publishes complete JSON without replacing a prior target",
+        "actual worker interruption before link cannot expose partial final witness JSON"
+      ]
+    },
+    {
+      "job": "journal (macos-15-intel, 22)",
+      "passedRealBoundaryCases": [
+        "confirmed worker exit after pre-COMMIT timeout permits bounded fresh initialization",
+        "lost init acknowledgement after real COMMIT preserves existing jobs and key",
+        "persistent real COMMIT pause exhausts the unchanged three-attempt initialization cap",
+        "store version changed between confirmed exit and retry is refused without repair",
+        "actual unconfirmed worker exit never authorizes an initialization retry",
+        "non-COMMIT initialization timeout keeps one attempt and its original phase",
+        "private witness publishes complete JSON without replacing a prior target",
+        "actual worker interruption before link cannot expose partial final witness JSON"
+      ]
+    }
+  ],
+  "totalBoundaryPasses": 32
+}

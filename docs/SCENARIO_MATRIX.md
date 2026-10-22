@@ -1,6 +1,81 @@
 # Mandatory scenario evidence
 
-## Latest completed checkpoint — native98 at732c913; acceptance incomplete
+## Last reviewed implementation checkpoint — native99 at ab4e111; acceptance incomplete
+
+[Batch39868413381](https://github.com/timmiballz22/playwright-mcp/actions/runs/39868413381)
+reports **1,665 passes / 5 failures**; [original39868413347](https://github.com/timmiballz22/playwright-mcp/actions/runs/39868413347)
+reports **605 / 3**. Completed summaries total **2,270 / 8**, reported skips/cancels0.
+The primary Mac actual-client failure is separate from those counts. Both workflows
+and every job are terminal. All18 logs resolve:17 first reads succeed; Ubuntu22
+journal log120136384912 first returns an empty invalid-zip error, then its ordinary
+retry succeeds. Both attempts are retained; this is a retrieval failure.
+
+All five installed-package checks/both parent-death variants pass. Components are
+Linux22/24/Mac154 each and Windows155, all617 pass; all12 actual schema races pass.
+The six narrow init recovery and two atomic publication boundaries pass in all four
+native component lanes (32 cases). Recovery requires an actual confirmed worker
+close and exact init/schema_commit timeout, stays within the existing three
+attempts, and never replays actions. Node20 durable SQLite/jobs remain unsupported.
+
+Main Linux20/22/24 is208/1,212/1,212/1; Mac212/1, Windows204/1. The strict first-frame
+regression fails on all three Linux lanes: JPEG320×153/158/158 with metadata320×240.
+Mac has a full320×240 JPEG but metadata500×153; it is not a short/gray JPEG in this
+sample. All four traces show window ACK before metrics dispatch, resize before
+metrics ACK, and first native frame after API resolution, with no dropped trace
+entries. Request ordering and resize notification do not prove image freshness or
+consistent metadata. No frame skip, warmup, encoder rewrite, extra capture request
+or assertion/deadline change was introduced; prepared core remains9f9750ae.
+
+Windows privacy /401 times out before any request/response: browser startup8504ms,
+start audit422ms and worker84ms consume the fixed10s budget. No HTTP status or
+failureKind is received, so this does not establish401/403 response classification.
+All60 cancellation-witness observations pass this sample. The four native98 IDs
+5520/6136/6452/6484 still lack same-snapshot rows/births and remain unresolved.
+A separate native99 pair10 observation is scoped0/legacy-only1 with its full legacy
+row and both root rows retained; auditHelperMatchedfalse is only a label. No role,
+name, age or time-window filtering, signaling authority from hints, or retrospective
+clearance of native94/89/96 or136/142 gaps follows from healthy later samples.
+
+Primary actual Codex1000 passes Linux37.302s and Windows38.534s, modelTurns0/owned0.
+Primary Mac times out922 with interrupted923, result available/operator attention
+false and execution cleanup terminated/temp removed. Failed evidence remains;
+empty hints or journalExitUnconfirmedfalse do not establish all process exits.
+The separate instrumented Mac actual1000 passes87.798s, model0/owned0. Four fresh
+Mac raw server/pipe controls pass1000 each (88.313/104.907/112.423/116.749s); four
+Windows Firefox private/inherited/protocol-headed/stock-headed controls each pass
+10 fresh runs/230 actions with scoped0 before force/final. These independent
+samples do not waive primary failure, establish a cause, or justify a new default.
+
+Original Linux and Mac200/0 each, Windows197/3. Three additional automated Mac
+modal cases, Windows legacy3 and Docker2 pass. This is not a manual operator
+walkthrough. Stock PNG12/12, PCM11/12 and video decode11/12 pass; the three original
+failures are Windows WebKit original PCM, stock PCM and original VP9 readiness.
+All93 captured original video input headers are320×240. Neither fresh-video gate
+runs because Mac original tests pass; native98 Chrome gray inputs remain recorded.
+
+A separate Linux12-case explicit-viewport experiment is rejected: control1/6 full
+first JPEG versus intervention0/6, red first pixels3/6 each, despite all final DOM
+viewports being320×240/red. No candidate was shipped. Stable Playwright1.64.1 is
+already pinned. Related public issues42274/42219 and revert42411 concern other
+capture conditions and do not establish this defect's cause or a validated fix.
+No alpha upgrade, backend/default switch, longer budget or capture workaround is
+justified by those reports. Remaining reproducible failures block release.
+
+[Terminal summary](evidence/native99-summary.json),
+[first-frame proof](evidence/native99-viewport-native-failure-proof.json),
+[native recovery/publication](evidence/native99-native-recovery-publication-proof.json),
+[cancellation observations](evidence/native99-native-cancellation-witness-proof.json),
+[primary Mac failure](evidence/native99-primary-macos-failure-proof.json),
+[Windows startup](evidence/native99-http-startup-failure-proof.json),
+[rejected experiment](evidence/native99-explicit-viewport-proof.json),
+[upstream research](evidence/native99-upstream-capture-research-proof.json).
+The archive contains209 files/7,568,634 bytes plus its manifest; no DB/key contents.
+The earlier local namespace raw-log loss remains disclosed in native99 local proof;
+no reconstruction or historical clearance is claimed. Subsequent documentation-only
+commits retain this implementation checkpoint and require their own CI assessment.
+
+
+## Previous completed checkpoint — native98 at732c913; acceptance incomplete
 
 [Batch39859258163](https://github.com/timmiballz22/playwright-mcp/actions/runs/39859258163)
 reports **1,626 passes / 12 failures**; [original39859258064](https://github.com/timmiballz22/playwright-mcp/actions/runs/39859258064)
