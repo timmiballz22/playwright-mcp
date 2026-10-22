@@ -1,0 +1,63 @@
+✔ chromium: canonical localhost aliases cannot escape an unapproved port (1511.073545ms)
+✔ chromium: canonical IPv6 loopback aliases cannot escape an unapproved port (1462.655126ms)
+✔ firefox: canonical localhost aliases cannot escape an unapproved port (5040.311645ms)
+✔ firefox: canonical IPv6 loopback aliases cannot escape an unapproved port (4840.655123ms)
+✖ webkit: canonical localhost aliases cannot escape an unapproved port (433.469239ms)
+✖ webkit: canonical IPv6 loopback aliases cannot escape an unapproved port (431.666301ms)
+✔ a real page main-thread freeze cannot defeat the independent execution deadline (9366.68455ms)
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":8,"observed":0}
+✔ real firefox: HTTP error codes and script exceptions keep response secrets out of reports (21098.525688ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 6
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 44449.695613
+
+✖ failing tests:
+
+test at local-batch/encoded-origin.test.mjs:12:3
+✖ webkit: canonical localhost aliases cannot escape an unapproved port (433.469239ms)
+  AssertionError [ERR_ASSERTION]: {"control":true,"result":{"schemaVersion":1,"runId":"907f6c40-b2c2-4b4b-b5f9-50941e3caebc","browser":"webkit","total":4,"ok":false,"reason":"cleanup_failed","completed":0,"recentSteps":[],"failedStep":null,"reportPath":null,"execution":{"mode":"supervised","forced":false,"cleanup":"failed","tempCleanup":"removed","supervisorPid":1144678,"workerPid":1144685,"browserPids":[],"terminationFailures":["browser_ownership_unconfirmed"]},"completionCertainty":"confirmed_lower_bound","retrySafe":false,"durationMs":431}}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/encoded-origin.test.mjs:35:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/encoded-origin.test.mjs:12:3
+✖ webkit: canonical IPv6 loopback aliases cannot escape an unapproved port (431.666301ms)
+  AssertionError [ERR_ASSERTION]: {"control":true,"result":{"schemaVersion":1,"runId":"cd43e451-2c50-4794-ad17-5e06db8ac6e8","browser":"webkit","total":4,"ok":false,"reason":"cleanup_failed","completed":0,"recentSteps":[],"failedStep":null,"reportPath":null,"execution":{"mode":"supervised","forced":false,"cleanup":"failed","tempCleanup":"removed","supervisorPid":1144708,"workerPid":1144715,"browserPids":[],"terminationFailures":["browser_ownership_unconfirmed"]},"completionCertainty":"confirmed_lower_bound","retrySafe":false,"durationMs":428}}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/encoded-origin.test.mjs:35:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

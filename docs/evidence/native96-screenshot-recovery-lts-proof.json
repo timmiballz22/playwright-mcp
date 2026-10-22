@@ -1,0 +1,170 @@
+{
+  "scope": "Three actual local Node test executions; six calibrated conditions each, unchanged production5s capture budget. Real protocol-error objects around successful owned PNG captures; cause/native recovery not proven.",
+  "results": [
+    {
+      "node": 20,
+      "fixture": "chromium_capture_recovery_calibration",
+      "engine": "chromium",
+      "cases": [
+        {
+          "mode": "healthy",
+          "passed": true,
+          "failure": "none",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 44
+        },
+        {
+          "mode": "first_unavailable",
+          "passed": true,
+          "failure": "none",
+          "attempts": 2,
+          "actualCaptures": 2,
+          "elapsedMs": 69
+        },
+        {
+          "mode": "persistent_unavailable",
+          "passed": false,
+          "failure": "unavailable",
+          "attempts": 2,
+          "actualCaptures": 2,
+          "elapsedMs": 73
+        },
+        {
+          "mode": "other_protocol",
+          "passed": false,
+          "failure": "other_protocol",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 30
+        },
+        {
+          "mode": "closed_target",
+          "passed": false,
+          "failure": "closed_target",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 35
+        },
+        {
+          "mode": "deadline",
+          "passed": false,
+          "failure": "timeout",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 5018
+        }
+      ]
+    },
+    {
+      "node": 22,
+      "fixture": "chromium_capture_recovery_calibration",
+      "engine": "chromium",
+      "cases": [
+        {
+          "mode": "healthy",
+          "passed": true,
+          "failure": "none",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 45
+        },
+        {
+          "mode": "first_unavailable",
+          "passed": true,
+          "failure": "none",
+          "attempts": 2,
+          "actualCaptures": 2,
+          "elapsedMs": 93
+        },
+        {
+          "mode": "persistent_unavailable",
+          "passed": false,
+          "failure": "unavailable",
+          "attempts": 2,
+          "actualCaptures": 2,
+          "elapsedMs": 66
+        },
+        {
+          "mode": "other_protocol",
+          "passed": false,
+          "failure": "other_protocol",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 37
+        },
+        {
+          "mode": "closed_target",
+          "passed": false,
+          "failure": "closed_target",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 35
+        },
+        {
+          "mode": "deadline",
+          "passed": false,
+          "failure": "timeout",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 5009
+        }
+      ]
+    },
+    {
+      "node": 24,
+      "fixture": "chromium_capture_recovery_calibration",
+      "engine": "chromium",
+      "cases": [
+        {
+          "mode": "healthy",
+          "passed": true,
+          "failure": "none",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 51
+        },
+        {
+          "mode": "first_unavailable",
+          "passed": true,
+          "failure": "none",
+          "attempts": 2,
+          "actualCaptures": 2,
+          "elapsedMs": 78
+        },
+        {
+          "mode": "persistent_unavailable",
+          "passed": false,
+          "failure": "unavailable",
+          "attempts": 2,
+          "actualCaptures": 2,
+          "elapsedMs": 51
+        },
+        {
+          "mode": "other_protocol",
+          "passed": false,
+          "failure": "other_protocol",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 33
+        },
+        {
+          "mode": "closed_target",
+          "passed": false,
+          "failure": "closed_target",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 47
+        },
+        {
+          "mode": "deadline",
+          "passed": false,
+          "failure": "timeout",
+          "attempts": 1,
+          "actualCaptures": 1,
+          "elapsedMs": 5015
+        }
+      ]
+    }
+  ]
+}

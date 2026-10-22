@@ -1,4 +1,40 @@
-# Private Playwright encoder patch
+# Private Playwright reliability patches
+
+## Prospective screenshot recovery patch after native94
+
+The current local candidate retains the reviewed VP9 flags and adds one retry
+of Chromium's exact `Protocol error (Page.captureScreenshot): Unable to capture screenshot`.
+The retry is read-only and uses the same original progress/deadline and capture
+arguments. It requires a real ProtocolError for that method and exact message.
+Persistent unavailability still fails after two attempts; other errors, closed
+targets and timeouts do not qualify. There is no sleep, warmup, new browser action,
+model-visible option or raised action/RPC/test/job limit.
+
+Native93 has two actual capture failures and native94's fresh controls have
+another. The local calibration wraps real installed Chromium: it captures the
+owned red PNG, then injects a calibrated actual ProtocolError. Baseline fails a
+single unavailable error; the patched path recovers on the second capture. This
+validates selection and bounds, not the native engine's cause or native recovery.
+The checked-in `local-batch/screenshot-recovery.test.mjs` also verifies persistent,
+distinct protocol, real closed-target and original5s-deadline cases. Native95
+fdd83e0 is still the earlier metadata-only source and cannot validate this retry.
+
+Current prepared core SHA-256:
+`2e36b79ec8f27082edc4bb688abc800cfbc351d5c5c3c9a2320629939cc29686`.
+Preparation accepts exact registry829 bytes, reviewed previous metadata-only3eb
+bytes (migrates to2e36), or current2e36 (idempotent). Matrix-onlyB46 and unknown
+bytes remain rejected. A genuine detached clean checkout with `npm ci --ignore-scripts`
+verifies original→current preparation, unchanged inode/mtime on repeat, and
+rejection without rewriting of a deliberately altered dependency. Main checkout
+also verifies the3eb→2e36 migration. No runtime source clone is packaged.
+A fresh installed production package passes all runtime smokes on Node22 with
+the2e36 core; native package/engine acceptance remains pending.
+
+The original encoder metadata evidence below remains historical and does not
+prove a gray-frame fix. The new retry does not change MJPEG framing, padding,
+encoded frame selection, VP9 options, Windows media or ownership behavior.
+
+## Earlier metadata-only evidence
 
 Native88 original workflow39788239509 at702b616 verifies the actual Mac WebKit
 producer now passes the unchanged320×240 decoded-red threshold and six-click
@@ -25,16 +61,16 @@ The source module is `packages/playwright-core/src/server/videoRecorder.ts` at
 Playwright v1.64.1. The corresponding installed `lib/coreBundle.js` hashes are:
 
 - Registry source: `829521b67ed7be90c7d6d6098ff39f2241562d47e4ad7ccab13710924a56001d`.
-- Candidate prepared source: `3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192`.
+- Earlier metadata-only prepared source: `3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192`.
 
 The earlier matrix-only source was `b46a37ecb04912c639ffd32f890269ea33a612dfdcb43f518bac76b85cc0fa9f`.
-This candidate accepts only exact registry or candidate bytes. Use a clean
+The current candidate additionally accepts the exact reviewed metadata-only3eb bytes for migration. Use a clean
 `npm ci` when upgrading an existing matrix-only checkout; unknown/old prepared
 bytes are not silently modified. Browser APIs, encoded workflow permissions and
 existing timeouts remain unchanged.
 
 `npm ci` runs the deterministic prepare script after installing the pinned
-registry dependencies. It accepts only the exact original or prepared bytes,
+registry dependencies. It accepts only the exact registry, reviewed previous3eb or current2e36 bytes,
 checks the dependency stays inside this checkout's physical node_modules, and
 refuses unreviewed versions, shared/link targets and incomplete private output.
 It makes one atomic replacement of its own installed source file. A repeated

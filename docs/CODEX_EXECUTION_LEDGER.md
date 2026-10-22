@@ -2240,7 +2240,7 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
 | G14 ADVANCED | FAILED | native94 Mac video frame-zero gray independently confirmed | Bounded passive input geometry observer native pending |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
-| G16 DOCUMENTATION | IN PROGRESS | native93 bounded audit:25 top-level docs,199 local targets,2 Markdown anchors,0 issues;139 external targets not fetched | Full parser/external/shortcut-reference coverage and interactive operator walkthroughs remain |
+| G16 DOCUMENTATION | IN PROGRESS | Bounded audit25 docs/217 local links/2 anchors/0 issues; all45 unique explicit HTTPS links return200 via unauthenticated HEAD | External bodies, full Markdown syntax and interactive operator walkthrough remain unverified |
 | G17 AUDIT EVIDENCE | IN PROGRESS | native94 full17 logs after one normal retry, scoped survivor and127 legacy rows retained | No role/age filtering or historical ownership clearance |
 | G18 CLEAN MERGE | BLOCKED | Draft PR2; native94 failed; geometry observer locally passing | Critical gates before merge/release |
 
@@ -6951,3 +6951,63 @@ native66 or native67 permission uncertainty. Windows private/inherited controls
 retain runWorkflow routing and are not stock-browser isolation or causal fixes.
 Registry latest stable remains1.64.1 on2026-10-22, no prerelease upgrade.
 Evidence worker-ci-seventieth-*, native70-*. No publish or merge.
+
+## Native95 in progress and independent local checks
+
+Candidate fdd83e0 is running [batch39837568942](https://github.com/timmiballz22/playwright-mcp/actions/runs/39837568942)
+and [original39837569201](https://github.com/timmiballz22/playwright-mcp/actions/runs/39837569201).
+No active-step observation is counted as a test pass; logs await both workflow and
+all-job terminal status. The JPEG observer passes six actual local video cases
+on Node20/22/24,48 frame headers all320×240.
+
+External documentation check:45 unique explicit HTTPS inline targets across25
+top-level docs, all GitHub, return200 with normal TLS/redirects and unauthenticated
+HEAD, no response-body read. Three concurrent requests/five seconds per request;
+not content review, authenticated installation verification or full Markdown parsing.
+[Proof](evidence/native95-doc-external-proof.json).
+
+Local native94 failure references:6 pass/2 fail. Encoded-origin hardcodes all
+engines; its WebKit cases fail with this host's known unavailable engine setup.
+Chromium/Firefox alias cases, frozen-page and Firefox HTTP privacy pass. This is
+not a macOS/Windows repair. [Proof](evidence/native95-local-failure-references-proof.json).
+A pending failure-only frozen-page assertion message now retains execution cleanup
+codes/PIDs on mismatch, with identical original assertions and deadlines.
+
+The retained later Windows candidate rows provide no exact-lifetime or same-PID
+different-birth match for the HTTP survivor. Absence from these projected rows
+cannot establish exit; they are not full later CIM snapshots.
+[Comparison](evidence/native94-scoped-survivor-later-comparison.json).
+
+Prospective local observer guard enforces the64KiB scan limit even across JPEG
+marker-fill bytes; native95 remains the earlier fdd83e0 source. The parser accepts
+a valid320×240 SOF and rejects five malformed/over-limit inputs. No production
+code change or causal gray-frame fix. Frozen-page diagnostic case passes locally
+with the original10s deadline.
+
+## Prospective local capture recovery (excluded from active native95)
+
+The current local prepare script produces2e36b79, retaining VP9 flags and adding
+one retry only for the exact real Chromium capture-unavailable ProtocolError.
+It reuses the original progress deadline/arguments; persistent errors fail after
+two attempts, other/closed/timeout errors are not retried. No sleep, warmup,
+input replay, raised action/RPC/test/job limit or gray-frame repair is claimed.
+Native95 fdd83e0 still runs metadata-only3eb and cannot validate this change.
+
+A trusted baseline around real owned PNG capture fails one calibrated unavailable
+error; fixed calibration recovers. The checked-in Node test passes six conditions
+on each Node20/22/24 (18 total): healthy, one/persistent unavailable, other
+ProtocolError, actual closed target and5s deadline. First/persistent unavailable
+are exactly2 attempts; others1; deadline remains approximately5s. This verifies
+selection/bounds, not the native engine's cause or native recovery. Original
+video and stock PNG/PCM cases pass6/6 locally on Chromium/Firefox.
+
+Fresh detached checkout installs exact registry bytes with scripts disabled,
+then original→2e36 preparation succeeds; repeat preserves inode/mtime; deliberate
+unknown bytes are rejected without rewrite. Main3eb→2e36 migration also succeeds.
+Matrix-onlyB46 remains rejected. Fresh production install/smokes on Node22 pass
+with the2e36 core and source hashes unchanged during verification.297-file dry
+pack excludes tests/evidence; typecheck/lint pass.
+[Dependency scope](DEPENDENCY_PATCHES.md),
+[LTS calibration](evidence/native96-screenshot-recovery-lts-proof.json),
+[clean prepare](evidence/native96-clean-prepare-proof.json),
+[production install](evidence/native96-frozen-package-proof.json).

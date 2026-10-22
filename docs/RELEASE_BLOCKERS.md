@@ -688,3 +688,31 @@ including when the test body passed. It does not add a close wait, alter SDK lim
 print stderr contents or turn an unconfirmed close into success. Actual stdio
 healthy calibration passes; the existing1,048,577-byte producer still fails and
 emits the bounded overflow receipt. EOF-unconfirmed native calibration is pending.
+
+## Prospective local capture recovery (excluded from active native95)
+
+The current local prepare script produces2e36b79, retaining VP9 flags and adding
+one retry only for the exact real Chromium capture-unavailable ProtocolError.
+It reuses the original progress deadline/arguments; persistent errors fail after
+two attempts, other/closed/timeout errors are not retried. No sleep, warmup,
+input replay, raised action/RPC/test/job limit or gray-frame repair is claimed.
+Native95 fdd83e0 still runs metadata-only3eb and cannot validate this change.
+
+A trusted baseline around real owned PNG capture fails one calibrated unavailable
+error; fixed calibration recovers. The checked-in Node test passes six conditions
+on each Node20/22/24 (18 total): healthy, one/persistent unavailable, other
+ProtocolError, actual closed target and5s deadline. First/persistent unavailable
+are exactly2 attempts; others1; deadline remains approximately5s. This verifies
+selection/bounds, not the native engine's cause or native recovery. Original
+video and stock PNG/PCM cases pass6/6 locally on Chromium/Firefox.
+
+Fresh detached checkout installs exact registry bytes with scripts disabled,
+then original→2e36 preparation succeeds; repeat preserves inode/mtime; deliberate
+unknown bytes are rejected without rewrite. Main3eb→2e36 migration also succeeds.
+Matrix-onlyB46 remains rejected. Fresh production install/smokes on Node22 pass
+with the2e36 core and source hashes unchanged during verification.297-file dry
+pack excludes tests/evidence; typecheck/lint pass.
+[Dependency scope](DEPENDENCY_PATCHES.md),
+[LTS calibration](evidence/native96-screenshot-recovery-lts-proof.json),
+[clean prepare](evidence/native96-clean-prepare-proof.json),
+[production install](evidence/native96-frozen-package-proof.json).

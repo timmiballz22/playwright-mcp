@@ -6,16 +6,18 @@ import { syncBuiltinESMExports } from 'node:module';
 
 export function jpegSize(bytes) {
   if (!Buffer.isBuffer(bytes) || bytes.length < 4 || bytes[0] !== 255 || bytes[1] !== 216) return undefined;
+  const limit = Math.min(bytes.length, 65536);
   // JPEG markers preceding scan data. Never scan entropy-coded image content.
-  for (let offset = 2; offset < Math.min(bytes.length, 65536);) {
+  for (let offset = 2; offset < limit;) {
     if (bytes[offset++] !== 255) return undefined;
-    while (bytes[offset] === 255) offset++;
+    while (offset < limit && bytes[offset] === 255) offset++;
+    if (offset >= limit) return undefined;
     const marker = bytes[offset++];
     if (marker === 218 || marker === 217) return undefined;
     if (marker === 1 || (marker >= 208 && marker <= 215)) continue;
-    if (offset + 2 > bytes.length) return undefined;
+    if (offset + 2 > limit) return undefined;
     const length = bytes.readUInt16BE(offset);
-    if (length < 2 || offset + length > bytes.length) return undefined;
+    if (length < 2 || offset + length > limit) return undefined;
     if ([192, 193, 194, 195, 197, 198, 199, 201, 202, 203, 205, 206, 207].includes(marker)) {
       if (length < 8) return undefined;
       return { width: bytes.readUInt16BE(offset + 5), height: bytes.readUInt16BE(offset + 3) };

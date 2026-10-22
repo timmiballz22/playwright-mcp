@@ -27,10 +27,15 @@ test('a real page main-thread freeze cannot defeat the independent execution dea
       { type: 'goto', url: origin }, { type: 'waitFor', selector: '#never-present' },
     ] }, { artifactsDir: root, allowedOrigins: [origin], onEvent: event => { if (event.pid) owned.push(event.pid); } });
     const elapsed = performance.now() - start;
-    assert.equal(entered, 1, 'Browser must reach the freeze trigger, not merely fail launch');
-    assert.equal(result.ok, false); assert.equal(result.reason, 'timeout'); assert.equal(result.completed, 1);
-    assert.ok(elapsed < 12000, 'Independent10s boundary must return within bounded scheduling slack');
-    assert.equal(result.execution.cleanup, 'terminated'); assert.equal(result.execution.tempCleanup, 'removed');
+    // Failure-only fixed execution facts. Preserve the original assertions and
+    // deadlines; missing cleanup diagnostics must not hide behind a reason mismatch.
+    const diagnostic = JSON.stringify({ fixture: 'frozen_page_execution', entered,
+      elapsedMs: Math.round(elapsed), ok: result.ok, reason: result.reason,
+      completed: result.completed, execution: result.execution });
+    assert.equal(entered, 1, 'Browser must reach the freeze trigger, not merely fail launch; ' + diagnostic);
+    assert.equal(result.ok, false, diagnostic); assert.equal(result.reason, 'timeout', diagnostic); assert.equal(result.completed, 1, diagnostic);
+    assert.ok(elapsed < 12000, 'Independent10s boundary must return within bounded scheduling slack; ' + diagnostic);
+    assert.equal(result.execution.cleanup, 'terminated', diagnostic); assert.equal(result.execution.tempCleanup, 'removed', diagnostic);
     assert.deepEqual(await ownedDescendants(owned), []); verified = true;
   } finally {
     fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));

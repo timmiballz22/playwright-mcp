@@ -1,5 +1,11 @@
 # Fork changes (unreleased)
 
+- Add one same-deadline read-only retry for Chromium's exact capture-unavailable
+  protocol error. Persistent/other/closed/timeout failures remain failures.
+  Real-browser calibrated controls and fresh Node22 production package pass
+  locally; native recovery remains unverified. Prepared core identity changes
+  from3eb68a0 to2e36b79; known3eb migration is guarded, matrix-onlyB46 remains rejected.
+
 - Consume SDK acceptance-client stderr to prevent pipe backpressure; retain only
   bounded fixed guardian/journal facts shared with the Codex verifier. Add fixed
   CI failure classes/durations and conservative stock-browser close diagnostics.
