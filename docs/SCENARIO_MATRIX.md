@@ -1,5 +1,13 @@
 # Mandatory scenario evidence
 
+Current checkpoint: native84 at096b617 reports1773 passes/10 failures with
+Windows main batch unexecuted after package guardian initialization failure.
+Native85 at23b07fd is running with a locally verified packaged VP9 metadata fix,
+source-paint/readiness diagnostics and bounded journal init phases. Pending native
+outcomes are not passes. Historical ownership and remaining gates stay open;
+see CODEX_EXECUTION_REPORT.md, CODEX_EXECUTION_LEDGER.md and RELEASE_BLOCKERS.md.
+Earlier checkpoint sections below retain their historical source scopes.
+
 Latest completed native81 at93da4be:1,904 reported passes/9 failures, plus Mac
 actual timeout994 and one failed protocol-headed diagnostic. All journal lanes,
 15 action/HTTP/cancellation cases each and five176-file installs pass. Raw Firefox

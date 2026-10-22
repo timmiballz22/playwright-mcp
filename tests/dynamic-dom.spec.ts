@@ -67,3 +67,57 @@ test('original wheel input materializes virtual rows and detached references can
   console.log(JSON.stringify({ fixture: 'owned_virtual_rows', totalRows: 400, renderedRows: 20,
     finalRow: 399, confirmedEffects: 1, detachedReferenceRejected: true }));
 });
+
+test('original disabled snapshot reference remains actionable after gated hydration without duplicate effects', async ({ startClient, server }) => {
+  let releaseHydration!: () => void;
+  let effectHits = 0;
+  const hydrationRequested = new Promise<void>(resolve => {
+    server.route('/hydrate', (_request, response) => {
+      releaseHydration = () => response.end('ready');
+      resolve();
+    });
+  });
+  server.route('/effect', (request, response) => {
+    expect(request.method).toBe('POST');
+    effectHits++;
+    response.end('ok');
+  });
+  server.setContent('/', `<!doctype html><title>Owned hydration</title>
+    <button disabled>Hydrated Save</button><output>Hydration pending</output><script>
+    const button=document.querySelector('button'),output=document.querySelector('output');
+    let effects=0;
+    fetch('/hydrate').then(r=>r.text()).then(()=>{
+      button.onclick=()=>{output.textContent='Saved:'+String(++effects);fetch('/effect',{method:'POST'})};
+      output.textContent='Hydration ready';button.disabled=false;
+    });
+  </script>`, 'text/html; charset=utf-8');
+  const { client } = await startClient({ args: ['--isolated'] });
+  const call = async (name: string, args: Record<string, unknown> = {}) => {
+    const result = await client.callTool({ name, arguments: args });
+    expect(result.isError, JSON.stringify(result)).not.toBe(true);
+    return result.content.filter(item => item.type === 'text').map(item => item.text).join('\n');
+  };
+  try {
+    await call('browser_navigate', { url: server.PREFIX });
+    await hydrationRequested;
+    const initial = await call('browser_snapshot');
+    expect(initial).toContain('Hydration pending');
+    const reference = initial.match(/button "Hydrated Save" \[disabled\] \[ref=([^\]]+)\]/);
+    expect(reference, initial).toBeTruthy();
+    expect(effectHits).toBe(0);
+    releaseHydration();
+    await call('browser_wait_for', { text: 'Hydration ready' });
+    const effect = server.waitForRequest('/effect');
+    void effect.catch(() => {});
+    await call('browser_click', { target: reference![1] });
+    await effect;
+    const final = await call('browser_snapshot');
+    expect(final).toContain('Saved:1'); expect(final).not.toContain('Saved:2');
+    expect(effectHits).toBe(1);
+    await call('browser_close');
+    console.log(JSON.stringify({ fixture: 'owned_gated_hydration', initiallyDisabled: true,
+      originalReferenceUsed: true, confirmedPostEffects: effectHits }));
+  } finally {
+    releaseHydration?.();
+  }
+});

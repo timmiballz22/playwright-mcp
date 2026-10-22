@@ -1,5 +1,12 @@
 # Execution ledger
 
+Local follow-up excluded from native85: original disabled snapshot references
+remain usable after response-gated hydration and an explicit ready wait. Exactly
+one click produces one independently observed POST; no effect occurs before
+initialization. Chromium/Firefox2 tests each Node20/22/24 and strict typecheck pass.
+This does not make premature clicks on enabled-but-unhydrated controls safe or
+change product waiting/retry behavior. Evidence: native85-hydration-proof.json.
+
 ## Resume checkpoint — 2026-10-22
 
 ## Current checkpoint — native84 complete; combined fix awaiting native verification

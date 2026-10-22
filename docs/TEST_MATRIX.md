@@ -1,5 +1,13 @@
 # Current acceptance coverage
 
+Current checkpoint: native84 at096b617 reports1773 passes/10 failures with
+Windows main batch unexecuted after package guardian initialization failure.
+Native85 at23b07fd is running with a locally verified packaged VP9 metadata fix,
+source-paint/readiness diagnostics and bounded journal init phases. Pending native
+outcomes are not passes. Historical ownership and remaining gates stay open;
+see CODEX_EXECUTION_REPORT.md, CODEX_EXECUTION_LEDGER.md and RELEASE_BLOCKERS.md.
+Earlier checkpoint sections below retain their historical source scopes.
+
 Latest completed native82 atbbf4764 reports1,929 test passes/11 failures plus
 four failed Windows diagnostic controls. All original platforms156 each, Docker2,
 Mac modal3 and stderr probes12 pass; remaining native browser failures still

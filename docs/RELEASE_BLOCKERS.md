@@ -1,19 +1,27 @@
 # Release acceptance is blocked
 
 The mission is incomplete. Do not merge or publish this candidate as release-ready.
-Latest completed native source is `e95f0298030fd97b460d8798a2fd57a770123873`
-(native83):1,937 reported test passes/10 failures, plus Mac actual-client timeout953
-and six failed diagnostic controls. Both workflows fail. The draft is
-[PR2](https://github.com/timmiballz22/playwright-mcp/pull/2).
+Latest completed native84 at `096b617` reports1773 passes/10 failures, with
+Windows main batch unexecuted after installed guardian initialization failed.
+Original media failures include shifted/gray frames and Windows WebKit readiness;
+Mac raw/SDK/actual-client deadlines remain. Full evidence and reduced-coverage
+limits are in CODEX_EXECUTION_REPORT.md and evidence/native84-summary.json.
 
-Native strict typechecking, fresh-anchor graph contracts and bounded stderr probes
-pass. Independent locator/PCM/119-file package checks pass locally; new VP9 pixel
-regression fails Firefox and has a causal encoder-metadata control, with no shipped
-fix. Future phase/lifetime receipts retain new native uncertainty without widening
-deadlines, dropping zero-candidate assertions or retroactive classification.
-One deadline candidate lacks original births/current rows and remains unclassified.
-Full source phases and scopes are in the execution report. Missing old evidence
-never authorizes stopping independent work or skipping remaining acceptance.
+Native85 is running at `23b07fd` ([batch39768881695](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881695),
+[original39768881668](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881668)).
+It contains a deterministic, hash-pinned build-time VP9 matrix patch and bundled
+Playwright runtime. Local scripts-disabled297-file production installation and
+all smoke/guardian checks pass. PCM/video4/4 each Node20/22/24 and actual Codex1k
+zero-model probe pass. These do not substitute for native verification or explain
+old gray frames, Windows init failures, codec readiness or historical ownership.
+Local Docker build failed npm certificate validation; no trust workaround used.
+
+Fixed journal initialization phases retain a last-received lower bound without
+changing watchdogs, ACK/state authority, retry or cleanup rules. Original video
+pixel assertions and the exact5s visible wait remain intact. New source-paint
+witnesses establish fixture readiness prospectively. No old candidate/birth gaps,
+136/142 cohorts or lease/debt uncertainty are cleared. Independent work continues.
+The candidate remains [draft PR2](https://github.com/timmiballz22/playwright-mcp/pull/2).
 
 ## Historical ownership evidence cannot be reconstructed
 
@@ -30,7 +38,7 @@ improves future evidence; it does not clear historical uncertainty, change journ
 debt, authorize PID-based signals or establish a causal fix for old observations.
 No name/role/age/observation-window exclusion is an acceptable substitute.
 
-## Native execution failures remain unresolved
+## Historical native80 execution failures remain unresolved
 
 Native80 has Windows raw screenshot close timeout, Firefox headless/headed/pipe
 input stalls and retry lifecycle timeout; Mac synchronous MCP timeout; Mac
@@ -60,7 +68,7 @@ historical evidence, plus completion or an explicitly reviewed supported scope
 for remaining gates. This document is a blocker record, not a waiver, successful
 acceptance, retrospective classification, merge approval or publication approval.
 
-## Original VP9 color fidelity (P2, reproduced locally)
+## Original VP9 color fidelity — historical prepatch checkpoint (P2)
 
 The new recorded-frame regression passes Chromium and fails Firefox: the same
 owned red recording decodes[254,0,0] versus[255,24,0]. VP9 matrix metadata is
