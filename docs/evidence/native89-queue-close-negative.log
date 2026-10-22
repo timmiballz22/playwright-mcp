@@ -1,0 +1,30 @@
+TAP version 13
+# {"fixture":"controlled_queue_close_fault","realJournalExitConfirmed":true}
+# {"fixture":"controlled_queue_close_fault","realJournalExitConfirmed":true}
+# {"fixture":"controlled_queue_close_fault","realJournalExitConfirmed":true}
+# Journal queue-clock fixture preserved: acceptance or cleanup not confirmed
+# Subtest: monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+not ok 1 - monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+  ---
+  duration_ms: 199.338306
+  type: 'test'
+  location: '/workspace/playwright-mcp/local-batch/jobs/journal.test.mjs:417:22'
+  failureType: 'testCodeFailure'
+  error: 'Queue-clock fixture journal close failed'
+  code: 'ERR_TEST_FAILURE'
+  name: 'AggregateError'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal.test.mjs:446:32)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 279.702259
