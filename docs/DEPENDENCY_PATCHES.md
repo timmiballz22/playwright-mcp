@@ -113,5 +113,6 @@ and same first browser canvas plus an independent ffmpeg frame-zero decode, shar
 the original5s diagnostic budget. Strict pixel/readiness/counter assertions remain.
 An eligible actual Mac Chromium mismatch can trigger three fresh isolated controls
 with separate nested outputs; source echo cannot trigger them. Local calibration
-passes and original files retain bytes/inodes/mtime. Native measurements pending.
+passes and original files retain bytes/inodes/mtime. Native91/92 actual-gray gates
+are ineligible; independent decoder measurements remain unexecuted.
 See native90-independent-frame-proof.json; no header/capture patch follows yet.

@@ -20,7 +20,7 @@ native90-bootstrap-phase-proof.json and native90-schema-race-proof.json.
 
 Local follow-up excluded from native91 (74497b1) shares its exact Ubuntu
 mirror shell body through .github/actions/ubuntu-archive across all five host
-browser-install job paths (components, batch, actual client, original, Docker host).
+browser-install job paths (functional soak, batch, actual client, original, Docker host).
 Five shell fixtures, byte-for-byte body comparison, YAML parse, Bash syntax and
 actionlint pass; shellcheck/pyflakes remain disabled. No local system sources or
 Docker image sources were changed. Native verification remains pending. Read-only
@@ -31,6 +31,81 @@ Mac lifecycle timeout. Actual local Codex app-server1k passes38.896s on
 Linux Node24, model turns0/owned0, with foreign-owner denial, active cancellation
 and terminal cleanup verified. Runtime is unchanged from74497b1; this does not
 clear native or historical failures. See native91-shared-mirror and prerequisite proof files.
+
+## Latest completed checkpoint — native92 at6884c4a; acceptance incomplete
+
+[Batch39818353567](https://github.com/timmiballz22/playwright-mcp/actions/runs/39818353567)
+reports1422 passes/3 failures; [original39818353471](https://github.com/timmiballz22/playwright-mcp/actions/runs/39818353471)
+reports577/4. Completed summaries total1999/7, reported test skips/cancels0.
+Windows main suite is unexecuted after installed-package verification fails.
+Four other package steps pass. Linux20/22/24 main207/211/211 pass; Mac208/3.
+Components Linux22/24/Mac146/0 each, Windows147/0; all12 real schema/version/
+identity race checks pass again. All17 logs recovered:16 first reads succeed,
+one Linux22 component read is empty with stream NO_ERROR from peer, then ordinary
+retry succeeds. Both attempts and snapshots retained; no cancellation requested.
+
+Windows installed original/profile/batch/jobs/controller checks pass before the
+journal/guardian smoke fails. Journal reports rpc_timeout/init, last received phase
+directory, journalExitConfirmedfalse. The phase is a lower bound, not a proven
+blocked filesystem operation or cause. Layout probe is skipped because prior cleanup
+is unconfirmed; main/Firefox comparison steps are unexecuted. Outer installation
+workspace is retained. The old smoke's separate inner journal directory had an
+unconditional removal path even after failed opens, and client-close errors were
+swallowed. Inner directory identity, registered-client count and post-state were
+not retained; do not claim that inner store was preserved or reconstruct its contents.
+
+A concrete local fix now removes the inner store only after all acceptance checks
+and client closes succeed, preserves failed/rejected/unconfirmed cases, propagates
+close errors, and emits bounded workspace/client counts without data contents.
+Baseline actual-worker calibration demonstrates deleted store after init timeout
+and swallowed close error after two real worker exits. Fixed cases retain both
+failure modes on Node22/24; positive cases close both workers and remove their
+stores. Final registered-client scalar cases are verified. A fresh production
+package install/check passes. This is a fixture-preservation fix, not a latency,
+worker-exit, ownership, lease-repair or Windows initialization fix.
+
+Actual Codex1k passes all3 OSs: Linux37.200s/Windows38.537s/Mac79.429s,
+model turns0/owned0. Mac main raw1k times out982/120.172s; click983 interrupted,
+cleanupFailureCount0. SDK jobs times out950 with resultAvailabletrue,
+operatorAttentionfalse, forcedfalse/terminated/removed; result duration118.886s
+within admission-inclusive deadline. Its bounded stderr has no guardian/journal
+failure strings or worker-exit-unconfirmed flag; workspace audit confirms cleanup.
+Sync stdio times out986, terminated/removed, client close succeeds; forced is not
+recorded in its compact outcome. Mac server/pipe controls1k pass118.247s/110.323s,
+owned roots0 before force/finally. Separate healthy clients/controls do not clear
+these failures, native89 Windows CRASHED750 or old ownership uncertainty.
+
+Original Linux192/0, Windows190/2, Mac191/1; Docker2/0 and Windows legacy2/1.
+Windows WebKit WAV/VP9 remain ready0/network2/error0 with canPlayType probably;
+this is not proof of a missing codec. Legacy headed Firefox fails fresh2 after7
+actions with context_timeout. Mac Chrome advanced case fails fixture teardown with
+stderr EOF unconfirmed; that is not proof of an owned browser survivor or complete
+stderr. The exact last tool state is absent from the current failure receipt.
+All12 independent traces,12 PDF behaviors and12 large-DOM cases pass. All four
+Mac strict recorded-frame cases pass. Gray-frame gate is ineligible; fresh controls
+and independent first-frame decoder probes are unexecuted. Native90 gray cause
+remains unresolved. Mac modal repeats are unexecuted.
+
+Next local fixture diagnostic emits bounded final tool progress, byte counts and
+EOF/overflow state on teardown failure, including after a passed test body. No
+stderr text, inputs/results, new wait or SDK timeout change. Actual healthy stdio
+calibration passes; the existing1,048,577-byte producer still fails and verifies
+the bounded overflow receipt. EOF-unconfirmed native branch remains pending;
+negative calibration is not a production/native pass. Typecheck passes.
+
+Shared mirror action runs on six native Linux runners across four normal job paths;
+each reports changedFiles1/no remaining matched Azure URI. Fifth configured path
+is opt-in functional soak, unexecuted. Components do not install browsers and are
+not one of these paths. Linux main dependency installs succeed81/73/106s for
+Node20/22/24; no general timing/causal guarantee or Docker image source rewrite.
+All four executed main lanes retain raw checkpoints25..200 and bootstrap phases;
+Windows main is unexecuted. Final API projections and full observations retained.
+Five scoped factory-failure observations/four orphan receipts are deliberate-orphan/
+self-exit negative controls, not unexpected survivor counts. Full Windows comparison
+and rows retained without role/name/age/window filtering. Historical136/142,
+native87 scoped observation and native89 worker/browser uncertainties remain open.
+See [native92 summary](evidence/native92-summary.json), full logs and scoped proofs.
+No release, merge, replay, default transport change or ownership-debt clearance.
 
 ## Latest completed checkpoint — native91 at74497b1; acceptance incomplete
 
@@ -1994,25 +2069,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native91 completed summaries2194/15; all Linux main lanes pass; full logs recovered | Next CI/diagnostic followup; no full-matrix or old-debt clearance |
-| G01 INSTALL | VERIFIED PASS | native91 all five package steps and Docker hash pass; local next-source297-file package excludes QA/action | Node20 durable SQLite unsupported; no broad platform reliability claim |
-| G02 MCP | FAILED | native91 Linux/Windows actual1k pass; Mac958 timeout and sync969 timeout | Mac result/cleanup confirmed; preserve native89 Windows750 crash/unconfirmed exits |
-| G03 FEATURE PARITY | FAILED | native91 original570/11; traces11/12 and PDFs12/12; Windows media and Mac screenshot/Firefox failures | Strict tests retained; actual-gray diagnostics ineligible this round |
-| G04 BATCH | FAILED | native91 Windows200/3 raw-pipe/locator/retry failures; Mac210/1 sync MCP timeout | No force click, deadline increase or role filtering |
-| G05 RETRIES | FAILED | native91 Windows429 one GET/finished response but0 completed actions then timeout; later cases unexecuted | Preserve unsafe-write refusal and exact route scopes |
-| G06 JOBS | FAILED | native91 all four component lanes pass incl12 real connection races; Mac actual958 timeout | Write-lock identity fix scoped native verification; old750 crash remains unresolved |
+| G00 BASELINE | IN PROGRESS | native92 completed summaries1999/7; Windows main unexecuted after package check failure; all17 logs recovered | No full-matrix or old-debt clearance; preservation/teardown followups pending native |
+| G01 INSTALL | FAILED | native92 four package steps pass; Windows journal init rpc_timeout/directory, exit unconfirmed; main unexecuted | Local inner-fixture retention/close-error fix passes real-worker baselines and fresh install; not an init fix |
+| G02 MCP | FAILED | native92 actual1k passes all3 OSs; Mac SDK950/sync986 time out | Separate healthy actual clients do not clear native89 Windows750 crash or new failed receipts |
+| G03 FEATURE PARITY | FAILED | native92 original577/4; traces/PDF/large-DOM12 each pass; Windows media, legacy headed cleanup and Mac EOF fail | Strict checks retained; original teardown metadata follows locally |
+| G04 BATCH | FAILED | native92 Mac208/3 raw982/SDK950/sync986 timeouts; Windows main unexecuted | No deadline increase, force click or role filtering |
+| G05 RETRIES | FAILED | native92 Windows main retry unexecuted; native91 /429 one response/0 completed then timeout | Earlier failures remain; no unsafe replay or inferred completion |
+| G06 JOBS | FAILED | native92 components all pass incl12 races; installed Windows journal init exit unconfirmed; Mac SDK950 timeout | Fixture preservation fixed locally; no safe automatic repair or uncertainty clearance |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
 | G08 STORAGE | BLOCKED | native83 one deadline candidate lacks births/rows; one full comparison proves narrow same-PID birth mismatch only; old136/142 unknown | No retrospective reconstruction, coalescence or debt clearance |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native91 Mac Chrome/Chromium/WebKit frames pass; Firefox deadlines and Windows WebKit readiness fail | No codec waiver or first-frame skipping; gray cause unresolved |
-| G11 CROSS-OS | FAILED | native91 Linux207/211/211 main pass; Windows200/3 and Mac210/1; Mac actual timeout | Shared Linux setup and failure-only call diagnostics pending native |
+| G10 CROSS-BROWSER | FAILED | native92 all four Mac frames pass; Windows WebKit readiness and headed Firefox cleanup fail | Gray producer cause unresolved; no codec waiver or assertion change |
+| G11 CROSS-OS | FAILED | native92 Linux207/211/211 main pass, Mac208/3, Windows main unexecuted after failed package check | Six Linux mirror instances verified; opt-in functional soak path unexecuted |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
-| G14 ADVANCED | FAILED | native91 trace11/12, PDF12/12; Mac highlight capture and Firefox failures; Windows media fails | Remaining variants and interactive approvals; no broad gamut/render claim |
+| G14 ADVANCED | FAILED | native92 traces/PDF/large-DOM12 each pass; Mac Chrome advanced teardown EOF unconfirmed; Windows media fails | No invented survivor or complete-stderr claim; metadata diagnostic pending native |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
-| G16 DOCUMENTATION | IN PROGRESS | native91 bounded audit:25 top-level docs,187 local targets,2 Markdown anchors,0 issues;115 external targets not fetched | Full parser/external/shortcut-reference coverage and interactive operator walkthroughs remain |
-| G17 AUDIT EVIDENCE | IN PROGRESS | native91 all17 logs recovered; partial component EOF retained plus successful retry; full rows retained | Historical136/142, native87 scoped observation and native89 crash remain unresolved |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native91 failed; local shared apt action and large-DOM timing diagnostic pending native | All critical gates before merge/release |
+| G16 DOCUMENTATION | IN PROGRESS | native92 bounded audit:25 top-level docs,193 local targets,2 Markdown anchors,0 issues;127 external targets not fetched | Full parser/external/shortcut-reference coverage and interactive operator walkthroughs remain |
+| G17 AUDIT EVIDENCE | IN PROGRESS | native92 all17 logs recovered; empty stream-error read retained plus successful retry; inner fixture retention gap found | Historical136/142, native87 observation and native89/92 uncertainties remain unresolved |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native92 failed; actual fixture preservation fix and bounded teardown diagnostic await native | All critical gates before merge/release |
 
 ## Defects and risk register
 

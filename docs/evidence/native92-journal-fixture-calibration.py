@@ -1,0 +1,11 @@
+from pathlib import Path
+import subprocess,os,json
+r=Path('/workspace/playwright-mcp');p=Path('/tmp');nodes={'22':Path('/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node'),'24':Path('/usr/bin/node')};nodes['24']=Path(subprocess.check_output(['which','node'],text=True).strip());results=[]
+for version,variant,mode in [('22','before','init_pause'),('22','before','close_failure'),('22','after','init_pause'),('22','after','close_failure'),('24','after','init_pause'),('24','after','close_failure')]:
+ script=Path('/tmp/playwright-journal-fixture-baseline/scripts/production-journal-smoke.mjs') if variant=='before' else r/'scripts/production-journal-smoke.mjs';stem=f'native92-journal-fixture-{variant}{version}-{mode}';proof=p/(stem+'.json');env=os.environ.copy();env['PATH']=str(nodes[version].parent)+os.pathsep+env['PATH']
+ with (p/(stem+'.log')).open('w') as f:proc=subprocess.run([str(nodes[version]),str(p/'native92-journal-fixture-calibration.mjs'),str(r),str(script),mode,str(proof)],cwd=r,env=env,stdout=f,stderr=subprocess.STDOUT,timeout=60)
+ x=json.load(open(proof));assert x['storeExists']==(variant=='after'),x
+ if mode=='init_pause':assert proc.returncode==1 and x['initFailure']=='rpc_timeout' and x['initStage']=='schema_tables' and x['initExitConfirmed'] is True,x
+ else:assert x['realClosed']==2 and x['closeInjected'] and proc.returncode==(0 if variant=='before' else 1),x
+ results.append({'node':version,'variant':variant,'exit':proc.returncode,**x});print(json.dumps({'node':version,'variant':variant,'mode':mode,'exit':proc.returncode,'storeRetained':x['storeExists']}),flush=True)
+(p/'native92-journal-fixture-preservation-proof.json').write_text(json.dumps({'phase':'Local followup excluded from native92 source6884c4a','cases':results,'scope':'Imports actual smoke scripts and journal modules, no source clone or mocked worker. Init pause uses existing real SQLite-worker fixture. Close failure is injected only after actual worker exits. Negative calibrations are not native or production passes. Baseline deletes both stores and swallows the close error; fixed source retains all four negative stores and propagates the errors. No runtime deadlines, signals, leases or journal settings changed.'},indent=2)+'\n')

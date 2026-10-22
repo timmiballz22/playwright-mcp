@@ -1,5 +1,80 @@
 # Execution report — verified milestone, incomplete mission
 
+## Latest completed checkpoint — native92 at6884c4a; acceptance incomplete
+
+[Batch39818353567](https://github.com/timmiballz22/playwright-mcp/actions/runs/39818353567)
+reports1422 passes/3 failures; [original39818353471](https://github.com/timmiballz22/playwright-mcp/actions/runs/39818353471)
+reports577/4. Completed summaries total1999/7, reported test skips/cancels0.
+Windows main suite is unexecuted after installed-package verification fails.
+Four other package steps pass. Linux20/22/24 main207/211/211 pass; Mac208/3.
+Components Linux22/24/Mac146/0 each, Windows147/0; all12 real schema/version/
+identity race checks pass again. All17 logs recovered:16 first reads succeed,
+one Linux22 component read is empty with stream NO_ERROR from peer, then ordinary
+retry succeeds. Both attempts and snapshots retained; no cancellation requested.
+
+Windows installed original/profile/batch/jobs/controller checks pass before the
+journal/guardian smoke fails. Journal reports rpc_timeout/init, last received phase
+directory, journalExitConfirmedfalse. The phase is a lower bound, not a proven
+blocked filesystem operation or cause. Layout probe is skipped because prior cleanup
+is unconfirmed; main/Firefox comparison steps are unexecuted. Outer installation
+workspace is retained. The old smoke's separate inner journal directory had an
+unconditional removal path even after failed opens, and client-close errors were
+swallowed. Inner directory identity, registered-client count and post-state were
+not retained; do not claim that inner store was preserved or reconstruct its contents.
+
+A concrete local fix now removes the inner store only after all acceptance checks
+and client closes succeed, preserves failed/rejected/unconfirmed cases, propagates
+close errors, and emits bounded workspace/client counts without data contents.
+Baseline actual-worker calibration demonstrates deleted store after init timeout
+and swallowed close error after two real worker exits. Fixed cases retain both
+failure modes on Node22/24; positive cases close both workers and remove their
+stores. Final registered-client scalar cases are verified. A fresh production
+package install/check passes. This is a fixture-preservation fix, not a latency,
+worker-exit, ownership, lease-repair or Windows initialization fix.
+
+Actual Codex1k passes all3 OSs: Linux37.200s/Windows38.537s/Mac79.429s,
+model turns0/owned0. Mac main raw1k times out982/120.172s; click983 interrupted,
+cleanupFailureCount0. SDK jobs times out950 with resultAvailabletrue,
+operatorAttentionfalse, forcedfalse/terminated/removed; result duration118.886s
+within admission-inclusive deadline. Its bounded stderr has no guardian/journal
+failure strings or worker-exit-unconfirmed flag; workspace audit confirms cleanup.
+Sync stdio times out986, terminated/removed, client close succeeds; forced is not
+recorded in its compact outcome. Mac server/pipe controls1k pass118.247s/110.323s,
+owned roots0 before force/finally. Separate healthy clients/controls do not clear
+these failures, native89 Windows CRASHED750 or old ownership uncertainty.
+
+Original Linux192/0, Windows190/2, Mac191/1; Docker2/0 and Windows legacy2/1.
+Windows WebKit WAV/VP9 remain ready0/network2/error0 with canPlayType probably;
+this is not proof of a missing codec. Legacy headed Firefox fails fresh2 after7
+actions with context_timeout. Mac Chrome advanced case fails fixture teardown with
+stderr EOF unconfirmed; that is not proof of an owned browser survivor or complete
+stderr. The exact last tool state is absent from the current failure receipt.
+All12 independent traces,12 PDF behaviors and12 large-DOM cases pass. All four
+Mac strict recorded-frame cases pass. Gray-frame gate is ineligible; fresh controls
+and independent first-frame decoder probes are unexecuted. Native90 gray cause
+remains unresolved. Mac modal repeats are unexecuted.
+
+Next local fixture diagnostic emits bounded final tool progress, byte counts and
+EOF/overflow state on teardown failure, including after a passed test body. No
+stderr text, inputs/results, new wait or SDK timeout change. Actual healthy stdio
+calibration passes; the existing1,048,577-byte producer still fails and verifies
+the bounded overflow receipt. EOF-unconfirmed native branch remains pending;
+negative calibration is not a production/native pass. Typecheck passes.
+
+Shared mirror action runs on six native Linux runners across four normal job paths;
+each reports changedFiles1/no remaining matched Azure URI. Fifth configured path
+is opt-in functional soak, unexecuted. Components do not install browsers and are
+not one of these paths. Linux main dependency installs succeed81/73/106s for
+Node20/22/24; no general timing/causal guarantee or Docker image source rewrite.
+All four executed main lanes retain raw checkpoints25..200 and bootstrap phases;
+Windows main is unexecuted. Final API projections and full observations retained.
+Five scoped factory-failure observations/four orphan receipts are deliberate-orphan/
+self-exit negative controls, not unexpected survivor counts. Full Windows comparison
+and rows retained without role/name/age/window filtering. Historical136/142,
+native87 scoped observation and native89 worker/browser uncertainties remain open.
+See [native92 summary](evidence/native92-summary.json), full logs and scoped proofs.
+No release, merge, replay, default transport change or ownership-debt clearance.
+
 ## Latest completed checkpoint — native91 at74497b1; acceptance incomplete
 
 [Batch39813834089](https://github.com/timmiballz22/playwright-mcp/actions/runs/39813834089)

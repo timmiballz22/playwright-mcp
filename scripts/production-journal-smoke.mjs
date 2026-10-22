@@ -17,6 +17,8 @@ if (supportsJournal) {
   let guardian;
   let guardianExit;
   let watchdog;
+  let verified = false;
+  let primaryFailure;
   try {
     const config = { directory, projectId: createHash('sha256').update('installed-fixture').digest('hex') };
     const owner = await JobJournal.open({ ...config, ownerId: 'installed-owner' }); clients.push(owner);
@@ -80,11 +82,21 @@ if (supportsJournal) {
     await assert.rejects(owner.call('create', { ...data, id: randomUUID(), requestKey: 'installed-blocked', requireCleanLease: true }), { code: 'cleanup_blocked' });
     assert.deepEqual(await owner.call('integrity'), { ok: true });
     process.stdout.write(JSON.stringify({ entry: 'local-batch/jobs/journal.mjs', storageKernel: true, ownerIsolation: true, terminationDiagnosticMetadata: true, production: true }) + '\n');
+    verified = true;
+  } catch (error) {
+    primaryFailure = error;
+    throw error;
   } finally {
     clearTimeout(watchdog);
     if (guardian && guardian.exitCode === null && guardian.signalCode === null) { guardian.kill('SIGKILL'); if (guardianExit) await guardianExit; }
     fixture?.closeAllConnections(); fixture?.close();
-    await Promise.allSettled(clients.map(client => client.close()));
-    await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+    const closed = await Promise.allSettled(clients.map(client => client.close()));
+    const failures = closed.filter(result => result.status === 'rejected').map(result => result.reason);
+    if (verified && !failures.length) await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+    else console.error(JSON.stringify({ component: 'installed_journal_fixture_preserved', workspaceId: path.basename(directory),
+      verified, primaryFailed: !!primaryFailure, registeredClients: clients.length, clientCloseFailures: failures.length,
+      rejectedOpenExitUnconfirmed: primaryFailure?.journalExitConfirmed === false }));
+    if (failures.length) throw new AggregateError(primaryFailure ? [primaryFailure, ...failures] : failures,
+      'Installed journal fixture close failed', { cause: primaryFailure ?? failures[0] });
   }
 }

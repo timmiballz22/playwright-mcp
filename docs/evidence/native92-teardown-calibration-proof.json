@@ -1,0 +1,39 @@
+{
+  "phase": "Local fixture diagnostic followup excluded from native92 source6884c4a",
+  "cases": [
+    {
+      "mode": "healthy",
+      "exit": 0,
+      "teardownReceipts": []
+    },
+    {
+      "mode": "overflow",
+      "exit": 1,
+      "teardownReceipts": [
+        {
+          "fixture": "original_mcp_teardown",
+          "clientCount": 1,
+          "closeRejectedCount": 0,
+          "clients": [
+            {
+              "calls": 0,
+              "pending": 0,
+              "active": [],
+              "recent": []
+            }
+          ],
+          "stderr": [
+            {
+              "ended": true,
+              "byteLimit": 1048576,
+              "retainedBytes": 1048576,
+              "overflow": true
+            }
+          ],
+          "truncated": false
+        }
+      ]
+    }
+  ],
+  "scope": "Actual original stdio MCP handshake and pinned SDK; existing real stderr-flood producer, not a mocked transport. Overflow intentionally fails and remains a negative calibration, not a passed production/native test. EOF assertion and SDK close budgets unchanged; actual EOF-unconfirmed path awaits native."
+}

@@ -176,7 +176,20 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
         // Do not accept an unchecked tail or add another cleanup wait budget.
         if (!ended()) failures.push(new Error('fixture_stderr_close_unconfirmed'));
       }
-      if (failures.length) throw new AggregateError(failures, 'Original MCP fixture teardown failed');
+      if (failures.length) {
+        // Preserve final bounded metadata even when the test body passed and
+        // only teardown failed. Never print stderr text, tool inputs or results.
+        const receipt = JSON.stringify({ fixture: 'original_mcp_teardown', clientCount: clients.length,
+          closeRejectedCount: closed.filter(result => result.status === 'rejected').length,
+          clients: progress.slice(0, 4).map(snapshot => snapshot()),
+          stderr: stderrCaptures.slice(0, 4).map(({ capture, ended }) => ({ ended: ended(), ...capture.snapshot() })),
+          truncated: progress.length > 4 || stderrCaptures.length > 4 });
+        try {
+          console.log(receipt);
+          if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Original MCP teardown::' + receipt);
+        } catch { /* Keep the original teardown failure. */ }
+        throw new AggregateError(failures, 'Original MCP fixture teardown failed');
+      }
     }
   },
 

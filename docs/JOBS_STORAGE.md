@@ -200,7 +200,7 @@ exit and the failed store remains retained. The normal case then passes each
 Node22/24. This negative is fixture-only, not a Windows-cause reproduction. See
 native89-warm-write-negative-proof.json.
 
-## Local identity revalidation after native90
+## Identity revalidation under the schema write lock
 
 A separate SQLite connection can change the version/identity between the initial
 read check and the schema write transaction. Controlled actual-connection probes
@@ -213,5 +213,25 @@ missing marker are rejected; the other connection's change and existing job stat
 revision remain untouched. All six probes across Node22/24 reject with the expected
 code and confirmed rejected-worker exit;41 journal/contention/controller cases pass
 each Node. No retry, deadline, SQLite setting, browser effect or host-sandbox claim.
-Native validation is pending. See native90-schema-race-proof.json and the trusted
+Native91 and92 each pass all12 actual race cases across the four SQLite-capable
+component lanes. This does not explain initialization latency or unconfirmed worker
+exit in other receipts. See native90-schema-race-proof.json and the trusted
 schema-version-race.mjs fixture, which is excluded from the production package.
+
+
+## Installed journal smoke fixture preservation
+
+Native92 exposes a separate QA bug: production-journal-smoke.mjs always removed
+its own temporary journal directory and swallowed client-close rejections. Keeping
+the outer installation workspace did not preserve this separate directory. The
+local follow-up requires acceptance and all client closes before removal, retains
+failed/rejected cases, and propagates close failures with the primary error. Its
+bounded receipt records only a workspace basename, registered-client/close-failure
+counts and failure/exit flags, with no journal/key contents. Actual-worker baseline
+checks on Node22 reproduce deletion/error suppression; fixed negative and positive
+cases on Node22/24 verify retention/removal behavior. Fresh production
+installation checks pass locally. This is not a fix for the native92 Windows
+rpc_timeout/init/directory/exit-unconfirmed receipt, whose exact blocked operation
+and inner-directory post-state remain unknown. See native92 Windows package and
+journal-fixture preservation proofs. No retry, signal authority, lease clearing,
+SQLite setting or runtime deadline change.

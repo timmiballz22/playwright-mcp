@@ -1,0 +1,135 @@
+{
+  "phase": "Local followup excluded from native92 source6884c4a",
+  "command": "node scripts/verify-package.mjs",
+  "exit": 0,
+  "smokeSourceSha256": "8aaec0fcf02af6749a7de67c258a280658fa7b20f0bc27cbc77d1e5a77c9a27d",
+  "fixtureSourceSha256": "9cea0bf221e6f69c41f6b7054436565845a29b1903857e137b261b57c4218d63",
+  "receipts": [
+    {
+      "component": "private_vp9_metadata_patch",
+      "version": "1.64.1",
+      "changed": false,
+      "sha256": "3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192"
+    },
+    {
+      "component": "installed_vp9_metadata_patch",
+      "version": "1.64.1",
+      "sharedBundledCore": true,
+      "sha256": "3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192",
+      "installScriptsDisabled": true
+    },
+    {
+      "entry": "cli.js",
+      "handshake": true,
+      "toolCount": 25,
+      "realBrowser": true,
+      "production": true
+    },
+    {
+      "entry": "local-batch/mcp.mjs",
+      "handshake": true,
+      "toolCount": 1,
+      "realBrowser": true,
+      "pageLimit": true,
+      "production": true
+    },
+    {
+      "entry": "local-batch/cli.mjs",
+      "realBrowser": true,
+      "navigationRetry": true,
+      "pageLimit": true,
+      "production": true
+    },
+    {
+      "component": "delegated_profile_guard",
+      "production": true,
+      "realBrowser": "chromium",
+      "contentionDenied": true,
+      "readOnlyDoctor": true,
+      "persistentCookieRestored": true,
+      "leaseReleasedAfterClose": true,
+      "activeOwnedProcesses": 0
+    },
+    {
+      "entry": "local-batch/jobs-cli.mjs",
+      "production": true,
+      "realBrowser": "chromium",
+      "completed": 2,
+      "duplicateExecuted": false,
+      "statusResultListCleanup": true,
+      "retentionPreview": true,
+      "retentionFreshPreserved": true,
+      "activeCancel": true
+    },
+    {
+      "entry": "local-batch/jobs-mcp.mjs",
+      "handshake": true,
+      "toolCount": 6,
+      "realBrowser": "chromium",
+      "completed": 2,
+      "duplicateExecuted": false,
+      "production": true
+    },
+    {
+      "component": "internal_job_controller",
+      "realBrowser": "chromium",
+      "jobs": 2,
+      "completed": 10,
+      "duplicateExecuted": false,
+      "reconnectReplay": false,
+      "activeOwnedProcesses": 0,
+      "production": true
+    },
+    {
+      "entry": "local-batch/jobs/guardian.mjs",
+      "durableExecution": true,
+      "realBrowser": true,
+      "completed": 7,
+      "production": true
+    },
+    {
+      "entry": "local-batch/jobs/journal.mjs",
+      "storageKernel": true,
+      "ownerIsolation": true,
+      "terminationDiagnosticMetadata": true,
+      "production": true
+    },
+    {
+      "component": "durable_guardian",
+      "controller": "internal_job_controller",
+      "os": "linux",
+      "realBrowser": "chromium",
+      "controllerSignal": "SIGKILL",
+      "observedOwnedProcesses": 12,
+      "terminalState": "CANCELLED",
+      "completed": 1,
+      "total": 2,
+      "activeOwnedProcesses": 0,
+      "shutdownMs": 288,
+      "ownedShutdownBeforeObserver": true,
+      "lingerJournalCloseFixture": false,
+      "projectLeaseReleased": true,
+      "integrity": true,
+      "modelTurns": 0
+    },
+    {
+      "component": "durable_guardian",
+      "controller": "internal_job_controller",
+      "os": "linux",
+      "realBrowser": "chromium",
+      "controllerSignal": "SIGKILL",
+      "observedOwnedProcesses": 12,
+      "terminalState": "CANCELLED",
+      "completed": 1,
+      "total": 2,
+      "activeOwnedProcesses": 0,
+      "shutdownMs": 924,
+      "ownedShutdownBeforeObserver": true,
+      "lingerJournalCloseFixture": true,
+      "projectLeaseReleased": true,
+      "integrity": true,
+      "modelTurns": 0
+    }
+  ],
+  "scope": "Fresh production install/runtime checks include the changed journal smoke. Later edits are documentation/evidence only. Final dry package297 files; QA/actions/jobs fixtures/evidence excluded. Does not fix native Windows init latency or clear unconfirmed exits."
+}

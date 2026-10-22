@@ -1,0 +1,459 @@
+batch (windows-latest, 22)	Set up job	﻿2026-10-22T16:56:58.2613888Z Current runner version: '2.338.0'
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3826892Z ##[group]Runner Image Provisioner
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3827636Z Hosted Compute Agent
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3828102Z Version: 20261002.596
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3828571Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3829109Z Build Date: 2026-10-02T22:28:27Z
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3829604Z Worker ID: {d37000ec-4639-4613-84b7-71915bd38df7}
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3830145Z Region: eastus
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3830533Z Cloud: Azure
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3830920Z ##[endgroup]
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3832426Z ##[group]Operating System
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3832921Z Microsoft Windows Server 2025
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3833393Z 10.0.26100
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3833837Z Datacenter
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3834219Z ##[endgroup]
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3834656Z ##[group]Runner Image
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3835092Z Image: windows-2025-vs2026
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3835544Z Version: 20261007.264.1
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3836415Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261007.264/images/windows/Windows2025-VS2026-Readme.md
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3838395Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261007.264
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3839138Z ##[endgroup]
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3840035Z ##[group]GITHUB_TOKEN Permissions
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3841631Z Contents: read
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3842091Z Metadata: read
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3842533Z ##[endgroup]
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3844285Z Secret source: Actions
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3845036Z Cache mode: write
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.3845548Z Prepare workflow directory
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.4117353Z Prepare all required actions
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.4173962Z Getting action download info
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:58.5707410Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+batch (windows-latest, 22)	Set up job	2026-10-22T16:56:59.3666724Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+batch (windows-latest, 22)	Set up job	2026-10-22T16:57:00.0298010Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+batch (windows-latest, 22)	Set up job	2026-10-22T16:57:01.0459143Z Complete job name: batch (windows-latest, 22)
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T16:57:02.5888893Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5889831Z with:
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5890076Z   repository: timmiballz22/playwright-mcp
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5892528Z   token: ***
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5892741Z   ssh-strict: true
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5892955Z   ssh-user: git
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5893200Z   persist-credentials: true
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5893445Z   clean: true
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5893702Z   sparse-checkout-cone-mode: true
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5893952Z   fetch-depth: 1
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5894519Z   fetch-tags: false
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5894776Z   show-progress: true
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5895011Z   lfs: false
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5895288Z   submodules: false
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5895506Z   set-safe-directory: true
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5895742Z   allow-unsafe-pr-checkout: false
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.5896240Z ##[endgroup]
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.9123380Z Syncing repository: timmiballz22/playwright-mcp
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.9125123Z ##[group]Getting Git version info
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:02.9125699Z Working directory is 'D:\a\playwright-mcp\playwright-mcp'
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:03.6395828Z [command]"C:\Program Files\Git\bin\git.exe" version
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.1641699Z git version 2.56.0.windows.2
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.1693767Z ##[endgroup]
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.1705010Z Temporarily overriding HOME='D:\a\_temp\8f6df720-d754-46c0-8fcc-193890be11df' before making global git config changes
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.1705976Z Adding repository directory to the temporary git global config as a safe directory
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.1715421Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\playwright-mcp\playwright-mcp
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.3090848Z Deleting the contents of 'D:\a\playwright-mcp\playwright-mcp'
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.3095620Z ##[group]Determining repository object format
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.3097479Z ##[endgroup]
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.3098180Z ##[group]Initializing the repository
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.3107372Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\playwright-mcp\playwright-mcp
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.6280529Z Initialized empty Git repository in D:/a/playwright-mcp/playwright-mcp/.git/
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.6327045Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/timmiballz22/playwright-mcp
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.7053628Z ##[endgroup]
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.7054387Z ##[group]Disabling automatic garbage collection
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.7064585Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.7409092Z ##[endgroup]
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.7409642Z ##[group]Setting up auth
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.7410386Z Removing SSH command configuration
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.7423253Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:12.7775419Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:26.8476654Z Removing HTTP extra header
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:26.8485759Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:26.8910530Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:27.5809598Z Removing includeIf entries pointing to credentials config files
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:27.5835889Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:27.6245479Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:28.1980675Z [command]"C:\Program Files\Git\bin\git.exe" config --file D:\a\_temp\git-credentials-01b0aef9-551b-4927-a2e2-bf8c5ea83bf1.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:28.2350182Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path D:\a\_temp\git-credentials-01b0aef9-551b-4927-a2e2-bf8c5ea83bf1.config
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:28.2776795Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path D:\a\_temp\git-credentials-01b0aef9-551b-4927-a2e2-bf8c5ea83bf1.config
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:28.4606690Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-01b0aef9-551b-4927-a2e2-bf8c5ea83bf1.config
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:28.4947993Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-01b0aef9-551b-4927-a2e2-bf8c5ea83bf1.config
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:28.5313940Z ##[endgroup]
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:28.5314418Z ##[group]Fetching the repository
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:28.5329064Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +4e3fdb0cd3b93a6b1cfcb7ead5ed1eafef47774a:refs/remotes/pull/2/merge
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:35.2600603Z From https://github.com/timmiballz22/playwright-mcp
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:35.2601626Z  * [new ref]         4e3fdb0cd3b93a6b1cfcb7ead5ed1eafef47774a -> pull/2/merge
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:35.2645376Z ##[endgroup]
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:35.2645968Z ##[group]Determining the checkout info
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:35.2646563Z ##[endgroup]
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:35.2655918Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:35.3175335Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:35.3525809Z ##[group]Checking out the ref
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:35.3534057Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/2/merge
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5359840Z Updating files:  92% (2913/3136)
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5410210Z Updating files:  93% (2917/3136)
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5465016Z Updating files:  94% (2948/3136)
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5520086Z Updating files:  95% (2980/3136)
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5575236Z Updating files:  96% (3011/3136)
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5633379Z Updating files:  97% (3042/3136)
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5688154Z Updating files:  98% (3074/3136)
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5742465Z Updating files:  99% (3105/3136)
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5742925Z Updating files: 100% (3136/3136)
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5743266Z Updating files: 100% (3136/3136), done.
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5849752Z Note: switching to 'refs/remotes/pull/2/merge'.
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5850169Z 
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5850421Z You are in 'detached HEAD' state. You can look around, make experimental
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5851024Z changes and commit them, and you can discard any commits you make in this
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5851658Z state without impacting any branches by switching back to a branch.
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5852014Z 
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5852234Z If you want to create a new branch to retain commits you create, you may
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5852794Z do so (now or later) by using -c with the switch command. Example:
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5853108Z 
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5853269Z   git switch -c <new-branch-name>
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5853479Z 
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5853604Z Or undo this operation with:
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5853796Z 
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5853898Z   git switch -
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5854049Z 
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5854306Z Turn off this advice by setting config variable advice.detachedHead to false
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5854714Z 
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.5972137Z HEAD is now at 4e3fdb0 Merge 6884c4ae4052fed5579b9d21d181bb06c1ea2b55 into 804bc7ef7a07248a150c98fb5bf417e925ba8033
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.6126390Z ##[endgroup]
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.6591212Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+batch (windows-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T16:57:36.6923034Z 4e3fdb0cd3b93a6b1cfcb7ead5ed1eafef47774a
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-22T16:57:36.7408366Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:36.7408839Z with:
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:36.7408995Z   node-version: 22
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:36.7409147Z   cache: npm
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:36.7409295Z   check-latest: false
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:36.7411514Z   token: ***
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:36.7411680Z   package-manager-cache: true
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:36.7411866Z ##[endgroup]
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:36.8869980Z Found in cache @ C:\hostedtoolcache\windows\node\22.23.3\x64
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:37.8857530Z ##[group]Environment details
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:42.4017546Z node: v22.23.3
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:42.4017815Z npm: 10.9.9
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:42.4017958Z yarn: 1.22.22
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:42.4018370Z ##[endgroup]
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:42.4415846Z [command]C:\Windows\system32\cmd.exe /D /S /C "C:\hostedtoolcache\windows\node\22.23.3\x64\npm.cmd config get cache"
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:43.0096971Z C:\npm\cache
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:43.2485620Z Cache hit for: node-cache-Windows-x64-npm-7e5a5e1f7b6d826ec56ff03341eb7c81f3fe3b01c7d79434c8a706c0f632db61
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:43.5233615Z Received 12348130 of 12348130 (100.0%), 55.0 MBs/sec
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:43.5233982Z Cache Size: ~12 MB (12348130 B)
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:43.5280408Z [command]"C:\Program Files\Git\usr\bin\tar.exe" -xf D:/a/_temp/c4d0c03f-e16c-468d-8733-55e96fd982b3/cache.tzst -P -C D:/a/playwright-mcp/playwright-mcp --force-local --use-compress-program "zstd -d"
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:43.9268591Z Cache restored successfully
+batch (windows-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T16:57:43.9286989Z Cache restored from key: node-cache-Windows-x64-npm-7e5a5e1f7b6d826ec56ff03341eb7c81f3fe3b01c7d79434c8a706c0f632db61
+batch (windows-latest, 22)	Run npm ci	﻿2026-10-22T16:57:43.9561335Z ##[group]Run npm ci
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:43.9561632Z [36;1mnpm ci[0m
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:43.9870058Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:43.9870400Z ##[endgroup]
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.4856352Z 
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.4863141Z > @timmiballz22/playwright-mcp-local@0.0.83 prepare
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.4863699Z > node scripts/prepare-vp9-metadata.cjs
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.4863946Z 
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.6686321Z {"component":"private_vp9_metadata_patch","version":"1.64.1","changed":true,"sha256":"3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192"}
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.6800394Z 
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.6801176Z added 103 packages, and audited 104 packages in 6s
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.6801438Z 
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.6801578Z 31 packages are looking for funding
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.6801884Z   run `npm fund` for details
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.6809425Z 
+batch (windows-latest, 22)	Run npm ci	2026-10-22T16:57:51.6809851Z found 0 vulnerabilities
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	﻿2026-10-22T16:57:53.7860525Z ##[group]Run npx playwright install --with-deps chromium firefox webkit
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T16:57:53.7861227Z [36;1mnpx playwright install --with-deps chromium firefox webkit[0m
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T16:57:53.7923102Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T16:57:53.7923444Z ##[endgroup]
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:42.3301428Z 
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:42.3310256Z Success Restart Needed Exit Code      Feature Result                               
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:42.3312460Z ------- -------------- ---------      --------------                               
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:42.3315068Z True    No             Success        {Media Foundation}                           
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:42.3318217Z 
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:42.3318365Z 
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:42.4802330Z Downloading Chrome for Testing 156.0.8078.4 (playwright chromium v1248)[2m from https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-win64.zip[22m
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:42.9078981Z |                                                                                |   0% of 197.5 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:43.1186099Z |■■■■■■■■                                                                        |  10% of 197.5 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:43.2777345Z |■■■■■■■■■■■■■■■■                                                                |  20% of 197.5 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:43.4060254Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 197.5 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:43.5292251Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 197.5 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:43.6469160Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 197.5 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:43.7626692Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 197.5 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:43.8797004Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 197.5 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:43.9956197Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 197.5 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:44.1098662Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 197.5 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:44.2291012Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 197.5 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.2516790Z Chrome for Testing 156.0.8078.4 (playwright chromium v1248) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1248
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.2524244Z Downloading FFmpeg (playwright ffmpeg v1013)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-win64.zip[22m
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.6544373Z |                                                                                |   0% of 1.6 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.6643206Z |■■■■■■■■                                                                        |  10% of 1.6 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.6716179Z |■■■■■■■■■■■■■■■■                                                                |  20% of 1.6 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.6761685Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 1.6 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.6785256Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 1.6 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.6810404Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 1.6 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.6829930Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 1.6 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.6849415Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 1.6 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.6868108Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 1.6 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.6884254Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 1.6 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.6899308Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 1.6 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.7542127Z FFmpeg (playwright ffmpeg v1013) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\ffmpeg-1013
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:48.7549349Z Downloading Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248)[2m from https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-headless-shell-win64.zip[22m
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:49.1385018Z |                                                                                |   0% of 118.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:49.2794763Z |■■■■■■■■                                                                        |  10% of 118.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:49.3791525Z |■■■■■■■■■■■■■■■■                                                                |  20% of 118.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:49.4805872Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 118.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:49.5524271Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 118.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:49.6205379Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 118.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:49.6927072Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 118.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:49.7641906Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 118.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:49.8358396Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 118.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:49.8992085Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 118.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:49.9669109Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 118.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:53.2625318Z Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\chromium_headless_shell-1248
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:53.2632857Z Downloading Firefox 157.0 (playwright firefox v1555)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/firefox/1555/firefox-win64.zip[22m
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:53.6624395Z |                                                                                |   0% of 123.8 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:53.8092219Z |■■■■■■■■                                                                        |  10% of 123.8 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:53.9158193Z |■■■■■■■■■■■■■■■■                                                                |  20% of 123.8 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:54.0261890Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 123.8 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:54.1425387Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 123.8 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:54.2257295Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 123.8 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:54.3131523Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 123.8 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:54.3996776Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 123.8 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:54.4837368Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 123.8 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:54.5684614Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 123.8 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:54.6616419Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 123.8 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:57.2764085Z Firefox 157.0 (playwright firefox v1555) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\firefox-1555
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:57.2773146Z Downloading WebKit 27.2 (playwright webkit v2370)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/webkit/2370/webkit-win64.zip[22m
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:57.6766406Z |                                                                                |   0% of 60.2 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:57.8057733Z |■■■■■■■■                                                                        |  10% of 60.2 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:57.8590174Z |■■■■■■■■■■■■■■■■                                                                |  20% of 60.2 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:57.9190560Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 60.2 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:57.9889477Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 60.2 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:58.0563874Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 60.2 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:58.1215685Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 60.2 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:58.1835307Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 60.2 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:58.2327350Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 60.2 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:58.2723337Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 60.2 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:00:58.3111967Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 60.2 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:01:01.1924148Z WebKit 27.2 (playwright webkit v2370) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\webkit-2370
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:01:01.1931952Z Downloading Winldd (playwright winldd v1007)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/winldd/1007/winldd-win64.zip[22m
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:01:01.5953622Z |■■■■■■■■                                                                        |  12% of 0.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:01:01.5954658Z |■■■■■■■■■■■■■■■■                                                                |  25% of 0.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:01:01.5967286Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  38% of 0.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:01:01.6007114Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  51% of 0.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:01:01.6016474Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 0.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:01:01.6024398Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  82% of 0.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:01:01.6029419Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 0.1 MiB
+batch (windows-latest, 22)	Run npx playwright install --with-deps chromium firefox webkit	2026-10-22T17:01:01.6300541Z Winldd (playwright winldd v1007) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\winldd-1007
+batch (windows-latest, 22)	Verify installed production package	﻿2026-10-22T17:01:08.5702370Z ##[group]Run node scripts/verify-package.mjs 2>&1 | tee installed-tests.log
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:01:08.5702964Z [36;1mnode scripts/verify-package.mjs 2>&1 | tee installed-tests.log[0m
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:01:08.5716498Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:01:08.5717053Z ##[endgroup]
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:01:10.8717970Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:01:10.8719040Z > @timmiballz22/playwright-mcp-local@0.0.83 prepare
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:01:10.8719580Z > node scripts/prepare-vp9-metadata.cjs
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:01:10.8719964Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:01:10.8720807Z {"component":"private_vp9_metadata_patch","version":"1.64.1","changed":false,"sha256":"3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192"}
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:02:41.0799236Z {"component":"installed_vp9_metadata_patch","version":"1.64.1","sharedBundledCore":true,"sha256":"3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192","installScriptsDisabled":true}
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:02:51.4843076Z {"entry":"cli.js","handshake":true,"toolCount":25,"realBrowser":true,"production":true}
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:02:51.4844372Z {"entry":"local-batch/mcp.mjs","handshake":true,"toolCount":1,"realBrowser":true,"pageLimit":true,"production":true}
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:02:51.4845479Z {"entry":"local-batch/cli.mjs","realBrowser":true,"navigationRetry":true,"pageLimit":true,"production":true}
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:06.0906100Z {"component":"delegated_profile_guard","production":true,"realBrowser":"chromium","contentionDenied":true,"readOnlyDoctor":true,"persistentCookieRestored":true,"leaseReleasedAfterClose":true,"activeOwnedProcesses":0}
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:21.8994068Z {"entry":"local-batch/jobs-cli.mjs","production":true,"realBrowser":"chromium","completed":2,"duplicateExecuted":false,"statusResultListCleanup":true,"retentionPreview":true,"retentionFreshPreserved":true,"activeCancel":true}
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:21.8996328Z {"entry":"local-batch/jobs-mcp.mjs","handshake":true,"toolCount":6,"realBrowser":"chromium","completed":2,"duplicateExecuted":false,"production":true}
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:27.4525262Z {"component":"internal_job_controller","realBrowser":"chromium","jobs":2,"completed":10,"duplicateExecuted":false,"reconnectReplay":false,"activeOwnedProcesses":0,"production":true}
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1838366Z file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:110
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1840400Z       const error = new JournalError(code, this.failureCause, this.failureCommand, this.exitConfirmed, request.command === 'init' || this.failureCommand === 'init' ? this.initStage : undefined); error.command = request.command;
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1842201Z                     ^
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1842588Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1842782Z JournalError: journal_unavailable
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1846818Z     at JobJournal.failAll (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:110:21)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1848697Z     at JobJournal.abort (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:117:10)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1850605Z     at Timeout.<anonymous> (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:97:43)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1851748Z     at listOnTimeout (node:internal/timers:585:17)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1852606Z     at process.processTimers (node:internal/timers:521:7) {
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1853819Z   code: 'journal_unavailable',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1854487Z   journalFailure: 'rpc_timeout',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1854883Z   journalFailureCommand: 'init',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1855680Z   journalInitStage: 'directory',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1856028Z   command: 'init',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1856498Z   journalExitConfirmed: false
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1856982Z }
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1857367Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1859773Z Node.js v22.23.3
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1860623Z {"component":"installed_package_workspace_preserved","workspaceId":"fork-install spaces-I73s5e","checksCompleted":false}
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1861412Z node:internal/errors:983
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1861793Z   const err = new Error(message);
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1862361Z               ^
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1862544Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1864481Z Error: Command failed: C:\hostedtoolcache\windows\node\22.23.3\x64\node.exe scripts/production-journal-smoke.mjs C:\Users\RUNNER~1\AppData\Local\Temp\fork-install spaces-I73s5e\node_modules\@timmiballz22\playwright-mcp-local
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1868454Z file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:110
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1869346Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1870365Z       const error = new JournalError(code, this.failureCause, this.failureCommand, this.exitConfirmed, request.command === 'init' || this.failureCommand === 'init' ? this.initStage : undefined); error.command = request.command;
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1871397Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1871564Z                     ^
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1871982Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1871997Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1872002Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1872170Z JournalError: journal_unavailable
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1872433Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1873278Z     at JobJournal.failAll (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:110:21)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1874562Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1875565Z     at JobJournal.abort (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:117:10)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1876402Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1877346Z     at Timeout.<anonymous> (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:97:43)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1878283Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1878496Z     at listOnTimeout (node:internal/timers:585:17)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1878811Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1879077Z     at process.processTimers (node:internal/timers:521:7) {
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1879417Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1879601Z   code: 'journal_unavailable',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1879853Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1880011Z   journalFailure: 'rpc_timeout',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1880342Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1880531Z   journalFailureCommand: 'init',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1880824Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1880981Z   journalInitStage: 'directory',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1881235Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1881384Z   command: 'init',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1881551Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1881718Z   journalExitConfirmed: false
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1881970Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1882088Z }
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1882250Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1882256Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1882262Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1882409Z Node.js v22.23.3
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1882580Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1882616Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1882829Z     at genericNodeError (node:internal/errors:983:15)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1883372Z     at wrappedFn (node:internal/errors:537:14)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1883898Z     at checkExecSyncError (node:child_process:916:11)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1884764Z     at execFileSync (node:child_process:952:15)
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1885432Z     at file:///D:/a/playwright-mcp/playwright-mcp/scripts/verify-package.mjs:53:24 {
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1885982Z   status: 1,
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1886266Z   signal: null,
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1886530Z   output: [
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1886816Z     null,
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1887080Z     '',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1887957Z     'file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:110\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1889718Z       "      const error = new JournalError(code, this.failureCause, this.failureCommand, this.exitConfirmed, request.command === 'init' || this.failureCommand === 'init' ? this.initStage : undefined); error.command = request.command;\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1891911Z       '                    ^\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1892275Z       '\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1892625Z       'JournalError: journal_unavailable\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1894734Z       '    at JobJournal.failAll (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:110:21)\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1896646Z       '    at JobJournal.abort (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:117:10)\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1898160Z       '    at Timeout.<anonymous> (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:97:43)\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1898912Z       '    at listOnTimeout (node:internal/timers:585:17)\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1899325Z       '    at process.processTimers (node:internal/timers:521:7) {\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1899690Z       "  code: 'journal_unavailable',\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1900033Z       "  journalFailure: 'rpc_timeout',\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1900332Z       "  journalFailureCommand: 'init',\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1900614Z       "  journalInitStage: 'directory',\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1900924Z       "  command: 'init',\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1901193Z       '  journalExitConfirmed: false\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1901454Z       '}\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1901676Z       '\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1901894Z       'Node.js v22.23.3\r\n'
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1902222Z   ],
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1902503Z   pid: 5584,
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1902767Z   stdout: '',
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1903689Z   stderr: 'file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:110\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1905459Z     "      const error = new JournalError(code, this.failureCause, this.failureCommand, this.exitConfirmed, request.command === 'init' || this.failureCommand === 'init' ? this.initStage : undefined); error.command = request.command;\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1906222Z     '                    ^\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1906460Z     '\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1906729Z     'JournalError: journal_unavailable\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1907463Z     '    at JobJournal.failAll (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:110:21)\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1908557Z     '    at JobJournal.abort (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:117:10)\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1909619Z     '    at Timeout.<anonymous> (file:///C:/Users/RUNNER%7E1/AppData/Local/Temp/fork-install%20spaces-I73s5e/node_modules/@timmiballz22/playwright-mcp-local/local-batch/jobs/journal.mjs:97:43)\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1910313Z     '    at listOnTimeout (node:internal/timers:585:17)\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1910723Z     '    at process.processTimers (node:internal/timers:521:7) {\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1911078Z     "  code: 'journal_unavailable',\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1911367Z     "  journalFailure: 'rpc_timeout',\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1911678Z     "  journalFailureCommand: 'init',\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1911953Z     "  journalInitStage: 'directory',\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1912219Z     "  command: 'init',\r\n" +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1912502Z     '  journalExitConfirmed: false\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1912755Z     '}\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1912955Z     '\r\n' +
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1913183Z     'Node.js v22.23.3\r\n'
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1913860Z }
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1913984Z 
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1914067Z Node.js v22.23.3
+batch (windows-latest, 22)	Verify installed production package	2026-10-22T17:03:31.1926107Z ##[error]Process completed with exit code 1.
+batch (windows-latest, 22)	Diagnose failed Windows private job layout	﻿2026-10-22T17:03:31.2095454Z ##[group]Run node scripts/diagnose-windows-job-layout.mjs installed-tests.log 2>&1 | tee layout-probe.log
+batch (windows-latest, 22)	Diagnose failed Windows private job layout	2026-10-22T17:03:31.2096428Z [36;1mnode scripts/diagnose-windows-job-layout.mjs installed-tests.log 2>&1 | tee layout-probe.log[0m
+batch (windows-latest, 22)	Diagnose failed Windows private job layout	2026-10-22T17:03:31.2108589Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+batch (windows-latest, 22)	Diagnose failed Windows private job layout	2026-10-22T17:03:31.2108977Z ##[endgroup]
+batch (windows-latest, 22)	Diagnose failed Windows private job layout	2026-10-22T17:03:31.3417186Z {"component":"windows_layout_probe","skipped":"prior_cleanup_not_confirmed"}
+batch (windows-latest, 22)	Preserve failed browser evidence	﻿2026-10-22T17:03:31.3749143Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.3749566Z with:
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.3749753Z   name: batch-tests-windows-latest-node22
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.3750311Z   path: installed-tests.log
+batch (windows-latest, 22)	Preserve failed browser evidence	layout-probe.log
+batch (windows-latest, 22)	Preserve failed browser evidence	firefox-runner.log
+batch (windows-latest, 22)	Preserve failed browser evidence	firefox-protocol.log
+batch (windows-latest, 22)	Preserve failed browser evidence	firefox-stock.log
+batch (windows-latest, 22)	Preserve failed browser evidence	chromium-transport.log
+batch (windows-latest, 22)	Preserve failed browser evidence	batch-tests.log
+batch (windows-latest, 22)	Preserve failed browser evidence	
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.3750810Z   retention-days: 1
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.3750993Z   if-no-files-found: error
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.3751205Z   compression-level: 6
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.3751376Z   overwrite: false
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.3751541Z   include-hidden-files: false
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.3751741Z ##[endgroup]
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.5538321Z (node:8912) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.5539186Z (Use `node --trace-deprecation ...` to show where the warning was created)
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.5609328Z Multiple search paths detected. Calculating the least common ancestor of all paths
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.5612446Z The least common ancestor is D:\a\playwright-mcp\playwright-mcp. This will be the root directory of the artifact
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.5613837Z With the provided path, there will be 2 files uploaded
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.5617712Z Artifact name is valid!
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.5618705Z Root directory input is valid!
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.7915816Z Beginning upload of artifact content to blob storage
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.8109121Z (node:8912) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.8527833Z Uploaded bytes 1870
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.8713413Z Finished uploading artifact content to blob storage!
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.8714234Z SHA256 digest of uploaded artifact zip is 25c9664b17cbfc0cd94ed90e6b3bccb46f1849753a10a334efccebdcb26d0b93
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:31.8716411Z Finalizing artifact upload
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:32.3654128Z Artifact batch-tests-windows-latest-node22.zip successfully finalized. Artifact ID 12442199642
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:32.3655298Z Artifact batch-tests-windows-latest-node22 has been successfully uploaded! Final size is 1870 bytes. Artifact ID is 12442199642
+batch (windows-latest, 22)	Preserve failed browser evidence	2026-10-22T17:03:32.3664638Z Artifact download URL: https://github.com/timmiballz22/playwright-mcp/actions/runs/39818353567/artifacts/12442199642
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T17:03:32.3984500Z Post job cleanup.
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:32.5519511Z [command]"C:\Program Files\Git\bin\git.exe" version
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:32.5824853Z git version 2.56.0.windows.2
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:32.5886304Z Temporarily overriding HOME='D:\a\_temp\eda116e8-2e00-448b-b1b7-b6e94f97087c' before making global git config changes
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:32.5887050Z Adding repository directory to the temporary git global config as a safe directory
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:32.5895441Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\playwright-mcp\playwright-mcp
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:32.6251297Z Removing SSH command configuration
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:32.6266157Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:32.6654322Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:33.5960936Z Removing HTTP extra header
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:33.5970218Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:33.6312101Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.1295623Z Removing includeIf entries pointing to credentials config files
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.1296266Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.1590701Z includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.1591364Z includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.1591755Z includeif.gitdir:/github/workspace/.git.path
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.1592091Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.1632850Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.1946306Z D:\a\_temp\git-credentials-01b0aef9-551b-4927-a2e2-bf8c5ea83bf1.config
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.1993921Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path D\:\\a\\_temp\\git\-credentials\-01b0aef9\-551b\-4927\-a2e2\-bf8c5ea83bf1\.config
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.2394518Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.2693565Z D:\a\_temp\git-credentials-01b0aef9-551b-4927-a2e2-bf8c5ea83bf1.config
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.2735315Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path D\:\\a\\_temp\\git\-credentials\-01b0aef9\-551b\-4927\-a2e2\-bf8c5ea83bf1\.config
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.3071667Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git.path
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.3368257Z /github/runner_temp/git-credentials-01b0aef9-551b-4927-a2e2-bf8c5ea83bf1.config
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.3410307Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-01b0aef9\-551b\-4927\-a2e2\-bf8c5ea83bf1\.config
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.3755997Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.4045980Z /github/runner_temp/git-credentials-01b0aef9-551b-4927-a2e2-bf8c5ea83bf1.config
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.4087730Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-01b0aef9\-551b\-4927\-a2e2\-bf8c5ea83bf1\.config
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.4431758Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+batch (windows-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T17:03:34.9408355Z Removing credentials config 'D:\a\_temp\git-credentials-01b0aef9-551b-4927-a2e2-bf8c5ea83bf1.config'
+batch (windows-latest, 22)	Complete job	﻿2026-10-22T17:03:34.9590724Z Cleaning up orphan processes
+batch (windows-latest, 22)	Complete job	2026-10-22T17:03:35.0184903Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
