@@ -34,7 +34,15 @@ let journal; let timer; let observed = []; let safeToRemove = false; let verifie
 try {
   const ready = await Promise.race([new Promise((resolve, reject) => lines.once('line', line => { try { resolve(JSON.parse(line)); } catch { reject(new Error('invalid_fixture_ready')); } })), new Promise((_, reject) => { timer = setTimeout(() => reject(readinessError('fixture_ready_timeout')), 15000); }), ownerExit.then(async ([code, signal]) => { if (owner.connected) await once(owner, 'disconnect'); throw readinessError('fixture_exited_before_ready', code, signal); })]);
   clearTimeout(timer);
-  observed = await ownedDescendants(ready.roots, { rememberLiveRoots: true });
+  let legacy;
+  observed = await ownedDescendants(ready.roots, { rememberLiveRoots: true, compareLegacyRoots: ready.roots,
+    onLegacyObservation: value => { legacy = value; } });
+  if (process.platform === 'win32') assert.ok(legacy, 'Initial Windows process comparison unavailable');
+  const observation = JSON.stringify({ fixture: 'parent_death_initial_observation', roots: ready.roots, observed, legacy });
+  assert.ok(Buffer.byteLength(observation) <= 65536, 'Initial process comparison exceeds evidence bound');
+  // execFileSync forwards stderr on success and failure; stdout remains the
+  // original acceptance receipt and is not lost inside a thrown error object.
+  console.error(observation);
   assert.ok(observed.length >= 5, 'Real execution ownership was not observed');
   owner.kill('SIGKILL'); await ownerExit;
   // A terminal database row precedes guardian/journal process exit. Confirm
@@ -73,7 +81,7 @@ try {
       await new Promise(resolve => setTimeout(resolve, 100));
     }
   }
-  // Keep the private diagnostic workspace if live ownership cannot be disproved.
+  // Keep diagnostics until acceptance and every cleanup check succeed.
   if (verified && safeToRemove && !closeFailure) await rm(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
   else console.error(JSON.stringify({ component: 'installed_parent_death_fixture_preserved', workspaceId: path.basename(root),
     verified, primaryFailed: !!primaryFailure, closeFailed: !!closeFailure, ownedAuditConfirmed: safeToRemove }));

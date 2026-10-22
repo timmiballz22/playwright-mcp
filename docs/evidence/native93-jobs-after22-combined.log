@@ -1,0 +1,27 @@
+{"component":"installed_jobs_fixture_preserved","workspaceId":"production-jobs-deKdDC","verified":false,"cliFailed":false,"primaryFailed":true,"cleanupFailureCount":1,"ownedAuditConfirmed":false}
+file:///workspace/playwright-mcp/scripts/production-jobs-smoke.mjs:113
+      if (failures.length) throw new AggregateError(primaryFailure ? [primaryFailure, ...failures] : failures,
+                                 ^
+
+AggregateError: Installed jobs fixture cleanup failed
+    at file:///workspace/playwright-mcp/scripts/production-jobs-smoke.mjs:113:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  [cause]: Error: controlled_jobs_primary_after_real_result
+      at Client.callTool (file:///tmp/native93-jobs-fixture-calibration.mjs:20:167)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async call (file:///workspace/playwright-mcp/scripts/production-jobs-smoke.mjs:36:22)
+      at async file:///workspace/playwright-mcp/scripts/production-jobs-smoke.mjs:47:20,
+  [errors]: [
+    Error: controlled_jobs_primary_after_real_result
+        at Client.callTool (file:///tmp/native93-jobs-fixture-calibration.mjs:20:167)
+        at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+        at async call (file:///workspace/playwright-mcp/scripts/production-jobs-smoke.mjs:36:22)
+        at async file:///workspace/playwright-mcp/scripts/production-jobs-smoke.mjs:47:20,
+    Error: controlled_jobs_close_after_fulfilled_sdk_close
+        at Client.close (file:///tmp/native93-jobs-fixture-calibration.mjs:26:144)
+        at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+        at async file:///workspace/playwright-mcp/scripts/production-jobs-smoke.mjs:98:7
+  ]
+}
+
+Node.js v22.23.3

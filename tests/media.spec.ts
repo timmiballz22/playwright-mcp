@@ -1,21 +1,9 @@
 /** Copyright 2026 contributors. Licensed under Apache-2.0. */
 import { test, expect } from './fixtures';
 import { serveMedia } from './fixtures/media-response.mjs';
+import { ownedPcmWave as wave } from './fixtures/owned-pcm.mjs';
 
 // Generated PCM avoids external assets, codec downloads and microphone access.
-function wave() {
-  const rate = 8000; const frames = rate * 2;
-  const bytes = Buffer.alloc(44 + frames * 2);
-  bytes.write('RIFF', 0); bytes.writeUInt32LE(bytes.length - 8, 4); bytes.write('WAVEfmt ', 8);
-  bytes.writeUInt32LE(16, 16); bytes.writeUInt16LE(1, 20); bytes.writeUInt16LE(1, 22);
-  bytes.writeUInt32LE(rate, 24); bytes.writeUInt32LE(rate * 2, 28);
-  bytes.writeUInt16LE(2, 32); bytes.writeUInt16LE(16, 34);
-  bytes.write('data', 36); bytes.writeUInt32LE(frames * 2, 40);
-  for (let index = 0; index < frames; index++)
-    bytes.writeInt16LE(Math.round(Math.sin(index * Math.PI * 2 * 440 / rate) * 2048), 44 + index * 2);
-  return bytes;
-}
-
 test('original muted PCM media advances, pauses and reports a missing media source', async ({ startClient, server }, testInfo) => {
   const project = ['chrome', 'chromium', 'firefox', 'webkit'].includes(testInfo.project.name) ? testInfo.project.name : 'other';
   const audio = wave(); let mediaRequests = 0, rangeRequests = 0, partialResponses = 0; let missingRequests = 0;

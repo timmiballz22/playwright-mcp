@@ -36,7 +36,7 @@ if (!supportsJournal) {
     const response = await client.callTool({ name, arguments: args });
     assert.notEqual(response.isError, true, 'Production jobs tool failed'); return JSON.parse(response.content[0].text);
   };
-  let cliFailed = false; let verified = false; let diagnosticSafe = false;
+  let cliFailed = false; let verified = false; let diagnosticSafe = false; let primaryFailure;
   try {
     await client.connect(transport);
     await ownedDescendants([transport.pid], { rememberLiveRoots: true });
@@ -88,20 +88,30 @@ if (!supportsJournal) {
     verified = true;
     console.log(JSON.stringify({ entry: 'local-batch/jobs-cli.mjs', production: true, realBrowser: 'chromium', completed: 2, duplicateExecuted: false, statusResultListCleanup: true, retentionPreview: true, retentionFreshPreserved: true, activeCancel: true }));
     console.log(JSON.stringify({ entry: 'local-batch/jobs-mcp.mjs', handshake: true, toolCount: 6, realBrowser: 'chromium', completed: 2, duplicateExecuted: false, production: true }));
+  } catch (error) {
+    primaryFailure = error; throw error;
   } finally {
-    let clean = false;
+    let clean = false; let auditConfirmed = false;
+    const failures = [];
     try {
       const observed = await ownedDescendants([transport.pid]);
       await client.close();
       const end = performance.now() + 10000;
       while ((await ownedDescendants(observed)).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 50));
       assert.deepEqual(await ownedDescendants(observed), []);
-      if (diagnosticSafe) console.error('WINDOWS_JOB_LAYOUT_CLEANUP_CONFIRMED');
+      auditConfirmed = true;
       clean = !cliFailed && verified;
+    } catch (error) {
+      failures.push(error);
     } finally {
-      await client.close().catch(() => {});
+      try { await client.close(); } catch (error) { failures.push(error); }
       server.closeAllConnections(); await new Promise(resolve => server.close(resolve));
-      if (clean) await rm(root, { recursive: true, force: true });
+      if (diagnosticSafe && auditConfirmed && !failures.length) console.error('WINDOWS_JOB_LAYOUT_CLEANUP_CONFIRMED');
+      if (clean && !failures.length) await rm(root, { recursive: true, force: true });
+      else console.error(JSON.stringify({ component: 'installed_jobs_fixture_preserved', workspaceId: path.basename(root),
+        verified, cliFailed, primaryFailed: !!primaryFailure, cleanupFailureCount: failures.length, ownedAuditConfirmed: auditConfirmed }));
+      if (failures.length) throw new AggregateError(primaryFailure ? [primaryFailure, ...failures] : failures,
+        'Installed jobs fixture cleanup failed', { cause: primaryFailure ?? failures[0] });
     }
   }
 }

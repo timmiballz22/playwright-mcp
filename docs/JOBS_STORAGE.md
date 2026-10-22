@@ -249,3 +249,17 @@ native validation pending. See native93-smoke-fixture-preservation-proof.json an
 native94-package-proof.json. Preservation is on the executing host: database/key
 contents are not exported by these fixes, and an ephemeral CI runner is not a
 permanent archive. Metadata receipts and raw logs are separate retained evidence.
+
+The subsequent installed jobs-smoke audit finds primary-error loss on a cleanup
+failure and an ignored final-close rejection. Both now propagate with the primary
+cause, retain the workspace, and gate the Windows cleanup-confirmed marker until
+all existing cleanup attempts succeed. Actual Node22 baseline reproduces both;
+fixed combined/final-close/healthy cases on Node22/24 verify failure propagation,
+retention/removal and scoped owned0. See native93-jobs-fixture-preservation-proof.json.
+
+Parent-death initial process observations also emit before kill/assertions, with
+full same-snapshot Windows legacy/rows through the existing read-only callback.
+No role/name/age/window PID filter or ownership result changes. A64KiB bound fails
+explicitly; stderr survives default execFileSync failures without changing stdout's
+acceptance receipt. Linux actual positive, negative and linger-close forwarding is
+verified; full Windows branch awaits native. See native93-parent-observation-proof.json.

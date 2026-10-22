@@ -1,0 +1,200 @@
+{
+  "phase": "Local followup excluded from completed native93 source47d9c21",
+  "cases": [
+    {
+      "node": "22",
+      "mode": "healthy",
+      "status": 0,
+      "child": {
+        "kind": "parent_death",
+        "mode": "healthy",
+        "sourceScript": "/workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs",
+        "sourceSucceeded": true,
+        "errorClass": null,
+        "injected": false,
+        "opened": 1,
+        "confirmedControllerCloses": 0,
+        "confirmedJournalCloses": 1,
+        "fulfilledClientCloses": 0,
+        "workspaceId": "guardian-real-parent-death-LhbgLm",
+        "storeExists": false
+      },
+      "stdoutBytes": 390,
+      "stderrBytes": 0,
+      "stdoutHasObservation": false,
+      "stdoutHasAcceptance": true,
+      "initialObservation": {
+        "fixture": "parent_death_initial_observation",
+        "roots": [
+          1135628,
+          1135636,
+          1135647,
+          1135665,
+          1135672,
+          1135684
+        ],
+        "observed": [
+          1135628,
+          1135636,
+          1135647,
+          1135654,
+          1135665,
+          1135672,
+          1135684,
+          1135686,
+          1135687,
+          1135708,
+          1135711,
+          1135735
+        ]
+      }
+    },
+    {
+      "node": "22",
+      "mode": "negative",
+      "status": 1,
+      "child": {
+        "kind": "parent_death",
+        "mode": "negative",
+        "sourceScript": "/workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs",
+        "sourceSucceeded": false,
+        "errorClass": "Error",
+        "injected": true,
+        "opened": 1,
+        "confirmedControllerCloses": 0,
+        "confirmedJournalCloses": 1,
+        "fulfilledClientCloses": 0,
+        "workspaceId": "guardian-real-parent-death-JyDua9",
+        "storeExists": true
+      },
+      "stdoutBytes": 0,
+      "stderrBytes": 1282,
+      "stdoutHasObservation": false,
+      "stdoutHasAcceptance": false,
+      "initialObservation": {
+        "fixture": "parent_death_initial_observation",
+        "roots": [
+          1135792,
+          1135800,
+          1135811,
+          1135829,
+          1135836,
+          1135848
+        ],
+        "observed": [
+          1135792,
+          1135800,
+          1135811,
+          1135818,
+          1135829,
+          1135836,
+          1135848,
+          1135850,
+          1135851,
+          1135866,
+          1135869,
+          1135897
+        ]
+      }
+    },
+    {
+      "node": "24",
+      "mode": "healthy_linger",
+      "status": 0,
+      "child": {
+        "kind": "parent_death",
+        "mode": "healthy_linger",
+        "sourceScript": "/workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs",
+        "sourceSucceeded": true,
+        "errorClass": null,
+        "injected": false,
+        "opened": 1,
+        "confirmedControllerCloses": 0,
+        "confirmedJournalCloses": 1,
+        "fulfilledClientCloses": 0,
+        "workspaceId": "guardian-real-parent-death-5B2i3F",
+        "storeExists": false
+      },
+      "stdoutBytes": 389,
+      "stderrBytes": 0,
+      "stdoutHasObservation": false,
+      "stdoutHasAcceptance": true,
+      "initialObservation": {
+        "fixture": "parent_death_initial_observation",
+        "roots": [
+          1135954,
+          1135962,
+          1135973,
+          1135991,
+          1135998,
+          1136010
+        ],
+        "observed": [
+          1135954,
+          1135962,
+          1135973,
+          1135980,
+          1135991,
+          1135998,
+          1136010,
+          1136012,
+          1136013,
+          1136041,
+          1136043,
+          1136065
+        ]
+      }
+    },
+    {
+      "node": "24",
+      "mode": "negative",
+      "status": 1,
+      "child": {
+        "kind": "parent_death",
+        "mode": "negative",
+        "sourceScript": "/workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs",
+        "sourceSucceeded": false,
+        "errorClass": "Error",
+        "injected": true,
+        "opened": 1,
+        "confirmedControllerCloses": 0,
+        "confirmedJournalCloses": 1,
+        "fulfilledClientCloses": 0,
+        "workspaceId": "guardian-real-parent-death-qs0w1B",
+        "storeExists": true
+      },
+      "stdoutBytes": 0,
+      "stderrBytes": 1282,
+      "stdoutHasObservation": false,
+      "stdoutHasAcceptance": false,
+      "initialObservation": {
+        "fixture": "parent_death_initial_observation",
+        "roots": [
+          1136123,
+          1136131,
+          1136142,
+          1136160,
+          1136167,
+          1136179
+        ],
+        "observed": [
+          1136123,
+          1136131,
+          1136142,
+          1136149,
+          1136160,
+          1136167,
+          1136179,
+          1136181,
+          1136182,
+          1136204,
+          1136205,
+          1136228
+        ]
+      }
+    }
+  ],
+  "sourceSha256": "5d1b6216ea263d8ed2fe0d2538ebb3a6c52f4861a578713cf7a97c7120356650",
+  "scope": "Actual parent-death/guardian lifetimes and SQLite journal, default execFileSync stderr forwarding; stdout acceptance format preserved. Observation emitted before existing kill/assertions. Linux scoped PIDs retained; Windows full same-snapshot legacy/rows branch awaits native, no simulated Windows pass. No ownership result, role/name/age/window filter, signal or deadline change. Negative cases are calibration only.",
+  "errorOutputByteCountScope": "stderrBytes fields come only from thrown error.stderr; zero on success does not mean no stderr. Forwarding is verified from the actual parent log in all four cases."
+}

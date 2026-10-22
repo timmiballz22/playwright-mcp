@@ -1,0 +1,10 @@
+file:///tmp/native93-jobs-fixture-calibration.mjs:26
+  if (!closeInjected && (mode === 'combined' && closeCalls === 1 || mode === 'final_close' && closeCalls === 2)) { closeInjected = true; throw new Error('controlled_jobs_close_after_fulfilled_sdk_close'); }
+                                                                                                                                               ^
+
+Error: controlled_jobs_close_after_fulfilled_sdk_close
+    at Client.close (file:///tmp/native93-jobs-fixture-calibration.mjs:26:144)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file:///tmp/playwright-jobs-fixture-baseline/scripts/production-jobs-smoke.mjs:95:7
+
+Node.js v22.23.3

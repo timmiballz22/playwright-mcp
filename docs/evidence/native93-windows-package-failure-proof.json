@@ -1,0 +1,15 @@
+{
+  "source": "47d9c2153ec33a02c2713b3f9a10944364f70972",
+  "failedStep": "Verify installed production package",
+  "failedSmoke": "scripts/verify-guardian-parent-death.mjs --linger-journal-close",
+  "journalFailure": "rpc_timeout",
+  "journalFailureCommand": "create",
+  "journalInitStage": null,
+  "journalExitConfirmed": null,
+  "mainSuiteUnexecuted": true,
+  "layoutProbe": "skipped prior_cleanup_not_confirmed",
+  "outerInstallWorkspacePreserved": true,
+  "innerFixturePostStateConfirmed": false,
+  "innerFixtureDirectoryIdentityRecorded": false,
+  "scope": "Earlier original/profile/batch/jobs/controller/journal-guardian checks and regular parent-death check passed. Linger-close parent-death helper later fails create. No init phase or worker-exit fact is present in this failure receipt; do not infer false/true from the conservative layout-probe gate. Old helper can erase failed acceptance after its cleanup flag; next local guard retains failures and propagates close errors. Not the native92 directory/init failure or proof of its repair."
+}

@@ -1,5 +1,87 @@
 # Execution report — verified milestone, incomplete mission
 
+## Latest completed checkpoint — native93 at47d9c21; acceptance incomplete
+
+[Batch39824763343](https://github.com/timmiballz22/playwright-mcp/actions/runs/39824763343)
+reports 1,424 passes and 1 failure; [original39824763264](https://github.com/timmiballz22/playwright-mcp/actions/runs/39824763264)
+reports 576 passes and 5 failures. Completed summaries total 2,000 passes and 6 failures, reported test skips/cancels0.
+Windows main is unexecuted after failed package verification; four other package
+steps pass. Linux20/22/24 main207/211/211 pass, Mac210/1. Components Linux22/24/Mac
+146/0 each, Windows 147/0; all 12 actual schema/version/identity races pass again. Node20 durable SQLite/jobs
+remain unsupported.
+All 17 logs recovered:15 first reads succeed; lint and Mac actual-client reads are
+empty errors, then both ordinary retries succeed. Both attempts/snapshots retained.
+Both workflows terminate normally, with no cancellation request.
+
+Windows installed original/profile/batch/jobs/controller/journal-guardian checks
+pass, as does the regular parent-death check (CANCELLED1, shutdown992ms, integrity
+and lease-release assertions pass). The linger-journal-close parent-death variant
+later fails rpc_timeout/create. No init phase or worker-exit flag is present in
+this failing receipt; do not reuse native92's directory/init/exit-false facts.
+Outer install workspace is retained; layout probe is skipped by its conservative
+prior-cleanup marker gate, not an independent exit measurement. Old parent-death
+code can remove its workspace after cleanup succeeds but later acceptance fails;
+its failed directory post-state/identity is not retained. This is not a demonstrated
+fix or clearance for native92's initialization/worker-exit uncertainty.
+
+Actual Codex1k passes Linux35.461s/Windows38.443s/Mac80.591s, model turns 0/owned roots 0.
+Mac raw1k times out967/120.055s, click968 interrupted, cleanupFailureCount0. Mac
+SDK jobs and sync stdio1k cases pass. Separate Mac server/pipe controls1k pass
+116.143s/112.997s, owned roots0 before force/finally. These samples do not explain
+the raw deadline failure, native89 Windows CRASHED750, native87 scoped observation
+or historical136/142 birth gaps; no replay, hints-based signal or lease clearance.
+
+Original Linux192/0, Windows190/2, Mac190/2; Docker2/0 and Windows legacy2/1.
+Windows WebKit WAV/VP9 readiness remains failed; WAV ready0/network2/error0,
+VP9 ready0/network3/error4, canPlayType probably. Legacy headed Firefox fails
+fresh2 after14 actions, action_failed with no cleanup failures recorded. Mac
+Chromium highlight and video-source-paint cases fail Page.captureScreenshot with
+Unable to capture screenshot. The latter does not reach recording/decoded-frame
+verification. All12 independent traces,12 PDF behaviors and12 large-DOM cases pass;
+strict recorded-frame receipts pass10/12 (Windows WebKit and Mac Chromium fail).
+Actual-gray gate is ineligible, so fresh controls/independent decoder probes are
+unexecuted. Native90 gray cause unresolved; no speculative encoder patch or waiver.
+Mac modal repeats are unexecuted. No failure-only original teardown receipt fires
+this round; native EOF-unconfirmed diagnostic branch remains pending.
+
+New journal-fixture preservation's positive installed check passes on Windows
+before the later parent-death failure. Its init-failure/close-failure retention
+branches remain locally calibrated; no native negative-branch proof or latency fix
+is claimed. Additional local audit fixes controller/parent-death deletion after
+failed acceptance and profile/jobs ignored close errors. Three baseline cases and
+six negative/six healthy Node22/24 cases verify the first three guards; jobs baseline
+also loses a primary error and accepts a final-close error. Fixed jobs cases retain
+both causes/failure workspaces, and healthy cases remove them with scoped owned0.
+Windows cleanup-confirmed marker now follows all cleanup attempts. No new signal,
+cleanup/action/RPC/job budget, ownership matcher or runtime setting.
+
+Parent-death's existing initial process observation now emits before kill/assertion;
+Windows includes full same-snapshot legacy/rows without role/name/age/window filters.
+A 64 KiB bound fails explicitly rather than silently clipping. Stderr preserves the
+packet through default execFileSync even when the helper fails, while stdout's
+acceptance receipt stays unchanged. Actual Linux positive/negative and linger cases
+verify forwarding/removal/retention; full Windows branch pending. On-host store
+retention is not a permanent CI archive; database/key contents are not exported.
+
+New independent stock PCM/screenshot references preserve project engine/channel
+and shared headless option, use Playwright-owned browser/page lifecycle, and start
+no MCP client. PCM bytes are identical (32,044 bytes; SHA-256 starts be091bc7); original MCP media test
+body is byte-identical. Stock records5s preload then real-click activation before
+strict assertions; later activation cannot waive failed preload. Separate single
+red PNG capture uses5s bound, no warmup/retry. Original PCM plus stock PCM4/4 each
+LTS and final stock PCM/PNG4/4 each LTS pass locally on Chromium/Firefox, with actual
+engine fields verified. Chrome/WebKit/native comparisons pending, no cause/fix claim.
+A frozen-source fresh production install/check passes on Node22; package remains
+297 files excluding test references/actions/evidence. Native follow-up pending.
+
+Six normal Linux mirror instances each change one targeted file, leaving no matched
+Azure URI; optional functional soak path remains unexecuted. Linux main installs
+succeed55/80/84s (Node20/22/24), not an isolated timing guarantee. Four executed main
+lanes retain checkpoints/phases; Windows main is unexecuted. Six scoped factory
+failure observations/four orphan receipts are deliberate-orphan/self-exit controls;
+full Windows comparison and all rows retained. See [native93 summary](evidence/native93-summary.json)
+and full logs/scoped proofs. Acceptance remains blocked; no merge/publication claim.
+
 ## Latest completed checkpoint — native92 at6884c4a; acceptance incomplete
 
 [Batch39818353567](https://github.com/timmiballz22/playwright-mcp/actions/runs/39818353567)
