@@ -71,24 +71,42 @@ test('actual artifact worker exits after controller death while filesystem await
   const wrapper = path.join(base, 'blocked-worker.mjs');
   const parentModule = path.join(base, 'controller.mjs');
   const actualWorker = new URL('./artifact-cleanup-worker.mjs', import.meta.url).href;
-  let parent; let observed = []; let verified = false;
+  let parent; let observed = []; let verified = false; let primary;
+  const phases = { bootstrap: false, runtime_imported: false, filesystem_entered: false, marker_written: false };
+  let workerExited = false; let workerExitCode = null; let workerExitSignal = null; let workerResponse = false;
   try {
     // Patch only this private worker's lstat. The real runtime worker, scope
     // validation and IPC-disconnect handler still run, with an unresolved async
     // filesystem boundary rather than a fabricated success/error receipt.
     await writeFile(wrapper, `import fs from 'node:fs/promises';
 import { syncBuiltinESMExports } from 'node:module';
-fs.lstat = async () => { await fs.writeFile(${JSON.stringify(marker + '.tmp')}, 'pending'); await fs.rename(${JSON.stringify(marker + '.tmp')}, ${JSON.stringify(marker)}); return await new Promise(() => {}); };
+process.send({fixturePhase:'bootstrap'});
+fs.lstat = async () => { process.send({fixturePhase:'filesystem_entered'}); await fs.writeFile(${JSON.stringify(marker + '.tmp')}, 'pending'); await fs.rename(${JSON.stringify(marker + '.tmp')}, ${JSON.stringify(marker)}); process.send({fixturePhase:'marker_written'}); return await new Promise(() => {}); };
 syncBuiltinESMExports();
-await import(${JSON.stringify(actualWorker)});`);
+await import(${JSON.stringify(actualWorker)});
+process.send({fixturePhase:'runtime_imported'});`);
     // A private surrogate parent isolates EOF handling from the adapter's
     // already-tested five-second timeout. Slow read-only native audits must not
     // accidentally turn this into a timeout test instead of parent death.
     await writeFile(parentModule, `import { fork } from 'node:child_process';
 const child = fork(${JSON.stringify(wrapper)}, [], {stdio:['ignore','ignore','ignore','ipc'],execArgv:[],windowsHide:true});
 child.once('spawn', () => process.send({pid:child.pid}));
+child.on('message', packet => {
+  if (['bootstrap','runtime_imported','filesystem_entered','marker_written'].includes(packet?.fixturePhase)) process.send({fixturePhase:packet.fixturePhase});
+  else if (typeof packet?.ok === 'boolean') process.send({workerResponse:true});
+});
+child.once('exit', (code, signal) => { if (process.connected) process.send({workerExited:true,code,signal}); });
 child.send(${JSON.stringify({ base, runId: randomUUID() })});`);
     parent = fork(parentModule, [], { stdio: ['ignore', 'ignore', 'ignore', 'ipc'], execArgv: [], windowsHide: true });
+    parent.on('message', packet => {
+      if (Object.hasOwn(phases, packet?.fixturePhase)) phases[packet.fixturePhase] = true;
+      if (packet?.workerResponse === true) workerResponse = true;
+      if (packet?.workerExited === true) {
+        workerExited = true;
+        workerExitCode = Number.isSafeInteger(packet.code) ? packet.code : null;
+        workerExitSignal = ['SIGKILL','SIGTERM','SIGABRT'].includes(packet.signal) ? packet.signal : packet.signal ? 'other' : null;
+      }
+    });
     const [message] = await once(parent, 'message');
     assert.ok(Number.isSafeInteger(message.pid) && message.pid > 1);
     const pendingBy = performance.now() + 2000;
@@ -109,11 +127,22 @@ child.send(${JSON.stringify({ base, runId: randomUUID() })});`);
     } while (performance.now() < stoppedBy);
     assert.deepEqual(survivors, [], 'Disconnected artifact worker must exit despite pending filesystem promise');
     verified = true;
-  } finally {
+  } catch (error) { primary = error; throw error; }
+  finally {
     if (parent && parent.exitCode === null && parent.signalCode === null) {
       const exited = once(parent, 'exit'); parent.kill('SIGKILL'); await exited;
     }
     if (verified) await rm(base, { recursive: true, force: true });
-    else console.error('Artifact parent-death fixture preserved: shutdown not confirmed');
+    else {
+      const receipt = { fixture: 'artifact_parent_death_phase', ...phases, workerExited,
+        workerExitCode, workerExitSignal, workerResponse, observedBeforeParentDeath: observed.length > 0,
+        parentExited: parent ? parent.exitCode !== null || parent.signalCode !== null : false };
+      const encoded = JSON.stringify(receipt);
+      assert.ok(Buffer.byteLength(encoded) <= 1024, 'Artifact phase receipt byte bound exceeded');
+      console.error(encoded);
+      try { await writeFile(path.join(base, 'phase-failure.json'), encoded, { flag: 'wx', mode: 0o600 }); }
+      catch (error) { if (primary) throw new AggregateError([primary, error], 'Artifact fixture and phase receipt failed'); throw error; }
+      console.error('Artifact parent-death fixture preserved: shutdown not confirmed');
+    }
   }
 });

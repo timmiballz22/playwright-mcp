@@ -53,6 +53,7 @@ export async function createLifetimeObserver(directory) {
     }
     assert.deepEqual(observed, [], JSON.stringify({ fixture: 'factory_lifetime_ownership', phase, lifetimes: entries.length, audit: receipt }));
     console.log(JSON.stringify({ fixture: 'factory_lifetime_audit', phase, lifetimes: entries.length, observed: observed.length }));
+    return { observed, legacy, receipt, lifetimes: facts };
   }
   return {
     async run(specs) {

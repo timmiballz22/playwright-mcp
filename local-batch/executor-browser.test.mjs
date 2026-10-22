@@ -1,4 +1,4 @@
-import { ownedDescendants } from './fixtures/process-audit.mjs';
+import { createLifetimeObserver } from './jobs/fixtures/lifetime-observer.mjs';
 import { stepFailureDiagnostic } from '../scripts/step-failure-diagnostic.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -7,7 +7,6 @@ import { once } from 'node:events';
 import { mkdtemp, rm, readFile, stat } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { executeWorkflow } from './executor.mjs';
 
 for (const browser of ['chromium', 'firefox', 'webkit']) {
   test(`supervised ${browser}: real browser deadline closes owned process`, { timeout: 30000 }, async () => {
@@ -20,13 +19,16 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
     const dir = await mkdtemp(path.join(os.tmpdir(), 'executor-browser-'));
     const owned = [];
     let verified = false;
-    const sinceMs = Date.now();
+    const observer = await createLifetimeObserver(path.join(dir, 'factory-control'));
+    let primary;
     try {
-      const result = await executeWorkflow({ browser, timeoutMs: 10000, actionTimeoutMs: 30000,
-        steps: [{ type: 'goto', url: origin }, { type: 'waitFor', selector: '#never' }] }, {
+      const [outcome] = await observer.run([{ workflow: { browser, timeoutMs: 10000, actionTimeoutMs: 30000,
+        steps: [{ type: 'goto', url: origin }, { type: 'waitFor', selector: '#never' }] }, options: {
         allowedOrigins: [origin], artifactsDir: dir,
         onEvent: event => { if (event.type === 'ownedProcess') owned.push(event.pid); },
-      });
+      } }]);
+      if (outcome.status === 'rejected') throw outcome.reason;
+      const result = outcome.value;
       assert.ok(owned.length, JSON.stringify({ failure: 'browser_launch_not_observed', reason: result.reason,
         completed: result.completed, failedStep: stepFailureDiagnostic(result.failedStep), durationMs: result.durationMs,
         executionMode: result.execution?.mode, forced: result.execution?.forced, cleanup: result.execution?.cleanup,
@@ -37,12 +39,12 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
       assert.ok(result.durationMs < 15000);
       assert.equal(result.execution.tempCleanup, 'removed');
       await assert.rejects(stat(path.join(dir, 'exec-' + result.runId, 'tmp')), { code: 'ENOENT' });
-      let auditReceipt = null;
-      const survivors = await ownedDescendants([result.execution.supervisorPid, result.execution.workerPid, ...owned], {
-        sinceMs,
-        onReceipt: receipt => { auditReceipt = receipt; },
-      });
-      assert.deepEqual(survivors, [], JSON.stringify({ failure: 'owned_process_after_cleanup', audit: auditReceipt,
+      const audit = await observer.audit('deadline_' + browser);
+      // Keep the legacy zero-candidate assertion in addition to scoped identity
+      // checks. Full same-snapshot candidates/rows/rootRows stay in the receipt;
+      // actual pre-effect births improve future evidence, not old classification.
+      const survivors = audit.legacy?.observed ?? audit.observed;
+      assert.deepEqual(survivors, [], JSON.stringify({ failure: 'owned_process_after_cleanup', audit: audit.receipt,
         supervisorMatched: survivors.includes(result.execution.supervisorPid), workerMatched: survivors.includes(result.execution.workerPid),
         browserRootsMatched: owned.filter(pid => survivors.includes(pid)).length,
         forced: result.execution.forced, cleanup: result.execution.cleanup, tempCleanup: result.execution.tempCleanup }));
@@ -57,10 +59,16 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
         assert.equal(running, false, 'Owned browser remains running');
       }
       verified = true;
-    } finally {
-      fixture.closeAllConnections(); fixture.close();
-      if (verified) await rm(dir, { recursive: true, force: true });
-      else console.error('Deadline fixture workspace preserved: acceptance or cleanup not confirmed');
+    } catch (error) { primary = error; throw error; }
+    finally {
+      let clean = false;
+      try { await observer.close(); clean = true; }
+      catch (error) { if (primary) throw new AggregateError([primary, error], 'Deadline fixture and lifetime audit failed'); throw error; }
+      finally {
+        fixture.closeAllConnections(); fixture.close();
+        if (verified && clean) await rm(dir, { recursive: true, force: true });
+        else console.error('Deadline fixture workspace preserved: acceptance or cleanup not confirmed');
+      }
     }
   });
 }

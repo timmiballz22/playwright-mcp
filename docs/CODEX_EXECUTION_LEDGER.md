@@ -2,6 +2,80 @@
 
 ## Resume checkpoint — 2026-10-22
 
+Latest completed native83 at `e95f0298030fd97b460d8798a2fd57a770123873`:
+[batch39753138604](https://github.com/timmiballz22/playwright-mcp/actions/runs/39753138604)
+reports1,469 passes/5 failures; [original39753138605](https://github.com/timmiballz22/playwright-mcp/actions/runs/39753138605)
+reports468/5. Combined **1,937 reported test passes/10 failures**, plus Mac actual
+client TIMED_OUT953 and six failed JSON controls. All17 non-soak jobs finish;
+optional soak skips, reported test skips/cancels0. Both workflows fail. New graph
+contracts pass all five lanes and required strict typecheck passes native Node20;
+local subsequent locator/media/package/video/phase work below is excluded.
+
+Linux batch201/205/205 and components115 pass; Mac204/1, Windows194/3 and its
+components115/1 fail. Five176-file production installs,15 all-action/HTTP/cancel
+cases each (120 HTTP/60 cancellation scenarios), and all five raw/supervised
+20-run screenshot fixtures pass. Main Windows Node22 fresh Firefox modes pass;
+separate original legacy Node20 modes still fail. Healthy controls are not fixes.
+
+Windows deadline returns known terminated/removed cleanup but final legacy audit
+retains one candidate without original birth or complete current rows. Keep it
+unclassified, separate from another full lifetime comparison whose same-PID birth
+mismatches one recorded incarnation. That narrow replacement fact cannot establish
+every lineage, clear debt, or classify the separate deadline/older cohorts. Full
+candidate lists/rows/rootRows and all missing-evidence limits remain retained.
+Guardian crash-order fixture exits before readiness: journal_open/init rpc_timeout,
+state unknown, so intended crash/shutdown ordering is unexecuted. Artifact-worker
+parent-death test cannot read its pending marker within existing2s readiness; no
+original phase/exit witness, no startup-cause or cleanup-success claim. Retry /429
+has0 navigation ACK despite2 GETs/2 finished responses (first2.827s/last3.849s,
+browser1.700s), forced:false known cleanup; later cap/POST cases unexecuted.
+
+Mac SDK jobs966 times out,118.889s execution receipt,128.414s test. Raw/synchronous
+1k cases pass this sample; actual Codex953 times out with forced:false,
+attention:false, terminated/removed cleanup. Linux35.334s/Windows38.146s actual1k
+clients pass, model0/owned0. Mac server controls990/986 fail while pipe controls1k
+pass105.316/109.450s; all before-force/final owned0. Four Windows JSON controls
+fail: private0/10=15 actions, inherited0/10=13, protocol-headed3/10=73,
+stock-headed0/10=6, before-force/final owned0. No transport default changes.
+
+Original Linux/Windows156 each and Docker2 pass. Mac153/3 fails Chromium capture
+protocol, Firefox100-click trusted-code30s deadline and storage-restore30s deadline;
+target-closed follows teardown, not proof of wrong restored state. Mac modal
+follow-up unexecuted. Legacy Windows headless10/10 passes, headed fresh10 stops9/23
+locator10 (counter8 matches8 acknowledged clicks), pipe fresh1 stops13/23 locator14,
+all cleanup[]. Do not replay any failed input. No budgets/assertions weakened.
+
+All17 completed-job logs retained; one ordinary unexpected-EOF retry succeeds.
+No artifact download/access workaround. Evidence: native83-summary.json,
+native83-{batch,wrapper}.log, full failure blocks/native receipts/comparisons.
+
+Local follow-up to the two new lifecycle observations reuses existing fixtures:
+artifact test emits fixed phase booleans/actual child exit summaries over existing
+IPC and a <=1KiB exclusive0600 failure receipt; primary/receipt failures aggregate.
+No timer/assertion/signal/query change. Eight controls pass each Node20/22/24.
+Trusted marker-write stall exits1 as expected, showing bootstrap/runtime/filesystem
+entered but marker not written; parent exit confirmed, no independent worker-tree
+success claim. Existing2s readiness stays unchanged; this diagnoses future runs,
+not the old Windows cause.
+
+Deadline fixture now captures actual factory births before effects and retains
+full same-snapshot comparisons. The original strict legacy-zero, cleanup, duration,
+temp removal and bare-root-running assertions all remain. Observer failure and
+primary failure aggregate; failed workspace retained. Chromium/Firefox2 each
+Node20/22/24 pass; Node20 reports one unmatched WebKit skip, newer reporters omit
+it. WebKit unexecuted locally. No role/name/age/window filtering, new kill rights,
+old cohort/debt clearance or claim that the native deadline failure is fixed.
+Evidence: native83-lifecycle-followup-proof.json and exact hashes/phase logs.
+
+Current local source includes an unresolved VP9 color regression (Chromium pass,
+Firefox fail), with unchanged assertions and a reviewable upstream proposal;
+installed dependency is restored, not a shipped fix. Previous local locator,
+PCM and119-file package proofs remain narrowly scoped below. Native84 pending.
+**Mission active/incomplete; not release-ready.** Continue independent work;
+G00–G18 are not promoted by these limited checks.
+
+Prior completed checkpoint (native82):
+
 Latest completed native82 at `bbf4764e001095d42aecaa7e3ce671fb21fa568d`:
 [batch39748755708](https://github.com/timmiballz22/playwright-mcp/actions/runs/39748755708)
 reports1,456 passes/8 failures; [original39748755718](https://github.com/timmiballz22/playwright-mcp/actions/runs/39748755718)
@@ -1248,25 +1322,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native82 reports1,929/11; all17 completed logs saved; e95f029 native83 running | Fresh native candidate checks; preserve failed controls |
-| G01 INSTALL | VERIFIED PASS | native82 five176-file production installs; local fresh176 install after anchor/typecheck source passes | Keep fresh installed-client checks and fork identity |
-| G02 MCP | FAILED | native82 all actual1k clients/original156 each pass; Mac sync986 timeout; new stderr probes12/12 pass | Diagnose native execution; verify e95f029 native83 |
-| G03 FEATURE PARITY | FAILED | native82 original156 each, Docker2 and Macmodal3 pass; three Win legacy Firefox input cases fail | Full parity remains unproven; no feature or assertion removal |
-| G04 BATCH | FAILED | native82 Mac raw985/sync986 deadlines, Win action/privacy/origin/retry failures | No budget/assertion weakening or input replay |
-| G05 RETRIES | FAILED | native82 Win first throttled goto0 timeout; later cap/POST scenarios unexecuted | Preserve exact route scopes and no unsafe replay |
-| G06 JOBS | FAILED | native82 components115/116 pass, all actual1k pass; historical debt unknown | Native diagnosis; QA stderr bound is not product RAM cap |
+| G00 BASELINE | IN PROGRESS | native83 reports1,937/10 plus actual Mac953/six JSON controls; all17 logs saved | Next native source verification; preserve failures |
+| G01 INSTALL | VERIFIED PASS | native83 five176-file production installs; local fresh119 install removes only checkout tests, all installed smoke checks pass | Verify119-file native candidate; retain fork identity |
+| G02 MCP | FAILED | native83 Linux/Win actual1k pass; Mac actual953/SDK966 time out; native strict typecheck and12 stderr probes pass | Native execution diagnosis; no default/budget changes |
+| G03 FEATURE PARITY | FAILED | native83 original Linux/Win156 each, Mac153/3, Docker2; local new VP9 color regression fails Firefox | Supported upstream metadata fix plus remaining feature/negative review |
+| G04 BATCH | FAILED | native83 Mac SDK966/actual953 deadlines, Win deadline candidate/guardian init/retry failures | No budget/assertion weakening or input replay |
+| G05 RETRIES | FAILED | native83 Win429 has0 navigation ACK/2 GETs/2 finished responses; later cap/POST cases unexecuted | Preserve route scopes and unsafe-write refusal |
+| G06 JOBS | FAILED | native83 Win component marker absent before parent-death proof; guardian journal_open/init rpc_timeout; Mac966/953 | Phase diagnostics tested locally, no old cause/debt clearance |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
-| G08 STORAGE | BLOCKED | native82 Win screenshot close/Mac screenshot capture fail; two full legacy comparisons keep3 unclassified candidates; old136/142 unknown | No retrospective birth reconstruction or debt clearance |
+| G08 STORAGE | BLOCKED | native83 one deadline candidate lacks births/rows; one full comparison proves narrow same-PID birth mismatch only; old136/142 unknown | No retrospective reconstruction, coalescence or debt clearance |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native82 Win Firefox action/privacy/origin/retry/legacy failures, Mac screenshot/raw1k/sync deadlines | Native remediation under unchanged constraints |
-| G11 CROSS-OS | FAILED | native82 allLinux pass; Macbatch3 and Winbatch5/legacy3 plus4 failed JSON controls | Verify e95f029 graph/static checks on native lanes |
+| G10 CROSS-BROWSER | FAILED | native83 Mac capture/click/storage failures and Windows legacy/retry/deadline uncertainty; new local Firefox VP9 mismatch | Native capture/metadata remediation under unchanged assertions |
+| G11 CROSS-OS | FAILED | native83 Linux pass; Macbatch1/actual953/original3; Winbatch3/component1/legacy2 | Next full native verification and scoped diagnosis |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
 | G14 ADVANCED | FAILED | New owned VP9 frame test fails Firefox color fidelity; metadata control and temporary encoder flag prove narrow cause; dependency restored | Resolve encoder metadata through supported upstream change; broader interactive/negative review remains |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | 30 tracked Markdown files/173 inline relative targets exist; external/anchor/reference links untested | Complete verified operator walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | native82 all17 logs; anchor before/after/negative proof; strict TS20/22/24 pass; npm audit0 vulnerabilities | Limited secret scan retains unchanged test TLS key; historical missing facts remain |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native82 fails; pushed e95f029 native83 running | All critical gates before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | native83 all17 logs/retry; exact video negative/patch/restored and lifecycle phase proofs saved; syntax193 files Node20/22/24 pass | Keep failed outcomes failed; preserve incomplete historical identities |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native83 fails; new VP9 regression remains failing with upstream proposal only | All critical gates before merge/release |
 
 ## Defects and risk register
 

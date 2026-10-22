@@ -1,5 +1,79 @@
 # Execution report — verified milestone, incomplete mission
 
+Latest completed native83 at `e95f0298030fd97b460d8798a2fd57a770123873`:
+[batch39753138604](https://github.com/timmiballz22/playwright-mcp/actions/runs/39753138604)
+reports1,469 passes/5 failures; [original39753138605](https://github.com/timmiballz22/playwright-mcp/actions/runs/39753138605)
+reports468/5. Combined **1,937 reported test passes/10 failures**, plus Mac actual
+client TIMED_OUT953 and six failed JSON controls. All17 non-soak jobs finish;
+optional soak skips, reported test skips/cancels0. Both workflows fail. New graph
+contracts pass all five lanes and required strict typecheck passes native Node20;
+local subsequent locator/media/package/video/phase work below is excluded.
+
+Linux batch201/205/205 and components115 pass; Mac204/1, Windows194/3 and its
+components115/1 fail. Five176-file production installs,15 all-action/HTTP/cancel
+cases each (120 HTTP/60 cancellation scenarios), and all five raw/supervised
+20-run screenshot fixtures pass. Main Windows Node22 fresh Firefox modes pass;
+separate original legacy Node20 modes still fail. Healthy controls are not fixes.
+
+Windows deadline returns known terminated/removed cleanup but final legacy audit
+retains one candidate without original birth or complete current rows. Keep it
+unclassified, separate from another full lifetime comparison whose same-PID birth
+mismatches one recorded incarnation. That narrow replacement fact cannot establish
+every lineage, clear debt, or classify the separate deadline/older cohorts. Full
+candidate lists/rows/rootRows and all missing-evidence limits remain retained.
+Guardian crash-order fixture exits before readiness: journal_open/init rpc_timeout,
+state unknown, so intended crash/shutdown ordering is unexecuted. Artifact-worker
+parent-death test cannot read its pending marker within existing2s readiness; no
+original phase/exit witness, no startup-cause or cleanup-success claim. Retry /429
+has0 navigation ACK despite2 GETs/2 finished responses (first2.827s/last3.849s,
+browser1.700s), forced:false known cleanup; later cap/POST cases unexecuted.
+
+Mac SDK jobs966 times out,118.889s execution receipt,128.414s test. Raw/synchronous
+1k cases pass this sample; actual Codex953 times out with forced:false,
+attention:false, terminated/removed cleanup. Linux35.334s/Windows38.146s actual1k
+clients pass, model0/owned0. Mac server controls990/986 fail while pipe controls1k
+pass105.316/109.450s; all before-force/final owned0. Four Windows JSON controls
+fail: private0/10=15 actions, inherited0/10=13, protocol-headed3/10=73,
+stock-headed0/10=6, before-force/final owned0. No transport default changes.
+
+Original Linux/Windows156 each and Docker2 pass. Mac153/3 fails Chromium capture
+protocol, Firefox100-click trusted-code30s deadline and storage-restore30s deadline;
+target-closed follows teardown, not proof of wrong restored state. Mac modal
+follow-up unexecuted. Legacy Windows headless10/10 passes, headed fresh10 stops9/23
+locator10 (counter8 matches8 acknowledged clicks), pipe fresh1 stops13/23 locator14,
+all cleanup[]. Do not replay any failed input. No budgets/assertions weakened.
+
+All17 completed-job logs retained; one ordinary unexpected-EOF retry succeeds.
+No artifact download/access workaround. Evidence: native83-summary.json,
+native83-{batch,wrapper}.log, full failure blocks/native receipts/comparisons.
+
+Local follow-up to the two new lifecycle observations reuses existing fixtures:
+artifact test emits fixed phase booleans/actual child exit summaries over existing
+IPC and a <=1KiB exclusive0600 failure receipt; primary/receipt failures aggregate.
+No timer/assertion/signal/query change. Eight controls pass each Node20/22/24.
+Trusted marker-write stall exits1 as expected, showing bootstrap/runtime/filesystem
+entered but marker not written; parent exit confirmed, no independent worker-tree
+success claim. Existing2s readiness stays unchanged; this diagnoses future runs,
+not the old Windows cause.
+
+Deadline fixture now captures actual factory births before effects and retains
+full same-snapshot comparisons. The original strict legacy-zero, cleanup, duration,
+temp removal and bare-root-running assertions all remain. Observer failure and
+primary failure aggregate; failed workspace retained. Chromium/Firefox2 each
+Node20/22/24 pass; Node20 reports one unmatched WebKit skip, newer reporters omit
+it. WebKit unexecuted locally. No role/name/age/window filtering, new kill rights,
+old cohort/debt clearance or claim that the native deadline failure is fixed.
+Evidence: native83-lifecycle-followup-proof.json and exact hashes/phase logs.
+
+Current local source includes an unresolved VP9 color regression (Chromium pass,
+Firefox fail), with unchanged assertions and a reviewable upstream proposal;
+installed dependency is restored, not a shipped fix. Previous local locator,
+PCM and119-file package proofs remain narrowly scoped below. Native84 pending.
+**Mission active/incomplete; not release-ready.** Continue independent work;
+G00–G18 are not promoted by these limited checks.
+
+Prior completed checkpoint (native82):
+
 Latest completed native82 at `bbf4764e001095d42aecaa7e3ce671fb21fa568d`:
 [batch39748755708](https://github.com/timmiballz22/playwright-mcp/actions/runs/39748755708)
 reports1,456 passes/8 failures; [original39748755718](https://github.com/timmiballz22/playwright-mcp/actions/runs/39748755718)

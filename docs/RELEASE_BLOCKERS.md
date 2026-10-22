@@ -1,17 +1,19 @@
 # Release acceptance is blocked
 
 The mission is incomplete. Do not merge or publish this candidate as release-ready.
-Latest completed native source is `bbf4764e001095d42aecaa7e3ce671fb21fa568d`
-(native82):1,929 reported test passes/11 failures, plus four failed Windows
-JSON controls. Both workflows fail. The draft is
+Latest completed native source is `e95f0298030fd97b460d8798a2fd57a770123873`
+(native83):1,937 reported test passes/10 failures, plus Mac actual-client timeout953
+and six failed diagnostic controls. Both workflows fail. The draft is
 [PR2](https://github.com/timmiballz22/playwright-mcp/pull/2).
 
-Bounded stderr now passes native probes on all three platforms. Independent
-follow-up fixes a reproduced fresh-anchor QA graph defect and adds strict static
-checking; local graph, real browser and production-package checks pass, native
-verification pending. Full evidence and limits are in the execution report.
-Missing historical evidence does not prevent independent implementation or
-authorize skipping remaining work.
+Native strict typechecking, fresh-anchor graph contracts and bounded stderr probes
+pass. Independent locator/PCM/119-file package checks pass locally; new VP9 pixel
+regression fails Firefox and has a causal encoder-metadata control, with no shipped
+fix. Future phase/lifetime receipts retain new native uncertainty without widening
+deadlines, dropping zero-candidate assertions or retroactive classification.
+One deadline candidate lacks original births/current rows and remains unclassified.
+Full source phases and scopes are in the execution report. Missing old evidence
+never authorizes stopping independent work or skipping remaining acceptance.
 
 ## Historical ownership evidence cannot be reconstructed
 

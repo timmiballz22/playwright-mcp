@@ -1,0 +1,31 @@
+[
+  {
+    "job": "batch (windows-latest, 22)",
+    "phase": "teardown",
+    "facts": [
+      {
+        "row": {
+          "pid": 1396,
+          "parent": 8384,
+          "started": "2026-10-22T09:25:41.5668760Z"
+        },
+        "capturedBirthsForSamePid": [
+          "2026-10-22T09:25:20.4418840Z"
+        ],
+        "samePidMatches": false,
+        "parentRows": [
+          {
+            "pid": 8384,
+            "parent": 7848,
+            "started": "2026-10-22T09:25:41.5643990Z"
+          }
+        ],
+        "capturedParentBirths": [],
+        "narrowFinding": "Current kernel birth differs from the captured same-PID incarnation; not that recorded incarnation.",
+        "limitation": "Does not classify every possible lineage, the separate deadline observation, or any older cohort. Candidate/rows/rootRows remain retained; no signal/lease/debt authority."
+      }
+    ],
+    "source": "native83-legacy-comparisons.json",
+    "scope": "Read-only actual birth comparison only; all candidates retained, no signalling/lease/debt authority or historical classification"
+  }
+]

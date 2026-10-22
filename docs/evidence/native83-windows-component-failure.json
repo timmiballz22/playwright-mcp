@@ -1,0 +1,21 @@
+[
+  [
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9345858Z not ok 13 - actual artifact worker exits after controller death while filesystem awaits",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9370394Z ##[error]testNumber=13 failureClass=missing_path durationMs=5345",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9377062Z   ---",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9378526Z   duration_ms: 5345.4869",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9378758Z   type: 'test'",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9379308Z   location: 'D:\\\\a\\\\playwright-mcp\\\\playwright-mcp\\\\local-batch\\\\jobs\\\\artifact-cleanup-supervisor.test.mjs:68:1'",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9379853Z   failureType: 'testCodeFailure'",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9380440Z   error: \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\runneradmin\\\\AppData\\\\Local\\\\Temp\\\\artifact-parent-death-3RAbyH\\\\pending'\"",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9381081Z   code: 'ENOENT'",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9381611Z   stack: |-",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9381863Z     async open (node:internal/fs/promises:639:25)",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9382215Z     async readFile (node:internal/fs/promises:1252:14)",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9382890Z     async TestContext.<anonymous> (file:///D:/a/playwright-mcp/playwright-mcp/local-batch/jobs/artifact-cleanup-supervisor.test.mjs:96:26)",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9383552Z     async Test.run (node:internal/test_runner/test:1054:7)",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9383990Z     async Test.processPendingSubtests (node:internal/test_runner/test:744:7)",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:15.9384361Z   ...",
+    "journal (windows-latest, 22)\tRun durable component tests\t2026-10-22T09:09:17.4595588Z # Subtest: bounded artifact cleanup previews, removes only one scope and is idempotent"
+  ]
+]
