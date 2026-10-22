@@ -333,3 +333,40 @@ CPU omits unreadable/unsampled intervals and ps helpers. Instrumentation affects
 latency. This scoped Linux check is not a hard resource cap, full tree-FD pass,
 MCP/token measurement, cross-OS guarantee or proof of a performance change.
 Raw102 records: [response-release-soak100-node22.txt](evidence/response-release-soak100-node22.txt).
+
+
+### Optional offline reference encoding (three fresh samples)
+
+At base commit e410516 with the benchmark source hash recorded in
+[evidence/reference-tokens-provenance.json](evidence/reference-tokens-provenance.json),
+Linux x64 / Node 24.19.0 / Playwright 1.64.1 completed three fresh runs of all
+four interfaces. Every run asserted the exact 100-click result, audited
+owned-process shutdown to zero, and used zero model turns. Original MCP checks
+the origin in its snapshot; trusted code, batch and CLI assert the exact URL. All three commands
+exited 0. These are separately encoded payload texts using js-tiktoken 1.0.21
+and o200k_base, **not actual model context, wire framing, or billed usage**.
+Encoding runs after the timed lifetime; optional bounded text collection still
+occurs during it. No runtime dependency was added.
+
+| Interface | Calls | Parameter/workflow tokens | Result/stdout tokens | Discovery tokens | Read snapshot tokens | Median action/setup time (range), seconds |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original MCP | 102 | 1734 | 10385 | 4522 | 32 | 54.867 (54.630–55.383) |
+| Original trusted code MCP | 1 | 148 | 216 | 4522 | 0 | 5.099 (5.049–5.121) |
+| Batch MCP | 1 | 92 | 457 (450–457) | 493 | 0 | 4.614 (4.569–4.621) |
+| Fork batch CLI | 0 MCP | 83 | 685 (682–688) | — | — | 4.151 (4.115–4.315) |
+
+Token cells show median and range where values differ. Discovery is counted
+separately, once per fresh MCP connection; snapshot text counts only files
+actually read. CLI JSON/stdout is a different interface boundary. Original
+trusted code already uses one call and has a smaller result payload here;
+these samples do not establish a universally cheapest interface. Dynamic
+paths and timings can affect payload encoding. Three samples establish no
+cross-platform confidence interval or current model tokenizer equivalence.
+
+Reproduce after installing the optional developer tool outside the checkout:
+`npm install --prefix /absolute/trusted/tokenizer --ignore-scripts --no-audit --no-fund js-tiktoken@1.0.21`, then
+`PLAYWRIGHT_BENCH_TOKENIZER_DIR=/absolute/trusted/tokenizer node scripts/benchmark-local-interfaces.mjs`.
+The default command still requires no tokenizer and reports model tokens as
+`not_measured`. Exact samples are evidence/reference-tokens-sample1.json through
+sample3.json; package metadata, resolved integrity, lock and source hash are in
+the provenance receipt. Official CLI/SKILLS token comparison remains unmeasured.

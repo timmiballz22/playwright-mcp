@@ -1,5 +1,6 @@
 // Optional local operator benchmark. Zero model turns; owned static fixture only.
-// Counts JSON tool parameters/results, NOT wire envelopes or model tokens.
+// Counts JSON tool parameters/results, NOT wire envelopes or model usage.
+// Optional reference encoding runs only after each measured lifetime stops.
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { createServer } from 'node:http';
@@ -13,6 +14,33 @@ import os from 'node:os';
 import assert from 'node:assert/strict';
 import { ownedDescendants } from '../local-batch/fixtures/process-audit.mjs';
 const repository = fileURLToPath(new URL('../', import.meta.url));
+let referenceEncoding; let referenceTokenizer;
+if (process.env.PLAYWRIGHT_BENCH_TOKENIZER_DIR !== undefined) {
+  const directory = process.env.PLAYWRIGHT_BENCH_TOKENIZER_DIR;
+  assert.ok(path.isAbsolute(directory) && !directory.includes('\0'), 'Tokenizer directory must be an absolute trusted developer directory');
+  const require = createRequire(path.join(directory, 'package.json'));
+  const entry = require.resolve('js-tiktoken');
+  const metadata = JSON.parse(await readFile(path.resolve(path.dirname(entry), '../package.json'), 'utf8'));
+  assert.equal(metadata.name, 'js-tiktoken'); assert.equal(metadata.version, '1.0.21');
+  referenceEncoding = require('js-tiktoken').getEncoding('o200k_base');
+  assert.equal(referenceEncoding.encode('').length, 0); assert.equal(referenceEncoding.encode('hello world').length, 2);
+  referenceTokenizer = { package: metadata.name, version: metadata.version, encoding: 'o200k_base',
+    scope: 'separately encoded JSON parameters/results/discovery and explicitly read file/stdout text; not model context, wire framing or billed usage',
+    tokenizationOutsideTimedRegion: true };
+}
+function tokenCapture(keys) {
+  if (!referenceEncoding) return null;
+  const groups = new Map(keys.map(key => [key, []])); let count = 0; let size = 0;
+  return {
+    text(key, value) {
+      assert.ok(groups.has(key) && typeof value === 'string');
+      size += Buffer.byteLength(value); count++;
+      assert.ok(size <= 8388608 && count <= 256, 'Reference text capture exceeded its explicit bound');
+      groups.get(key).push(value);
+    },
+    counts() { return Object.fromEntries([...groups].map(([key, texts]) => [key, texts.reduce((sum, text) => sum + referenceEncoding.encode(text).length, 0)])); },
+  };
+}
 const directory = await mkdtemp(path.join(os.tmpdir(), 'interface-benchmark-'));
 const fixture = createServer((_request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -39,14 +67,18 @@ try {
       cwd: directory, stderr: 'pipe', env: { ...process.env, PLAYWRIGHT_BATCH_ALLOWED_ORIGINS: origin, PLAYWRIGHT_BATCH_ARTIFACTS_DIR: path.join(directory, 'artifacts') },
     });
     transport.stderr.resume();
+    const capture = tokenCapture(['parameterJsonTokens', 'resultJsonTokens', 'snapshotFileTokens', 'discoveryJsonTokens']);
     const start = performance.now(); let measurement; let root; let observed = []; let toolCalls = 0; let parameterBytes = 0; let resultBytes = 0; let snapshotFileBytes = 0; let snapshotFilesRead = 0;
     try {
       await client.connect(transport, { timeout: 20000 }); root = transport.pid;
       assert.ok(Number.isSafeInteger(root)); observed = await ownedDescendants([root], { rememberLiveRoots: true });
       const inventory = await client.listTools(); const setupMs = Math.round(performance.now() - start);
+      capture?.text('discoveryJsonTokens', JSON.stringify(inventory));
       const call = async (name, args) => {
-        const params = { name, arguments: args }; toolCalls++; parameterBytes += bytes(params);
-        const result = await client.callTool(params, undefined, { timeout: 120000 }); resultBytes += bytes(result);
+        const params = { name, arguments: args }; const parameters = JSON.stringify(params);
+        toolCalls++; parameterBytes += Buffer.byteLength(parameters); capture?.text('parameterJsonTokens', parameters);
+        const result = await client.callTool(params, undefined, { timeout: 120000 }); const serialized = JSON.stringify(result);
+        resultBytes += Buffer.byteLength(serialized); capture?.text('resultJsonTokens', serialized);
         assert.notEqual(result.isError, true, 'Benchmark tool failed (' + name + '): ' + JSON.stringify(result).slice(-3000)); return result;
       };
       const snapshotText = async result => {
@@ -58,6 +90,7 @@ try {
         assert.ok(relative && !relative.startsWith('..') && !path.isAbsolute(relative));
         const metadata = await stat(filename); assert.ok(metadata.isFile() && metadata.size <= 1048576);
         const content = await readFile(filename, 'utf8'); snapshotFileBytes += Buffer.byteLength(content); snapshotFilesRead++;
+        capture?.text('snapshotFileTokens', content);
         return text + '\n' + content;
       };
       if (mode === 'original_mcp') {
@@ -94,10 +127,14 @@ try {
       finally { await client.close(); }
       if (root) await stopped([root, ...observed]);
     }
-    measurement.totalWithAuditedShutdownMs = Math.round(performance.now() - start); results.push(measurement);
+    measurement.totalWithAuditedShutdownMs = Math.round(performance.now() - start);
+    if (capture) Object.assign(measurement, capture.counts());
+    results.push(measurement);
   }
   const workflowPath = path.join(directory, 'workflow.json'); await writeFile(workflowPath, JSON.stringify(workflow), { mode: 0o600, flag: 'wx' });
   const start = performance.now(); let child;
+  const capture = tokenCapture(['workflowJsonTokens', 'stdoutTokens']);
+  capture?.text('workflowJsonTokens', JSON.stringify(workflow));
   const completion = new Promise((resolve, reject) => {
     child = execFile(process.execPath, [path.join(repository, 'local-batch/cli.mjs'), '--workflow', workflowPath, '--allow-origin', origin, '--artifacts', path.join(directory, 'cli-artifacts')],
       { cwd: directory, timeout: 120000, maxBuffer: 65536 }, (error, stdout) => error ? reject(new Error('Benchmark CLI failed')) : resolve(stdout));
@@ -107,14 +144,17 @@ try {
   try {
     observed = await ownedDescendants([child.pid], { rememberLiveRoots: true });
     const output = await completion; const result = JSON.parse(output);
+    capture?.text('stdoutTokens', output);
     assert.equal(result.ok, true); assert.equal(result.completed, 103);
     cliMeasurement = { mode: 'fork_batch_cli', clicks: 100, toolCalls: 0, workflowJsonBytes: bytes(workflow), stdoutBytes: Buffer.byteLength(output), totalMs: Math.round(performance.now() - start), routing: 'strict_origins_fetch' };
   } finally { await completion.catch(() => {}); await stopped([child.pid, ...observed]); }
-  cliMeasurement.totalWithAuditedShutdownMs = Math.round(performance.now() - start); results.push(cliMeasurement);
+  cliMeasurement.totalWithAuditedShutdownMs = Math.round(performance.now() - start);
+  if (capture) Object.assign(cliMeasurement, capture.counts());
+  results.push(cliMeasurement);
   verified = true;
 } finally {
   fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
   if (verified) await rm(directory, { recursive: true, force: true });
 }
 console.log(JSON.stringify({ os: process.platform, architecture: process.arch, node: process.version, playwright: playwrightVersion, samples: 1, modelTurns: 0,
-  tokens: 'not_measured', resources: 'not_measured', jsonEnvelopeBytesIncluded: false, officialCliSkills: 'not_measured', results, activeOwnedProcesses: 0 }));
+  tokens: 'not_measured', ...(referenceTokenizer ? { referenceTokenizer } : {}), resources: 'not_measured', jsonEnvelopeBytesIncluded: false, officialCliSkills: 'not_measured', results, activeOwnedProcesses: 0 }));
