@@ -3,13 +3,13 @@
 Pinned stable1.64.1 extended Chromium discovery defines72 tools. This index maps
 source fixture touchpoints; a source call is not itself a PASS or a coverage
 percentage. Consult execution evidence for the exact commit, engine and OS.
-Latest completed native75 (90e1c43) reports455 original passes/three failures:
-Linux152, Windows151/1 (Firefox popup click) and Mac150/2 (Chromium capture),
-Docker2. Conditional Mac modal and Windows legacy are unexecuted. All12 route
-negatives and12 extended profile reset/isolation instances pass. All72 schemas
-remain checked by capabilities.spec.ts. Parameter/negative/interactive acceptance
-is incomplete; healthy cases do not explain historical stalls. Post-matrix
-companion cancellation controls do not change the original tools' trust model.
+Latest completed native76 (9591621) reports462 original passes/two legacy Windows
+failures. Normal Linux/Windows/Mac suites152 each, Docker2 and Mac modal3 pass;
+legacy Windows1/2 fails raw input (including an unacknowledged delivered click).
+All12 profile and12 routing-negative cases pass;72 schemas remain checked.
+This healthy Mac capture sample does not causally fix older failures. Parameter/
+negative/interactive acceptance remains incomplete. Companion API cancellation
+proof does not change the original endpoint's expert trust model.
 
 Interactive annotation/debugger-resume flows remain open. Other rows still need
 full negative/parameter/native review; export overwrite

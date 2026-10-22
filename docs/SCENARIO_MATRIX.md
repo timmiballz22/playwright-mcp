@@ -1,6 +1,19 @@
 # Mandatory scenario evidence
 
-Latest completed native75 at90e1c43:1,881 reported passes/9 failed tests, plus
+Latest completed native76 at9591621:1,904 reported passes/12 failures plus2
+failed Windows diagnostic controls. Five failures are one ownership unit's
+outdated no-options expectation; local f426d7e retains strict keys and all
+ownership/close checks while validating signal lifecycle (6/6 each Node20/22/24).
+All3 actual Codex1k clients pass with model0/owned0. Native all-action and cancel
+cases15/15 each, empty-snapshot5/5, Windows parity, five175-file installs and five
+20-run integrity fixtures pass. Mac raw/SDK/synchronous lifecycle, Windows Firefox
+startup/retry and legacy input failures remain. The independent100-run Linux
+resource probe passes finite thresholds with partial browser FD coverage.
+See the execution ledger for exact phases; next full native validation is pending.
+
+Previous native75 checkpoint:
+
+Native75 at90e1c43:1,881 reported passes/9 failed tests, plus
 Mac actual-Codex TIMED_OUT944 and three failed diagnostic JSON controls. All17
 non-soak jobs conclude; optional soak skips, reported test skips/cancels0.
 Five175-file installs,25 response-disposal cases, five20-run factory fixtures,

@@ -1,5 +1,83 @@
 # Execution report — verified milestone, incomplete mission
 
+Latest completed native76 at `9591621349e34149944a27caf39e61d9dd9d52c8`:
+batch39724825959 reports1,442 passes/10 failures; original CI39724826271 reports
+462/2. Total: **1,904 reported test passes/12 failures**, plus two failed Windows
+diagnostic JSON controls. All17 non-soak jobs conclude; optional soak skips,
+reported test skips/cancels0. Both workflows fail; no release gate is promoted.
+
+All three actual Codex clients complete1,000 actions: Linux37.165s, Windows38.145s,
+Mac81.989s, model0/owned0. Five175-file production installs, all25 response-release
+regressions, five20-run screenshot/factory fixtures,12 original routing negatives
+and12 profile reset/isolation combinations pass. Components112 Linux/Mac and113
+Windows pass. New all12-action fixtures pass15/15 (all3 engines ×5 lanes), as do
+all15 cancellation cases, including all60 individual GET/POST/held-close/locator
+scenarios. Empty-snapshot guards pass5/5; native Windows serializer parity passes.
+
+Five of12 failures are one ownership unit's outdated undefined-options expectation,
+repeated in each batch lane. Public click now intentionally receives the stop
+signal. Local commitf426d7e preserves all ownership/redaction/call-count/close-order
+checks and requires exactly the signal option, a live AbortSignal at action time
+and an aborted signal after cleanup. Before selected test1/2 fails; after6/6 pass
+each Node20/22/24. This is test-contract adaptation, not a runtime rollback or
+permission to force clicks/change timing. Native76 remains failed; next full run
+must verify the update. Remaining seven failures are real acceptance failures:
+- Mac raw Chromium reaches972/1,000, interrupted click973 at120.062s. SDK jobs
+  reaches974 and TIMED_OUT (118.946s receipt), forced:false, attention:false,
+  cleanup terminated/temp removed. Synchronous MCP reaches984 with known cleanup.
+- Windows FF privacy fixture verifies401/403/404, then times out before any418
+  request/response: browser ownership report11.096s, pre-start audit425ms. Error
+  metadata is unavailable, not a lost observed HTTP status. Forced cleanup is
+  confirmed terminated/removed; remaining routes in that case are unexecuted.
+- Windows FF429 sees two GETs/two finished responses (first2.876s/last6.181s),
+  acknowledges its single navigation, then hits lifecycle timeout; known cleanup.
+  Later scenarios in that case are unexecuted. Separate cancel witnesses pass.
+- Original-workflow legacy Windows Node20 FF headless fresh4 completes3/23 and
+  pointer step4 times out (8.635s); its counter3 shows the failed third click
+  delivered an effect after only two acknowledged clicks. Never replay it.
+  Headed fresh3 also completes3/23, locator step4 timeout (10.283s), counter probe
+  timeout. Both raw cleanup-failure arrays are empty; later fresh runs unexecuted.
+
+Normal original suites pass152 each Linux/Windows/Mac, Docker2 and Mac modal3;
+legacy Windows1/2 fails. Earlier Mac capture failures are not declared fixed by
+this healthy sample. Chrome-install fallback remains unexercised. Windows ordinary
+raw headless/headed/direct-pipe10-run cases pass this sample, not a causal fix.
+
+Two separate failed controls retain failure status: Windows protocol-headed first
+run4/23, pointer click timeout (13.367s),0 successful lifetimes; stock-headed8/10,
+ninth6/23, click failure plus context_timeout (14.805s), cumulative190 actions.
+Both audit residual-before-parent-force0/final0. Private/inherited controls each
+10/10=230 pass. Mac batch server/pipe1k controls pass117.974/116.606s. No default
+transport/channel or deadline changes; healthy controls never erase old failures.
+
+The first new Windows Chromium all-action scope retains140 legacy ancestry
+candidates at execution/teardown. Every candidate path crosses a recorded invalid
+incarnation edge: child864 birth04:47:52.3979390Z versus actual owned parent760
+birth05:00:24.4311160Z. All rows/root rows and live factory births are retained;
+scoped audit0. A pair9 candidate also has a recorded replacement birth. This is
+actual parent/child incarnation evidence, not role/name/age/window filtering.
+Earlier native64/native73 candidates without birth ledgers remain unclassified;
+no PID hints grant signals, release leases or clear historical debt.
+
+Independent Linux/Node22 resource regression at this head exits0:100 fresh runs,
+600 actions, fresh cookie/localStorage every run, owned0 after each; FD24→24,
+warm median RSS growth8,237,056B below unchanged32MiB. Elapsed142.515s, median1.085s/
+p951.177s. Tree FD coverage is partial (33 denied observations); sampled summed
+RSS/CPU are lower bounds, not OS quotas, complete FD proof, model tokens or
+cross-OS confidence. Source review also documents original MCP's managed full
+Chromium channel versus companion headless-shell defaults in interface samples;
+no defaults changed and no isolated protocol-overhead claim is made.
+
+All12 batch and5 original standard per-job log reads complete (lint required a
+normal read retry after timeout). No artifact download or auth/OS/TLS workaround.
+Evidence: worker-ci-seventysixth-*, native76-*. Local f426d7e test-only correction
+is ready; production code remains9591621. **Not release-ready. NEXT ACTION:
+commit/push the complete evidence and strict test-contract correction, inspect
+native77 in full, and continue classifying actual provider/deadline failures.
+No budget raises, force clicks, failed-input replay or historical debt clearance.**
+
+### Archived native75 checkpoint
+
 Latest completed native75 at `90e1c43c3b6b56a6d2b1210dfbd0a98910d75538`:
 batch39719486071 reports1,426 passes/6 failures; original CI39719486155 reports
 455/3. Total: **1,881 reported test passes/9 failures**, plus separate Mac actual
@@ -84,9 +162,15 @@ Post-native75 local follow-up (not included in the matrix above):
 - Add fixed result/cleanup fields to the existing no-browser-ownership assertion,
   retaining its predicate/budgets and avoiding speculative startup classification.
 
-Evidence: worker-ci-seventyfifth-*, native75-*. **Not release-ready. NEXT ACTION:
-finish recording local final checks, commit/push the concrete cancellation and
-empty-snapshot follow-up, then inspect the complete native76 matrix. Do not raise
+At native76 head9591621, the independent Linux/Node22 resource probe also exits0:
+100 fresh runs/600 actions, owned0 after every run, subject FD24→24, warm RSS
+growth8,237,056B below unchanged32MiB. Browser FD coverage is partial (33 denied
+observations); no OS memory/CPU quota, complete tree-FD or model-token claim.
+
+Evidence: worker-ci-seventyfifth-*, native75-* and native76-resource-*. **Not release-ready. Native76 is
+running at9591621349e34149944a27caf39e61d9dd9d52c8: batch39724825959 and
+CI39724826271. NEXT ACTION: inspect both complete matrices, API cancellation,
+all-action and empty-snapshot evidence. Hold pushes while active. Do not raise
 budgets, force clicks, retry failed input or clear historical uncertainty.**
 
 ### Archived native74 checkpoint

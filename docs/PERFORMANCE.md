@@ -371,3 +371,33 @@ The default command still requires no tokenizer and reports model tokens as
 `not_measured`. Exact samples are evidence/reference-tokens-sample1.json through
 sample3.json; package metadata, resolved integrity, lock and source hash are in
 the provenance receipt. Official CLI/SKILLS token comparison remains unmeasured.
+
+
+### Resource regression after public API cancellation wiring
+
+At9591621, the unchanged independent Linux observer completed100 fresh Chromium
+runs/600 actions on Node22.23.3 with Playwright1.64.1. Every run verified fresh
+cookie/localStorage state and zero owned survivors. Elapsed142.515s; per-run
+median1.085s/p951.177s. Subject FDs24→24; post-warmup median RSS growth8,237,056B
+passes the unchanged32MiB budget (FD growth budget4). Sampled tree peak RSS is
+612,941,824B, peak8 processes; subject CPU492ms, observer7,781ms and sampled
+child CPU lower bound87,290ms. Exit0 and all predetermined thresholds pass.
+
+Tree FD coverage remains **partial_permission_denied** (33 inaccessible process
+observations). Sampled peaks/CPU are lower bounds and summed RSS double-counts
+shared pages. These are finite fixture regression thresholds, not OS CPU/RAM
+quotas, full tree-FD proof, model tokens or cross-platform confidence. See
+[evidence/native76-resource-summary.json](evidence/native76-resource-summary.json)
+and the accompanying source-hash/provenance/exit/full-log receipts.
+
+### Browser executable scope of interface samples
+
+Pinned source maps original MCP `--browser=chromium` to the `chrome-for-testing`
+channel and full managed Chromium executable. The companion's default headless
+launch selects `chromium-headless-shell`. Both interface benchmark original modes
+use that CLI flag, while batch MCP/CLI use the companion default. Consequently
+the tables include browser executable selection as well as snapshot/reporting,
+routing and interface behavior; they do not isolate protocol overhead. Reference
+payload token counts retain their stated text boundary, not a billing claim.
+No channel or transport default was changed. Source references and hash are in
+[evidence/native76-browser-channel-review.json](evidence/native76-browser-channel-review.json).
