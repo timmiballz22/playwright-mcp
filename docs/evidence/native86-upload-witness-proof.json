@@ -1,0 +1,63 @@
+{
+  "scope": "Owned original-MCP file-input fixture; fire-and-forget click POST witness plus one read-only1s snapshot after an error; original click error remains authoritative",
+  "positive": {
+    "node20": 2,
+    "node22": 2,
+    "node24": 2,
+    "attemptsPerCase": 4,
+    "postEffectsPerCase": 4,
+    "stallDisabled": true
+  },
+  "negative": {
+    "node24Chromium": {
+      "actualExit": 1,
+      "expectedExit": 1,
+      "trustedFault": "bounded6s owned onclick CPU stall; original5s action/test limits unchanged",
+      "operation": 6,
+      "uploadClickAttempts": 1,
+      "uploadClickPosts": 1,
+      "snapshotReturned": false,
+      "originalTimeoutPreserved": true,
+      "clickReplayed": false
+    }
+  },
+  "sourceSHA256": "4f2d285fe317cd55f6f9e0badf1ff5e3a6abb6c3eb2419f0f7c75acd5f534c7c",
+  "limitations": [
+    "Excluded from active native86 atfd1939c",
+    "Event POST counts are lower bounds; no POST does not prove no click effect",
+    "Post proves owned handler delivery, not chooser opening or file selection",
+    "New instrumented fixture cannot retrospectively classify native85 Windows click",
+    "Initial first24 log predates explicit attempt counter; final20/22/24 are accepted final source",
+    "WebKit local engine unexecuted"
+  ],
+  "files": [
+    {
+      "file": "native86-upload-witness-exits.json",
+      "sha256": "091c3f490c64f80843f9447290f702c8aa0cf6b68961dd8ab8df469c330ed365"
+    },
+    {
+      "file": "native86-upload-witness-final22.log",
+      "sha256": "3518c3dd763883e3aab50be387b796dafea4e2d41e5afa204472c145a3f0d4ec"
+    },
+    {
+      "file": "native86-upload-witness-final20.log",
+      "sha256": "b2c232d062edb94373589084d23e68b8c6df443c4af372ede223b57234926adb"
+    },
+    {
+      "file": "native86-upload-witness-final24.log",
+      "sha256": "78ec00b2ab08b5256b0a52dd891035d7ab9d9061a85d1653715b98e64b9925f9"
+    },
+    {
+      "file": "native86-upload-witness-negative24.log",
+      "sha256": "7e63b2d99f7101afb5f2d1ed25f8937117e038668afe663265cf30d68b77d90b"
+    },
+    {
+      "file": "native86-upload-witness-typecheck.log",
+      "sha256": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f"
+    },
+    {
+      "file": "native86-upload-witness-first24.log",
+      "sha256": "82c8f14b5724968a42ad6db2f0c70151fa3e15734fb5a2bf451bf4bffee2f243"
+    }
+  ]
+}

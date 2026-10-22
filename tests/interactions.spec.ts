@@ -5,9 +5,15 @@ import path from 'node:path';
 import { test, expect } from './fixtures';
 
 test('original dialogs and workspace file upload preserve modal behavior', async ({ startClient, server }, testInfo) => {
+  let uploadClickPosts = 0, uploadClickAttempts = 0;
+  server.route('/owned-upload-click', (request, response) => {
+    expect(request.method).toBe('POST'); uploadClickPosts++; response.writeHead(204); response.end();
+  });
+  const stall = process.env.PLAYWRIGHT_TEST_MODAL_UPLOAD_STALL === '1'
+    ? 'const end=performance.now()+6000;while(performance.now()<end){}' : '';
   server.setContent('/', `<!doctype html><title>Modal fixture</title>
     <button id="prompt" onclick="document.querySelector('output').textContent=prompt('Fixture prompt')||'cancelled'">Prompt</button>
-    <input id="upload" type="file" onchange="document.querySelector('output').textContent=this.files[0].name+':'+this.files[0].size">
+    <input id="upload" type="file" onclick="fetch('/owned-upload-click',{method:'POST'}).catch(()=>{});${stall}" onchange="document.querySelector('output').textContent=this.files[0].name+':'+this.files[0].size">
     <output>Empty</output>`, 'text/html');
   const { client } = await startClient({ args: ['--isolated'] });
   let operation = 0;
@@ -23,7 +29,22 @@ test('original dialogs and workspace file upload preserve modal behavior', async
     }, { timeout: name === 'browser_navigate' ? 30000 : 10000 });
   };
   const call = async (name: string, args: Record<string, unknown> = {}) => {
+    if (name === 'browser_click' && args.target === '#upload') uploadClickAttempts++;
     const result = await invoke(name, args);
+    if (result.isError && name === 'browser_click' && args.target === '#upload') {
+      // Observe the owned event witness and one read-only snapshot; never replay
+      // the click, accept a chooser, or replace the original failed result.
+      let snapshotReturned = false, snapshotError = false, mentionsFileChooser = false, mentionsUploadTool = false;
+      try {
+        const snapshot = await client.callTool({ name: 'browser_snapshot', arguments: {} }, undefined,
+          { signal: AbortSignal.timeout(1000), timeout: 1000 });
+        snapshotReturned = true; snapshotError = !!snapshot.isError;
+        const value = snapshot.content.filter(item => item.type === 'text').map(item => item.text).join('\n');
+        mentionsFileChooser = /file chooser/i.test(value); mentionsUploadTool = value.includes('browser_file_upload');
+      } catch {}
+      console.log(JSON.stringify({ fixture: 'owned_upload_click_failure', operation, uploadClickAttempts, uploadClickPosts,
+        postCountIsLowerBound: true, snapshotReturned, snapshotError, mentionsFileChooser, mentionsUploadTool }));
+    }
     expect(result.isError, JSON.stringify(result)).not.toBe(true);
     return result;
   };
@@ -63,6 +84,8 @@ test('original dialogs and workspace file upload preserve modal behavior', async
     await fs.rm(link, { recursive: true, force: true });
     await fs.rm(outside, { recursive: true, force: true });
   }
+  expect(uploadClickAttempts).toBe(4);
+  await expect.poll(() => uploadClickPosts).toBe(4);
   await call('browser_close');
 });
 

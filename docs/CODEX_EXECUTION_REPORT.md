@@ -1,5 +1,18 @@
 # Execution report — verified milestone, incomplete mission
 
+Native86 is running atfd1939c: [batch39773672301](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672301)
+and [original39773672308](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672308).
+Pending outcomes are not passes; hold further pushes during the pair.
+
+Further local follow-up excluded from native86 instruments the owned upload
+fixture with click-event POST counts and one bounded read-only snapshot after a
+failed click. Positive paths2/2 each Node20/22/24 observe four attempts/four posts.
+An explicit bounded6s onclick stall retains the unchanged5s click failure and
+actual exit1, while one POST proves handler delivery despite failed ACK; no click
+is replayed. The1s snapshot did not return. Counts are lower bounds, not proof
+of chooser opening, file selection or absence of effects. No retrospective
+native85 cause claim. Evidence: native86-upload-witness-proof.json.
+
 ## Latest completed checkpoint — native85 at23b07fd; acceptance incomplete
 
 [Batch39768881695](https://github.com/timmiballz22/playwright-mcp/actions/runs/39768881695)
