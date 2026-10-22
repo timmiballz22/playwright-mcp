@@ -1,5 +1,14 @@
 # Execution ledger
 
+Local diagnostic follow-up excluded from native85: on a decoded-pixel failure,
+up to3 metadata-only primaries/transfer copies are sampled within a5s abort
+budget using optional stock ffmpeg. Encoded-stream concatenation hashes must
+match; copies never replace the original result/assertion. Explicit diagnostic
+mode passes2 Chromium/Firefox cases each Node20/22/24. Isolated original-core
+Firefox negative still exits1 with pixel255/24/0, including all3 copies; exact
+prepared core and test file restored, main unchanged. Native WebKit controls
+remain pending. Evidence: native85-video-metadata-proof.json.
+
 Local verifier follow-up excluded from native85: failed production verification
 now preserves its temporary installed runtime instead of deleting it beneath
 potentially unknown guardian ownership. Existing trusted startup-failure fixture
