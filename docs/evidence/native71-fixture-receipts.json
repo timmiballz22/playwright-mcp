@@ -1,0 +1,1662 @@
+[
+  {
+    "job": "journal (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 1,
+      "factoryRoots": 3,
+      "observedBeforeRelease": 4,
+      "rememberedRootBirths": 3
+    }
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "self_exit",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 1,
+      "factoryRoots": 3,
+      "observedBeforeRelease": 4,
+      "rememberedRootBirths": 3
+    }
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "collision_teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 1,
+      "factoryRoots": 3,
+      "observedBeforeRelease": 3,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "self_exit",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 1,
+      "factoryRoots": 3,
+      "observedBeforeRelease": 3,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "collision_teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "ESRCH",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "EPERM",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_permission_denied",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "EINVAL",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_invalid_argument",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "unknown",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_unknown_error",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "routing_cache",
+      "os": "darwin",
+      "browser": "chromium",
+      "samplesPerMode": 1,
+      "receipts": [
+        {
+          "mode": "control",
+          "navigations": 6,
+          "assetRequests": 1,
+          "assetResponseBytes": 262201,
+          "coldNavigationMs": 39,
+          "subsequentNavigationMs": [
+            16,
+            16,
+            16,
+            15,
+            15
+          ]
+        },
+        {
+          "mode": "strict",
+          "navigations": 6,
+          "assetRequests": 6,
+          "assetResponseBytes": 1573206,
+          "coldNavigationMs": 51,
+          "subsequentNavigationMs": [
+            35,
+            34,
+            38,
+            46,
+            35
+          ]
+        }
+      ],
+      "activeOwnedProcesses": 0,
+      "modelTurns": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 10,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_1",
+      "lifetimes": 2,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 10,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_2",
+      "lifetimes": 4,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 10,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_3",
+      "lifetimes": 6,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 10,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_4",
+      "lifetimes": 8,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 10,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_5",
+      "lifetimes": 10,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 10,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_6",
+      "lifetimes": 12,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 10,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_7",
+      "lifetimes": 14,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 10,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_8",
+      "lifetimes": 16,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 10,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_9",
+      "lifetimes": 18,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 10,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_10",
+      "lifetimes": 20,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 20,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "ESRCH",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "EPERM",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_permission_denied",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "EINVAL",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_invalid_argument",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "unknown",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_unknown_error",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "routing_cache",
+      "os": "linux",
+      "browser": "chromium",
+      "samplesPerMode": 1,
+      "receipts": [
+        {
+          "mode": "control",
+          "navigations": 6,
+          "assetRequests": 1,
+          "assetResponseBytes": 262201,
+          "coldNavigationMs": 42,
+          "subsequentNavigationMs": [
+            19,
+            16,
+            19,
+            17,
+            16
+          ]
+        },
+        {
+          "mode": "strict",
+          "navigations": 6,
+          "assetRequests": 6,
+          "assetResponseBytes": 1573206,
+          "coldNavigationMs": 66,
+          "subsequentNavigationMs": [
+            43,
+            47,
+            43,
+            43,
+            49
+          ]
+        }
+      ],
+      "activeOwnedProcesses": 0,
+      "modelTurns": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_1",
+      "lifetimes": 2,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_2",
+      "lifetimes": 4,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_3",
+      "lifetimes": 6,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_4",
+      "lifetimes": 8,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_5",
+      "lifetimes": 10,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_6",
+      "lifetimes": 12,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_7",
+      "lifetimes": 14,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_8",
+      "lifetimes": 16,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_9",
+      "lifetimes": 18,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_10",
+      "lifetimes": 20,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 20)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 20,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "routing_cache",
+      "os": "win32",
+      "browser": "chromium",
+      "samplesPerMode": 1,
+      "receipts": [
+        {
+          "mode": "control",
+          "navigations": 6,
+          "assetRequests": 1,
+          "assetResponseBytes": 262201,
+          "coldNavigationMs": 28,
+          "subsequentNavigationMs": [
+            13,
+            13,
+            13,
+            12,
+            11
+          ]
+        },
+        {
+          "mode": "strict",
+          "navigations": 6,
+          "assetRequests": 6,
+          "assetResponseBytes": 1573206,
+          "coldNavigationMs": 43,
+          "subsequentNavigationMs": [
+            28,
+            28,
+            27,
+            28,
+            27
+          ]
+        }
+      ],
+      "activeOwnedProcesses": 0,
+      "modelTurns": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 12,
+      "rememberedRootBirths": 6
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_1",
+      "lifetimes": 2,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 12,
+      "rememberedRootBirths": 6
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_2",
+      "lifetimes": 4,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 12,
+      "rememberedRootBirths": 6
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_3",
+      "lifetimes": 6,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 12,
+      "rememberedRootBirths": 6
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_4",
+      "lifetimes": 8,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 12,
+      "rememberedRootBirths": 6
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_5",
+      "lifetimes": 10,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 12,
+      "rememberedRootBirths": 6
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_6",
+      "lifetimes": 12,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 12,
+      "rememberedRootBirths": 6
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_7",
+      "lifetimes": 14,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 12,
+      "rememberedRootBirths": 6
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_8",
+      "lifetimes": 16,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 12,
+      "rememberedRootBirths": 6
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_9",
+      "lifetimes": 18,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 12,
+      "rememberedRootBirths": 6
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_10",
+      "lifetimes": 20,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 20,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 1,
+      "factoryRoots": 3,
+      "observedBeforeRelease": 3,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "self_exit",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 1,
+      "factoryRoots": 3,
+      "observedBeforeRelease": 3,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "collision_teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 1,
+      "factoryRoots": 3,
+      "observedBeforeRelease": 3,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "self_exit",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 1,
+      "factoryRoots": 3,
+      "observedBeforeRelease": 3,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "collision_teardown",
+      "lifetimes": 1,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "ESRCH",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "EPERM",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_permission_denied",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "EINVAL",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_invalid_argument",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "unknown",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_unknown_error",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "routing_cache",
+      "os": "linux",
+      "browser": "chromium",
+      "samplesPerMode": 1,
+      "receipts": [
+        {
+          "mode": "control",
+          "navigations": 6,
+          "assetRequests": 1,
+          "assetResponseBytes": 262201,
+          "coldNavigationMs": 33,
+          "subsequentNavigationMs": [
+            17,
+            15,
+            15,
+            14,
+            13
+          ]
+        },
+        {
+          "mode": "strict",
+          "navigations": 6,
+          "assetRequests": 6,
+          "assetResponseBytes": 1573206,
+          "coldNavigationMs": 55,
+          "subsequentNavigationMs": [
+            37,
+            33,
+            29,
+            28,
+            28
+          ]
+        }
+      ],
+      "activeOwnedProcesses": 0,
+      "modelTurns": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_1",
+      "lifetimes": 2,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_2",
+      "lifetimes": 4,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_3",
+      "lifetimes": 6,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_4",
+      "lifetimes": 8,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_5",
+      "lifetimes": 10,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_6",
+      "lifetimes": 12,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_7",
+      "lifetimes": 14,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_8",
+      "lifetimes": 16,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_9",
+      "lifetimes": 18,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_10",
+      "lifetimes": 20,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 20,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "ESRCH",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "EPERM",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_permission_denied",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "EINVAL",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_invalid_argument",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "worker_freeze_authority",
+      "stop": "unknown",
+      "cleaned": false,
+      "groupSignals": 0,
+      "failures": [
+        "signal_unknown_error",
+        "worker_stop_failed"
+      ]
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "routing_cache",
+      "os": "linux",
+      "browser": "chromium",
+      "samplesPerMode": 1,
+      "receipts": [
+        {
+          "mode": "control",
+          "navigations": 6,
+          "assetRequests": 1,
+          "assetResponseBytes": 262201,
+          "coldNavigationMs": 31,
+          "subsequentNavigationMs": [
+            18,
+            17,
+            17,
+            16,
+            14
+          ]
+        },
+        {
+          "mode": "strict",
+          "navigations": 6,
+          "assetRequests": 6,
+          "assetResponseBytes": 1573206,
+          "coldNavigationMs": 60,
+          "subsequentNavigationMs": [
+            36,
+            36,
+            37,
+            40,
+            32
+          ]
+        }
+      ],
+      "activeOwnedProcesses": 0,
+      "modelTurns": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_1",
+      "lifetimes": 2,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_2",
+      "lifetimes": 4,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_3",
+      "lifetimes": 6,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_4",
+      "lifetimes": 8,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_5",
+      "lifetimes": 10,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_6",
+      "lifetimes": 12,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_7",
+      "lifetimes": 14,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_8",
+      "lifetimes": 16,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_9",
+      "lifetimes": 18,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_capture",
+      "executions": 2,
+      "factoryRoots": 6,
+      "observedBeforeRelease": 14,
+      "rememberedRootBirths": null
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "pair_10",
+      "lifetimes": 20,
+      "observed": 0
+    }
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "receipt": {
+      "fixture": "factory_lifetime_audit",
+      "phase": "teardown",
+      "lifetimes": 20,
+      "observed": 0
+    }
+  }
+]

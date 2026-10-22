@@ -1,5 +1,61 @@
 # Execution report — verified milestone, incomplete mission
 
+Latest completed native71 at68479850edaa96b81dcc32d4fc3ddef04d6d0b4e:
+batch39703764480 FAILURE1,405/6; CI39703764526 FAILURE446/3 =>1,851 reported
+passes/nine failed tests, plus a separate Mac actual-Codex TIMED_OUT at973.
+All17 non-soak jobs conclude; functional_soak intentionally skipped; zero reported
+test skips/cancellations. Main Linux20/22/24:195/199/199 pass; Mac198/1;
+Windows185/5. Components107 Linux/Mac,108 Windows and five175-file installs pass.
+All25 response-disposal regressions and all five supervised20-run screenshot/
+lifetime scopes pass, teardown owned0. No legacy difference emitted in this sample;
+historical133/four and Mac permission uncertainty remain unresolved.
+
+Linux actual Codex1k36.281s and Windows39.261s pass, model0/owned0. Mac reaches973,
+step974 cancelled at deadline, forced:false, operatorAttention:false, cleanup
+terminated/temp removed; guardian/journal failure arrays empty. Separate Mac pipe/
+server controls complete1k: client104.084/118.641s; batch103.645/113.814s, audit0.
+Healthy controls do not establish a production fix or default transport change.
+
+Six main failures: Mac raw Chromium992/1k at120.028s; Windows FF IPv6 positive
+control completes4/4 but timeout15.968s (forced:true, known cleanup), raw FF
+headless fresh3 completes4/23 pointer5, headed fresh8 completes10/23 locator11,
+pipe fresh2 completes3/23 pointer4; FF429 completes1 navigation but times out
+settling, two requests/two finished responses (first2.216s/last6.047s), known cleanup.
+Later scenarios in that failed retry case are unexecuted; separate marked controls pass.
+Three original-workflow failures: Mac Chromium highlight screenshot returns
+Page.captureScreenshot Unable to capture screenshot after fonts loaded; Windows
+legacy Node20 FF headless fresh1 completes10/23 pointer11, headed fresh7 completes
+10/23 locator11. Normal Linux/Windows originals148 each, Mac147/1, Docker2,
+Windows legacy1/2. Mac modal unexecuted. Chrome-install fallback unexercised.
+
+Private headed protocol control is now native-verified on Windows:10 fresh runs,
+230 actions, owned0, afterCleanup pending0, sent349/responses354/unparsed5,
+no drops/reuse. It did not reproduce the input stall. Prefix projection is partial,
+logging can perturb timing, IDs are never process identities or signal authority.
+Private/inherited unlogged controls each10/10=230/audit0. No production deadline,
+policy or transport changed. Local focused40/40 each Node20/22/24, negative stall
+exit1, healthy230 exit0, fresh175-file install/guardian death checks, lint/actionlint pass.
+
+Uncommitted follow-up routing negative fixture passes exact local Chromium/Firefox
+2/2 plus lint; native/WebKit untested. It checks malformed-header rejection and
+unknown unroute preserve an existing mock, exact202/body and zero server hits.
+
+Stock-API follow-up now passes local Node22/20 headless10/10=230 each; final
+Node22 controlled7s stall fails after4 actions and cleans owned0, as expected.
+Lint/actionlint/diff pass; tarball listing remains175, private jobs fixtures/tests
+excluded. Initial overbroad pack assertion was corrected and preserved: support
+fixtures are intentionally included. Headed local unavailable; native stock proof
+pending. New Windows failure-only stock step keeps the existing30min job bound.
+The last full local fresh production install predates this diagnostic-only change;
+native72 will validate the new packaged source. No production runtime policy changed.
+
+**Not release-ready. NEXT ACTION: push native72 with stock headed isolation and
+routing negatives; inspect failures without changing runtime/action/test budgets.**
+
+The following records are historical checkpoints.
+
+### Archived native70 checkpoint
+
 Latest completed native70 at045fe28:
 batch39697257397 FAILURE1,396/5; CI39697257413 SUCCESS452/0 =>1,848 reported
 passes/five failed tests. All17 non-soak jobs conclude; functional_soak skipped
@@ -40,11 +96,13 @@ owned0 and pending0. Fresh175-file production install and both guardian-death
 checks pass (exit0). Native headed evidence remains pending.
 Evidence: docs/evidence/firefox-protocol-calibration.json.
 
-**Not release-ready. NEXT ACTION: push native71 with the validated private protocol control; do not raise budgets or change production policy/transport.**
+**Not release-ready. Native71 running at6847985: batch39703764480 and
+CI39703764526. NEXT ACTION: inspect both completed matrices and any headed
+protocol receipt; do not raise budgets or change production policy/transport.**
 
 Exact G00–G18/source/phase evidence: CODEX_EXECUTION_LEDGER.md.
 
-The following records are historical checkpoints.
+
 
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a

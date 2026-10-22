@@ -138,6 +138,11 @@ jobs:
         timeout-minutes: 4
         shell: bash
         run: node scripts/diagnose-firefox-runner.mjs --firefox-headed-protocol 2>&1 | tee firefox-protocol.log
+      - name: Isolate stock headed Firefox after Windows batch failure
+        if: failure() && runner.os == 'Windows' && steps.batch_windows.outcome == 'failure'
+        timeout-minutes: 4
+        shell: bash
+        run: node scripts/diagnose-firefox-runner.mjs --firefox-headed-stock 2>&1 | tee firefox-stock.log
       - name: Compare Chromium transports after macOS install or batch failure
         if: failure() && runner.os == 'macOS' && (steps.installed.outcome == 'failure' || steps.batch_bash.outcome == 'failure')
         timeout-minutes: 7
@@ -153,6 +158,7 @@ jobs:
             layout-probe.log
             firefox-runner.log
             firefox-protocol.log
+            firefox-stock.log
             chromium-transport.log
             batch-tests.log
           retention-days: 1

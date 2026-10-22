@@ -91,3 +91,26 @@ a stock browser from the companion router. Original isolated MCP failures are
 a separate code path. Neither set establishes an upstream root cause.
 The registry latest stable remains Playwright1.64.1 on2026-10-22; no prerelease
 upgrade or unverified workaround was applied. native70-playwright-registry.json.
+
+## Stock Firefox isolation control (native follow-up pending)
+
+`node scripts/diagnose-firefox-runner.mjs --firefox-stock` runs ten fresh headless
+stock Playwright BrowserServer/connect/context/page lifetimes against the same
+private static loopback fixture. `--firefox-headed-stock` selects headed mode.
+Each run performs navigation,20 normal role-locator clicks (5s action limit), an
+exact counter assertion and a PNG signature/16MiB check. The PNG is held only for
+validation, not written as a retained artifact. This is not the20-run production
+screenshot-integrity test. No companion runner/router is invoked in this mode;
+there is no page-supplied code or destination input. Service-worker defaults are
+stock Playwright defaults; this is provider isolation, not a policy test.
+
+A120s operation budget and bounded5s closes apply; the existing180s parent bound
+and actual factory-owned process audits remain the independent final bound. No
+stored PID or protocol ID grants signal authority. Every failed run stops the
+control without retry; failed artifact roots are preserved. The private
+`PLAYWRIGHT_TEST_PROTOCOL_STALL=1` calibration deliberately blocks the fixture
+renderer for7s on its fourth click. It must fail, not become an acceptance pass.
+
+Native71's companion-based protocol control passed230 actions and did not
+reproduce the Windows stall. Stock headed native evidence is still pending;
+healthy controls cannot establish a fix, and their timing differs from acceptance.

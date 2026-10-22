@@ -3,13 +3,14 @@
 Pinned stable1.64.1 extended Chromium discovery defines72 tools. This index maps
 source fixture touchpoints; a source call is not itself a PASS or a coverage
 percentage. Consult execution evidence for the exact commit, engine and OS.
-Native8d661bf passes all144 original cases on each host OS, including the new
-fixture touchpoints. Prior Firefox stalls remain unexplained and parameter/
+Latest completed native70 (045fe28) passes148 original cases on each host OS,
+plus Docker2, Mac modal3 and Windows legacy3 (452 total). Prior Firefox stalls
+remain unexplained and parameter/
 negative coverage is incomplete. All72 versioned schemas remain checked by
 capabilities.spec.ts.
 
 Interactive annotation/debugger-resume flows remain open. Other rows still need
-full negative/parameter/native review; slider bounds/steps, export overwrite
+full negative/parameter/native review; export overwrite
 permissions/Windows ACLs, route alternatives and video frame content are examples.
 The original trusted-code/evaluate tools retain their documented expert trust.
 Companion workflows expose no code/file/network-policy injection fields.
@@ -144,3 +145,17 @@ A later valid value emits one event. This does not make failed fills atomic or
 replay-safe. See original-slider-bounds-local.txt. Native68 at4f50caa verifies all12 variants
 across Chrome/Chromium/Firefox/WebKit on Linux/macOS/Windows; the separate
 Windows named-tab case fails, so whole original acceptance remains failed.
+
+Latest slider bounds/step contract: tests/input-parity.spec.ts now checks lower/upper
+clamping and step sanitization, including mutation before tool error and no replay.
+All12 executions (four engine projects on three hosts) pass in native68 and native70.
+This closes that specific parameter gap; interactive annotation/resume and the
+remaining per-tool negatives stay open. See worker-ci-seventieth-wrapper evidence.
+
+Uncommitted follow-up after native71 source6847985: malformed route headers
+(missing colon and missing name) each return an error while preserving the prior
+route list. Removing an unknown pattern removes zero routes. A real fetch still
+returns exactly the existing202/mock body with zero server hits. Local Chromium
+and Firefox pass2/2 with final exact assertions; the broader pre-refinement
+routing run passes4/4. Lint passes. Native/WebKit evidence pending; no upstream
+implementation or security policy changed. Evidence: original-route-negative-*.

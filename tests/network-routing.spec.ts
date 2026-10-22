@@ -1,6 +1,40 @@
 /** Copyright 2026 contributors. Licensed under Apache-2.0. */
 import { test, expect } from './fixtures';
 
+test('original malformed route headers and unknown unroute preserve an existing mock', async ({ startClient, server }) => {
+  let hits = 0;
+  server.route('/owned-route-negative', (_request, response) => {
+    hits++;
+    response.end('owned-live');
+  });
+  server.setContent('/', '<!doctype html><title>Owned negative route fixture</title>', 'text/html');
+  const { client } = await startClient({ args: ['--isolated', '--caps=network'] });
+  const call = async (name: string, args: Record<string, unknown> = {}) => {
+    const result = await client.callTool({ name, arguments: args });
+    expect(result.isError, JSON.stringify(result)).not.toBe(true);
+    return result.content.filter(item => item.type === 'text').map(item => item.text).join('\n');
+  };
+  await call('browser_navigate', { url: server.PREFIX });
+  const pattern = '**/owned-route-negative';
+  await call('browser_route', { pattern, status: 202, body: 'owned-retained-mock' });
+  const before = await call('browser_route_list');
+  for (const header of ['MissingColon', ': MissingName']) {
+    const rejected = await client.callTool({ name: 'browser_route', arguments: { pattern, body: 'unexpected-replacement', headers: [header] } });
+    expect(rejected.isError).toBe(true);
+    expect(rejected.content.filter(item => item.type === 'text').map(item => item.text).join('\n')).toContain('Invalid header');
+    expect(await call('browser_route_list')).toBe(before);
+  }
+  expect(await call('browser_unroute', { pattern: '**/owned-absent-route' })).toContain('Removed 0 route(s)');
+  expect(await call('browser_route_list')).toBe(before);
+  const fetched = await call('browser_evaluate', { function: "async () => { const response = await fetch('/owned-route-negative'); return {status:response.status,body:await response.text()}; }" });
+  const result = fetched.match(/^### Result\n([\s\S]*?)(?=\n### |$)/);
+  expect(result, fetched).toBeTruthy();
+  expect(JSON.parse(result![1])).toEqual({ status: 202, body: 'owned-retained-mock' });
+  expect(hits).toBe(0);
+  await call('browser_unroute');
+  await call('browser_close');
+});
+
 test('original route mock, header override, unroute and offline/online state preserve live owned requests', async ({ startClient, server }) => {
   let hits = 0;
   let receivedHeaders: Record<string, string | string[] | undefined> = {};

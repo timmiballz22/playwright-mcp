@@ -1,5 +1,11 @@
 # Mandatory scenario evidence
 
+Latest native71 at6847985:1,851 reported passes/nine failed tests plus Mac
+actual-Codex timeout973. Five175-file installs/components and supervised20-run
+integrity fixtures pass. Headed protocol diagnostic230 actions passes on Windows,
+but does not reproduce or causally fix the input stalls. See execution ledger
+and worker-ci-seventyfirst-*; earlier checkpoint rows retain historical scope.
+
 Current status and exact candidate evidence are maintained in
 [CODEX_EXECUTION_REPORT.md](CODEX_EXECUTION_REPORT.md) and the G00–G18 table in
 [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md). Native70 failed;

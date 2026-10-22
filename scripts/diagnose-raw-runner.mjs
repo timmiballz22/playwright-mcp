@@ -15,12 +15,13 @@ import { createProtocolProjection, stepFailureDiagnostic } from './step-failure-
 const send = value => { if (process.connected) process.send(value, () => {}); };
 if (process.argv[2] === '--owned-child') {
   const mode = process.argv[3]; const directory = process.argv[4];
-  if (!['private', 'inherited', 'server', 'direct-pipe', 'protocol', 'protocol-headed'].includes(mode)) throw new TypeError('Invalid owned diagnostic mode');
+  if (!['private', 'inherited', 'server', 'direct-pipe', 'protocol', 'protocol-headed', 'stock', 'stock-headed'].includes(mode)) throw new TypeError('Invalid owned diagnostic mode');
   const browser = ['server', 'direct-pipe'].includes(mode) ? 'chromium' : 'firefox';
   const protocolEnabled = mode === 'protocol' || mode === 'protocol-headed';
-  const headless = mode !== 'protocol-headed';
-  const controlledStall = protocolEnabled && process.env.PLAYWRIGHT_TEST_PROTOCOL_STALL === '1';
-  const privateTempRoot = mode === 'private' || protocolEnabled; const freshRuns = browser === 'chromium' ? 1 : 10; const clicks = browser === 'chromium' ? 997 : 20;
+  const stockEnabled = mode === 'stock' || mode === 'stock-headed';
+  const headless = !['protocol-headed', 'stock-headed'].includes(mode);
+  const controlledStall = (protocolEnabled || stockEnabled) && process.env.PLAYWRIGHT_TEST_PROTOCOL_STALL === '1';
+  const privateTempRoot = mode === 'private' || protocolEnabled || stockEnabled; const freshRuns = browser === 'chromium' ? 1 : 10; const clicks = browser === 'chromium' ? 997 : 20;
   const fixture = createServer((_request, response) => {
     response.writeHead(200, { 'Content-Type': 'text/html' });
     const html = '<!doctype html><title>Local Fixture</title><button id="add">Add</button><output id="count">0</output><script>let n=0;document.querySelector("#add").onclick=()=>{document.querySelector("#count").textContent=String(++n)}</script>';
@@ -58,13 +59,62 @@ if (process.argv[2] === '--owned-child') {
   } } : mode === 'protocol-headed' ? {
     launchServer: options => engine.launchServer({ ...options, headless: false }), connect: engine.connect.bind(engine),
   } : engine;
+  // A separately labelled stock-API isolation control. This private static page
+  // has no third-party dependencies. It does not exercise companion routing.
+  const runStock = async () => {
+    const started = performance.now(); let completed = 0; let stage = 'setup';
+    let server; let connection; let context; let failure;
+    const cleanupFailures = [];
+    const timeoutError = () => { const error = new Error('stock_control_timeout'); error.name = 'TimeoutError'; return error; };
+    const remaining = () => {
+      const value = 120000 - (performance.now() - started);
+      if (value <= 0) throw timeoutError();
+      return value;
+    };
+    const bounded = async promise => {
+      let timer;
+      try { return await Promise.race([promise, new Promise((_, reject) => { timer = setTimeout(() => reject(timeoutError()), remaining()); })]); }
+      finally { clearTimeout(timer); }
+    };
+    try {
+      server = await engine.launchServer({ headless, timeout: remaining() });
+      const handle = server.process();
+      assert.ok(Number.isSafeInteger(handle?.pid)); send({ type: 'browser', pid: handle.pid });
+      connection = await engine.connect(server.wsEndpoint(), { timeout: remaining() });
+      context = await bounded(connection.newContext({ acceptDownloads: false }));
+      context.setDefaultTimeout(5000);
+      const page = await bounded(context.newPage());
+      stage = 'goto'; await page.goto(origin + '/', { timeout: Math.min(30000, remaining()) }); completed++;
+      stage = 'click';
+      for (let index = 0; index < clicks; index++) {
+        await page.getByRole('button', { name: 'Add', exact: true }).click({ timeout: Math.min(5000, remaining()) }); completed++;
+      }
+      stage = 'assertText'; assert.equal(await page.locator('#count').textContent({ timeout: Math.min(5000, remaining()) }), String(clicks)); completed++;
+      stage = 'screenshot';
+      const png = await page.screenshot({ timeout: Math.min(5000, remaining()) });
+      assert.ok(png.length > 8 && png.length <= 16 * 1024 * 1024);
+      assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a'); completed++;
+    } catch (error) {
+      failure = { ok: false, type: stage, error: 'stock_api_failed', failureKind: error?.name === 'TimeoutError' ? 'timeout' : 'provider_or_assertion_error' };
+    } finally {
+      for (const [name, resource] of [['context', context], ['browser', connection], ['server', server]]) {
+        let timer;
+        try { await Promise.race([resource?.close(), new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('close_timeout')), 5000); })]); }
+        catch { cleanupFailures.push(name + '_close_failed'); }
+        finally { clearTimeout(timer); }
+      }
+    }
+    const actionsSucceeded = !failure && completed === clicks + 3;
+    return { ok: actionsSucceeded && !cleanupFailures.length, reason: failure ? 'stock_api_failed' : cleanupFailures.length ? 'cleanup_failed' : null,
+      completed, total: clicks + 3, actionsSucceeded, cleanupFailures, results: failure ? [failure] : [], durationMs: Math.round(performance.now() - started) };
+  };
   // Only this initial handshake waits for the audit, before any browser exists.
   const start = once(process, 'message'); send({ type: 'ready' }); await start;
   let successfulRuns = 0; let confirmedActions = 0; let last;
   try {
     for (let iteration = 0; iteration < freshRuns; iteration++) {
       if (protocolEnabled) { protocolTrace = createProtocolProjection(); protocolFailure = undefined; }
-      const result = await runWorkflow({ browser, schemaVersion: 1, timeoutMs: 120000, steps: [
+      const result = stockEnabled ? await runStock() : await runWorkflow({ browser, schemaVersion: 1, timeoutMs: 120000, steps: [
         { type: 'goto', url: origin + '/' }, ...Array.from({ length: clicks }, () => ({ type: 'click', selector: { role: 'button', name: 'Add' } })),
         { type: 'assertText', selector: '#count', equals: String(clicks) }, { type: 'screenshot' },
       ] }, { artifactsDir: directory, allowedOrigins: [origin], allowSensitiveArtifacts: true, playwright: { [browser]: provider },
@@ -95,15 +145,15 @@ if (process.argv[2] === '--owned-child') {
   const protocolConfirmed = !protocolEnabled || !projectionFailed && protocolReceipt?.afterCleanup.sent > 0 && protocolReceipt?.afterCleanup.responses > 0;
   // Keep the owned controller alive until its final identity snapshot is taken.
   const finish = once(process, 'message');
-  send({ type: 'receipt', value: { logging: protocolEnabled, headless, privateTempRoot, browser, transport: mode === 'direct-pipe' ? 'direct_pipe' : 'browser_server', requiredFreshRuns: freshRuns, successfulRuns, confirmedActions, ok: successfulRuns === freshRuns && handlesConfirmed && protocolConfirmed, ...(handleReceipt ? { handleReceipt } : {}), ...(protocolEnabled ? { protocol: protocolReceipt } : {}), last } });
+  send({ type: 'receipt', value: { logging: protocolEnabled, headless, privateTempRoot, browser, executionAPI: stockEnabled ? 'stock_playwright' : 'companion_runWorkflow', controlledStall, transport: mode === 'direct-pipe' ? 'direct_pipe' : 'browser_server', requiredFreshRuns: freshRuns, successfulRuns, confirmedActions, ok: successfulRuns === freshRuns && handlesConfirmed && protocolConfirmed, ...(handleReceipt ? { handleReceipt } : {}), ...(protocolEnabled ? { protocol: protocolReceipt } : {}), last } });
   await finish;
   fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
   process.disconnect();
 } else {
   const args = process.argv.slice(2);
-  if (args.length > 1 || args.length === 1 && !['--private-first', '--chromium-transport', '--chromium-pipe-first', '--firefox-protocol', '--firefox-headed-protocol'].includes(args[0])) throw new TypeError('Invalid diagnostic arguments');
+  if (args.length > 1 || args.length === 1 && !['--private-first', '--chromium-transport', '--chromium-pipe-first', '--firefox-protocol', '--firefox-headed-protocol', '--firefox-stock', '--firefox-headed-stock'].includes(args[0])) throw new TypeError('Invalid diagnostic arguments');
   const chromiumTransport = ['--chromium-transport', '--chromium-pipe-first'].includes(args[0]);
-  const modeOrder = args[0] === '--firefox-headed-protocol' ? ['protocol-headed'] : args[0] === '--firefox-protocol' ? ['protocol'] : args[0] === '--chromium-pipe-first' ? ['direct-pipe', 'server'] : chromiumTransport ? ['server', 'direct-pipe'] : args.length ? ['private', 'inherited'] : ['inherited', 'private'];
+  const modeOrder = args[0] === '--firefox-headed-stock' ? ['stock-headed'] : args[0] === '--firefox-stock' ? ['stock'] : args[0] === '--firefox-headed-protocol' ? ['protocol-headed'] : args[0] === '--firefox-protocol' ? ['protocol'] : args[0] === '--chromium-pipe-first' ? ['direct-pipe', 'server'] : chromiumTransport ? ['server', 'direct-pipe'] : args.length ? ['private', 'inherited'] : ['inherited', 'private'];
   let failed = false; let interrupted = false; let current;
   const cancel = () => {
     interrupted = true;
@@ -171,7 +221,7 @@ if (process.argv[2] === '--owned-child') {
       while (remaining.length && performance.now() < end) { await new Promise(resolve => setTimeout(resolve, 100)); remaining = await ownedScopeDescendants(scopes); }
       assert.deepEqual(remaining, [], 'Exact runner diagnostic cleanup uncertain');
       assert.equal(auditFailure, false, 'Exact runner process identity uncertain'); clean = true;
-      const result = { os: process.platform, mode, comparisonOrder: modeOrder, position: modeOrder.indexOf(mode) + 1, privateTempRoot: ['private', 'protocol', 'protocol-headed'].includes(mode), ...(receipt ?? { ok: false, reason: interrupted ? 'operator_cancelled' : 'independent_deadline_or_exit' }), residualProcessesBeforeForce: residual.length, activeOwnedProcesses: 0 };
+      const result = { os: process.platform, mode, comparisonOrder: modeOrder, position: modeOrder.indexOf(mode) + 1, privateTempRoot: ['private', 'protocol', 'protocol-headed', 'stock', 'stock-headed'].includes(mode), ...(receipt ?? { ok: false, reason: interrupted ? 'operator_cancelled' : 'independent_deadline_or_exit' }), residualProcessesBeforeForce: residual.length, activeOwnedProcesses: 0 };
       if (residual.length) result.ok = false;
       console.log(JSON.stringify(result));
       if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=' + (chromiumTransport ? 'Chromium transport control' : 'Firefox exact runner') + '::' + JSON.stringify(result));

@@ -1,5 +1,11 @@
 # Current acceptance coverage
 
+Latest native71 at6847985:1,851 reported passes/nine failed tests plus Mac
+actual-Codex timeout973. Five175-file installs/components and supervised20-run
+integrity fixtures pass. Headed protocol diagnostic230 actions passes on Windows,
+but does not reproduce or causally fix the input stalls. See execution ledger
+and worker-ci-seventyfirst-*; earlier checkpoint rows retain historical scope.
+
 See [CODEX_EXECUTION_REPORT.md](CODEX_EXECUTION_REPORT.md) for the current
 candidate and [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) for G00–G18.
 Latest completed native70: original452/0, companion1,396/5 (1,848/5 combined).

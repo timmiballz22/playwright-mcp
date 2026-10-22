@@ -1,0 +1,56 @@
+{
+  "phase": "stock control uncommitted after native71 6847985",
+  "sourceSha256": "9b5b3165e99b3d01a702f4b6afbd3f34cfe91a1215f5bd66854d3371e5e7de16",
+  "finalChecks": [
+    {
+      "name": "stock-negative22",
+      "exitCode": 1,
+      "expected": 1
+    },
+    {
+      "name": "stock-positive22",
+      "exitCode": 0,
+      "expected": 0
+    },
+    {
+      "name": "stock-positive20",
+      "exitCode": 0,
+      "expected": 0
+    },
+    {
+      "name": "lint",
+      "exitCode": 0,
+      "expected": 0
+    },
+    {
+      "name": "actionlint",
+      "exitCode": 0,
+      "expected": 0
+    },
+    {
+      "name": "diff",
+      "exitCode": 0,
+      "expected": 0
+    }
+  ],
+  "pack": {
+    "fileCount": 175,
+    "privateJobsFixturesExcluded": true,
+    "jobsTestsExcluded": true,
+    "diagnosticSupportFixturesIntentionallyIncluded": true,
+    "diagnosticScriptIncluded": true,
+    "exitCode": 0
+  },
+  "headed": "NOT_TESTED locally: no Xvfb",
+  "productionRuntimeChanged": false,
+  "policy": "stock public APIs against source-owned static fixture only; not companion policy acceptance",
+  "retainedScreenshot": false,
+  "bounds": {
+    "parentModeMs": 180000,
+    "operationBudgetMs": 120000,
+    "perResourceCloseMs": 5000,
+    "actionMs": 5000,
+    "freshRuns": 10
+  },
+  "limitation": "timing differs from acceptance; healthy controls are not a causal fix"
+}
