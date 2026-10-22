@@ -1,0 +1,32 @@
+✔ guardian diagnostics retain fixed journal metadata and discard private values (1.468081ms)
+✔ journal transport diagnostics retain only fixed causes and originating verbs (0.322737ms)
+✔ unconfirmed journal exit is a fixed boolean diagnostic without raw values (0.234573ms)
+✔ stderr facts accept only fixed endpoint diagnostics and discard unrelated text (1.585136ms)
+✔ stderr facts cap distinct metadata and process only a bounded tail (2.136213ms)
+✔ initialization phase diagnostics retain only fixed stages and remain bounded (0.70727ms)
+✔ controller fixture failure before readiness preserves fixed cause without private stderr (134.326862ms)
+✔ real init timeout retains the last received phase and confirmed worker exit (2071.345672ms)
+✔ malformed phase packets cannot leak values or become a journal acknowledgment (58.645607ms)
+✔ unexpected journal worker exit remains distinct from an RPC timeout (93.387973ms)
+✔ malformed actual worker IPC is rejected and owned shutdown is confirmed (32.236087ms)
+✔ termination failure diagnostics persist without losing uncertain cleanup or releasing the lease (55.725009ms)
+✔ managed directory links and database hardlinks cannot modify another file (335.06809ms)
+✔ POSIX journal directory must exclude group and other access (43.00496ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (106.299489ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (60.407341ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (50.555876ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (73.36675ms)
+✔ killed transaction rolls back without a partial job or duplicate request (207.894672ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (132.584537ms)
+✔ corrupt journal is rejected without silently erasing the file (87.027412ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (42.63523ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (155.268379ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (150.580482ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4082.78104

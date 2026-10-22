@@ -178,20 +178,24 @@ function validateSummary(value, row, state, completed) {
 }
 
 const handlers = new Map([
-  ['init', async data => {
+  ['init', async (data, report) => {
     if (db || !data || typeof data.directory !== 'string' || data.directory.length > 4096 ||
         !/^[0-9a-f]{64}$/.test(data.projectId || '') || typeof data.ownerId !== 'string' ||
         !data.ownerId.length || data.ownerId.length > 128 || !uuid.test(data.instanceId || '') ||
         data.pid !== process.ppid) error('invalid_config');
     const directory = path.resolve(data.directory);
+    report?.('directory');
     await mkdir(directory, { recursive: true, mode: 0o700 });
     await assertPrivate(directory, true);
+    report?.('key');
     key = await privateKey(directory);
+    report?.('file');
     const filename = path.join(directory, 'jobs.sqlite');
     try { const file = await open(filename, 'wx', 0o600); await file.close(); }
     catch (exception) { if (exception.code !== 'EEXIST') throw exception; }
     if ((await assertPrivate(filename)).size > 16777216) error('store_too_large');
     identity = { owner: mac('owner:' + data.ownerId), instance: data.instanceId, pid: data.pid };
+    report?.('open');
     db = new DatabaseSync(filename, { allowExtension: false });
     // Wait for the write lock before mutation; never reissue an ambiguous command.
     // This remains inside the unchanged two-second journal RPC watchdog.
@@ -199,6 +203,7 @@ const handlers = new Map([
     const keyId = createHash('sha256').update(key).digest('hex');
     // Validate the marker before any journal-mode or schema write. A filename
     // alone is not authority to initialize an unrelated application's database.
+    report?.('identity');
     db.exec('BEGIN');
     try {
       const version = db.prepare('PRAGMA user_version').get().user_version;
@@ -215,9 +220,11 @@ const handlers = new Map([
         if (project !== data.projectId || storedKey !== keyId) error('store_identity_mismatch');
       } else if (version !== 0) error('store_identity_mismatch');
     } finally { try { db.exec('ROLLBACK'); } catch {} }
+    report?.('configure');
     db.exec('PRAGMA page_size=4096');
     if (db.prepare('PRAGMA page_size').get().page_size !== 4096) error('unsupported_schema');
     db.exec('PRAGMA max_page_count=4096; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA foreign_keys=ON; PRAGMA trusted_schema=OFF; PRAGMA wal_autocheckpoint=128; PRAGMA journal_size_limit=1048576');
+    report?.('schema');
     transaction(() => {
       db.exec([
         'CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY,value TEXT NOT NULL)',
@@ -232,6 +239,7 @@ const handlers = new Map([
       if (db.prepare('SELECT value FROM meta WHERE key=?').get('project').value !== data.projectId ||
           db.prepare('SELECT value FROM meta WHERE key=?').get('key_id').value !== keyId) error('store_identity_mismatch');
     });
+    report?.('ready');
     return { schemaVersion: 1 };
   }],
   ['create', data => transaction(() => {
@@ -445,7 +453,13 @@ process.on('message', async packet => {
     if (!handler) error('unsupported_command');
     if (!validCommandData(packet.command, packet.data)) error('invalid_metadata');
     if (packet.command !== 'init' && !db) error('journal_not_ready');
-    reply = { id: packet.id, ok: true, value: await handler(packet.data) };
+    const report = packet.command === 'init' ? stage => {
+      // Fixed diagnostics only, never an ACK or state/lease authority. Do not
+      // wait for diagnostic delivery or let it change the database operation.
+      try { if (process.connected) process.send({ type: 'journal_init_phase', id: packet.id, stage }, () => {}); } catch {}
+    } : undefined;
+    report?.('received');
+    reply = { id: packet.id, ok: true, value: await handler(packet.data, report) };
   } catch (exception) { reply = { id: packet.id, ok: false, code: safeCode(exception) }; }
   if (process.connected) process.send(reply, () => { if (packet.command === 'close' && process.connected) process.disconnect(); });
 });

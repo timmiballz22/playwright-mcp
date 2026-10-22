@@ -82,7 +82,9 @@ jobs:
     - name: Exercise legacy Windows Node 20 Firefox cleanup
       id: legacy
       shell: bash
-      if: ${{ !cancelled() && runner.os == 'Windows' && (steps.wrapper.outcome == 'success' || steps.available_wrapper.outcome == 'success') }}
+      # Independent Node20 companion cases; keep collecting them after a completed
+      # original-suite failure. No failed case is retried and limits stay unchanged.
+      if: ${{ !cancelled() && runner.os == 'Windows' && (steps.wrapper.outcome == 'success' || steps.wrapper.outcome == 'failure' || steps.available_wrapper.outcome == 'success' || steps.available_wrapper.outcome == 'failure') }}
       run: node --test local-batch/integration.test.mjs 2>&1 | tee legacy-firefox.log
       env:
         RUN_BROWSER_TESTS: '1'

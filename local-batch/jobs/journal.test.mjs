@@ -15,6 +15,59 @@ if (!supportsJournal) {
     await assert.rejects(JobJournal.open({}), { code: 'unsupported_runtime' });
   });
 } else {
+  test('real init timeout retains the last received phase and confirmed worker exit', async () => {
+    const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-init-phase-'));
+    const config = { directory, projectId: '7'.repeat(64), ownerId: 'init-phase-owner' };
+    const previous = process.env.PLAYWRIGHT_TEST_JOURNAL_INIT_PAUSE; let journal; let verified = false; let primary;
+    try {
+      process.env.PLAYWRIGHT_TEST_JOURNAL_INIT_PAUSE = '1';
+      await assert.rejects(JobJournal.open({ ...config, workerModule: new URL('./fixtures/transaction-fault.mjs', import.meta.url) }), error => {
+        assert.equal(error.code, 'journal_unavailable'); assert.equal(error.journalFailure, 'rpc_timeout');
+        assert.equal(error.journalFailureCommand, 'init'); assert.equal(error.journalInitStage, 'configure');
+        assert.equal(error.journalExitConfirmed, true); return true;
+      });
+      await stat(path.join(directory, 'init-configure-paused'));
+      delete process.env.PLAYWRIGHT_TEST_JOURNAL_INIT_PAUSE;
+      journal = await JobJournal.open(config);
+      assert.deepEqual(await journal.call('integrity'), { ok: true }); assert.deepEqual(await journal.call('list'), []);
+      verified = true;
+    } catch (error) { primary = error; throw error; }
+    finally {
+      if (previous === undefined) delete process.env.PLAYWRIGHT_TEST_JOURNAL_INIT_PAUSE;
+      else process.env.PLAYWRIGHT_TEST_JOURNAL_INIT_PAUSE = previous;
+      let closed = false;
+      try { await journal?.close(); closed = true; }
+      catch (error) { if (primary) throw new AggregateError([primary, error], 'Init phase fixture and close failed'); throw error; }
+      finally {
+        if (verified && closed) await rm(directory, { recursive: true, force: true });
+        else console.error('Journal init phase fixture preserved: acceptance or cleanup not confirmed');
+      }
+    }
+  });
+  test('malformed phase packets cannot leak values or become a journal acknowledgment', async () => {
+    const previous = process.env.PLAYWRIGHT_TEST_JOURNAL_INVALID_PHASE;
+    try {
+      for (const mode of ['invalid', 'extra']) {
+        process.env.PLAYWRIGHT_TEST_JOURNAL_INVALID_PHASE = mode;
+        const events = [];
+        await assert.rejects(JobJournal.open({ workerModule: new URL('./fixtures/malformed-response.mjs', import.meta.url), onEvent: event => events.push(event) }), error => {
+          assert.equal(error.code, 'journal_unavailable'); assert.equal(error.journalFailure, 'invalid_response');
+          assert.equal(error.journalExitConfirmed, true); assert.notEqual(error.journalInitStage, 'private-canary');
+          if (mode === 'extra') assert.notEqual(error.journalInitStage, 'directory');
+          assert.equal(String(error).includes('private-canary'), false); return true;
+        });
+        assert.deepEqual(events, []);
+      }
+      process.env.PLAYWRIGHT_TEST_JOURNAL_INVALID_PHASE = 'unmatched';
+      await assert.rejects(JobJournal.open({ workerModule: new URL('./fixtures/malformed-response.mjs', import.meta.url) }), error => {
+        assert.equal(error.journalFailure, 'rpc_timeout'); assert.equal(error.journalExitConfirmed, true);
+        assert.notEqual(error.journalInitStage, 'configure'); return true;
+      });
+    } finally {
+      if (previous === undefined) delete process.env.PLAYWRIGHT_TEST_JOURNAL_INVALID_PHASE;
+      else process.env.PLAYWRIGHT_TEST_JOURNAL_INVALID_PHASE = previous;
+    }
+  });
   test('unexpected journal worker exit remains distinct from an RPC timeout', async () => {
     const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-read-exit-'));
     const config = { directory, projectId: '9'.repeat(64), ownerId: 'read-exit-owner' }; let journal;

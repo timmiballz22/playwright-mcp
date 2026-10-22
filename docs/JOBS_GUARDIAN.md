@@ -58,3 +58,9 @@ component in installed-package browser smoke. Linux Node 20/24 coverage remains;
 original wrapper CI still runs Node 20 on all OSes. A focused Windows Node 20
 Firefox fixture preserves the legacy raw-runner cleanup regression after this
 matrix change. The job count remains fourteen; no test retries were added.
+
+Journal initialization failures can include a fixed `journalInitStage` diagnostic.
+It identifies the last received worker phase within the unchanged RPC deadline;
+it does not identify a proven blocked operation, reset a watchdog, acknowledge
+a database write, or authorize lease release or process cleanup. The worker
+sends no paths, SQL, credentials or user metadata in these phase messages.

@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: guardian diagnostics retain fixed journal metadata and discard private values
+ok 1 - guardian diagnostics retain fixed journal metadata and discard private values
+  ---
+  duration_ms: 2.440301
+  ...
+# Subtest: journal transport diagnostics retain only fixed causes and originating verbs
+ok 2 - journal transport diagnostics retain only fixed causes and originating verbs
+  ---
+  duration_ms: 0.288126
+  ...
+# Subtest: unconfirmed journal exit is a fixed boolean diagnostic without raw values
+ok 3 - unconfirmed journal exit is a fixed boolean diagnostic without raw values
+  ---
+  duration_ms: 0.316179
+  ...
+# Subtest: stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+ok 4 - stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+  ---
+  duration_ms: 1.801152
+  ...
+# Subtest: stderr facts cap distinct metadata and process only a bounded tail
+ok 5 - stderr facts cap distinct metadata and process only a bounded tail
+  ---
+  duration_ms: 2.22643
+  ...
+# Subtest: initialization phase diagnostics retain only fixed stages and remain bounded
+ok 6 - initialization phase diagnostics retain only fixed stages and remain bounded
+  ---
+  duration_ms: 1.186505
+  ...
+# Subtest: durable journal explicitly requires Node 22.13 or later
+ok 7 - durable journal explicitly requires Node 22.13 or later
+  ---
+  duration_ms: 2.586607
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 188.832896

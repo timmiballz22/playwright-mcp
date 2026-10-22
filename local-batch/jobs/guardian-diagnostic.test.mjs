@@ -40,3 +40,17 @@ test('stderr facts cap distinct metadata and process only a bounded tail', () =>
   assert.equal(JSON.stringify(value).includes('private'), false);
   assert.deepEqual(diagnostics.guardianStderrFacts({ message: 'private-ci-canary' }).guardianFailures, []);
 });
+
+test('initialization phase diagnostics retain only fixed stages and remain bounded', () => {
+  const value = { code: 'journal_unavailable', journalFailure: 'rpc_timeout', journalFailureCommand: 'init', journalInitStage: 'configure' };
+  const safe = guardianDiagnostic(value, 'journal_open', 'init');
+  assert.equal(safe.journalInitStage, 'configure');
+  const line = guardianDiagnosticLine(safe);
+  assert.match(line, /Local job journal init phase \(configure\)/);
+  const facts = diagnostics.guardianStderrFacts(line);
+  assert.deepEqual(facts.journalInitStages, ['configure']);
+  assert.equal(facts.capped, false);
+  assert.equal(guardianDiagnostic({ ...value, journalInitStage: 'private-canary' }, 'journal_open', 'init').journalInitStage, undefined);
+  assert.equal(diagnostics.guardianStderrFacts('Local job journal init phase (private-canary).').journalInitStages, undefined);
+  assert.equal(diagnostics.guardianStderrFacts(('Local job journal init phase (configure).\n').repeat(200)).journalInitStages.length, 1);
+});
