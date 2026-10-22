@@ -1,0 +1,222 @@
+{
+  "preparedCore": "9f9750ae24604e2099e1c1f6564d5d6cb3d19d30dfbc8b5ec61ba18c0989e25a",
+  "scope": "Two checked-in actual-engine Node tests on each local LTS: viewport sequencing plus six screenshot retry conditions. Controlled scheduling/error injection, not a reproduction of native macOS geometry or native recovery proof.",
+  "results": [
+    {
+      "node": 20,
+      "receipts": [
+        {
+          "fixture": "chromium_viewport_order_calibration",
+          "engine": "chromium",
+          "channel": "chromium",
+          "bounds": 1,
+          "metrics": 1,
+          "boundsCompleted": true,
+          "metricsBeforeBoundsCompleted": false,
+          "width": 320,
+          "height": 240,
+          "redPixel": true,
+          "scope": "Request sequencing with a real Linux/Windows/macOS engine on the executing host; native gray cause is a separate measurement."
+        },
+        {
+          "fixture": "chromium_capture_recovery_calibration",
+          "engine": "chromium",
+          "cases": [
+            {
+              "mode": "healthy",
+              "passed": true,
+              "failure": "none",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 69
+            },
+            {
+              "mode": "first_unavailable",
+              "passed": true,
+              "failure": "none",
+              "attempts": 2,
+              "actualCaptures": 2,
+              "elapsedMs": 99
+            },
+            {
+              "mode": "persistent_unavailable",
+              "passed": false,
+              "failure": "unavailable",
+              "attempts": 2,
+              "actualCaptures": 2,
+              "elapsedMs": 69
+            },
+            {
+              "mode": "other_protocol",
+              "passed": false,
+              "failure": "other_protocol",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 41
+            },
+            {
+              "mode": "closed_target",
+              "passed": false,
+              "failure": "closed_target",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 39
+            },
+            {
+              "mode": "deadline",
+              "passed": false,
+              "failure": "timeout",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 5011
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "node": 22,
+      "receipts": [
+        {
+          "fixture": "chromium_viewport_order_calibration",
+          "engine": "chromium",
+          "channel": "chromium",
+          "bounds": 1,
+          "metrics": 1,
+          "boundsCompleted": true,
+          "metricsBeforeBoundsCompleted": false,
+          "width": 320,
+          "height": 240,
+          "redPixel": true,
+          "scope": "Request sequencing with a real Linux/Windows/macOS engine on the executing host; native gray cause is a separate measurement."
+        },
+        {
+          "fixture": "chromium_capture_recovery_calibration",
+          "engine": "chromium",
+          "cases": [
+            {
+              "mode": "healthy",
+              "passed": true,
+              "failure": "none",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 56
+            },
+            {
+              "mode": "first_unavailable",
+              "passed": true,
+              "failure": "none",
+              "attempts": 2,
+              "actualCaptures": 2,
+              "elapsedMs": 78
+            },
+            {
+              "mode": "persistent_unavailable",
+              "passed": false,
+              "failure": "unavailable",
+              "attempts": 2,
+              "actualCaptures": 2,
+              "elapsedMs": 59
+            },
+            {
+              "mode": "other_protocol",
+              "passed": false,
+              "failure": "other_protocol",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 14
+            },
+            {
+              "mode": "closed_target",
+              "passed": false,
+              "failure": "closed_target",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 35
+            },
+            {
+              "mode": "deadline",
+              "passed": false,
+              "failure": "timeout",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 5010
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "node": 24,
+      "receipts": [
+        {
+          "fixture": "chromium_viewport_order_calibration",
+          "engine": "chromium",
+          "channel": "chromium",
+          "bounds": 1,
+          "metrics": 1,
+          "boundsCompleted": true,
+          "metricsBeforeBoundsCompleted": false,
+          "width": 320,
+          "height": 240,
+          "redPixel": true,
+          "scope": "Request sequencing with a real Linux/Windows/macOS engine on the executing host; native gray cause is a separate measurement."
+        },
+        {
+          "fixture": "chromium_capture_recovery_calibration",
+          "engine": "chromium",
+          "cases": [
+            {
+              "mode": "healthy",
+              "passed": true,
+              "failure": "none",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 34
+            },
+            {
+              "mode": "first_unavailable",
+              "passed": true,
+              "failure": "none",
+              "attempts": 2,
+              "actualCaptures": 2,
+              "elapsedMs": 75
+            },
+            {
+              "mode": "persistent_unavailable",
+              "passed": false,
+              "failure": "unavailable",
+              "attempts": 2,
+              "actualCaptures": 2,
+              "elapsedMs": 93
+            },
+            {
+              "mode": "other_protocol",
+              "passed": false,
+              "failure": "other_protocol",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 38
+            },
+            {
+              "mode": "closed_target",
+              "passed": false,
+              "failure": "closed_target",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 16
+            },
+            {
+              "mode": "deadline",
+              "passed": false,
+              "failure": "timeout",
+              "attempts": 1,
+              "actualCaptures": 1,
+              "elapsedMs": 5008
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

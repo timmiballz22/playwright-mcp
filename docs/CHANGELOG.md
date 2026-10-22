@@ -4,7 +4,10 @@
   protocol error. Persistent/other/closed/timeout failures remain failures.
   Real-browser calibrated controls and fresh Node22 production package pass
   locally; native recovery remains unverified. Prepared core identity changes
-  from3eb68a0 to2e36b79; known3eb migration is guarded, matrix-onlyB46 remains rejected.
+  from3eb68a0 through local2e36b79 to9f9750a; known migrations are guarded,
+  matrix-onlyB46 remains rejected. Order existing Chromium window-bounds completion
+  before device metrics, targeting native95 short320×98 screencast input; local
+  scheduling calibration passes, native geometry/cause/fix remains pending.
 
 - Consume SDK acceptance-client stderr to prevent pipe backpressure; retain only
   bounded fixed guardian/journal facts shared with the Codex verifier. Add fixed

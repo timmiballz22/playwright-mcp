@@ -46,7 +46,7 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
   }` });
   await call('browser_stop_video');
   const inputFrames = stderr().split('\n').filter(line => line.startsWith('{"fixture":"owned_video_encoder_input"')).slice(0, 32);
-  for (const line of inputFrames) console.log(line);
+  for (const line of inputFrames) console.log(JSON.stringify({ ...JSON.parse(line), project }));
   expect(inputFrames.length, 'Actual encoder input must be observed').toBeGreaterThan(0);
   const stat = await fs.stat(filename);
   expect(stat.size).toBeGreaterThan(0); expect(stat.size).toBeLessThanOrEqual(8 * 1024 * 1024);

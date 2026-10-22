@@ -1,0 +1,12 @@
+{"fixture":"chromium_viewport_order_calibration","engine":"chromium","channel":"chromium","bounds":1,"metrics":1,"boundsCompleted":true,"metricsBeforeBoundsCompleted":false,"width":320,"height":240,"redPixel":true,"scope":"Request sequencing with a real Linux/Windows/macOS engine on the executing host; native gray cause is a separate measurement."}
+✔ real full Chromium applies device metrics after the existing window-bounds request completes (590.531901ms)
+{"fixture":"chromium_capture_recovery_calibration","engine":"chromium","cases":[{"mode":"healthy","passed":true,"failure":"none","attempts":1,"actualCaptures":1,"elapsedMs":34},{"mode":"first_unavailable","passed":true,"failure":"none","attempts":2,"actualCaptures":2,"elapsedMs":75},{"mode":"persistent_unavailable","passed":false,"failure":"unavailable","attempts":2,"actualCaptures":2,"elapsedMs":93},{"mode":"other_protocol","passed":false,"failure":"other_protocol","attempts":1,"actualCaptures":1,"elapsedMs":38},{"mode":"closed_target","passed":false,"failure":"closed_target","attempts":1,"actualCaptures":1,"elapsedMs":16},{"mode":"deadline","passed":false,"failure":"timeout","attempts":1,"actualCaptures":1,"elapsedMs":5008}]}
+✔ Chromium screenshot retries only one exact calibrated capture-unavailable failure within its original deadline (5664.043985ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6980.576547

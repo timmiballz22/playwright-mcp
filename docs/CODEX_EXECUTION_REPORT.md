@@ -1,6 +1,71 @@
 # Execution report — verified milestone, incomplete mission
 
-## Latest completed checkpoint — native94 at3a5b901; acceptance incomplete
+## Latest completed checkpoint — native95 atfdd83e0; acceptance incomplete
+
+[Batch39837568942](https://github.com/timmiballz22/playwright-mcp/actions/runs/39837568942)
+reports1,620 passes/8 failures; [original39837569201](https://github.com/timmiballz22/playwright-mcp/actions/runs/39837569201)
+reports600/8. Completed summaries total2,220/16, reported test skips/cancels0.
+Both workflows finish normally. All17 job logs succeed/nonempty on the first
+read. All five installed-package checks pass, including both parent-death
+variants; the four component lanes pass146/146/146/147 and all12 real concurrent
+schema races. Node20 durable SQLite/jobs remain unsupported. New positives do
+not repair native92/93 exit/store gaps or the native94 scoped HTTP survivor.
+
+Linux20/22/24 main207/211/211 pass; Mac208/3 and Windows198/5. Actual Codex1k
+passes Linux35.633s/Windows38.201s/Mac83.563s, model turns0/owned roots0.
+Mac raw stops943/120.171s; SDK job times out973 (next click974), sync MCP994.
+Separate Mac server control times out996/120.055s; direct-pipe1k passes104.625s.
+These failures do not justify increased limits, unsafe replay or a default
+transport/channel change.
+
+Windows Firefox failures: declarative effects20/23 then waitFor locator timeout;
+HTTP418 has its typed http_4xx fact but overall timeout (one request/response,
+first response9.559s), independent teardown audit confirms0; raw fresh10 fails
+8/23 with pointer-action timeout; six-locator case times out13/19; HTTP429
+times out with one hit and0 completed. All four separate Firefox transport/temp
+controls pass10 fresh/230 actions each, scoped roots0 before force/finally.
+One later legacy-only candidate is retained with full same-snapshot rows and
+a captured same-PID root birth mismatch. It is not role-filtered or signal
+authority; neither scoped0 nor that narrow mismatch clears native94 or old136/142
+unknowns. Six component scoped observations/four orphan receipts are deliberate
+negative controls, distinct from real failures.
+
+Original main Linux200/0, Mac196/4, Windows197/3; each includes eight additive
+stock references beyond original192. All12 stock PNG captures pass; PCM11/12,
+with Windows stock WebKit ready0 after preload and real play click, play pending.
+Original WebKit PCM/VP9 remain failed. Mac main fails Chrome/Chromium screenshot
+capture, Chromium gray recording and Firefox trusted-click interruption after58
+confirmed clicks. Trace/PDF/large-DOM each pass12 native cases. Docker2/0 and
+Windows legacy3/0. Three fresh Mac recording controls are2/1; their failed gray
+recording remains failed.
+
+Actual encoder input:118 JPEG headers,102 at320×240 and16 at320×98 across two
+short streams (main/fresh Chromium adjacency retained). All first eight frames
+in each short stream are98-high, including frame one. The actual encoder pads
+to320×240 with gray; samples y100/y239 are outside the input. Independent ffmpeg
+and browser frame zero agree on gray128 there despite red source PNG. No pixel
+seek/skip, altered Matroska header, encoder settings or recording substitution.
+Native95 receipts lack project attributes; raw adjacency is preserved explicitly.
+
+Current local prospective9f975 core orders the existing window-bounds request
+before device metrics and adds an exact capture-unavailable read-only retry under
+the original deadline, with abort guard. Local real full Chromium scheduling
+calibration shows concurrent ordering before the patch and ordered completion
+after. Two checked-in Node tests pass on20/22/24 (three viewport cases plus18
+capture conditions), original video/stock6/6 and fresh production install on
+Node22 pass.297-file dry pack excludes tests/evidence. Native macOS geometry,
+cause and recovery are pending; native95 uses earlier metadata-only3eb and
+cannot verify these changes. No warmup, new protocol request for viewport setup,
+raised limit or default browser/transport change. See [dependency scope](DEPENDENCY_PATCHES.md).
+
+[Full native95 archive](evidence/native95-summary.json),
+[input geometry](evidence/native95-video-input-native-proof.json),
+[all process observations](evidence/native95-full-factory-observations.json),
+[final local calibration](evidence/native96-final-calibrations-lts-proof.json),
+[final production install](evidence/native96-final-frozen-package-proof.json).
+G18 remains BLOCKED; opt-in soak/interactive operator walkthrough remain unexecuted.
+
+## Previous completed checkpoint — native94 at3a5b901; acceptance incomplete
 
 [Batch39833354256](https://github.com/timmiballz22/playwright-mcp/actions/runs/39833354256)
 reports1,621 passes/7 failures; [original39833354270](https://github.com/timmiballz22/playwright-mcp/actions/runs/39833354270)
@@ -3959,7 +4024,7 @@ process identities), not a full descriptor/resource quota proof. All configured
 thresholds pass, zero model turns. Evidence: page-budget-soak-100-node22.txt.
 Native/cross-OS soak and hard browser CPU/RAM/process quotas remain open.
 
-## Prospective local capture recovery (excluded from active native95)
+## Earlier local capture-only candidate2e36 (excluded from native95)
 
 The current local prepare script produces2e36b79, retaining VP9 flags and adding
 one retry only for the exact real Chromium capture-unavailable ProtocolError.

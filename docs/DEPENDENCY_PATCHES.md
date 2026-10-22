@@ -1,38 +1,62 @@
 # Private Playwright reliability patches
 
-## Prospective screenshot recovery patch after native94
+## Current local candidate: capture recovery and viewport ordering
 
-The current local candidate retains the reviewed VP9 flags and adds one retry
-of Chromium's exact `Protocol error (Page.captureScreenshot): Unable to capture screenshot`.
-The retry is read-only and uses the same original progress/deadline and capture
-arguments. It requires a real ProtocolError for that method and exact message.
-Persistent unavailability still fails after two attempts; other errors, closed
-targets and timeouts do not qualify. There is no sleep, warmup, new browser action,
-model-visible option or raised action/RPC/test/job limit.
+Native95 original workflow39837569201 atfdd83e0 completes600/8, including its
+separate fresh/legacy controls. Mac main196/4 includes two capture-unavailable
+errors, Chromium gray frame zero and Firefox trusted-click interruption after58
+confirmed clicks. The input observer measures118 real JPEG headers:102 at320×240
+and16 at320×98 across two short streams. Both short blocks are adjacent to
+Chromium source/failure receipts (main and fresh control); receipts did not yet
+carry project fields, so raw adjacency is retained explicitly. Encoder gray
+padding explains y100/y239 outside98-high input. Browser and independent ffmpeg
+frame zero agree there. Actual window bounds/viewport-update cause are not
+measured by these receipts.
 
-Native93 has two actual capture failures and native94's fresh controls have
-another. The local calibration wraps real installed Chromium: it captures the
-owned red PNG, then injects a calibrated actual ProtocolError. Baseline fails a
-single unavailable error; the patched path recovers on the second capture. This
-validates selection and bounds, not the native engine's cause or native recovery.
-The checked-in `local-batch/screenshot-recovery.test.mjs` also verifies persistent,
-distinct protocol, real closed-target and original5s-deadline cases. Native95
-fdd83e0 is still the earlier metadata-only source and cannot validate this retry.
+The current local patch retains the reviewed VP9 flags and adds:
 
-Current prepared core SHA-256:
-`2e36b79ec8f27082edc4bb688abc800cfbc351d5c5c3c9a2320629939cc29686`.
-Preparation accepts exact registry829 bytes, reviewed previous metadata-only3eb
-bytes (migrates to2e36), or current2e36 (idempotent). Matrix-onlyB46 and unknown
-bytes remain rejected. A genuine detached clean checkout with `npm ci --ignore-scripts`
-verifies original→current preparation, unchanged inode/mtime on repeat, and
-rejection without rewriting of a deliberately altered dependency. Main checkout
-also verifies the3eb→2e36 migration. No runtime source clone is packaged.
-A fresh installed production package passes all runtime smokes on Node22 with
-the2e36 core; native package/engine acceptance remains pending.
+- One retry of Chromium's exact real capture-unavailable ProtocolError for
+  Page.captureScreenshot, with identical capture arguments and original progress
+  deadline. An abort check precedes retry. Persistent unavailability fails after
+  two attempts; other errors, real closed targets and timeouts are not retried.
+- Completion of the existing Browser.setWindowBounds request before sending
+  Emulation.setDeviceMetricsOverride. The old concurrent requests can overlap,
+  demonstrated on a real full Chromium with a trusted100ms delayed bounds-promise
+  resolution. This sequencing targets the observed short surface; native macOS
+  geometry/cause/fix remains pending. No additional protocol request is introduced.
 
-The original encoder metadata evidence below remains historical and does not
-prove a gray-frame fix. The new retry does not change MJPEG framing, padding,
-encoded frame selection, VP9 options, Windows media or ownership behavior.
+There is no sleep/warmup in product code, frame skip/seek, changed recording
+arguments, input replay, new model option, default channel/transport change or
+raised action/RPC/test/job limit. The ordering test's scheduling delay is test-only.
+The actual strict screenshot/video assertions remain unchanged.
+
+Checked-in actual-engine Node tests pass on20/22/24: one viewport-order case plus
+six capture conditions each (18 screenshot conditions total). Controlled error
+injection follows successful owned PNG captures and uses a real ProtocolError;
+it proves selection/bounds, not the native error's cause or native recovery.
+Original video and stock PNG/PCM cases pass6/6 locally on Chromium/Firefox.
+Fresh production installation/smokes pass on Node22 with the final9f975 core and
+unchanged source hashes during verification. Native95 still uses metadata-only
+3eb, and cannot validate either current code change.
+
+Prepared source identities:
+
+- Registry829: `829521b67ed7be90c7d6d6098ff39f2241562d47e4ad7ccab13710924a56001d`.
+- Reviewed metadata-only3eb: `3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192`.
+- Earlier local capture-only2e36: `2e36b79ec8f27082edc4bb688abc800cfbc351d5c5c3c9a2320629939cc29686`.
+- Current9f975: `9f9750ae24604e2099e1c1f6564d5d6cb3d19d30dfbc8b5ec61ba18c0989e25a`.
+
+Only these exact bytes are accepted: registry/3eb/2e36 migrate to9f975; current
+9f975 validates without rewrite. Matrix-onlyB46 and unknown bytes remain rejected.
+The clean-checkout final proof installs exact registry bytes with scripts disabled,
+prepares9f975, verifies unchanged inode/mtime on repeat and rejects deliberately
+altered dependency bytes without rewriting. Main2e36→9f975 migration also passes.
+No runtime source clone is packaged. The script's historical filename and fixed
+metadata receipt component remain stable; its SHA identifies the full patch.
+
+These are private fork patches, not an upstream release or a proven native gray
+fix. The original encoder metadata evidence below is historical. Windows media,
+cleanup uncertainty and old birth gaps remain separate acceptance gates.
 
 ## Earlier metadata-only evidence
 
@@ -64,13 +88,13 @@ Playwright v1.64.1. The corresponding installed `lib/coreBundle.js` hashes are:
 - Earlier metadata-only prepared source: `3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192`.
 
 The earlier matrix-only source was `b46a37ecb04912c639ffd32f890269ea33a612dfdcb43f518bac76b85cc0fa9f`.
-The current candidate additionally accepts the exact reviewed metadata-only3eb bytes for migration. Use a clean
+The current candidate additionally accepts exact reviewed3eb and local2e36 bytes for migration. Use a clean
 `npm ci` when upgrading an existing matrix-only checkout; unknown/old prepared
 bytes are not silently modified. Browser APIs, encoded workflow permissions and
 existing timeouts remain unchanged.
 
 `npm ci` runs the deterministic prepare script after installing the pinned
-registry dependencies. It accepts only the exact registry, reviewed previous3eb or current2e36 bytes,
+registry dependencies. It accepts only the exact registry, reviewed3eb/local2e36 or current9f975 bytes,
 checks the dependency stays inside this checkout's physical node_modules, and
 refuses unreviewed versions, shared/link targets and incomplete private output.
 It makes one atomic replacement of its own installed source file. A repeated
@@ -120,7 +144,7 @@ notes a Windows Server Media Pack problem on hosted runners. Source:
 This explains the upstream support scope, not the exact mechanism of our WAV
 ready0/network2/error0 sample or every Windows host/codec. This fork retains its
 strict playback failures; no skip, xfail or assertion/deadline change follows.
-Mac WebKit decoded-color fidelity remains a separate failure under investigation.
+The earlier Mac WebKit color failure has a controlled native88 producer pass above; this does not generalize to Windows playback or gray frames.
 Exact source blob and scope: evidence/native86-upstream-webkit-media-proof.json.
 
 Metadata-copy diagnostics use an optional external ffmpeg tool, not a product

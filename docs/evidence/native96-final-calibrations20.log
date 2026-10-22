@@ -1,0 +1,22 @@
+TAP version 13
+# {"fixture":"chromium_viewport_order_calibration","engine":"chromium","channel":"chromium","bounds":1,"metrics":1,"boundsCompleted":true,"metricsBeforeBoundsCompleted":false,"width":320,"height":240,"redPixel":true,"scope":"Request sequencing with a real Linux/Windows/macOS engine on the executing host; native gray cause is a separate measurement."}
+# Subtest: real full Chromium applies device metrics after the existing window-bounds request completes
+ok 1 - real full Chromium applies device metrics after the existing window-bounds request completes
+  ---
+  duration_ms: 805.60228
+  ...
+# {"fixture":"chromium_capture_recovery_calibration","engine":"chromium","cases":[{"mode":"healthy","passed":true,"failure":"none","attempts":1,"actualCaptures":1,"elapsedMs":69},{"mode":"first_unavailable","passed":true,"failure":"none","attempts":2,"actualCaptures":2,"elapsedMs":99},{"mode":"persistent_unavailable","passed":false,"failure":"unavailable","attempts":2,"actualCaptures":2,"elapsedMs":69},{"mode":"other_protocol","passed":false,"failure":"other_protocol","attempts":1,"actualCaptures":1,"elapsedMs":41},{"mode":"closed_target","passed":false,"failure":"closed_target","attempts":1,"actualCaptures":1,"elapsedMs":39},{"mode":"deadline","passed":false,"failure":"timeout","attempts":1,"actualCaptures":1,"elapsedMs":5011}]}
+# Subtest: Chromium screenshot retries only one exact calibrated capture-unavailable failure within its original deadline
+ok 2 - Chromium screenshot retries only one exact calibrated capture-unavailable failure within its original deadline
+  ---
+  duration_ms: 5920.513166
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6813.474294
