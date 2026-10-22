@@ -8,6 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 const root = process.cwd();
 const dir = await mkdtemp(path.join(os.tmpdir(), 'fork-install spaces-'));
+let checksCompleted = false;
 // Invoke npm's JS entrypoint directly: npm.cmd + shell:true corrupts paths
 // containing spaces/metacharacters and is unnecessary on Windows.
 const nodeDir = path.dirname(process.execPath);
@@ -53,4 +54,12 @@ try {
   process.stdout.write(execFileSync(process.execPath, ['scripts/verify-guardian-parent-death.mjs', target], { cwd: root, encoding: 'utf8' }));
   process.stdout.write(execFileSync(process.execPath, ['scripts/verify-guardian-parent-death.mjs', target, '--linger-journal-close'], { cwd: root, encoding: 'utf8' }));
   console.log(JSON.stringify({ tarball: packed.filename, integrity: packed.integrity, fileCount: packed.files.length, production: true }));
-} finally { await rm(dir, { recursive: true, force: true }); }
+  checksCompleted = true;
+} finally {
+  // A failed installed guardian check may retain live/unknown ownership and
+  // private diagnostics. Do not remove the runtime beneath it or mask the
+  // primary failure with speculative cleanup. No lease/debt is cleared here.
+  if (checksCompleted) await rm(dir, { recursive: true, force: true });
+  else console.error(JSON.stringify({ component: 'installed_package_workspace_preserved',
+    workspaceId: path.basename(dir), checksCompleted: false }));
+}

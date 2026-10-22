@@ -1,5 +1,14 @@
 # Execution ledger
 
+Local verifier follow-up excluded from native85: failed production verification
+now preserves its temporary installed runtime instead of deleting it beneath
+potentially unknown guardian ownership. Existing trusted startup-failure fixture
+returns actual1/expected1, retains installation/core, omits private canary; a fresh
+normal297-file install passes every smoke and awaits normal removal. No process,
+lease or debt clearance is inferred. Full current local original-MCP Chromium/
+Firefox suite92/92 passes Node24 in4.4m. Exact logs and scope are recorded in
+evidence/native85-package-preserve-proof.json.
+
 Further local fixtures excluded from active native85: owned lazy append preserves
 an old ref while exposing20 new rows after one response-gated request; exactly
 two explicitly requested clicks produce two POST effects. Explicitly allowed
