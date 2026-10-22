@@ -1,0 +1,73 @@
+[
+  {
+    "job": "codex_client (macos-15-intel)",
+    "data": {
+      "phase": "codex_primary_job",
+      "failedStep": {
+        "index": 944,
+        "type": "click",
+        "error": "cancelled",
+        "failureKind": "interrupted"
+      },
+      "state": "TIMED_OUT",
+      "jobReason": "timeout",
+      "jobStage": "complete",
+      "jobCompleted": 943,
+      "resultAvailable": true,
+      "operatorAttentionRequired": false,
+      "guardianFailures": [],
+      "journalFailures": [],
+      "journalInitStages": [],
+      "guardianExits": [],
+      "forced": false,
+      "completed": 943,
+      "reason": "timeout",
+      "cleanup": "terminated",
+      "tempCleanup": "removed"
+    }
+  },
+  {
+    "job": "codex_client (ubuntu-latest)",
+    "data": {
+      "client": "codex-cli 0.163.0",
+      "os": "linux",
+      "launcher": "node",
+      "tools": 6,
+      "completed": 1000,
+      "startMs": 9,
+      "resultCalls": 4,
+      "durationMs": 35408,
+      "duplicateExecuted": false,
+      "foreignOwnerDenied": true,
+      "terminalCleanup": true,
+      "activeCancel": true,
+      "cancelledJobCompleted": 1,
+      "modelTurns": 0,
+      "temporaryConfigOnly": true,
+      "activeOwnedProcesses": 0
+    }
+  },
+  {
+    "job": "codex_client (windows-latest)",
+    "data": {
+      "phase": "codex_primary_job",
+      "failedStep": null,
+      "state": "CRASHED",
+      "jobReason": "recovered_interrupted",
+      "jobStage": "complete",
+      "jobCompleted": 750,
+      "resultAvailable": false,
+      "operatorAttentionRequired": true,
+      "guardianFailures": [
+        "poll/journal_unavailable/read"
+      ],
+      "journalFailures": [
+        "rpc_timeout/progress"
+      ],
+      "journalInitStages": [],
+      "guardianExits": [
+        "1/none"
+      ]
+    }
+  }
+]
