@@ -1,0 +1,249 @@
+{
+  "baseHead": "93da4be7034effa08a280fd877ef12c1f34e2f6a",
+  "phase": "local follow-up after native80; not part of native81 CI",
+  "sourceSha256": {
+    "tests/fixtures.ts": "ebf30749df70b8a620864aead02702de44fdea9d36d324f9a34f3e53bb2fb7b5",
+    "tests/fixtures/bounded-stderr.mjs": "c3447e12297d5b59e5a932656d24b9e6e908b7af727e6c45cdb5996e6afb7d41",
+    "tests/fixtures/stderr-flood.mjs": "35abe8c2e872ee8d8c449207ca1362aa195420a209e83f398d434c4a0558b3ff",
+    "tests/stdio-stderr.spec.ts": "202b30615b97564b167a929870b588348d6e50832cfc95391e3a9665d60a7d01",
+    "qa/bounded-stderr.test.mjs": "05c1b13471d05dbfa1cef721c0420a9dd868283d8dee41b3a32f24208edddf26",
+    "scripts/component-ci-reporter.mjs": "364f40723ba761ed5ec52487ce710505008220eea19bcbc0f2b2ed961c67ec4f",
+    ".github/workflows/local-batch.yml": "8d5c51309556ac1e1b47ecaf132ccc7e28b3bcf62e0876e4ed951e87010abf4e"
+  },
+  "intermediateSourceHashes": {
+    "oldFixture": "3075fe694cc29d887e90e4aeebab64268d72e1cf6c7b98a4bc844f7effdcda69",
+    "initialFixedAllocationHelper": "64251f55e6c4a1ddbaf0ae2c940623a4f7cc069a00d92c96eb1dc4475238d317",
+    "initialSpecBeforeFullLengthAssertion": "7e07cc369f28bbfec4609b4c0d0fac39beeb60609027c8954f4f96dfb410ddb3",
+    "boundedFixtureBeforeEOFCheck": "b8a04c597d5fbc0c09adccb46748554f10163bf2d60135756c13d48ae2f15561",
+    "method": "Intermediate variants reconstructed by reversing exact patches; their logs are retained separately from final-source evidence."
+  },
+  "baseline": {
+    "command": "PLAYWRIGHT_TEST_STDERR_OVERFLOW=1 npx playwright test tests/stdio-stderr.spec.ts --project=chromium --workers=1",
+    "exit": 0,
+    "retainedBytes": 1048742,
+    "interpretation": "Old fixture accepted more than1MiB, demonstrating missing budget; not a pass of the new limit.",
+    "overflowFieldMeaning": "The old probe fallback printed false because no overflow tracking existed; it is not evidence of compliance with the new limit."
+  },
+  "final": {
+    "units": {
+      "node20": {
+        "exit": 0,
+        "pass": 9,
+        "fail": 0
+      },
+      "node22": {
+        "exit": 0,
+        "pass": 9,
+        "fail": 0
+      },
+      "node24": {
+        "exit": 0,
+        "pass": 9,
+        "fail": 0
+      }
+    },
+    "realBrowserRegression": {
+      "exit": 0,
+      "pass": 14,
+      "fail": 0,
+      "engines": "Linux Chromium/Firefox; includes2 protocol-only cases"
+    },
+    "fullNode20Protocol": {
+      "exit": 0,
+      "pass": 1
+    },
+    "fullNode22Protocol": {
+      "exit": 0,
+      "pass": 1
+    },
+    "webkitConfiguredProtocol": {
+      "exit": 0,
+      "pass": 1,
+      "browserLaunched": false
+    },
+    "overflowNegative": {
+      "exit": 1,
+      "expectedExit": 1,
+      "retainedBytes": 1048576,
+      "overflow": true,
+      "actualErrorCodes": [
+        "fixture_stderr_output_limit",
+        "fixture_stderr_output_limit"
+      ],
+      "canaryInOutput": false
+    },
+    "lintExit": 0,
+    "actionlintExit": 0,
+    "actionlintExcluded": "ShellCheck/Pyflakes",
+    "productionInstallExit": 0,
+    "productionFileCount": 176,
+    "qaFilesPacked": false,
+    "fileCountDifference": "One new RELEASE_BLOCKERS.md compared with native80\u2019s175-file install; no QA helpers/preload are packed.",
+    "chromeConfiguredProtocol": {
+      "exit": 0,
+      "pass": 1,
+      "browserLaunched": false
+    },
+    "syntaxExit": 0,
+    "diffCheckExit": 0
+  },
+  "scope": "Retained test-harness stderr bytes only; not hard process RAM quota, product transport policy or a causal fix for native browser failures. All cleanup calls are awaited; no timer/deadline/kill authority added.",
+  "logs": {
+    "stderr-before.log": {
+      "sha256": "04d963b7420f8aebde1b955aa260554a5e15178e9ce2df60dbecf82c4b48140a",
+      "bytes": 434
+    },
+    "stderr-units24.log": {
+      "sha256": "4b63044b6999953cbffd9c5b071e3228aa6913642f84154ff1ae6871894dab64",
+      "bytes": 407
+    },
+    "stderr-after-negative.log": {
+      "sha256": "3128820e29b252b59788ec8ee9cb7e0a5e4627f31e2bdefa54a810724a5018a7",
+      "bytes": 2838
+    },
+    "stderr-original-regression.log": {
+      "sha256": "d69361a368e5ac0b00695e8a24dbb9ae6029c6c7a4626c5041c8c9070d9cb406",
+      "bytes": 2969
+    },
+    "stderr-unit-final24.log": {
+      "sha256": "e2f0f0ef705736d85858a31ee7980de02a7f7ca03ea532f8f83ef00137c0d72a",
+      "bytes": 1008
+    },
+    "stderr-unit-final22.log": {
+      "sha256": "cf920655225d4125afdd3ba2be6d53f213d9e011eae6a993b72a355de0421c70",
+      "bytes": 2220
+    },
+    "stderr-unit-final20.log": {
+      "sha256": "115663fba760fe4caca0559a18a636643d3b72b223287ee6d0c0039e3ba46fd1",
+      "bytes": 2085
+    },
+    "stderr-protocol-all-configs.log": {
+      "sha256": "b8e822a86e9de91f18f36823acf0c204af137804edc53386523498f70a4d3b75",
+      "bytes": 1255
+    },
+    "stderr-protocol-node20.log": {
+      "sha256": "9c6d8ea941791a99e7b4b6f0eaaa4038ee257d38005f076d2307064db68cd09f",
+      "bytes": 452
+    },
+    "stderr-protocol-node22.log": {
+      "sha256": "46344bfedf7da2d2babf8f67b8e003c459c53c685343fa5dbd4c31f3525a4c3d",
+      "bytes": 453
+    },
+    "stderr-protocol-full-node20.log": {
+      "sha256": "d16fecf0d780d63c649f6e82cb9bc6e75d9fd0b01b3d131bd295c4d94ce69356",
+      "bytes": 453
+    },
+    "stderr-protocol-full-node22.log": {
+      "sha256": "ce34082305b480b8dd05ca2bafe2173a9974c3f808fedc473c925ff0d410c71f",
+      "bytes": 453
+    },
+    "stderr-final-protocol.log": {
+      "sha256": "78bd0b7da877dbeef6db6b4edff70c476f414739defaf7f77d3e2ad0bcdaa62e",
+      "bytes": 1255
+    },
+    "stderr-final-negative.log": {
+      "sha256": "20f8a84a3a03d0e2d7180bb99c67f2383e89df96e6deda5527e5f4b3f3c9298a",
+      "bytes": 2838
+    },
+    "stderr-final-units24.log": {
+      "sha256": "3e99c720958384a5b88f09f7d45efdf086f2a45ddcb65361c5cf1370b005280a",
+      "bytes": 1008
+    },
+    "stderr-final-units22.log": {
+      "sha256": "b0a22c9ec39de7134be8cd917cc12ee540b6b915ed2a5c1cb184c37d4e22bfa9",
+      "bytes": 2219
+    },
+    "stderr-final-units20.log": {
+      "sha256": "35e594707d9c01d39a78b00b55fdf199c8f950f32fc3f51e2fa4214021ae5ba3",
+      "bytes": 2085
+    },
+    "stderr-bounded-protocol.log": {
+      "sha256": "dd34fab70cb8d60c155b8ad9da5c6ac5030234e87176cec2a2aacf557eac666f",
+      "bytes": 1254
+    },
+    "stderr-bounded-negative.log": {
+      "sha256": "39248c7a8ddea7fc39d7b4b4c1d6c355865eeb980d6fef1fd5dc4dd5298d158a",
+      "bytes": 2837
+    },
+    "stderr-bounded-node20.log": {
+      "sha256": "8c427c62e742f4e0ac0629308b377a7f3d642e1c253febac9348d169d3cee976",
+      "bytes": 453
+    },
+    "stderr-bounded-node22.log": {
+      "sha256": "0b8d913951cf17c46025be4f5b4a82c40114b7f26b41db42b9446702482b55aa",
+      "bytes": 452
+    },
+    "stderr-lint.log": {
+      "sha256": "698f906495a1870aa5f78f1336a0860b67002c0c4d3597b3eb364371bf242878",
+      "bytes": 855
+    },
+    "stderr-production.log": {
+      "sha256": "f14b2dfbf9d2c26514921a09358fa9945fc89617971775ee9ea5744ce13005a4",
+      "bytes": 2328
+    },
+    "stderr-actionlint.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "stderr-pack-list.json": {
+      "sha256": "de6dd259fed2f03bab7773a8357ea8774315d3a01fb091fb645953b539c5b30b",
+      "bytes": 20099
+    },
+    "stderr-final-browser-regression.log": {
+      "sha256": "496d0d15931cefc81e541a669070cd9c04e8d0de7d65c93d1b89414058ad9f58",
+      "bytes": 2969
+    },
+    "stderr-final-eof-regression.log": {
+      "sha256": "a70197934cf53cb28a57c9e6bc98dd105b6ce32f5ea99122b434598eef285669",
+      "bytes": 2969
+    },
+    "stderr-final-eof-negative.log": {
+      "sha256": "7889f9cc2692550da5932078f097e12189b98a47b6ea225109cdb16f7c083649",
+      "bytes": 2836
+    },
+    "stderr-final-eof-node20.log": {
+      "sha256": "406fb851fdf218564fa30e5ca5d3afc8fb316d8a1ee3f505edb828f5af1e3f39",
+      "bytes": 453
+    },
+    "stderr-final-eof-node22.log": {
+      "sha256": "ea620cf1bbebc8f756db0b0296e42f6751dccfcaccf361b321304f034e377356",
+      "bytes": 453
+    },
+    "stderr-final-eof-webkit-config.log": {
+      "sha256": "cd32d443b0e5d7cc3e6633d455f652046e1da12e525967d4151a737603bc80b6",
+      "bytes": 451
+    },
+    "stderr-final-eof-chrome-config.log": {
+      "sha256": "9c1024404ed2c63b48b808b8329d8944d1adc3aacb935ef06118184980e3c2aa",
+      "bytes": 451
+    }
+  },
+  "intermediateIndividualExitNotCaptured": [
+    "stderr-units24.log"
+  ],
+  "commands": {
+    "units24": "node --test qa/bounded-stderr.test.mjs local-batch/jobs/component-ci-reporter.test.mjs",
+    "units22": "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node --test qa/bounded-stderr.test.mjs local-batch/jobs/component-ci-reporter.test.mjs",
+    "units20": "/home/agent/.npm/_npx/ebaba8b9e55fd0a9/node_modules/node/bin/node --test qa/bounded-stderr.test.mjs local-batch/jobs/component-ci-reporter.test.mjs",
+    "browserRegression": "npx playwright test tests/stdio-stderr.spec.ts tests/accessibility-mobile.spec.ts tests/interactions.spec.ts tests/popup.spec.ts --project=chromium --project=firefox --workers=2",
+    "overflowNegative": "PLAYWRIGHT_TEST_STDERR_OVERFLOW=1 npx playwright test tests/stdio-stderr.spec.ts --project=chromium --workers=1",
+    "fullNode20": "PATH=\"/home/agent/.npm/_npx/ebaba8b9e55fd0a9/node_modules/node/bin:$PATH\" node node_modules/@playwright/test/cli.js test tests/stdio-stderr.spec.ts --project=chromium --workers=1",
+    "fullNode22": "PATH=\"/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin:$PATH\" node node_modules/@playwright/test/cli.js test tests/stdio-stderr.spec.ts --project=chromium --workers=1",
+    "chromeConfig": "npx playwright test tests/stdio-stderr.spec.ts --project=chrome --workers=1",
+    "webkitConfig": "npx playwright test tests/stdio-stderr.spec.ts --project=webkit --workers=1",
+    "production": "node scripts/verify-package.mjs",
+    "lint": "npm run lint",
+    "actionlint": "/tmp/playwright-actionlint-tools/actionlint -shellcheck= -pyflakes= .github/workflows/local-batch.yml",
+    "diff": "git diff --check"
+  },
+  "environment": {
+    "os": "Linux",
+    "nodeVersions": [
+      "20.20.2",
+      "22.23.3",
+      "24.19.0"
+    ],
+    "playwright": "1.64.1",
+    "sdk": "1.32.1"
+  }
+}

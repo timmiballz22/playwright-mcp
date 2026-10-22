@@ -1,5 +1,18 @@
 # Current acceptance coverage
 
+Latest completed native81 at93da4be reports1,904 test passes/9 failures, plus Mac
+actual-Codex timeout994 and one failed diagnostic control. See execution ledger
+for exact scopes. No incomplete gate is promoted.
+
+Source-test stderr retention now has a locally verified1MiB byte budget, continued
+pipe drain and fail-closed overflow/EOF checks. Positive real MCP flood tests and
+an expected-exit1 overflow calibration are in tests/stdio-stderr.spec.ts and
+qa/bounded-stderr.test.mjs. No browser is launched by the flood test. It is not a
+hard process-RAM quota or a fix for native provider failures. Native proof pending;
+see native81-stderr-proof.json for commands, phases and byte/source hashes.
+
+Archived native76 checkpoint:
+
 Latest completed native76 at9591621:1,904 reported passes/12 failures plus2
 failed Windows diagnostic controls. Five failures are one ownership unit's
 outdated no-options expectation; local f426d7e retains strict keys and all

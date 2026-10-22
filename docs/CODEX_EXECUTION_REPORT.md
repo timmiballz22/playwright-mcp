@@ -1,5 +1,74 @@
 # Execution report — verified milestone, incomplete mission
 
+Latest completed native81 at `93da4be7034effa08a280fd877ef12c1f34e2f6a`:
+batch39743244640 reports1,446 passes/6 failures; original39743244612 reports458/3.
+Combined **1,904 reported test passes/9 failures**, plus Mac actual-Codex
+TIMED_OUT994 and one failed Windows protocol-headed JSON control. Both workflows
+fail; all17 non-soak jobs conclude, optional soak skips, reported test skips/
+cancels0. This documentation-only head has the same runtime/tests asbea4780;
+new local stderr work below is not included in these native results.
+
+AllLinux batch199/203/203 and alljournal112/113 pass; Mac201/2, Windows191/4 fail.
+Five176-file production installs,15 all-action/HTTP/cancellation cases each,
+120 individual HTTP/60 cancellation scenarios and five raw/supervised20-run
+screenshot fixtures pass. Package176 adds RELEASE_BLOCKERS.md to native80's175;
+it does not add a runtime dependency. Eight full lifetime comparisons are retained;
+no old136/142 or earlier unknown observation is retrospectively classified.
+
+Mac SDK995 and synchronous MCP991 time out with terminated/removed cleanup;
+SDK118.900s receipt, forced:false/attention:false. Actual Mac client994 also
+TIMED_OUT with known cleanup; Linux36.145s/Windows38.412s actual1k clients pass,
+model0/owned0. Later healthy controls do not establish a causal fix.
+
+Windows headless Firefox fresh6 stops12/23 at pointer click13,8.379s, cleanup[].
+Its counter12 exceeds11 acknowledged clicks: failed click delivered an effect;
+never replay. Headed fresh4 stops4/23 at locator click5,18.128s, context_timeout/
+server_timeout; pipe fresh1 stops3/23 at locator click4,18.306s, context_timeout/
+browser_timeout. Later fresh runs are unexecuted. The retry case passes429/503,
+then /fragment#owned-fragment has1 navigation ACK/two requests/two finished
+responses but lifecycle timeout, forced:true, known cleanup. Later cap/POST
+scenarios in that case are unexecuted; separate explicit cancellation cases pass.
+
+Original Linux/Windows152 each and Docker2 pass. Windows legacy headless fresh8
+completes all23 then server_timeout (12.735s); other two legacy modes pass.
+Mac Google Chrome highlight has a screenshot protocol error after fonts loaded;
+Firefox storage export/restore exceeds its unchanged30s test deadline while
+browser_set_storage_state is pending. Target-closed follows teardown, not proof
+of incorrect storage replacement. Mac150/2; modal follow-up unexecuted.
+Windows protocol-headed JSON control9/10 fails tenth8/23 pointer timeout9.332s,
+215 cumulative actions; owned before parent force0/final0. Other controls stay
+separate from TAP totals. No input retry, force click or budget/default change.
+
+All17 job logs are saved. One Mac log read needed ordinary retry after invalid
+ZIP; the premature count attempt against the absent combined log produced no
+counts and is recorded separately. No artifact download/auth/TLS bypass.
+Evidence: worker-ci-eightyfirst-*, native81-*.
+
+Independent P1 gap reproduced/fixed locally: original test fixture retained stderr
+in an unbounded string. Real MCP child emitted1,048,577 bytes before initialize;
+old fixture retained1,048,742 and passed. New source-only byte capture grows from
+small storage to at most1MiB, continues draining after overflow, and rejects
+truncated reads with fixed fixture_stderr_output_limit. Teardown awaits all
+existing client closes, then checks overflow and stderr EOF; unconfirmed EOF
+fails without extra waits/timers/kills. UTF-8 fragments and buffer ownership are
+preserved. No production transport/schema/termination policy changes.
+
+Final local evidence: helper/reporter9/9 eachNode20/22/24; Chromium/Firefox14/14
+regression (12 browser cases plus2 protocol cases); additional Chrome/WebKit-
+configured protocol cases1/1 each, with no engine launch; full Node20/22 client/
+server protocol1/1 each. Local WebKit engine remains unexecuted. Final negative
+returns expected exit1, retained1,048,576/overflow:true, fixed errors, no canary
+text. Intermediate phases are retained separately. Fresh176-file production
+install passes; new QA helpers/preload/spec are excluded from the tarball.
+Lint/actionlint/diff pass (ShellCheck/Pyflakes not run). Stable Playwright remains
+1.64.1; upstream issue-search metadata is context only, not a proven cause.
+
+**Mission remains active/incomplete. NEXT ACTION: commit bounded-stderr fix and
+complete its native verification, then tackle the next feasible static/reliability
+gap. Historical missing evidence remains blocked; independent work continues.**
+
+### Archived native80 checkpoint
+
 Latest completed native80 at `bea4780d370deec0c36ae64c965dfc24157b385d`:
 batch39739439069 reports1,446 passes/6 failures; original39739439372 reports454/4.
 Combined **1,900 reported test passes/10 failures**. Both workflows fail; no

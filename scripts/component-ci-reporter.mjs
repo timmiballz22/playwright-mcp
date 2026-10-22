@@ -9,7 +9,7 @@ const files = new Set([
     'workflow-snapshot', 'controller', 'controller-open', 'contention', 'config',
     'private-windows', 'artifact-cleanup', 'artifact-cleanup-supervisor', 'retention',
     'maintenance', 'queue-clock', 'component-ci-reporter'].map(name => `local-batch/jobs/${name}.test.mjs`),
-  'scripts/ci-test-counts.test.mjs', 'local-batch/cleanup.test.mjs',
+  'scripts/ci-test-counts.test.mjs', 'local-batch/cleanup.test.mjs', 'qa/bounded-stderr.test.mjs',
 ]);
 const failureClasses = new Map([
   ['ERR_ASSERTION', 'assertion'], ['ENOENT', 'missing_path'],

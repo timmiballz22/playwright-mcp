@@ -1,5 +1,14 @@
 # Mandatory scenario evidence
 
+Latest completed native81 at93da4be:1,904 reported passes/9 failures, plus Mac
+actual timeout994 and one failed protocol-headed diagnostic. All journal lanes,
+15 action/HTTP/cancellation cases each and five176-file installs pass. Raw Firefox
+input/close, Mac lifecycle/capture/storage-deadline failures remain. A failed
+headless click delivered an effect; never replay. Independent bounded-stderr
+fixture fix has local positive/negative proof; native verification pending.
+
+Previous native80 checkpoint:
+
 Latest completed native80 atbea4780:1,900 reported passes/10 failures. All actual
 Codex1k clients, journal lanes,15 HTTP/all-action/cancellation cases and five175-
 file installs pass. Mac/Windows provider and lifecycle failures remain; both

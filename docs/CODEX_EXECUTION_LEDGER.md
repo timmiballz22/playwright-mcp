@@ -2,6 +2,75 @@
 
 ## Resume checkpoint — 2026-10-22
 
+Latest completed native81 at `93da4be7034effa08a280fd877ef12c1f34e2f6a`:
+batch39743244640 reports1,446 passes/6 failures; original39743244612 reports458/3.
+Combined **1,904 reported test passes/9 failures**, plus Mac actual-Codex
+TIMED_OUT994 and one failed Windows protocol-headed JSON control. Both workflows
+fail; all17 non-soak jobs conclude, optional soak skips, reported test skips/
+cancels0. This documentation-only head has the same runtime/tests asbea4780;
+new local stderr work below is not included in these native results.
+
+AllLinux batch199/203/203 and alljournal112/113 pass; Mac201/2, Windows191/4 fail.
+Five176-file production installs,15 all-action/HTTP/cancellation cases each,
+120 individual HTTP/60 cancellation scenarios and five raw/supervised20-run
+screenshot fixtures pass. Package176 adds RELEASE_BLOCKERS.md to native80's175;
+it does not add a runtime dependency. Eight full lifetime comparisons are retained;
+no old136/142 or earlier unknown observation is retrospectively classified.
+
+Mac SDK995 and synchronous MCP991 time out with terminated/removed cleanup;
+SDK118.900s receipt, forced:false/attention:false. Actual Mac client994 also
+TIMED_OUT with known cleanup; Linux36.145s/Windows38.412s actual1k clients pass,
+model0/owned0. Later healthy controls do not establish a causal fix.
+
+Windows headless Firefox fresh6 stops12/23 at pointer click13,8.379s, cleanup[].
+Its counter12 exceeds11 acknowledged clicks: failed click delivered an effect;
+never replay. Headed fresh4 stops4/23 at locator click5,18.128s, context_timeout/
+server_timeout; pipe fresh1 stops3/23 at locator click4,18.306s, context_timeout/
+browser_timeout. Later fresh runs are unexecuted. The retry case passes429/503,
+then /fragment#owned-fragment has1 navigation ACK/two requests/two finished
+responses but lifecycle timeout, forced:true, known cleanup. Later cap/POST
+scenarios in that case are unexecuted; separate explicit cancellation cases pass.
+
+Original Linux/Windows152 each and Docker2 pass. Windows legacy headless fresh8
+completes all23 then server_timeout (12.735s); other two legacy modes pass.
+Mac Google Chrome highlight has a screenshot protocol error after fonts loaded;
+Firefox storage export/restore exceeds its unchanged30s test deadline while
+browser_set_storage_state is pending. Target-closed follows teardown, not proof
+of incorrect storage replacement. Mac150/2; modal follow-up unexecuted.
+Windows protocol-headed JSON control9/10 fails tenth8/23 pointer timeout9.332s,
+215 cumulative actions; owned before parent force0/final0. Other controls stay
+separate from TAP totals. No input retry, force click or budget/default change.
+
+All17 job logs are saved. One Mac log read needed ordinary retry after invalid
+ZIP; the premature count attempt against the absent combined log produced no
+counts and is recorded separately. No artifact download/auth/TLS bypass.
+Evidence: worker-ci-eightyfirst-*, native81-*.
+
+Independent P1 gap reproduced/fixed locally: original test fixture retained stderr
+in an unbounded string. Real MCP child emitted1,048,577 bytes before initialize;
+old fixture retained1,048,742 and passed. New source-only byte capture grows from
+small storage to at most1MiB, continues draining after overflow, and rejects
+truncated reads with fixed fixture_stderr_output_limit. Teardown awaits all
+existing client closes, then checks overflow and stderr EOF; unconfirmed EOF
+fails without extra waits/timers/kills. UTF-8 fragments and buffer ownership are
+preserved. No production transport/schema/termination policy changes.
+
+Final local evidence: helper/reporter9/9 eachNode20/22/24; Chromium/Firefox14/14
+regression (12 browser cases plus2 protocol cases); additional Chrome/WebKit-
+configured protocol cases1/1 each, with no engine launch; full Node20/22 client/
+server protocol1/1 each. Local WebKit engine remains unexecuted. Final negative
+returns expected exit1, retained1,048,576/overflow:true, fixed errors, no canary
+text. Intermediate phases are retained separately. Fresh176-file production
+install passes; new QA helpers/preload/spec are excluded from the tarball.
+Lint/actionlint/diff pass (ShellCheck/Pyflakes not run). Stable Playwright remains
+1.64.1; upstream issue-search metadata is context only, not a proven cause.
+
+**Mission remains active/incomplete. NEXT ACTION: commit bounded-stderr fix and
+complete its native verification, then tackle the next feasible static/reliability
+gap. Historical missing evidence remains blocked; independent work continues.**
+
+### Archived native80 checkpoint
+
 Latest completed native80 at `bea4780d370deec0c36ae64c965dfc24157b385d`:
 batch39739439069 reports1,446 passes/6 failures; original39739439372 reports454/4.
 Combined **1,900 reported test passes/10 failures**. Both workflows fail; no
@@ -1021,27 +1090,33 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | BLOCKED | native80 reports1,900/10; both workflows fail; historical birth evidence unrecoverable | RELEASE_BLOCKERS.md; no acceptance promotion |
-| G01 INSTALL | VERIFIED PASS | native76 five175-file production installs and original host installs at9591621 | Keep supported modes and TLS verification |
-| G02 MCP | FAILED | native80 all3 actual1k pass; Mac synchronous975 timeout and originalWindows connection loss | Native cause/fix evidence; retain older debt |
-| G03 FEATURE PARITY | FAILED | native80 Linux152/Docker2 pass; Mac151/1 capture; Windows149/3; follow-ups unexecuted | Provider remediation and remaining tool contracts |
-| G04 BATCH | FAILED | native80 action15/15 and ownership units5/5 pass; Winrawclose/3FFmodes/retry and MacMCP fail | No budget/assertion weakening or replay |
-| G05 RETRIES | FAILED | native80 FF4290nav despite2GET/2finished, known cleanup; cancel15/15 pass | Lifecycle cause remains unresolved |
-| G06 JOBS | FAILED | native80 components112/113 and allactual1k pass; earlier SDK/debt failures unexplained | New guardian capture is not historical clearance |
+| G00 BASELINE | IN PROGRESS | native81 reports1,904/9 plus Mac994 and failed protocol control; all logs saved | Native bounded-stderr proof; then next static/reliability gap |
+| G01 INSTALL | VERIFIED PASS | native81 five176-file production installs; current local176 install passes, QA files excluded | Keep fresh installed-client checks and fork identity |
+| G02 MCP | FAILED | native81 Linux/Win actual1k pass, Macactual994/SDK995/sync991 timeout; fixture retained unbounded stderr | Local1MiB/EOF fix verified; native pending, no runtime-cause claim |
+| G03 FEATURE PARITY | FAILED | native81 originalLinux/Win152, Docker2; Mac150/2 capture/storage deadline; legacyWin2/1 close failure | Retain pending/import uncertainty, no lost features |
+| G04 BATCH | FAILED | native81 all-action15/15 pass; Mac995/991 deadlines and Win3raw/fragment failures | No budget/assertion weakening or input replay |
+| G05 RETRIES | FAILED | native81 Win429/503 pass then fragment1nav lifecycle timeout; later cap/POST scenarios unexecuted; cancel15/15 pass | Preserve exact route scopes and no unsafe replay |
+| G06 JOBS | FAILED | native81 components112/113 pass; Mac995/994 timeouts, prior debt unknown | Native diagnosis; current QA stderr bound is not product RAM cap |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
-| G08 STORAGE | BLOCKED | native80 current guardian/HTTP and supervised5×20 pass; old136/142 plus earlier unknowns unclassified | Missing old birth ledgers cannot be reconstructed from new tables |
+| G08 STORAGE | BLOCKED | native81 five raw/supervised20-run cases pass; eight full lifetime comparisons retained; old136/142 unclassified | Do not retroactively classify old snapshots or clear debt |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native80 action/HTTP/cancel15each pass; Firefox input/close/retry and Chromium capture failures persist | Native remediation under unchanged constraints |
-| G11 CROSS-OS | FAILED | native80 allLinux pass; Macbatch1/original1, Winbatch5/original3 | Exact fixed-source failure scopes retained |
+| G10 CROSS-BROWSER | FAILED | native81 action/HTTP/cancel15each pass; WinFFinput/cleanup/fragment and MacChrome capture/FFstorage deadline fail | Native remediation under unchanged constraints |
+| G11 CROSS-OS | FAILED | native81 allLinux pass; Macbatch2/actual994/original2, Winbatch4/legacy1 | Verify new source-only stderr checks on all native lanes |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | BLOCKED | native80 all17 logs saved; source-only test diff verified; old missing lifetime facts cannot be manufactured | RELEASE_BLOCKERS.md preserves irrecoverable uncertainty |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native80 fails; mission incomplete; no merge/publish | Actual accepted evidence and reviewed scope before release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | native81 all17 logs/retry and local before-after stdout-safe stderr proof saved; historical missing facts retained | No unexecuted-as-PASS; independent work continues |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native81 fails; local bounded-stderr source change ready | Native verification and remaining critical work before merge/release |
 
 ## Defects and risk register
+
+- QA-STDERR-001 (P1): original source-client fixture retained an unbounded stderr
+  string. Before real child1,048,742 retained bytes accepted; local fixed1MiB
+  growing byte capture rejects overflow/unchecked EOF, drains pipes, awaits all
+  closes. Unit9 eachLTS and real positive/negative regressions pass locally; native
+  verification pending. No product transport/RAM/default/budget claim.
 
 - RISK-001/002: runtime SDK promoted, lock regenerated, source/tarball checks implemented.
 - RISK-003: inherited publish operations removed; private fork package/registry identities.

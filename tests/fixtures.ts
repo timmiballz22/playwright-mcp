@@ -25,6 +25,7 @@ import { ListRootsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { TestServer } from './testserver/index';
 import { ownedScopeDescendants } from '../local-batch/fixtures/process-audit.mjs';
 import { trackToolProgress } from '../local-batch/fixtures/tool-progress.mjs';
+import { createStderrCapture } from './fixtures/bounded-stderr.mjs';
 
 const originalToolNames = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/evidence/discovery-chromium-extended.json'), 'utf8')).tools.map((tool: { name: string }) => tool.name));
 
@@ -52,7 +53,7 @@ export type StartClient = (options?: {
   rootsResponseDelay?: number,
   extensionToken?: string,
   env?: Record<string, string>,
-}) => Promise<{ client: Client, stderr: () => string, observeOwnedProcesses: () => Promise<{ observedCount: number, transportRootMatches: number }> }>;
+}) => Promise<{ client: Client, stderr: () => string, stderrInfo: () => { byteLimit: number, retainedBytes: number, overflow: boolean }, observeOwnedProcesses: () => Promise<{ observedCount: number, transportRootMatches: number }> }>;
 
 
 type TestFixtures = {
@@ -81,6 +82,7 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
   startClient: async ({ mcpHeadless, mcpBrowser, mcpMode, mcpArgs }, use, testInfo) => {
     const clients: Client[] = [];
     const progress: Array<() => unknown> = [];
+    const stderrCaptures: Array<{ capture: ReturnType<typeof createStderrCapture>, ended: () => boolean }> = [];
 
     await use(async options => {
       const cwd = testInfo.outputPath();
@@ -109,11 +111,13 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
         });
       }
       const { transport, stderr } = await createTransport(args, cwd, mcpMode, testInfo.outputPath('ms-playwright'), options?.env ?? {});
-      let stderrBuffer = '';
+      const stderrCapture = createStderrCapture(); let stderrEnded = !stderr;
+      stderrCaptures.push({ capture: stderrCapture, ended: () => stderrEnded });
+      stderr?.once('end', () => { stderrEnded = true; });
       stderr?.on('data', data => {
         if (process.env.PWMCP_DEBUG)
           process.stderr.write(data);
-        stderrBuffer += data.toString();
+        stderrCapture.observe(data);
       });
       clients.push(client);
       await client.connect(transport);
@@ -131,7 +135,7 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
         // scope. No name/role filter, PID signalling or cleanup authorization.
         return { observedCount: observed.length, transportRootMatches: observed.includes(pid) ? 1 : 0 };
       };
-      return { client, stderr: () => stderrBuffer, observeOwnedProcesses };
+      return { client, stderr: () => stderrCapture.text(), stderrInfo: () => stderrCapture.snapshot(), observeOwnedProcesses };
     });
 
     try {
@@ -141,7 +145,15 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
         if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Original MCP progress::' + receipt);
       }
     } finally {
-      await Promise.all(clients.map(client => client.close()));
+      const closed = await Promise.allSettled(clients.map(client => client.close()));
+      const failures = closed.filter(result => result.status === 'rejected').map(result => result.reason);
+      for (const { capture, ended } of stderrCaptures) {
+        try { capture.assertWithinLimit(); } catch (error) { failures.push(error); }
+        // SDK close can return after its final kill request, before pipe EOF.
+        // Do not accept an unchecked tail or add another cleanup wait budget.
+        if (!ended()) failures.push(new Error('fixture_stderr_close_unconfirmed'));
+      }
+      if (failures.length) throw new AggregateError(failures, 'Original MCP fixture teardown failed');
     }
   },
 
