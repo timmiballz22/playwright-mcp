@@ -48,7 +48,64 @@ proofs. Production-smoke already propagates failed closes and retains failed acc
 Subsequent jobs-smoke auditing finds the ignored final-close/primary-error gap,
 fixed with separate actual SDK calibrations described in the leading checkpoint.
 
-## Latest completed checkpoint — native93 at47d9c21; acceptance incomplete
+## Latest completed checkpoint — native94 at3a5b901; acceptance incomplete
+
+[Batch39833354256](https://github.com/timmiballz22/playwright-mcp/actions/runs/39833354256)
+reports1,621 passes/7 failures; [original39833354270](https://github.com/timmiballz22/playwright-mcp/actions/runs/39833354270)
+reports599/9. Completed summaries total2,220/16, reported test skips/cancels0.
+Both workflows finish normally. All17 logs resolved;16 first reads succeed, one
+Mac original empty-error read succeeds on ordinary retry. Both attempts retained.
+All five installed-package steps pass, including both parent-death variants and
+new initial observations. This is a new positive sample, not repair or clearance
+of native92/93 initialization, exit or failed-store uncertainties.
+
+Linux20/22/24 main207/211/211 pass; Mac206/5 and Windows201/2. Components
+Linux22/24/Mac146/0 each, Windows147/0; all12 real concurrent schema races pass.
+Node20 durable SQLite/jobs remain unsupported. Actual Codex1k passes
+Linux36.665s/Windows38.523s/Mac86.827s, model turns0 and owned roots0.
+Mac raw1k stops968/120.046s; SDK job and synchronous MCP tests also fail. A Firefox
+allowed-origin positive control times out before any completed action (not an
+origin-policy escape); frozen-page test reports cleanup_failed instead of timeout.
+Separate Mac server control times out966/120.044s, direct-pipe1k passes101.248s.
+No timeout increase, transport-default change or replay is made.
+
+Windows HTTP Firefox fails its first401 summary (timeout, HTTP401 recorded,
+completed0) and teardown observes one scoped PID with the same captured birth.
+Full original PID lists, birth rows, root rows and comparison are retained; this
+is not a negative-control observation. Later privacy comparisons have scoped0
+and127 legacy-only candidates, all rows retained, audit helper matched. These
+observations authorize no signals, role filtering or historical debt clearance.
+Firefox POST-cancellation test fails cleanup_failed/browser_ownership_unconfirmed
+before any request or committed step. It provides no successful POST witness.
+The six component scoped observations/four orphan receipts remain deliberate
+negative controls and are distinct from the real HTTP teardown failure.
+
+Original main Linux200/0, Mac199/1, Windows197/3; each includes eight additive
+stock references beyond the original192 cases. All12 stock single-PNG captures
+pass; stock PCM11/12 pass. Windows stock WebKit PCM remains ready0/error0 after
+both preload and a real user play click (play pending). Original WebKit PCM and
+VP9 fail too. This narrows the sample to the stock path without proving an OS or
+codec cause. Legacy Windows Firefox server/headed fail at10/23 and3/23 actions;
+direct-pipe completes23/23 but fails context_timeout cleanup. Docker2/0.
+
+Mac Chromium source PNG is red at100,100 and319,239, but browser frame zero and
+independent ffmpeg frame zero both contain gray128 at those positions. Three
+metadata-copy controls retain encoded bytes and remain gray. Encoded content is
+therefore implicated; actual first input JPEG dimensions were not captured.
+Three fresh isolated controls are1/2: one pass, one source-screenshot capture
+error, one MCP AbortError. Two independent fresh frame-zero probes are red; the
+original failure remains authoritative. No first-frame skip, seek or warmup.
+
+Next test-only observer records bounded JPEG SOF dimensions for the first eight
+actual ffmpeg input frames, forwarding original writes/arguments/callbacks and
+return values. Local Chromium/Firefox pass; native geometry evidence is pending.
+No encoder change or causal fix is claimed. Release G18 remains BLOCKED.
+Full logs, snapshots and receipts: [native94 summary](evidence/native94-summary.json),
+[process comparisons](evidence/native94-full-factory-observations.json),
+[stock/frame references](evidence/native94-stock-and-frame-receipts.json).
+Opt-in functional soak and interactive operator walkthrough remain unexecuted.
+
+## Previous completed checkpoint — native93 at47d9c21; acceptance incomplete
 
 [Batch39824763343](https://github.com/timmiballz22/playwright-mcp/actions/runs/39824763343)
 reports 1,424 passes and 1 failure; [original39824763264](https://github.com/timmiballz22/playwright-mcp/actions/runs/39824763264)
@@ -2167,25 +2224,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native93 completed summaries2000/6; Windows main unexecuted; all17 logs recovered | Additional fixture guards/full observation/stock references pending native; no full-matrix claim |
-| G01 INSTALL | FAILED | native93 four package steps pass; Windows journal and regular guardian pass, linger guardian create RPC times out | Local frozen-source Node22 fresh install passes; failed package remains failed |
-| G02 MCP | FAILED | native93 actual1k passes all3 OSs; Mac sync/SDK1k pass; raw967 times out | No clearance for native89 Windows750 crash/unconfirmed exits or old birth gaps |
-| G03 FEATURE PARITY | FAILED | native93 original576/5; traces/PDF/large-DOM12 each pass; Windows media and Mac capture failures | Independent stock PCM/PNG references pass locally, await native; no assertion waiver |
-| G04 BATCH | FAILED | native93 Mac210/1 raw967 timeout; Windows main unexecuted; all Linux main pass | No force click, timeout increase or role filtering |
-| G05 RETRIES | FAILED | native93 Windows main retry unexecuted; earlier Windows429 timeout/partial response remains | No unsafe replay or inferred completion |
-| G06 JOBS | FAILED | native93 components all pass incl12 races; linger parent-death helper create RPC fails after earlier checks pass | No init/exit fact in that receipt; preserve native92 exit-false and old750 uncertainty |
+| G00 BASELINE | IN PROGRESS | native94 completed summaries2220/16, all17 logs resolved | Full green matrix remains absent |
+| G01 INSTALL | PASS | native94 all five installed-package checks pass, both parent-death variants included | Prior failed/unconfirmed exit samples remain unresolved; no retroactive repair |
+| G02 MCP | FAILED | native94 actual1k passes all3 OSs; Mac SDK/sync and raw1k fail | No clearance of native89 Windows750 or old birth gaps |
+| G03 FEATURE PARITY | FAILED | native94 main original Linux200/0 Mac199/1 Windows197/3 incl8 additive references each | Mac encoded-gray and Windows media unresolved |
+| G04 BATCH | FAILED | native94 Linux207/211/211 pass, Mac206/5, Windows201/2 | Mac deadline/cleanup and Windows HTTP ownership failures |
+| G05 RETRIES | FAILED | native94 Windows Firefox POST-cancellation cleanup_failed before requests | No unsafe replay or inferred committed POST |
+| G06 JOBS | FAILED | native94 components and12 races pass; Mac SDK job times out | Healthy package does not resolve historical worker-exit uncertainty |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
 | G08 STORAGE | BLOCKED | native83 one deadline candidate lacks births/rows; one full comparison proves narrow same-PID birth mismatch only; old136/142 unknown | No retrospective reconstruction, coalescence or debt clearance |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native93 Mac Chromium capture and Windows WebKit readiness fail; strict video10/12 | Stock references are additive pending comparisons; no codec/first-frame waiver |
-| G11 CROSS-OS | FAILED | native93 Linux207/211/211 main pass, Mac210/1, Windows main unexecuted | Fresh local guards pass; all-platform support/reliability not established |
+| G10 CROSS-BROWSER | FAILED | native94 stock PCM11/12; Windows WebKit stock and MCP fail; Mac encodedgray | All12 stock PNG pass, no codec/capture reliability guarantee |
+| G11 CROSS-OS | FAILED | native94 all package checks pass, Mac5/Windows2 main failures remain | Windows scoped HTTP survivor retained in full |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
-| G14 ADVANCED | FAILED | native93 traces/PDF/large-DOM12 each pass; two Mac Chromium Page.captureScreenshot failures | Independent stock screenshot reference pending native, no warmup/retry |
+| G14 ADVANCED | FAILED | native94 Mac video frame-zero gray independently confirmed | Bounded passive input geometry observer native pending |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | native93 bounded audit:25 top-level docs,199 local targets,2 Markdown anchors,0 issues;139 external targets not fetched | Full parser/external/shortcut-reference coverage and interactive operator walkthroughs remain |
-| G17 AUDIT EVIDENCE | IN PROGRESS | native93 all17 logs recovered after two empty-error retries; full rows/negative control scopes retained | Late failed-helper directory facts missing; prospective observation/retention guards, no historical clearance |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native93 failed; additional preservation guards and stock references locally verified, native pending | All critical gates before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | native94 full17 logs after one normal retry, scoped survivor and127 legacy rows retained | No role/age filtering or historical ownership clearance |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native94 failed; geometry observer locally passing | Critical gates before merge/release |
 
 ## Defects and risk register
 

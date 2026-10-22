@@ -1,5 +1,7 @@
 /** Copyright 2026 contributors. Licensed under Apache-2.0. */
 import fs from 'node:fs/promises';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { PNG } from 'pngjs';
@@ -10,7 +12,10 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
   const project = ['chrome', 'chromium', 'firefox', 'webkit'].includes(testInfo.project.name) ? testInfo.project.name : 'other';
   server.setContent('/', `<!doctype html><style>html,body{margin:0;background:rgb(255,0,0)}</style>
     <button onclick="document.querySelector('output').textContent=String(++window.count)">Record owned click</button><output>0</output><script>window.count=0</script>`, 'text/html');
-  const { client } = await startClient({ args: ['--isolated', '--caps=devtools,unsafe'], config: {
+  const preload = pathToFileURL(path.join(__dirname, 'fixtures/video-input-observer.mjs')).href;
+  const { client, stderr } = await startClient({ env: {
+    NODE_OPTIONS: [process.env.NODE_OPTIONS, '--import=' + preload].filter(Boolean).join(' '),
+  }, args: ['--isolated', '--caps=devtools,unsafe'], config: {
     browser: { contextOptions: { viewport: { width: 320, height: 240 }, deviceScaleFactor: 1 } },
   } });
   const call = async (name: string, args: Record<string, unknown> = {}) => {
@@ -40,6 +45,9 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
     return { recordedClicks:6 };
   }` });
   await call('browser_stop_video');
+  const inputFrames = stderr().split('\n').filter(line => line.startsWith('{"fixture":"owned_video_encoder_input"')).slice(0, 32);
+  for (const line of inputFrames) console.log(line);
+  expect(inputFrames.length, 'Actual encoder input must be observed').toBeGreaterThan(0);
   const stat = await fs.stat(filename);
   expect(stat.size).toBeGreaterThan(0); expect(stat.size).toBeLessThanOrEqual(8 * 1024 * 1024);
   const recording = await fs.readFile(filename); let playbackRequests = 0, rangeRequests = 0, partialResponses = 0;
