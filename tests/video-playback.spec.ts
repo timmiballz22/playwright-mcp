@@ -6,6 +6,7 @@ import { PNG } from 'pngjs';
 import { test, expect } from './fixtures';
 
 test('original recorded WebM decodes an owned frame with the expected dimensions and pixels', async ({ startClient, server }, testInfo) => {
+  const project = ['chrome', 'chromium', 'firefox', 'webkit'].includes(testInfo.project.name) ? testInfo.project.name : 'other';
   server.setContent('/', `<!doctype html><style>html,body{margin:0;background:rgb(255,0,0)}</style>
     <button onclick="document.querySelector('output').textContent=String(++window.count)">Record owned click</button><output>0</output><script>window.count=0</script>`, 'text/html');
   const { client } = await startClient({ args: ['--isolated', '--caps=devtools,unsafe'], config: {
@@ -26,7 +27,7 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
   const pixel = [...source.data.subarray(offset, offset + 4)];
   expect(pixel[0]).toBeGreaterThanOrEqual(230); expect(pixel[1]).toBeLessThanOrEqual(20);
   expect(pixel[2]).toBeLessThanOrEqual(20); expect(pixel[3]).toBe(255);
-  console.log(JSON.stringify({ fixture: 'owned_video_source_paint', width: 320, height: 240, pixel }));
+  console.log(JSON.stringify({ fixture: 'owned_video_source_paint', project, width: 320, height: 240, pixel }));
   const filename = testInfo.outputPath('owned-frame.webm');
   await call('browser_start_video', { filename, fps: 10 });
   await call('browser_run_code_unsafe', { code: `async page => {
@@ -61,11 +62,11 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
   const decodedText = decoded.content.filter(item => item.type === 'text').map(item => item.text).join('\n');
   // Diagnostic copies never replace the original recording or its assertion.
   // Explicit trusted test mode exercises this path locally even on a healthy decoder.
-  if (decodedText.includes('Owned decoded frame mismatch') || process.env.PLAYWRIGHT_TEST_VIDEO_COLOR_DIAGNOSTICS === '1') {
+  if ((decoded.isError && decodedText.includes('Owned decoded frame mismatch')) || process.env.PLAYWRIGHT_TEST_VIDEO_COLOR_DIAGNOSTICS === '1') {
     const failure = decodedText.match(/Owned decoded frame mismatch (\{[^\n]+\})/);
     if (failure) {
       const frame = JSON.parse(failure[1]);
-      console.log(JSON.stringify({ fixture: 'owned_video_original_decode_failure',
+      console.log(JSON.stringify({ fixture: 'owned_video_original_decode_failure', project,
         width: frame.width, height: frame.height, ready: frame.ready, pixel: frame.pixel }));
     }
     const diagnostic = new AbortController();
@@ -114,17 +115,17 @@ test('original recorded WebM decodes an owned frame with the expected dimensions
         expect(controls).toHaveLength(3);
         expect(controls.every(control => control.sampled === true)).toBe(true);
       }
-      console.log(JSON.stringify({ fixture: 'owned_video_color_metadata_controls', available: true, controls }));
+      console.log(JSON.stringify({ fixture: 'owned_video_color_metadata_controls', project, available: true, controls }));
     } catch (error) {
       // Keep the original result authoritative, and expose only a fixed probe status.
       const missing = error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT';
-      console.log(JSON.stringify({ fixture: 'owned_video_color_metadata_controls', available: !missing, probeFailed: true, controls }));
+      console.log(JSON.stringify({ fixture: 'owned_video_color_metadata_controls', project, available: !missing, probeFailed: true, controls }));
       if (process.env.PLAYWRIGHT_TEST_VIDEO_COLOR_DIAGNOSTICS === '1') throw error;
     } finally { clearTimeout(timer); }
   }
   expect(decoded.isError, JSON.stringify(decoded)).not.toBe(true);
   expect(playbackRequests).toBeGreaterThan(0);
   await call('browser_close');
-  console.log(JSON.stringify({ fixture: 'owned_webm_frame', width: 320, height: 240,
+  console.log(JSON.stringify({ fixture: 'owned_webm_frame', project, width: 320, height: 240,
     recordedClicks: 6, decodedRedFrame: true, bytes: recording.length }));
 });

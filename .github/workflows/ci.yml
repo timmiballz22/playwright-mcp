@@ -63,6 +63,19 @@ jobs:
       id: build
       if: ${{ !cancelled() && steps.core_browsers.outcome == 'success' }}
       run: npm run build
+    - name: Install optional macOS video metadata diagnostic tool
+      id: video_diagnostic_tool
+      timeout-minutes: 5
+      if: ${{ !cancelled() && runner.os == 'macOS' && steps.build.outcome == 'success' }}
+      # Diagnostic copies only. An unavailable tool is reported independently;
+      # it must not hide original browser tests or change their assertions.
+      continue-on-error: true
+      env:
+        HOMEBREW_NO_AUTO_UPDATE: '1'
+        HOMEBREW_NO_INSTALL_CLEANUP: '1'
+      run: |
+        brew install ffmpeg
+        ffmpeg -version
     - name: Run playwright-mcp tests
       id: wrapper
       shell: bash
