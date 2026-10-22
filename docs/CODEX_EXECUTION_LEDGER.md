@@ -1688,7 +1688,7 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
 | G14 ADVANCED | FAILED | native87 optional Mac ffmpeg succeeds; encoded-byte-preserving primaries control corrects strict red sample | Native88 actual encoder output verification; no broad gamut claim |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
-| G16 DOCUMENTATION | IN PROGRESS | native88 bounded audit:25 top-level docs,172 local targets,2 Markdown anchors, explicit full reference links;0 issues;67 external targets not fetched | Full parser/external/shortcut-reference coverage and interactive operator walkthroughs remain |
+| G16 DOCUMENTATION | IN PROGRESS | native88 bounded audit:25 top-level docs,175 local targets,2 Markdown anchors, explicit full reference links;0 issues;67 external targets not fetched | Full parser/external/shortcut-reference coverage and interactive operator walkthroughs remain |
 | G17 AUDIT EVIDENCE | IN PROGRESS | native87 all17 logs first-read success; full legacy comparison rows preserved; new scoped audit private rows unavailable | Prospective full matched-observation retention; historical136/142 missing identities remain unresolved |
 | G18 CLEAN MERGE | BLOCKED | Draft PR2; native87 failed; native88 queued at702b616 | All critical gates before merge/release |
 

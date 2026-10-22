@@ -42,7 +42,12 @@ checkpoints, not an isolated size benchmark. This increases the payload to carry
 its own runtime pair; it avoids relying on a consumer's shared core installation.
 
 For a source checkout installed with scripts disabled, run `npm run prepare`
-explicitly before tests or packaging. On an upstream upgrade, review/rebase the
+explicitly before tests or packaging. The former matrix-only prepared hash
+`b46a37ecb04912c639ffd32f890269ea33a612dfdcb43f518bac76b85cc0fa9f`
+is deliberately rejected by this candidate. Update a source checkout with a clean
+`npm ci`, which restores the pinned registry bytes and prepares the new flags.
+Do not edit vendor bytes manually or treat the older prepared hash as current.
+On an upstream upgrade, review/rebase the
 small source change and establish new exact hashes with full regression evidence;
 unknown bytes fail preparation. Preserve any incomplete private output for review
 instead of treating a failed preparation as success.
@@ -79,3 +84,13 @@ setup failure is retained without hiding original browser tests. Copies never
 replace the original recording or its strict decoded-pixel result. Native86 had
 no stock ffmpeg; its empty controls prove no metadata hypothesis. Local gate fix
 requires an actual failed result because successful tool replies echo source.
+
+Local follow-up excluded from native88 adds an explicit Docker context allowlist:
+the existing12 root inputs (including Dockerfile), the ignore file, the prepare
+script and two profile modules are the only files sent to the builder (16 total).
+A network-disabled scratch COPY/export verifies every included byte matches source;
+93,192 exported file bytes at that checkpoint. Git history, installed dependencies,
+QA evidence, tests and arbitrary local files are excluded. This does not validate
+a production image or change the Dockerfile's installs, entrypoint or default
+browser. Native product Docker/hash/browser verification is still required.
+See evidence/native88-docker-context-proof.json and actual BuildKit log.
