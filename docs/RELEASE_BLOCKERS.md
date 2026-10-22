@@ -57,3 +57,14 @@ Release requires evidence-based native remediation and disposition of missing
 historical evidence, plus completion or an explicitly reviewed supported scope
 for remaining gates. This document is a blocker record, not a waiver, successful
 acceptance, retrospective classification, merge approval or publication approval.
+
+## Original VP9 color fidelity (P2, reproduced locally)
+
+The new recorded-frame regression passes Chromium and fails Firefox: the same
+owned red recording decodes[254,0,0] versus[255,24,0]. VP9 matrix metadata is
+unspecified. BT.601 header metadata or a temporary encoder flag makes both
+engines pass the same assertion; restoring the dependency reproduces failure.
+No shipped runtime fix exists. The public recording API has no encoder-color
+option; a reviewable upstream patch is retained without publishing or hidden
+postprocessing. See native83-video-proof.json in evidence. No assertion/budget
+relaxation, blanket video-support claim or historical screenshot-cause inference.

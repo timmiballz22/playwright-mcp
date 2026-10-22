@@ -3,6 +3,14 @@
 Pinned stable1.64.1 extended Chromium discovery defines72 tools. This index maps
 source fixture touchpoints; a source call is not itself a PASS or a coverage
 percentage. Consult execution evidence for the exact commit, engine and OS.
+Latest completed native82 atbbf4764 reports normal original156 per platform,
+Docker2 and Mac modal3 passes, with three legacy Windows failures. These results
+do not include subsequent media/frame tests. Native83 at e95f029 is pending.
+New local frame regression fails Firefox color fidelity; diagnostics identify
+missing VP9 color matrix metadata, not a shipped fix. See native83-video-proof.json.
+
+Archived native76 checkpoint:
+
 Latest completed native76 (9591621) reports462 original passes/two legacy Windows
 failures. Normal Linux/Windows/Mac suites152 each, Docker2 and Mac modal3 pass;
 legacy Windows1/2 fails raw input (including an unacknowledged delivered click).
@@ -75,8 +83,8 @@ Companion workflows expose no code/file/network-policy injection fields.
 | browser_verify_text_visible | [testing-capabilities.spec.ts](../tests/testing-capabilities.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_verify_list_visible | [testing-capabilities.spec.ts](../tests/testing-capabilities.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_verify_value | [testing-capabilities.spec.ts](../tests/testing-capabilities.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_start_video | [advanced.spec.ts](../tests/advanced.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_stop_video | [advanced.spec.ts](../tests/advanced.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_start_video | [advanced.spec.ts](../tests/advanced.spec.ts), [video-playback.spec.ts](../tests/video-playback.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_stop_video | [advanced.spec.ts](../tests/advanced.spec.ts), [video-playback.spec.ts](../tests/video-playback.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_video_chapter | [advanced.spec.ts](../tests/advanced.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_video_show_actions | [advanced.spec.ts](../tests/advanced.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_video_hide_actions | [advanced.spec.ts](../tests/advanced.spec.ts) | Source coverage; native/variant evidence must be checked |

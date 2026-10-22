@@ -1,0 +1,10 @@
+--- a/packages/playwright-core/src/server/videoRecorder.ts
++++ b/packages/playwright-core/src/server/videoRecorder.ts
+@@ -190,6 +190,7 @@
+       '-an',
+       `-r ${this._fps}`,
+       '-c:v libvpx-vp9',
++      '-colorspace smpte170m',
+       '-qmin 0',
+       '-qmax 50',
+       '-crf 8',

@@ -1,0 +1,11 @@
+{
+  "version": "1.64.1",
+  "bundleSha256": "829521b67ed7be90c7d6d6098ff39f2241562d47e4ad7ccab13710924a56001d",
+  "encoderExcerpt": "args = [\n          \"-loglevel error\",\n          \"-f matroska\",\n          \"-fpsprobesize 0\",\n          \"-probesize 32\",\n          \"-analyzeduration 0\",\n          \"-i pipe:0\",\n          \"-y\",\n          \"-an\",\n          `-r ${this._fps}`,\n          \"-c:v libvpx-vp9\",\n          \"-qmin 0\",\n          \"-qmax 50\",\n          \"-crf 8\",\n          \"-deadline realtime\",\n          \"-cpu-used 8\",\n          \"-lag-in-frames 0\",\n          `-b:v ${bitrate}k`,\n          `-threads ${threads}`,\n          `-tile-columns ${tileColumns}`,\n          \"-row-mt 1\",\n          `-vf pad=${w}:${h}:0:0:gray,crop=${w}:${h}:0:0`,\n          `-metadata creation_time=${new Date(this._creationTimeMs).toISOString()}`\n        ].flatMap((option2) => option2.split(\" \"));\n        args.push(this._outputFile);\n        const { launchedProcess, gracefullyClose } = await launchProcess({\n          command: this._ffmpegPath,\n          args,\n          stdio: \"stdin\",\n          log: (message) => debugLogger.log(\"browser\", message),\n          tempDirectories: [],\n          attemptToGracefullyClose: async () => {\n            debugLogger.log(\"browser\", \"Closing stdin...\");\n           ",
+  "publicOptions": "Screencast.start: onFrame,path,size,quality,fps; MCP start_video:filename,size,fps,cursor. No color-space or ffmpeg-argument option.",
+  "localFfmpegVersion": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+  "remuxCommand": "ffmpeg -i ORIGINAL -map 0:v:0 -c copy -bsf:v vp9_metadata=color_space=bt601:color_range=tv BT601.webm",
+  "containerOnlyCommand": "ffmpeg -i ORIGINAL -map 0:v:0 -c copy -colorspace smpte170m -color_primaries smpte170m -color_trc smpte170m -color_range tv TAGGED.webm",
+  "runtimeChanged": false,
+  "scope": "Independent local diagnostic using system FFmpeg, not a production dependency or repair; original recording is immutable and retained under /tmp."
+}

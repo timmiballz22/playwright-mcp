@@ -1,0 +1,124 @@
+{
+  "baseHead": "b1d739c1d722b75e3c12fd86d43d750208222355",
+  "phase": "Local video follow-up, excluded from native83 at e95f029",
+  "testSourceSha256": "262f884694442c00cfd6f5aeea91a5c2bffa8ca0d0f9cb70e08354d686952d2a",
+  "baseline": {
+    "command": "npx playwright test tests/video-playback.spec.ts --project=chromium --project=firefox --workers=2",
+    "exit": 1,
+    "pass": 1,
+    "fail": 1,
+    "sourcePhase": "Before fixed numeric mismatch diagnostic; same assertions"
+  },
+  "diagnosticFirefox": {
+    "exit": 1,
+    "pass": 0,
+    "fail": 1,
+    "pixel": [
+      255,
+      24,
+      0,
+      255
+    ],
+    "width": 320,
+    "height": 240,
+    "readyState": 4
+  },
+  "crossDecoder": {
+    "exit": 0,
+    "producerEngines": [
+      "chromium",
+      "firefox"
+    ],
+    "decoderEngines": [
+      "chromium",
+      "firefox"
+    ],
+    "chromiumPixel": [
+      254,
+      0,
+      0,
+      255
+    ],
+    "firefoxPixel": [
+      255,
+      24,
+      0,
+      255
+    ],
+    "sameBeforeAndAfterPlayback": true,
+    "ownedObservedAfterEach": 0
+  },
+  "containerOnlyTag": {
+    "exit": 0,
+    "changesPixel": false
+  },
+  "vp9Bt601HeaderTag": {
+    "exit": 0,
+    "chromiumPixel": [
+      254,
+      0,
+      0,
+      255
+    ],
+    "firefoxPixel": [
+      254,
+      0,
+      0,
+      255
+    ],
+    "sameDecodedYuvHashes": true,
+    "ownedObservedAfterEach": 0
+  },
+  "temporaryEncoderControl": {
+    "scope": "Temporary installed-dependency causal control only; not a shipped runtime change",
+    "originalSha256": "829521b67ed7be90c7d6d6098ff39f2241562d47e4ad7ccab13710924a56001d",
+    "patchedSha256": "b46a37ecb04912c639ffd32f890269ea33a612dfdcb43f518bac76b85cc0fa9f",
+    "change": "Add -colorspace smpte170m to existing VP9 encoder arguments; no assertion, timeout or tool API changes",
+    "testSourceSha256": "262f884694442c00cfd6f5aeea91a5c2bffa8ca0d0f9cb70e08354d686952d2a",
+    "testExit": 0,
+    "restoredSha256": "829521b67ed7be90c7d6d6098ff39f2241562d47e4ad7ccab13710924a56001d",
+    "restoreVerified": true
+  },
+  "restoredNegative": {
+    "command": "matching Node22 on PATH; playwright test tests/video-playback.spec.ts --project=firefox --workers=1",
+    "exit": 1,
+    "pass": 0,
+    "fail": 1,
+    "interpretation": "Required frame-color regression still fails, not an expected-success release test"
+  },
+  "typecheck": {
+    "exit": 0,
+    "strict": true,
+    "skipLibCheck": false
+  },
+  "runtimeStatus": "No shipped dependency change; source regression remains failing on local Firefox. Public Screencast/MCP video APIs have no color-space argument. Reviewable one-line upstream source patch retained, not sent/published/applied. No monkeypatch, hidden postprocessing, system-FFmpeg runtime dependency or assertion/budget weakening introduced.",
+  "scope": "Owned generated recording, 320x240, six verified real clicks, decoded red pixel at100,100. This is scoped color-metadata evidence, not all video/media support, historical screenshot failure cause or a production fix. WebKit and native OS new frame test unexecuted locally/pending. Generated binaries retained under /tmp only, not committed.",
+  "evidenceSha256": {
+    "native83-video-first.log": "b639e1fa63d792b2f7377f60e5f9cc18c28e7dc7b34f60b04f5dd30b965baff8",
+    "native83-video-first-receipt.json": "b854ff74bc2d990620ac4f9c716636419ddf50af5e7b97a9ccbd65957abba397",
+    "native83-video-firefox-diagnostic.log": "f541ca403b57d71e9d2001eebf548dc4893e73b75ddb6024ae4c06195ffbb6f0",
+    "native83-video-cross-decode.log": "cc7a681b2d54ba5366e0fafa33999ddaa3b92c294566d8cbae33d8bafc47525b",
+    "native83-video-cross-decode.mjs": "46196b2a89ae80b80d1c32846f2b317fdb147f9b9d3ff0b0866728490441cf78",
+    "native83-video-cross-tagged.log": "f5f011e9ef8db7de87f220bb57b2500ab0988ef5519315e4fbd7a81d014f5829",
+    "native83-video-cross-tagged.mjs": "ea66095c5a7e59acc19d803ebc5043d18ed9929b571d18a035782cfff8bb2383",
+    "native83-video-cross-bt601.log": "c00e26428351f22fcfe8d43c36a7b48575232b7ed007ae85b1b3eeb1ab7a9990",
+    "native83-video-cross-bt601.mjs": "47cc378cd16ed82a5355333f2b43a7891647775693e2fa5e282cd16b30ca807f",
+    "native83-video-stream.json": "2b65cd162c28ee5de438ce1efc6974f87fbbdec5ea08db4081b8a8bb99c3f17c",
+    "native83-video-tagged-stream.json": "5ad71bbcb08abe968c1189e2697c3a5085a789d6fedd7bb500d519b99a9db90b",
+    "native83-video-bt601-stream.json": "b2064613cc83eb8837f0d88b9ae309c92e8463e5f3c2db186f0714d1fa0a73e0",
+    "native83-video-encoder-review.json": "4b152d3da017c5b6e57af7f1159e9fbb388ee814c58cc6cc41e43d79ec4ee68d",
+    "native83-video-encoder-patch-control.log": "73ec4e6560ed4050ef8345aa66264b4d9ae796b86586378408310dc9aaa35d7c",
+    "native83-video-encoder-patch-control.json": "29cea1e706aabd4c469f618170bddb9738902a7e57516ac0dd809d4a626aa57c",
+    "native83-video-restored-negative.log": "5dc5eb0f82ce09105e9c616dc120be1b17899383688a96c13aebfd759c00d4a2",
+    "native83-video-yuv-hashes.json": "3fb1a6d0431c0027ef3fd282600b337207916cfab75e751cf32d29eab273a7ef",
+    "native83-video-typecheck.log": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f",
+    "native83-vp9-metadata-options.log": "cedfb06d3b8331a7c616c9b9d15ac5b022aefb9df6a64b5441fb1b934ed20c5f",
+    "native83-upstream-color-space.patch": "a316e2dc3e6c47092a59819d4f6cb06f744c54070531bb41b991e492e94f49e3",
+    "native83-upstream-patch-receipt.json": "dcc29d8cea6618cc9c43343e9dcd9081d15d1e8df2d3390a5489b01ef1e381f7",
+    "native83-upstream-main-color-review.json": "d50d39a2d851762477002b6eafc7dcadd92fbbcc2865f277a844bc388d2e8d3f",
+    "native83-syntax-audit.json": "41cf9620187bd023e45f18919bf59ce669ef8b7f2fa8a52b2a658e277c8e5c3b",
+    "native83-syntax-node20.json": "5a11df64fc17d3c515b257648421c04f1c699c08a846e33031122defbf397847",
+    "native83-syntax-node22.json": "e2fbbb30de5287959715d262e8290c0a98a5af4e15fb728b38d2b656d278bcbe",
+    "native83-syntax-audit.py": "ddf25a163834fc845c6824b4044d46e944c720ea767eecd95f6219df92692922"
+  }
+}

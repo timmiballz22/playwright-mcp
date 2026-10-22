@@ -120,6 +120,41 @@ excluded from119-file production tarball; entrypoints unchanged. Evidence:
 native83-media-proof.json and exact per-Node logs. This local source is excluded
 from currently running native83 at e95f029.
 
+
+## Reproduced original VP9 color-metadata defect — unresolved
+
+New tests/video-playback.spec.ts records a320x240 owned red page and six actual
+clicks, then decodes the produced WebM and checks dimensions and a known pixel.
+Original Chromium passes; Firefox fails the unchanged R>=230/G<=20/B<=20/A=255
+assertion: actual pixel[255,24,0,255], readyState4, dimensions320x240. A numeric-only
+diagnostic retains the failure. Both Chromium- and Firefox-produced recordings
+decode[254,0,0,255] in Chromium and[255,24,0,255] in Firefox, before and after
+playback. Captured owned processes are independently zero after each decoder.
+
+ffprobe reports VP9/yuv420p/tv and unspecified color matrix. Container-only
+transfer/primaries tags do not change Firefox pixels. A metadata-only VP9 header
+filter setting BT.601 makes both engines decode[254,0,0,255]; decoded raw YUV420p
+frame hashes are identical before/after, not a claim of byte-identical packets.
+A temporary installed-bundle encoder control adding -colorspace smpte170m makes
+the actual two-engine MCP test pass2/2 without assertion/budget changes. The
+dependency is restored byte-for-byte in finally; restored Node22 Firefox fails
+again. Both baseline and failing restored run remain failed acceptance evidence.
+
+Pinned1.64.1 and read-only upstream main have the same videoRecorder.ts blob;
+the public Screencast/MCP video options expose no color-space/encoder argument.
+A one-line upstream patch proposal is retained, not published or shipped. No
+vendored bundle, hidden artifact rewrite, runtime monkeypatch or system-FFmpeg
+dependency introduced. New regression remains failing; this is an additional P2
+video acceptance blocker, not a cause/fix claim for older capture/lifecycle failures.
+WebKit/native new frame checks remain unexecuted locally/pending. Generated
+recordings remain under/tmp, not committed. Strict typecheck passes. Evidence:
+native83-video-proof.json, full decoder/negative/control logs and source hashes.
+
+Additional syntax audit:193 tracked JS/MJS/CJS files outside evidence parse on
+Node20/22/24, all actual exit0. This is syntax only, not JS type/runtime proof;
+browser code in strings is outside this check. Exact per-file results and
+reproducer are retained in native83-syntax-*.json/.py.
+
 Prior completed checkpoint (native81):
 
 Latest completed native81 at `93da4be7034effa08a280fd877ef12c1f34e2f6a`:
