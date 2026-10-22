@@ -53,6 +53,9 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: npm ci
+    - name: Use canonical Ubuntu archive for browser dependencies
+      if: runner.os == 'Linux'
+      uses: ./.github/actions/ubuntu-archive
     - name: Install Chromium, Firefox and WebKit
       id: core_browsers
       run: npx playwright install --with-deps chromium firefox webkit
@@ -160,6 +163,9 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: npm ci
+    - name: Use canonical Ubuntu archive for browser dependencies
+      if: runner.os == 'Linux'
+      uses: ./.github/actions/ubuntu-archive
     - name: Playwright install
       run: npx playwright install --with-deps chromium
     - name: Set up Docker Buildx

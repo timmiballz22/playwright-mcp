@@ -18,6 +18,20 @@ SQLite-connection race probes now reject version/identity changes under the sche
 write lock;41 regressions each22/24 and fresh installed-runtime checks pass. See
 native90-bootstrap-phase-proof.json and native90-schema-race-proof.json.
 
+Local follow-up excluded from active native91 (74497b1) shares its exact Ubuntu
+mirror shell body through .github/actions/ubuntu-archive across all five host
+browser-install job paths (components, batch, actual client, original, Docker host).
+Five shell fixtures, byte-for-byte body comparison, YAML parse, Bash syntax and
+actionlint pass; shellcheck/pyflakes remain disabled. No local system sources or
+Docker image sources were changed. Native verification remains pending. Read-only
+Windows follow-up confirms native90 dependency installer reported Media Foundation
+success/no restart; public image config absence alone cannot explain WebKit media.
+The Firefox retry source case passes locally on Node24; that does not clear the
+Mac lifecycle timeout. Actual local Codex app-server1k passes38.896s on
+Linux Node24, model turns0/owned0, with foreign-owner denial, active cancellation
+and terminal cleanup verified. Runtime is unchanged from74497b1; this does not
+clear native or historical failures. See native91-shared-mirror and prerequisite proof files.
+
 ## Latest completed checkpoint — native90 at58edfce; acceptance incomplete
 
 [Batch39803246586](https://github.com/timmiballz22/playwright-mcp/actions/runs/39803246586)
@@ -41,7 +55,9 @@ Mac raw1k stops982, then failed-click cleanup test is interrupted at983; SDK job
 stops970 and sync stdio977. Both MCP receipts time out and report forcedfalse,
 terminated/removed; SDK resultAvailabletrue/operatorAttentionfalse. These are
 separate observations from the successful actual client. Firefox retry fragment
-case completes1 with2 hits then times out; later cases unexecuted. Windows privacy
+case completes1 with2 hits/2 finished responses (last8.032s), then reaches the
+10s whole-lifecycle deadline, forcedtrue/terminated/removed; the receipt does not
+locate the remaining wait. Later cases are unexecuted. Windows privacy
 verifies1/8, reaches /403 without GET/finished receipts, then times out; request
 classification was not reached. Its audit confirms cleanup. Windows component
 forced schema_tables timeout is expected; the following normal reopen fails with

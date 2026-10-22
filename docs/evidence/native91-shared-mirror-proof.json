@@ -1,0 +1,38 @@
+{
+  "phase": "Local shared action followup excluded from native91 source74497b1",
+  "source": "Exact shell body extracted from composite action; only fixed system paths mapped to owned fixture files and sudo removed",
+  "publishedRunnerBlob": "b3f5b2b180df8eb39fcbba034f616e03a69e775c",
+  "cases": [
+    {
+      "case": "published_mirror_file",
+      "exit": 0,
+      "expectedFilesVerified": true,
+      "notice": "::notice title=Ubuntu archive sources::changedFiles=1 remainingMatchedAzureEntries=0"
+    },
+    {
+      "case": "legacy_direct",
+      "exit": 0,
+      "expectedFilesVerified": true,
+      "notice": "::notice title=Ubuntu archive sources::changedFiles=1 remainingMatchedAzureEntries=0"
+    },
+    {
+      "case": "single_azure_mirror",
+      "exit": 0,
+      "expectedFilesVerified": true,
+      "notice": "::notice title=Ubuntu archive sources::changedFiles=1 remainingMatchedAzureEntries=0"
+    },
+    {
+      "case": "already_canonical",
+      "exit": 0,
+      "expectedFilesVerified": true,
+      "notice": "::notice title=Ubuntu archive sources::changedFiles=0 remainingMatchedAzureEntries=0"
+    },
+    {
+      "case": "unrelated_uri_tokens",
+      "exit": 0,
+      "expectedFilesVerified": true,
+      "notice": "::notice title=Ubuntu archive sources::changedFiles=0 remainingMatchedAzureEntries=0"
+    }
+  ],
+  "scope": "Real GNU sed/grep transforms; no local /etc/apt mutation or fake installer pass. Mirror indirection retained; canonical/security fallbacks and signing bytes preserved. Active native configuration and network performance pending. Prior35s success did not prove old step changed indirect URLs."
+}
