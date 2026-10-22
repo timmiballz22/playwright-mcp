@@ -1,12 +1,22 @@
 # Private Playwright encoder patch
 
+Native88 original workflow39788239509 at702b616 verifies the actual Mac WebKit
+producer now passes the unchanged320×240 decoded-red threshold and six-click
+recording case. Exact successful pixel values are not logged. Eleven of twelve
+native original recording cases pass; Windows WebKit still fails readiness after
+two206 responses. WAV also remains unready after one206. This narrows the native
+primaries fix's claim; byte ranges alone did not repair Windows media playback.
+Docker prepared3eb hash and two endpoint cases pass. Overall original550/7 with
+other input/lifecycle failures; batch still active at this evidence checkpoint.
+See evidence/native88-original-checkpoint-proof.json and complete job logs.
+
 This private source candidate keeps Playwright/core1.64.1 and SDK1.32.1. It adds
 `-color_primaries bt709` alongside the reviewed `-colorspace smpte170m` matrix tag.
 Native87 Mac WebKit metadata-only controls change red248/37/0 to255/2/0 with
 unchanged encoded-stream hashes. Primaries alone is sufficient in that control;
 transfer709/sRGB variants produce the same sample, so transfer stays unchanged.
-The actual encoder addition has local regression proof and still requires native
-source verification. Existing failures and acceptance gates stay open. Original tool APIs, browser revisions, flags,
+The actual encoder addition now has local regression and native88 Mac WebKit
+source verification for the controlled frame. Existing failures and acceptance gates stay open. Original tool APIs, browser revisions, flags,
 timeouts and workflow permissions otherwise retain their pinned behavior.
 This is a fork patch, not an upstream release or permission to publish under
 Microsoft's registry identities. Upstream licenses/notices remain included.
