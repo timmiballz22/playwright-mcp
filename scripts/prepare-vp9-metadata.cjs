@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const originalHash = '829521b67ed7be90c7d6d6098ff39f2241562d47e4ad7ccab13710924a56001d';
-const patchedHash = 'b46a37ecb04912c639ffd32f890269ea33a612dfdcb43f518bac76b85cc0fa9f';
+const patchedHash = '3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192';
 const fail = code => { throw Object.assign(new Error(code), { safeCode: code }); };
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 module.exports = Object.freeze({ version: '1.64.1', originalHash, patchedHash });
@@ -33,7 +33,7 @@ try {
     const needle = '          "-c:v libvpx-vp9",';
     const text = source.toString('utf8');
     if (text.split(needle).length !== 2) fail('upstream_patch_source');
-    const output = Buffer.from(text.replace(needle, needle + '\n          "-colorspace smpte170m",'));
+    const output = Buffer.from(text.replace(needle, needle + '\n          "-colorspace smpte170m",\n          "-color_primaries bt709",'));
     if (hash(output) !== patchedHash) fail('upstream_patch_output');
     const temporary = file + '.private-patch-' + crypto.randomUUID();
     try {

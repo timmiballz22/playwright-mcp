@@ -1,8 +1,12 @@
 # Private Playwright encoder patch
 
-This private distribution keeps Playwright/core1.64.1 and SDK1.32.1. It prepares
-one reviewed change in the core VP9 encoder: `-colorspace smpte170m`, tagging the
-existing BT.601 output explicitly. Original tool APIs, browser revisions, flags,
+This private source candidate keeps Playwright/core1.64.1 and SDK1.32.1. It adds
+`-color_primaries bt709` alongside the reviewed `-colorspace smpte170m` matrix tag.
+Native87 Mac WebKit metadata-only controls change red248/37/0 to255/2/0 with
+unchanged encoded-stream hashes. Primaries alone is sufficient in that control;
+transfer709/sRGB variants produce the same sample, so transfer stays unchanged.
+The actual encoder addition has local regression proof and still requires native
+source verification. Existing failures and acceptance gates stay open. Original tool APIs, browser revisions, flags,
 timeouts and workflow permissions otherwise retain their pinned behavior.
 This is a fork patch, not an upstream release or permission to publish under
 Microsoft's registry identities. Upstream licenses/notices remain included.
@@ -11,7 +15,13 @@ The source module is `packages/playwright-core/src/server/videoRecorder.ts` at
 Playwright v1.64.1. The corresponding installed `lib/coreBundle.js` hashes are:
 
 - Registry source: `829521b67ed7be90c7d6d6098ff39f2241562d47e4ad7ccab13710924a56001d`.
-- Prepared source: `b46a37ecb04912c639ffd32f890269ea33a612dfdcb43f518bac76b85cc0fa9f`.
+- Candidate prepared source: `3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192`.
+
+The earlier matrix-only source was `b46a37ecb04912c639ffd32f890269ea33a612dfdcb43f518bac76b85cc0fa9f`.
+This candidate accepts only exact registry or candidate bytes. Use a clean
+`npm ci` when upgrading an existing matrix-only checkout; unknown/old prepared
+bytes are not silently modified. Browser APIs, encoded workflow permissions and
+existing timeouts remain unchanged.
 
 `npm ci` runs the deterministic prepare script after installing the pinned
 registry dependencies. It accepts only the exact original or prepared bytes,
