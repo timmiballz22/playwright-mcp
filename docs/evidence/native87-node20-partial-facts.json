@@ -1,0 +1,31 @@
+{
+  "conclusion": "cancelled",
+  "completedTopLevelReceipts": 94,
+  "passReceipts": 94,
+  "failureReceipts": 0,
+  "last": {
+    "status": "ok",
+    "index": 94,
+    "name": "local stdio MCP: handshake, tool list, rejection, browser workflow"
+  },
+  "steps": [
+    {
+      "name": "Run npx playwright install --with-deps chromium firefox webkit",
+      "conclusion": "success",
+      "started": "2026-10-22T12:27:27Z",
+      "completed": "2026-10-22T12:53:09Z"
+    },
+    {
+      "name": "Verify installed production package",
+      "conclusion": "success",
+      "started": "2026-10-22T12:53:09Z",
+      "completed": "2026-10-22T12:53:27Z"
+    },
+    {
+      "name": "Run mock and real browser tests through Bash bootstrap",
+      "conclusion": "cancelled",
+      "started": "2026-10-22T12:53:27Z",
+      "completed": "2026-10-22T12:57:27Z"
+    }
+  ]
+}
