@@ -1,5 +1,83 @@
 # Execution report — verified milestone, incomplete mission
 
+Latest completed native72 at `e37c5064666a9c39f22cad1171a52091a6effb7c`:
+batch run39706350916 fails with1,401 passes/10 failed tests; original CI39706350869
+fails with460 passes/one failure. Total: **1,861 reported passes/11 failed tests**,
+plus one failed stock Firefox diagnostic outside TAP counts. All17 non-soak jobs
+conclude; functional_soak is intentionally skipped. No reported test skips/cancels.
+
+All three actual Codex1,000-action clients pass: Linux38.188s, Mac81.171s,
+Windows37.459s, model turns0/owned survivors0. Five175-file production installs,
+all25 response-disposal regressions and all five supervised20-run screenshot/
+lifetime integrity fixtures pass. Their teardown audits report0 owned processes;
+no legacy difference is emitted in this sample. Historical133/four and Mac
+permission uncertainty remain unresolved. Main Linux20/22/24 pass195/199/199;
+Mac196/3, Windows185/5. Components: Linux107 each pass, Mac106/1, Windows107/1.
+
+The11 failures retain distinct scope:
+- Windows raw screenshot fixture completes1/1, then server_timeout and
+  server_kill_timeout (6.798s); this is separate from supervised20-run integrity.
+- Windows FF `/500` reaches typed http_5xx/status500, but the overall workflow
+  times out with known cleanup (forced:true). Later cases in that test are unexecuted.
+- Windows FF headless fresh10 completes10/23, then locator timeout at11 (9.392s).
+  Headed/pipe acceptance cases pass in this sample, without clearing older failures.
+- Windows SDK jobs reports CRASHED/recovered_interrupted, completed lower bound375,
+  no result, operatorAttentionRequired:true. Final source process audit passes;
+  journal debt remains fenced. The old test did not consume or capture server stderr.
+- Windows FF429 makes two GETs/two finished responses and completes navigation,
+  then returns an overall timeout. First request2.785s/last response5.973s; cleanup known.
+- Mac raw Chromium reaches982/1,000 at120.051s; synchronous batch MCP reaches969.
+  SDK jobs reports1,000 completed but returns timeout (119.107s), cleanup known.
+- Mac stalled retained-scan component returns cleanup_failed instead of timeout
+  at1.615s; its underlying cleanup class was not captured by the old assertion.
+- Windows read-only recovery under writer contention returns journal_unavailable
+  at2.173s; the old assertion did not capture the journal transport cause.
+- Original Windows FF media emulation hits the30s test deadline. Normal Linux/Mac
+  originals152 each, Windows151/1, Docker2 and Mac modal3 pass. Windows legacy3 is
+  unexecuted. Chrome-install fallback is unexercised. All12 new route-negative
+  executions pass (four projects across three OSs).
+
+Native stock headed FF closes its first fresh run successfully. The second
+completes23/23 actions but reports server_close_failed:46 confirmed actions total,
+only one successful complete lifetime. Six owned processes remain before the
+parent's scoped forced cleanup, then the final audit is0. This reproduces a close
+failure without companion routing, not the earlier input stall. Native72 did not
+classify close timeout versus rejection. Protocol-headed/private/inherited controls
+all pass10/10=230; Mac server1k118.270s/pipe1k109.714s pass. Healthy controls are
+not causal fixes; logging and screenshot retention differ between controls.
+
+Uncommitted follow-up after native72:
+- Fixed component failure classes and bounded durations, with no error getters,
+  messages or arbitrary fields. Before:4/1; after:6/6 on each Node20/22/24. Real
+  assertion/missing-path/timeout calibrations intentionally exit1 and classify correctly.
+- Safe component failure receipts preserve the existing assertions and deadlines.
+- SDK test now consumes its stderr pipe and retains only bounded known guardian/
+  journal facts; Codex reuses the same pure parser. Before parser:3/2; after:5/5
+  on each Node20/22/24. Unknown fields/canaries/capped metadata are checked.
+- A source-owned1MiB stderr control blocks while unread and completes after the
+  consumer attaches. This proves the transport mechanism, not the cause of375/debt.
+- Stock cleanup labels timeout/error and attempts bounded kill through the actual
+  public BrowserServer handle. Controlled close stall remains FAILED/server_timeout,
+  with no residual processes before parent force and final owned0. Healthy230 passes.
+- Local SDK2/2 and actual Codex1k36.257s/model0/owned0 pass. Final pure11 Node20,
+  focused22 each Node22/24, fresh175-file production install/guardian checks,
+  lint and diff checks pass. No production execution policy or default transport change.
+
+Two ordinary component artifact downloads were Forbidden; no retry or access
+workaround. An error-redaction mistake exposed signed URLs in tool output; saved
+receipts were corrected and the URLs are absent from repository evidence. Completed
+workflow logs supply the results. One watcher HTTP401 recovered on ordinary reads,
+without credential changes. Evidence: worker-ci-seventysecond-*, native72-*,
+component-reporter-*, guardian-stderr-*, firefox-stock-close-*.
+
+**Not release-ready. NEXT ACTION: archive/commit the validated diagnostic follow-up,
+then native73 to capture journal/cleanup causes without raising budgets, weakening
+assertions, clearing debt or switching default transport.**
+
+The following records are historical checkpoints.
+
+### Archived native71 checkpoint
+
 Latest completed native71 at68479850edaa96b81dcc32d4fc3ddef04d6d0b4e:
 batch39703764480 FAILURE1,405/6; CI39703764526 FAILURE446/3 =>1,851 reported
 passes/nine failed tests, plus a separate Mac actual-Codex TIMED_OUT at973.
@@ -49,10 +127,11 @@ pending. New Windows failure-only stock step keeps the existing30min job bound.
 The last full local fresh production install predates this diagnostic-only change;
 native72 will validate the new packaged source. No production runtime policy changed.
 
-**Not release-ready. NEXT ACTION: push native72 with stock headed isolation and
-routing negatives; inspect failures without changing runtime/action/test budgets.**
+**Not release-ready. Native72 running ate37c506: batch39706350916 and
+CI39706350869. NEXT ACTION: inspect completed matrices and stock headed receipt;
+no runtime/action/test budget changes.**
 
-The following records are historical checkpoints.
+
 
 ### Archived native70 checkpoint
 

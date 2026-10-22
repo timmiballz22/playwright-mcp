@@ -12,12 +12,15 @@ import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { resolveJobConfig } from './jobs/config.mjs';
 import { JobJournal, supportsJournal } from './jobs/journal.mjs';
+import { guardianStderrFacts } from './jobs/guardian-diagnostic.mjs';
 import { ownedScopeDescendants } from './fixtures/process-audit.mjs';
 const entry = fileURLToPath(new URL('./jobs-mcp.mjs', import.meta.url));
 if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect', { timeout: 180000 }, async t => {
   const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-mcp-'));
   const owner = randomUUID(); const clients = []; const scopes = [];
   let verified = false; let primaryFailure;
+  const diagnosticSets = { guardianFailures: new Set(), journalFailures: new Set(), guardianExits: new Set() };
+  let diagnosticCapped = false; let journalExitUnconfirmed = false; let stderrTailTruncated = false;
   const server = createServer((_request, response) => { response.writeHead(200, { 'Content-Type': 'text/html' }); response.end('<div id="ready">ready</div><button>Add</button><output>0</output><script>let n=0;document.querySelector("button").onclick=()=>document.querySelector("output").textContent=String(++n)</script>'); });
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   const origin = `http://127.0.0.1:${server.address().port}`;
@@ -26,6 +29,19 @@ if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission,
     const transport = new StdioClientTransport({ command: process.execPath, args: [entry], stderr: 'pipe', env: {
       ...process.env, PLAYWRIGHT_JOBS_ALLOW_MUTATIONS: mutations ? '1' : '0', PLAYWRIGHT_JOBS_ALLOW_SENSITIVE_ARTIFACTS: maxScreenshotBytes === undefined ? '0' : '1', PLAYWRIGHT_JOBS_MAX_SCREENSHOT_BYTES: String(maxScreenshotBytes ?? 16777216), PLAYWRIGHT_JOBS_OWNER_ID: ownerId, PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data'), PLAYWRIGHT_JOBS_PROJECT_DIR: root, PLAYWRIGHT_JOBS_ALLOWED_ORIGINS: origin,
     } });
+    // Consume the pipe from construction so a full stderr buffer cannot stall
+    // this client. Only fixed endpoint facts can leave the private tail buffer.
+    let stderrTail = '';
+    transport.stderr.on('data', chunk => {
+      const value = stderrTail + chunk.toString(); stderrTailTruncated ||= value.length > 4096;
+      stderrTail = value.slice(-4096);
+      const facts = guardianStderrFacts(stderrTail);
+      journalExitUnconfirmed ||= facts.journalExitUnconfirmed; diagnosticCapped ||= facts.capped;
+      for (const key of Object.keys(diagnosticSets)) for (const entry of facts[key]) {
+        if (diagnosticSets[key].has(entry)) continue;
+        if (diagnosticSets[key].size < 16) diagnosticSets[key].add(entry); else diagnosticCapped = true;
+      }
+    });
     clients.push(client);
     const start = transport.start.bind(transport);
     transport.start = async () => {
@@ -128,7 +144,13 @@ if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission,
     assert.equal(captureFiles.some(name => name.endsWith('.png') || path.basename(name).startsWith('.capture-')), false);
     assert.ok((await call(captureClient, 'cleanup_workflows', { jobIds: [capture.jobId] })).results[0].files >= 1, 'Safe report and cleanup metadata remain available');
     verified = true;
-  } catch (error) { primaryFailure = error; throw error; }
+  } catch (error) {
+    primaryFailure = error;
+    console.error(JSON.stringify({ fixture: 'jobs_mcp_failure', diagnosticCoverage: 'bounded_stderr_tail',
+      ...Object.fromEntries(Object.entries(diagnosticSets).map(([key, values]) => [key, [...values]])),
+      journalExitUnconfirmed, stderrTailTruncated, diagnosticCapped }));
+    throw error;
+  }
   finally {
     const closed = await Promise.allSettled(clients.map(client => client.close()));
     const closeFailures = closed.filter(result => result.status === 'rejected').map(result => result.reason);

@@ -1,0 +1,66 @@
+TAP version 13
+# Subtest: guardian diagnostics retain fixed journal metadata and discard private values
+ok 1 - guardian diagnostics retain fixed journal metadata and discard private values
+  ---
+  duration_ms: 1.262483
+  type: 'test'
+  ...
+# Subtest: journal transport diagnostics retain only fixed causes and originating verbs
+ok 2 - journal transport diagnostics retain only fixed causes and originating verbs
+  ---
+  duration_ms: 0.165496
+  type: 'test'
+  ...
+# Subtest: unconfirmed journal exit is a fixed boolean diagnostic without raw values
+ok 3 - unconfirmed journal exit is a fixed boolean diagnostic without raw values
+  ---
+  duration_ms: 0.319532
+  type: 'test'
+  ...
+# Subtest: stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+not ok 4 - stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+  ---
+  duration_ms: 1.080947
+  type: 'test'
+  location: '/workspace/playwright-mcp/local-batch/jobs/guardian-diagnostic.test.mjs:30:1'
+  failureType: 'testCodeFailure'
+  error: 'diagnostics.guardianStderrFacts is not a function'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/guardian-diagnostic.test.mjs:31:29)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: stderr facts cap distinct metadata and process only a bounded tail
+not ok 5 - stderr facts cap distinct metadata and process only a bounded tail
+  ---
+  duration_ms: 0.225946
+  type: 'test'
+  location: '/workspace/playwright-mcp/local-batch/jobs/guardian-diagnostic.test.mjs:36:1'
+  failureType: 'testCodeFailure'
+  error: 'diagnostics.guardianStderrFacts is not a function'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/guardian-diagnostic.test.mjs:37:29)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 3
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 70.078098

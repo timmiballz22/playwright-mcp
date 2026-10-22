@@ -2,7 +2,85 @@
 
 ## Resume checkpoint — 2026-10-22
 
-Branch feat/local-production-hardening. Latest completed native71 at68479850edaa96b81dcc32d4fc3ddef04d6d0b4e:
+Branch feat/local-production-hardening. Latest completed native72 at `e37c5064666a9c39f22cad1171a52091a6effb7c`:
+batch run39706350916 fails with1,401 passes/10 failed tests; original CI39706350869
+fails with460 passes/one failure. Total: **1,861 reported passes/11 failed tests**,
+plus one failed stock Firefox diagnostic outside TAP counts. All17 non-soak jobs
+conclude; functional_soak is intentionally skipped. No reported test skips/cancels.
+
+All three actual Codex1,000-action clients pass: Linux38.188s, Mac81.171s,
+Windows37.459s, model turns0/owned survivors0. Five175-file production installs,
+all25 response-disposal regressions and all five supervised20-run screenshot/
+lifetime integrity fixtures pass. Their teardown audits report0 owned processes;
+no legacy difference is emitted in this sample. Historical133/four and Mac
+permission uncertainty remain unresolved. Main Linux20/22/24 pass195/199/199;
+Mac196/3, Windows185/5. Components: Linux107 each pass, Mac106/1, Windows107/1.
+
+The11 failures retain distinct scope:
+- Windows raw screenshot fixture completes1/1, then server_timeout and
+  server_kill_timeout (6.798s); this is separate from supervised20-run integrity.
+- Windows FF `/500` reaches typed http_5xx/status500, but the overall workflow
+  times out with known cleanup (forced:true). Later cases in that test are unexecuted.
+- Windows FF headless fresh10 completes10/23, then locator timeout at11 (9.392s).
+  Headed/pipe acceptance cases pass in this sample, without clearing older failures.
+- Windows SDK jobs reports CRASHED/recovered_interrupted, completed lower bound375,
+  no result, operatorAttentionRequired:true. Final source process audit passes;
+  journal debt remains fenced. The old test did not consume or capture server stderr.
+- Windows FF429 makes two GETs/two finished responses and completes navigation,
+  then returns an overall timeout. First request2.785s/last response5.973s; cleanup known.
+- Mac raw Chromium reaches982/1,000 at120.051s; synchronous batch MCP reaches969.
+  SDK jobs reports1,000 completed but returns timeout (119.107s), cleanup known.
+- Mac stalled retained-scan component returns cleanup_failed instead of timeout
+  at1.615s; its underlying cleanup class was not captured by the old assertion.
+- Windows read-only recovery under writer contention returns journal_unavailable
+  at2.173s; the old assertion did not capture the journal transport cause.
+- Original Windows FF media emulation hits the30s test deadline. Normal Linux/Mac
+  originals152 each, Windows151/1, Docker2 and Mac modal3 pass. Windows legacy3 is
+  unexecuted. Chrome-install fallback is unexercised. All12 new route-negative
+  executions pass (four projects across three OSs).
+
+Native stock headed FF closes its first fresh run successfully. The second
+completes23/23 actions but reports server_close_failed:46 confirmed actions total,
+only one successful complete lifetime. Six owned processes remain before the
+parent's scoped forced cleanup, then the final audit is0. This reproduces a close
+failure without companion routing, not the earlier input stall. Native72 did not
+classify close timeout versus rejection. Protocol-headed/private/inherited controls
+all pass10/10=230; Mac server1k118.270s/pipe1k109.714s pass. Healthy controls are
+not causal fixes; logging and screenshot retention differ between controls.
+
+Uncommitted follow-up after native72:
+- Fixed component failure classes and bounded durations, with no error getters,
+  messages or arbitrary fields. Before:4/1; after:6/6 on each Node20/22/24. Real
+  assertion/missing-path/timeout calibrations intentionally exit1 and classify correctly.
+- Safe component failure receipts preserve the existing assertions and deadlines.
+- SDK test now consumes its stderr pipe and retains only bounded known guardian/
+  journal facts; Codex reuses the same pure parser. Before parser:3/2; after:5/5
+  on each Node20/22/24. Unknown fields/canaries/capped metadata are checked.
+- A source-owned1MiB stderr control blocks while unread and completes after the
+  consumer attaches. This proves the transport mechanism, not the cause of375/debt.
+- Stock cleanup labels timeout/error and attempts bounded kill through the actual
+  public BrowserServer handle. Controlled close stall remains FAILED/server_timeout,
+  with no residual processes before parent force and final owned0. Healthy230 passes.
+- Local SDK2/2 and actual Codex1k36.257s/model0/owned0 pass. Final pure11 Node20,
+  focused22 each Node22/24, fresh175-file production install/guardian checks,
+  lint and diff checks pass. No production execution policy or default transport change.
+
+Two ordinary component artifact downloads were Forbidden; no retry or access
+workaround. An error-redaction mistake exposed signed URLs in tool output; saved
+receipts were corrected and the URLs are absent from repository evidence. Completed
+workflow logs supply the results. One watcher HTTP401 recovered on ordinary reads,
+without credential changes. Evidence: worker-ci-seventysecond-*, native72-*,
+component-reporter-*, guardian-stderr-*, firefox-stock-close-*.
+
+**Not release-ready. NEXT ACTION: archive/commit the validated diagnostic follow-up,
+then native73 to capture journal/cleanup causes without raising budgets, weakening
+assertions, clearing debt or switching default transport.**
+
+## Historical checkpoints
+
+### Archived native71 checkpoint
+
+Latest completed native71 at68479850edaa96b81dcc32d4fc3ddef04d6d0b4e:
 batch39703764480 FAILURE1,405/6; CI39703764526 FAILURE446/3 =>1,851 reported
 passes/nine failed tests, plus a separate Mac actual-Codex TIMED_OUT at973.
 All17 non-soak jobs conclude; functional_soak intentionally skipped; zero reported
@@ -51,10 +129,11 @@ pending. New Windows failure-only stock step keeps the existing30min job bound.
 The last full local fresh production install predates this diagnostic-only change;
 native72 will validate the new packaged source. No production runtime policy changed.
 
-**Not release-ready. NEXT ACTION: push native72 with stock headed isolation and
-routing negatives; inspect failures without changing runtime/action/test budgets.**
+**Not release-ready. Native72 running ate37c506: batch39706350916 and
+CI39706350869. NEXT ACTION: inspect completed matrices and stock headed receipt;
+no runtime/action/test budget changes.**
 
-## Historical checkpoints
+
 
 ### Archived native70 checkpoint
 
@@ -271,25 +350,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native71 logged1,851/9 plus Mac actual973 timeout; both workflows fail | Final same-SHA whole acceptance |
-| G01 INSTALL | VERIFIED PASS | native71 five175-file installs and original host installs pass at6847985 | Preserve installation checks; no TLS bypass |
-| G02 MCP | IN PROGRESS | native71 Linux/Windows actual1k pass; Mac actual973 timeout | Sustained whole client acceptance |
-| G03 FEATURE PARITY | FAILED | native71 normal Linux/Windows148 each, Mac147/1 capture failure; legacy1/2 | Provider capture/input diagnosis and remaining manual negatives |
-| G04 BATCH | FAILED | native71 Mac raw992 timeout; supervised companion failures remain | Strict counters and budgets; causal throughput diagnosis |
-| G05 RETRIES | FAILED | native71 Windows FF429 completes navigation/two GETs, settlement timeout | Keep bounded lifecycle and no replay |
-| G06 JOBS | FAILED | native71 components107/108 pass; historical permission uncertainty remains fenced | Preserve debt; managed recovery and exact ownership facts |
-| G07 SECURITY | FAILED | native71 Windows IPv6 positive control times out after4/4; policy escape not established | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | native71 supervised20×5 pass/no legacy differences emitted; historical133/old4 unresolved | Complete ancestry evidence; disk bounds and managed repair |
+| G00 BASELINE | IN PROGRESS | native72 reports1,861/11 plus stock close failure; both workflows fail | Whole acceptance at one unchanged source SHA |
+| G01 INSTALL | VERIFIED PASS | native72 five175-file production installs plus original host installs at e37c506 | Keep supported installation modes and TLS verification |
+| G02 MCP | FAILED | native72 actual Codex1k all three pass; SDK Windows CRASHED375/debt, Mac MCP969 timeout | Capture journal cause; preserve cleanup debt |
+| G03 FEATURE PARITY | FAILED | native72 original460/1; Windows FF media deadline; legacy unexecuted;12 new routing negatives pass | Keep exact behavior assertions and finish parameter/operator gaps |
+| G04 BATCH | FAILED | native72 Mac raw982 and synchronous MCP969 time out; SDK all1k completed but timeout | Diagnose lifecycle and throughput without changing budgets |
+| G05 RETRIES | FAILED | native72 Windows FF429 completes navigation/two GETs but overall timeout | Keep lifecycle bounds and no replay |
+| G06 JOBS | FAILED | native72 Mac/Windows component failures and Windows SDK CRASHED375 with attention required | Capture safe first cause; preserve uncertain leases |
+| G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
+| G08 STORAGE | FAILED | native72 supervised20×5 pass/no legacy differences emitted; historical133/old4 unresolved | Complete ownership gaps, disk bounds and managed repair |
 | G09 AUTH/PROFILES | FAILED | coalesced close14/14 Node20/22/24, real Chromium/Firefox parity2/2; native prior session restore | Managed profiles/reset, Windows ACLs and crash repair; annotation dashboard lifecycle separate |
-| G10 CROSS-BROWSER | FAILED | native71 Windows FF input/control/retry and Mac Chromium capture/raw deadline | Causal diagnosis; strict thresholds |
-| G11 CROSS-OS | FAILED | native71 nine tests fail plus Mac actual client timeout | Final whole native matrix required |
+| G10 CROSS-BROWSER | FAILED | native72 stock FF close fails with6 owned residuals before parent cleanup; original FF media deadline | Provider close/input and lifecycle diagnosis; no retry to green |
+| G11 CROSS-OS | FAILED | native72 Mac4/Windows7 failed tests; Linux lanes pass | Final complete native matrix required |
 | G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md;1502859 resource100/600 passes; interface3 samples/mode at1100e3c | Cross-OS/CLI-SKILLS repeated resource and token measurements remain; no billing claim |
-| G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
+| G13 ACCESSIBILITY/MOBILE | FAILED | native72 Windows FF media emulation times out30s; other scoped ARIA/keyboard/touch tests pass | Resolve media failure and remaining parameter variants; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-seventyfirst-* and native71-*; headed protocol10/10 native pass | Preserve partial frame coverage and separate healthy controls from causal fixes |
-| G18 CLEAN MERGE | FAILED | Draft PR2; native71 both workflows fail | Resolve critical gaps; whole green SHA before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-seventysecond-* and native72-*; bounded diagnostic follow-up locally validated | Native verification of error classes and stderr facts; keep historical failures |
+| G18 CLEAN MERGE | FAILED | Draft PR2; native72 both workflows fail | Resolve critical gaps; whole green SHA before merge/release |
 
 ## Defects and risk register
 

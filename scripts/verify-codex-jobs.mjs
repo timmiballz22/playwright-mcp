@@ -1,7 +1,7 @@
 // Actual Codex app-server protocol, zero model turns. Temporary -c configuration
 // only; no global client config edits. Requires Node22.13+ and Codex CLI.
 import { stepFailureDiagnostic } from './step-failure-diagnostic.mjs';
-import { COMMAND_FIELDS, JOURNAL_FAILURE_CAUSES } from '../local-batch/jobs/journal-protocol.mjs';
+import { guardianStderrFacts } from '../local-batch/jobs/guardian-diagnostic.mjs';
 import { spawn, execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { createInterface } from 'node:readline';
@@ -45,8 +45,8 @@ const closed = once(child, 'close').catch(() => []);
 // Keep raw client diagnostics private; emit only our fixed startup code format.
 const guardianFailures = new Set(); const guardianExits = new Set(); const journalFailures = new Set();
 const rememberJournalFailures = value => {
-  for (const match of value.matchAll(/Local job journal unavailable \(([a-z_]+)\/([a-z_]+)\)/g))
-    if (journalFailures.size < 16 && JOURNAL_FAILURE_CAUSES.includes(match[1]) && (match[2] === 'none' || COMMAND_FIELDS.has(match[2]))) journalFailures.add(match.slice(1).join('/'));
+  for (const entry of guardianStderrFacts(value).journalFailures)
+    if (journalFailures.size < 16) journalFailures.add(entry);
 };
 const startupCodes = new Set(); const helperFailures = new Set(); const startupStates = new Map(); let stderrTail = '';
 const startupCategory = value => {
@@ -61,8 +61,9 @@ const startupCategory = value => {
 child.stderr.on('data', chunk => {
   stderrTail = (stderrTail + chunk.toString()).slice(-4096);
   rememberJournalFailures(stderrTail);
-  for (const match of stderrTail.matchAll(/Local job guardian failed \(([a-z_]+)\/([a-z_]+)\/([a-z_]+)\)/g)) guardianFailures.add(match.slice(1).join('/'));
-  for (const match of stderrTail.matchAll(/Local job guardian exited \((unknown|-?[0-9]+)\/(none|SIGKILL|SIGTERM|SIGABRT|SIGSEGV|SIGINT)\)/g)) guardianExits.add(match.slice(1).join('/'));
+  const facts = guardianStderrFacts(stderrTail);
+  for (const entry of facts.guardianFailures) if (guardianFailures.size < 16) guardianFailures.add(entry);
+  for (const entry of facts.guardianExits) if (guardianExits.size < 16) guardianExits.add(entry);
   for (const match of stderrTail.matchAll(/Local jobs startup failed \(([a-z_]{1,40})\)/g)) startupCodes.add(match[1]);
   for (const match of stderrTail.matchAll(/Local private storage helper failed \((spawn_missing|spawn_denied|output_limit|timeout|nonzero_exit|spawn_failed|invalid_output)\)/g)) helperFailures.add(match[1]);
 });

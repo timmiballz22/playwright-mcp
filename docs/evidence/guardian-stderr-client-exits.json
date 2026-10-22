@@ -1,0 +1,21 @@
+[
+  {
+    "name": "sdk",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "local-batch/jobs-mcp.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "codex",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "scripts/verify-codex-jobs.mjs",
+      "/tmp/playwright-codex-tools/node_modules/@openai/codex/bin/codex.js"
+    ],
+    "exitCode": 0
+  }
+]

@@ -3,9 +3,10 @@
 Pinned stable1.64.1 extended Chromium discovery defines72 tools. This index maps
 source fixture touchpoints; a source call is not itself a PASS or a coverage
 percentage. Consult execution evidence for the exact commit, engine and OS.
-Latest completed native70 (045fe28) passes148 original cases on each host OS,
-plus Docker2, Mac modal3 and Windows legacy3 (452 total). Prior Firefox stalls
-remain unexplained and parameter/
+Latest completed native72 (e37c506) reports460 original passes/one failure:
+Linux/Mac152 each, Windows151/1 (Firefox media deadline), Docker2 and Mac modal3.
+Windows legacy cleanup is unexecuted. All12 new malformed-route/unknown-unroute
+cases pass. Prior Firefox stalls remain unexplained and parameter/
 negative coverage is incomplete. All72 versioned schemas remain checked by
 capabilities.spec.ts.
 
@@ -159,3 +160,7 @@ returns exactly the existing202/mock body with zero server hits. Local Chromium
 and Firefox pass2/2 with final exact assertions; the broader pre-refinement
 routing run passes4/4. Lint passes. Native/WebKit evidence pending; no upstream
 implementation or security policy changed. Evidence: original-route-negative-*.
+
+Native72 closes the scoped routing-negative verification above: all12 executions
+pass on four engine projects across three OSs. Other route parameters and the
+remaining per-tool negative/operator gaps stay open. See native72-route-negative-tests.json.

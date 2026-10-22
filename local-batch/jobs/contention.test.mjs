@@ -8,6 +8,7 @@ import { randomUUID } from 'node:crypto';
 import os from 'node:os';
 import path from 'node:path';
 import { JobJournal, supportsJournal } from './journal.mjs';
+import { guardianDiagnostic } from './guardian-diagnostic.mjs';
 if (supportsJournal) test('bounded writer contention waits before one mutation without replay', { timeout: 10000 }, async () => {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-contention-'));
   let journal; let holder; let exited; let timer;
@@ -43,7 +44,11 @@ if (supportsJournal) test('recovery with live unexpired records is read-only whi
     const row = await journal.call('create', { id: randomUUID(), requestKey: 'live', workflowDigest: '4'.repeat(64), total: 1, deadlineAt: Date.now() + 10000 });
     holder = fork(fileURLToPath(new URL('./fixtures/hold-write.mjs', import.meta.url)), [path.join(directory, 'jobs.sqlite')], { stdio: ['ignore', 'ignore', 'ignore', 'ipc'], execArgv: [] });
     exited = once(holder, 'exit'); const [ready] = await once(holder, 'message'); assert.equal(ready.locked, true);
-    assert.deepEqual(await journal.call('recover'), { recovered: 0, cleanupBlocked: false });
+    const recovered = await journal.call('recover').catch(error => {
+      console.error(JSON.stringify({ fixture: 'readonly_recovery_failure', diagnostic: guardianDiagnostic(error, 'read', 'recover') }));
+      throw error;
+    });
+    assert.deepEqual(recovered, { recovered: 0, cleanupBlocked: false });
     assert.equal((await journal.call('read', { id: row.jobId })).state, 'QUEUED');
     assert.equal((await journal.call('events', { id: row.jobId })).length, 3);
   } finally {

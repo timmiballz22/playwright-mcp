@@ -11,6 +11,26 @@ const files = new Set([
     'maintenance', 'queue-clock', 'component-ci-reporter'].map(name => `local-batch/jobs/${name}.test.mjs`),
   'scripts/ci-test-counts.test.mjs', 'local-batch/cleanup.test.mjs',
 ]);
+const failureClasses = new Map([
+  ['ERR_ASSERTION', 'assertion'], ['ENOENT', 'missing_path'],
+  ['EPERM', 'permission'], ['EACCES', 'permission'],
+  ['journal_busy', 'journal_busy'], ['journal_unavailable', 'journal_unavailable'],
+  ['rpc_timeout', 'rpc_timeout'],
+]);
+// Never stringify errors, invoke their getters, or walk an unbounded cause chain.
+function ownValue(value, key) {
+  if (!value || typeof value !== 'object') return undefined;
+  try { return Object.getOwnPropertyDescriptor(value, key)?.value; } catch { return undefined; }
+}
+function failureClass(error) {
+  for (let depth = 0; error && depth < 3; depth++, error = ownValue(error, 'cause')) {
+    const kind = ownValue(error, 'failureType');
+    if (kind === 'testTimeoutFailure') return 'timeout';
+    if (kind === 'cancelledByParent' || kind === 'testAborted') return 'cancelled';
+    const known = failureClasses.get(ownValue(error, 'code'));
+    if (known) return known;
+  }
+}
 export function componentFailureAnnotation(event) {
   if (event?.type !== 'test:fail') return '';
   const data = event.data ?? {};
@@ -22,7 +42,12 @@ export function componentFailureAnnotation(event) {
   }
   const index = Number.isSafeInteger(data.testNumber) && data.testNumber > 0 && data.testNumber <= 100000
     ? 'testNumber=' + data.testNumber : 'testNumber=unknown';
-  return '::error title=Durable component test did not pass' + location + '::' + index + '\n';
+  const details = ownValue(data, 'details');
+  const kind = failureClass(ownValue(details, 'error'));
+  const duration = ownValue(details, 'duration_ms');
+  const metadata = (kind ? ' failureClass=' + kind : '') +
+    (Number.isFinite(duration) && duration >= 0 && duration <= 1800000 ? ' durationMs=' + Math.floor(duration) : '');
+  return '::error title=Durable component test did not pass' + location + '::' + index + metadata + '\n';
 }
 export default async function* report(events) {
   for await (const event of events)

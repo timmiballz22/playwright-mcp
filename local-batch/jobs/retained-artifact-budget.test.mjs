@@ -47,7 +47,9 @@ test('a stalled retained scan stays inside the existing supervised workflow dead
     onEvent(event) { events.push(event); if (event.pid) owned.push(event.pid); },
   });
   assert.equal(await readFile(path.join(base, 'scan-stalled'), 'utf8'), 'pending');
-  assert.equal(result.reason, 'timeout'); assert.equal(result.completed, 0);
+  assert.equal(result.reason, 'timeout', JSON.stringify({ fixture: 'retained_scan_cleanup', reason: result.reason,
+    completed: result.completed, execution: result.execution, workerObserved: events.some(event => event.type === 'workerSpawned') }));
+  assert.equal(result.completed, 0);
   assert.equal(result.execution.cleanup, 'terminated');
   assert.equal(events.some(event => event.type === 'ownedProcess'), false);
   assert.ok(performance.now() - started < 5000, 'Stalled scan escaped the supervised deadline and cleanup bounds');

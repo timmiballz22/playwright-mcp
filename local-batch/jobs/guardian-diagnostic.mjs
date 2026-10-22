@@ -18,3 +18,21 @@ export function journalFailureLine(value) {
   return `Local job journal unavailable (${value.journalFailure}/${command}).\n` +
     unconfirmed;
 }
+
+// Client-side hints only: no raw stderr, process identity or cleanup authority.
+export function guardianStderrFacts(value) {
+  const text = typeof value === 'string' ? value.slice(-4096) : '';
+  const failures = new Set(); const journals = new Set(); const exits = new Set(); let capped = false;
+  const add = (set, entry) => { if (set.has(entry)) return; if (set.size < 16) set.add(entry); else capped = true; };
+  for (const match of text.matchAll(/Local job guardian failed \(([a-z_]{1,40})\/([a-z_]{1,40})\/([a-z_]{1,40})\)/g)) {
+    if ((stages.has(match[1]) || match[1] === 'unknown') && codes.has(match[2]) && (COMMAND_FIELDS.has(match[3]) || match[3] === 'none')) add(failures, match.slice(1).join('/'));
+  }
+  for (const match of text.matchAll(/Local job journal unavailable \(([a-z_]{1,40})\/([a-z_]{1,40})\)/g)) {
+    if (JOURNAL_FAILURE_CAUSES.includes(match[1]) && (COMMAND_FIELDS.has(match[2]) || match[2] === 'none')) add(journals, match.slice(1).join('/'));
+  }
+  for (const match of text.matchAll(/Local job guardian exited \((unknown|-?[0-9]{1,10})\/(none|SIGKILL|SIGTERM|SIGABRT|SIGSEGV|SIGINT)\)/g)) {
+    if (match[1] === 'unknown' || Number.isSafeInteger(Number(match[1])) && Math.abs(Number(match[1])) <= 2147483647) add(exits, match.slice(1).join('/'));
+  }
+  return { coverage: 'bounded_stderr_tail', guardianFailures: [...failures], journalFailures: [...journals], guardianExits: [...exits],
+    journalExitUnconfirmed: text.includes('Local job journal worker exit unconfirmed.'), inputTruncated: typeof value === 'string' && value.length > 4096, capped };
+}

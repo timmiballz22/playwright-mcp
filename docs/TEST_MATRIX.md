@@ -1,6 +1,13 @@
 # Current acceptance coverage
 
-Latest native71 at6847985:1,851 reported passes/nine failed tests plus Mac
+Latest native72 at e37c506:1,861 reported passes/11 failed tests, plus a failed
+stock headed Firefox close control (six owned residual processes before parent
+cleanup; final0). Actual Codex1k passes on all three OSs; five175-file production
+installs, all25 response-disposal cases, all five supervised20-run integrity
+fixtures and12 route-negative executions pass. Mac/Windows component failures,
+SDK jobs uncertainty and browser/provider deadlines remain. See the execution ledger.
+
+Previous native71 at6847985:1,851 reported passes/nine failed tests plus Mac
 actual-Codex timeout973. Five175-file installs/components and supervised20-run
 integrity fixtures pass. Headed protocol diagnostic230 actions passes on Windows,
 but does not reproduce or causally fix the input stalls. See execution ledger

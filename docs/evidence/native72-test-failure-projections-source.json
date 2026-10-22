@@ -1,0 +1,273 @@
+[
+  {
+    "test": "not ok 1 - 20 real screenshots across concurrent runs have unique private directories",
+    "receipt": {
+      "ok": false,
+      "reason": "cleanup_failed",
+      "browser": "chromium",
+      "blockedRequests": 0,
+      "actionsSucceeded": true,
+      "cleanupFailures": [
+        "server_timeout",
+        "server_kill_timeout"
+      ],
+      "completed": 1,
+      "total": 1,
+      "durationMs": 6798,
+      "results": [
+        {
+          "index": 1,
+          "repetition": 1,
+          "type": "screenshot",
+          "ok": true,
+          "durationMs": 422,
+          "artifact": "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\artifacts-REYBm2\\run-b305f5fe-4eac-4c2c-93da-93db65f2e750\\step-0001.png"
+        }
+      ]
+    }
+  },
+  {
+    "test": "not ok 59 - real firefox: HTTP error codes and script exceptions keep response secrets out of reports",
+    "receipt": {
+      "route": "/500",
+      "reason": "timeout",
+      "completed": 0,
+      "failedStep": {
+        "index": 1,
+        "type": "goto",
+        "ok": false,
+        "error": "http_5xx",
+        "failureKind": "http_failure",
+        "httpStatus": 500
+      },
+      "forced": true,
+      "cleanup": "terminated",
+      "tempCleanup": "removed"
+    }
+  },
+  {
+    "test": "not ok 77 - real firefox: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "receipt": {
+      "freshRun": 10,
+      "result": {
+        "ok": false,
+        "reason": "action_failed",
+        "browser": "firefox",
+        "blockedRequests": 0,
+        "actionsSucceeded": false,
+        "cleanupFailures": [],
+        "completed": 10,
+        "total": 23,
+        "durationMs": 9392,
+        "results": [
+          {
+            "index": 1,
+            "repetition": 1,
+            "type": "goto",
+            "ok": true,
+            "durationMs": 388
+          },
+          {
+            "index": 2,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 324
+          },
+          {
+            "index": 3,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 65
+          },
+          {
+            "index": 4,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 74
+          },
+          {
+            "index": 5,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 90
+          },
+          {
+            "index": 6,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 72
+          },
+          {
+            "index": 7,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 79
+          },
+          {
+            "index": 8,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 63
+          },
+          {
+            "index": 9,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 62
+          },
+          {
+            "index": 10,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 63
+          },
+          {
+            "index": 11,
+            "repetition": 1,
+            "type": "click",
+            "ok": false,
+            "durationMs": 5011,
+            "error": "action_failed",
+            "failureKind": "locator_timeout"
+          }
+        ]
+      },
+      "cleanupFailures": [],
+      "diagnostic": {
+        "index": 11,
+        "type": "click",
+        "error": "action_failed",
+        "failureKind": "locator_timeout",
+        "name": "TimeoutError",
+        "fixtureCallLog": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add', exact: true })\u001b[22m\n",
+        "counterProbe": "timeout"
+      },
+      "browserLogs": "JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]\r\n\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n\nJavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]\r\n\n"
+    }
+  },
+  {
+    "test": "not ok 86 - preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect",
+    "receipt": {
+      "job": {
+        "jobId": "f59ebcea-9ced-4523-8ca5-d4f03f2a8db5",
+        "state": "CRASHED",
+        "revision": 21,
+        "stage": "complete",
+        "completed": 375,
+        "total": 1000,
+        "createdAt": "2026-10-22T01:47:39.558Z",
+        "updatedAt": "2026-10-22T01:47:56.828Z",
+        "deadlineAt": "2026-10-22T01:49:39.550Z",
+        "cancelRequested": false,
+        "reason": "recovered_interrupted",
+        "resultAvailable": false,
+        "completionCertainty": "confirmed_lower_bound",
+        "retrySafe": false,
+        "operatorAttentionRequired": true,
+        "progressPercent": 37
+      },
+      "ready": true,
+      "result": null,
+      "isError": false
+    }
+  },
+  {
+    "test": "not ok 93 - real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits",
+    "receipt": {
+      "route": "/429",
+      "reason": "timeout",
+      "completed": 1,
+      "failedStep": null,
+      "execution": {
+        "mode": "supervised",
+        "forced": false,
+        "cleanup": "terminated",
+        "tempCleanup": "removed",
+        "supervisorPid": 7944,
+        "workerPid": 1220,
+        "browserPids": [
+          4676
+        ]
+      },
+      "hits": 2,
+      "timing": {
+        "supervisorEventMs": 4,
+        "workerEventMs": 64,
+        "browserEventMs": 1243,
+        "requestsSeen": 2,
+        "responsesFinished": 2,
+        "firstRequestMs": 2785,
+        "lastResponseFinishedMs": 5973
+      }
+    }
+  },
+  {
+    "test": "not ok 84 - preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect",
+    "receipt": {
+      "job": {
+        "jobId": "e3d81d96-1bdd-4ce1-937e-33654a650f75",
+        "state": "TIMED_OUT",
+        "revision": 46,
+        "stage": "complete",
+        "completed": 1000,
+        "total": 1000,
+        "createdAt": "2026-10-22T01:42:07.583Z",
+        "updatedAt": "2026-10-22T01:44:06.951Z",
+        "deadlineAt": "2026-10-22T01:44:07.574Z",
+        "cancelRequested": false,
+        "reason": "timeout",
+        "resultAvailable": true,
+        "completionCertainty": "confirmed_lower_bound",
+        "retrySafe": false,
+        "operatorAttentionRequired": false,
+        "progressPercent": 100
+      },
+      "ready": true,
+      "result": {
+        "schemaVersion": 1,
+        "runId": "bc44f4f9-6c96-486c-b860-2cb18a883b89",
+        "browser": "chromium",
+        "total": 1000,
+        "ok": false,
+        "reason": "timeout",
+        "completed": 1000,
+        "recentSteps": [],
+        "failedStep": null,
+        "execution": {
+          "mode": "supervised",
+          "forced": false,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "supervisorPid": 13599,
+          "workerPid": 13601,
+          "browserPids": [
+            13605
+          ]
+        },
+        "completionCertainty": "confirmed_lower_bound",
+        "retrySafe": false,
+        "durationMs": 119107
+      },
+      "isError": false
+    }
+  },
+  {
+    "test": "not ok 88 - local stdio MCP: handshake, tool list, rejection, browser workflow",
+    "receipt": {
+      "ok": false,
+      "reason": "timeout",
+      "completed": 969,
+      "cleanup": "terminated",
+      "tempCleanup": "removed"
+    }
+  }
+]

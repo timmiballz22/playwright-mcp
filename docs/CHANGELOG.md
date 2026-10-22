@@ -1,5 +1,11 @@
 # Fork changes (unreleased)
 
+- Consume SDK acceptance-client stderr to prevent pipe backpressure; retain only
+  bounded fixed guardian/journal facts shared with the Codex verifier. Add fixed
+  CI failure classes/durations and conservative stock-browser close diagnostics.
+  This does not establish a causal fix for native journal/provider failures or
+  change production execution policy, deadlines or default transport.
+
 - Pin Playwright, playwright-core and @playwright/test together at stable 1.64.1;
   managed Chromium156, Firefox157 and WebKit27.2. Original entrypoint delegation
   remains intact. Six discovery contracts retain 25 default/72 extended tools.

@@ -1,0 +1,120 @@
+{
+  "phase": "validated follow-up after native72 e37c506",
+  "sourceSha256": {
+    "scripts/component-ci-reporter.mjs": "bcec4a8b71ee0b533424177357c1526957a964d2f2ff52be463811044a4e0b45",
+    "scripts/diagnose-raw-runner.mjs": "cd3211ea2b7afd7a4f550e3fad4d030ddec015a8095bc6654751eec4d021c4ae",
+    "scripts/verify-codex-jobs.mjs": "cda117d2743fa28b19053f7c1984736d47af8b4470fcfb7532a939dfe898d534",
+    "local-batch/jobs/guardian-diagnostic.mjs": "0d5447c44624880b82878da17704db95920e30bb1d1cf4fc83eeaf8af1d7586b",
+    "local-batch/jobs-mcp.test.mjs": "12d5048ab91a816232bf9ee236c4f158e8e1e9172a374a574e1a650d94dc6324",
+    "local-batch/jobs/contention.test.mjs": "67ad7e6d03d4eccdb13cdbe46537272718c347c6d3d9b819647b3c8979e82929",
+    "local-batch/jobs/retained-artifact-budget.test.mjs": "e3c9300f50592abb792ad8cb597ad0fcfc6b84085fdc2e948f89df8990439e59"
+  },
+  "finalExits": [
+    {
+      "name": "pure20",
+      "command": [
+        "/home/agent/.npm/_npx/ebaba8b9e55fd0a9/node_modules/node/bin/node",
+        "--test",
+        "--test-concurrency=1",
+        "local-batch/jobs/component-ci-reporter.test.mjs",
+        "local-batch/jobs/guardian-diagnostic.test.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "focused22",
+      "command": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "--test",
+        "--test-concurrency=1",
+        "local-batch/jobs/component-ci-reporter.test.mjs",
+        "local-batch/jobs/guardian-diagnostic.test.mjs",
+        "local-batch/jobs/contention.test.mjs",
+        "local-batch/jobs/retained-artifact-budget.test.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "focused24",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "local-batch/jobs/component-ci-reporter.test.mjs",
+        "local-batch/jobs/guardian-diagnostic.test.mjs",
+        "local-batch/jobs/contention.test.mjs",
+        "local-batch/jobs/retained-artifact-budget.test.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "production22",
+      "command": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "scripts/verify-package.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "clientExits": [
+    {
+      "name": "sdk",
+      "command": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "--test",
+        "--test-concurrency=1",
+        "local-batch/jobs-mcp.test.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "codex",
+      "command": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "scripts/verify-codex-jobs.mjs",
+        "/tmp/playwright-codex-tools/node_modules/@openai/codex/bin/codex.js"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "closeControlExits": [
+    {
+      "name": "close-negative",
+      "exitCode": 1,
+      "expected": 1
+    },
+    {
+      "name": "positive",
+      "exitCode": 0,
+      "expected": 0
+    }
+  ],
+  "sdk": "2/2 real local tests; bounded stderr now consumed",
+  "codex": "1000 actions/36.257s/model0/owned0",
+  "controlledStderr": "1MiB controlled write blocks unread, completes after consuming; actual SDK transport, no initialize handshake or browser actions; journal diagnostic line is deliberately injected, not a real journal failure",
+  "limitations": [
+    "No causal fix claimed for native72 Windows CRASHED375",
+    "Native73 diagnostic/error metadata is pending",
+    "No production execution policy/deadline/default transport change",
+    "Stock close timeout stays failed after actual-handle fallback cleanup",
+    "Stderr facts cover a bounded tail, up to16 distinct facts per category"
+  ]
+}

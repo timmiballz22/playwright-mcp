@@ -114,3 +114,14 @@ renderer for7s on its fourth click. It must fail, not become an acceptance pass.
 Native71's companion-based protocol control passed230 actions and did not
 reproduce the Windows stall. Stock headed native evidence is still pending;
 healthy controls cannot establish a fix, and their timing differs from acceptance.
+
+Native72 stock headed control fails during the second lifetime's server close
+after23/23 actions. Six owned processes remain before the parent's forced cleanup;
+final audit0. The original label `server_close_failed` does not distinguish a
+rejection from a timeout. The follow-up emits fixed timeout/error labels and uses
+only that actual BrowserServer handle for a bounded1s kill after the5s close
+failure. The failed run remains FAILED even when fallback cleanup succeeds.
+`PLAYWRIGHT_TEST_STOCK_CLOSE_STALL=1` is a source-only calibration: actual browser
+allocation and normal actions occur, then the close promise is deliberately held.
+Local Node22 reports server_timeout/23 completed, owned0 before parent force;
+healthy control230 passes. No production runner/default transport change.

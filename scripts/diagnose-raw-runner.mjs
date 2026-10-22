@@ -21,6 +21,7 @@ if (process.argv[2] === '--owned-child') {
   const stockEnabled = mode === 'stock' || mode === 'stock-headed';
   const headless = !['protocol-headed', 'stock-headed'].includes(mode);
   const controlledStall = (protocolEnabled || stockEnabled) && process.env.PLAYWRIGHT_TEST_PROTOCOL_STALL === '1';
+  const controlledCloseStall = stockEnabled && process.env.PLAYWRIGHT_TEST_STOCK_CLOSE_STALL === '1';
   const privateTempRoot = mode === 'private' || protocolEnabled || stockEnabled; const freshRuns = browser === 'chromium' ? 1 : 10; const clicks = browser === 'chromium' ? 997 : 20;
   const fixture = createServer((_request, response) => {
     response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -78,6 +79,8 @@ if (process.argv[2] === '--owned-child') {
     };
     try {
       server = await engine.launchServer({ headless, timeout: remaining() });
+      // Private cleanup negative control; the actual public kill handle remains.
+      if (controlledCloseStall) server.close = () => new Promise(() => {});
       const handle = server.process();
       assert.ok(Number.isSafeInteger(handle?.pid)); send({ type: 'browser', pid: handle.pid });
       connection = await engine.connect(server.wsEndpoint(), { timeout: remaining() });
@@ -99,8 +102,17 @@ if (process.argv[2] === '--owned-child') {
     } finally {
       for (const [name, resource] of [['context', context], ['browser', connection], ['server', server]]) {
         let timer;
-        try { await Promise.race([resource?.close(), new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('close_timeout')), 5000); })]); }
-        catch { cleanupFailures.push(name + '_close_failed'); }
+        const closeTimeout = new Error('stock_close_timeout');
+        try { await Promise.race([resource?.close(), new Promise((_, reject) => { timer = setTimeout(() => reject(closeTimeout), 5000); })]); }
+        catch (error) {
+          cleanupFailures.push(name + (error === closeTimeout ? '_timeout' : '_error'));
+          if (name === 'server' && resource) {
+            let killTimer; const killTimeout = new Error('stock_kill_timeout');
+            try { await Promise.race([resource.kill(), new Promise((_, reject) => { killTimer = setTimeout(() => reject(killTimeout), 1000); })]); }
+            catch (error) { cleanupFailures.push(error === killTimeout ? 'server_kill_timeout' : 'server_kill_error'); }
+            finally { clearTimeout(killTimer); }
+          }
+        }
         finally { clearTimeout(timer); }
       }
     }
@@ -145,7 +157,7 @@ if (process.argv[2] === '--owned-child') {
   const protocolConfirmed = !protocolEnabled || !projectionFailed && protocolReceipt?.afterCleanup.sent > 0 && protocolReceipt?.afterCleanup.responses > 0;
   // Keep the owned controller alive until its final identity snapshot is taken.
   const finish = once(process, 'message');
-  send({ type: 'receipt', value: { logging: protocolEnabled, headless, privateTempRoot, browser, executionAPI: stockEnabled ? 'stock_playwright' : 'companion_runWorkflow', controlledStall, transport: mode === 'direct-pipe' ? 'direct_pipe' : 'browser_server', requiredFreshRuns: freshRuns, successfulRuns, confirmedActions, ok: successfulRuns === freshRuns && handlesConfirmed && protocolConfirmed, ...(handleReceipt ? { handleReceipt } : {}), ...(protocolEnabled ? { protocol: protocolReceipt } : {}), last } });
+  send({ type: 'receipt', value: { logging: protocolEnabled, headless, privateTempRoot, browser, executionAPI: stockEnabled ? 'stock_playwright' : 'companion_runWorkflow', controlledStall, controlledCloseStall, transport: mode === 'direct-pipe' ? 'direct_pipe' : 'browser_server', requiredFreshRuns: freshRuns, successfulRuns, confirmedActions, ok: successfulRuns === freshRuns && handlesConfirmed && protocolConfirmed, ...(handleReceipt ? { handleReceipt } : {}), ...(protocolEnabled ? { protocol: protocolReceipt } : {}), last } });
   await finish;
   fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
   process.disconnect();
