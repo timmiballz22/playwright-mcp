@@ -1,0 +1,21 @@
+
+Running 2 tests using 1 worker
+
+(node:1066584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"highlight_region","project":"chromium","phase":"plain","observations":1,"redPixels":0}
+{"fixture":"highlight_region","project":"chromium","phase":"highlighted","observations":1,"redPixels":512}
+{"fixture":"highlight_region","project":"chromium","phase":"restored","observations":1,"redPixels":0}
+{"fixture":"highlight_region","project":"chromium","phase":"highlighted-again","observations":1,"redPixels":512}
+{"fixture":"highlight_region","project":"chromium","phase":"restored-all","observations":1,"redPixels":0}
+  ✓  1 [chromium] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (1.6s)
+(node:1066727) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"highlight_region","project":"firefox","phase":"plain","observations":1,"redPixels":0}
+{"fixture":"highlight_region","project":"firefox","phase":"highlighted","observations":1,"redPixels":512}
+{"fixture":"highlight_region","project":"firefox","phase":"restored","observations":1,"redPixels":0}
+{"fixture":"highlight_region","project":"firefox","phase":"highlighted-again","observations":1,"redPixels":512}
+{"fixture":"highlight_region","project":"firefox","phase":"restored-all","observations":1,"redPixels":0}
+  ✓  2 [firefox] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (3.0s)
+
+  2 passed (6.7s)

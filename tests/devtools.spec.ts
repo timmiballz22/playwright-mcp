@@ -10,9 +10,14 @@ test('original highlight paints a controlled region and both hide methods clear 
     const result = await client.callTool({ name, arguments: args });
     expect(result.isError, JSON.stringify(result)).not.toBe(true);
   };
-  const capture = async (name: string) => {
-    const filename = testInfo.outputPath(name + '.png');
-    await call('browser_take_screenshot', { filename, scale: 'css' });
+  const project = ['chrome', 'chromium', 'firefox', 'webkit'].includes(testInfo.project.name) ? testInfo.project.name : 'other';
+  const capture = async (phase: string, attempt: number) => {
+    const filename = testInfo.outputPath(`${phase}-${attempt}.png`);
+    try { await call('browser_take_screenshot', { filename, scale: 'css' }); }
+    catch (error) {
+      console.error(JSON.stringify({ fixture: 'highlight_capture_failure', project, phase, attempt, stage: 'screenshot_tool' }));
+      throw error;
+    }
     const bytes = await fs.readFile(filename); expect(bytes.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a');
     const image = PNG.sync.read(bytes); expect(image.width).toBeGreaterThan(148); expect(image.height).toBeGreaterThan(20);
     // Outside the button text: PNG compression/font rasterization are not the
@@ -33,8 +38,8 @@ test('original highlight paints a controlled region and both hide methods clear 
       // Windows Firefox spent 6.2s in that prerequisite alone; the same 5s
       // observation bound and pixel conditions still govern this loop.
       // Failed screenshot calls throw immediately; only valid frames are observed.
-      const sample = await capture(`${phase}-${attempt}`);
-      if (ready(sample) && performance.now() <= end) { console.log(JSON.stringify({ fixture: 'highlight_region', phase, observations: attempt, redPixels: sample.redPixels })); return sample; }
+      const sample = await capture(phase, attempt);
+      if (ready(sample) && performance.now() <= end) { console.log(JSON.stringify({ fixture: 'highlight_region', project, phase, observations: attempt, redPixels: sample.redPixels })); return sample; }
       if (performance.now() >= end || attempt >= 20) throw new Error(`Owned highlight ${phase} did not settle: redPixels=${sample.redPixels}`);
     }
   };
