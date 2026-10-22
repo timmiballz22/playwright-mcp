@@ -1,5 +1,13 @@
 # Execution ledger
 
+Read-only pinned upstream review now establishes a platform support limitation:
+Playwright v1.64.1 capabilities tests exclude WebKit/Windows WebM as unsupported
+and mark audio playback as a known issue, with a hosted Windows Server Media
+Pack note for video. Exact source/blob: native86-upstream-webkit-media-proof.json.
+Our strict failures remain visible; this is not the exact WAV-load cause, a
+blanket codec claim, skip/xfail, assertion waiver or native success promotion.
+Mac WebKit pixel fidelity remains separate.
+
 Native86 is running atfd1939c: [batch39773672301](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672301)
 and [original39773672308](https://github.com/timmiballz22/playwright-mcp/actions/runs/39773672308).
 Pending outcomes are not passes; hold further pushes during the pair.

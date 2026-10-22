@@ -50,3 +50,14 @@ A caller-supplied BrowserContext or remote Playwright server keeps the host's
 encoder implementation. The fork does not modify that host's dependencies. Basic
 contextGetter interoperability is tested with a separate unmodified host module;
 this patch's fidelity claims concern encoding owned by the prepared runtime.
+
+Pinned upstream playback tests explicitly exclude WebKit/Windows WebM as
+“not supported” and mark Windows WebKit audio playback as a known issue (and
+“audio does not play at all” in the autoplay test). Its general video test also
+notes a Windows Server Media Pack problem on hosted runners. Source:
+[capabilities.spec.ts at v1.64.1](https://github.com/microsoft/playwright/blob/v1.64.1/tests/library/capabilities.spec.ts#L69).
+This explains the upstream support scope, not the exact mechanism of our WAV
+ready0/network2/error0 sample or every Windows host/codec. This fork retains its
+strict playback failures; no skip, xfail or assertion/deadline change follows.
+Mac WebKit decoded-color fidelity remains a separate failure under investigation.
+Exact source blob and scope: evidence/native86-upstream-webkit-media-proof.json.
