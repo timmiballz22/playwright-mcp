@@ -12,7 +12,7 @@ import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { resolveJobConfig } from './jobs/config.mjs';
 import { JobJournal, supportsJournal } from './jobs/journal.mjs';
-import { guardianStderrFacts } from './jobs/guardian-diagnostic.mjs';
+import { guardianDiagnostic, guardianStderrFacts } from './jobs/guardian-diagnostic.mjs';
 import { ownedScopeDescendants } from './fixtures/process-audit.mjs';
 const entry = fileURLToPath(new URL('./jobs-mcp.mjs', import.meta.url));
 if (supportsJournal) test('preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect', { timeout: 180000 }, async t => {
@@ -229,6 +229,9 @@ if (supportsJournal) test('preview stdio jobs: bounded result wait calls preserv
     assert.ok(afterFailure.every(result => result.ready && !result.isError), 'Failed lookups release their wait slots');
     assert.equal((await call('list_workflows', {})).jobs.length, 1);
     verified = true;
+  } catch (error) {
+    t.diagnostic(JSON.stringify({ phase: 'jobs_wait_cap', ...guardianDiagnostic(error, 'unknown', error?.command) }));
+    throw error;
   } finally {
     clearTimeout(cancelTimer); await client?.close(); await journal?.close();
     if (verified) await rm(root, { recursive: true, force: true });

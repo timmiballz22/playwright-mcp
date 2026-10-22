@@ -11,11 +11,13 @@ import path from 'node:path';
 import os from 'node:os';
 import { resolveJobConfig } from './jobs/config.mjs';
 import { supportsJournal } from './jobs/journal.mjs';
+import { guardianStderrFacts } from './jobs/guardian-diagnostic.mjs';
 import { ownedDescendants } from './fixtures/process-audit.mjs';
 
-if (supportsJournal) test('two public owners queue screenshots and cleanup cannot delete the other owner artifact', { timeout: 90000 }, async () => {
+if (supportsJournal) test('two public owners queue screenshots and cleanup cannot delete the other owner artifact', { timeout: 90000 }, async t => {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'jobs-screenshot-owners-'));
   const clients = []; const roots = []; let observed = []; let verified = false;
+  const stderrTails = [];
   const fixture = createServer((request, response) => {
     const alpha = request.url === '/alpha';
     response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -30,7 +32,12 @@ if (supportsJournal) test('two public owners queue screenshots and cleanup canno
     const transport = new StdioClientTransport({ command: process.execPath, args: [fileURLToPath(new URL('./jobs-mcp.mjs', import.meta.url))], stderr: 'pipe', env });
     const start = transport.start.bind(transport);
     transport.start = async () => { await start(); roots.push(transport.pid); observed.push(...await ownedDescendants([transport.pid], { rememberLiveRoots: true })); };
-    transport.stderr.resume(); await client.connect(transport);
+    const stderr = { text: '', truncated: false }; stderrTails.push(stderr);
+    transport.stderr.on('data', chunk => {
+      const text = stderr.text + chunk.toString(); stderr.truncated ||= text.length > 4096;
+      stderr.text = text.slice(-4096);
+    });
+    await client.connect(transport);
     return { client, config };
   }
   async function call(owner, name, args) {
@@ -74,6 +81,9 @@ if (supportsJournal) test('two public owners queue screenshots and cleanup canno
     assert.deepEqual((await call(beta, 'list_workflows', {})).jobs.map(job => job.jobId), [b.jobId]);
     assert.equal((await call(beta, 'cleanup_workflows', { jobIds: [b.jobId], dryRun: false })).results[0].removed, true);
     verified = true;
+  } catch (error) {
+    t.diagnostic(JSON.stringify({ phase: 'jobs_screenshot_owners', clients: stderrTails.map(tail => ({ ...guardianStderrFacts(tail.text), inputTruncated: tail.truncated })) }));
+    throw error;
   } finally {
     observed.push(...await ownedDescendants(roots));
     await Promise.allSettled(clients.map(client => client.close()));

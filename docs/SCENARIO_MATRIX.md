@@ -1,15 +1,26 @@
 # Mandatory scenario evidence
 
+Latest completed native77 at1329418:1,906 reported passes/7 failures, plus Mac
+actual-Codex timeout968 and one failed inherited-temp Firefox diagnostic control.
+All5 ownership-unit contracts,15 all-action and15 extended cancellation cases,
+five175-file installs and five supervised20-run screenshot fixtures pass.
+Mac SDK981 timeout, Windows raw screenshot cleanup/journal RPC/connection failures
+and3 original Firefox failures remain. Diagnostic-only follow-up passes locally;
+no cause/fix claim. See execution ledger for exact phases and cleanup uncertainty.
+
+Previous native76 checkpoint:
+
 Latest completed native76 at9591621:1,904 reported passes/12 failures plus2
 failed Windows diagnostic controls. Five failures are one ownership unit's
-outdated no-options expectation; local f426d7e retains strict keys and all
+outdated no-options expectation; f426d7e retains strict keys and all
 ownership/close checks while validating signal lifecycle (6/6 each Node20/22/24).
 All3 actual Codex1k clients pass with model0/owned0. Native all-action and cancel
 cases15/15 each, empty-snapshot5/5, Windows parity, five175-file installs and five
 20-run integrity fixtures pass. Mac raw/SDK/synchronous lifecycle, Windows Firefox
 startup/retry and legacy input failures remain. The independent100-run Linux
 resource probe passes finite thresholds with partial browser FD coverage.
-See the execution ledger for exact phases; next full native validation is pending.
+See the execution ledger for exact phases. Native77 is running at1329418:
+batch39729771216 and original39729771276; pending results are not PASS.
 
 Previous native75 checkpoint:
 

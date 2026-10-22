@@ -72,13 +72,13 @@ test('original iframe snapshot targets stay scoped to the embedded document', as
   server.setContent('/frame', '<!doctype html><button onclick="this.textContent=\'Saved in frame\'">Frame save</button>', 'text/html');
   const { client } = await startClient({ args: ['--isolated'] });
   const navigate = await client.callTool({ name: 'browser_navigate', arguments: { url: server.PREFIX } });
-  expect(navigate.isError).not.toBe(true);
+  expect(navigate.isError, JSON.stringify(navigate)).not.toBe(true);
   const snapshot = await client.callTool({ name: 'browser_snapshot', arguments: {} });
   const content = (snapshot as any).content.filter((item: any) => item.type === 'text').map((item: any) => item.text).join('\n');
   const frameTarget = content.match(/button "Frame save" \[ref=([^\]]+)\]/);
   expect(frameTarget, content).toBeTruthy();
   const click = await client.callTool({ name: 'browser_click', arguments: { target: frameTarget![1] } });
-  expect(click.isError).not.toBe(true);
+  expect(click.isError, JSON.stringify(click)).not.toBe(true);
   const after = await client.callTool({ name: 'browser_snapshot', arguments: {} });
   expect(JSON.stringify(after)).toContain('Saved in frame');
   expect(JSON.stringify(after)).toContain('Outer');

@@ -2,6 +2,78 @@
 
 ## Resume checkpoint — 2026-10-22
 
+Latest completed native77 at `1329418caf04aab783bdd56606cb7279a6df1856`:
+batch39729771216 reports1,448 passes/4 failures; original39729771276 reports
+458/3. Combined **1,906 reported test passes/7 failures**, plus separate Mac
+actual-Codex TIMED_OUT968 and one failed Windows inherited-temp JSON control.
+Both workflows fail. All17 non-soak jobs conclude; optional soak skips. Reported
+test skips/cancels0. No release gate is promoted.
+
+The strict ownership-unit contract passes all5 lanes; the5 repeated native76
+unit mismatches no longer fail. All3 Linux batch lanes pass199/203/203; Mac202/1,
+Windows192/3. Components112 Linux/Mac and113 Windows all pass. Five175-file
+production installs, all15 all-action fixtures and15 extended cancellation cases
+(60 individual scenarios) pass. Existing supervised20-run screenshot/factory
+fixtures pass5/5. Local Linux resource100/600 evidence remains at runtime9591621;
+no new resource run or cross-OS resource claim.
+
+Remaining failures:
+- Mac SDK durable-ID/duplicate/isolation/cancel/reconnect case reaches981/1,000,
+  TIMED_OUT at118.933s, forced:false, attention:false, cleanup terminated/temp
+  removed. Later scenarios within this failed case are unexecuted. Mac raw and
+  synchronous1k cases pass in this sample; this does not explain older failures.
+- Windows raw concurrent screenshot fixture completes its screenshot but returns
+  cleanup_failed, server_timeout plus server_kill_timeout at6.845s. It fails in
+  its first pair; later pairs are unexecuted. This raw result does not establish
+  final process-exit identity or prove the separate supervised integrity failed.
+- Windows wait-cap case fails journal_unavailable at2.844s; stack confirms the
+  journal RPC watchdog (journal.mjs:86). The exact command, exit confirmation and
+  underlying scheduling/storage cause are absent from this native receipt.
+- Windows two-owner screenshot case fails MCP Connection closed at4.518s. No
+  successful screenshot/isolation proof for that case; endpoint cause unknown.
+- Original Windows Firefox drag and prompt click return5s action timeouts. Iframe
+  click returns isError:true but its old assertion omits response details, so its
+  cause is unestablished. Main149/3; legacy Windows follow-up unexecuted. Linux
+  and Mac normal suites152 each, Docker2 and Mac modal3 pass. No failed input
+  replay, force click or deadline increase is authorized by these failures.
+
+Actual Codex Linux36.401s and Windows37.818s complete1k, model0/owned0. Mac actual
+client reaches968 (interrupted click969), TIMED_OUT, forced:false, attention:false,
+known terminated/removed cleanup; no guardian/journal fault or exit facts in its
+receipt. A healthy later transport comparison does not explain the failure:
+Mac client pipe/server1k112.851/119.204s and batch server/pipe116.891/104.920s pass.
+
+Separate Windows inherited-temp control passes5 fresh runs then stops sixth at
+10/23, pointer click timeout,8.516s,125 cumulative actions, cleanupFailures[],
+owned residual before parent force0/final0. It remains FAILED. Private, protocol-
+headed and stock-headed each10/10=230 pass; they do not fix historical failures.
+No default browser/channel/transport changes.
+
+One pair4 legacy candidate is retained with all rows/root rows and8 lifetime
+ledgers: queried PID2476 birth06:01:39.3130970Z differs from actual recorded owned
+2476 birth06:01:31.1728380Z. This is concrete PID-incarnation evidence, not role,
+name, age or window filtering. Earlier candidates without birth ledgers remain
+unclassified. No PID table/hint grants signal authority, lease release or debt
+clearance. Scoped audits remain unchanged.
+
+All12 batch and5 original standard job log reads now complete. Four batch reads
+needed ordinary retry after timeout/503; lint log needed retry after invalid ZIP.
+Original read/retry receipts are retained. No artifact download/auth/TLS workaround.
+Evidence: worker-ci-seventyseventh-*, native77-*.
+
+Local follow-up only: iframe navigation/click assertion messages now include the
+owned-fixture tool response; conditions/calls/timing unchanged. Existing iframe
+case2/2 Chromium/Firefox passes Linux. Wait-cap failure now emits existing fixed
+journal diagnostic fields; two-owner failures emit only existing fixed parser
+facts from two bounded4096-character stderr tails. Original errors are rethrown.
+Both existing cases2/2 pass each Node22/24; fresh175-file production install,
+fixed-diagnostic tests, lint and diff checks exit0. These are observability changes, not
+native fixes. **Not release-ready. NEXT ACTION: retain complete native77 evidence,
+verify diagnostic-only follow-up natively, and investigate exact startup/cleanup
+facts without raising budgets, replaying effects or clearing uncertainty.**
+
+### Archived native76 checkpoint
+
 Latest completed native76 at `9591621349e34149944a27caf39e61d9dd9d52c8`:
 batch39724825959 reports1,442 passes/10 failures; original CI39724826271 reports
 462/2. Total: **1,904 reported test passes/12 failures**, plus two failed Windows
@@ -73,9 +145,12 @@ no defaults changed and no isolated protocol-overhead claim is made.
 All12 batch and5 original standard per-job log reads complete (lint required a
 normal read retry after timeout). No artifact download or auth/OS/TLS workaround.
 Evidence: worker-ci-seventysixth-*, native76-*. Local f426d7e test-only correction
-is ready; production code remains9591621. **Not release-ready. NEXT ACTION:
-commit/push the complete evidence and strict test-contract correction, inspect
-native77 in full, and continue classifying actual provider/deadline failures.
+is included in pushed head1329418; production code remains9591621. **Not release-ready. Native77 is running at
+1329418caf04aab783bdd56606cb7279a6df1856: batch39729771216 and original39729771276.
+Neither run is a PASS. All three Linux batch lanes and four journal lanes succeed;
+Mac actual-Codex fails (details pending completed-workflow logs). Hold further
+pushes while both run; inspect native77 in full
+and continue classifying actual provider/deadline failures.
 No budget raises, force clicks, failed-input replay or historical debt clearance.**
 
 ## Historical checkpoints
@@ -729,25 +804,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native76 reports1,904/12 plus2 failed JSON controls; both workflows fail | Complete full native test-contract correction at one source SHA |
+| G00 BASELINE | IN PROGRESS | native77 reports1,906/7 plus Mac actual timeout968 and failed inherited JSON control; both workflows fail | Native diagnostic-only follow-up; retain all failed evidence |
 | G01 INSTALL | VERIFIED PASS | native76 five175-file production installs and original host installs at9591621 | Keep supported modes and TLS verification |
-| G02 MCP | FAILED | native76 all3 actual1k clients pass; Mac SDK974 and synchronous984 timeout; older CRASHED375/debt unexplained | Retain strict counters, uncertainty and fences |
-| G03 FEATURE PARITY | FAILED | native76 normal152 per OS, Docker2/modal3 pass; legacyWindows1/2 fails;12 profile and12 route negatives pass | Remaining provider/operator/parameter contracts; no historical cause claim |
-| G04 BATCH | FAILED | native76 all-action15/15 pass;5 repeated unit options mismatches and Mac raw972/SDK974/MCP984 deadlines | Strict test-contract fix6/6 each LTS locally; whole native verification |
-| G05 RETRIES | FAILED | native76 Win429 two GETs/finished responses and nav ACK but lifecycle timeout; all15 explicit cancellation cases pass | No input/POST replay or deadline raises |
-| G06 JOBS | FAILED | native76 components112/113 and actual clients pass; Mac SDK974 timeout, older debt fenced | Preserve journal/ownership/permission uncertainty |
+| G02 MCP | FAILED | native77 Linux/Win actual1k pass; Mac actual968 and SDK981 timeout; Win two-owner connection closed | Preserve startup/cleanup uncertainty and older debt |
+| G03 FEATURE PARITY | FAILED | native77 Linux/Mac152 each; Windows149/3 Firefox drag/prompt/iframe failures; legacy unexecuted | Native error detail before causal fixes or input replay |
+| G04 BATCH | FAILED | native77 all-action15/15 and all5 strict ownership contracts pass; Mac SDK981 and Win3 failures | Diagnose raw close/journal/connection failures without budget raises |
+| G05 RETRIES | FAILED | native77 all15 cancellation cases pass; older Win429 lifecycle failures remain unexplained | No input/POST replay or deadline raises |
+| G06 JOBS | FAILED | native77 components112/113 pass; Mac SDK981/actual968 and Win RPC/connection failures | Fixed-field failure diagnostics; historical debt retained |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
-| G08 STORAGE | FAILED | native76 five20-run scopes pass;140-candidate ancestry maps to recorded incompatible factory-parent birth; old133/six remain unclassified | No retrospective classification, role filtering or debt clearance |
+| G08 STORAGE | FAILED | native77 supervised5×20 pass; one legacy PID has recorded different incarnation; raw screenshot close fails | Retain old133/six unclassified observations; no PID-based debt clearance |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native76 all-action/cancel3-engine proof passes; WinFF startup/retry/legacy input and Mac lifecycle failures persist | Strict next full matrix; no force/retry/transport workaround |
-| G11 CROSS-OS | FAILED | native76 Mac4/Windows5/Linux3 test failures:5 total are unit expectation; all actual clients pass | Fix test contract without masking seven remaining acceptance failures |
+| G10 CROSS-BROWSER | FAILED | native77 action/cancel3-engine proof passes; Windows original Firefox3 failures and separate inherited control fails | Exact native diagnostics without force/retry/transport workaround |
+| G11 CROSS-OS | FAILED | native77 allLinux lanes pass; Mac batch1/actual timeout and Windows batch3/original3 failures | Diagnose actual native phase facts; local diagnostics are not fixes |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-seventysixth-*, native76-* preserve17 final job logs, failures, birth reviews and local before/after | Next exact-head proof; no unexecuted-as-PASS |
-| G18 CLEAN MERGE | FAILED | Draft PR2; native76 workflows fail; f426d7e strict test-only fix local | Whole green accepted source and remaining critical gaps before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-seventyseventh-* and native77-* retain all17 final logs, counts, retries and birth review | Next exact-head diagnostics; no unexecuted-as-PASS |
+| G18 CLEAN MERGE | FAILED | Draft PR2; native77 workflows fail; diagnostic-only follow-up locally verified | Whole green accepted source and remaining critical gaps before merge/release |
 
 ## Defects and risk register
 

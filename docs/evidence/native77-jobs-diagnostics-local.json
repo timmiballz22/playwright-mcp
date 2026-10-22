@@ -1,0 +1,15 @@
+{
+  "phase": "local_after_native77",
+  "runtimeSource": "9591621349e34149944a27caf39e61d9dd9d52c8",
+  "scope": "Existing wait-cap and two-owner tests; Node22/24 Linux only",
+  "exits": {
+    "22": 0,
+    "24": 0
+  },
+  "changes": "Fixed guardianDiagnostic fields for wait-cap failure; bounded4096-character stderr tails parsed by existing guardianStderrFacts for two-owner failures. Original errors rethrown; limits and assertions unchanged.",
+  "files": {
+    "local-batch/jobs-mcp.test.mjs": "35da2767647f72c61353e4bd3976c83a05e5032c1596e5cfa1b50069726deb44",
+    "local-batch/jobs-screenshot-ownership.test.mjs": "bdc977b583870e5a81b244aef510f75ac6d30afead8fcc6cca39677824471f77"
+  },
+  "nativeFailureCauses": "Not established by local passing controls"
+}
