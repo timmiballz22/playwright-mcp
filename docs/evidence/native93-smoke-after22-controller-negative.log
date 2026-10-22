@@ -1,0 +1,11 @@
+{"component":"installed_controller_fixture_preserved","workspaceId":"production-controller-HIyVVX","verified":false,"primaryFailed":true,"closeFailed":false,"cleanupConfirmed":true}
+file:///tmp/native93-smoke-fixture-calibration.mjs:14
+      const status = c.status; c.status = async function(...args) { const row = await Reflect.apply(status, this, args); if (row.state === 'SUCCEEDED' && !injected) { injected = true; throw new Error('controlled_assertion_after_actual_reconnect_status'); } return row; };
+                                                                                                                                                                                              ^
+
+Error: controlled_assertion_after_actual_reconnect_status
+    at c.status (file:///tmp/native93-smoke-fixture-calibration.mjs:14:191)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file:///workspace/playwright-mcp/scripts/production-controller-smoke.mjs:62:19
+
+Node.js v22.23.3

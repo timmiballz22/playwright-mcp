@@ -15,7 +15,7 @@ const profile = path.join(root, 'profile'); await mkdir(profile, { mode: 0o700 }
 const fixture = createServer((_request, response) => { response.writeHead(200, { 'Content-Type': 'text/html' }); response.end('<title>Owned profile fixture</title><button>Ready</button>'); });
 fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
 const origin = `http://127.0.0.1:${fixture.address().port}`;
-const clients = []; const roots = []; let observed = []; let verified = false;
+const clients = []; const roots = []; let observed = []; let verified = false; let primaryFailure;
 const doctor = () => {
   const result = spawnSync(process.execPath, [path.join(target, 'cli.js'), 'profile-doctor', profile], { encoding: 'utf8', timeout: 5000 });
   assert.ifError(result.error); assert.equal(result.stderr, '');
@@ -53,18 +53,29 @@ try {
   observed.push(...await ownedDescendants(roots, { rememberLiveRoots: true }));
   await call(restored.client, 'browser_close');
   await assert.rejects(lstat(path.dirname(ownerPath)), { code: 'ENOENT' }); verified = true;
+} catch (error) {
+  primaryFailure = error; throw error;
 } finally {
   let clean = false;
+  const failures = [];
   try {
     observed.push(...await ownedDescendants(roots, { rememberLiveRoots: true }));
-    await Promise.allSettled(clients.map(client => client.close()));
+    const closed = await Promise.allSettled(clients.map(client => client.close()));
+    failures.push(...closed.filter(result => result.status === 'rejected').map(result => result.reason));
     const end = performance.now() + 10000;
     while ((await ownedDescendants([...roots, ...observed])).length && performance.now() < end) await new Promise(resolve => setTimeout(resolve, 50));
     assert.deepEqual(await ownedDescendants([...roots, ...observed]), []); clean = true;
+  } catch (error) {
+    failures.push(error);
   } finally {
-    await Promise.allSettled(clients.map(client => client.close()));
+    const closed = await Promise.allSettled(clients.map(client => client.close()));
+    failures.push(...closed.filter(result => result.status === 'rejected').map(result => result.reason));
     fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
-    if (clean && verified) await rm(root, { recursive: true, force: true });
+    if (clean && verified && !failures.length) await rm(root, { recursive: true, force: true });
+    else console.error(JSON.stringify({ component: 'installed_profile_fixture_preserved', workspaceId: path.basename(root),
+      verified, primaryFailed: !!primaryFailure, cleanupFailureCount: failures.length, ownedAuditConfirmed: clean }));
+    if (failures.length) throw new AggregateError(primaryFailure ? [primaryFailure, ...failures] : failures,
+      'Installed profile fixture cleanup failed', { cause: primaryFailure ?? failures[0] });
   }
 }
 console.log(JSON.stringify({ component: 'delegated_profile_guard', production: true, realBrowser: 'chromium', contentionDenied: true, readOnlyDoctor: true, persistentCookieRestored: true, leaseReleasedAfterClose: true, activeOwnedProcesses: 0 }));

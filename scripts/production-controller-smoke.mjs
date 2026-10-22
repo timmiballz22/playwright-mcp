@@ -14,7 +14,7 @@ if (!supportsJournal) {
   const { JobController } = await import(pathToFileURL(path.join(target, 'local-batch/jobs/controller.mjs')));
   const { ownedDescendants } = await import(pathToFileURL(path.join(target, 'local-batch/fixtures/process-audit.mjs')));
   const root = await mkdtemp(path.join(os.tmpdir(), 'production-controller-'));
-  let pages = 0; let controller; let safeToRemove = false;
+  let pages = 0; let controller; let safeToRemove = false; let verified = false; let primaryFailure;
   const roots = [];
   const server = createServer((request, response) => {
     if (request.url !== '/') { response.writeHead(204); response.end(); return; }
@@ -65,9 +65,20 @@ if (!supportsJournal) {
     assert.deepEqual(await ownedDescendants(roots), []); safeToRemove = true;
     console.log(JSON.stringify({ component: 'internal_job_controller', realBrowser: 'chromium', jobs: 2,
       completed: 10, duplicateExecuted: false, reconnectReplay: false, activeOwnedProcesses: 0, production: process.argv[2] !== undefined }));
+    verified = true;
+  } catch (error) {
+    primaryFailure = error; throw error;
   } finally {
-    if (controller) { try { safeToRemove = (await controller.close()).cleanupConfirmed; } catch {} }
+    let closeFailure;
+    if (controller) {
+      try { safeToRemove = (await controller.close()).cleanupConfirmed; }
+      catch (error) { safeToRemove = false; closeFailure = error; }
+    }
     server.closeAllConnections(); await new Promise(resolve => server.close(resolve));
-    if (safeToRemove && !(await ownedDescendants(roots)).length) await rm(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+    if (verified && safeToRemove && !(await ownedDescendants(roots)).length) await rm(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+    else console.error(JSON.stringify({ component: 'installed_controller_fixture_preserved', workspaceId: path.basename(root),
+      verified, primaryFailed: !!primaryFailure, closeFailed: !!closeFailure, cleanupConfirmed: safeToRemove }));
+    if (closeFailure) throw new AggregateError(primaryFailure ? [primaryFailure, closeFailure] : [closeFailure],
+      'Installed controller fixture close failed', { cause: primaryFailure ?? closeFailure });
   }
 }

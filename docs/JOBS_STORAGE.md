@@ -235,3 +235,17 @@ rpc_timeout/init/directory/exit-unconfirmed receipt, whose exact blocked operati
 and inner-directory post-state remain unknown. See native92 Windows package and
 journal-fixture preservation proofs. No retry, signal authority, lease clearing,
 SQLite setting or runtime deadline change.
+
+A further local audit after native93 starts finds the same acceptance/cleanup
+conflation in installed controller and parent-death smoke workspaces, plus ignored
+SDK-close rejections in the profile smoke. Each now requires completed acceptance
+and successful cleanup before removal; close failures retain the primary error.
+Three actual-script baseline calibrations reproduce deletion after failed acceptance
+and profile success after a controlled close error. Six fixed negative and six
+healthy cases across Node22/24 verify retention/removal, using real controller,
+SDK, journal and owned-browser paths. Fresh production install checks pass,
+including both parent-death variants. Limits/signals/ownership algorithms unchanged;
+native validation pending. See native93-smoke-fixture-preservation-proof.json and
+native94-package-proof.json. Preservation is on the executing host: database/key
+contents are not exported by these fixes, and an ephemeral CI runner is not a
+permanent archive. Metadata receipts and raw logs are separate retained evidence.

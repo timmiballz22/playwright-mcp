@@ -30,7 +30,7 @@ const readinessError = (code, exitCode = null, signal = 'none') => new Error(cod
   failures: ownerFailures,
 }));
 const lines = createInterface({ input: owner.stdout });
-let journal; let timer; let observed = []; let safeToRemove = false;
+let journal; let timer; let observed = []; let safeToRemove = false; let verified = false; let primaryFailure;
 try {
   const ready = await Promise.race([new Promise((resolve, reject) => lines.once('line', line => { try { resolve(JSON.parse(line)); } catch { reject(new Error('invalid_fixture_ready')); } })), new Promise((_, reject) => { timer = setTimeout(() => reject(readinessError('fixture_ready_timeout')), 15000); }), ownerExit.then(async ([code, signal]) => { if (owner.connected) await once(owner, 'disconnect'); throw readinessError('fixture_exited_before_ready', code, signal); })]);
   clearTimeout(timer);
@@ -58,10 +58,14 @@ try {
   await journal.call('cancel', { id: next.jobId }); await journal.call('activate', { id: next.jobId, nonce });
   assert.deepEqual(await journal.call('integrity'), { ok: true });
   console.log(JSON.stringify({ component: 'durable_guardian', controller: 'internal_job_controller', os: process.platform, realBrowser: 'chromium', controllerSignal: 'SIGKILL', observedOwnedProcesses: observed.length, terminalState: row.state, completed: row.completed, total: row.total, activeOwnedProcesses: 0, shutdownMs, ownedShutdownBeforeObserver: true, lingerJournalCloseFixture: process.argv[3] === '--linger-journal-close', projectLeaseReleased: true, integrity: true, modelTurns: 0 }));
+  verified = true;
+} catch (error) {
+  primaryFailure = error; throw error;
 } finally {
   clearTimeout(timer); lines.close(); owner.stdout.destroy();
   if (owner.exitCode === null && owner.signalCode === null) { owner.kill('SIGKILL'); await ownerExit; }
-  await journal?.close();
+  let closeFailure;
+  try { await journal?.close(); } catch (error) { closeFailure = error; }
   if (!safeToRemove && observed.length) {
     const cleanupEnd = performance.now() + 40000;
     while (performance.now() < cleanupEnd) {
@@ -70,7 +74,11 @@ try {
     }
   }
   // Keep the private diagnostic workspace if live ownership cannot be disproved.
-  if (safeToRemove) await rm(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+  if (verified && safeToRemove && !closeFailure) await rm(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+  else console.error(JSON.stringify({ component: 'installed_parent_death_fixture_preserved', workspaceId: path.basename(root),
+    verified, primaryFailed: !!primaryFailure, closeFailed: !!closeFailure, ownedAuditConfirmed: safeToRemove }));
+  if (closeFailure) throw new AggregateError(primaryFailure ? [primaryFailure, closeFailure] : [closeFailure],
+    'Installed parent-death fixture close failed', { cause: primaryFailure ?? closeFailure });
 }
 
 }

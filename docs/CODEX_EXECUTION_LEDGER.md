@@ -32,6 +32,21 @@ Linux Node24, model turns0/owned0, with foreign-owner denial, active cancellatio
 and terminal cleanup verified. Runtime is unchanged from74497b1; this does not
 clear native or historical failures. See native91-shared-mirror and prerequisite proof files.
 
+Local follow-up excluded from active native93 (47d9c21) audits the remaining
+installed smoke paths. Controller cleanup could replace failed acceptance with
+cleanup success; parent-death deletion could precede final metadata acceptance;
+profile SDK-close errors were ignored. All three now require acceptance and
+successful cleanup, retain failed workspaces and propagate close errors. Three
+actual baseline cases reproduce the defects; six negative/six healthy cases on
+Node22/24 verify the guards, and fresh production installation passes including
+both parent-death variants. No budget, signal, lease or ownership algorithm change.
+A combined profile primary/SDK-close failure retains both errors and the original
+cause, preserves its workspace and completes the existing owned audit.
+Database/key contents are not exported; on-host retention is not a permanent CI
+archive. Native verification pending; see native93-smoke-fixture and native94-package
+proofs. Production-smoke and jobs-smoke already propagate failed closes and retain
+failed acceptance; their guards remain intact.
+
 ## Latest completed checkpoint — native92 at6884c4a; acceptance incomplete
 
 [Batch39818353567](https://github.com/timmiballz22/playwright-mcp/actions/runs/39818353567)
