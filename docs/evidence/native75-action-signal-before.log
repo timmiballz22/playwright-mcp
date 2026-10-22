@@ -1,0 +1,29 @@
+TAP version 13
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":899980,"workerPid":899987,"browserPids":[899999]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":102}
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":900070,"workerPid":900077,"browserPids":[900089]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"commit-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":900159,"workerPid":900166,"browserPids":[900178]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+# Subtest: real chromium: cancellation preserves a committed POST once and identifies public fetch calls
+not ok 1 - real chromium: cancellation preserves a committed POST once and identifies public fetch calls
+  ---
+  duration_ms: 4591.060719
+  type: 'test'
+  location: '/workspace/playwright-mcp/local-batch/navigation-retry-browser.test.mjs:91:3'
+  failureType: 'testCodeFailure'
+  error: "ENOENT: no such file or directory, open '/tmp/cancel-fetch-witness-nftiNv/exec-2b8397ae-1e72-45d2-8ffe-31003d6c835a/action-abort-witness.json'"
+  code: 'ENOENT'
+  stack: |-
+    async open (node:internal/fs/promises:639:25)
+    async readFile (node:internal/fs/promises:1252:14)
+    async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/navigation-retry-browser.test.mjs:145:39)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4676.128546

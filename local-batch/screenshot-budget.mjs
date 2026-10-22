@@ -18,11 +18,11 @@ export class ScreenshotBudget {
   #limit; #used = 0;
   constructor(limit) { this.#limit = validateScreenshotLimit(limit); }
   get used() { return this.#used; }
-  async publish(page, target, { canPublish = () => true } = {}) {
+  async publish(page, target, { canPublish = () => true, signal } = {}) {
     try { await lstat(target); throw failure('ARTIFACT_COLLISION'); }
     catch (error) { if (error.code !== 'ENOENT') throw error; }
     // Passing no path prevents Playwright from writing before quota validation.
-    const bytes = await page.screenshot({ fullPage: false });
+    const bytes = await page.screenshot({ fullPage: false, ...(signal ? { signal } : {}) });
     if (!Buffer.isBuffer(bytes)) throw failure('INVALID_SCREENSHOT');
     if (!canPublish()) throw failure('ARTIFACT_CANCELLED');
     if (bytes.length > this.#limit - this.#used) throw failure('SCREENSHOT_BYTE_LIMIT');

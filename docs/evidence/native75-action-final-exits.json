@@ -1,0 +1,37 @@
+[
+  {
+    "name": "production22",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "scripts/verify-package.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "codex22",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "scripts/verify-codex-jobs.mjs",
+      "/tmp/playwright-codex-tools/node_modules/@openai/codex/bin/codex.js"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "lint",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "diff",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exitCode": 0
+  }
+]

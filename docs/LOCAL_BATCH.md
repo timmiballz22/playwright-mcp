@@ -150,7 +150,9 @@ up to three seconds on Windows and one second elsewhere (scaled for short runs).
 This can return timeout before the requested ceiling; completed actions or a late
 successful worker report do not erase cancellation. An abort observed before the
 execution promise resolves also prevents a successful result.
-The same stop controller aborts pending `route.fetch` calls and retry backoff.
+The same stop controller aborts pending `route.fetch` calls and retry backoff,
+and is passed to supported navigation, locator and screenshot APIs. Mouse wheel
+and synchronous/native/filesystem work still require independent supervision.
 A rejected or cancelled POST may already have committed its effect; it remains
 unsafe to replay automatically.
 Worker V8 heap limits do not cap browser RSS. Reports use atomic publication;

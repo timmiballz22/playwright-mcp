@@ -127,24 +127,24 @@ function httpNavigationFailure(response) {
   return Object.assign(new Error('HTTP navigation failed'), { safeCode, httpStatus: status, retryAfterMs });
 }
 
-async function perform(page, step, index, artifactsDir, screenshots, canPublish) {
+async function perform(page, step, index, artifactsDir, screenshots, canPublish, signal) {
   const locator = step.selector ? resolveLocator(page, step.selector) : undefined;
   switch (step.type) {
     case 'goto': {
-      const response = await page.goto(step.url, { waitUntil: 'domcontentloaded' });
+      const response = await page.goto(step.url, { waitUntil: 'domcontentloaded', signal });
       const failure = httpNavigationFailure(response);
       if (failure) throw failure;
       break;
     }
-    case 'click': await locator.click(); break;
-    case 'fill': await locator.fill(step.value); break;
-    case 'press': await locator.press(step.key); break;
-    case 'check': await locator.check(); break;
-    case 'uncheck': await locator.uncheck(); break;
-    case 'hover': await locator.hover(); break;
-    case 'waitFor': await locator.waitFor({ state: 'visible' }); break;
+    case 'click': await locator.click({ signal }); break;
+    case 'fill': await locator.fill(step.value, { signal }); break;
+    case 'press': await locator.press(step.key, { signal }); break;
+    case 'check': await locator.check({ signal }); break;
+    case 'uncheck': await locator.uncheck({ signal }); break;
+    case 'hover': await locator.hover({ signal }); break;
+    case 'waitFor': await locator.waitFor({ state: 'visible', signal }); break;
     case 'assertText': {
-      const text = await locator.textContent();
+      const text = await locator.textContent({ signal });
       if ('equals' in step ? text !== step.equals : !text?.includes(step.contains))
         throw new Error('Text assertion failed');
       break;
@@ -159,7 +159,7 @@ async function perform(page, step, index, artifactsDir, screenshots, canPublish)
     case 'screenshot': {
       await mkdir(artifactsDir, { recursive: true, mode: 0o700 });
       const target = path.join(artifactsDir, 'step-' + String(index).padStart(4, '0') + '.png');
-      await screenshots.publish(page, target, { canPublish });
+      await screenshots.publish(page, target, { canPublish, signal });
       return { artifact: target };
     }
     default: throw new Error('Unreachable action');
@@ -346,7 +346,7 @@ export async function runWorkflow(workflow, {
           const action = perform(page, step, index, artifactsDir, screenshots, () => {
             if (performance.now() - started >= spec.timeoutMs) stop('timeout');
             return !cancelled && !timedOut && !resourceExceeded && !closing;
-          });
+          }, retryAbort.signal);
           const metadata = await bounded(navigationFailure ? Promise.race([action, navigationFailure]) : action);
           currentNavigation = undefined;
           results.push({ index, repetition: repetition + 1, type: step.type,

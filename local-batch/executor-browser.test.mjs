@@ -1,4 +1,5 @@
 import { ownedDescendants } from './fixtures/process-audit.mjs';
+import { stepFailureDiagnostic } from '../scripts/step-failure-diagnostic.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
@@ -26,7 +27,10 @@ for (const browser of ['chromium', 'firefox', 'webkit']) {
         allowedOrigins: [origin], artifactsDir: dir,
         onEvent: event => { if (event.type === 'ownedProcess') owned.push(event.pid); },
       });
-      assert.ok(owned.length, 'No real browser ownership was reported; launch did not succeed');
+      assert.ok(owned.length, JSON.stringify({ failure: 'browser_launch_not_observed', reason: result.reason,
+        completed: result.completed, failedStep: stepFailureDiagnostic(result.failedStep), durationMs: result.durationMs,
+        executionMode: result.execution?.mode, forced: result.execution?.forced, cleanup: result.execution?.cleanup,
+        tempCleanup: result.execution?.tempCleanup, workerCleanupFailed: result.execution?.workerCleanupFailed }));
       assert.equal(result.ok, false);
       assert.equal(result.reason, 'timeout', JSON.stringify(result));
       assert.equal(result.execution.cleanup, 'terminated');

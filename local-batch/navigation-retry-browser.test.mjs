@@ -95,6 +95,7 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
     const fixture = createServer((request, response) => {
       const row = { method: request.method, path: request.url, fetchId: request.headers['x-pwmcp-private-fetch'] ?? null, at: performance.now() };
       records.push(row);
+      if (request.url === '/action-stalled') { response.setHeader('Content-Type', 'text/html'); response.end('<button>Known fixture button</button>'); return; }
       if (request.url === '/form' || request.url === '/form-stalled') { response.setHeader('Content-Type', 'text/html'); response.end('<form method="post" action="' + (request.url === '/form-stalled' ? '/commit-stalled' : '/commit') + '"><button>Commit</button></form>'); return; }
       if (request.url === '/commit' || request.url === '/commit-stalled' || request.url === '/cancel') {
         // /commit is a committed local ledger entry with no response: abort
@@ -109,15 +110,21 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
     const origin = `http://127.0.0.1:${fixture.address().port}`;
     const previousCloseStall = process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL;
     try {
-      for (const scenario of ['cancel', 'commit', 'commit-stalled']) {
-        if (scenario === 'commit-stalled') process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL = '1';
+      for (const scenario of ['cancel', 'commit', 'commit-stalled', 'action-stalled']) {
+        if (scenario.endsWith('-stalled')) process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL = '1';
         else delete process.env.PLAYWRIGHT_TEST_PRIVATE_FETCH_CLOSE_STALL;
-        const committed = scenario !== 'cancel';
+        const committed = scenario.startsWith('commit');
+        const actionStalled = scenario === 'action-stalled';
         active = { abort: new AbortController(), scheduled: false };
-        pending = executeWorkflow({ browser, timeoutMs: 10000, steps: [{ type: 'goto', url: origin + (committed ? scenario === 'commit-stalled' ? '/form-stalled' : '/form' : '/cancel') }, ...(committed ? [{ type: 'click', selector: 'button' }] : [])] }, {
+        pending = executeWorkflow({ browser, timeoutMs: 10000, steps: [{ type: 'goto', url: origin + (actionStalled ? '/action-stalled' : committed ? scenario === 'commit-stalled' ? '/form-stalled' : '/form' : '/cancel') }, ...(committed ? [{ type: 'click', selector: 'button' }] : actionStalled ? [{ type: 'click', selector: '#not-present' }] : [])] }, {
           artifactsDir: root, allowedOrigins: [origin], navigationRetry: policy, signal: active.abort.signal,
           workerModule: new URL('./jobs/fixtures/marked-fetch-worker.mjs', import.meta.url),
-          onEvent: event => { if (event.pid) owned.push(event.pid); },
+          onEvent: event => {
+            if (event.pid) owned.push(event.pid);
+            if (actionStalled && event.type === 'progress' && event.completed === 1 && !active.scheduled) {
+              active.scheduled = true; setTimeout(() => { active.at = performance.now(); active.abort.abort(); }, 100);
+            }
+          },
         });
         const result = await pending;
         const requests = records.filter(row => row.path === '/' + scenario);
@@ -128,11 +135,15 @@ for (const browser of (process.env.PLAYWRIGHT_BATCH_TEST_BROWSERS ?? 'chromium,f
         assert.equal(requests.length, 1, JSON.stringify(receipt));
         assert.match(requests[0].fetchId, /^[1-9]\d*$/);
         assert.equal(requests[0].method, committed ? 'POST' : 'GET');
-        assert.equal(result.retrySafe, false); assert.equal(result.completed, committed ? 1 : 0);
+        assert.equal(result.retrySafe, false); assert.equal(result.completed, scenario === 'cancel' ? 0 : 1);
         assert.equal(result.execution.cleanup, 'terminated'); assert.equal(result.execution.tempCleanup, 'removed');
         if (scenario === 'commit-stalled') {
           assert.deepEqual(JSON.parse(await readFile(path.join(root, 'exec-' + result.runId, 'fetch-abort-witness.json'), 'utf8')),
             { signalAborted: true, browserConnected: true, method: 'POST' });
+        }
+        if (actionStalled) {
+          assert.deepEqual(JSON.parse(await readFile(path.join(root, 'exec-' + result.runId, 'action-abort-witness.json'), 'utf8')),
+            { signalAborted: true, browserConnected: true, action: 'click' });
         }
         console.log(JSON.stringify({ component: 'private_fetch_cancel_witness', browser, ...receipt }));
       }

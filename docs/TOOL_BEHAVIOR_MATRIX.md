@@ -3,12 +3,13 @@
 Pinned stable1.64.1 extended Chromium discovery defines72 tools. This index maps
 source fixture touchpoints; a source call is not itself a PASS or a coverage
 percentage. Consult execution evidence for the exact commit, engine and OS.
-Latest completed native72 (e37c506) reports460 original passes/one failure:
-Linux/Mac152 each, Windows151/1 (Firefox media deadline), Docker2 and Mac modal3.
-Windows legacy cleanup is unexecuted. All12 new malformed-route/unknown-unroute
-cases pass. Prior Firefox stalls remain unexplained and parameter/
-negative coverage is incomplete. All72 versioned schemas remain checked by
-capabilities.spec.ts.
+Latest completed native75 (90e1c43) reports455 original passes/three failures:
+Linux152, Windows151/1 (Firefox popup click) and Mac150/2 (Chromium capture),
+Docker2. Conditional Mac modal and Windows legacy are unexecuted. All12 route
+negatives and12 extended profile reset/isolation instances pass. All72 schemas
+remain checked by capabilities.spec.ts. Parameter/negative/interactive acceptance
+is incomplete; healthy cases do not explain historical stalls. Post-matrix
+companion cancellation controls do not change the original tools' trust model.
 
 Interactive annotation/debugger-resume flows remain open. Other rows still need
 full negative/parameter/native review; export overwrite
@@ -23,10 +24,10 @@ Companion workflows expose no code/file/network-policy injection fields.
 | browser_get_config | [testing-capabilities.spec.ts](../tests/testing-capabilities.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_console_messages | [network-console.spec.ts](../tests/network-console.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_cookie_list | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_cookie_get | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_cookie_set | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_cookie_get | [storage.spec.ts](../tests/storage.spec.ts), [profile-parity.spec.ts](../tests/profile-parity.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_cookie_set | [storage.spec.ts](../tests/storage.spec.ts), [profile-parity.spec.ts](../tests/profile-parity.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_cookie_delete | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_cookie_clear | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_cookie_clear | [storage.spec.ts](../tests/storage.spec.ts), [profile-parity.spec.ts](../tests/profile-parity.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_resume | [devtools.spec.ts](../tests/devtools.spec.ts) | Malformed-location negative passes native2d8fe7f host suites; successful interactive lifecycle pending |
 | browser_highlight | [devtools.spec.ts](../tests/devtools.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_hide_highlight | [devtools.spec.ts](../tests/devtools.spec.ts) | Source coverage; native/variant evidence must be checked |
@@ -81,15 +82,15 @@ Companion workflows expose no code/file/network-policy injection fields.
 | browser_video_hide_actions | [advanced.spec.ts](../tests/advanced.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_wait_for | [input-parity.spec.ts](../tests/input-parity.spec.ts), [network-console.spec.ts](../tests/network-console.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_localstorage_list | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_localstorage_get | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_localstorage_set | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_localstorage_get | [storage.spec.ts](../tests/storage.spec.ts), [profile-parity.spec.ts](../tests/profile-parity.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_localstorage_set | [storage.spec.ts](../tests/storage.spec.ts), [profile-parity.spec.ts](../tests/profile-parity.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_localstorage_delete | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_localstorage_clear | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_localstorage_clear | [storage.spec.ts](../tests/storage.spec.ts), [profile-parity.spec.ts](../tests/profile-parity.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_sessionstorage_list | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_sessionstorage_get | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_sessionstorage_set | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_sessionstorage_get | [storage.spec.ts](../tests/storage.spec.ts), [profile-parity.spec.ts](../tests/profile-parity.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_sessionstorage_set | [storage.spec.ts](../tests/storage.spec.ts), [profile-parity.spec.ts](../tests/profile-parity.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_sessionstorage_delete | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_sessionstorage_clear | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_sessionstorage_clear | [storage.spec.ts](../tests/storage.spec.ts), [profile-parity.spec.ts](../tests/profile-parity.spec.ts) | Source coverage; native/variant evidence must be checked |
 
 
 Slider fixture: local Chromium/Firefox each verify value7 and its real input event,

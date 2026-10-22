@@ -1,0 +1,40 @@
+✖ an empty CIM snapshot fails the audit while a kernel PID row and singleton shape are retained (2.001616ms)
+✔ audit receipts describe reused IDs without hiding possible processes or exposing identities (0.996101ms)
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (0.356428ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (0.353742ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (0.564359ms)
+✔ live-root snapshots retain exited browser identities for the final orphan scan (0.250252ms)
+✔ CIM error phase keeps only exact fixed markers and never raw diagnostics (0.392571ms)
+✔ separate owned lifetimes retain old orphans when a new client reuses its PID (0.531706ms)
+✔ new client may reuse an earlier observed descendant without losing either orphan lineage (0.420318ms)
+✔ live controller anchors retain exited browser roots and reject changes within that lifetime (1.40837ms)
+✔ live anchor refresh preserves an old orphan before recording a new owned browser incarnation (1.233961ms)
+✔ historical PID links cannot rewrite a live controller identity before validation (0.201574ms)
+✔ legacy comparison preserves old candidates while scoped birth facts retain an owned orphan (1.103515ms)
+✔ comparison records a replacement parent row even when it is outside legacy candidates (0.19892ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 83.109051
+
+✖ failing tests:
+
+test at local-batch/windows-process-graph.test.mjs:10:1
+✖ an empty CIM snapshot fails the audit while a kernel PID row and singleton shape are retained (2.001616ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/windows-process-graph.test.mjs:13:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /process_audit_windows_cim_empty/,
+    operator: 'throws',
+    diff: 'simple'
+  }

@@ -1,6 +1,35 @@
 # Current acceptance coverage
 
-Latest native73 at ca638b0:1,882 reported passes/10 failed tests plus Mac actual
+Latest completed native75 at90e1c43:1,881 reported passes/9 failed tests, plus
+Mac actual-Codex TIMED_OUT944 and three failed diagnostic JSON controls. All17
+non-soak jobs conclude; optional soak skips, reported test skips/cancels0.
+Five175-file installs,25 response-disposal cases, five20-run factory fixtures,
+12 routing negatives and12 profile reset/isolation instances pass. Native fixed
+CIM parity and suspended-frame Firefox page reuse pass; other startup/input/
+HTTP/lifecycle/capture failures remain. Post-matrix shared API stop-signal and
+empty-snapshot guard controls pass locally; their full native matrix is pending.
+Local action checks report49 passes each Node20/22/24, with2 WebKit pattern skips
+on Node20 (unmatched cases omitted on22/24); WebKit is unexecuted locally.
+See the execution ledger for exact source phases, counts and unresolved gates.
+
+Previous native74 checkpoint:
+
+Native74 at e410516:1,882 reported passes/10 failed tests.
+All three actual Codex clients complete1,000 actions with model turns0/owned0.
+Five175-file installs,25 response-release regressions, five20-run factory fixtures,
+12 routing negatives and all12 extended profile reset/isolation instances pass.
+Windows components112/1 fail CIM serialization; remaining browser/provider,
+retry/popup and lifecycle failures are detailed in the execution ledger.
+Post-matrix local suspended-frame negative fails the old closure observer and
+passes timer polling with unchanged assertions/budgets. Fixed-field CIM output
+retains all rows/query/bounds/matching; native parity remains pending in the full
+Windows batch suite. Native75 at90e1c43 is active; component lanes now pass on
+all three OSs (including Linux Node24), but this does not establish full browser
+acceptance or the separately scheduled serializer parity result.
+
+Previous native73 checkpoint:
+
+Native73 at ca638b0:1,882 reported passes/10 failed tests plus Mac actual
 Codex timeout913. Five175-file installs, components112/113, all25 response-disposal
 cases, five20-run factory-lifetime integrity fixtures and12 routing negatives pass.
 Three other Windows legacy audits observe six unique unclassified PID candidates;

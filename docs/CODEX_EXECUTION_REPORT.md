@@ -1,5 +1,96 @@
 # Execution report — verified milestone, incomplete mission
 
+Latest completed native75 at `90e1c43c3b6b56a6d2b1210dfbd0a98910d75538`:
+batch39719486071 reports1,426 passes/6 failures; original CI39719486155 reports
+455/3. Total: **1,881 reported test passes/9 failures**, plus separate Mac actual
+Codex TIMED_OUT at944 actions and three failed diagnostic JSON controls. Both
+workflows fail. All17 non-soak jobs conclude; functional_soak is skipped, with
+zero reported test skips/cancels. Conditional Mac modal/Windows legacy suites
+are unexecuted because their normal original suites fail.
+
+Five175-file production installs, all25 response-disposal regressions, all five
+20-run screenshot/factory fixtures and12 routing negatives pass. All12 original
+profile reset/restart/sibling-isolation combinations pass. Components112 Linux/
+Mac and113 Windows pass. Native Windows fixed-field CIM serialization parity
+passes, as does the strict Firefox page-limit/reuse fixture with frames suspended
+(all five lanes). These targeted results do not resolve other popup/input failures.
+
+Actual Codex1k passes Linux35.242s/Windows38.741s, model0/owned0. Mac944 reports
+TIMED_OUT, forced:false, attention:false, cleanup terminated/temp removed, with
+no guardian/journal/exit failures in its bounded receipt. No hints clear old debt.
+Mac client pipe control1k passes87.136s; server reaches999 and times out on its
+screenshot at120.252s. Batch server/pipe controls1k pass118.021/101.911s. Healthy
+controls are not causal fixes and no default transport is changed.
+
+Six batch failures:
+- Mac raw Chromium reaches923/1,000 at120.188s, interrupted click924; synchronous
+  MCP reaches990 with known terminated/removed cleanup. SDK jobs passes this sample.
+- Windows FF supervised deadline fixture reports no real browser ownership before
+  failing its first assertion. Its old static message omits the result; launch
+  cause and subsequent cleanup assertions are not established by that failure.
+- Windows FF HTTP418 preserves http_4xx/status418 metadata but overall timeout,
+  forced:true and known cleanup; later routes in that case are unexecuted.
+- Windows raw FF headless fresh10 completes23/23 but server_timeout plus
+  server_kill_timeout (10.943s). Headed/direct-pipe acceptance pass this sample.
+- Windows FF429 sees two GETs/two finished responses, first2.780s/last3.803s,
+  browser event1.401s, but no navigation ACK before timeout; known cleanup.
+
+Original Linux152, Windows151/1, Mac150/2, Docker2. Mac Chromium advanced and
+highlight screenshots both return Page.captureScreenshot Unable to capture
+screenshot after fonts load; later assertions in each failed case are unexecuted.
+Windows original popup fails its initial browser_click at performing click action
+(5s timeout); its later tab interactions are unexecuted. No input replay is safe.
+Chrome-install fallback is unexercised. All12 profile instances and12 routing-negative cases still pass.
+
+Separate failed controls retain failed status:
+- Windows inherited-temp FF succeeds only1/10: second run8/23, locator click
+  timeout (9.983s), cumulative31 confirmed actions; owned0/residual0.
+- Windows stock headed FF succeeds2/10; third run23/23 but server_timeout
+  (12.051s), cumulative69 actions. The actual factory kill fallback resolves;
+  residual before parent force0/final0. This naturally exercises the fallback
+  without converting the failed close to PASS or clearing native72's six residuals.
+- Mac client server999/screenshot timeout, separately from actual944 above.
+Windows private/protocol-headed controls each10/10=230 pass with owned0.
+
+The20-lifetime Windows teardown retains legacy candidates2528/5876 and all rows:
+actual old factory2528 birth04:13:13.3810510Z, actual query incarnation
+04:13:26.4818740Z, child5876 birth04:13:26.4849590Z. Scoped audit is zero. This
+uses factual births, never role/name/age/window exclusion. Native73's six earlier
+unclassified candidates and all historical permission/journal uncertainty remain.
+
+Aggregate log reads timed out/returned503. All12 standard per-job log reads then
+exit0 after the workflow completed; their combined logs yield the full counts.
+No artifact download, auth change, TLS bypass or OS privilege change was used.
+
+Post-native75 local follow-up (not included in the matrix above):
+- Commit7b2966a connects the existing stop signal to public route.fetch. A real
+  committed-POST/held-close control fails before and passes after; effects remain
+  non-replayable. Actual Codex1k36.301s/model0/owned0 and production install pass.
+- Extend that signal to supported navigation/locator/screenshot APIs. A separate
+  held-close locator control fails before and passes after while public browser
+  isConnected remains true. Mouse wheel and synchronous/filesystem work still
+  require the independent supervisor; this is not effect rollback or a RAM cap.
+- Add an independent23-step fixture for all12 declarative types, exact empty/
+  nonempty fill, key/check/uncheck/hover/click/scroll effects, all six locator
+  forms, report/PNG and actual-factory audits. Preserve the original23-step
+  click fixture. Action regressions report49 passes each Node20/22/24; Node20
+  additionally reports two pattern skips for WebKit. Node22/24 omit unmatched
+  cases; WebKit is unexecuted on all local bindings due missing host libraries.
+  Actual Codex1k36.238s/model0/owned0 and175-file production smoke pass.
+  Final post-guard production install, diagnostic syntax, lint/diff also pass.
+- Reject an empty CIM snapshot instead of treating [] as no survivors. Regression
+  first fails, then graph/cleanup16/16 pass each Node20/22/24; PID0/null timestamp/
+  singleton rows remain intact. This is read-only evidence, not signal authority.
+- Add fixed result/cleanup fields to the existing no-browser-ownership assertion,
+  retaining its predicate/budgets and avoiding speculative startup classification.
+
+Evidence: worker-ci-seventyfifth-*, native75-*. **Not release-ready. NEXT ACTION:
+finish recording local final checks, commit/push the concrete cancellation and
+empty-snapshot follow-up, then inspect the complete native76 matrix. Do not raise
+budgets, force clicks, retry failed input or clear historical uncertainty.**
+
+### Archived native74 checkpoint
+
 Latest completed native74 at `e4105166cb09e3f7f693d1db95d6b3c3bca97d99`:
 batch39716046694 reports1,424 passes/7 failures; original CI39716046688 reports
 458/3. Total: **1,882 reported test passes/10 failures**. Both workflows fail.
@@ -72,8 +163,14 @@ Follow-up after native74:
   supervision already exists. This is not proof of the historical shutdown cause.
 
 Evidence: worker-ci-seventyfourth-*, native74-*, reference-tokens-*.
-**Not release-ready. NEXT ACTION: commit/push the concrete fixture/serializer
-follow-up and inspect the complete next native matrix. Do not raise budgets,
+Local commit7b2966a (not pushed while native75 runs) connects the existing stop
+signal to active public route.fetch calls. Actual held-close POST control fails
+before, passes after;35 focused +4 real-browser cases pass each Node20/22/24,
+page/cache3/3,175-file production install and actual Codex1k36.301s/model0/owned0
+pass. Native76 validation is pending; this is not part of native75.
+**Not release-ready. Native75 is running at90e1c43: batch39719486071 and
+CI39719486155. NEXT ACTION: inspect both complete matrices and the native fixed
+serializer parity/closure evidence. Hold pushes while active. Do not raise budgets,
 weaken assertions, discard candidates or clear historical uncertainty.**
 
 ### Archived native73 checkpoint

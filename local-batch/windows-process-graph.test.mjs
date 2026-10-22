@@ -3,10 +3,16 @@ import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
-import { windowsAuditSerialization } from './fixtures/process-audit.mjs';
+import { windowsAuditSerialization, windowsCimRows } from './fixtures/process-audit.mjs';
 import { windowsOwnedProcesses, windowsOwnedProcessScopes, windowsCimFailurePhase, windowsAuditReceipt } from './fixtures/windows-process-graph.mjs';
 const time = value => '2026-10-21T00:00:00.' + String(value).padStart(7, '0') + 'Z';
 const row = (pid, parent, started) => ({ pid, parent, started: started === null ? null : time(started) });
+test('an empty CIM snapshot fails the audit while a kernel PID row and singleton shape are retained', () => {
+  assert.deepEqual(windowsCimRows('{"ProcessId":0,"ParentProcessId":0,"Started":null}'), [{ pid: 0, parent: 0, started: null }]);
+  assert.deepEqual(windowsCimRows('[{"ProcessId":7,"ParentProcessId":0,"Started":null}]'), [{ pid: 7, parent: 0, started: null }]);
+  assert.throws(() => windowsCimRows('[]'), /process_audit_windows_cim_empty/);
+  assert.throws(() => windowsCimRows('')); assert.throws(() => windowsCimRows('null'));
+});
 // Only a native PowerShell execution verifies its serializer. Other hosts do
 // not register this case and must not report it as a pass.
 if (process.platform === 'win32') test('native fixed CIM serialization matches legacy scalar rows and rejects malformed timestamps', { timeout: 15000 }, async () => {

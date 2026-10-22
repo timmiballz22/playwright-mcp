@@ -1,0 +1,42 @@
+TAP version 13
+# Subtest: real chromium: supervised navigation respects throttling and never replays form POST or over-cap waits
+ok 1 - real chromium: supervised navigation respects throttling and never replays form POST or over-cap waits
+  ---
+  duration_ms: 7109.037625
+  type: 'test'
+  ...
+# Subtest: real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits
+ok 2 - real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits
+  ---
+  duration_ms: 16290.028838
+  type: 'test'
+  ...
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":913817,"workerPid":913824,"browserPids":[913836]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":101}
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":913908,"workerPid":913915,"browserPids":[913927]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"commit-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":913998,"workerPid":914005,"browserPids":[914017]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"action-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":914103,"workerPid":914110,"browserPids":[914122]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":124}
+# Subtest: real chromium: cancellation preserves a committed POST once and identifies public fetch calls
+ok 3 - real chromium: cancellation preserves a committed POST once and identifies public fetch calls
+  ---
+  duration_ms: 4560.017369
+  type: 'test'
+  ...
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":914201,"workerPid":914208,"browserPids":[914220]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":101}
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":914390,"workerPid":914397,"browserPids":[914409]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"commit-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":914595,"workerPid":914602,"browserPids":[914614]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"action-stalled","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":true,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":914804,"workerPid":914811,"browserPids":[914823]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":179}
+# Subtest: real firefox: cancellation preserves a committed POST once and identifies public fetch calls
+ok 4 - real firefox: cancellation preserves a committed POST once and identifies public fetch calls
+  ---
+  duration_ms: 9555.042651
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 37590.947747

@@ -1,0 +1,52 @@
+TAP version 13
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"supervised_chromium","lifetimes":1,"observed":0}
+# {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+# Subtest: supervised chromium: 20 real clicks, exact counter, PNG and atomic report
+ok 1 - supervised chromium: 20 real clicks, exact counter, PNG and atomic report
+  ---
+  duration_ms: 2346.641756
+  ...
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"declarative_chromium","lifetimes":1,"observed":0}
+# {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+# Subtest: supervised chromium: all declarative action types preserve exact owned DOM effects
+ok 2 - supervised chromium: all declarative action types preserve exact owned DOM effects
+  ---
+  duration_ms: 1871.178885
+  ...
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"supervised_firefox","lifetimes":1,"observed":0}
+# {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+# Subtest: supervised firefox: 20 real clicks, exact counter, PNG and atomic report
+ok 3 - supervised firefox: 20 real clicks, exact counter, PNG and atomic report
+  ---
+  duration_ms: 4312.752139
+  ...
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"declarative_firefox","lifetimes":1,"observed":0}
+# {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+# Subtest: supervised firefox: all declarative action types preserve exact owned DOM effects
+ok 4 - supervised firefox: all declarative action types preserve exact owned DOM effects
+  ---
+  duration_ms: 3666.644727
+  ...
+# Subtest: supervised webkit: 20 real clicks, exact counter, PNG and atomic report
+ok 5 - supervised webkit: 20 real clicks, exact counter, PNG and atomic report # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.162558
+  ...
+# Subtest: supervised webkit: all declarative action types preserve exact owned DOM effects
+ok 6 - supervised webkit: all declarative action types preserve exact owned DOM effects # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.072236
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 2
+# todo 0
+# duration_ms 12287.271104

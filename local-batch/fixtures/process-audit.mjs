@@ -5,6 +5,11 @@ import path from 'node:path';
 import { windowsOwnedProcesses, windowsOwnedProcessScopes, windowsCimFailurePhase, windowsAuditReceipt, windowsLegacyComparison } from './windows-process-graph.mjs';
 const identities = new Map();
 const exec = promisify(execFile);
+export function windowsCimRows(stdout) {
+  const parsed = JSON.parse(stdout);
+  if (Array.isArray(parsed) && parsed.length === 0) throw new Error('process_audit_windows_cim_empty');
+  return (Array.isArray(parsed) ? parsed : [parsed]).map(row => ({ pid: Number(row.ProcessId), parent: Number(row.ParentProcessId), started: row.Started }));
+}
 // Fixed CIM scalar fields only. Avoid PowerShell's general object-graph JSON
 // serializer in this read-only audit; native74 timed out in that exact phase.
 export const windowsAuditSerialization = String.raw`$builder = New-Object System.Text.StringBuilder
@@ -52,8 +57,7 @@ ${windowsAuditSerialization}
         ['ENOENT', 'EACCES'].includes(error.code) ? error.code.toLowerCase() : 'command_failed';
       throw new Error('process_audit_windows_cim_' + kind + '_phase_' + windowsCimFailurePhase(error.stderr));
     }
-    const parsed = JSON.parse(stdout);
-    rows = (Array.isArray(parsed) ? parsed : [parsed]).map(row => ({ pid: Number(row.ProcessId), parent: Number(row.ParentProcessId), started: row.Started }));
+    rows = windowsCimRows(stdout);
     const result = identityScopes ? windowsOwnedProcessScopes(identityScopes, rows, rememberLiveRoots) : windowsOwnedProcesses(roots, rows, identities, rememberLiveRoots);
     if (compareLegacyRoots) {
       const reviewRoots = identityScopes ? identityScopes.flatMap(scope => [...scope.roots]) : [...compareLegacyRoots];

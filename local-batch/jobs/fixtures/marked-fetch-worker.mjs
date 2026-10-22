@@ -27,6 +27,28 @@ process.once('message', async packet => {
     browser.newContext = async (...args) => {
       const context = await newContext(...args);
       if (heldClose) context.close = neverClose;
+      if (heldClose) {
+        const newPage = context.newPage.bind(context);
+        context.newPage = async (...args) => {
+          const page = await newPage(...args);
+          const locator = page.locator.bind(page);
+          page.locator = (...args) => {
+            const target = locator(...args);
+            const click = target.click.bind(target);
+            target.click = async options => {
+              try { return await click(options); }
+              catch (error) {
+                if (options?.signal?.aborted && browser.isConnected()) {
+                  await writeFile(path.join(packet.workspaceRoot, 'action-abort-witness.json'), JSON.stringify({ signalAborted: true, browserConnected: true, action: 'click' }), { flag: 'wx', mode: 0o600 });
+                }
+                throw error;
+              }
+            };
+            return target;
+          };
+          return page;
+        };
+      }
       const register = context.route.bind(context);
       context.route = (pattern, handler, ...options) => register(pattern, async route => {
         const fetch = route.fetch.bind(route);

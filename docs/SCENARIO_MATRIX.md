@@ -1,6 +1,32 @@
 # Mandatory scenario evidence
 
-Latest native73 at ca638b0:1,882 reported passes/10 failed tests plus Mac actual
+Latest completed native75 at90e1c43:1,881 reported passes/9 failed tests, plus
+Mac actual-Codex TIMED_OUT944 and three failed diagnostic JSON controls. All17
+non-soak jobs conclude; optional soak skips, reported test skips/cancels0.
+Five175-file installs,25 response-disposal cases, five20-run factory fixtures,
+12 routing negatives and12 profile reset/isolation instances pass. Native fixed
+CIM parity and suspended-frame Firefox page reuse pass; other startup/input/
+HTTP/lifecycle/capture failures remain. Post-matrix shared API stop-signal and
+empty-snapshot guard controls pass locally; their full native matrix is pending.
+Local action checks report49 passes each Node20/22/24, with2 WebKit pattern skips
+on Node20 (unmatched cases omitted on22/24); WebKit is unexecuted locally.
+See the execution ledger for exact source phases, counts and unresolved gates.
+
+Previous native74 checkpoint:
+
+Native74 at e410516:1,882 reported passes/10 failed tests.
+All three actual Codex clients complete1,000 actions (model0/owned0). Five175-file
+installs,25 response-release cases, five20-run factory scopes,12 route negatives
+and all12 profile reset/restart/sibling-isolation instances pass. Windows CIM
+serialization and Firefox input/retry/popup plus Mac capture/lifecycle failures
+remain; see the exact execution ledger. Native75 at90e1c43 is active. Its component
+lanes pass, but full browser acceptance and Windows serialization parity remain
+pending. Local suspended-frame closure regression passes without budget/assertion
+changes. This does not identify the native popup failure cause.
+
+Previous native73 checkpoint:
+
+Native73 at ca638b0:1,882 reported passes/10 failed tests plus Mac actual
 Codex timeout913. Five175-file installs, components112/113, all25 response-disposal
 cases, five20-run factory-lifetime integrity fixtures and12 routing negatives pass.
 Three other Windows legacy audits observe six unique unclassified PID candidates;
@@ -261,18 +287,18 @@ acceptance remain open.
 | 31 | Held/repeated keyboard/canvas input | PARTIAL: original ARIA labels, Tab focus order, Enter and Space activation pass local Chromium/Firefox. Local Chromium/Firefox held-pointer canvas pixel proof and repeated ArrowRight/Shift chord checks verify balanced key down/up, released modifiers and exact selection; native all-engine fixture passed at b6a91b9. |
 | 32 | Dark mode/reduced motion | PARTIAL: local original Chromium/Firefox CSS phenotype switches and resets for dark/light and reduce/no-preference pass. Native all-engine coverage passed at c7ae948. |
 | 33 | Bounded console/request errors | PARTIAL: companion suppresses page logs; original local Chromium/Firefox fixtures distinguish HTTP404 from JS exceptions, filter console severity and save20KiB+ logs through explicit filename with a short tool link. Default output/heap bounds and native new fixtures remain. |
-| 34 | Isolated storage + project persistence | PARTIAL: original persistent-cookie/localStorage restore, sessionStorage end, exclusive profile lock and independent directory isolation passed native all-engine c7ae948. Jobs persistent profiles and secure managed reset remain absent. |
+| 34 | Isolated storage + project persistence | PARTIAL: native74 all12 original OS/browser instances verify persistent cookie/localStorage restore, session end, exclusive lock, scoped clear/restart and independent sibling state. Jobs persistent profiles, filesystem profile reset/secure erasure and stale-lock recovery remain absent. |
 | 35 | Corrupt profile/lock diagnosis | PARTIAL: read-only original profile-doctor command classifies guard/permission/PID uncertainty and preserves metadata, with9 local tests each on Node20/22/24; native08e434a doctor/lease fixtures and installed persistent-profile checks pass all five batch lanes. Managed reset, profile-content corruption recovery and retention remain open. |
-| 36 | Reconnect persistence or honest limitation | PARTIAL: public POSIX MCP/CLI IDs, duplicate keys, status/results, EOF cancellation and reconnect without replay pass. No daemon/resume; Windows private ACL helper verified; public integration pending; full G06 remains open. |
-| 37 | CPU/RAM/process caps | PARTIAL: companion observed-page budget defaults8 (operator1–32), with native4797a00 all-engine popup/reused-slot and public jobs persistence/clean-next-lease checks passing on Linux/macOS/Windows, plus installed CLI/MCP checks. One workflow, page observations and worker V8 heap cap are not total CPU/RAM/process-tree/global quotas. |
+| 36 | Reconnect persistence or honest limitation | PARTIAL: native74 actual temporary-config clients complete1k on all3 OSs with durable IDs/dedup/foreign-owner rejection/cancellation and owned0. Mac SDK jobs separately reaches1k but lifecycle TIMED_OUT. No daemon or automatic uncertain-action resume; full G06 remains open. |
+| 37 | CPU/RAM/process caps | PARTIAL: observed-page budget8 (operator1–32), quota refusal and reuse have earlier native proof. Native74 Windows FF quota4/2 pass; reuse fails third closure wait after8 actions, cleanup and factory teardown confirmed. Suspended-frame control first fails RAF observer, then passes timer polling locally; native75 pending. Observations/V8 heap are not total CPU/RAM/process-tree/global quotas. |
 | 38 | Soak RSS/handles/pages/FDs | PARTIAL: independent-observer100-run supervised Linux soak measures browser tree RSS/CPU lower bounds and subjectFD/RSS. Updated page-event tracking passes another100/600 Linux Node22 soak (FD24→24, RSS growth8,290,304B within32MiB, zero owned after every run). Full browser FD access remains partial/kernel-denied; cross-OS and token comparisons remain. |
-| 39 | Original screenshot/network/storage/PDF/video/trace | PARTIAL: PNG/PDF/WebM/trace/storage/tabs native behavior passed; network404 body/details, status200/404 listing, invalid filter and console file output pass local Chromium/Firefox; native new fixture and remaining negative capability coverage remain. |
+| 39 | Original screenshot/network/storage/PDF/video/trace | PARTIAL: historical PNG/PDF/WebM/trace/storage/tabs proofs retained. Native74 Mac Chromium advanced screenshot capture fails; later video/trace/PDF assertions in that case are unexecuted. Twelve route negatives and12 profile reset instances pass; remaining capability/negative/parameter review stays open. |
 | 40 | Default stdio listener audit | PARTIAL: no public companion HTTP transport. Active supervised execution uses a private loopback BrowserServer protocol allowed by master section 0; Linux Node24 operator probe initializes all three stdio endpoints (25/1/6 tools), maps socket inodes only from four live owned processes, finds zero TCP/IPv6 TCP listeners and verifies zero owned processes after shutdown. New Linux Node22/24 active supervised browser snapshots attribute one exact-loopback worker TCP listener across eight owned processes with complete readable FD coverage; cancellation leaves zero owned survivors. Native OS listener audits and broader egress controls remain. |
 | 41 | Local CLI without connected model | Verified local 26-operation fixture, exact counter, report and canary absence; installed browsers/dependencies required. Not an OS air-gap audit. |
 | 42 | Large DOM bounded representation | PARTIAL: batch returns last ten metadata steps and no DOM; local Chromium/Firefox4,000-button fixture saves a full snapshot above64KiB while explicit file responses stay below4096 characters; bounded browser_find returns actionable references and confirms a real last-row click. This uses operator-selected snapshot-mode=none; default inline/heap bounds remain open and native all-engine file/find fixture passed at b6a91b9. |
-| 43 | Repeated suites, explained flakiness | PARTIAL: latestb144c7d has1,337 reported passes/six failed tests plus macOS actual-Codex timeout;17 executed jobs conclude, one soak job intentionally skips. Linux/Windows original144 and legacy Windows Firefox3 pass; macOS screenshot/Firefox deadlines and1,000-action throughput remain. Two same-SHA Windows100/600 scoped soaks pass but do not explain previous ownership observations. No full native resolution. |
+| 43 | Repeated suites, explained flakiness | PARTIAL: native74 reports1,882/10; all17 non-soak jobs conclude. Windows CIM serialization and FF input/retry/popup plus Mac capture/lifecycle failures persist. Later local controlled scheduling negative and fixed scalar serialization target specific weaknesses; native75 full evidence pending. Healthy controls do not explain older unknown ownership/permission/journal failures. |
 | 44 | Main/release blocked until evidence | PARTIAL: publishing disabled and PR remains draft; branch-protection API returned 403, enforcement not verified. No main merge. |
-| 45 | Documented setup with no global MCP config | PARTIAL: actual temporary-config Codex and installed paths with spaces; native Bash/PowerShell bootstraps pass at 5264cb6; native Codex operator walkthroughs remain incomplete. |
+| 45 | Documented setup with no global MCP config | PARTIAL: native74 actual temporary-config Codex1k clients pass all3 OSs with model0/owned0; installed paths with spaces and Bash/PowerShell bootstraps have native proof. Interactive conversational/operator walkthroughs remain incomplete. |
 
 Sources: CODEX_EXECUTION_LEDGER.md, CODEX_EXECUTION_REPORT.md, tests/*.spec.ts,
 local-batch/*.test.mjs, scripts/verify-package.mjs and versioned docs/evidence.
