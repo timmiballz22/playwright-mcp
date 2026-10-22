@@ -1,43 +1,49 @@
 # Execution ledger
 
-## Resume checkpoint — 2026-10-21
+## Resume checkpoint — 2026-10-22
 
-Branch feat/local-production-hardening. Latest completed native68 at4f50caa:
-batch39691283754 FAILURE1,359/3; CI39691283722 FAILURE448/1 =>1,807 reported
-passes/four failed tests, zero reported test skips/cancellations. All17 non-soak
-jobs conclude; functional_soak intentionally skipped. Windows legacy step is
-unexecuted after host-suite failure; zero TAP skips is not proof of that scope.
+Branch feat/local-production-hardening. Latest completed native69 atbf53357:
+batch39693863585 FAILURE1,370/6; CI39693863539 FAILURE301/0 =>1,671 reported
+passes/six failed tests, PLUS Mac original installer TLS failure, Mac actual
+Codex TIMED_OUT870 and one Mac raw server JSON control timeout997/1k. All17
+non-soak jobs conclude; functional_soak intentionally skipped. Mac original148
+and modal3 are unexecuted after install failure; zero TAP skips/cancellations
+does not establish those omitted scopes.
 
-Five175-file production installs, components107/108 and all three actual Codex
-clients1k pass: Linux35.738s/Mac87.397s/Windows38.370s, model0/owned0. All Linux
-main lanes and Mac189 pass; Windows178/3 fails raw Chromium screenshot shutdown,
-Firefox headless context close and headed input. Original Linux/Mac148 each,
-Docker2, Mac modal3 and all12 new slider variant cases pass. Windows147/1 fails
-Firefox named-tab isolation at30s with Connection closed; this does not prove
-storage leakage or the causal source of the stall. Failure-only Firefox private/
-inherited10/10=230 each pass/audit0, not causal fixes.
+Five175-file production installs and components107/108 pass. Group-hint real
+leader-exit test passes on native Mac and Linux; natural failed-cleanup hint
+branch is unexecuted because Mac actual870 ends known terminated/removed,
+forced:false/attention:false. Historical native67 permission uncertainty remains
+unexplained. Linux/Windows actual Codex1k36.160/41.539s/model0/owned0 pass.
+Linux main188/192/192 passes; Mac191/1 raw1k120.055s failure (published JSON
+prefix truncated; exact completed count unclassified, artifact download denied).
+Windows178/5 fails IPv6 settlement0/4 control, raw FF three modes and429 deadline.
+Original Linux/Windows148 each +Windows legacy3 +Docker2 pass. Mac Chrome install
+fails ERR_TLS_CERT_ALTNAME_INVALID (cdn.playwright.dev vs*.azureedge.net), no
+workaround. Healthy comparisons do not fix the failed samples.
 
-All five supervised20-screenshot fixtures retain all20 live factory scopes and
-pass; the separate raw Windows screenshot fixture fails cleanup after its
-screenshot effect succeeds. Windows pair6 retains legacy3028/5300; actual query-
-helper3028 birth differs from captured factory3028, child5300 born after that
-replacement. No candidate exclusion or matching change. Historical133/four and
-native66 missing ancestry remain unclassified. Native67 Mac FAILED968/permission
-uncertainty remains unexplained despite native68's healthy client sample.
+All five supervised20-screenshot fixtures pass with20 scopes retained. Windows
+teardown legacy child2864 has a new birth and current parent9088 is the actual
+query helper; rootRows retain both, helperMatched:false. No name/role/age filter,
+matching or signal-authority change. Historical133/four/native66 gaps remain.
 
-Local committed196d253 adds bounded read-only group counts to failed Codex cleanup
-receipts; no names/argv/raw snapshots, identityVerified:false, no signal/lease/
-status changes. Real POSIX group member is observed after its factory leader
-exits, then self-exits via private stop file. Final focused28/28 each Node20/22/24,
-lint, fresh175-file production and actual Linux Codex1k36.258s/model0/owned0 pass.
-This diagnostic is not in native68; natural Mac failed-cleanup integration remains
-unverified. Later local routing fix disposes a returned response after fulfillment
-failure: real64KiB GET/POST cache witnesses,38/38 each Node20/22/24, browser6/6,
-components107/107, fresh175-file install and actual Codex1k35.950s pass. This
-runtime fix is not in native69. Resource soak is next. Transient GitHub503 and
-workspace restart recovered.
+Local committed1502859 fixes returned-response retention after route fulfillment
+failure. Old real POST response body stays accessible; corrected GET/POST bodies
+are disposed before request-context close, one request/effect/release. Tests38/38
+each Node20/22/24; browser6/6; components107/107; fresh175-file install; actual
+Codex1k35.950s/model0/owned0; lint pass.100-run/600-action Linux resource check
+135.539s passes unchanged thresholds: subject FD24→24, RSS growth8,142,848B,
+owned0 per run; tree FD coverage partial (24 denied identities). No hard byte/RSS
+quota claim. This fix is not in native69.
 
-**Not release-ready. Native69 atbf53357 is active: batch39693863585 / CI39693863539. NEXT ACTION: inspect completed logs and group-hint compatibility.**
+Local CI improvement keeps identical normal four-project suite; on Chrome
+installation failure, tests already-installed core3 without clearing the failed
+job or counting Chrome as tested. Explicit Bash fixes modal tee exit masking.
+Actionlint0, controlled shell negative confirms0→1 exit propagation; native
+fallback behavior remains unverified. No runtime/action/test budgets increased.
+
+**Not release-ready. NEXT ACTION: push native70 for response-release and CI
+coverage; keep provider/installer/permission failures explicit.**
 
 ## Historical checkpoints
 
@@ -208,25 +214,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native68 logged1,807/4; Windows legacy unexecuted; historical cleanup failure open | Final same-SHA whole acceptance |
-| G01 INSTALL | IN PROGRESS | native68 five175-file production installs pass; historical TLS failure preserved | Regular next-candidate verification; no TLS workaround/retry |
-| G02 MCP | IN PROGRESS | native68 all three actual Codex1k pass; historical Mac cleanup uncertainty open | Sustained whole client acceptance |
-| G03 FEATURE PARITY | FAILED | native68 slider12/modal3 pass; Windows named-tab timeout; legacy unexecuted | Keep strict original assertions; provider diagnosis and manual gaps |
-| G04 BATCH | FAILED | native68 Mac main189 pass; Windows raw screenshot/close/input failures | Strict counters and budgets; causal throughput diagnosis |
-| G05 RETRIES | FAILED | native68 retry/marked controls pass; historical deadline/permission failures open | Preserve cancellation/permission uncertainty, no replay |
-| G06 JOBS | FAILED | native68 components107/108 pass; native67 permission uncertainty remains fenced | Preserve debt; managed recovery and exact ownership facts |
-| G07 SECURITY | FAILED | policy.mjs,security*.test.mjs,encoded-origin.test.mjs; origins/redirects/WS/SW/canaries scoped passes | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
-| G08 STORAGE | FAILED | native68 supervised20×5 pass; raw Windows screenshot cleanup fails; historical133/old4 unresolved | Complete ancestry evidence; disk bounds and managed repair |
+| G00 BASELINE | IN PROGRESS | native69 logged1,671/6 plus Mac installer/client/control failures; scopes unexecuted | Final same-SHA whole acceptance |
+| G01 INSTALL | IN PROGRESS | native69 five175-file installs pass; original Mac Chrome TLS mismatch | Regular next-candidate verification; no TLS workaround/retry |
+| G02 MCP | IN PROGRESS | native69 Linux/Windows actual1k pass; Mac TIMED_OUT870 known cleanup | Sustained whole client acceptance |
+| G03 FEATURE PARITY | FAILED | native69 Linux/Windows148 +legacy3 pass; Mac original/modal unexecuted | Keep strict original assertions; provider diagnosis and manual gaps |
+| G04 BATCH | FAILED | native69 Mac raw1k and actual870 deadlines; Windows raw FF three modes fail | Strict counters and budgets; causal throughput diagnosis |
+| G05 RETRIES | FAILED | native69 Windows FF429 deadline fails after two GET responses; marked controls pass | Preserve cancellation/permission uncertainty, no replay |
+| G06 JOBS | FAILED | native69 components107/108 and Mac group witness pass; historical permission uncertainty fenced | Preserve debt; managed recovery and exact ownership facts |
+| G07 SECURITY | FAILED | native69 Windows IPv6 positive control0/4 fails settlement; scoped policies pass elsewhere | Complete DNS/OS egress, remaining canary/artifact and negative scenarios |
+| G08 STORAGE | FAILED | native69 supervised20×5 pass; actual helper-parent root rows retained; historical133/old4 unresolved | Complete ancestry evidence; disk bounds and managed repair |
 | G09 AUTH/PROFILES | FAILED | coalesced close14/14 Node20/22/24, real Chromium/Firefox parity2/2; native prior session restore | Managed profiles/reset, Windows ACLs and crash repair; annotation dashboard lifecycle separate |
-| G10 CROSS-BROWSER | FAILED | native68 Windows Chromium close/Firefox close-input-original timeout failures | Causal diagnosis; strict thresholds/no replay |
-| G11 CROSS-OS | FAILED | native68 Windows3 main +1 original failure; Linux/Mac lanes pass | Final whole native matrix required |
-| G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md; independent100-run resource soak and3 fresh samples/mode at1100e3c | Cross-OS/CLI-SKILLS repeated resource and token measurements remain; no billing claim |
+| G10 CROSS-BROWSER | FAILED | native69 Windows FF control/input/close/retry and Mac raw throughput failures | Causal diagnosis; strict thresholds/no replay |
+| G11 CROSS-OS | FAILED | native69 Windows5/Mac1 main failures plus Mac original install failure | Final whole native matrix required |
+| G12 PERFORMANCE | IN PROGRESS | PERFORMANCE.md;1502859 resource100/600 passes; interface3 samples/mode at1100e3c | Cross-OS/CLI-SKILLS repeated resource and token measurements remain; no billing claim |
 | G13 ACCESSIBILITY/MOBILE | IN PROGRESS | tests/accessibility-mobile.spec.ts,held-input.spec.ts; native ARIA/keyboard/touch/DPI/media/canvas scoped passes | Complete remaining accessibility/input scenarios; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
 | G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-sixtyeighth-*, native68-*, group-hint-* | Native group-hint compatibility; preserve historical uncertainty |
-| G18 CLEAN MERGE | FAILED | Draft PR2; native68 workflows fail; group diagnostic local only | Resolve critical gaps; whole green SHA before merge/release |
+| G17 AUDIT EVIDENCE | IN PROGRESS | worker-ci-sixtyninth-*, native69-*, response-release-*, ci-modal-pipe-calibration | Native response disposal/CI fallback coverage; preserve failures and unavailable artifacts |
+| G18 CLEAN MERGE | FAILED | Draft PR2; native69 workflows fail;1502859 fix and CI improvement local only | Resolve critical gaps; whole green SHA before merge/release |
 
 ## Defects and risk register
 
@@ -4792,3 +4798,87 @@ owner/active-cancel/terminal cleanup assertions pass. Lint0/diff check0. All
 commands in the serial validation chain returned0. Receipts response-release-
 codex22.txt and response-release-lint.txt. Next: commit this executable source,
 then the existing100-run resource soak on that commit; no threshold changes.
+
+### Response-release resource check at1502859
+
+Node22.23.3: node scripts/soak-supervised.mjs100, real Chromium,100 fresh runs/
+600 actions,135.539s, median/p951057/1142ms. Fresh cookie/localStorage checks
+pass every run. Independent per-run activeOwned0, subject FDs24→24, median
+post-warmup RSS growth8,142,848B <33,554,432B, FD budget4 unchanged. Peak sampled
+summed owned-tree RSS614,907,904B, sampled tree CPU lower bound97,830ms,
+subject/observer CPU479/6,408ms;50ms sampling. Tree FD coverage remains partial
+(24 permission-denied process identities), no permission workaround. Thresholds
+pass; not a hard OS quota, peak guarantee, full FD-tree/cross-OS/MCP/token proof.
+No forced GC or heap/threshold changes. Raw102 records:
+response-release-soak100-node22.txt. Runtime files stay at1502859 during sampling;
+only the separate CI configuration was edited.
+
+### CI independent coverage after Chrome installation failure — local
+
+Native69 Mac original Chrome install fails ERR_TLS_CERT_ALTNAME_INVALID:
+cdn.playwright.dev vs certificate DNS:*.azureedge.net, Chrome for Testing
+156.0.8078.4/r1248. Original suite/modal unexecuted; no TLS/CDN/admin/manual
+retry workaround. Split existing core3 and Chrome installation in ci.yml.
+Normal success path keeps the identical four-project npm test command. Only
+when Chrome installation fails, core3 installation/build succeeded and the job
+is not cancelled does a separately named fallback run previously unexecuted
+Chromium/Firefox/WebKit projects. The Chrome failure still fails the job; Chrome
+coverage remains unexecuted. A test failure never activates this fallback.
+Existing modal/legacy checks can run after a successful available-project suite;
+partial evidence is archived even when all available tests pass.
+
+Also set explicit shell:bash on modal tee pipeline. Controlled documented GitHub
+unspecified-shell command form masks false→tee (exit0); explicit Bash with
+pipefail returns1. ci-modal-pipe-calibration.json is a shell control, not a failed
+browser test. Existing modal assertions/repeats/budgets unchanged. Actionlint
+v1.7.7 checks both workflows with0 errors; official asset SHA256 matches its
+release checksum. External ShellCheck/Pyflakes not run. Workflow failure-path
+behavior is native-unverified, not PASS; source .github/workflows/ci.yml.
+
+Full workflow logs remain available, but ordinary gh run download of failed
+batch artifact returned Forbidden. No signed URL is stored in repository evidence; no bypass tried.
+Mac raw1k JSON prefix is truncated in published log, so its exact completed count
+is unclassified; retain120.055s failure rather than infer a counter.
+NEXT native evidence whitelist must include new step 'Run available non-Chrome
+MCP tests after Chrome install failure' (/tmp/native70-step-whitelist.json).
+
+## Native69 atbf53357 — group compatibility verified; acceptance failed
+
+Batch1,370/6 +wrapper301/0 =>1,671 reported passes/six failed tests. Additionally
+Mac original Chrome installer fails TLS hostname check and leaves148 original/
+three modal cases unexecuted; Mac actual Codex TIMED_OUT870 at871, known cleanup;
+Mac failure-only raw server997/1k timeout120.047s is a separate failed JSON probe.
+All17 non-soak jobs conclude, one intentional soak skip; zero TAP skips/cancels
+never promotes unexecuted scopes. Five175-file installs, components107/108 pass.
+Linux main20/22/24:188/192/192 pass; Mac191/1; Windows178/5. Original Linux148,
+Windows148+legacy3, Docker2 pass. Linux/Windows actual1k36.160/41.539s/model0/
+owned0 pass. Exact selected steps/jobs/counts: worker-ci-sixtyninth-*.
+
+New actual factory-leader-exit group witness passes native Linux and Mac.
+Mac primary cleanup is terminated/temp removed, forced:false/attention:false;
+no failed-cleanup branch occurs, so there is no natural cleanupGroupHint receipt.
+It does not clear native67 signal_permission_denied/browser_group_signal_failed.
+Mac raw1k test fails120.055s; its large published error JSON loses the prefix.
+Ordinary artifact download returned Forbidden, no bypass/retry; completed count
+unclassified. Client pipe control1k115.752s passes, server997 fails; batch separate
+server1k116.258/pipe1k114.697s both pass/audit0. Healthy controls are not causal fixes.
+
+Windows IPv6 positive settlement control0/4 fails20.318s; no escape conclusion.
+Raw headless FF fresh9 completes5/23, locator_timeout at6 plus context_timeout,
+13.572s. Headed fresh4 completes7/23, locator_timeout at8,10.555s. Direct-pipe
+fresh1 completes4/23, locator_timeout at5,9.859s. Retry429 two GET/responses ends
+timeout/completed0, last response3.712s, known cleanup/forced:false. Later POST
+scenarios in that failed test are unexecuted; separate marked controls pass.
+Failure-only private/inherited both10/10=230 and audits0; no temp/transport fix.
+
+All supervised20×5 screenshot identity/hash/report/final scope checks pass.
+Windows teardown retains legacy2864: current birth23:47:22.3088450Z differs from
+captured factory23:47:14.6285560Z, current parent actual query helper9088 born
+23:47:22.3056930Z. helperMatched:false because helper is outside legacy result;
+rootRows preserve both. This is birth/factory provenance evidence, not a role
+filter, universal ancestry proof or clearance of historical133/four/native66.
+
+Chrome installer error is ERR_TLS_CERT_ALTNAME_INVALID, cdn.playwright.dev vs
+certificate*.azureedge.net for Chrome for Testing156.0.8078.4/r1248. Sanitized
+installer evidence omits download URLs. New source/CI work1502859 and subsequent
+CI edits are absent from this candidate; full native verification remains next.

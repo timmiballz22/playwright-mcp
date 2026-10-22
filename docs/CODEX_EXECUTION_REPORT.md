@@ -1,43 +1,49 @@
 # Execution report — verified milestone, incomplete mission
 
-Latest completed native68 at4f50caa:
-batch39691283754 FAILURE1,359/3; CI39691283722 FAILURE448/1 =>1,807 reported
-passes/four failed tests, zero reported test skips/cancellations. All17 non-soak
-jobs conclude; functional_soak intentionally skipped. Windows legacy step is
-unexecuted after host-suite failure; zero TAP skips is not proof of that scope.
+Latest completed native69 atbf53357:
+batch39693863585 FAILURE1,370/6; CI39693863539 FAILURE301/0 =>1,671 reported
+passes/six failed tests, PLUS Mac original installer TLS failure, Mac actual
+Codex TIMED_OUT870 and one Mac raw server JSON control timeout997/1k. All17
+non-soak jobs conclude; functional_soak intentionally skipped. Mac original148
+and modal3 are unexecuted after install failure; zero TAP skips/cancellations
+does not establish those omitted scopes.
 
-Five175-file production installs, components107/108 and all three actual Codex
-clients1k pass: Linux35.738s/Mac87.397s/Windows38.370s, model0/owned0. All Linux
-main lanes and Mac189 pass; Windows178/3 fails raw Chromium screenshot shutdown,
-Firefox headless context close and headed input. Original Linux/Mac148 each,
-Docker2, Mac modal3 and all12 new slider variant cases pass. Windows147/1 fails
-Firefox named-tab isolation at30s with Connection closed; this does not prove
-storage leakage or the causal source of the stall. Failure-only Firefox private/
-inherited10/10=230 each pass/audit0, not causal fixes.
+Five175-file production installs and components107/108 pass. Group-hint real
+leader-exit test passes on native Mac and Linux; natural failed-cleanup hint
+branch is unexecuted because Mac actual870 ends known terminated/removed,
+forced:false/attention:false. Historical native67 permission uncertainty remains
+unexplained. Linux/Windows actual Codex1k36.160/41.539s/model0/owned0 pass.
+Linux main188/192/192 passes; Mac191/1 raw1k120.055s failure (published JSON
+prefix truncated; exact completed count unclassified, artifact download denied).
+Windows178/5 fails IPv6 settlement0/4 control, raw FF three modes and429 deadline.
+Original Linux/Windows148 each +Windows legacy3 +Docker2 pass. Mac Chrome install
+fails ERR_TLS_CERT_ALTNAME_INVALID (cdn.playwright.dev vs*.azureedge.net), no
+workaround. Healthy comparisons do not fix the failed samples.
 
-All five supervised20-screenshot fixtures retain all20 live factory scopes and
-pass; the separate raw Windows screenshot fixture fails cleanup after its
-screenshot effect succeeds. Windows pair6 retains legacy3028/5300; actual query-
-helper3028 birth differs from captured factory3028, child5300 born after that
-replacement. No candidate exclusion or matching change. Historical133/four and
-native66 missing ancestry remain unclassified. Native67 Mac FAILED968/permission
-uncertainty remains unexplained despite native68's healthy client sample.
+All five supervised20-screenshot fixtures pass with20 scopes retained. Windows
+teardown legacy child2864 has a new birth and current parent9088 is the actual
+query helper; rootRows retain both, helperMatched:false. No name/role/age filter,
+matching or signal-authority change. Historical133/four/native66 gaps remain.
 
-Local committed196d253 adds bounded read-only group counts to failed Codex cleanup
-receipts; no names/argv/raw snapshots, identityVerified:false, no signal/lease/
-status changes. Real POSIX group member is observed after its factory leader
-exits, then self-exits via private stop file. Final focused28/28 each Node20/22/24,
-lint, fresh175-file production and actual Linux Codex1k36.258s/model0/owned0 pass.
-This diagnostic is not in native68; natural Mac failed-cleanup integration remains
-unverified. Later local routing fix disposes a returned response after fulfillment
-failure: real64KiB GET/POST cache witnesses,38/38 each Node20/22/24, browser6/6,
-components107/107, fresh175-file install and actual Codex1k35.950s pass. This
-runtime fix is not in native69. Resource soak is next. Transient GitHub503 and
-workspace restart recovered.
+Local committed1502859 fixes returned-response retention after route fulfillment
+failure. Old real POST response body stays accessible; corrected GET/POST bodies
+are disposed before request-context close, one request/effect/release. Tests38/38
+each Node20/22/24; browser6/6; components107/107; fresh175-file install; actual
+Codex1k35.950s/model0/owned0; lint pass.100-run/600-action Linux resource check
+135.539s passes unchanged thresholds: subject FD24→24, RSS growth8,142,848B,
+owned0 per run; tree FD coverage partial (24 denied identities). No hard byte/RSS
+quota claim. This fix is not in native69.
 
-**Not release-ready. Native69 atbf53357 is active: batch39693863585 / CI39693863539. NEXT ACTION: inspect completed logs and group-hint compatibility.**
+Local CI improvement keeps identical normal four-project suite; on Chrome
+installation failure, tests already-installed core3 without clearing the failed
+job or counting Chrome as tested. Explicit Bash fixes modal tee exit masking.
+Actionlint0, controlled shell negative confirms0→1 exit propagation; native
+fallback behavior remains unverified. No runtime/action/test budgets increased.
 
-Exact gate/source/phase evidence: CODEX_EXECUTION_LEDGER.md.
+**Not release-ready. NEXT ACTION: push native70 for response-release and CI
+coverage; keep provider/installer/permission failures explicit.**
+
+Exact G00–G18/source/phase evidence: CODEX_EXECUTION_LEDGER.md.
 
 The following records are historical checkpoints.
 

@@ -1,5 +1,7 @@
 # Measured local performance
 
+Latest resource check: [100 runs at1502859](#resource-check-at1502859).
+
 Latest repeated comparison: [three fresh interface samples at1100e3c](#three-fresh-interface-samples-at1100e3c). Earlier measurements below retain their original runtime and scope.
 
 2026-10-20, Linux x64, Node 24.19.0, npm 11.9.0; pinned Playwright
@@ -304,3 +306,30 @@ Zero model turns are started; model tokens, wire-envelope bytes and CPU/RSS are
 NOT measured in these samples. No billing, cross-OS or broad reliability claim.
 G12 remains IN PROGRESS. Raw results and explicit summary:
 evidence/interface-repeat-{1,2,3}.json and interface-repeat-summary.json.
+
+## Resource check at1502859
+
+Linux x64, Node22.23.3, pinned Playwright1.64.1/Chromium; executable runtime
+contains the returned-response disposal fix. Command:
+`node scripts/soak-supervised.mjs 100`. No forced GC or changed thresholds.
+
+| Measurement | Observed |
+|---|---:|
+| Fresh runs / actions | 100 / 600 |
+| Total wall time with observer | 135,539ms |
+| Median / p95 run duration | 1,057 / 1,142ms |
+| Subject FD baseline / final | 24 / 24 |
+| Subject median RSS growth after warmup | 8,142,848B |
+| RSS / FD growth budgets | 33,554,432B / 4 |
+| Peak sampled summed owned-tree RSS | 614,907,904B |
+| Sampled owned-tree CPU lower bound | 97,830ms |
+| Subject / observer CPU | 479 / 6,408ms |
+| Active owned processes after every run | 0 |
+
+Fresh cookie/localStorage checks pass every run. Thresholds pass; tree FD
+coverage is partial because24 process identities deny descriptor inspection.
+Sampling every50ms misses peaks; summed RSS double-counts shared pages and
+CPU omits unreadable/unsampled intervals and ps helpers. Instrumentation affects
+latency. This scoped Linux check is not a hard resource cap, full tree-FD pass,
+MCP/token measurement, cross-OS guarantee or proof of a performance change.
+Raw102 records: [response-release-soak100-node22.txt](evidence/response-release-soak100-node22.txt).

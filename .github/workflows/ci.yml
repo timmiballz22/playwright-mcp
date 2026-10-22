@@ -52,34 +52,49 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: npm ci
-    - name: Playwright install
-      run: npx playwright install --with-deps chromium firefox webkit chrome
+    - name: Install Chromium, Firefox and WebKit
+      id: core_browsers
+      run: npx playwright install --with-deps chromium firefox webkit
+    - name: Install Chrome
+      id: chrome_browser
+      run: npx playwright install --with-deps chrome
     - name: Build
+      id: build
+      if: ${{ !cancelled() && steps.core_browsers.outcome == 'success' }}
       run: npm run build
     - name: Run playwright-mcp tests
       id: wrapper
       shell: bash
       run: npm test 2>&1 | tee wrapper-tests.log
+    - name: Run available non-Chrome MCP tests after Chrome install failure
+      id: available_wrapper
+      if: ${{ !cancelled() && failure() && steps.chrome_browser.outcome == 'failure' && steps.core_browsers.outcome == 'success' && steps.build.outcome == 'success' }}
+      shell: bash
+      # Chrome installation still fails this job. These projects were not run
+      # by the skipped four-browser step; no failed tests are retried here.
+      run: npm test -- --project=chromium --project=firefox --project=webkit 2>&1 | tee wrapper-available-tests.log
     - name: Exercise three fresh macOS Chromium modal workflows
       id: modal
-      if: runner.os == 'macOS'
+      shell: bash
+      if: ${{ !cancelled() && runner.os == 'macOS' && (steps.wrapper.outcome == 'success' || steps.available_wrapper.outcome == 'success') }}
       run: npx playwright test tests/interactions.spec.ts --project=chromium --grep="original dialogs" --repeat-each=3 --workers=2 2>&1 | tee modal-tests.log
     - name: Exercise legacy Windows Node 20 Firefox cleanup
       id: legacy
       shell: bash
-      if: runner.os == 'Windows'
+      if: ${{ !cancelled() && runner.os == 'Windows' && (steps.wrapper.outcome == 'success' || steps.available_wrapper.outcome == 'success') }}
       run: node --test local-batch/integration.test.mjs 2>&1 | tee legacy-firefox.log
       env:
         RUN_BROWSER_TESTS: '1'
         PLAYWRIGHT_BATCH_TEST_BROWSERS: firefox
         PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS: '10'
     - name: Preserve failed wrapper evidence
-      if: failure() && (steps.wrapper.outcome == 'failure' || steps.modal.outcome == 'failure' || steps.legacy.outcome == 'failure')
+      if: failure() && (steps.wrapper.outcome == 'failure' || steps.available_wrapper.outcome == 'success' || steps.available_wrapper.outcome == 'failure' || steps.modal.outcome == 'failure' || steps.legacy.outcome == 'failure')
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
         name: wrapper-tests-${{ matrix.os }}
         path: |
           wrapper-tests.log
+          wrapper-available-tests.log
           modal-tests.log
           legacy-firefox.log
         retention-days: 1

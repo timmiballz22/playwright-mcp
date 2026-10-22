@@ -2,9 +2,9 @@
 
 Current status and exact candidate evidence are maintained in
 [CODEX_EXECUTION_REPORT.md](CODEX_EXECUTION_REPORT.md) and the G00–G18 table in
-[CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md). Native68 failed;
-all supervised screenshot/lifetime controls and12 slider variant cases pass.
-Local group diagnostic awaits native coverage; historical cleanup uncertainty remains.
+[CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md). Native69 failed;
+new group-query compatibility passes on Mac/Linux; Mac original suite is
+unexecuted after TLS install failure. Local response-release/CI work awaits native proof.
 Per-scenario historical proofs below do not imply final same-SHA acceptance.
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a
