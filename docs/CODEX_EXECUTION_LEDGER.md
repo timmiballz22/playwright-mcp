@@ -67,6 +67,41 @@ Mission remains active, **not release-ready**. P0 native browser reliability,
 historical ownership unknowns and hard OS resource/storage boundaries remain;
 G00–G18 are not promoted by these narrower checks. Continue independent work.
 
+
+## Follow-up while native83 runs at e95f029
+
+Native83 batch39753138604 and original39753138605 are running; no final totals.
+Windows journal component annotation reports testNumber13/missing_path; full
+completed-workflow logs are pending, no cause inferred. Hold pushes to preserve
+this evidence. Local follow-up below is not part of native83.
+
+Added real supervised selector exactness/ambiguity fixture for CSS, role/name,
+test-id, label, placeholder and text. Each engine completes19 positive steps
+and six effect requests despite prefix lookalikes, then six duplicated selectors
+fail at step2/ambiguous_locator with only navigation confirmed. Effect requests
+remain6, wrong-target/next-step requests0, no replay; existing actual factory
+observer captures all seven lifetimes and requires zero owned survivors. Local
+Chromium/Firefox2/2 pass each Node20/22/24. WebKit is unexecuted locally; no
+host-library workaround. Failed workspaces remain available.
+
+Tarball inspection found57 existing checkout-only tests shipped by broad files
+globs. Nested npmignore excludes those plus the new fixture;119 files replace176
+(177 with the new test), removing58 test paths and zero other paths. Tarball
+verification now refuses test/qa entries. Fresh production-only installed smoke,
+profiles, jobs/controller/journal and guardian checks all pass at119 files.
+Runtime entrypoints/dependencies and source test discovery remain intact.
+
+Fresh npm audit reports0 known vulnerabilities; lockfile declares103 dependency
+licenses, none missing (MIT/Apache/BSD/ISC). Thirty tracked Markdown files have173
+existing inline relative targets; anchors, references and external availability
+are not checked. Limited fixed credential-pattern scan of2,018 tracked text
+files retains one private-key finding: baseline-identical HTTPS fixture key,
+not silently excluded. No general/history-wide secret audit claim. Evidence:
+native83-local-proof.json and native83-{dependency-audit,license-inventory,doc-links,secret-pattern-scan}.json.
+
+No release gate promoted; native reliability, storage/profile/resource and
+historical ownership requirements remain open.
+
 Prior completed checkpoint (native81):
 
 Latest completed native81 at `93da4be7034effa08a280fd877ef12c1f34e2f6a`:
@@ -1158,25 +1193,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native81 reports1,904/9 plus Mac994 and failed protocol control; all logs saved | Native bounded-stderr proof; then next static/reliability gap |
-| G01 INSTALL | VERIFIED PASS | native81 five176-file production installs; current local176 install passes, QA files excluded | Keep fresh installed-client checks and fork identity |
-| G02 MCP | FAILED | native81 Linux/Win actual1k pass, Macactual994/SDK995/sync991 timeout; fixture retained unbounded stderr | Local1MiB/EOF fix verified; native pending, no runtime-cause claim |
-| G03 FEATURE PARITY | FAILED | native81 originalLinux/Win152, Docker2; Mac150/2 capture/storage deadline; legacyWin2/1 close failure | Retain pending/import uncertainty, no lost features |
-| G04 BATCH | FAILED | native81 all-action15/15 pass; Mac995/991 deadlines and Win3raw/fragment failures | No budget/assertion weakening or input replay |
-| G05 RETRIES | FAILED | native81 Win429/503 pass then fragment1nav lifecycle timeout; later cap/POST scenarios unexecuted; cancel15/15 pass | Preserve exact route scopes and no unsafe replay |
-| G06 JOBS | FAILED | native81 components112/113 pass; Mac995/994 timeouts, prior debt unknown | Native diagnosis; current QA stderr bound is not product RAM cap |
+| G00 BASELINE | IN PROGRESS | native82 reports1,929/11; all17 completed logs saved; e95f029 native83 running | Fresh native candidate checks; preserve failed controls |
+| G01 INSTALL | VERIFIED PASS | native82 five176-file production installs; local fresh176 install after anchor/typecheck source passes | Keep fresh installed-client checks and fork identity |
+| G02 MCP | FAILED | native82 all actual1k clients/original156 each pass; Mac sync986 timeout; new stderr probes12/12 pass | Diagnose native execution; verify e95f029 native83 |
+| G03 FEATURE PARITY | FAILED | native82 original156 each, Docker2 and Macmodal3 pass; three Win legacy Firefox input cases fail | Full parity remains unproven; no feature or assertion removal |
+| G04 BATCH | FAILED | native82 Mac raw985/sync986 deadlines, Win action/privacy/origin/retry failures | No budget/assertion weakening or input replay |
+| G05 RETRIES | FAILED | native82 Win first throttled goto0 timeout; later cap/POST scenarios unexecuted | Preserve exact route scopes and no unsafe replay |
+| G06 JOBS | FAILED | native82 components115/116 pass, all actual1k pass; historical debt unknown | Native diagnosis; QA stderr bound is not product RAM cap |
 | G07 SECURITY | FAILED | native72 origin controls pass; HTTP500 typed fact survives timeout; DNS/OS egress and full negatives remain open | Preserve strict policy and declared threat-model limits |
-| G08 STORAGE | BLOCKED | native81 five raw/supervised20-run cases pass; eight full lifetime comparisons retained; old136/142 unclassified | Do not retroactively classify old snapshots or clear debt |
+| G08 STORAGE | BLOCKED | native82 Win screenshot close/Mac screenshot capture fail; two full legacy comparisons keep3 unclassified candidates; old136/142 unknown | No retrospective birth reconstruction or debt clearance |
 | G09 AUTH/PROFILES | FAILED | native75 all12 original scoped reset/restart/sibling instances pass; no filesystem profile deletion or crash repair | Managed filesystem profiles/Windows ACLs and remaining operator review |
-| G10 CROSS-BROWSER | FAILED | native81 action/HTTP/cancel15each pass; WinFFinput/cleanup/fragment and MacChrome capture/FFstorage deadline fail | Native remediation under unchanged constraints |
-| G11 CROSS-OS | FAILED | native81 allLinux pass; Macbatch2/actual994/original2, Winbatch4/legacy1 | Verify new source-only stderr checks on all native lanes |
+| G10 CROSS-BROWSER | FAILED | native82 Win Firefox action/privacy/origin/retry/legacy failures, Mac screenshot/raw1k/sync deadlines | Native remediation under unchanged constraints |
+| G11 CROSS-OS | FAILED | native82 allLinux pass; Macbatch3 and Winbatch5/legacy3 plus4 failed JSON controls | Verify e95f029 graph/static checks on native lanes |
 | G12 PERFORMANCE | IN PROGRESS | resource100/600 at9591621 FD24→24/RSS+8.24MB with33 denied FD observations; reference payload encoding remains not actual model usage | Cross-OS/CLI-SKILLS context/resource coverage; no quotas/billing claim |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
 | G14 ADVANCED | IN PROGRESS | tests/advanced.spec.ts,interactions.spec.ts,popup.spec.ts,network-console.spec.ts; native tabs/frames/dialogs/uploads/network/trace/video/PDF | Complete remaining advanced feature negatives and capability modes |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
-| G16 DOCUMENTATION | IN PROGRESS | MCP_CLIENT_SETUP.md,LOCAL_BATCH.md,THREAT_MODEL.md,WORKFLOW_SCHEMA.md | Complete verified operator examples/walkthroughs as jobs/profiles mature |
-| G17 AUDIT EVIDENCE | IN PROGRESS | native81 all17 logs/retry and local before-after stdout-safe stderr proof saved; historical missing facts retained | No unexecuted-as-PASS; independent work continues |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native81 fails; local bounded-stderr source change ready | Native verification and remaining critical work before merge/release |
+| G16 DOCUMENTATION | IN PROGRESS | 30 tracked Markdown files/173 inline relative targets exist; external/anchor/reference links untested | Complete verified operator walkthroughs as jobs/profiles mature |
+| G17 AUDIT EVIDENCE | IN PROGRESS | native82 all17 logs; anchor before/after/negative proof; strict TS20/22/24 pass; npm audit0 vulnerabilities | Limited secret scan retains unchanged test TLS key; historical missing facts remain |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native82 fails; pushed e95f029 native83 running | All critical gates before merge/release |
 
 ## Defects and risk register
 

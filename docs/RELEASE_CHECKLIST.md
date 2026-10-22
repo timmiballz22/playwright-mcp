@@ -7,7 +7,7 @@ a separate authorized release review establishes ownership and evidence.
 
 1. Run all G00–G18 checks in CODEX_EXECUTION_LEDGER.md. Incomplete/failed/queued/
    cancelled work cannot pass release.
-2. Run npm ci, npm run lint, npm test and real companion suite on native OSs.
+2. Run npm ci, npm run lint, npm run typecheck, npm test and real companion suite on native OSs.
 3. Run node scripts/verify-package.mjs: inspect exactly packed files, independent
    npm install --omit=dev and both installed stdio handshakes.
 4. Require full green wrapper and companion CI at the exact candidate SHA;
