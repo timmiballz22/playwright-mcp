@@ -1,5 +1,19 @@
 # Current acceptance coverage
 
+Latest completed native82 atbbf4764 reports1,929 test passes/11 failures plus
+four failed Windows diagnostic controls. All original platforms156 each, Docker2,
+Mac modal3 and stderr probes12 pass; remaining native browser failures still
+block acceptance. Native83 at e95f029 is running; no final counts. See ledger.
+
+Local subsequent locator exactness/ambiguity checks pass all six selector forms
+on Chromium/Firefox each Node20/22/24. Muted PCM media loading, playback progress,
+pause and404 media error checks also pass both engines each LTS; one intermediate
+concurrent-run port collision is retained, final Node22 runs sequentially. These
+fixtures are not part of native83. WebKit/native media and full permission/device
+coverage remain unexecuted. Evidence: native83-{local,media}-proof.json.
+
+Archived native81 checkpoint:
+
 Latest completed native81 at93da4be reports1,904 test passes/9 failures, plus Mac
 actual-Codex timeout994 and one failed diagnostic control. See execution ledger
 for exact scopes. No incomplete gate is promoted.
@@ -8,7 +22,7 @@ Source-test stderr retention now has a locally verified1MiB byte budget, continu
 pipe drain and fail-closed overflow/EOF checks. Positive real MCP flood tests and
 an expected-exit1 overflow calibration are in tests/stdio-stderr.spec.ts and
 qa/bounded-stderr.test.mjs. No browser is launched by the flood test. It is not a
-hard process-RAM quota or a fix for native provider failures. Native proof pending;
+hard process-RAM quota or a fix for native provider failures. Native82 subsequently verifies12 bounded probes;
 see native81-stderr-proof.json for commands, phases and byte/source hashes.
 
 Archived native76 checkpoint:

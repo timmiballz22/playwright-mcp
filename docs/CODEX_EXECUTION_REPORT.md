@@ -100,6 +100,26 @@ native83-local-proof.json and native83-{dependency-audit,license-inventory,doc-l
 No release gate promoted; native reliability, storage/profile/resource and
 historical ownership requirements remain open.
 
+
+## Owned PCM media fixture
+
+Added tests/media.spec.ts through the original MCP with explicitly enabled
+trusted-code capability. Generated two-second PCM WAV requires no downloaded
+codec/assets or microphone permission. Real Chromium/Firefox verify initial
+paused/muted/ready state and exact duration, pointer-activated muted playback
+advancing currentTime, explicit pause, and an owned404 source producing error4/
+networkState3 after exactly one missing-source request. Both engines pass each
+Node20/22/24; strict typecheck passes. Initial concurrent Node22 attempt fails
+with EADDRINUSE because I scheduled two Playwright runners with shared fixed
+fixture ports; that failure is retained, and final22 runs sequentially after20.
+No source change or timeout increase used to address the orchestration error.
+
+This is not audio-device/sound, autoplay permission, video decode or physical
+mobile proof. WebKit/native media are unexecuted locally/pending. New test is
+excluded from119-file production tarball; entrypoints unchanged. Evidence:
+native83-media-proof.json and exact per-Node logs. This local source is excluded
+from currently running native83 at e95f029.
+
 Prior completed checkpoint (native81):
 
 Latest completed native81 at `93da4be7034effa08a280fd877ef12c1f34e2f6a`:
