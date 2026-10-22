@@ -471,7 +471,7 @@ if (supportsJournal) test('reopening a validated journal preserves WAL bytes and
     assert.ok(before.length > 0 && before.length <= 1048576);
     const reopened = await JobJournal.open(config); clients.push(reopened);
     const after = await readFile(path.join(directory, 'jobs.sqlite-wal'));
-    assert.deepEqual(after, before, 'Opening the validated v1 store must not append another WAL frame');
+    assert.equal(after.equals(before), true, 'Opening the validated v1 store must not append another WAL frame');
     assert.equal((await reopened.call('read', { id: job.jobId })).state, 'QUEUED');
     assert.equal((await reopened.call('read', { id: job.jobId })).revision, job.revision);
     assert.deepEqual(await reopened.call('integrity'), { ok: true });

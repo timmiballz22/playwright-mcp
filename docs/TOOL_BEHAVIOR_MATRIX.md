@@ -190,7 +190,7 @@ Companion workflows expose no code/file/network-policy injection fields.
 | browser_network_requests | [network-console.spec.ts](../tests/network-console.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_network_request | [network-console.spec.ts](../tests/network-console.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_network_state_set | [network-routing.spec.ts](../tests/network-routing.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_pdf_save | [advanced.spec.ts](../tests/advanced.spec.ts), [artifact-features.spec.ts](../tests/artifact-features.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_pdf_save | [advanced.spec.ts](../tests/advanced.spec.ts), [artifact-features.spec.ts](../tests/artifact-features.spec.ts) | native89 six Chromium documents and six explicit Firefox/WebKit rejection/no-file cases pass; no rendered-content claim |
 | browser_start_recording | [devtools.spec.ts](../tests/devtools.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_stop_recording | [devtools.spec.ts](../tests/devtools.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_route | [network-routing.spec.ts](../tests/network-routing.spec.ts) | Source coverage; native/variant evidence must be checked |
@@ -207,8 +207,8 @@ Companion workflows expose no code/file/network-policy injection fields.
 | browser_storage_state | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_set_storage_state | [storage.spec.ts](../tests/storage.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_tabs | [advanced.spec.ts](../tests/advanced.spec.ts), [popup.spec.ts](../tests/popup.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_start_tracing | [advanced.spec.ts](../tests/advanced.spec.ts), [artifact-features.spec.ts](../tests/artifact-features.spec.ts) | Source coverage; native/variant evidence must be checked |
-| browser_stop_tracing | [advanced.spec.ts](../tests/advanced.spec.ts), [artifact-features.spec.ts](../tests/artifact-features.spec.ts) | Source coverage; native/variant evidence must be checked |
+| browser_start_tracing | [advanced.spec.ts](../tests/advanced.spec.ts), [artifact-features.spec.ts](../tests/artifact-features.spec.ts) | native89 independent12/12 across3 OSs ×4 engines; real click trace and inactive-stop checks pass; other variants pending |
+| browser_stop_tracing | [advanced.spec.ts](../tests/advanced.spec.ts), [artifact-features.spec.ts](../tests/artifact-features.spec.ts) | native89 independent12/12 across3 OSs ×4 engines; real click trace and inactive-stop checks pass; other variants pending |
 | browser_verify_element_visible | [testing-capabilities.spec.ts](../tests/testing-capabilities.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_verify_text_visible | [testing-capabilities.spec.ts](../tests/testing-capabilities.spec.ts) | Source coverage; native/variant evidence must be checked |
 | browser_verify_list_visible | [testing-capabilities.spec.ts](../tests/testing-capabilities.spec.ts) | Source coverage; native/variant evidence must be checked |

@@ -192,3 +192,10 @@ actual journal exits confirmed per observation. A real existing-job regression
 preserves QUEUED state/revision and integrity; all38 journal/contention/controller
 cases pass each Node22/24. Native effect is pending. Evidence:
 native89-warm-journal-proof.json and native89-warm-journal-regression*.log.
+
+The final WAL equality assertion reports only a boolean, so failure does not dump
+store bytes. A controlled real SQLite repetition of the old header assignment
+adds4,120 bytes and fails that regression; both actual journal workers confirm
+exit and the failed store remains retained. The normal case then passes each
+Node22/24. This negative is fixture-only, not a Windows-cause reproduction. See
+native89-warm-write-negative-proof.json.
