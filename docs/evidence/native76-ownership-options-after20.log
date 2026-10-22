@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: owned browser server is retained and closed (without observer)
+ok 1 - owned browser server is retained and closed (without observer)
+  ---
+  duration_ms: 9.245795
+  ...
+# Subtest: owned browser server is retained and closed (observer failure)
+ok 2 - owned browser server is retained and closed (observer failure)
+  ---
+  duration_ms: 2.280812
+  ...
+# Subtest: unfinished native pointer action is distinguished from locator wait without exposing call text
+ok 3 - unfinished native pointer action is distinguished from locator wait without exposing call text
+  ---
+  duration_ms: 0.39372
+  ...
+# Subtest: late server ownership is stopped even when a trusted observer throws
+ok 4 - late server ownership is stopped even when a trusted observer throws
+  ---
+  duration_ms: 2.947919
+  ...
+# Subtest: raw close timeout makes one bounded owned-server kill attempt while retaining cleanup failure (closed)
+ok 5 - raw close timeout makes one bounded owned-server kill attempt while retaining cleanup failure (closed)
+  ---
+  duration_ms: 5003.531814
+  ...
+# Subtest: raw close timeout makes one bounded owned-server kill attempt while retaining cleanup failure (stalled kill)
+ok 6 - raw close timeout makes one bounded owned-server kill attempt while retaining cleanup failure (stalled kill)
+  ---
+  duration_ms: 6004.389324
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11101.738331

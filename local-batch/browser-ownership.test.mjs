@@ -10,7 +10,12 @@ for (const observerThrows of [false, true]) {
   test(`owned browser server is retained and closed (${observerThrows ? 'observer failure' : 'without observer'})`, async () => {
     const directory = await mkdtemp(path.join(os.tmpdir(), 'owned-server-'));
     const calls = [];
-    const page = { locator: () => ({ click: async options => { assert.equal(options, undefined); calls.push('click'); } }) };
+    let actionSignal;
+    const page = { locator: () => ({ click: async options => {
+      assert.deepEqual(Object.keys(options), ['signal']);
+      assert.ok(options.signal instanceof AbortSignal); assert.equal(options.signal.aborted, false);
+      actionSignal = options.signal; calls.push('click');
+    } }) };
     const context = { setDefaultTimeout() {}, setDefaultNavigationTimeout() {}, route: async () => {}, newPage: async () => page, close: async () => { calls.push('context_closed'); } };
     const browser = { newContext: async () => context, close: async () => { calls.push('client_closed'); } };
     const server = { process: () => ({ pid: 999999 }), wsEndpoint: () => 'ws://127.0.0.1/fixture', close: async () => { calls.push('server_closed'); } };
@@ -28,7 +33,10 @@ for (const observerThrows of [false, true]) {
       assert.equal(result.completed, observerThrows ? 0 : 1);
       assert.equal(calls.at(-1), 'server_closed');
       assert.equal(calls.filter(value => value === 'click').length, observerThrows ? 0 : 1);
-      if (!observerThrows) assert.deepEqual(calls, ['server_launched', 'connected', 'click', 'context_closed', 'client_closed', 'server_closed']);
+      if (!observerThrows) {
+        assert.equal(actionSignal.aborted, true, 'The internal signal must retire pending operations during cleanup');
+        assert.deepEqual(calls, ['server_launched', 'connected', 'click', 'context_closed', 'client_closed', 'server_closed']);
+      }
       assert.equal(JSON.stringify(result).includes('fake-owner-private-canary'), false);
     } finally { await rm(directory, { recursive: true, force: true }); }
   });
