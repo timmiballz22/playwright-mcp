@@ -58,6 +58,24 @@ These are private fork patches, not an upstream release or a proven native gray
 fix. The original encoder metadata evidence below is historical. Windows media,
 cleanup uncertainty and old birth gaps remain separate acceptance gates.
 
+## Independent local visible-surface control during native96
+
+Actual full Chromium on Linux, separate fresh owned fixtures, same prepared
+encoder9f975 and six clicks per case. Public CDP deliberately controls window
+and visible-size metrics before recording; every decode samples frame zero.
+
+| Control | Window height | DOM/visual height | First JPEG height | Frame-zero RGB at100,100 |
+| --- | ---: | ---: | ---: | --- |
+| Normal |240|240|240|253,0,0|
+| Deliberately short surface |185|240|98|128,128,128|
+| Same window, restored visible-size metrics |185|240|240|253,0,0|
+
+The319,239 samples agree. This reproduces the short-surface padding mechanism
+and a metrics intervention without changing the encoder, skipping/seeking frames
+or changing original tests. It does not establish macOS's initial window cause,
+native recovery or reliability of the source-order fix.
+[Complete actual comparison](evidence/native96-visible-surface-comparison.json).
+
 ## Earlier metadata-only evidence
 
 Native88 original workflow39788239509 at702b616 verifies the actual Mac WebKit

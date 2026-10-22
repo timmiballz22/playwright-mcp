@@ -7076,3 +7076,29 @@ pack excludes tests/evidence; typecheck/lint pass.
 [LTS calibration](evidence/native96-screenshot-recovery-lts-proof.json),
 [clean prepare](evidence/native96-clean-prepare-proof.json),
 [production install](evidence/native96-frozen-package-proof.json).
+
+## Independent visible-surface control while native96 runs
+
+On actual local full Chromium, normal DOM/window/input are320×240 and independent
+encoded frame zero is red253/0/0 at100,100 and319,239. A deliberate public-CDP
+window-height98 plus dontSetVisibleSize control leaves DOM/visualViewport320×240
+but produces actual JPEG/viewport metadata320×11 on this Linux host. The same
+unchanged encoder pads the remaining240-height output gray128 at both samples.
+Both owned fixtures complete six real clicks; private recording artifacts are
+removed after successful measurement/close. This demonstrates the short-visible-
+surface padding mechanism; it does not reproduce macOS's exact98-high geometry,
+prove its initial-window cause, validate the prospective order fix or waive the
+original failing recording. [Actual control](evidence/native96-short-surface-proof.json).
+Native96 cc9562b remains active; its Windows actual-client job has failed, cause
+unclassified pending terminal batch log collection.
+
+A followup control uses185-high physical window bounds on this Linux host,
+producing the exact native-sized320×98 JPEG while DOM/visualViewport remain
+320×240. It yields gray128 at both sampled output positions. A separate fresh
+control keeps identical185-high window bounds but reapplies device metrics with
+dontSetVisibleSize:false before recording; first JPEG becomes320×240 and frame
+zero becomes red253/0/0. Each fresh case completes six clicks, and every decode
+samples frame zero without seeking/skipping. This verifies a visible-surface
+mechanism and a controlled metrics intervention, not macOS's initial resize
+cause or the prospective source-order fix.
+[Three-case comparison](evidence/native96-visible-surface-comparison.json).
