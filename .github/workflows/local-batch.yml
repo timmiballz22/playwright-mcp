@@ -133,6 +133,11 @@ jobs:
         timeout-minutes: 11
         shell: bash
         run: node scripts/diagnose-firefox-runner.mjs --private-first 2>&1 | tee firefox-runner.log
+      - name: Trace headed Firefox protocol after Windows batch failure
+        if: failure() && runner.os == 'Windows' && steps.batch_windows.outcome == 'failure'
+        timeout-minutes: 4
+        shell: bash
+        run: node scripts/diagnose-firefox-runner.mjs --firefox-headed-protocol 2>&1 | tee firefox-protocol.log
       - name: Compare Chromium transports after macOS install or batch failure
         if: failure() && runner.os == 'macOS' && (steps.installed.outcome == 'failure' || steps.batch_bash.outcome == 'failure')
         timeout-minutes: 7
@@ -147,6 +152,7 @@ jobs:
             installed-tests.log
             layout-probe.log
             firefox-runner.log
+            firefox-protocol.log
             chromium-transport.log
             batch-tests.log
           retention-days: 1

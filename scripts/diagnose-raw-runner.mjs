@@ -11,15 +11,20 @@ import assert from 'node:assert/strict';
 import { runWorkflow } from '../local-batch/runner.mjs';
 import { ownedScopeDescendants } from '../local-batch/fixtures/process-audit.mjs';
 import { terminateOwnedProcesses } from '../local-batch/process-tree.mjs';
+import { createProtocolProjection, stepFailureDiagnostic } from './step-failure-diagnostic.mjs';
 const send = value => { if (process.connected) process.send(value, () => {}); };
 if (process.argv[2] === '--owned-child') {
   const mode = process.argv[3]; const directory = process.argv[4];
-  if (!['private', 'inherited', 'server', 'direct-pipe'].includes(mode)) throw new TypeError('Invalid owned diagnostic mode');
+  if (!['private', 'inherited', 'server', 'direct-pipe', 'protocol', 'protocol-headed'].includes(mode)) throw new TypeError('Invalid owned diagnostic mode');
   const browser = ['server', 'direct-pipe'].includes(mode) ? 'chromium' : 'firefox';
-  const privateTempRoot = mode === 'private'; const freshRuns = browser === 'chromium' ? 1 : 10; const clicks = browser === 'chromium' ? 997 : 20;
+  const protocolEnabled = mode === 'protocol' || mode === 'protocol-headed';
+  const headless = mode !== 'protocol-headed';
+  const controlledStall = protocolEnabled && process.env.PLAYWRIGHT_TEST_PROTOCOL_STALL === '1';
+  const privateTempRoot = mode === 'private' || protocolEnabled; const freshRuns = browser === 'chromium' ? 1 : 10; const clicks = browser === 'chromium' ? 997 : 20;
   const fixture = createServer((_request, response) => {
     response.writeHead(200, { 'Content-Type': 'text/html' });
-    response.end('<!doctype html><title>Local Fixture</title><button id="add">Add</button><output id="count">0</output><script>let n=0;document.querySelector("#add").onclick=()=>{document.querySelector("#count").textContent=String(++n)}</script>');
+    const html = '<!doctype html><title>Local Fixture</title><button id="add">Add</button><output id="count">0</output><script>let n=0;document.querySelector("#add").onclick=()=>{document.querySelector("#count").textContent=String(++n)}</script>';
+    response.end(controlledStall ? html.replace('String(++n)', 'String(++n);if(n===4){const end=performance.now()+7000;while(performance.now()<end){}}') : html);
   });
   fixture.listen(0, '127.0.0.1'); await once(fixture, 'listening');
   const origin = `http://127.0.0.1:${fixture.address().port}`;
@@ -27,7 +32,16 @@ if (process.argv[2] === '--owned-child') {
     const temporary = path.join(directory, 'tmp'); await mkdir(temporary, { mode: 0o700 });
     process.env.TMPDIR = temporary; process.env.TEMP = temporary; process.env.TMP = temporary;
   }
+  // Only this private owned-fixture child enables wire logging. Its stderr is
+  // ignored by the parent; only fixed, bounded protocol projections leave it.
+  if (protocolEnabled) process.env.DEBUG = 'pw:protocol';
   const engine = (await import('playwright'))[browser];
+  const stderrWrite = process.stderr.write;
+  let protocolTrace; let protocolFailure; let protocolReceipt; let projectionFailed = false;
+  if (protocolEnabled) process.stderr.write = function(chunk, ...args) {
+    try { protocolTrace?.observe(chunk); } catch { projectionFailed = true; }
+    return stderrWrite.call(this, chunk, ...args);
+  };
   const directHandles = new Set();
   const childChannel = channel('child_process');
   const provider = mode === 'direct-pipe' ? { launch: async options => {
@@ -41,18 +55,26 @@ if (process.argv[2] === '--owned-child') {
     childChannel.subscribe(capture);
     try { return await engine.launch(options); }
     finally { childChannel.unsubscribe(capture); }
-  } } : engine;
+  } } : mode === 'protocol-headed' ? {
+    launchServer: options => engine.launchServer({ ...options, headless: false }), connect: engine.connect.bind(engine),
+  } : engine;
   // Only this initial handshake waits for the audit, before any browser exists.
   const start = once(process, 'message'); send({ type: 'ready' }); await start;
   let successfulRuns = 0; let confirmedActions = 0; let last;
   try {
     for (let iteration = 0; iteration < freshRuns; iteration++) {
+      if (protocolEnabled) { protocolTrace = createProtocolProjection(); protocolFailure = undefined; }
       const result = await runWorkflow({ browser, schemaVersion: 1, timeoutMs: 120000, steps: [
         { type: 'goto', url: origin + '/' }, ...Array.from({ length: clicks }, () => ({ type: 'click', selector: { role: 'button', name: 'Add' } })),
         { type: 'assertText', selector: '#count', equals: String(clicks) }, { type: 'screenshot' },
       ] }, { artifactsDir: directory, allowedOrigins: [origin], allowSensitiveArtifacts: true, playwright: { [browser]: provider },
         ...(mode !== 'direct-pipe' ? { onBrowserProcess: pid => send({ type: 'browser', pid }) } : {}),
+        ...(protocolEnabled ? { onActionFailure: (_error, step) => {
+          protocolFailure = { step: stepFailureDiagnostic(step), wire: protocolTrace.snapshot() };
+        } } : {}),
       });
+      if (protocolEnabled) protocolReceipt = { observedRuns: iteration + 1, controlledStall, projectionFailed,
+        atFailure: protocolFailure, afterCleanup: protocolTrace.snapshot() };
       confirmedActions += result.completed;
       const failure = result.results.find(step => !step.ok);
       last = { ok: result.ok, reason: result.reason, completed: result.completed, total: result.total, actionsSucceeded: result.actionsSucceeded,
@@ -61,6 +83,7 @@ if (process.argv[2] === '--owned-child') {
       assert.equal(result.completed, clicks + 3); successfulRuns++;
     }
   } catch { last = { ok: false, reason: 'fixture_failed' }; }
+  finally { if (protocolEnabled) process.stderr.write = stderrWrite; }
   const handleReceipt = mode === 'direct-pipe' ? {
     capturedOwnedHandles: directHandles.size,
     spawnedOwnedHandles: [...directHandles].filter(child => Number.isSafeInteger(child.pid)).length,
@@ -69,17 +92,18 @@ if (process.argv[2] === '--owned-child') {
   const handlesConfirmed = !handleReceipt || handleReceipt.capturedOwnedHandles > 0 &&
     handleReceipt.spawnedOwnedHandles === handleReceipt.capturedOwnedHandles &&
     handleReceipt.exitedOwnedHandles === handleReceipt.capturedOwnedHandles;
+  const protocolConfirmed = !protocolEnabled || !projectionFailed && protocolReceipt?.afterCleanup.sent > 0 && protocolReceipt?.afterCleanup.responses > 0;
   // Keep the owned controller alive until its final identity snapshot is taken.
   const finish = once(process, 'message');
-  send({ type: 'receipt', value: { logging: false, privateTempRoot, browser, transport: mode === 'direct-pipe' ? 'direct_pipe' : 'browser_server', requiredFreshRuns: freshRuns, successfulRuns, confirmedActions, ok: successfulRuns === freshRuns && handlesConfirmed, ...(handleReceipt ? { handleReceipt } : {}), last } });
+  send({ type: 'receipt', value: { logging: protocolEnabled, headless, privateTempRoot, browser, transport: mode === 'direct-pipe' ? 'direct_pipe' : 'browser_server', requiredFreshRuns: freshRuns, successfulRuns, confirmedActions, ok: successfulRuns === freshRuns && handlesConfirmed && protocolConfirmed, ...(handleReceipt ? { handleReceipt } : {}), ...(protocolEnabled ? { protocol: protocolReceipt } : {}), last } });
   await finish;
   fixture.closeAllConnections(); await new Promise(resolve => fixture.close(resolve));
   process.disconnect();
 } else {
   const args = process.argv.slice(2);
-  if (args.length > 1 || args.length === 1 && !['--private-first', '--chromium-transport', '--chromium-pipe-first'].includes(args[0])) throw new TypeError('Invalid diagnostic arguments');
+  if (args.length > 1 || args.length === 1 && !['--private-first', '--chromium-transport', '--chromium-pipe-first', '--firefox-protocol', '--firefox-headed-protocol'].includes(args[0])) throw new TypeError('Invalid diagnostic arguments');
   const chromiumTransport = ['--chromium-transport', '--chromium-pipe-first'].includes(args[0]);
-  const modeOrder = args[0] === '--chromium-pipe-first' ? ['direct-pipe', 'server'] : chromiumTransport ? ['server', 'direct-pipe'] : args.length ? ['private', 'inherited'] : ['inherited', 'private'];
+  const modeOrder = args[0] === '--firefox-headed-protocol' ? ['protocol-headed'] : args[0] === '--firefox-protocol' ? ['protocol'] : args[0] === '--chromium-pipe-first' ? ['direct-pipe', 'server'] : chromiumTransport ? ['server', 'direct-pipe'] : args.length ? ['private', 'inherited'] : ['inherited', 'private'];
   let failed = false; let interrupted = false; let current;
   const cancel = () => {
     interrupted = true;
@@ -147,7 +171,7 @@ if (process.argv[2] === '--owned-child') {
       while (remaining.length && performance.now() < end) { await new Promise(resolve => setTimeout(resolve, 100)); remaining = await ownedScopeDescendants(scopes); }
       assert.deepEqual(remaining, [], 'Exact runner diagnostic cleanup uncertain');
       assert.equal(auditFailure, false, 'Exact runner process identity uncertain'); clean = true;
-      const result = { os: process.platform, mode, comparisonOrder: modeOrder, position: modeOrder.indexOf(mode) + 1, privateTempRoot: mode === 'private', ...(receipt ?? { ok: false, reason: interrupted ? 'operator_cancelled' : 'independent_deadline_or_exit' }), residualProcessesBeforeForce: residual.length, activeOwnedProcesses: 0 };
+      const result = { os: process.platform, mode, comparisonOrder: modeOrder, position: modeOrder.indexOf(mode) + 1, privateTempRoot: ['private', 'protocol', 'protocol-headed'].includes(mode), ...(receipt ?? { ok: false, reason: interrupted ? 'operator_cancelled' : 'independent_deadline_or_exit' }), residualProcessesBeforeForce: residual.length, activeOwnedProcesses: 0 };
       if (residual.length) result.ok = false;
       console.log(JSON.stringify(result));
       if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=' + (chromiumTransport ? 'Chromium transport control' : 'Firefox exact runner') + '::' + JSON.stringify(result));

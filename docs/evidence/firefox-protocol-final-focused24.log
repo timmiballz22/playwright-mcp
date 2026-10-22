@@ -1,0 +1,48 @@
+✔ protocol projection correlates responses and retains only fixed method metadata (2.215306ms)
+✔ protocol projection bounds pending metadata and ignores payload lookalikes (3.226912ms)
+✔ cooperative context cleanup timeout retains fixed stage and stays failed (29.930841ms)
+✔ cooperative context cleanup error retains fixed stage and stays failed (2.282659ms)
+✔ untrusted Retry-After hints cannot exceed bounded durable result metadata (11.636744ms)
+✔ all three close failures plus final server kill failure remain bounded fixed metadata (2.000686ms)
+✔ client step failure receipts retain fixed taxonomy without private step fields (0.505149ms)
+✔ raw workflow diagnostic keeps completion counters outside long traces without reflecting private data (0.337827ms)
+✔ known main GET 401 fails precisely even when document readiness never settles (7.361334ms)
+✔ known main GET 403 fails precisely even when document readiness never settles (1.664527ms)
+✔ known main GET 404 fails precisely even when document readiness never settles (1.136273ms)
+✔ known main GET 429 fails precisely even when document readiness never settles (1.112292ms)
+✔ known main GET 503 fails precisely even when document readiness never settles (1.117904ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"main":false}) (1.122788ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"}) (0.942806ms)
+✔ known HTTP failure waits for the configured retry attempts before failing without DOM readiness (373.354957ms)
+✔ observed cancellation keeps precedence over a newly available HTTP failure (2.121622ms)
+✔ failed fulfillment disposes its fetched response without replay or hiding the request failure (3.105042ms)
+✔ response disposal rejection preserves the existing failure and is not retried (200) (0.928066ms)
+✔ response disposal rejection preserves the existing failure and is not retried (503) (0.864196ms)
+✔ failed fulfillment releases a real retained API response before its request context closes (GET) (306.156536ms)
+✔ failed fulfillment releases a real retained API response before its request context closes (POST) (6.779573ms)
+✔ navigation retry policy is bounded, disabled by default and copied (0.965232ms)
+✔ Retry-After is a minimum wait and an excessive wait is never shortened (0.379152ms)
+✔ failure classification returns fixed codes and never browser text (1.05393ms)
+✔ rejects unknown instructions, unbounded workloads and hostile origins (1.477705ms)
+✔ 100 ordered actions finish in a single batch with one browser launch (7.894059ms)
+✔ failures stop promptly, hide underlying sensitive errors and clean up (1.542499ms)
+✔ cancellation before starting avoids launching browser (0.32979ms)
+✔ checks target origins and reports assertion failure without page content (1.991472ms)
+✔ unknown localhost ports require exact operator origins (2.604176ms)
+✔ rejects extra workflow and action properties rather than ignoring policy (0.27629ms)
+✔ deadline includes a stalled launch and closes late browser (201.781085ms)
+✔ validation snapshots actions before asynchronous launch (1.695541ms)
+✔ screenshot capture requires operator approval for sensitive artifacts (0.541446ms)
+✔ workflow version and serialized size are bounded (7.038647ms)
+✔ accessible selectors validate exact shape and clone nested values (0.265394ms)
+✔ explicit action repeats expand within the total action cap (10.78038ms)
+✔ text equality rejects duplicate counters and ambiguous expectations (1.846222ms)
+✔ ownership launch phase precedes even a rejected public launch call (1.108154ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1256.749981

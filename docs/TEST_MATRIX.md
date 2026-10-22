@@ -2,9 +2,9 @@
 
 See [CODEX_EXECUTION_REPORT.md](CODEX_EXECUTION_REPORT.md) for the current
 candidate and [CODEX_EXECUTION_LEDGER.md](CODEX_EXECUTION_LEDGER.md) for G00–G18.
-Latest completed native69 failed (1,671/6 plus Mac installer/client/control failures).
-Mac group-query compatibility passes; local response disposal and CI changes
-require next-candidate native proof.
+Latest completed native70: original452/0, companion1,396/5 (1,848/5 combined).
+Response-release cases25/25 pass natively; local protocol diagnostic awaits final
+verification. Five acceptance failures and historical uncertainty remain open.
 The records below preserve earlier scoped evidence.
 
 Historical native `c88171e`: **1,310 reported passes/six failed tests**, plus a

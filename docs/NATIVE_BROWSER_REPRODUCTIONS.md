@@ -81,3 +81,13 @@ also fail intermittently. A shared revision does not establish a common cause.
 Limited public searches found no exact current match. Versions, focus, click
 semantics and deadlines stay unchanged. No external report was posted and no
 third-party reproduction was executed. See native64-upstream-context.json.
+
+## Diagnostic scope clarification
+
+The source controls in scripts/diagnose-raw-runner.mjs import runWorkflow and
+retain its HTTP routing, service-worker/download settings and lifecycle budgets.
+“Raw” means no job/supervisor orchestration; these controls alone do not isolate
+a stock browser from the companion router. Original isolated MCP failures are
+a separate code path. Neither set establishes an upstream root cause.
+The registry latest stable remains Playwright1.64.1 on2026-10-22; no prerelease
+upgrade or unverified workaround was applied. native70-playwright-registry.json.

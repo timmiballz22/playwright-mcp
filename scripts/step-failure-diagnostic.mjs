@@ -25,3 +25,45 @@ export function rawWorkflowFailureDiagnostic(result, diagnostic, { browser, mode
     cleanupFailureCount: Array.isArray(result.cleanupFailures) ? bounded(result.cleanupFailures.length, 0, 8) : undefined,
     failedStep: stepFailureDiagnostic(diagnostic) };
 }
+
+// Developer-only static-fixture wire hint. IDs are protocol IDs, never PIDs.
+// Observe one bounded debug frame; never retain or emit params/results.
+export function createProtocolProjection() {
+  const methods = new Set(['Page.dispatchMouseEvent', 'Page.dispatchKeyEvent', 'Page.navigate', 'Page.close',
+    'Page.scrollIntoViewIfNeeded', 'Page.getContentQuads', 'Page.getBoundingClientRect', 'Page.setViewport',
+    'Runtime.evaluate', 'Runtime.callFunction', 'Runtime.callFunctionOn', 'Runtime.releaseObject', 'Runtime.getObjectProperties',
+    'Browser.close', 'Browser.newPage', 'Browser.createBrowserContext', 'Browser.removeBrowserContext',
+    'Network.setRequestInterception', 'Network.resumeInterceptedRequest', 'Network.fulfillInterceptedRequest']);
+  const pending = new Map(); const lastSent = [];
+  let sent = 0; let responses = 0; let droppedPending = 0; let idReuse = 0; let unparsedFrames = 0;
+  return {
+    observe(chunk) {
+      const prefix = typeof chunk === 'string' ? chunk.slice(0, 8192) : Buffer.isBuffer(chunk) ? chunk.toString('utf8', 0, Math.min(chunk.length, 8192)) : '';
+      const line = prefix.replace(/\u001b\[[0-9;]*m/g, '');
+      const frame = /pw:protocol\s+(SEND ►|◀ RECV)\s+(\{[^\r\n]*)/.exec(line);
+      if (!frame) return;
+      // Reply bodies can be large or debug-truncated. Their leading ID is
+      // sufficient for correlation; never require parsing a result payload.
+      if (frame[1] === '◀ RECV') {
+        const match = /^\{"id":(-?\d+)(?:,|\})/.exec(frame[2]);
+        const id = Number(match?.[1]);
+        if (match && Number.isSafeInteger(id) && Math.abs(id) <= 2147483647) { responses++; pending.delete(id); return; }
+      }
+      let message;
+      try { message = JSON.parse(frame[2].slice(0, frame[2].lastIndexOf('}') + 1)); }
+      catch { unparsedFrames++; return; }
+      if (!message || typeof message !== 'object' || Array.isArray(message)) return;
+      const id = message.id; if (!Number.isSafeInteger(id) || Math.abs(id) > 2147483647) return;
+      if (frame[1] === '◀ RECV') { responses++; pending.delete(id); return; }
+      if (typeof message.method !== 'string') return;
+      const method = methods.has(message.method) ? message.method : 'other'; sent++;
+      if (pending.has(id)) idReuse++;
+      else if (pending.size === 256) { pending.delete(pending.keys().next().value); droppedPending++; }
+      pending.set(id, method); lastSent.push({ id, method }); if (lastSent.length > 16) lastSent.shift();
+    },
+    snapshot() {
+      return { coverage: 'bounded_debug_frames', sent, responses, droppedPending, idReuse, unparsedFrames, pendingCount: pending.size,
+        pending: [...pending].slice(0, 16).map(([id, method]) => ({ id, method })), lastSent: lastSent.map(value => ({ ...value })) };
+    },
+  };
+}

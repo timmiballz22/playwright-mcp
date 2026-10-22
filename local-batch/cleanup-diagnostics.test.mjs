@@ -1,10 +1,40 @@
 import { stepFailureDiagnostic, rawWorkflowFailureDiagnostic } from '../scripts/step-failure-diagnostic.mjs';
+import * as diagnostics from '../scripts/step-failure-diagnostic.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { runWorkflow } from './runner.mjs';
+
+test('protocol projection correlates responses and retains only fixed method metadata', () => {
+  const trace = diagnostics.createProtocolProjection();
+  const canary = 'private-protocol-payload-canary';
+  trace.observe(`  pw:protocol SEND ► {"method":"Page.dispatchMouseEvent","params":{"secret":"${canary}"},"id":1} +1ms\n`);
+  trace.observe('  pw:protocol ◀ RECV {"id":1,"result":{}} +1ms\n');
+  trace.observe(`  pw:protocol SEND ► {"id":2,"method":"${canary}","params":{}} +1ms\n`);
+  const result = trace.snapshot();
+  assert.equal(result.sent, 2); assert.equal(result.responses, 1);
+  assert.deepEqual(result.pending, [{ id: 2, method: 'other' }]);
+  assert.equal(JSON.stringify(result).includes(canary), false);
+  result.pending[0].method = canary;
+  assert.equal(JSON.stringify(trace.snapshot()).includes(canary), false);
+});
+
+test('protocol projection bounds pending metadata and ignores payload lookalikes', () => {
+  const trace = diagnostics.createProtocolProjection();
+  trace.observe('pw:protocol SEND ► {"id":1,"params":{"method":"Page.dispatchMouseEvent"}}\n');
+  trace.observe('pw:protocol SEND ► {"id":1e999,"method":"Page.navigate"}\n');
+  trace.observe('x'.repeat(2000000) + 'pw:protocol SEND ► {"id":3,"method":"Page.navigate"}\n');
+  assert.equal(trace.snapshot().sent, 0);
+  for (let id = 1; id <= 300; id++) trace.observe(`pw:protocol SEND ► {"id":${id},"method":"Runtime.evaluate","params":{}}\n`);
+  const result = trace.snapshot();
+  assert.equal(result.pendingCount, 256); assert.equal(result.pending.length, 16);
+  assert.equal(result.droppedPending, 44); assert.ok(JSON.stringify(result).length < 4096);
+  trace.observe(Buffer.from('\u001b[32mpw:protocol ◀ RECV {"id":300,"result":{"private":"' + 'private-large-payload-canary'.repeat(1000) + '"}}\u001b[0m\n'));
+  assert.equal(trace.snapshot().pendingCount, 255);
+  assert.equal(JSON.stringify(trace.snapshot()).includes('private-large-payload-canary'), false);
+});
 
 for (const failure of ['timeout', 'error']) {
   test(`cooperative context cleanup ${failure} retains fixed stage and stays failed`, async () => {
