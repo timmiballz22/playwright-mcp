@@ -479,3 +479,37 @@ if (supportsJournal) test('reopening a validated journal preserves WAL bytes and
   } catch (error) { primary = error; throw error; }
   finally { await closeJournalFixture(directory, clients, verified, primary); }
 });
+
+if (supportsJournal) for (const [mode, code, version, markerPresent] of [
+  ['future_version', 'unsupported_schema', 2, true],
+  ['cleared_version', 'store_identity_mismatch', 0, true],
+  ['deleted_identity', 'store_identity_mismatch', 1, false],
+]) test('schema write lock revalidates the actual concurrent ' + mode + ' change without repairing it', { timeout: 10000 }, async () => {
+  const { DatabaseSync } = await import('node:sqlite');
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'journal-schema-race-'));
+  const config = { directory, projectId: '6'.repeat(64), ownerId: 'schema-race-owner' };
+  const clients = []; let verified = false; let primary;
+  const previous = process.env.PLAYWRIGHT_TEST_JOURNAL_SCHEMA_RACE;
+  try {
+    const initial = await JobJournal.open(config); clients.push(initial);
+    const job = await initial.call('create', { id: randomUUID(), requestKey: randomUUID(), workflowDigest: '4'.repeat(64), total: 1, deadlineAt: Date.now() + 30000 });
+    await initial.close();
+    process.env.PLAYWRIGHT_TEST_JOURNAL_SCHEMA_RACE = mode;
+    await assert.rejects(JobJournal.open({ ...config, workerModule: new URL('./fixtures/schema-version-race.mjs', import.meta.url) }).then(client => { clients.push(client); return client; }), error => {
+      assert.equal(error.code, code); assert.equal(error.journalExitConfirmed, true); return true;
+    });
+    const db = new DatabaseSync(path.join(directory, 'jobs.sqlite'), { allowExtension: false });
+    try {
+      assert.equal(db.prepare('PRAGMA user_version').get().user_version, version);
+      assert.equal(db.prepare("SELECT value FROM meta WHERE key='project'").get()?.value === config.projectId, markerPresent);
+      const row = db.prepare('SELECT state,revision FROM jobs WHERE id=?').get(job.jobId);
+      assert.equal(row.state, 'QUEUED'); assert.equal(row.revision, job.revision);
+    } finally { db.close(); }
+    verified = true;
+  } catch (error) { primary = error; throw error; }
+  finally {
+    if (previous === undefined) delete process.env.PLAYWRIGHT_TEST_JOURNAL_SCHEMA_RACE;
+    else process.env.PLAYWRIGHT_TEST_JOURNAL_SCHEMA_RACE = previous;
+    await closeJournalFixture(directory, clients, verified, primary);
+  }
+});

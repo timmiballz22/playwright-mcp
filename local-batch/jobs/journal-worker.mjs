@@ -76,6 +76,23 @@ const staleMaintenance = () => {
 };
 const cleanupBlocked = () => Boolean(db.prepare('SELECT uncertain FROM execution_lease WHERE singleton=1').get()?.uncertain);
 
+function verifyStoreIdentity(projectId, keyId) {
+  const version = db.prepare('PRAGMA user_version').get().user_version;
+  if (version !== 0 && version !== 1) error('unsupported_schema');
+  const tables = db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map(row => row.name);
+  if (tables.length) {
+    if (version !== 1 || !['meta', 'jobs', 'events', 'execution_lease'].every(name => tables.includes(name))) error('store_identity_mismatch');
+    let project;
+    let storedKey;
+    try {
+      project = db.prepare('SELECT value FROM meta WHERE key=?').get('project')?.value;
+      storedKey = db.prepare('SELECT value FROM meta WHERE key=?').get('key_id')?.value;
+    } catch { error('store_identity_mismatch'); }
+    if (project !== projectId || storedKey !== keyId) error('store_identity_mismatch');
+  } else if (version !== 0) error('store_identity_mismatch');
+  return version;
+}
+
 function transaction(callback) {
   db.exec('BEGIN IMMEDIATE');
   try { const result = callback(); db.exec('COMMIT'); return result; }
@@ -206,19 +223,7 @@ const handlers = new Map([
     report?.('identity');
     db.exec('BEGIN');
     try {
-      const version = db.prepare('PRAGMA user_version').get().user_version;
-      if (version !== 0 && version !== 1) error('unsupported_schema');
-      const tables = db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map(row => row.name);
-      if (tables.length) {
-        if (version !== 1 || !['meta', 'jobs', 'events', 'execution_lease'].every(name => tables.includes(name))) error('store_identity_mismatch');
-        let project;
-        let storedKey;
-        try {
-          project = db.prepare('SELECT value FROM meta WHERE key=?').get('project')?.value;
-          storedKey = db.prepare('SELECT value FROM meta WHERE key=?').get('key_id')?.value;
-        } catch { error('store_identity_mismatch'); }
-        if (project !== data.projectId || storedKey !== keyId) error('store_identity_mismatch');
-      } else if (version !== 0) error('store_identity_mismatch');
+      verifyStoreIdentity(data.projectId, keyId);
     } finally { try { db.exec('ROLLBACK'); } catch {} }
     report?.('configure');
     db.exec('PRAGMA page_size=4096');
@@ -227,6 +232,9 @@ const handlers = new Map([
     report?.('schema');
     transaction(() => {
       report?.('schema_tables');
+      // Revalidate while holding the schema write lock: another connection may
+      // have changed version or identity since the initial read transaction.
+      const schemaVersion = verifyStoreIdentity(data.projectId, keyId);
       db.exec([
         'CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY,value TEXT NOT NULL)',
         "CREATE TABLE IF NOT EXISTS jobs (id TEXT PRIMARY KEY,owner TEXT NOT NULL,request_key TEXT NOT NULL,fingerprint TEXT NOT NULL,state TEXT NOT NULL CHECK(state IN ('CREATED','VALIDATING','QUEUED','RUNNING','SUCCEEDED','FAILED','CANCELLED','TIMED_OUT','CRASHED')),revision INTEGER NOT NULL,stage TEXT NOT NULL,created_at INTEGER NOT NULL,updated_at INTEGER NOT NULL,deadline_at INTEGER NOT NULL,total INTEGER NOT NULL,completed INTEGER NOT NULL DEFAULT 0,controller_pid INTEGER NOT NULL,instance TEXT NOT NULL,cancel_requested INTEGER NOT NULL DEFAULT 0,started INTEGER NOT NULL DEFAULT 0,supervisor_pid INTEGER,worker_pid INTEGER,browser_pids TEXT NOT NULL DEFAULT '[]',reason TEXT,summary TEXT,uncertain INTEGER NOT NULL DEFAULT 0,UNIQUE(owner,request_key))",
@@ -235,7 +243,7 @@ const handlers = new Map([
       ].join(';'));
       // Repeating user_version=1 dirties SQLite's header even on a valid v1 store.
       // Keep fresh schema creation/versioning in this same transaction.
-      if (db.prepare('PRAGMA user_version').get().user_version !== 1) db.exec('PRAGMA user_version=1');
+      if (schemaVersion === 0) db.exec('PRAGMA user_version=1');
       report?.('schema_metadata');
       const bind = db.prepare('INSERT OR IGNORE INTO meta(key,value) VALUES(?,?)');
       bind.run('project', data.projectId);

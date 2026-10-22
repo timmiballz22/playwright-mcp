@@ -199,3 +199,19 @@ adds4,120 bytes and fails that regression; both actual journal workers confirm
 exit and the failed store remains retained. The normal case then passes each
 Node22/24. This negative is fixture-only, not a Windows-cause reproduction. See
 native89-warm-write-negative-proof.json.
+
+## Local identity revalidation after native90
+
+A separate SQLite connection can change the version/identity between the initial
+read check and the schema write transaction. Controlled actual-connection probes
+reproduce three incorrect accepts in source58edfce: future version2 reset to1,
+version0 on an existing store reset to1, and deleted project identity recreated.
+
+The same version/table/project/key verification now runs again under the existing
+BEGIN IMMEDIATE lock, before schema writes. Future version, nonempty version0 and
+missing marker are rejected; the other connection's change and existing job state/
+revision remain untouched. All six probes across Node22/24 reject with the expected
+code and confirmed rejected-worker exit;41 journal/contention/controller cases pass
+each Node. No retry, deadline, SQLite setting, browser effect or host-sandbox claim.
+Native validation is pending. See native90-schema-race-proof.json and the trusted
+schema-version-race.mjs fixture, which is excluded from the production package.
