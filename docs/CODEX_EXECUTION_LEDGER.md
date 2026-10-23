@@ -1,5 +1,45 @@
 # Execution ledger
 
+## Final verification barrier — implementation5daddf7; NOT RELEASE-READY
+
+The locked component-install correction is pushed at
+`5daddf7d44d771feb23bd4cfead3b2e2675dffed`; PR2 remains open/draft. No automatic CI
+appeared. Both ordinary workflow dispatch attempts return **HTTP422: Actions has
+been disabled for this repository**. No native102 run was created. The normal
+repository Actions-permissions read is deniedHTTP403; actor, exact setting and
+cause of native101 cancellation are unknown. No setting change, alternate
+credential, auth/TLS workaround or administrative access attempt followed.
+
+This is a concrete service barrier to the required native verification/green CI.
+All feasible checks for the correction are complete: real detached checkout
+reproduces4/2 missing-SDK failures before installation and157/157 per Node22/24
+after locked npm ci,0skips; unchanged exact component command, actionlint, prepared
+core9f975 and archive/local-link checks pass. Implementation5daddf7 changes no
+product/QA source from locally tested1bac9c0: it adds the missing install step and
+docs/evidence only. Final follow-up evidence commits are documentation only.
+
+Last full non-cancelled checkpoint remains native1002257/18 plus separate primary
+Mac timeout. Native101 has only1654/12 available completed summaries, three
+cancelled jobs and three unavailable logs after ordinary retry. Never combine
+those as a passing acceptance run. Current-runtime native functional soak100/600
+each Linux/Mac/Windows passes separately; no browser resource-bound or historical
+process-identity clearance follows. Remaining capture, media, fixed-budget client,
+cleanup/ownership uncertainties and manual/operator gaps remain in the gates.
+
+[Exact service refusal](evidence/native102-actions-disabled-proof.json),
+[blocker manifest](evidence/native102-verification-blocker-summary.json),
+[clean local component proof](evidence/native101-component-dependency-fix-proof.json),
+[native101 partial manifest](evidence/native101-summary.json),
+[last full checkpoint](evidence/native100-summary.json),
+[functional soak](evidence/native100-soak-proof.json).
+
+NEXT ACTION: an authorized repository operator must restore normal GitHub Actions
+availability. Then run both existing workflows at the exact current source, wait
+for workflows/all jobs terminal, collect normal logs with retained first attempts,
+and diagnose remaining strict failures. Do not mark G00–G18 complete, re-enable
+publishing, merge or release. No permission request or automatic re-enable is made.
+
+
 ## Native101 cancelled checkpoint — 1bac9c0; release blocked
 
 [Batch39875726404](https://github.com/timmiballz22/playwright-mcp/actions/runs/39875726404)
@@ -2797,25 +2837,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native101 cancelled; available1654/12;15/18 logs resolve after retry | No green matrix; missing/unfinished evidence not PASS |
+| G00 BASELINE | BLOCKED | Implementation5daddf7; native102 dispatchHTTP422 Actions disabled; native101 cancelled | Operator restores Actions; exact current source needs green verification |
 | G01 INSTALL | VERIFIED PASS | native101 five installed production package steps succeed before cancellation | Retain historical failed stores/exits |
 | G02 MCP | FAILED | native101 primary Linux/Windows1000 pass; Mac977 timeout; EOF join no failure in available original logs | Single sample does not resolve runtime/client reliability |
 | G03 FEATURE PARITY | FAILED | native101 available original Linux200/0 Mac198/2; Windows cancelled/log unavailable | Mac stock PCM/screenshot and earlier Windows media remain |
 | G04 BATCH | FAILED | native101 main Linux208/1,213/0,212/1; Mac/Windows cancelled | Capture and native100 unresolved main failures remain |
 | G05 RETRIES | IN PROGRESS | native101 existing init/recovery cases pass; native10060 cancellation observations pass | Historical ambiguous exits and missing cancelled lanes remain |
-| G06 JOBS | FAILED | native101 all four component lanes fail2 missing-SDK tests; all12 races pass | Add npm ci; clean installed157/157 per LTS locally verified |
+| G06 JOBS | BLOCKED | Missing npm ci fixed at5daddf7; clean installed157/157 eachLTS; native dispatch refused | Native verification plus remaining runtime/cleanup reliability required |
 | G07 SECURITY | FAILED | native100 denied aliases settle/output0/hits unchanged but reason times out; privacy0contact/no status | No bypass/404-classification claim; no new Windows evidence |
 | G08 STORAGE | BLOCKED | native100 Mac WebKit temporary cleanup unknown; historical four IDs unresolved | No filtering/retroclearance; retain full rows and failed stores |
 | G09 AUTH/PROFILES | FAILED | native95 original scoped reset/restart/sibling cases pass12 instances | Managed filesystem deletion/crash repair and operator/Windows ACL requirements remain limited |
 | G10 CROSS-BROWSER | FAILED | native101 Linux20/24 first-input failures; Mac PCM and video-fixture screenshot fail | No validated native capture repair or Windows media clearance |
-| G11 CROSS-OS | FAILED | native101 cancelled Mac/Windows lanes; setup defect fails four component lanes | Install fix requires native verification |
+| G11 CROSS-OS | BLOCKED | Native101 incomplete; normal workflows unavailableHTTP422 at5daddf7 | Restore service availability; local Linux is not native Windows/Mac replacement |
 | G12 PERFORMANCE | IN PROGRESS | current-source native1003OS100-run functional soaks pass; native101 separate Mac1000 control82.976s | Not browser resource bounds, failed-host cause or billing proof |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
 | G14 ADVANCED | FAILED | native101 Mac video-fixture screenshot unavailable after existing retry | EOF join is separate from screenshot/video capture readiness |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
-| G16 DOCUMENTATION | IN PROGRESS | native101 cancelled/partial scopes and setup defect explicitly documented | Manual operator walkthrough remains unexecuted |
-| G17 AUDIT EVIDENCE | IN PROGRESS | native10118 reads/ordinary empty retries retained;15 logs resolve/3 unavailable | No reconstruction; historical identity gaps/log loss remain explicit |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native101 cancelled plus failed cases; native1002257/18 complete | Commit setup fix; no merge/release |
+| G16 DOCUMENTATION | IN PROGRESS | Final service refusal/source scopes/commands/proofs documented | Manual operator walkthrough remains unexecuted |
+| G17 AUDIT EVIDENCE | IN PROGRESS | Native100 full,101 partial/empty retries,102 exact422/403 barriers retained | No missing evidence reconstructed or labelled PASS |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; Actions disabled; current native CI cannot run; critical failures remain | No merge/publish/release; normal operator service restoration needed |
 
 ## Defects and risk register
 

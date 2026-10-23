@@ -1,5 +1,45 @@
 # Release acceptance is blocked
 
+## Final verification barrier — implementation5daddf7; NOT RELEASE-READY
+
+The locked component-install correction is pushed at
+`5daddf7d44d771feb23bd4cfead3b2e2675dffed`; PR2 remains open/draft. No automatic CI
+appeared. Both ordinary workflow dispatch attempts return **HTTP422: Actions has
+been disabled for this repository**. No native102 run was created. The normal
+repository Actions-permissions read is deniedHTTP403; actor, exact setting and
+cause of native101 cancellation are unknown. No setting change, alternate
+credential, auth/TLS workaround or administrative access attempt followed.
+
+This is a concrete service barrier to the required native verification/green CI.
+All feasible checks for the correction are complete: real detached checkout
+reproduces4/2 missing-SDK failures before installation and157/157 per Node22/24
+after locked npm ci,0skips; unchanged exact component command, actionlint, prepared
+core9f975 and archive/local-link checks pass. Implementation5daddf7 changes no
+product/QA source from locally tested1bac9c0: it adds the missing install step and
+docs/evidence only. Final follow-up evidence commits are documentation only.
+
+Last full non-cancelled checkpoint remains native1002257/18 plus separate primary
+Mac timeout. Native101 has only1654/12 available completed summaries, three
+cancelled jobs and three unavailable logs after ordinary retry. Never combine
+those as a passing acceptance run. Current-runtime native functional soak100/600
+each Linux/Mac/Windows passes separately; no browser resource-bound or historical
+process-identity clearance follows. Remaining capture, media, fixed-budget client,
+cleanup/ownership uncertainties and manual/operator gaps remain in the gates.
+
+[Exact service refusal](evidence/native102-actions-disabled-proof.json),
+[blocker manifest](evidence/native102-verification-blocker-summary.json),
+[clean local component proof](evidence/native101-component-dependency-fix-proof.json),
+[native101 partial manifest](evidence/native101-summary.json),
+[last full checkpoint](evidence/native100-summary.json),
+[functional soak](evidence/native100-soak-proof.json).
+
+NEXT ACTION: an authorized repository operator must restore normal GitHub Actions
+availability. Then run both existing workflows at the exact current source, wait
+for workflows/all jobs terminal, collect normal logs with retained first attempts,
+and diagnose remaining strict failures. Do not mark G00–G18 complete, re-enable
+publishing, merge or release. No permission request or automatic re-enable is made.
+
+
 ## Native101 cancelled checkpoint — 1bac9c0; release blocked
 
 [Batch39875726404](https://github.com/timmiballz22/playwright-mcp/actions/runs/39875726404)
