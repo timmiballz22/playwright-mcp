@@ -1,0 +1,48 @@
+{
+  "source": "1bac9c0f7c8c97432e1829bd942dbcdf8e0bd5d5",
+  "scope": "Detached actual Git checkout, no source clone/symlink, initially no node_modules. Exact workflow Node22 component command fails SDK-only tests before npm ci and passes after locked install. This proves setup defect/fix locally, not native success or timing-root-cause clearance.",
+  "beforeInstall": {
+    "pass": 4,
+    "fail": 2,
+    "skip": 0,
+    "code": "ERR_MODULE_NOT_FOUND",
+    "package": "@modelcontextprotocol/sdk"
+  },
+  "installedExactComponents": {
+    "tests": 157,
+    "pass": 157,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "durationMs": 89412.758734,
+  "exits": [
+    {
+      "stage": "native101-clean-before-install",
+      "exit": 1
+    },
+    {
+      "stage": "native101-clean-npm-ci",
+      "exit": 0
+    },
+    {
+      "stage": "native101-clean-components22",
+      "exit": 0
+    }
+  ],
+  "candidateWorkflowSha256": "14b13e7c4c93415e28a4b88deb63d6faaac0e00e221b51eb71df14a867396e09",
+  "actionlint": "pass",
+  "limits": "Original10min job, RPC and all tests/assertions unchanged",
+  "installedExactComponentsNode24": {
+    "tests": 157,
+    "pass": 157,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "node24Exit": 0,
+  "node24DurationMs": 96933.999159,
+  "componentCommandUnchanged": true,
+  "detachedSource": "1bac9c0f7c8c97432e1829bd942dbcdf8e0bd5d5",
+  "coreSha256": "9f9750ae24604e2099e1c1f6564d5d6cb3d19d30dfbc8b5ec61ba18c0989e25a"
+}

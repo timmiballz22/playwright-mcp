@@ -1,5 +1,56 @@
 # Execution ledger
 
+## Native101 cancelled checkpoint — 1bac9c0; release blocked
+
+[Batch39875726404](https://github.com/timmiballz22/playwright-mcp/actions/runs/39875726404)
+and [original39875726421](https://github.com/timmiballz22/playwright-mcp/actions/runs/39875726421)
+are terminal **cancelled**, with three cancelled browser jobs. No cancellation was
+requested by this execution; actor/cause is unknown. Remote head stayed1bac9c0,
+with no observed superseding push. Cancellation is not PASS. Native100 below
+remains the last fully collected non-cancelled checkpoint.
+
+Available completed summaries are batch1254/10 and original400/2, total
+**1,654 passed / 12 failed**. Their reported test skips/cancels0 does not mean no
+workflow/job cancellation: Mac/Windows main batch and Windows original are
+cancelled and their logs remain empty after one ordinary retry. All18 logs were
+attempted only after workflow/all jobs terminal;15 resolve,3 remain unavailable.
+Both attempts/empty files remain, with no signed-URL/auth/TLS bypass or inferred
+counts for unavailable tests.
+
+All five installed-package steps complete successfully before cancellation.
+Components are155/2 on Linux22/24/Mac and156/2 on Windows. Each lane fails exactly
+two new real-SDK EOF tests with ERR_MODULE_NOT_FOUND: these previously checkout-only
+jobs omitted npm ci. This CI setup defect was introduced by1bac9c0. Other component
+cases, all12 schema races and narrow init boundaries pass this sample; that never
+clears earlier failed phases, identities or unknown process exits.
+
+A real detached1bac9c0 checkout reproduces4passes/2missing-SDK failures before
+installation. After normal locked npm ci, the unchanged exact component command
+passes157/157 on Node22 (89.413s) and Node24 (96.934s), no skips. The prospective
+workflow fix adds only that install step, keeps10-minute job and all RPC/test
+limits/assertions, and passes actionlint. No new dependency version or browser
+installation is introduced. Prepared core remains9f9750ae. Native verification
+of this setup correction is pending.
+
+Available main Linux20/22/24 is208/1,213/0,212/1; Linux20/24 first-input failures
+remain. Actual primary Codex1000 passes Linux36.261s/Windows38.385s; Mac times
+out977, with its failure separate from summary counts. Separate Mac1000 control
+passes82.976s. Original Linux200/0, Mac198/2 and Docker2/0. Mac Chromium stock PCM
+and screenshot inside video playback fixture fail; the video fixture does not
+establish a decode/gray-pixel failure this sample. No stderr-teardown failure is
+observed in available original logs; one repetition does not establish reliability.
+Missing Windows and cancelled batch evidence never clear earlier native failures.
+
+[Cancelled/partial manifest](evidence/native101-summary.json),
+[clean dependency-setup proof](evidence/native101-component-dependency-fix-proof.json),
+[raw schema-race proof](evidence/native101-native-schema-race-proof.json).
+Archive194 files/9,135,995 bytes plus manifest, no DB/key contents. Prospective
+workflow installation is the next feasible fix; G18 remains BLOCKED, with no
+merge/publish/release. Historical Windows136/142 and native89/94/96/98 identity/
+exit gaps remain unresolved. Manual operator/physical-device verification is not
+replaced by automated controls.
+
+
 ## Latest reviewed native checkpoint — native100 at b2cbc63; acceptance incomplete
 
 [Batch39872697335](https://github.com/timmiballz22/playwright-mcp/actions/runs/39872697335)
@@ -22,8 +73,10 @@ Linux24 first JPEG320×153/metadata320×240 fails; Mac first-input consistency a
 fails. macOS WebKit deadline test has tempCleanup unknown rather than removed,
 and Chromium1000 integration times out. Windows Firefox localhost/IPv6 alias cases
 return timeout instead of expected policy_blocked; each reports completed4/4,
-cleanup terminated/temp removed, so successful contact or policy bypass is not
-inferred. Privacy returns cancelled instead of expected typed404. Headed/direct-pipe
+cleanup terminated/temp removed. Before the failed reason assertion, denied-output0
+and unchanged target-hit assertions pass (6 IPv4/4 IPv6 approved-control hits); no
+denied contact is observed. Privacy returns cancelled instead of expected typed404,
+with0requests/0responses/no status: this is not404 misclassification evidence. Headed/direct-pipe
 fresh Firefox controls and positive19-step locator workflow also fail; the latter
 reports19 completed but overall timeout at8034ms. No unsafe action replay or
 successful ambiguity handling is inferred. All60 cancellation witnesses pass this
@@ -2744,25 +2797,25 @@ mapped in [SCENARIO_MATRIX.md](SCENARIO_MATRIX.md).
 
 | Gate | Status | Evidence / source | NEXT ACTION |
 |---|---|---|---|
-| G00 BASELINE | IN PROGRESS | native1002257/18 plus separate primary Mac failure;18 terminal logs resolved | No green acceptance matrix |
-| G01 INSTALL | VERIFIED PASS | native100 five packages/both parent-death variants pass | Historical failed stores/exits remain unresolved |
-| G02 MCP | FAILED | native100 primary Linux/Windows1000 pass; Mac951 times out; separate Mac1000 passes | Prospective EOF join local only; primary failures remain |
-| G03 FEATURE PARITY | FAILED | native100 original Linux200/0 Mac198/2 Windows197/3 | Mac screenshot/EOF and Windows media remain failed |
-| G04 BATCH | FAILED | native100 Linux209/0,213/0,212/1 Mac210/3 Windows199/6 | Capture, cleanup, deadline, Firefox alias/privacy and fresh-run failures remain |
-| G05 RETRIES | IN PROGRESS | native100 all60 cancellation observations pass; recovery/publication31/32 | Windows intended non-COMMIT phase not reached; no unsafe replay |
-| G06 JOBS | FAILED | native100 components614/3; all12 schema races pass | Windows earlier-phase/recovery init timeouts; no deadline widening |
-| G07 SECURITY | FAILED | native100 Windows Firefox alias timeout and privacy cancelled rather than typed404 | No policy-bypass/classification inference; strict cases still fail |
+| G00 BASELINE | IN PROGRESS | native101 cancelled; available1654/12;15/18 logs resolve after retry | No green matrix; missing/unfinished evidence not PASS |
+| G01 INSTALL | VERIFIED PASS | native101 five installed production package steps succeed before cancellation | Retain historical failed stores/exits |
+| G02 MCP | FAILED | native101 primary Linux/Windows1000 pass; Mac977 timeout; EOF join no failure in available original logs | Single sample does not resolve runtime/client reliability |
+| G03 FEATURE PARITY | FAILED | native101 available original Linux200/0 Mac198/2; Windows cancelled/log unavailable | Mac stock PCM/screenshot and earlier Windows media remain |
+| G04 BATCH | FAILED | native101 main Linux208/1,213/0,212/1; Mac/Windows cancelled | Capture and native100 unresolved main failures remain |
+| G05 RETRIES | IN PROGRESS | native101 existing init/recovery cases pass; native10060 cancellation observations pass | Historical ambiguous exits and missing cancelled lanes remain |
+| G06 JOBS | FAILED | native101 all four component lanes fail2 missing-SDK tests; all12 races pass | Add npm ci; clean installed157/157 per LTS locally verified |
+| G07 SECURITY | FAILED | native100 denied aliases settle/output0/hits unchanged but reason times out; privacy0contact/no status | No bypass/404-classification claim; no new Windows evidence |
 | G08 STORAGE | BLOCKED | native100 Mac WebKit temporary cleanup unknown; historical four IDs unresolved | No filtering/retroclearance; retain full rows and failed stores |
 | G09 AUTH/PROFILES | FAILED | native95 original scoped reset/restart/sibling cases pass12 instances | Managed filesystem deletion/crash repair and operator/Windows ACL requirements remain limited |
-| G10 CROSS-BROWSER | FAILED | native10094 video inputs320x240; decode11/12; Linux24/Mac first-input failures | No validated capture repair; Windows WebKit media remains failed |
-| G11 CROSS-OS | FAILED | native100 all package checks pass; Windows components and three main lanes fail | Native follow-up needed for prospective checkout QA fixes |
-| G12 PERFORMANCE | IN PROGRESS | current-source native3OS100-run functional soaks pass; separate Mac1000 control86.792s | Not browser resource bounds, failed-host cause or billing proof |
+| G10 CROSS-BROWSER | FAILED | native101 Linux20/24 first-input failures; Mac PCM and video-fixture screenshot fail | No validated native capture repair or Windows media clearance |
+| G11 CROSS-OS | FAILED | native101 cancelled Mac/Windows lanes; setup defect fails four component lanes | Install fix requires native verification |
+| G12 PERFORMANCE | IN PROGRESS | current-source native1003OS100-run functional soaks pass; native101 separate Mac1000 control82.976s | Not browser resource bounds, failed-host cause or billing proof |
 | G13 ACCESSIBILITY/MOBILE | FAILED | native75 representative ARIA/keyboard/touch run; original Win151/1 popup failure and historical media uncertainty remain | Remaining variants/flakiness; no physical-iOS claim |
-| G14 ADVANCED | FAILED | native100 Mac screenshot still unavailable after existing retry; EOF failure separate | Prospective EOF join does not repair screenshot/capture |
+| G14 ADVANCED | FAILED | native101 Mac video-fixture screenshot unavailable after existing retry | EOF join is separate from screenshot/video capture readiness |
 | G15 RELEASE SAFETY | VERIFIED PASS | distribution.test.mjs,publish-disabled.cjs; private fork identity, inherited publishers disabled | Keep publishing disabled; any future release requires separate authorization |
-| G16 DOCUMENTATION | IN PROGRESS | native100 terminal review and fresh soak scopes documented | Manual operator walkthrough still unexecuted |
-| G17 AUDIT EVIDENCE | IN PROGRESS | native10018 first-read logs plus soak3logs/one ordinary retry retained | Historical identity gaps and earlier namespace log loss remain explicit |
-| G18 CLEAN MERGE | BLOCKED | Draft PR2; native1002257/18 plus primary Mac failure | No merge/release; commit tested QA fixes and verify natively |
+| G16 DOCUMENTATION | IN PROGRESS | native101 cancelled/partial scopes and setup defect explicitly documented | Manual operator walkthrough remains unexecuted |
+| G17 AUDIT EVIDENCE | IN PROGRESS | native10118 reads/ordinary empty retries retained;15 logs resolve/3 unavailable | No reconstruction; historical identity gaps/log loss remain explicit |
+| G18 CLEAN MERGE | BLOCKED | Draft PR2; native101 cancelled plus failed cases; native1002257/18 complete | Commit setup fix; no merge/release |
 
 ## Defects and risk register
 

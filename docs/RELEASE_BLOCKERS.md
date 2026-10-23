@@ -1,5 +1,56 @@
 # Release acceptance is blocked
 
+## Native101 cancelled checkpoint — 1bac9c0; release blocked
+
+[Batch39875726404](https://github.com/timmiballz22/playwright-mcp/actions/runs/39875726404)
+and [original39875726421](https://github.com/timmiballz22/playwright-mcp/actions/runs/39875726421)
+are terminal **cancelled**, with three cancelled browser jobs. No cancellation was
+requested by this execution; actor/cause is unknown. Remote head stayed1bac9c0,
+with no observed superseding push. Cancellation is not PASS. Native100 below
+remains the last fully collected non-cancelled checkpoint.
+
+Available completed summaries are batch1254/10 and original400/2, total
+**1,654 passed / 12 failed**. Their reported test skips/cancels0 does not mean no
+workflow/job cancellation: Mac/Windows main batch and Windows original are
+cancelled and their logs remain empty after one ordinary retry. All18 logs were
+attempted only after workflow/all jobs terminal;15 resolve,3 remain unavailable.
+Both attempts/empty files remain, with no signed-URL/auth/TLS bypass or inferred
+counts for unavailable tests.
+
+All five installed-package steps complete successfully before cancellation.
+Components are155/2 on Linux22/24/Mac and156/2 on Windows. Each lane fails exactly
+two new real-SDK EOF tests with ERR_MODULE_NOT_FOUND: these previously checkout-only
+jobs omitted npm ci. This CI setup defect was introduced by1bac9c0. Other component
+cases, all12 schema races and narrow init boundaries pass this sample; that never
+clears earlier failed phases, identities or unknown process exits.
+
+A real detached1bac9c0 checkout reproduces4passes/2missing-SDK failures before
+installation. After normal locked npm ci, the unchanged exact component command
+passes157/157 on Node22 (89.413s) and Node24 (96.934s), no skips. The prospective
+workflow fix adds only that install step, keeps10-minute job and all RPC/test
+limits/assertions, and passes actionlint. No new dependency version or browser
+installation is introduced. Prepared core remains9f9750ae. Native verification
+of this setup correction is pending.
+
+Available main Linux20/22/24 is208/1,213/0,212/1; Linux20/24 first-input failures
+remain. Actual primary Codex1000 passes Linux36.261s/Windows38.385s; Mac times
+out977, with its failure separate from summary counts. Separate Mac1000 control
+passes82.976s. Original Linux200/0, Mac198/2 and Docker2/0. Mac Chromium stock PCM
+and screenshot inside video playback fixture fail; the video fixture does not
+establish a decode/gray-pixel failure this sample. No stderr-teardown failure is
+observed in available original logs; one repetition does not establish reliability.
+Missing Windows and cancelled batch evidence never clear earlier native failures.
+
+[Cancelled/partial manifest](evidence/native101-summary.json),
+[clean dependency-setup proof](evidence/native101-component-dependency-fix-proof.json),
+[raw schema-race proof](evidence/native101-native-schema-race-proof.json).
+Archive194 files/9,135,995 bytes plus manifest, no DB/key contents. Prospective
+workflow installation is the next feasible fix; G18 remains BLOCKED, with no
+merge/publish/release. Historical Windows136/142 and native89/94/96/98 identity/
+exit gaps remain unresolved. Manual operator/physical-device verification is not
+replaced by automated controls.
+
+
 ## Latest reviewed native checkpoint — native100 at b2cbc63; acceptance incomplete
 
 [Batch39872697335](https://github.com/timmiballz22/playwright-mcp/actions/runs/39872697335)
@@ -22,8 +73,10 @@ Linux24 first JPEG320×153/metadata320×240 fails; Mac first-input consistency a
 fails. macOS WebKit deadline test has tempCleanup unknown rather than removed,
 and Chromium1000 integration times out. Windows Firefox localhost/IPv6 alias cases
 return timeout instead of expected policy_blocked; each reports completed4/4,
-cleanup terminated/temp removed, so successful contact or policy bypass is not
-inferred. Privacy returns cancelled instead of expected typed404. Headed/direct-pipe
+cleanup terminated/temp removed. Before the failed reason assertion, denied-output0
+and unchanged target-hit assertions pass (6 IPv4/4 IPv6 approved-control hits); no
+denied contact is observed. Privacy returns cancelled instead of expected typed404,
+with0requests/0responses/no status: this is not404 misclassification evidence. Headed/direct-pipe
 fresh Firefox controls and positive19-step locator workflow also fail; the latter
 reports19 completed but overall timeout at8034ms. No unsafe action replay or
 successful ambiguity handling is inferred. All60 cancellation witnesses pass this
