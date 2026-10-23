@@ -401,3 +401,16 @@ routing and interface behavior; they do not isolate protocol overhead. Reference
 payload token counts retain their stated text boundary, not a billing claim.
 No channel or transport default was changed. Source references and hash are in
 [evidence/native76-browser-channel-review.json](evidence/native76-browser-channel-review.json).
+
+## Current implementation native functional soak — b2cbc63
+
+Manual run [39873975191](https://github.com/timmiballz22/playwright-mcp/actions/runs/39873975191)
+completed on Linux, macOS Intel and Windows. Each executes100 fresh supervised
+Chromium workflows/600 actions, verifies fresh cookie/localStorage before seeding,
+asserts cleanup/temp removal and audits no observed owned survivors after every
+run. Linux90.983s, Mac229.063s, Windows117.638s. Source b2cbc63 has the same runtime
+as ab4e111. This does not clear historical unknown PIDs/exits or establish browser
+RSS/CPU/FD/handle bounds. Subject RSS includes audit overhead. Four unselected
+workflow jobs are skipped, not test passes. All three logs are collected only after
+workflow/all jobs terminate; the first Windows read fails and ordinary retry
+succeeds, both retained. [Native100 soak proof](evidence/native100-soak-proof.json) retains the receipts; this result does not waive the still-failing PR acceptance matrix.

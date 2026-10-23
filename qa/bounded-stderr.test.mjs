@@ -32,3 +32,42 @@ test('one oversized stderr chunk is bounded immediately and invalid chunks are r
   assert.equal(capture.snapshot().overflow, true);
   assert.throws(() => capture.observe('private-canary'), { message: 'invalid_fixture_stderr_chunk' });
 });
+
+// Real transport calibration: a naturally exiting descendant keeps the actual
+// inherited stderr pipe open after its parent exits. No synthetic EOF/close.
+async function inheritedStderrFixture(delay, callback) {
+  const { StdioClientTransport } = await import('@modelcontextprotocol/sdk/client/stdio.js');
+  const { closeWithStderr } = await import('../tests/fixtures/close-with-stderr.mjs');
+  const transport = new StdioClientTransport({ command: process.execPath,
+    args: ['-e', `const {spawn}=require('node:child_process');process.stderr.write('fixed-fixture');process.stdin.resume();process.stdin.once('end',()=>{spawn(process.execPath,['-e','setTimeout(()=>process.exit(0),${delay})'],{stdio:['ignore','ignore',2]});process.exit(0);});`], stderr: 'pipe' });
+  const capture = createStderrCapture(); let ended = false;
+  const eof = new Promise(resolve => transport.stderr.once('end', () => { ended = true; resolve(); }));
+  transport.stderr.on('data', chunk => capture.observe(chunk));
+  await transport.start();
+  try { await callback({ transport, capture, eof, ended: () => ended, closeWithStderr }); }
+  finally { await transport.close(); await eof; capture.assertWithinLimit(); }
+}
+
+test('actual SDK close can precede stderr EOF; joined teardown drains within its existing ceiling', { timeout: 10000 }, async () => {
+  await inheritedStderrFixture(2600, async ({ transport, capture, eof, ended, closeWithStderr }) => {
+    let atClose;
+    await closeWithStderr(async () => { await transport.close(); atClose = ended(); }, eof);
+    assert.equal(atClose, false); assert.equal(ended(), true);
+    assert.equal(capture.text(), 'fixed-fixture');
+  });
+});
+
+test('actual inherited stderr beyond the existing ceiling stays a failed unconfirmed teardown', { timeout: 10000 }, async () => {
+  await inheritedStderrFixture(4600, async ({ transport, eof, ended, closeWithStderr }) => {
+    await assert.rejects(closeWithStderr(() => transport.close(), eof), { message: 'fixture_close_or_stderr_unconfirmed' });
+    assert.equal(ended(), false); // Later natural EOF cannot retroactively pass this close.
+  });
+});
+
+test('joined teardown preserves a close rejection after actual EOF', async () => {
+  const { closeWithStderr } = await import('../tests/fixtures/close-with-stderr.mjs');
+  const primary = new Error('fixed-close-failure');
+  await assert.rejects(closeWithStderr(() => Promise.reject(primary), Promise.resolve()), error => {
+    assert.equal(error instanceof AggregateError, true); assert.deepEqual(error.errors, [primary]); return true;
+  });
+});

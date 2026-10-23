@@ -1,5 +1,76 @@
 # Current acceptance coverage
 
+## Latest reviewed native checkpoint — native100 at b2cbc63; acceptance incomplete
+
+[Batch39872697335](https://github.com/timmiballz22/playwright-mcp/actions/runs/39872697335)
+finishes **1,657 passed / 13 failed**; [original39872697227](https://github.com/timmiballz22/playwright-mcp/actions/runs/39872697227)
+finishes **600 / 5**. Test summaries total **2,257 / 18**, reported skips/cancels0.
+Primary Mac actual-client timeout951/interrupted952 is separate from these counts.
+Both workflows/all jobs are terminal; all18 job logs succeed on their first read.
+Source b2cbc63 is documentation/evidence only from runtime ab4e111/core9f9750ae.
+
+All five installed-package checks and both parent-death variants pass. Components
+Linux22/24/Mac154 each pass; Windows152/3. All12 actual schema races pass. New
+recovery/publication boundaries31/32 pass: Windows non-COMMIT pause expects
+schema_verify but times out earlier at configure; phase tests expect schema but
+observe configure, and a recovery open after the configure calibration times out
+at schema_tables. These are failures, not injected-phase successes. No broader
+retry, repaired schema, longer RPC or filesystem durability weakening follows.
+
+Main Linux20/22 passes209/0 and213/0; Linux24 is212/1, Mac210/3, Windows199/6.
+Linux24 first JPEG320×153/metadata320×240 fails; Mac first-input consistency also
+fails. macOS WebKit deadline test has tempCleanup unknown rather than removed,
+and Chromium1000 integration times out. Windows Firefox localhost/IPv6 alias cases
+return timeout instead of expected policy_blocked; each reports completed4/4,
+cleanup terminated/temp removed, so successful contact or policy bypass is not
+inferred. Privacy returns cancelled instead of expected typed404. Headed/direct-pipe
+fresh Firefox controls and positive19-step locator workflow also fail; the latter
+reports19 completed but overall timeout at8034ms. No unsafe action replay or
+successful ambiguity handling is inferred. All60 cancellation witnesses pass this
+sample; earlier PID-only candidates and unconfirmed exits remain unresolved.
+
+Actual primary Codex1000 passes Linux37.816s and Windows38.455s, model0/owned0.
+Mac times out951, failed952 interrupted, result available/operator attention false,
+execution cleanup terminated/temp removed; failed workspace retained. Its separate
+instrumented1000 control passes86.792s. Independent controls never waive the
+primary failure, establish a transport preference, or clear unknown process exits.
+All full factory/legacy observations and root rows are retained, never role/name/
+age/window filtered or used as signaling/lease authority.
+
+Original Linux200/0, Mac198/2, Windows197/3; Docker2 and Windows legacy3 pass.
+Mac Chrome advanced body completes18 tool calls but teardown observes stderr not
+ended/162 bytes/no overflow. Chromium advanced screenshot returns capture
+unavailable after the existing retry. Windows three failures remain WebKit original
+PCM, stock PCM and original VP9 readiness. All94 recording input headers are
+320×240; video decode11/12 passes. Automated Mac modal and matching fresh-video
+controls are not executed this sample; unselected steps are not passes.
+
+Independent [functional soak39873975191](https://github.com/timmiballz22/playwright-mcp/actions/runs/39873975191)
+at the same source passes100 fresh supervised Chromium workflows/600 actions each
+on Linux90.983s, Mac229.063s and Windows117.638s. Fresh cookie/localStorage and
+cleanup/absence assertions pass after every run. Subject RSS includes audits; no
+browser CPU/RAM/handles/FD bound or old identity clearance follows. Four unselected
+workflow jobs are skipped, not test passes. Three terminal logs resolve after one
+initial Windows read failure and ordinary retry; both attempts remain.
+
+Prospective checkout-only QA fixes join actual stderr EOF and client close within
+the pinned SDK existing4000ms maximum (no extra post-close budget), retain final
+EOF/1MiB assertions, and add full same-query legacy/root rows to soak failures.
+Real pinned-SDK calibration returns close2003ms/EOF2681ms; same-cause native Mac
+inference is unproven. Local unit6/6 each Node20/22/24, original advanced6/6 across
+Chromium/Firefox, diagnostic soak20runs/120actions, typecheck and README generation
+pass. Package297files/core9f975 remain unchanged; native verification is pending.
+
+[Terminal archive](evidence/native100-summary.json),
+[failed-case proof](evidence/native100-terminal-review-proof.json),
+[31/32 real boundaries](evidence/native100-native-boundary-proof.json),
+[three native soaks](evidence/native100-soak-proof.json),
+[prospective local QA proof](evidence/native100-local-qa-fixes-proof.json).
+Archive263 files/9,035,303 bytes plus manifest, no DB/key contents. Release and
+G18 remain blocked. Historical native98 IDs5520/6136/6452/6484, native94 captured
+survivor, native89/96 unknown exits and136/142 birth/overlap gaps are not cleared.
+
+
 ## Last reviewed implementation checkpoint — native99 at ab4e111; acceptance incomplete
 
 [Batch39868413381](https://github.com/timmiballz22/playwright-mcp/actions/runs/39868413381)

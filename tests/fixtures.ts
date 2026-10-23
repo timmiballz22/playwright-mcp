@@ -28,6 +28,7 @@ import { TestServer } from './testserver/index';
 import { ownedScopeDescendants } from '../local-batch/fixtures/process-audit.mjs';
 import { trackToolProgress } from '../local-batch/fixtures/tool-progress.mjs';
 import { createStderrCapture } from './fixtures/bounded-stderr.mjs';
+import { closeWithStderr } from './fixtures/close-with-stderr.mjs';
 
 const originalToolNames = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/evidence/discovery-chromium-extended.json'), 'utf8')).tools.map((tool: { name: string }) => tool.name));
 
@@ -94,6 +95,7 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
 
   startClient: async ({ mcpHeadless, mcpBrowser, mcpMode, mcpArgs }, use, testInfo) => {
     const clients: Client[] = [];
+    const stderrEnds = new Map<Client, Promise<void>>();
     const progress: Array<() => unknown> = [];
     const stderrCaptures: Array<{ capture: ReturnType<typeof createStderrCapture>, ended: () => boolean }> = [];
     let processAuditSequence = 0;
@@ -127,7 +129,7 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
       const { transport, stderr } = await createTransport(args, cwd, mcpMode, testInfo.outputPath('ms-playwright'), options?.env ?? {});
       const stderrCapture = createStderrCapture(); let stderrEnded = !stderr;
       stderrCaptures.push({ capture: stderrCapture, ended: () => stderrEnded });
-      stderr?.once('end', () => { stderrEnded = true; });
+      stderrEnds.set(client, stderr ? new Promise<void>(resolve => stderr.once('end', () => { stderrEnded = true; resolve(); })) : Promise.resolve());
       stderr?.on('data', data => {
         if (process.env.PWMCP_DEBUG)
           process.stderr.write(data);
@@ -168,19 +170,19 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
         if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Original MCP progress::' + receipt);
       }
     } finally {
-      const closed = await Promise.allSettled(clients.map(client => client.close()));
+      const closed = await Promise.allSettled(clients.map(client => closeWithStderr(() => client.close(), stderrEnds.get(client)!)));
       const failures = closed.filter(result => result.status === 'rejected').map(result => result.reason);
       for (const { capture, ended } of stderrCaptures) {
         try { capture.assertWithinLimit(); } catch (error) { failures.push(error); }
-        // SDK close can return after its final kill request, before pipe EOF.
-        // Do not accept an unchecked tail or add another cleanup wait budget.
+        // Close and actual EOF share the pinned SDK's existing total ceiling.
+        // Keep this independent final assertion; no unchecked tail is accepted.
         if (!ended()) failures.push(new Error('fixture_stderr_close_unconfirmed'));
       }
       if (failures.length) {
         // Preserve final bounded metadata even when the test body passed and
         // only teardown failed. Never print stderr text, tool inputs or results.
         const receipt = JSON.stringify({ fixture: 'original_mcp_teardown', clientCount: clients.length,
-          closeRejectedCount: closed.filter(result => result.status === 'rejected').length,
+          closeAndStderrRejectedCount: closed.filter(result => result.status === 'rejected').length,
           clients: progress.slice(0, 4).map(snapshot => snapshot()),
           stderr: stderrCaptures.slice(0, 4).map(({ capture, ended }) => ({ ended: ended(), ...capture.snapshot() })),
           truncated: progress.length > 4 || stderrCaptures.length > 4 });

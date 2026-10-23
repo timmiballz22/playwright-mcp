@@ -40,10 +40,13 @@ try {
     ] }, { artifactsDir: dir, allowedOrigins: [origin], signal: abort.signal,
       onEvent: event => { if (event.pid) owned.push(event.pid); },
     });
-    let auditReceipt = null;
-    const survivors = await ownedDescendants(owned, { sinceMs, onReceipt: receipt => { auditReceipt = receipt; } });
+    let auditReceipt = null, legacyObservation = null;
+    const survivors = await ownedDescendants(owned, { sinceMs, compareLegacyRoots: owned,
+      onLegacyObservation: observation => { legacyObservation = observation; },
+      onReceipt: receipt => { auditReceipt = receipt; } });
     assert.deepEqual(survivors, [], JSON.stringify({ fixture: 'portable_soak_ownership', run,
       completed: result.completed, ok: result.ok, reason: result.reason, audit: auditReceipt,
+      observed: survivors, legacy: legacyObservation,
       supervisorMatched: survivors.includes(result.execution?.supervisorPid), workerMatched: survivors.includes(result.execution?.workerPid),
       browserRootsMatched: (result.execution?.browserPids ?? []).filter(pid => survivors.includes(pid)).length,
       cleanup: result.execution?.cleanup, tempCleanup: result.execution?.tempCleanup }));
