@@ -1,0 +1,37 @@
+✔ cooperative context cleanup timeout retains fixed stage and stays failed (33.199623ms)
+✔ cooperative context cleanup error retains fixed stage and stays failed (3.275334ms)
+✔ untrusted Retry-After hints cannot exceed bounded durable result metadata (6.192985ms)
+✔ all three close failures plus final server kill failure remain bounded fixed metadata (2.68859ms)
+✔ client step failure receipts retain fixed taxonomy without private step fields (0.594044ms)
+✔ known main GET 401 fails precisely even when document readiness never settles (9.561858ms)
+✔ known main GET 403 fails precisely even when document readiness never settles (2.870349ms)
+✔ known main GET 404 fails precisely even when document readiness never settles (1.974731ms)
+✔ known main GET 429 fails precisely even when document readiness never settles (1.5506ms)
+✔ known main GET 503 fails precisely even when document readiness never settles (1.206824ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"main":false}) (1.334061ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"}) (0.940996ms)
+✔ navigation retry policy is bounded, disabled by default and copied (1.232464ms)
+✔ Retry-After is a minimum wait and an excessive wait is never shortened (0.425895ms)
+✔ failure classification returns fixed codes and never browser text (1.150804ms)
+✔ rejects unknown instructions, unbounded workloads and hostile origins (1.523591ms)
+✔ 100 ordered actions finish in a single batch with one browser launch (9.41384ms)
+✔ failures stop promptly, hide underlying sensitive errors and clean up (2.435001ms)
+✔ cancellation before starting avoids launching browser (0.788268ms)
+✔ checks target origins and reports assertion failure without page content (1.402052ms)
+✔ unknown localhost ports require exact operator origins (3.253648ms)
+✔ rejects extra workflow and action properties rather than ignoring policy (0.320688ms)
+✔ deadline includes a stalled launch and closes late browser (201.994046ms)
+✔ validation snapshots actions before asynchronous launch (1.118222ms)
+✔ screenshot capture requires operator approval for sensitive artifacts (0.518643ms)
+✔ workflow version and serialized size are bounded (9.244296ms)
+✔ accessible selectors validate exact shape and clone nested values (0.315556ms)
+✔ explicit action repeats expand within the total action cap (11.313764ms)
+✔ text equality rejects duplicate counters and ambiguous expectations (2.006584ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 562.623071

@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: cooperative context cleanup timeout retains fixed stage and stays failed
+ok 1 - cooperative context cleanup timeout retains fixed stage and stays failed
+  ---
+  duration_ms: 30.816001
+  type: 'test'
+  ...
+# Subtest: cooperative context cleanup error retains fixed stage and stays failed
+ok 2 - cooperative context cleanup error retains fixed stage and stays failed
+  ---
+  duration_ms: 26.654471
+  type: 'test'
+  ...
+# Subtest: untrusted Retry-After hints cannot exceed bounded durable result metadata
+ok 3 - untrusted Retry-After hints cannot exceed bounded durable result metadata
+  ---
+  duration_ms: 9.892943
+  type: 'test'
+  ...
+# Subtest: all three close failures plus final server kill failure remain bounded fixed metadata
+ok 4 - all three close failures plus final server kill failure remain bounded fixed metadata
+  ---
+  duration_ms: 5.541893
+  type: 'test'
+  ...
+# Subtest: client step failure receipts retain fixed taxonomy without private step fields
+ok 5 - client step failure receipts retain fixed taxonomy without private step fields
+  ---
+  duration_ms: 0.668474
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 307.651496

@@ -1,0 +1,59 @@
+[
+  {
+    "fixture": "http_privacy_workspace_preserved",
+    "verifiedCases": 0,
+    "primaryFailed": true,
+    "primaryStage": "summary",
+    "route": "/401",
+    "outcome": {
+      "ok": false,
+      "reason": "timeout",
+      "completed": 0,
+      "failureCode": "http_401",
+      "failureKind": "http_failure",
+      "httpStatus": 401,
+      "forced": true,
+      "cleanup": "terminated",
+      "tempCleanup": "removed",
+      "requestsSeen": 1,
+      "responsesFinished": 1,
+      "timing": {
+        "workerMs": 67,
+        "browserMs": 4005,
+        "startAuditMs": 479,
+        "firstRequestMs": 9924,
+        "lastResponseMs": 9925
+      }
+    },
+    "auditConfirmed": true,
+    "auditFailure": null,
+    "audit": null
+  },
+  {
+    "route": "/429",
+    "reason": "timeout",
+    "completed": 1,
+    "failedStep": null,
+    "execution": {
+      "mode": "supervised",
+      "forced": true,
+      "cleanup": "terminated",
+      "tempCleanup": "removed",
+      "supervisorPid": 4752,
+      "workerPid": 5680,
+      "browserPids": [
+        5668
+      ]
+    },
+    "hits": 2,
+    "timing": {
+      "supervisorEventMs": 5,
+      "workerEventMs": 64,
+      "browserEventMs": 1265,
+      "requestsSeen": 2,
+      "responsesFinished": 2,
+      "firstRequestMs": 2791,
+      "lastResponseFinishedMs": 6374
+    }
+  }
+]

@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: profile doctor reports a missing path without creating it
+ok 1 - profile doctor reports a missing path without creating it
+  ---
+  duration_ms: 41.389561
+  type: 'test'
+  ...
+# Subtest: profile doctor preserves active ownership and hides path, PID and token from CLI output
+ok 2 - profile doctor preserves active ownership and hides path, PID and token from CLI output
+  ---
+  duration_ms: 69.037595
+  type: 'test'
+  ...
+# Subtest: profile doctor retains malformed, oversized and linked guard metadata without leaking contents
+ok 3 - profile doctor retains malformed, oversized and linked guard metadata without leaking contents
+  ---
+  duration_ms: 95.912901
+  type: 'test'
+  ...
+# Subtest: profile doctor does not repair a writable profile directory
+ok 4 - profile doctor does not repair a writable profile directory
+  ---
+  duration_ms: 2.425602
+  type: 'test'
+  ...
+# Subtest: profile doctor rejects extra CLI actions without accepting a reset request
+ok 5 - profile doctor rejects extra CLI actions without accepting a reset request
+  ---
+  duration_ms: 91.407375
+  type: 'test'
+  ...
+# Subtest: guard composes public persistent API, refuses another launch and releases after confirmed public close
+ok 6 - guard composes public persistent API, refuses another launch and releases after confirmed public close
+  ---
+  duration_ms: 11.24436
+  type: 'test'
+  ...
+# Subtest: failed launch and disconnected context retain uncertain ownership without stale deletion
+ok 7 - failed launch and disconnected context retain uncertain ownership without stale deletion
+  ---
+  duration_ms: 5.074215
+  type: 'test'
+  ...
+# Subtest: closed event before acknowledged shutdown cannot free a profile, and failed hook setup closes its allocation
+ok 8 - closed event before acknowledged shutdown cannot free a profile, and failed hook setup closes its allocation
+  ---
+  duration_ms: 8.999832
+  type: 'test'
+  ...
+# Subtest: concurrent context and browser close share shutdown acknowledgement before releasing profile
+ok 9 - concurrent context and browser close share shutdown acknowledgement before releasing profile
+  ---
+  duration_ms: 2.845595
+  type: 'test'
+  ...
+# Subtest: failed close acknowledgement stays primary for repeated closes and retains ownership
+ok 10 - failed close acknowledgement stays primary for repeated closes and retains ownership
+  ---
+  duration_ms: 3.813472
+  type: 'test'
+  ...
+# Subtest: profile lease refuses contention across aliases and releases only its own complete metadata
+ok 11 - profile lease refuses contention across aliases and releases only its own complete metadata
+  ---
+  duration_ms: 14.38439
+  type: 'test'
+  ...
+# Subtest: profile lease never deletes malformed or changed ownership records
+ok 12 - profile lease never deletes malformed or changed ownership records
+  ---
+  duration_ms: 4.234158
+  type: 'test'
+  ...
+# Subtest: another process owns the lease; dead owner remains uncertain and is never silently reclaimed
+ok 13 - another process owns the lease; dead owner remains uncertain and is never silently reclaimed
+  ---
+  duration_ms: 42.684456
+  type: 'test'
+  ...
+# Subtest: linked ownership directory cannot change or delete an outside marker
+ok 14 - linked ownership directory cannot change or delete an outside marker
+  ---
+  duration_ms: 4.948683
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 550.701712

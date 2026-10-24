@@ -1,0 +1,47 @@
+
+> @timmiballz22/playwright-mcp-local@0.0.83 test
+> playwright test --project=chromium --project=firefox --workers=2
+
+
+Running 26 tests using 2 workers
+
+(node:168986) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:168987) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (488ms)
+  ✓   3 [chromium] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (752ms)
+  ✓   4 [chromium] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (365ms)
+  ✓   5 [chromium] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (348ms)
+  ✓   1 [chromium] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (2.5s)
+  ✓   6 [chromium] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (549ms)
+  ✓   8 [chromium] › tests/cli.spec.ts:22:5 › install-browser --help (326ms)
+  ✓   7 [chromium] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.0s)
+  ✓   9 [chromium] › tests/click.spec.ts:19:5 › browser_click (2.0s)
+  ✓  10 [chromium] › tests/core.spec.ts:19:5 › browser_navigate (1.5s)
+  ✓  12 [chromium] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (2.2s)
+(node:169745) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [chromium] › tests/library.spec.ts:20:5 › library can be used from CommonJS (301ms)
+(node:169753) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [chromium] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.2s)
+(node:169926) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [firefox] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (666ms)
+  ✓  16 [firefox] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (369ms)
+  ✓  17 [firefox] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (479ms)
+  ✓  18 [firefox] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (494ms)
+  ✓  14 [firefox] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (4.3s)
+  ✓  19 [firefox] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (571ms)
+  ✓  21 [firefox] › tests/cli.spec.ts:22:5 › install-browser --help (372ms)
+  ✓  20 [firefox] › tests/capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (1.0s)
+  ✓  22 [firefox] › tests/click.spec.ts:19:5 › browser_click (4.1s)
+  ✓  23 [firefox] › tests/core.spec.ts:19:5 › browser_navigate (3.9s)
+  ✓  25 [firefox] › tests/interactions.spec.ts:69:5 › original iframe snapshot targets stay scoped to the embedded document (4.5s)
+(node:170868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  26 [firefox] › tests/library.spec.ts:20:5 › library can be used from CommonJS (330ms)
+  ✓  24 [firefox] › tests/interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (6.1s)
+
+  26 passed (24.5s)

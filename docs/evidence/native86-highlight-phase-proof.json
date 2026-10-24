@@ -1,0 +1,27 @@
+{
+  "scope": "Fixed browser/phase/attempt labels around existing screenshot call; no extra RPC, frame wait, failed-call retry or pixel/deadline change",
+  "positive": {
+    "node24": {
+      "chromium": 1,
+      "firefox": 1,
+      "fail": 0
+    },
+    "typecheckExit": 0
+  },
+  "limitations": [
+    "Excluded from active native86 atfd1939c",
+    "Actual screenshot protocol failure path unexecuted locally; native cause unresolved",
+    "No inference from older interleaved unlabeled receipts"
+  ],
+  "sourceSHA256": "065c698bdbcacd36f07cb7a8f180e66c47d4401211d16f9c951d07581ca4db93",
+  "files": [
+    {
+      "file": "native86-highlight-phase24.log",
+      "sha256": "ac6ff45afe6364827fbbf524c56d0ec7b72b4a3a94cf16b633ab6d94b9cfe6a2"
+    },
+    {
+      "file": "native86-highlight-typecheck.log",
+      "sha256": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "phase": "Local readiness/source-paint follow-up after native84; original dependency remains unmodified in this checkout",
+  "sourceSha256": {
+    "tests/media.spec.ts": "0860d7d83fc0696a83518489239eb20572c90b52dcec671eb64ca51273dd28a1",
+    "tests/video-playback.spec.ts": "fa6330b4a8e083649e0883b7caa865f2b9e8a76ad800049d9798576066183a58"
+  },
+  "baseline": {
+    "exit": 1,
+    "pass": 3,
+    "fail": 1,
+    "scope": "Linux Node24 Chromium/Firefox; PCM2 and Chromium video pass; Firefox existing VP9 pixel failure remains. Source PNG precondition passes both engines."
+  },
+  "diagnostic": "Same original getByText(label).first().waitFor(visible,5000) plus fixed ready/network/error/canPlayType state. Timed-out waits stay failed even if readiness later changes. Successful path combines wait and inspection into one RPC; no new timeout, skip or encoder change.",
+  "sourcePaint": "Single pre-recording PNG with8MiB bound,320x240 header bounds and same red-pixel threshold. Original first decoded-frame assertion retained. No runtime warm-up or replay introduced.",
+  "intermediateReadyStatePoll": "Retained in first log; replaced before shipping by exact original visible-marker wait, preserving its stronger readiness condition.",
+  "typecheckExit": 0,
+  "evidenceSha256": {
+    "native84-media-state-source-phases.json": "fd4f6d822303e570fff4a3ff9771bc6fe29d6e4cc81d49bf27adbfa1464cfa0c",
+    "native84-media-state-first.log": "100a7044547772b100c0eb8652ffc0b58307ed8de41cd560c3f1ecb1405316eb",
+    "native84-media-state-final.log": "a2be7c7007970e43dc72aa1750bb7afffc3c27bc7bf3838b039a197aa346f8b1",
+    "native84-media-state-paint-baseline.log": "8ec9931cb5ed6b82a6f7e5a18e497f4cc55ebcfa2a0c88c830bcb53e529b104d",
+    "native84-media-state-typecheck.log": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f",
+    "native84-media-state-final-typecheck.log": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f"
+  },
+  "finalTypecheckExit": 0
+}

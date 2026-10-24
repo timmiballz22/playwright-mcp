@@ -1,0 +1,35 @@
+{
+  "source": "https://github.com/microsoft/playwright/blob/v1.64.1/tests/library/capabilities.spec.ts",
+  "blobSHA": "88fda9503d2fbaddf2bc16b8250678040c87e6e8",
+  "sha256": "dcd228e75b9e0f144c5f95ca14f48c2707a100dd44889bb413d6367db7575381",
+  "facts": [
+    {
+      "line": 70,
+      "scope": "WebKit Windows video smoke",
+      "quote": "passes locally but fails on GitHub Action bot, apparently due to a Media Pack issue in the Windows Server"
+    },
+    {
+      "line": 83,
+      "scope": "WebKit Windows WebM",
+      "quote": "not supported"
+    },
+    {
+      "line": 94,
+      "scope": "WebKit Windows audio",
+      "quote": "fixme links issue10892"
+    },
+    {
+      "line": 444,
+      "scope": "WebKit Windows autoplay/audio case",
+      "quote": "audio does not play at all"
+    }
+  ],
+  "issue10892": {
+    "state": "closed",
+    "title": "[BUG] <audio> leads to WebContent process crash in WebKit",
+    "comments": 1
+  },
+  "interpretation": "Pinned upstream explicitly excludes these playback capabilities on this port/host. Not proof of the exact WAV loading mechanism or all Windows versions/codecs. Strict local-fork tests remain failing; no skip, xfail, threshold or budget change.",
+  "readOnly": true,
+  "externalMessagesSent": false
+}

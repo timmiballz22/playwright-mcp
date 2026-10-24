@@ -1,0 +1,5 @@
+from pathlib import Path
+import subprocess,os,shlex,json,sys,shutil
+r=Path('/workspace/playwright-mcp');p=Path('/tmp');major=sys.argv[1];node=Path('/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node') if major=='22' else Path(shutil.which('node'));line=next(x.strip()[5:] for x in (r/'.github/workflows/local-batch.yml').read_text().splitlines() if 'run: node --test --test-concurrency=1' in x);args=shlex.split(line.split(' 2>&1',1)[0]);args[0]=str(node);env=os.environ.copy();env['PATH']=str(node.parent)+os.pathsep+env['PATH'];log=p/f'native99-components{major}-final-host.log';assert not log.exists(),'retain_prior_attempt'
+with log.open('w') as f:proc=subprocess.run(args,cwd=r,env=env,stdout=f,stderr=subprocess.STDOUT,timeout=180)
+(p/f'native99-components{major}-final-host-exit.json').write_text(json.dumps({'exit':proc.returncode,'scope':'Exact final workflow component command, ordinary actual host user. Storage/identity guards and runtime limits unchanged. No user/PID namespace.','node':str(node),'testCommand':args})+'\n');print(json.dumps({'nodeMajor':major,'exit':proc.returncode}));sys.exit(proc.returncode)

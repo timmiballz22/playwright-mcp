@@ -1,0 +1,18 @@
+✔ managed directory links and database hardlinks cannot modify another file (93.442382ms)
+✔ POSIX journal directory must exclude group and other access (38.301661ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (97.592764ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (55.003041ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (64.822649ms)
+✔ killed transaction rolls back without a partial job or duplicate request (183.468239ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (123.496093ms)
+✔ corrupt journal is rejected without silently erasing the file (84.918831ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (48.987328ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (154.848797ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1011.148636

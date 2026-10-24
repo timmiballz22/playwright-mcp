@@ -1,0 +1,157 @@
+[
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "name": "not ok 8 - real full Chromium applies device metrics after the existing window-bounds request completes",
+    "facts": [
+      {}
+    ],
+    "expectedActual": [
+      "    + actual - expected",
+      "    +   height: 98,",
+      "    +   viewportHeight: 153,"
+    ]
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "name": "not ok 30 - supervised webkit: real browser deadline closes owned process",
+    "facts": [],
+    "expectedActual": [
+      "    + actual - expected",
+      "    + 'unknown'",
+      "    - 'removed'"
+    ]
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "name": "not ok 80 - real chromium: 1 fresh runs, navigation, 997 clicks, assertion, screenshot, cleanup",
+    "facts": [],
+    "expectedActual": []
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "name": "not ok 62 - non-COMMIT initialization timeout keeps one attempt and its original phase",
+    "facts": [],
+    "expectedActual": [
+      "    + actual - expected",
+      "    +   journalInitStage: 'configure'",
+      "    -   journalInitStage: 'schema_verify'"
+    ]
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "name": "not ok 67 - real init timeout retains phase configure and confirmed worker exit",
+    "facts": [],
+    "expectedActual": []
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "name": "not ok 68 - real init timeout retains phase schema and confirmed worker exit",
+    "facts": [],
+    "expectedActual": [
+      "    + actual - expected",
+      "    + 'configure'",
+      "    - 'schema'"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "name": "not ok 24 - firefox: canonical localhost aliases cannot escape an unapproved port",
+    "facts": [
+      {
+        "reason": "timeout",
+        "completed": 4,
+        "total": 4,
+        "durationMs": 16405,
+        "cleanup": "terminated",
+        "tempCleanup": "removed"
+      }
+    ],
+    "expectedActual": [
+      "    + actual - expected",
+      "    + 'timeout'",
+      "    - 'policy_blocked'"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "name": "not ok 25 - firefox: canonical IPv6 loopback aliases cannot escape an unapproved port",
+    "facts": [
+      {
+        "reason": "timeout",
+        "completed": 4,
+        "total": 4,
+        "durationMs": 16097,
+        "cleanup": "terminated",
+        "tempCleanup": "removed"
+      }
+    ],
+    "expectedActual": [
+      "    + actual - expected",
+      "    + 'timeout'",
+      "    - 'policy_blocked'"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "name": "not ok 63 - real firefox: HTTP error codes and script exceptions keep response secrets out of reports",
+    "facts": [],
+    "expectedActual": [
+      "    + actual - expected",
+      "    + 'cancelled'",
+      "    - 'http_404'"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "name": "not ok 82 - real firefox headed: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "facts": [
+      {
+        "reason": "action_failed",
+        "completed": 8,
+        "total": 23,
+        "durationMs": 9626,
+        "freshRun": 6
+      }
+    ],
+    "expectedActual": []
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "name": "not ok 83 - real firefox direct-pipe: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "facts": [
+      {
+        "reason": "action_failed",
+        "completed": 13,
+        "total": 23,
+        "durationMs": 10067,
+        "freshRun": 7
+      }
+    ],
+    "expectedActual": []
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "name": "not ok 95 - supervised firefox: six locator forms are exact and ambiguity never selects a first match",
+    "facts": [
+      {
+        "reason": "timeout",
+        "completed": 19,
+        "total": 19,
+        "durationMs": 8034,
+        "cleanup": "terminated",
+        "tempCleanup": "removed"
+      }
+    ],
+    "expectedActual": []
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "name": "\u2716 real full Chromium applies device metrics after the existing window-bounds request completes (643.182131ms)",
+    "facts": [],
+    "expectedActual": [
+      "  + actual - expected",
+      "  +   height: 153,",
+      "  -   height: 240,"
+    ]
+  }
+]

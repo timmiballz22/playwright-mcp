@@ -1,0 +1,41 @@
+✔ invalid termination roots remain rejected and emit only a fixed diagnostic (1.467681ms)
+✔ diagnostic callback preserves bounded termination of an actually owned fork (634.199325ms)
+✔ POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors (0.635161ms)
+✔ POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors (0.224576ms)
+✔ POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors (0.51477ms)
+✔ POSIX signal diagnostic retains fixed already-gone result without raw errors (0.179658ms)
+✖ a root missing at freeze cannot authorize a later group signal or certify cleanup (201.175764ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 911.863115
+
+✖ failing tests:
+
+test at local-batch/process-tree.test.mjs:39:35
+✖ a root missing at freeze cannot authorize a later group signal or certify cleanup (201.175764ms)
+  AssertionError [ERR_ASSERTION]: Missing root must not authorize a process-group signal
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'SIGKILL',
+  +     pid: -2147483646
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:47:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { pid: -2147483646, name: 'SIGKILL' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

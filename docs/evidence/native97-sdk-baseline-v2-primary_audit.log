@@ -1,0 +1,11 @@
+{"os":"linux","mode":"inherited","iteration":1,"clients":2,"connected":2,"durationMs":743,"startupCodes":[],"journalFailures":[],"browserActions":0}
+file:///tmp/native97-sdk-cleanup-preload-v2.mjs:9
+ const deepEqual=assert.deepEqual;assert.deepEqual=function(actual,expected,...rest){const result=Reflect.apply(deepEqual,this,[actual,expected,...rest]);if(mode==='primary_audit'&&!faulted&&closes>=2&&Array.isArray(actual)&&actual.length===0&&Array.isArray(expected)&&expected.length===0){faulted=true;throw new Error('owned_sdk_audit_fault_after_actual_zero');}return result;};
+                                                                                                                                                                                                                                                                                                                     ^
+
+Error: owned_sdk_audit_fault_after_actual_zero
+    at assert.deepEqual (file:///tmp/native97-sdk-cleanup-preload-v2.mjs:9:310)
+    at file:///workspace/playwright-mcp/scripts/diagnose-jobs-startup.mjs:95:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Node.js v22.23.3

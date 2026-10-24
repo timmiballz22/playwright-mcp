@@ -1,0 +1,575 @@
+{
+  "source": "ab4e111badc3b59cdc12fdf6584c6f9ec5b1b364",
+  "scope": "Actual separate fresh Mac client, completed calls from normally exiting instrumented processes only. Not complete OS inventory, disk-only latency, incident-host profile or old Windows timeout clearance.",
+  "clientReceipt": {
+    "client": "codex-cli 0.163.0",
+    "os": "darwin",
+    "launcher": "node",
+    "tools": 6,
+    "completed": 1000,
+    "startMs": 29,
+    "resultCalls": 9,
+    "durationMs": 87798,
+    "duplicateExecuted": false,
+    "foreignOwnerDenied": true,
+    "terminalCleanup": true,
+    "activeCancel": true,
+    "cancelledJobCompleted": 1,
+    "modelTurns": 0,
+    "temporaryConfigOnly": true,
+    "activeOwnedProcesses": 0
+  },
+  "observations": {
+    "fixture": "journal_latency_observed",
+    "scope": "completed RPCs from normally exiting instrumented processes only",
+    "processReceipts": 4,
+    "binUpperBoundsMs": [
+      1,
+      5,
+      20,
+      100,
+      "unbounded"
+    ],
+    "rows": [
+      {
+        "node": "v22.23.2",
+        "platform": "darwin",
+        "commands": [
+          {
+            "command": "init",
+            "count": 1,
+            "totalMs": 229.43298299999998,
+            "maxMs": 229.43298299999998,
+            "bins": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "command": "verify",
+            "count": 1,
+            "totalMs": 1.1804609999999798,
+            "maxMs": 1.1804609999999798,
+            "bins": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "read",
+            "count": 564,
+            "totalMs": 580.5104369999021,
+            "maxMs": 53.015220000001136,
+            "bins": [
+              509,
+              42,
+              11,
+              2,
+              0
+            ]
+          },
+          {
+            "command": "activate",
+            "count": 1,
+            "totalMs": 2.822780000000023,
+            "maxMs": 2.822780000000023,
+            "bins": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "resources",
+            "count": 2,
+            "totalMs": 3.181864000000246,
+            "maxMs": 2.053313000000003,
+            "bins": [
+              0,
+              2,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "progress",
+            "count": 41,
+            "totalMs": 198.8281809999935,
+            "maxMs": 41.58437099999719,
+            "bins": [
+              0,
+              36,
+              1,
+              4,
+              0
+            ]
+          },
+          {
+            "command": "finish",
+            "count": 1,
+            "totalMs": 1.8751530000008643,
+            "maxMs": 1.8751530000008643,
+            "bins": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "close",
+            "count": 1,
+            "totalMs": 0.8585000000020955,
+            "maxMs": 0.8585000000020955,
+            "bins": [
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "cancel",
+            "count": 1,
+            "totalMs": 0.1558870000008028,
+            "maxMs": 0.1558870000008028,
+            "bins": [
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "node": "v22.23.2",
+        "platform": "darwin",
+        "commands": [
+          {
+            "command": "init",
+            "count": 1,
+            "totalMs": 112.83958200000001,
+            "maxMs": 112.83958200000001,
+            "bins": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "command": "verify",
+            "count": 1,
+            "totalMs": 0.7069939999999804,
+            "maxMs": 0.7069939999999804,
+            "bins": [
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "read",
+            "count": 12,
+            "totalMs": 9.359538999999984,
+            "maxMs": 1.8277370000000133,
+            "bins": [
+              11,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "activate",
+            "count": 1,
+            "totalMs": 1.680702999999994,
+            "maxMs": 1.680702999999994,
+            "bins": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "resources",
+            "count": 2,
+            "totalMs": 2.636562999999967,
+            "maxMs": 1.6810939999999732,
+            "bins": [
+              1,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "progress",
+            "count": 1,
+            "totalMs": 1.180015999999796,
+            "maxMs": 1.180015999999796,
+            "bins": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "cancel",
+            "count": 1,
+            "totalMs": 1.1899809999999889,
+            "maxMs": 1.1899809999999889,
+            "bins": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "finish",
+            "count": 1,
+            "totalMs": 2.460679999999911,
+            "maxMs": 2.460679999999911,
+            "bins": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "close",
+            "count": 1,
+            "totalMs": 0.4602429999999913,
+            "maxMs": 0.4602429999999913,
+            "bins": [
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "node": "v22.23.2",
+        "platform": "darwin",
+        "commands": [
+          {
+            "command": "init",
+            "count": 1,
+            "totalMs": 281.811112,
+            "maxMs": 281.811112,
+            "bins": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "command": "recover",
+            "count": 2,
+            "totalMs": 2.4386619999999084,
+            "maxMs": 1.317534999999907,
+            "bins": [
+              0,
+              2,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "read",
+            "count": 1,
+            "totalMs": 0.8984380000000556,
+            "maxMs": 0.8984380000000556,
+            "bins": [
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "close",
+            "count": 1,
+            "totalMs": 1.4325790000002598,
+            "maxMs": 1.4325790000002598,
+            "bins": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "node": "v22.23.2",
+        "platform": "darwin",
+        "commands": [
+          {
+            "command": "init",
+            "count": 1,
+            "totalMs": 177.0896100000001,
+            "maxMs": 177.0896100000001,
+            "bins": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "command": "recover",
+            "count": 394,
+            "totalMs": 392.3113229999351,
+            "maxMs": 19.272667999997793,
+            "bins": [
+              338,
+              50,
+              6,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "create",
+            "count": 4,
+            "totalMs": 7.823138000005315,
+            "maxMs": 4.750121000000036,
+            "bins": [
+              2,
+              2,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "read",
+            "count": 392,
+            "totalMs": 207.6696649999683,
+            "maxMs": 10.453424999999697,
+            "bins": [
+              376,
+              15,
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "reserve",
+            "count": 2,
+            "totalMs": 14.525671999994188,
+            "maxMs": 13.23313399999995,
+            "bins": [
+              0,
+              1,
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "result",
+            "count": 4,
+            "totalMs": 1.6840589999919757,
+            "maxMs": 0.5085929999913787,
+            "bins": [
+              4,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "list",
+            "count": 1,
+            "totalMs": 0.5114990000001853,
+            "maxMs": 0.5114990000001853,
+            "bins": [
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "cleanup_reserve",
+            "count": 2,
+            "totalMs": 1.4746650000015507,
+            "maxMs": 0.7802130000054603,
+            "bins": [
+              2,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "cleanup_release",
+            "count": 2,
+            "totalMs": 2.3128819999983534,
+            "maxMs": 1.163511999999173,
+            "bins": [
+              0,
+              2,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "cancel",
+            "count": 1,
+            "totalMs": 1.2015580000006594,
+            "maxMs": 1.2015580000006594,
+            "bins": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "command": "close",
+            "count": 1,
+            "totalMs": 2.0356400000018766,
+            "maxMs": 2.0356400000018766,
+            "bins": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "verifierExitCode": 0,
+    "removalAttempted": true,
+    "removalConfirmed": true,
+    "workspace": "journal-timing-njMspm"
+  },
+  "aggregate": {
+    "init": {
+      "count": 4,
+      "totalMs": 801.1732870000001,
+      "maxMs": 281.811112
+    },
+    "verify": {
+      "count": 2,
+      "totalMs": 1.8874549999999601,
+      "maxMs": 1.1804609999999798
+    },
+    "read": {
+      "count": 969,
+      "totalMs": 798.4380789998705,
+      "maxMs": 53.015220000001136
+    },
+    "activate": {
+      "count": 2,
+      "totalMs": 4.503483000000017,
+      "maxMs": 2.822780000000023
+    },
+    "resources": {
+      "count": 4,
+      "totalMs": 5.818427000000213,
+      "maxMs": 2.053313000000003
+    },
+    "progress": {
+      "count": 42,
+      "totalMs": 200.0081969999933,
+      "maxMs": 41.58437099999719
+    },
+    "finish": {
+      "count": 2,
+      "totalMs": 4.335833000000775,
+      "maxMs": 2.460679999999911
+    },
+    "close": {
+      "count": 4,
+      "totalMs": 4.786962000004223,
+      "maxMs": 2.0356400000018766
+    },
+    "cancel": {
+      "count": 3,
+      "totalMs": 2.547426000001451,
+      "maxMs": 1.2015580000006594
+    },
+    "recover": {
+      "count": 396,
+      "totalMs": 394.749984999935,
+      "maxMs": 19.272667999997793
+    },
+    "create": {
+      "count": 4,
+      "totalMs": 7.823138000005315,
+      "maxMs": 4.750121000000036
+    },
+    "reserve": {
+      "count": 2,
+      "totalMs": 14.525671999994188,
+      "maxMs": 13.23313399999995
+    },
+    "result": {
+      "count": 4,
+      "totalMs": 1.6840589999919757,
+      "maxMs": 0.5085929999913787
+    },
+    "list": {
+      "count": 1,
+      "totalMs": 0.5114990000001853,
+      "maxMs": 0.5114990000001853
+    },
+    "cleanup_reserve": {
+      "count": 2,
+      "totalMs": 1.4746650000015507,
+      "maxMs": 0.7802130000054603
+    },
+    "cleanup_release": {
+      "count": 2,
+      "totalMs": 2.3128819999983534,
+      "maxMs": 1.163511999999173
+    }
+  }
+}

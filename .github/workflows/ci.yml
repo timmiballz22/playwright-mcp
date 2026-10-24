@@ -1,13 +1,28 @@
 name: CI
 
 on:
+  workflow_dispatch:
+    inputs:
+      macos_runner:
+        description: Native macOS runner architecture
+        type: choice
+        required: true
+        default: macos-15-intel
+        options: [macos-15-intel, macos-15]
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -18,6 +33,7 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run lint
+    - run: npm run typecheck
     - name: Ensure no changes
       run: git diff --exit-code
 
@@ -25,7 +41,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-15, windows-latest]
+        os: [ubuntu-latest, "${{ inputs.macos_runner || 'macos-15-intel' }}", windows-latest]
+    timeout-minutes: 30
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -36,14 +53,98 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: npm ci
-    - name: Playwright install
-      run: npx playwright install --with-deps
+    - name: Use canonical Ubuntu archive for browser dependencies
+      if: runner.os == 'Linux'
+      uses: ./.github/actions/ubuntu-archive
+    - name: Install Chromium, Firefox and WebKit
+      id: core_browsers
+      run: npx playwright install --with-deps chromium firefox webkit
+    - name: Install Chrome
+      id: chrome_browser
+      run: npx playwright install --with-deps chrome
     - name: Build
+      id: build
+      if: ${{ !cancelled() && steps.core_browsers.outcome == 'success' }}
       run: npm run build
+    - name: Install optional macOS video metadata diagnostic tool
+      id: video_diagnostic_tool
+      timeout-minutes: 5
+      if: ${{ !cancelled() && runner.os == 'macOS' && steps.build.outcome == 'success' }}
+      # Diagnostic copies only. An unavailable tool is reported independently;
+      # it must not hide original browser tests or change their assertions.
+      continue-on-error: true
+      env:
+        HOMEBREW_NO_AUTO_UPDATE: '1'
+        HOMEBREW_NO_INSTALL_CLEANUP: '1'
+      run: |
+        brew install ffmpeg
+        ffmpeg -version
     - name: Run playwright-mcp tests
-      run: npm test
+      id: wrapper
+      shell: bash
+      run: npm test 2>&1 | tee wrapper-tests.log
+    - name: Run available non-Chrome MCP tests after Chrome install failure
+      id: available_wrapper
+      if: ${{ !cancelled() && failure() && steps.chrome_browser.outcome == 'failure' && steps.core_browsers.outcome == 'success' && steps.build.outcome == 'success' }}
+      shell: bash
+      # Chrome installation still fails this job. These projects were not run
+      # by the skipped four-browser step; no failed tests are retried here.
+      run: npm test -- --project=chromium --project=firefox --project=webkit 2>&1 | tee wrapper-available-tests.log
+    - name: Collect three fresh first-frame controls after macOS Chromium mismatch
+      id: first_frame_controls
+      shell: bash
+      timeout-minutes: 3
+      if: ${{ !cancelled() && runner.os == 'macOS' && (steps.wrapper.outcome == 'failure' || steps.available_wrapper.outcome == 'failure') }}
+      run: |
+        if node scripts/qa/video-control-gate.mjs chromium
+        then
+          # Fresh isolated owned cases; keep the original failed result and files.
+          PLAYWRIGHT_TEST_VIDEO_COLOR_DIAGNOSTICS=1 npx playwright test tests/video-playback.spec.ts --project=chromium --repeat-each=3 --workers=1 --output=test-results/first-frame-controls 2>&1 | tee first-frame-controls.log
+        fi
+    - name: Exercise three fresh macOS Chromium modal workflows
+      id: modal
+      shell: bash
+      if: ${{ !cancelled() && runner.os == 'macOS' && (steps.wrapper.outcome == 'success' || steps.available_wrapper.outcome == 'success') }}
+      run: npx playwright test tests/interactions.spec.ts --project=chromium --grep="original dialogs" --repeat-each=3 --workers=2 2>&1 | tee modal-tests.log
+    - name: Collect three fresh first-frame controls after macOS Chrome mismatch
+      id: chrome_first_frame_controls
+      shell: bash
+      timeout-minutes: 3
+      if: ${{ !cancelled() && runner.os == 'macOS' && (steps.wrapper.outcome == 'failure' || steps.available_wrapper.outcome == 'failure') }}
+      run: |
+        if node scripts/qa/video-control-gate.mjs chrome
+        then
+          # Fresh owned Chrome cases; the original failed result/files remain intact.
+          PLAYWRIGHT_TEST_VIDEO_COLOR_DIAGNOSTICS=1 npx playwright test tests/video-playback.spec.ts --project=chrome --repeat-each=3 --workers=1 --output=test-results/chrome-first-frame-controls 2>&1 | tee chrome-first-frame-controls.log
+        fi
+    - name: Exercise legacy Windows Node 20 Firefox cleanup
+      id: legacy
+      shell: bash
+      # Independent Node20 companion cases; keep collecting them after a completed
+      # original-suite failure. No failed case is retried and limits stay unchanged.
+      if: ${{ !cancelled() && runner.os == 'Windows' && (steps.wrapper.outcome == 'success' || steps.wrapper.outcome == 'failure' || steps.available_wrapper.outcome == 'success' || steps.available_wrapper.outcome == 'failure') }}
+      run: node --test local-batch/integration.test.mjs 2>&1 | tee legacy-firefox.log
+      env:
+        RUN_BROWSER_TESTS: '1'
+        PLAYWRIGHT_BATCH_TEST_BROWSERS: firefox
+        PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS: '10'
+    - name: Preserve failed wrapper evidence
+      if: failure() && (steps.wrapper.outcome == 'failure' || steps.available_wrapper.outcome == 'success' || steps.available_wrapper.outcome == 'failure' || steps.modal.outcome == 'failure' || steps.legacy.outcome == 'failure')
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      with:
+        name: wrapper-tests-${{ matrix.os }}
+        path: |
+          wrapper-tests.log
+          wrapper-available-tests.log
+          modal-tests.log
+          first-frame-controls.log
+          chrome-first-frame-controls.log
+          legacy-firefox.log
+        retention-days: 1
+        if-no-files-found: error
 
   test_mcp_docker:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -54,6 +155,9 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: npm ci
+    - name: Use canonical Ubuntu archive for browser dependencies
+      if: runner.os == 'Linux'
+      uses: ./.github/actions/ubuntu-archive
     - name: Playwright install
       run: npx playwright install --with-deps chromium
     - name: Set up Docker Buildx
@@ -65,6 +169,8 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         load: true
+    - name: Verify private encoder patch in built image
+      run: node scripts/verify-docker-patch.cjs
     - name: Run tests
       shell: bash
       run: |

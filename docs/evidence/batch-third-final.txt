@@ -1,0 +1,67 @@
+✔ 20 real screenshots across concurrent runs have unique private directories (5305.153009ms)
+✔ active browser workflow terminates after eof (1569.129454ms)
+✔ active browser workflow terminates after SIGTERM (2449.874101ms)
+✔ source distribution cannot publish as Microsoft and includes runtime SDK (18.613015ms)
+✔ HTTP errors fail navigation without replaying requests or leaking headers (3226.942313ms)
+✔ real chromium: navigation, 997 clicks, assertion, screenshot, cleanup (36917.794216ms)
+✔ real firefox: navigation, 20 clicks, assertion, screenshot, cleanup (3729.548027ms)
+✖ real webkit: navigation, 20 clicks, assertion, screenshot, cleanup (386.627213ms)
+✔ local stdio MCP: handshake, tool list, rejection, browser workflow (35154.689321ms)
+✔ rejects unknown instructions, unbounded workloads and hostile origins (2.294539ms)
+✔ 100 ordered actions finish in a single batch with one browser launch (13.164204ms)
+✔ failures stop promptly, hide underlying sensitive errors and clean up (1.773167ms)
+✔ cancellation before starting avoids launching browser (0.499833ms)
+✔ checks target origins and reports assertion failure without page content (1.893564ms)
+✔ unknown localhost ports require exact operator origins (1.152924ms)
+✔ rejects extra workflow and action properties rather than ignoring policy (0.580017ms)
+✔ deadline includes a stalled launch and closes late browser (201.224535ms)
+✔ validation snapshots actions before asynchronous launch (1.216749ms)
+✔ screenshot capture requires operator approval for sensitive artifacts (0.853213ms)
+✔ workflow version and serialized size are bounded (9.441074ms)
+✔ accessible selectors validate exact shape and clone nested values (0.246563ms)
+✔ explicit action repeats expand within the total action cap (10.788743ms)
+✔ text equality rejects duplicate counters and ambiguous expectations (4.584778ms)
+✔ chromium: allowed origin cannot redirect to unapproved localhost port (722.210029ms)
+✔ firefox: allowed origin cannot redirect to unapproved localhost port (1612.697628ms)
+✖ webkit: allowed origin cannot redirect to unapproved localhost port (361.622268ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 24
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 46626.540066
+
+✖ failing tests:
+
+test at local-batch/integration.test.mjs:12:3
+✖ real webkit: navigation, 20 clicks, assertion, screenshot, cleanup (386.627213ms)
+  AssertionError [ERR_ASSERTION]: {"ok":false,"reason":"action_failed","browser":"webkit","blockedRequests":0,"completed":0,"total":23,"durationMs":368,"results":[{"index":0,"type":"setup","ok":false,"error":"setup_failed"}]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/integration.test.mjs:30:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/security.test.mjs:11:3
+✖ webkit: allowed origin cannot redirect to unapproved localhost port (361.622268ms)
+  AssertionError [ERR_ASSERTION]: browser could not launch
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/security.test.mjs:23:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'setup',
+    expected: 'setup',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

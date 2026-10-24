@@ -1,0 +1,29 @@
+✖ chromium: operator page limit stops an approved popup burst without executing the next step (1771.902099ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1865.69322
+
+✖ failing tests:
+
+test at local-batch/page-limit.test.mjs:12:3
+✖ chromium: operator page limit stops an approved popup burst without executing the next step (1771.902099ms)
+  AssertionError [ERR_ASSERTION]: {"schemaVersion":1,"runId":"6d051781-0e7a-4ba1-a974-926b91c373c0","browser":"chromium","total":5,"reportScope":"worker_execution","ok":true,"reason":null,"blockedRequests":0,"actionsSucceeded":true,"cleanupFailures":[],"completed":5,"durationMs":745,"reportPath":"/tmp/page-limit-poG8qm/exec-6d051781-0e7a-4ba1-a974-926b91c373c0/run-2db15652-3a60-4124-8cb7-278297b9c583.json","recentSteps":[{"index":1,"repetition":1,"type":"goto","ok":true,"durationMs":33},{"index":2,"repetition":1,"type":"click","ok":true,"durationMs":98},{"index":3,"repetition":1,"type":"waitFor","ok":true,"durationMs":36},{"index":4,"repetition":1,"type":"assertText","ok":true,"durationMs":3},{"index":5,"repetition":1,"type":"goto","ok":true,"durationMs":31}],"failedStep":null,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":379551,"workerPid":379558,"browserPids":[379570]},"completionCertainty":"exact"}
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/page-limit.test.mjs:32:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

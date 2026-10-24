@@ -1,0 +1,51 @@
+{
+  "exit": 1,
+  "expectedExit": 1,
+  "checksExit": 0,
+  "anchorReceipt": {
+    "fixture": "exact_runner_initial_anchor",
+    "mode": "stock",
+    "observed": [
+      975346
+    ],
+    "roots": [
+      975346
+    ],
+    "identities": []
+  },
+  "anchorFileSha256": "48c18da5213acad2c8b985baf127f40ebf75f54d4d707c839bd71a1629fbb8b3",
+  "control": {
+    "os": "linux",
+    "mode": "stock",
+    "comparisonOrder": [
+      "stock"
+    ],
+    "position": 1,
+    "privateTempRoot": true,
+    "logging": false,
+    "headless": true,
+    "browser": "firefox",
+    "executionAPI": "stock_playwright",
+    "controlledStall": false,
+    "controlledCloseStall": true,
+    "transport": "browser_server",
+    "requiredFreshRuns": 10,
+    "successfulRuns": 0,
+    "confirmedActions": 23,
+    "ok": false,
+    "last": {
+      "ok": false,
+      "reason": "cleanup_failed",
+      "completed": 23,
+      "total": 23,
+      "actionsSucceeded": true,
+      "cleanupFailures": [
+        "server_timeout"
+      ],
+      "durationMs": 7810
+    },
+    "residualProcessesBeforeForce": 0,
+    "activeOwnedProcesses": 0
+  },
+  "scope": "Real public Firefox stock close-stall control; no browser mocks, new workflow fields or signal/cleanup-authority changes. POSIX live control, not native Windows birth proof."
+}

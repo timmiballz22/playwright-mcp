@@ -1,0 +1,74 @@
+[
+  {
+    "job": "test (windows-latest)",
+    "case": "1) [firefox] \u203a tests\\interactions.spec.ts:7:5 \u203a original dialogs and workspace file upload preserve modal behavior ",
+    "facts": [],
+    "captureProtocolError": false
+  },
+  {
+    "job": "test (windows-latest)",
+    "case": "2) [webkit] \u203a tests\\media.spec.ts:18:5 \u203a original muted PCM media advances, pauses and reports a missing media source ",
+    "facts": [
+      {
+        "kind": "Owned media readiness failed",
+        "readinessTimedOut": true,
+        "paused": true,
+        "muted": true,
+        "duration": null,
+        "ready": 0,
+        "network": 2,
+        "error": 0,
+        "wav": "probably"
+      }
+    ],
+    "captureProtocolError": false
+  },
+  {
+    "job": "test (windows-latest)",
+    "case": "3) [webkit] \u203a tests\\video-playback.spec.ts:6:5 \u203a original recorded WebM decodes an owned frame with the expected dimensions and pixels ",
+    "facts": [
+      {
+        "kind": "Owned video readiness failed",
+        "readinessTimedOut": true,
+        "ready": 0,
+        "network": 3,
+        "error": 4,
+        "webm": "probably",
+        "width": 0,
+        "height": 0
+      }
+    ],
+    "captureProtocolError": false
+  },
+  {
+    "job": "test (windows-latest)",
+    "case": "not ok 3 - real firefox direct-pipe: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "facts": [],
+    "captureProtocolError": false
+  },
+  {
+    "job": "test (macos-15-intel)",
+    "case": "1) [chrome] \u203a tests/devtools.spec.ts:6:5 \u203a original highlight paints a controlled region and both hide methods clear it ",
+    "facts": [],
+    "captureProtocolError": true
+  },
+  {
+    "job": "test (macos-15-intel)",
+    "case": "2) [webkit] \u203a tests/video-playback.spec.ts:6:5 \u203a original recorded WebM decodes an owned frame with the expected dimensions and pixels ",
+    "facts": [
+      {
+        "kind": "Owned decoded frame mismatch",
+        "width": 320,
+        "height": 240,
+        "ready": 4,
+        "pixel": [
+          248,
+          37,
+          0,
+          255
+        ]
+      }
+    ],
+    "captureProtocolError": false
+  }
+]

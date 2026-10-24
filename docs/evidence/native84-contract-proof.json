@@ -1,0 +1,63 @@
+{
+  "baseHead": "d86dcff47da19b14f901bbc0eda878d06477059e",
+  "phase": "Local after dynamic coverage commit, excluded from native84",
+  "sourceSha256": {
+    "local-batch/workflow-contract.mjs": "61ed9c185a2ce96cc231ef6aea818e7bcb03b3bd84ff3b88abc67973b1f789f6",
+    "local-batch/workflow-contract-bounds.test.mjs": "20bd94631c876a98956672251b821f3407f9c2c2938e8ba96d3ef1a1aafc7a17"
+  },
+  "before": {
+    "exit": 1,
+    "pass": 2,
+    "fail": 1,
+    "runtimeInvalidExamplesAdmittedByMetadata": 11,
+    "receipt": "native84-contract-before.json"
+  },
+  "after": {
+    "node20": {
+      "exit": 0,
+      "pass": 19,
+      "fail": 0
+    },
+    "node22": {
+      "exit": 0,
+      "pass": 19,
+      "fail": 0
+    },
+    "node24": {
+      "exit": 0,
+      "pass": 19,
+      "fail": 0
+    },
+    "positiveAsciiBoundaries": 12,
+    "negativeBoundaries": 12,
+    "extraSecurityFieldsRejected": 6
+  },
+  "productionPackage": {
+    "exit": 0,
+    "files": 119,
+    "os": "Linux",
+    "node": "24.19.0",
+    "scope": "Fresh --omit=dev --ignore-scripts install; actual original/batch/jobs/client/profile/journal/guardian checks. Not a Windows/native fix claim."
+  },
+  "discoveryBytes": {
+    "beforeSchemaBytes": 1769,
+    "afterSchemaBytes": 1945,
+    "scope": "Serialized UTF-8 schema bytes only, not tokens, model context or billing. Standard minLength/maxLength/minimum/maximum additions; runtime rules unchanged."
+  },
+  "changes": "Only existing string/scroll ranges added to shared JSON schema; no runtime validator, cap, execution, permission, default, response or retry change. Standard bounds stay compatible with runtime-valid documents. No new dependency, allOf/conditional schema keywords, action or tool.",
+  "limits": "Tests cover ASCII length boundaries and numeric deltas. Runtime field-dependent required/exclusion rules, expanded action count, origin policy and UTF-16 string-length semantics remain authoritative; no complete JSON-schema/runtime equivalence claim. JSON-schema maxLength counts code points.",
+  "evidenceSha256": {
+    "native84-contract-before.log": "c9ca52a9801283eb732ddd0c7d95b2203d6020303227edcd3505d7a802528719",
+    "native84-contract-before.json": "825f3115b52ff6b7eb4ea4c2818cf5b23491e5fa3f2c7c04f2cd1819611eb6d5",
+    "native84-contract-after20.log": "f6a198531e9df279e12d67aca1d2390603944c4019db730cc49687dd50dbadb9",
+    "native84-contract-after22.log": "44470f17f8d5477ea183762a0cee477146fc6d6192540d086dfc7e18514167b0",
+    "native84-contract-after24.log": "fdfb728c14a5ed5feb348813f18e8a82fee467a8ba6f5b6e3414a7949efef2a9",
+    "native84-contract-schema-bytes.json": "e007112393ebae8f54dc5be6bbd63ed33df25f73d1c4c76bd797aa288a8bd4e1",
+    "native84-contract-package.log": "d6c159db1d6a6317c32d96634601c4a8f1c1986ff05516363caa9333b1e02cf4",
+    "native84-contract-lint.log": "698f906495a1870aa5f78f1336a0860b67002c0c4d3597b3eb364371bf242878"
+  },
+  "checks": {
+    "lintExit": 0,
+    "diffCheckExit": 0
+  }
+}

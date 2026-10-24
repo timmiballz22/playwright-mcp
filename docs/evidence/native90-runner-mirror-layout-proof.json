@@ -1,0 +1,10 @@
+{
+  "source": "https://github.com/actions/runner-images/blob/main/images/ubuntu/scripts/build/configure-apt-sources.sh",
+  "blobSha": "b3f5b2b180df8eb39fcbba034f616e03a69e775c",
+  "sourceBranchAtRead": "main",
+  "layout": "Ubuntu URIs point to mirror+file:/etc/apt/apt-mirrors.txt; Azure priority1, canonical HTTPS archive priority2, HTTPS security priority3",
+  "observation": "Native90 Node20 fetched from Azure for almost30m after old two-file rewrite step reported success. Native89 fast setup alone did not prove actual URI replacement.",
+  "fixScope": "Handle documented mirror file; preserve existing canonical/security fallbacks, trailing slash, priorities and signing configuration. Emit changed-file count and assert no matched Azure URI remains in targeted files.",
+  "validation": "Five exact extracted-shell fixture cases pass, no local /etc/apt mutation; actual native rewrite/performance pending. Source is published image build logic, not a dump of current runner configuration.",
+  "immutableBlobApi": "https://api.github.com/repos/actions/runner-images/git/blobs/b3f5b2b180df8eb39fcbba034f616e03a69e775c"
+}

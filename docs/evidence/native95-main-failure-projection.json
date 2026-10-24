@@ -1,0 +1,169 @@
+[
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "supervised firefox: all declarative action types preserve exact owned DOM effects",
+    "outcomes": [
+      {
+        "reason": "action_failed",
+        "completed": 20,
+        "total": 23,
+        "failedStep": {
+          "index": 21,
+          "repetition": 1,
+          "type": "waitFor",
+          "ok": false,
+          "durationMs": 5016,
+          "error": "action_failed",
+          "failureKind": "locator_timeout"
+        },
+        "execution": {
+          "mode": "supervised",
+          "forced": false,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "supervisorPid": 908,
+          "workerPid": 1040,
+          "browserPids": [
+            4856
+          ]
+        },
+        "cleanupFailures": [],
+        "durationMs": 13782
+      }
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "real firefox: HTTP error codes and script exceptions keep response secrets out of reports",
+    "outcomes": [
+      {
+        "reason": "timeout",
+        "completed": 0,
+        "failedStep": {
+          "index": 1,
+          "type": "goto",
+          "ok": false,
+          "error": "http_4xx",
+          "failureKind": "http_failure",
+          "httpStatus": 418
+        }
+      }
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "real firefox: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "outcomes": [
+      {
+        "reason": "action_failed",
+        "completed": 8,
+        "total": 23,
+        "cleanupFailures": [],
+        "durationMs": 8788
+      }
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "supervised firefox: six locator forms are exact and ambiguity never selects a first match",
+    "outcomes": [
+      {
+        "reason": "timeout",
+        "completed": 13,
+        "total": 19,
+        "failedStep": {
+          "index": 14,
+          "type": "click",
+          "ok": false,
+          "error": "cancelled",
+          "failureKind": "interrupted"
+        },
+        "execution": {
+          "mode": "supervised",
+          "forced": false,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "supervisorPid": 5732,
+          "workerPid": 7708,
+          "browserPids": [
+            828
+          ]
+        },
+        "durationMs": 7329
+      }
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits",
+    "outcomes": [
+      {
+        "reason": "timeout",
+        "completed": 0,
+        "failedStep": {
+          "index": 1,
+          "type": "goto",
+          "ok": false,
+          "error": "cancelled",
+          "failureKind": "interrupted"
+        },
+        "execution": {
+          "mode": "supervised",
+          "forced": false,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "supervisorPid": 9856,
+          "workerPid": 2484,
+          "browserPids": [
+            2912
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "test": "real chromium: 1 fresh runs, navigation, 997 clicks, assertion, screenshot, cleanup",
+    "outcomes": []
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "test": "preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect",
+    "outcomes": [
+      {
+        "reason": "timeout",
+        "completed": 973,
+        "total": 1000,
+        "failedStep": {
+          "index": 974,
+          "type": "click",
+          "ok": false,
+          "error": "cancelled",
+          "failureKind": "interrupted"
+        },
+        "execution": {
+          "mode": "supervised",
+          "forced": false,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "supervisorPid": 16159,
+          "workerPid": 16160,
+          "browserPids": [
+            16165
+          ]
+        },
+        "durationMs": 118588
+      }
+    ]
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "test": "local stdio MCP: handshake, tool list, rejection, browser workflow",
+    "outcomes": [
+      {
+        "reason": "timeout",
+        "completed": 994
+      }
+    ]
+  }
+]

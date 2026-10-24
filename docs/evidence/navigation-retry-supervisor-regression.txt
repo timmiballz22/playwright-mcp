@@ -1,0 +1,27 @@
+✔ supervised hang: bounded completion and owned process cleanup (1814.342326ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1791.571389ms)
+✔ supervised crash: bounded completion and owned process cleanup (88.402298ms)
+✔ pre-cancelled execution never starts a worker (0.507695ms)
+✔ cancel interrupts a worker that cannot service its abort listener (315.857714ms)
+✔ supervisor crash cannot strand its worker or detached child (140.714081ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (34.95149ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (137.895166ms)
+✔ verified cleanup recovery preserves success action outcome (121.67447ms)
+✔ verified cleanup recovery preserves blocked action outcome (120.450275ms)
+✔ verified cleanup recovery preserves action action outcome (147.902906ms)
+✔ failed durable admission cannot start worker actions (67.692293ms)
+✔ stalled durable admission cannot evade watchdog deadline or start late (1611.219162ms)
+✔ successful durable admission precedes owned worker effects (135.554379ms)
+✔ HTTP errors fail navigation without replaying requests or leaking headers (1417.402642ms)
+✔ real supervised navigation respects throttling and never replays form POST or over-cap waits (6476.183374ms)
+✔ navigation retry policy is bounded, disabled by default and copied (0.976813ms)
+✔ Retry-After is a minimum wait and an excessive wait is never shortened (0.568938ms)
+✔ partial report write failure preserves completed actions and publishes no corrupt JSON (642.340777ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15566.536194

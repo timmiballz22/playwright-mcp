@@ -1,0 +1,25 @@
+{
+  "phase": "Read-only follow-up while native91 runs",
+  "sourceNative90": "58edfce67a883f637af53bd34554951615b376b7",
+  "installedMediaFoundation": {
+    "source": "native90-wrapper-job-119909531738.log",
+    "rows": [
+      "test (windows-latest)\tInstall Chromium, Firefox and WebKit\t2026-10-22T15:21:44.0912389Z Success Restart Needed Exit Code      Feature Result                               ",
+      "test (windows-latest)\tInstall Chromium, Firefox and WebKit\t2026-10-22T15:21:44.0916804Z ------- -------------- ---------      --------------                               ",
+      "test (windows-latest)\tInstall Chromium, Firefox and WebKit\t2026-10-22T15:21:44.0920991Z True    No             Success        {Media Foundation}                           ",
+      "test (windows-latest)\tInstall Chromium, Firefox and WebKit\t2026-10-22T15:21:44.0924584Z "
+    ],
+    "scope": "Original Windows dependency installation reports Media Foundation success with no restart. Not an inventory of every codec, device or actual WebKit decode path."
+  },
+  "upstreamInstaller": {
+    "file": "node_modules/playwright-core/bin/install_media_pack.ps1",
+    "sha256": "bc20f049badf021e3a53bdb4156603caa5ef482c9a9a251f927605e676a44171",
+    "scope": "Existing install --with-deps for Chromium invokes the Windows Media Foundation installer on Windows Server. No additional OS feature installation attempted."
+  },
+  "publicRunnerToolset": {
+    "url": "https://github.com/actions/runner-images/blob/main/images/windows/toolsets/toolset-2025.json",
+    "sha256": "449d8553192e212413e8bfb1a464df3dcdc36bb68b47b80b4085cb108adfb37b",
+    "scope": "Public source snapshot alone is not actual runner feature state."
+  },
+  "conclusion": "Absence from the public image toolset cannot establish missing Media Foundation as cause of native90 WebKit readiness failures; native installer already reports success."
+}

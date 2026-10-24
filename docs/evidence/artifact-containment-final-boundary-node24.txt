@@ -1,0 +1,25 @@
+✔ jobs CLI validates bounded commands without accepting operator policy overrides (2.089027ms)
+✔ retention CLI previews bounded age pages and requires explicit deletion (0.421524ms)
+✔ jobs CLI executes through a symlinked installation path instead of silently exiting zero (70.981538ms)
+✔ bounded artifact worker previews, removes and preserves fixed safe errors (159.753957ms)
+✔ artifact worker before-result: independent deadline and natural-exit confirmation (758.891137ms)
+✔ artifact worker after-result: independent deadline and natural-exit confirmation (759.4327ms)
+✔ artifact worker invalid-result: independent deadline and natural-exit confirmation (35.115135ms)
+✔ artifact worker failed-result: independent deadline and natural-exit confirmation (43.042121ms)
+✔ artifact worker signal-exit: independent deadline and natural-exit confirmation (40.89613ms)
+✔ an unconfirmed cleanup blocks further scopes in the same controller (0.83674ms)
+✔ retention preview/delete rechecks age and preserves fresh or uncertain artifacts (79.070538ms)
+✔ invalid or pre-aborted retention does not query storage (0.84985ms)
+✔ retention interruption completes one authorized scope and preserves the continuation (38.270716ms)
+✔ artifact retention never conceals a blocked project even when no old artifacts qualify (0.414075ms)
+✔ retention stops on lost journal transport without touching later scopes (0.523732ms)
+✔ read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases (214.690913ms)
+✔ actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency (390.145147ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2836.666691

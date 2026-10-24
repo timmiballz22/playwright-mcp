@@ -1,0 +1,20 @@
+✔ active browser workflow terminates after eof (771.409975ms)
+✔ active browser workflow terminates after SIGTERM (754.773376ms)
+✔ abrupt execution-host death terminates its supervisor, worker and real browser (652.009926ms)
+✔ supervised hang: bounded completion and owned process cleanup (1793.107383ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1782.388911ms)
+✔ supervised crash: bounded completion and owned process cleanup (86.890968ms)
+✔ pre-cancelled execution never starts a worker (0.950259ms)
+✔ cancel interrupts a worker that cannot service its abort listener (311.155769ms)
+✔ supervisor crash cannot strand its worker or detached child (107.911962ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (34.518133ms)
+✔ malformed MCP input cannot echo page-like secrets or corrupt later protocol frames (190.294956ms)
+✔ oversized unterminated MCP frame closes the transport without launching browsers (728.89399ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7462.373413

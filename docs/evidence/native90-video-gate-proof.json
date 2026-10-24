@@ -1,0 +1,31 @@
+{
+  "phase": "Local workflow gate validation excluded from native90",
+  "command": "Exact Node here-document extracted from workflow; no browser or installer stub",
+  "cases": [
+    {
+      "scenario": "actual_gray_receipt",
+      "exit": 0,
+      "expectedExit": 0,
+      "eligible": true
+    },
+    {
+      "scenario": "successful_tool_source_echo",
+      "exit": 1,
+      "expectedExit": 1,
+      "eligible": false
+    },
+    {
+      "scenario": "different_browser",
+      "exit": 1,
+      "expectedExit": 1,
+      "eligible": false
+    },
+    {
+      "scenario": "malformed_readiness",
+      "exit": 1,
+      "expectedExit": 1,
+      "eligible": false
+    }
+  ],
+  "scope": "Original Mac Chromium mismatch receipt only; source echo, other browser and invalid type cannot trigger fresh controls. Reads at most2MiB per fixed log file, reports truncation. Original failure is never replaced."
+}

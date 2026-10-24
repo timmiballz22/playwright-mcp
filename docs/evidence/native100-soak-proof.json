@@ -1,0 +1,94 @@
+{
+  "source": "b2cbc636f4188e3a9bbea335b2908a779f578f57",
+  "run": 39873975191,
+  "scope": "Three fresh native functional soaks,100 runs/600 actions each, actual cleanup/state assertions. Subject RSS includes audits; no browser CPU/RAM/handles/FD bounds or historical PID clearance. Four unselected workflow jobs are skipped, not test passes. One initial Windows log read fails; ordinary retry succeeds, both retained.",
+  "receipts": [
+    {
+      "job": "functional_soak (macos-15-intel)",
+      "data": {
+        "scope": "portable_functional_soak",
+        "os": "darwin",
+        "runs": 100,
+        "completed": 600,
+        "elapsedMs": 229063,
+        "activeOwnedAfterEveryRun": 0,
+        "freshCookieAndLocalStorageVerified": true,
+        "minSubjectRssIncludingAudit": 48136192,
+        "maxSubjectRssIncludingAudit": 54517760,
+        "note": "No browser RSS, CPU, handle or FD bounds are established by this functional soak"
+      }
+    },
+    {
+      "job": "functional_soak (windows-latest)",
+      "data": {
+        "scope": "portable_functional_soak",
+        "os": "win32",
+        "runs": 100,
+        "completed": 600,
+        "elapsedMs": 117638,
+        "activeOwnedAfterEveryRun": 0,
+        "freshCookieAndLocalStorageVerified": true,
+        "minSubjectRssIncludingAudit": 48455680,
+        "maxSubjectRssIncludingAudit": 55734272,
+        "note": "No browser RSS, CPU, handle or FD bounds are established by this functional soak"
+      }
+    },
+    {
+      "job": "functional_soak (ubuntu-latest)",
+      "data": {
+        "scope": "portable_functional_soak",
+        "os": "linux",
+        "runs": 100,
+        "completed": 600,
+        "elapsedMs": 90983,
+        "activeOwnedAfterEveryRun": 0,
+        "freshCookieAndLocalStorageVerified": true,
+        "minSubjectRssIncludingAudit": 67903488,
+        "maxSubjectRssIncludingAudit": 73076736,
+        "note": "No browser RSS, CPU, handle or FD bounds are established by this functional soak"
+      }
+    }
+  ],
+  "logReads": [
+    {
+      "jobId": 120154938455,
+      "name": "functional_soak (macos-15-intel)",
+      "exit": 0,
+      "bytes": 64468,
+      "file": "native100-soak-soak-job-120154938455.log",
+      "attempt": 0,
+      "error": []
+    },
+    {
+      "jobId": 120154938692,
+      "name": "functional_soak (windows-latest)",
+      "exit": 1,
+      "bytes": 3847,
+      "file": "native100-soak-soak-job-120154938692.log",
+      "attempt": 0,
+      "error": [
+        "EOF"
+      ]
+    },
+    {
+      "jobId": 120154938807,
+      "name": "functional_soak (ubuntu-latest)",
+      "exit": 0,
+      "bytes": 93139,
+      "file": "native100-soak-soak-job-120154938807.log",
+      "attempt": 0,
+      "error": []
+    }
+  ],
+  "retry": [
+    {
+      "jobId": 120154938692,
+      "name": "functional_soak (windows-latest)",
+      "exit": 0,
+      "bytes": 56447,
+      "file": "native100-soak-soak-job-120154938692-retry1.log",
+      "attempt": 1,
+      "error": []
+    }
+  ]
+}

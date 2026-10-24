@@ -1,0 +1,46 @@
+{
+  "baseHead": "ac635d9ea27a7780b5c8b47301592d3068ad746d",
+  "phase": "Local media follow-up; not part of native83 (e95f029)",
+  "sourceSha256": {
+    "tests/media.spec.ts": "53b4b800bed2df5472ee57181fffae4ef7bb60ec6f00828e3d8cb77b8f1016d8"
+  },
+  "command": "[matching Node bin on PATH] node node_modules/@playwright/test/cli.js test tests/media.spec.ts --project=chromium --project=firefox --workers=2",
+  "node24": {
+    "exit": 0,
+    "pass": 2
+  },
+  "node20": {
+    "exit": 0,
+    "pass": 2
+  },
+  "node22FinalSequential": {
+    "exit": 0,
+    "pass": 2
+  },
+  "intermediateNode22": {
+    "exit": 1,
+    "fail": 2,
+    "reason": "Concurrent Node20 and22 test runners share fixed testserver ports; EADDRINUSE before fixture execution. Retained failure; final22 executed after20 closed."
+  },
+  "typecheck": {
+    "exit": 0,
+    "strict": true,
+    "skipLibCheck": false
+  },
+  "scope": "Actual original MCP on Linux Chromium/Firefox; generated two-second mono PCM WAV. Verify initial paused/muted/ready/duration state, muted playback currentTime advancement after pointer activation, explicit pause and owned 404 media source error4/networkState3/exactly one missing-source request. Trusted static code uses explicitly enabled unsafe original capability; no batch/jobs code input added. Autoplay permission policy, physical devices, video decoding, WebKit and native OS media unexecuted. No output-device/sound proof.",
+  "package": {
+    "fileCount": 119,
+    "mediaTestPacked": false,
+    "checkoutTestsPacked": 0
+  },
+  "evidenceSha256": {
+    "native83-media-first.log": "fd5f7f9721b00c0e69c1327ba3393e27753ea8f8d1035475e893fbe32d57ab2c",
+    "native83-media-node20.log": "7b82074055208a7e8dfba0b0ce26533a58af5d91b2adf350fa66c8fdbdb5a8d8",
+    "native83-media-node22.log": "32136f49c39a5ecf8ff666ce3afc0b5bad543f92c2e97560014577fd8feb87f8",
+    "native83-media-node22-sequential.log": "bf4bcc6c6c5cf7f3f741cd98b237322ea1711e0dcb0f86f128ed0cda68708882",
+    "native83-media-typecheck.log": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f",
+    "native83-pack-media.json": "a5d1b2abc5459a335e254d7540d64f7420a3e324ebe913f50955470bf8069127",
+    "native83-media-lint.log": "698f906495a1870aa5f78f1336a0860b67002c0c4d3597b3eb364371bf242878"
+  },
+  "lintExit": 0
+}

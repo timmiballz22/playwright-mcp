@@ -1,0 +1,55 @@
+TAP version 13
+# Subtest: component CI annotations retain only known source location and numeric test index
+ok 1 - component CI annotations retain only known source location and numeric test index
+  ---
+  duration_ms: 1.982131
+  ...
+# Subtest: unknown CI paths, malformed fields and error text cannot enter annotations
+ok 2 - unknown CI paths, malformed fields and error text cannot enter annotations
+  ---
+  duration_ms: 0.734771
+  ...
+# Subtest: component annotation reporter stays silent outside explicit GitHub Actions mode
+ok 3 - component annotation reporter stays silent outside explicit GitHub Actions mode
+  ---
+  duration_ms: 0.559064
+  ...
+# Subtest: component annotations classify bounded Node failure metadata without error payloads
+ok 4 - component annotations classify bounded Node failure metadata without error payloads
+  ---
+  duration_ms: 1.389966
+  ...
+# Subtest: component failure metadata ignores unknown codes and invalid durations with bounded traversal
+ok 5 - component failure metadata ignores unknown codes and invalid durations with bounded traversal
+  ---
+  duration_ms: 0.520035
+  ...
+# Subtest: component classification never invokes error getters and stops before deep causes
+ok 6 - component classification never invokes error getters and stops before deep causes
+  ---
+  duration_ms: 0.377471
+  ...
+# Subtest: stderr capture preserves split UTF-8 bytes and owns its bounded storage
+ok 7 - stderr capture preserves split UTF-8 bytes and owns its bounded storage
+  ---
+  duration_ms: 2.360793
+  ...
+# Subtest: stderr capture accepts its exact byte boundary and rejects overflow without leaking text
+ok 8 - stderr capture accepts its exact byte boundary and rejects overflow without leaking text
+  ---
+  duration_ms: 5.663267
+  ...
+# Subtest: one oversized stderr chunk is bounded immediately and invalid chunks are rejected
+ok 9 - one oversized stderr chunk is bounded immediately and invalid chunks are rejected
+  ---
+  duration_ms: 1.611534
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 272.131884

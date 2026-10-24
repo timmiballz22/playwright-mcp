@@ -1,0 +1,46 @@
+✔ bounded writer contention waits before one mutation without replay (620.980606ms)
+✔ recovery with live unexpired records is read-only while another writer owns the lock (97.728855ms)
+✔ controller recovery failure remains primary if journal shutdown also fails (2.005091ms)
+✔ controller recovery failure identity is unchanged after confirmed journal shutdown (0.223658ms)
+✔ internal job controller queue-success (1138.11347ms)
+✔ internal job controller cancel-and-reconnect (908.968265ms)
+✔ internal job controller queue-pressure (1382.090007ms)
+✔ internal job controller queue-expiry (1419.949021ms)
+✔ internal job controller guardian-crash (1233.158087ms)
+✔ internal job controller close-before-dequeue (634.489357ms)
+✔ internal job controller cancel-during-guardian-start (573.198762ms)
+✔ journal init timeout reports unconfirmed exit without waiting forever or losing first cause (5.6043ms)
+✔ journal closed receipt alone cannot confirm worker shutdown (4.183181ms)
+✔ busy initialization is not retried while its prior worker exit is unconfirmed (1.686888ms)
+✔ malformed journal IPC fails pending init safely instead of throwing outside its promise (2.542779ms)
+✔ real init timeout retains phase configure and confirmed worker exit (2068.683485ms)
+✔ real init timeout retains phase schema and confirmed worker exit (2056.421483ms)
+✔ real init timeout retains phase schema_tables and confirmed worker exit (2054.557824ms)
+✔ real init timeout retains phase schema_metadata and confirmed worker exit (2058.320965ms)
+✔ real init timeout retains phase schema_verify and confirmed worker exit (2056.8616ms)
+✔ real init timeout retains phase schema_commit and confirmed worker exit (2059.633926ms)
+✔ malformed phase packets cannot leak values or become a journal acknowledgment (2061.554053ms)
+✔ unexpected journal worker exit remains distinct from an RPC timeout (104.329818ms)
+✔ malformed actual worker IPC is rejected and owned shutdown is confirmed (30.647832ms)
+✔ termination failure diagnostics persist without losing uncertain cleanup or releasing the lease (56.999456ms)
+✔ managed directory links and database hardlinks cannot modify another file (321.175404ms)
+✔ POSIX journal directory must exclude group and other access (44.932736ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (104.49668ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (57.126378ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (52.094253ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (62.823195ms)
+✔ killed transaction rolls back without a partial job or duplicate request (198.85105ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (136.097319ms)
+✔ corrupt journal is rejected without silently erasing the file (91.932668ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (46.011135ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (172.151562ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (151.959078ms)
+✔ reopening a validated journal preserves WAL bytes and existing durable state (97.684253ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24483.278384

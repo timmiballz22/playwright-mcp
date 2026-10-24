@@ -1,0 +1,28 @@
+✖ partial report write failure preserves completed actions and publishes no corrupt JSON (665.235343ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 761.27452
+
+✖ failing tests:
+
+test at local-batch/report-failure.test.mjs:10:1
+✖ partial report write failure preserves completed actions and publishes no corrupt JSON (665.235343ms)
+  AssertionError [ERR_ASSERTION]: A partial report was published or retained
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/report-failure.test.mjs:25:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

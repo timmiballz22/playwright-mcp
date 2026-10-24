@@ -1,0 +1,186 @@
+TAP version 13
+# Subtest: internal job controller queue-success
+ok 1 - internal job controller queue-success
+  ---
+  duration_ms: 1151.328204
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-and-reconnect
+ok 2 - internal job controller cancel-and-reconnect
+  ---
+  duration_ms: 521.008043
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-pressure
+ok 3 - internal job controller queue-pressure
+  ---
+  duration_ms: 1039.626713
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-expiry
+ok 4 - internal job controller queue-expiry
+  ---
+  duration_ms: 1019.661434
+  type: 'test'
+  ...
+# Subtest: internal job controller guardian-crash
+ok 5 - internal job controller guardian-crash
+  ---
+  duration_ms: 956.004632
+  type: 'test'
+  ...
+# Subtest: internal job controller close-before-dequeue
+ok 6 - internal job controller close-before-dequeue
+  ---
+  duration_ms: 277.152475
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-during-guardian-start
+ok 7 - internal job controller cancel-during-guardian-start
+  ---
+  duration_ms: 270.716945
+  type: 'test'
+  ...
+# Subtest: durable guardian success: cleanup and canonical journal outcome
+ok 8 - durable guardian success: cleanup and canonical journal outcome
+  ---
+  duration_ms: 539.119019
+  type: 'test'
+  ...
+# Subtest: durable guardian cancel: cleanup and canonical journal outcome
+ok 9 - durable guardian cancel: cleanup and canonical journal outcome
+  ---
+  duration_ms: 756.188374
+  type: 'test'
+  ...
+# Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+ok 10 - durable guardian disconnect: cleanup and canonical journal outcome
+  ---
+  duration_ms: 709.248787
+  type: 'test'
+  ...
+# Subtest: durable guardian crash: cleanup and canonical journal outcome
+ok 11 - durable guardian crash: cleanup and canonical journal outcome
+  ---
+  duration_ms: 1187.245109
+  type: 'test'
+  ...
+# Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+ok 12 - durable guardian mismatch: cleanup and canonical journal outcome
+  ---
+  duration_ms: 725.897353
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+ok 13 - durable guardian admissionFailure: cleanup and canonical journal outcome
+  ---
+  duration_ms: 794.474289
+  type: 'test'
+  ...
+# Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+ok 14 - durable guardian preDisconnected: cleanup and canonical journal outcome
+  ---
+  duration_ms: 495.869873
+  type: 'test'
+  ...
+# Subtest: managed directory links and database hardlinks cannot modify another file
+ok 15 - managed directory links and database hardlinks cannot modify another file
+  ---
+  duration_ms: 634.837228
+  type: 'test'
+  ...
+# Subtest: POSIX journal directory must exclude group and other access
+ok 16 - POSIX journal directory must exclude group and other access
+  ---
+  duration_ms: 183.930944
+  type: 'test'
+  ...
+# Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+ok 17 - a simulated reused PID cannot resume old work or clear uncertain active resources
+  ---
+  duration_ms: 568.505989
+  type: 'test'
+  ...
+# Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+ok 18 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+  ---
+  duration_ms: 114.498235
+  type: 'test'
+  ...
+# Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+ok 19 - a success mutation after the persisted deadline cannot commit or release the lease
+  ---
+  duration_ms: 94.185746
+  type: 'test'
+  ...
+# Subtest: competing writers initialize consistently and cannot overfill the project queue
+ok 20 - competing writers initialize consistently and cannot overfill the project queue
+  ---
+  duration_ms: 218.85569
+  type: 'test'
+  ...
+# Subtest: killed transaction rolls back without a partial job or duplicate request
+ok 21 - killed transaction rolls back without a partial job or duplicate request
+  ---
+  duration_ms: 414.057202
+  type: 'test'
+  ...
+# Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+ok 22 - reconnect marks a dead controller queued job crashed and never requeues its request
+  ---
+  duration_ms: 498.547983
+  type: 'test'
+  ...
+# Subtest: corrupt journal is rejected without silently erasing the file
+ok 23 - corrupt journal is rejected without silently erasing the file
+  ---
+  duration_ms: 256.11553
+  type: 'test'
+  ...
+# (node:161150) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: an unrelated SQLite file is rejected without changing its bytes
+ok 24 - an unrelated SQLite file is rejected without changing its bytes
+  ---
+  duration_ms: 120.969356
+  type: 'test'
+  ...
+# Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+ok 25 - journal preserves idempotency, owner isolation and a single project execution lease
+  ---
+  duration_ms: 297.616645
+  type: 'test'
+  ...
+# Subtest: workflow identity ignores object key order, defaults and equivalent repeat expansion
+ok 26 - workflow identity ignores object key order, defaults and equivalent repeat expansion
+  ---
+  duration_ms: 1.958303
+  type: 'test'
+  ...
+# Subtest: captured workflow input cannot change after submission and oversized or unknown data is rejected
+ok 27 - captured workflow input cannot change after submission and oversized or unknown data is rejected
+  ---
+  duration_ms: 7.924121
+  type: 'test'
+  ...
+# Subtest: CI totals include TAP, Node24 spec and original Playwright summaries
+ok 28 - CI totals include TAP, Node24 spec and original Playwright summaries
+  ---
+  duration_ms: 2.464726
+  type: 'test'
+  ...
+# Subtest: a repeated summary is counted once and incomplete Node totals fail closed
+ok 29 - a repeated summary is counted once and incomplete Node totals fail closed
+  ---
+  duration_ms: 0.689324
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14358.866149

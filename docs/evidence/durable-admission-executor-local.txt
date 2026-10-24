@@ -1,0 +1,22 @@
+✔ supervised hang: bounded completion and owned process cleanup (1804.899369ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1786.330933ms)
+✔ supervised crash: bounded completion and owned process cleanup (79.581577ms)
+✔ pre-cancelled execution never starts a worker (0.660381ms)
+✔ cancel interrupts a worker that cannot service its abort listener (320.759938ms)
+✔ supervisor crash cannot strand its worker or detached child (129.329085ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (38.442178ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (140.571405ms)
+✔ verified cleanup recovery preserves success action outcome (127.870534ms)
+✔ verified cleanup recovery preserves blocked action outcome (111.567409ms)
+✔ verified cleanup recovery preserves action action outcome (116.524577ms)
+✔ failed durable admission cannot start worker actions (70.136725ms)
+✔ stalled durable admission cannot evade watchdog deadline or start late (1610.217622ms)
+✔ successful durable admission precedes owned worker effects (140.984795ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6538.225658

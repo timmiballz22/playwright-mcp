@@ -1,0 +1,41 @@
+✔ cooperative context cleanup timeout retains fixed stage and stays failed (28.125425ms)
+✔ cooperative context cleanup error retains fixed stage and stays failed (4.086952ms)
+✔ untrusted Retry-After hints cannot exceed bounded durable result metadata (5.48113ms)
+✔ supervised hang: bounded completion and owned process cleanup (1805.956042ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1812.108871ms)
+✔ supervised crash: bounded completion and owned process cleanup (74.112477ms)
+✔ pre-cancelled execution never starts a worker (0.751608ms)
+✔ cancel interrupts a worker that cannot service its abort listener (320.230281ms)
+✔ supervisor crash cannot strand its worker or detached child (115.701776ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (32.3576ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (118.581765ms)
+✔ verified cleanup recovery preserves success action outcome (117.516391ms)
+✔ verified cleanup recovery preserves blocked action outcome (119.501165ms)
+✔ verified cleanup recovery preserves action action outcome (118.3904ms)
+✔ failed durable admission cannot start worker actions (68.882761ms)
+✔ stalled durable admission cannot evade watchdog deadline or start late (1610.31048ms)
+✔ successful durable admission precedes owned worker effects (135.207152ms)
+✔ partial report write failure preserves completed actions and publishes no corrupt JSON (646.156942ms)
+✔ failure classification returns fixed codes and never browser text (1.092145ms)
+✔ rejects unknown instructions, unbounded workloads and hostile origins (1.572877ms)
+✔ 100 ordered actions finish in a single batch with one browser launch (8.97414ms)
+✔ failures stop promptly, hide underlying sensitive errors and clean up (1.726654ms)
+✔ cancellation before starting avoids launching browser (0.326876ms)
+✔ checks target origins and reports assertion failure without page content (1.557167ms)
+✔ unknown localhost ports require exact operator origins (2.321308ms)
+✔ rejects extra workflow and action properties rather than ignoring policy (0.402338ms)
+✔ deadline includes a stalled launch and closes late browser (201.01908ms)
+✔ validation snapshots actions before asynchronous launch (1.215786ms)
+✔ screenshot capture requires operator approval for sensitive artifacts (0.610538ms)
+✔ workflow version and serialized size are bounded (7.057365ms)
+✔ accessible selectors validate exact shape and clone nested values (0.194664ms)
+✔ explicit action repeats expand within the total action cap (10.486589ms)
+✔ text equality rejects duplicate counters and ambiguous expectations (1.496919ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7618.162847

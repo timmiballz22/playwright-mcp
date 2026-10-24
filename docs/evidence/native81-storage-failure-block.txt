@@ -1,0 +1,48 @@
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7022710Z   2) [firefox] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7024660Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7025190Z     Test timeout of 30000ms exceeded.
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7025740Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7027780Z     Error: {"content":[{"type":"text","text":"### Error\nError: browserBackend.callTool: Target page, context or browser has been closed"}],"isError":true}
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7030090Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7030850Z     expect(received).not.toBe(expected) // Object.is equality
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7032200Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7032520Z     Expected: not true
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7033020Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7034260Z       37 |     const invoke = async (client: any, name: string, args: Record<string, unknown> = {}) => {
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7036290Z       38 |       const result = await client.callTool({ name, arguments: args });
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7037950Z     > 39 |       expect(result.isError, JSON.stringify(result)).not.toBe(true);
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7039920Z          |                                                          ^
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7043770Z       40 |       return result.content.filter((item: any) => item.type === 'text').map((item: any) => item.text).join('\n');
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7046390Z       41 |     };
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7047570Z       42 |     const first = (await startClient({ args: ['--isolated', '--caps=storage'] })).client;
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7050210Z         at invoke (/Users/runner/work/playwright-mcp/playwright-mcp/tests/storage.spec.ts:39:58)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7052650Z         at /Users/runner/work/playwright-mcp/playwright-mcp/tests/storage.spec.ts:59:5
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7053790Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7055750Z     Error Context: test-results/storage-original-storage-s-8156c-kie-and-localStorage-values-firefox/error-context.md
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7059150Z 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7059600Z   2 failed
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7062890Z     [chrome] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7069210Z     [firefox] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values 
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:51.7071720Z   150 passed (11.3m)
+test (macos-15-intel)	Run playwright-mcp tests	2026-10-22T08:04:52.0868240Z ##[error]Process completed with exit code 1.
+test (macos-15-intel)	Preserve failed wrapper evidence	﻿2026-10-22T08:04:52.2135990Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:52.2137350Z with:
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:52.2138030Z   name: wrapper-tests-macos-15-intel
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:52.2139440Z   path: wrapper-tests.log
+test (macos-15-intel)	Preserve failed wrapper evidence	wrapper-available-tests.log
+test (macos-15-intel)	Preserve failed wrapper evidence	modal-tests.log
+test (macos-15-intel)	Preserve failed wrapper evidence	legacy-firefox.log
+test (macos-15-intel)	Preserve failed wrapper evidence	
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:52.2140860Z   retention-days: 1
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:52.2148110Z   if-no-files-found: error
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:52.2148920Z   compression-level: 6
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:52.2149580Z   overwrite: false
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:52.2150210Z   include-hidden-files: false
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:52.2150920Z ##[endgroup]
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:54.1955190Z (node:20752) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:54.1959630Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:54.2115580Z Multiple search paths detected. Calculating the least common ancestor of all paths
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:54.2125230Z The least common ancestor is /Users/runner/work/playwright-mcp/playwright-mcp. This will be the root directory of the artifact
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:54.2131480Z With the provided path, there will be 1 file uploaded
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:54.2135570Z Artifact name is valid!
+test (macos-15-intel)	Preserve failed wrapper evidence	2026-10-22T08:04:54.2137680Z Root directory input is valid!

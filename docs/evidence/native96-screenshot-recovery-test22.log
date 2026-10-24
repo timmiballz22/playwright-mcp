@@ -1,0 +1,17 @@
+TAP version 13
+# {"fixture":"chromium_capture_recovery_calibration","engine":"chromium","cases":[{"mode":"healthy","passed":true,"failure":"none","attempts":1,"actualCaptures":1,"elapsedMs":45},{"mode":"first_unavailable","passed":true,"failure":"none","attempts":2,"actualCaptures":2,"elapsedMs":93},{"mode":"persistent_unavailable","passed":false,"failure":"unavailable","attempts":2,"actualCaptures":2,"elapsedMs":66},{"mode":"other_protocol","passed":false,"failure":"other_protocol","attempts":1,"actualCaptures":1,"elapsedMs":37},{"mode":"closed_target","passed":false,"failure":"closed_target","attempts":1,"actualCaptures":1,"elapsedMs":35},{"mode":"deadline","passed":false,"failure":"timeout","attempts":1,"actualCaptures":1,"elapsedMs":5009}]}
+# Subtest: Chromium screenshot retries only one exact calibrated capture-unavailable failure within its original deadline
+ok 1 - Chromium screenshot retries only one exact calibrated capture-unavailable failure within its original deadline
+  ---
+  duration_ms: 5621.015145
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6067.951551

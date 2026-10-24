@@ -1,0 +1,78 @@
+TAP version 13
+# Subtest: terminal cleanup reservation fences new admissions and other actors without changing history
+ok 1 - terminal cleanup reservation fences new admissions and other actors without changing history
+  ---
+  duration_ms: 280.920995
+  type: 'test'
+  ...
+# Subtest: unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release
+ok 2 - unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release
+  ---
+  duration_ms: 128.624613
+  type: 'test'
+  ...
+# Subtest: unconfirmed artifact worker is fenced durably from another controller
+ok 3 - unconfirmed artifact worker is fenced durably from another controller
+  ---
+  duration_ms: 234.130983
+  type: 'test'
+  ...
+# Subtest: unconfirmed artifact worker is fenced durably from another controller after lost finalization
+ok 4 - unconfirmed artifact worker is fenced durably from another controller after lost finalization
+  ---
+  duration_ms: 238.057358
+  type: 'test'
+  ...
+# Subtest: retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+ok 5 - retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+  ---
+  duration_ms: 104.567746
+  type: 'test'
+  ...
+# Subtest: invalid or pre-aborted retention does not query storage
+ok 6 - invalid or pre-aborted retention does not query storage
+  ---
+  duration_ms: 0.677854
+  type: 'test'
+  ...
+# (node:533694) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: retention interruption completes one authorized scope and preserves the continuation
+ok 7 - retention interruption completes one authorized scope and preserves the continuation
+  ---
+  duration_ms: 54.267569
+  type: 'test'
+  ...
+# Subtest: artifact retention never conceals a blocked project even when no old artifacts qualify
+ok 8 - artifact retention never conceals a blocked project even when no old artifacts qualify
+  ---
+  duration_ms: 0.326921
+  type: 'test'
+  ...
+# Subtest: retention stops on lost journal transport without touching later scopes
+ok 9 - retention stops on lost journal transport without touching later scopes
+  ---
+  duration_ms: 0.415182
+  type: 'test'
+  ...
+# Subtest: read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+ok 10 - read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+  ---
+  duration_ms: 240.141571
+  type: 'test'
+  ...
+# Subtest: actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+ok 11 - actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+  ---
+  duration_ms: 461.400639
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1889.136135

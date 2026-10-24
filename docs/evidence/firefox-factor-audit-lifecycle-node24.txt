@@ -1,0 +1,40 @@
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (2.267836ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (0.308643ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (0.805017ms)
+✖ live-root snapshots retain exited browser identities for the final orphan scan (5.326509ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 75.670224
+
+✖ failing tests:
+
+test at local-batch/windows-process-graph.test.mjs:24:1
+✖ live-root snapshots retain exited browser identities for the final orphan scan (5.326509ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      900,
+  -   902,
+      910
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/windows-process-graph.test.mjs:29:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 900, 910 ],
+    expected: [ 900, 902, 910 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

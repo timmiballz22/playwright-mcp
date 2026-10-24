@@ -1,0 +1,12 @@
+{"fixture":"parent_death_initial_observation","roots":[1136123,1136131,1136142,1136160,1136167,1136179],"observed":[1136123,1136131,1136142,1136149,1136160,1136167,1136179,1136181,1136182,1136204,1136205,1136228]}
+{"component":"installed_parent_death_fixture_preserved","workspaceId":"guardian-real-parent-death-qs0w1B","verified":false,"primaryFailed":true,"closeFailed":false,"ownedAuditConfirmed":true}
+file:///tmp/native93-parent-observation-calibration.mjs:25
+      const call = j.call; j.call = async function(command, ...args) { const result = await Reflect.apply(call, this, [command, ...args]); if (command === 'integrity' && !injected) { injected = true; throw new Error('controlled_assertion_after_actual_integrity'); } return result; };
+                                                                                                                                                                                                              ^
+
+Error: controlled_assertion_after_actual_integrity
+    at j.call (file:///tmp/native93-parent-observation-calibration.mjs:25:207)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:67:20
+
+Node.js v24.19.0

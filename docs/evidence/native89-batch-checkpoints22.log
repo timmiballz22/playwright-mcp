@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: CI totals include TAP, Node24 spec and original Playwright summaries
+ok 1 - CI totals include TAP, Node24 spec and original Playwright summaries
+  ---
+  duration_ms: 2.055455
+  type: 'test'
+  ...
+# Subtest: a repeated summary is counted once and incomplete Node totals fail closed
+ok 2 - a repeated summary is counted once and incomplete Node totals fail closed
+  ---
+  duration_ms: 0.703162
+  type: 'test'
+  ...
+# Subtest: batch checkpoints expose only bounded TAP receipt indexes without counting them as passes
+ok 3 - batch checkpoints expose only bounded TAP receipt indexes without counting them as passes
+  ---
+  duration_ms: 1.475743
+  type: 'test'
+  ...
+# Subtest: batch spec checkpoints handle colors and stop before repeated failure footer
+ok 4 - batch spec checkpoints handle colors and stop before repeated failure footer
+  ---
+  duration_ms: 0.356918
+  type: 'test'
+  ...
+# Subtest: batch checkpoint notices have a fixed cap and ignore non-receipt values
+ok 5 - batch checkpoint notices have a fixed cap and ignore non-receipt values
+  ---
+  duration_ms: 0.942101
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 63.216091

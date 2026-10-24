@@ -1,0 +1,11 @@
+{"fixture":"codex_client_workspace_retention","workspace":"codex-jobs-n7mCIy","acceptanceVerified":false,"primaryFailed":true,"cleanupFailed":false,"removalAttempted":false,"processAuditConfirmed":true,"appServerCloseObserved":true,"journalExitUnconfirmed":false,"journalInitStages":[],"diagnosticCoverage":"bounded_stderr_tail","stderrTailTruncated":true}
+file:///tmp/native97-codex-cleanup-preload.mjs:6
+ const deepEqual=assert.deepEqual;assert.deepEqual=function(actual,expected,...args){const result=Reflect.apply(deepEqual,this,[actual,expected,...args]);if(Array.isArray(actual)&&actual.length===6&&Array.isArray(expected)&&expected.length===6&&expected.includes('start_workflow')){toolsChecks++;if(toolsChecks===2){primaryInjected=true;throw new Error('owned_codex_primary_after_actual_discovery');}}if(mode==='primary_audit'&&primaryInjected&&!auditInjected&&Array.isArray(actual)&&actual.length===0&&Array.isArray(expected)&&expected.length===0){auditInjected=true;throw new Error('owned_codex_audit_after_actual_zero');}return result;};
+                                                                                                                                                                                                                                                                                                                                                       ^
+
+Error: owned_codex_primary_after_actual_discovery
+    at assert.deepEqual (file:///tmp/native97-codex-cleanup-preload.mjs:6:344)
+    at file:///workspace/playwright-mcp/scripts/verify-codex-jobs.mjs:131:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v24.19.0

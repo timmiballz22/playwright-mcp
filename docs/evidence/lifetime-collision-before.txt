@@ -1,0 +1,27 @@
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":3,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_audit","phase":"collision_teardown","lifetimes":1,"observed":0}
+✖ capture publication failure still releases its assigned factory gate and preserves the collision (534.606209ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 604.004614
+
+✖ failing tests:
+
+test at local-batch/jobs/lifetime-observer.test.mjs:46:1
+✖ capture publication failure still releases its assigned factory gate and preserves the collision (534.606209ms)
+  AssertionError [ERR_ASSERTION]: Assigned capability must be released even when capture publication fails
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/lifetime-observer.test.mjs:60:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

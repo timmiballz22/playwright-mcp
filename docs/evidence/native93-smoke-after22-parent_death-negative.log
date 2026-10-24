@@ -1,0 +1,11 @@
+{"component":"installed_parent_death_fixture_preserved","workspaceId":"guardian-real-parent-death-ozJOCa","verified":false,"primaryFailed":true,"closeFailed":false,"ownedAuditConfirmed":true}
+file:///tmp/native93-smoke-fixture-calibration.mjs:25
+      const call = j.call; j.call = async function(command, ...args) { const result = await Reflect.apply(call, this, [command, ...args]); if (command === 'integrity' && !injected) { injected = true; throw new Error('controlled_assertion_after_actual_integrity'); } return result; };
+                                                                                                                                                                                                              ^
+
+Error: controlled_assertion_after_actual_integrity
+    at j.call (file:///tmp/native93-smoke-fixture-calibration.mjs:25:207)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:59:20
+
+Node.js v22.23.3

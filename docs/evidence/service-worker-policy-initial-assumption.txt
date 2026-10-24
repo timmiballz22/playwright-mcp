@@ -1,0 +1,29 @@
+✖ chromium: hostile service worker registration is blocked before its script or local target is requested (7380.158389ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7468.153232
+
+✖ failing tests:
+
+test at local-batch/service-worker.test.mjs:10:1
+✖ chromium: hostile service worker registration is blocked before its script or local target is requested (7380.158389ms)
+  AssertionError [ERR_ASSERTION]: {"schemaVersion":1,"runId":"09db684a-5737-41e2-ad89-f44fbe752aad","browser":"chromium","total":3,"reportScope":"worker_execution","ok":false,"reason":"action_failed","blockedRequests":0,"actionsSucceeded":false,"cleanupFailures":[],"completed":1,"durationMs":5897,"reportPath":"/tmp/service-worker-policy-LCfvNC/exec-09db684a-5737-41e2-ad89-f44fbe752aad/run-10b48a18-911c-494b-a10b-95e9c60e33a9.json","recentSteps":[{"index":1,"repetition":1,"type":"goto","ok":true,"durationMs":28},{"index":2,"repetition":1,"type":"waitFor","ok":false,"durationMs":5004,"error":"action_failed","failureKind":"locator_timeout"}],"failedStep":{"index":2,"repetition":1,"type":"waitFor","ok":false,"durationMs":5004,"error":"action_failed","failureKind":"locator_timeout"},"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":214544,"workerPid":214551,"browserPids":[214563]},"completionCertainty":"confirmed_lower_bound","retrySafe":false}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/service-worker.test.mjs:39:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

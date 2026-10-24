@@ -1,0 +1,23 @@
+{"entry":"local-batch/jobs-cli.mjs","production":true,"realBrowser":"chromium","completed":2,"duplicateExecuted":false,"statusResultListCleanup":true,"retentionPreview":true,"retentionFreshPreserved":true,"activeCancel":true}
+{"entry":"local-batch/jobs-mcp.mjs","handshake":true,"toolCount":6,"realBrowser":"chromium","completed":2,"duplicateExecuted":false,"production":true}
+{"component":"installed_jobs_fixture_preserved","workspaceId":"production-jobs-4BzFwq","verified":true,"cliFailed":false,"primaryFailed":false,"cleanupFailureCount":1,"ownedAuditConfirmed":true}
+file:///workspace/playwright-mcp/scripts/production-jobs-smoke.mjs:113
+      if (failures.length) throw new AggregateError(primaryFailure ? [primaryFailure, ...failures] : failures,
+                                 ^
+
+AggregateError: Installed jobs fixture cleanup failed
+    at file:///workspace/playwright-mcp/scripts/production-jobs-smoke.mjs:113:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  [cause]: Error: controlled_jobs_close_after_fulfilled_sdk_close
+      at Client.close (file:///tmp/native93-jobs-fixture-calibration.mjs:26:144)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async file:///workspace/playwright-mcp/scripts/production-jobs-smoke.mjs:107:13,
+  [errors]: [
+    Error: controlled_jobs_close_after_fulfilled_sdk_close
+        at Client.close (file:///tmp/native93-jobs-fixture-calibration.mjs:26:144)
+        at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+        at async file:///workspace/playwright-mcp/scripts/production-jobs-smoke.mjs:107:13
+  ]
+}
+
+Node.js v22.23.3

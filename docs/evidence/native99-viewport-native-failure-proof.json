@@ -1,0 +1,214 @@
+{
+  "source": "ab4e111badc3b59cdc12fdf6584c6f9ec5b1b364",
+  "scope": "Four strict first-input failures with actual unmodified first JPEG and bounded passive timing. Three Linux images are short despite correct240 metadata; Mac image is full320x240 but native metadata500x153. Do not call Mac a gray/short recording this sample. Every native resize event precedes metrics ACK; none establishes first-image sizing/readiness. No extra protocol request, warmup or skipped frame; no general cause/fix claim.",
+  "failures": [
+    {
+      "job": "batch (ubuntu-latest, 20)",
+      "data": {
+        "fixture": "chromium_viewport_first_input",
+        "firstInput": {
+          "width": 320,
+          "height": 153,
+          "viewportWidth": 320,
+          "viewportHeight": 240
+        },
+        "metricsBeforeBoundsCompleted": false,
+        "trace": [
+          {
+            "stage": "window_sent",
+            "offsetMs": 101.662,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "window_ack",
+            "offsetMs": 108.798
+          },
+          {
+            "stage": "metrics_sent",
+            "offsetMs": 108.824,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "frame_resized",
+            "offsetMs": 113.837
+          },
+          {
+            "stage": "metrics_ack",
+            "offsetMs": 113.931
+          },
+          {
+            "stage": "viewport_api_resolved",
+            "offsetMs": 115.112
+          },
+          {
+            "stage": "first_native_frame",
+            "offsetMs": 125.133,
+            "deviceWidth": 320,
+            "deviceHeight": 240,
+            "pageScaleFactor": 1,
+            "offsetTop": 0
+          }
+        ],
+        "traceDropped": 0
+      }
+    },
+    {
+      "job": "batch (ubuntu-latest, 22)",
+      "data": {
+        "fixture": "chromium_viewport_first_input",
+        "firstInput": {
+          "width": 320,
+          "height": 158,
+          "viewportWidth": 320,
+          "viewportHeight": 240
+        },
+        "metricsBeforeBoundsCompleted": false,
+        "trace": [
+          {
+            "stage": "window_sent",
+            "offsetMs": 101.401,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "window_ack",
+            "offsetMs": 190.016
+          },
+          {
+            "stage": "metrics_sent",
+            "offsetMs": 190.04,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "frame_resized",
+            "offsetMs": 198.286
+          },
+          {
+            "stage": "metrics_ack",
+            "offsetMs": 198.331
+          },
+          {
+            "stage": "viewport_api_resolved",
+            "offsetMs": 198.652
+          },
+          {
+            "stage": "first_native_frame",
+            "offsetMs": 321.076,
+            "deviceWidth": 320,
+            "deviceHeight": 240,
+            "pageScaleFactor": 1,
+            "offsetTop": 0
+          }
+        ],
+        "traceDropped": 0
+      }
+    },
+    {
+      "job": "batch (macos-15-intel, 22)",
+      "data": {
+        "fixture": "chromium_viewport_first_input",
+        "firstInput": {
+          "width": 320,
+          "height": 240,
+          "viewportWidth": 500,
+          "viewportHeight": 153
+        },
+        "metricsBeforeBoundsCompleted": false,
+        "trace": [
+          {
+            "stage": "window_sent",
+            "offsetMs": 102.099,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "window_ack",
+            "offsetMs": 107.714
+          },
+          {
+            "stage": "metrics_sent",
+            "offsetMs": 107.741,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "frame_resized",
+            "offsetMs": 112.479
+          },
+          {
+            "stage": "metrics_ack",
+            "offsetMs": 112.804
+          },
+          {
+            "stage": "viewport_api_resolved",
+            "offsetMs": 113.231
+          },
+          {
+            "stage": "first_native_frame",
+            "offsetMs": 137.054,
+            "deviceWidth": 500,
+            "deviceHeight": 153,
+            "pageScaleFactor": 1,
+            "offsetTop": 0
+          }
+        ],
+        "traceDropped": 0
+      }
+    },
+    {
+      "job": "batch (ubuntu-latest, 24)",
+      "data": {
+        "fixture": "chromium_viewport_first_input",
+        "firstInput": {
+          "width": 320,
+          "height": 158,
+          "viewportWidth": 320,
+          "viewportHeight": 240
+        },
+        "metricsBeforeBoundsCompleted": false,
+        "trace": [
+          {
+            "stage": "window_sent",
+            "offsetMs": 103.983,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "window_ack",
+            "offsetMs": 108.448
+          },
+          {
+            "stage": "metrics_sent",
+            "offsetMs": 108.47,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "frame_resized",
+            "offsetMs": 110.328
+          },
+          {
+            "stage": "metrics_ack",
+            "offsetMs": 110.515
+          },
+          {
+            "stage": "viewport_api_resolved",
+            "offsetMs": 110.778
+          },
+          {
+            "stage": "first_native_frame",
+            "offsetMs": 307.445,
+            "deviceWidth": 320,
+            "deviceHeight": 240,
+            "pageScaleFactor": 1,
+            "offsetTop": 0
+          }
+        ],
+        "traceDropped": 0
+      }
+    }
+  ]
+}

@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 // Local-only batch CLI; no cloud service, HTTP listener or arbitrary code execution.
-import { readFile } from 'node:fs/promises';
+import { readWorkflowFile } from './workflow-file.mjs';
 import path from 'node:path';
-import { runWorkflow } from './runner.mjs';
-import { saveReport } from './report.mjs';
+import { parsePageLimit } from './page-budget.mjs';
+import { parseScreenshotLimit } from './screenshot-budget.mjs';
+import { executeWorkflow } from './executor.mjs';
 
 function argsOf(argv) {
   const args = { origins: [] };
@@ -13,6 +14,21 @@ function argsOf(argv) {
       args.workflow = argv[++i];
     else if (arg === '--allow-origin')
       args.origins.push(argv[++i]);
+    else if (arg === '--navigation-retries') {
+      const count = argv[++i];
+      if (!/^[0-2]$/.test(count ?? '')) throw new TypeError('navigation-retries must be 0, 1 or 2');
+      args.navigationRetry = { maxRetries: Number(count) };
+    }
+    else if (arg === '--max-pages') {
+      const value = argv[++i]; if (value === undefined) throw new TypeError('Missing page limit');
+      args.maxPages = parsePageLimit(value);
+    }
+    else if (arg === '--max-screenshot-bytes') {
+      const value = argv[++i]; if (value === undefined) throw new TypeError('Missing screenshot byte limit');
+      args.maxScreenshotBytes = parseScreenshotLimit(value);
+    }
+    else if (arg === '--allow-sensitive-artifacts')
+      args.allowSensitiveArtifacts = true;
     else if (arg === '--artifacts')
       args.artifacts = argv[++i];
     else
@@ -25,21 +41,24 @@ function argsOf(argv) {
 
 async function main() {
   const options = argsOf(process.argv.slice(2));
-  const input = JSON.parse(await readFile(options.workflow, 'utf8'));
+  const input = await readWorkflowFile(options.workflow);
   const artifactsDir = path.resolve(options.artifacts ?? '.local-batch-output');
   const abort = new AbortController();
   const cancel = () => abort.abort();
   process.once('SIGINT', cancel);
   process.once('SIGTERM', cancel);
   try {
-    const result = await runWorkflow(input, {
+    const summary = await executeWorkflow(input, {
       allowedOrigins: options.origins,
+      navigationRetry: options.navigationRetry,
+      maxScreenshotBytes: options.maxScreenshotBytes,
+      maxPages: options.maxPages,
+      allowSensitiveArtifacts: options.allowSensitiveArtifacts === true,
       artifactsDir,
       signal: abort.signal,
     });
-    const summary = await saveReport(result, artifactsDir);
     process.stdout.write(JSON.stringify(summary, null, 2) + '\n');
-    if (!result.ok)
+    if (!summary.ok)
       process.exitCode = 1;
   } finally {
     process.removeListener('SIGINT', cancel);

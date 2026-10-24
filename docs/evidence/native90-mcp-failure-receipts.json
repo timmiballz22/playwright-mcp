@@ -1,0 +1,44 @@
+[
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "data": {
+      "fixture": "jobs_mcp_failure",
+      "diagnosticCoverage": "bounded_stderr_tail",
+      "guardianFailures": [],
+      "journalFailures": [],
+      "guardianExits": [],
+      "journalExitUnconfirmed": false,
+      "stderrTailTruncated": false,
+      "diagnosticCapped": false
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "data": {
+      "fixture": "jobs_mcp_workspace_preserved",
+      "verified": false,
+      "primaryFailed": true,
+      "aborted": false,
+      "auditConfirmed": true,
+      "auditFailed": false,
+      "closeFailures": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "data": {
+      "fixture": "batch_mcp_workspace_preserved",
+      "stage": "summary",
+      "outcome": {
+        "ok": false,
+        "reason": "timeout",
+        "completed": 977,
+        "cleanup": "terminated",
+        "tempCleanup": "removed"
+      },
+      "aborted": false,
+      "primaryFailed": true,
+      "closeFailed": false
+    }
+  }
+]

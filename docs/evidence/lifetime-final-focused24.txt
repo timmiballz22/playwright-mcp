@@ -1,0 +1,25 @@
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":3,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_orphan","detected":true,"cleanup":"failed"}
+{"fixture":"factory_lifetime_audit","phase":"self_exit","lifetimes":1,"observed":0}
+{"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+✔ live factory facts retain an owned orphan after its worker exits (927.926106ms)
+✔ audit receipts describe reused IDs without hiding possible processes or exposing identities (1.816162ms)
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (1.013681ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (0.234918ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (0.589967ms)
+✔ live-root snapshots retain exited browser identities for the final orphan scan (0.238841ms)
+✔ CIM error phase keeps only exact fixed markers and never raw diagnostics (0.351069ms)
+✔ separate owned lifetimes retain old orphans when a new client reuses its PID (0.410217ms)
+✔ new client may reuse an earlier observed descendant without losing either orphan lineage (0.209252ms)
+✔ live controller anchors retain exited browser roots and reject changes within that lifetime (0.265056ms)
+✔ live anchor refresh preserves an old orphan before recording a new owned browser incarnation (0.336506ms)
+✔ historical PID links cannot rewrite a live controller identity before validation (0.210584ms)
+✔ legacy comparison preserves old candidates while scoped birth facts retain an owned orphan (0.307358ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1071.804064

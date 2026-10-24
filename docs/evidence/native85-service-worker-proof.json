@@ -1,0 +1,42 @@
+{
+  "scope": "Explicitly allowed original-MCP service worker controls owned origin, supplies document while context offline, snapshot/ref click produces DOM effect with zero fallback GETs",
+  "passed": {
+    "node20": 2,
+    "node22": 2,
+    "node24": 2
+  },
+  "finalFailures": 0,
+  "initialFailure": "Generated worker script had nested-quote syntax error; JSON serialization of source-defined offline HTML fixed fixture without changing assertions. Unused effect route removed before final run.",
+  "limitations": [
+    "Excluded from active native85 at23b07fd",
+    "Original functional mode only; separate batch default worker block unchanged",
+    "No external origins, authentication, general cache eviction/persistence or PWA guarantee",
+    "WebKit local engine unexecuted"
+  ],
+  "files": [
+    {
+      "file": "native85-service-worker-first24.log",
+      "sha256": "2adf92b88c0f8f3687d047d07b32834b973a63917ea763150df9b3fd2b560589"
+    },
+    {
+      "file": "native85-service-worker-final24.log",
+      "sha256": "a399c3b747c7f10e1fb44c4a2dd8e7e3ce3eb57937272fb572a5d48c5be4f9f4"
+    },
+    {
+      "file": "native85-service-worker-final20.log",
+      "sha256": "a8e88e64a37b38935deb385f945d9894843bb2351c378c54b0870bb027f05efd"
+    },
+    {
+      "file": "native85-service-worker-final22.log",
+      "sha256": "190c8a6dbc0c72c51dfb2a51cfc1069ab855ec0e1e556b53d250a6734546e7b1"
+    },
+    {
+      "file": "native85-service-worker-exits.json",
+      "sha256": "ecae012061db553f07330b91817217782b412a5f050a4b9a1f19373e540b2133"
+    },
+    {
+      "file": "native85-service-worker-typecheck.log",
+      "sha256": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f"
+    }
+  ]
+}

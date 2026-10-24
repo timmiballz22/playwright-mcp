@@ -1,0 +1,51 @@
+{
+  "scope": "Local verifier failure preservation; no product runtime, watchdog, lease or debt changes",
+  "negative": {
+    "actualExit": 1,
+    "expectedExit": 1,
+    "trustedFixture": "PLAYWRIGHT_TEST_GUARDIAN_START_FAILURE=1",
+    "readyFailure": true,
+    "installationRetained": true,
+    "bundledCoreRetained": true,
+    "privateCanaryAbsent": true
+  },
+  "positive": {
+    "exit": 0,
+    "productionFiles": 297,
+    "allSmokesPassed": true,
+    "normalInstallationRemovalAwaited": true
+  },
+  "fullOriginal": {
+    "node": "24.19.0",
+    "engines": [
+      "chromium",
+      "firefox"
+    ],
+    "pass": 92,
+    "fail": 0,
+    "duration": "4.4m"
+  },
+  "limitations": [
+    "Excluded from active native85 at23b07fd",
+    "Preservation is diagnostic retention, never proof that an unknown process is owned/gone or authorization for PID signals",
+    "Historical CI runtimes already removed by old verifier cannot be reconstructed"
+  ],
+  "files": [
+    {
+      "file": "native85-original-full24.log",
+      "sha256": "cb67636f9e74611603c31197575d22861d44b39793c5fa58a2fab3418f627228"
+    },
+    {
+      "file": "native85-package-preserve-failure.log",
+      "sha256": "580e1ecd36d7eedd03d74d174ccbbf46ba9a744cf409864384bc29252dccf288"
+    },
+    {
+      "file": "native85-package-preserve-success.log",
+      "sha256": "d03362acc8d537eca5554165003149df063e192527d8fc1472eb7d05ddccc18d"
+    },
+    {
+      "file": "native85-package-preserve-exits.json",
+      "sha256": "405597a5d580ccb86a95cc7afe8bd4c75b01642f4710778aac93b7b963a237f1"
+    }
+  ]
+}

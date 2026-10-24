@@ -1,0 +1,9 @@
+import pathlib,json,subprocess,tempfile
+r=pathlib.Path('/workspace/playwright-mcp');s=(r/'.github/workflows/ci.yml').read_text();start=s.index("        if node <<'NODE_VIDEO_GATE'\n")+len("        if node <<'NODE_VIDEO_GATE'\n");end=s.index('        NODE_VIDEO_GATE\n',start);program='\n'.join(line[8:] for line in s[start:end].splitlines())
+receipts=json.load(open(r/'docs/evidence/native90-mac-video-selected-receipts.json'));bad=next(x['data'] for x in receipts if x['data'].get('fixture')=='owned_video_original_decode_failure' and x['data'].get('project')=='chromium')
+variants=[('actual_gray_receipt',json.dumps(bad),0),('successful_tool_source_echo',json.dumps({'content':[{'type':'text','text':json.dumps(bad)}]}),1),('different_browser',json.dumps(dict(bad,project='webkit')),1),('malformed_readiness',json.dumps(dict(bad,ready='4')),1)]
+results=[]
+for name,text,expected in variants:
+ with tempfile.TemporaryDirectory(prefix='owned-video-gate-') as directory:
+  pathlib.Path(directory,'wrapper-tests.log').write_text(text+'\n');p=subprocess.run(['node'],input=program,text=True,cwd=directory,capture_output=True,timeout=5);assert p.returncode==expected,(name,p.returncode,p.stderr);d=json.loads(p.stdout);results.append({'scenario':name,'exit':p.returncode,'expectedExit':expected,'eligible':d['eligible']})
+proof={'phase':'Local workflow gate validation excluded from native90','command':'Exact Node here-document extracted from workflow; no browser or installer stub','cases':results,'scope':'Original Mac Chromium mismatch receipt only; source echo, other browser and invalid type cannot trigger fresh controls. Reads at most2MiB per fixed log file, reports truncation. Original failure is never replaced.'};pathlib.Path('/tmp/native90-video-gate-proof.json').write_text(json.dumps(proof,indent=2)+'\n');print(json.dumps({'gateCases':len(results),'allExpected':True}))

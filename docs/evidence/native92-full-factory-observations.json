@@ -1,0 +1,210 @@
+[
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "data": {
+      "fixture": "factory_lifetime_scoped_failure",
+      "phase": "deliberate_orphan",
+      "observed": [
+        4236
+      ],
+      "legacy": null,
+      "lifetimes": [
+        {
+          "runId": "b0c62b19-f691-497a-a50d-34bbbac74f27",
+          "roots": [
+            4218,
+            4225,
+            4236
+          ],
+          "identities": []
+        }
+      ]
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "data": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "data": {
+      "fixture": "factory_lifetime_scoped_failure",
+      "phase": "self_exit",
+      "observed": [
+        4236
+      ],
+      "legacy": null,
+      "lifetimes": [
+        {
+          "runId": "b0c62b19-f691-497a-a50d-34bbbac74f27",
+          "roots": [
+            4218,
+            4225,
+            4236
+          ],
+          "identities": []
+        }
+      ]
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "data": {
+      "fixture": "factory_lifetime_scoped_failure",
+      "phase": "deliberate_orphan",
+      "observed": [
+        4512
+      ],
+      "legacy": null,
+      "lifetimes": [
+        {
+          "runId": "c8f413ca-33c9-43dd-95a3-34d9f1f8afd0",
+          "roots": [
+            4494,
+            4501,
+            4512
+          ],
+          "identities": []
+        }
+      ]
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "data": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "data": {
+      "fixture": "factory_lifetime_comparison",
+      "phase": "deliberate_orphan",
+      "observed": [
+        6344
+      ],
+      "legacy": {
+        "observed": [
+          6344
+        ],
+        "legacyOnly": [],
+        "rows": [
+          {
+            "pid": 6344,
+            "parent": 5788,
+            "started": "2026-10-22T16:58:37.8646200Z"
+          }
+        ],
+        "rootRows": [
+          {
+            "pid": 6344,
+            "parent": 5788,
+            "started": "2026-10-22T16:58:37.8646200Z"
+          },
+          {
+            "pid": 3280,
+            "parent": 7528,
+            "started": "2026-10-22T16:58:38.5256480Z"
+          }
+        ],
+        "auditHelperPid": 3280,
+        "auditHelperMatched": false
+      },
+      "lifetimes": [
+        {
+          "runId": "6ec50c3b-2669-48fc-9aaf-3d2b92992654",
+          "roots": [
+            3388,
+            5788,
+            6344,
+            2736
+          ],
+          "identities": [
+            [
+              3388,
+              "2026-10-22T16:58:37.7131470Z"
+            ],
+            [
+              5788,
+              "2026-10-22T16:58:37.7756640Z"
+            ],
+            [
+              6344,
+              "2026-10-22T16:58:37.8646200Z"
+            ],
+            [
+              2736,
+              "2026-10-22T16:58:37.7793610Z"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "data": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "data": {
+      "fixture": "factory_lifetime_scoped_failure",
+      "phase": "deliberate_orphan",
+      "observed": [
+        2585
+      ],
+      "legacy": null,
+      "lifetimes": [
+        {
+          "runId": "7e9074cd-ff46-4f4d-815d-9f1dea335eb6",
+          "roots": [
+            2583,
+            2584,
+            2585
+          ],
+          "identities": []
+        }
+      ]
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "data": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "data": {
+      "fixture": "factory_lifetime_scoped_failure",
+      "phase": "self_exit",
+      "observed": [
+        2585
+      ],
+      "legacy": null,
+      "lifetimes": [
+        {
+          "runId": "7e9074cd-ff46-4f4d-815d-9f1dea335eb6",
+          "roots": [
+            2583,
+            2584,
+            2585
+          ],
+          "identities": []
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,20 @@
+{"component":"installed_journal_fixture_preserved","workspaceId":"installed-journal-bADs5A","verified":false,"primaryFailed":true,"clientCloseFailures":0,"rejectedOpenExitUnconfirmed":false}
+file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:110
+      const error = new JournalError(code, this.failureCause, this.failureCommand, this.exitConfirmed, request.command === 'init' || this.failureCommand === 'init' ? this.initStage : undefined); error.command = request.command;
+                    ^
+
+JournalError: journal_unavailable
+    at JobJournal.failAll (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:110:21)
+    at JobJournal.abort (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:117:10)
+    at Timeout.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:97:43)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7) {
+  code: 'journal_unavailable',
+  journalFailure: 'rpc_timeout',
+  journalFailureCommand: 'init',
+  journalInitStage: 'schema_tables',
+  command: 'init',
+  journalExitConfirmed: true
+}
+
+Node.js v24.19.0

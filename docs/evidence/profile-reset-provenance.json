@@ -1,0 +1,19 @@
+{
+  "phase": "uncommitted after native73 ca638b0",
+  "sourceSha256": "a8cd57af7d6f07478b2638a98f2d8a725580e01b6ce9ea8306ad2cf95f475888",
+  "local": "Chromium/Firefox2/2 Node22; Chrome/WebKit and native reset extension not tested yet",
+  "unchangedBudgetMs": 90000,
+  "mechanism": "Reuse upstream cookie/local/session clear tools; restart profile and check cleared state; sibling profile retains its persisted cookie/local state",
+  "scope": "Current fixture origin web storage and context cookies; not secure disk erase, IndexedDB/other-origin reset, Windows ACL repair or stale-lock recovery",
+  "runtimeCodeChanged": false,
+  "checks": [
+    {
+      "name": "lint",
+      "exitCode": 0
+    },
+    {
+      "name": "diff",
+      "exitCode": 0
+    }
+  ]
+}

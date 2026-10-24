@@ -1,0 +1,42 @@
+✔ a report target created during its temporary write is never replaced (10.271171ms)
+✔ published report is complete and its returned step summary remains bounded (4.108029ms)
+✔ exclusive temporary-name collision preserves the file this report did not create (2.482653ms)
+✖ report UTF-8 byte ceiling rejects oversized data before creating its output directory (25.874451ms)
+✖ report exact byte ceiling includes JSON formatting and final newline (82.22927ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 192.080101
+
+✖ failing tests:
+
+test at local-batch/report-publication.test.mjs:57:1
+✖ report UTF-8 byte ceiling rejects oversized data before creating its output directory (25.874451ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/report-publication.test.mjs:62:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at local-batch/report-publication.test.mjs:70:1
+✖ report exact byte ceiling includes JSON formatting and final newline (82.22927ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/report-publication.test.mjs:78:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { code: 'REPORT_BYTE_LIMIT' },
+    operator: 'rejects',
+    diff: 'simple'
+  }

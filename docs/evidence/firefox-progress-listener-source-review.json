@@ -1,0 +1,40 @@
+{
+  "review": "read_only_upstream_firefox_progress_listener",
+  "pinnedTag": "v1.64.1",
+  "pinnedTagObject": "cfe490d941f992655948eee8fd4fd94e1c4234bf",
+  "mainCommit": "66070a1eaa0b869379607a9e0e1a652ddf2a77da",
+  "sources": [
+    {
+      "url": "https://github.com/microsoft/playwright/blob/cfe490d941f992655948eee8fd4fd94e1c4234bf/browser_patches/firefox/juggler/Helper.js",
+      "sha256": "4875ec793cf2bda6f084fe4c0722eb3ddf948c1de1b19a5f0b0c91ceda196948",
+      "lines": [
+        80,
+        82
+      ]
+    },
+    {
+      "url": "https://github.com/microsoft/playwright/blob/cfe490d941f992655948eee8fd4fd94e1c4234bf/browser_patches/firefox/juggler/TargetRegistry.js",
+      "sha256": "78bad814f50ea862be2d37c68b37ed4327f48e00b2e289e27da97b804f1b4e4f",
+      "lines": [
+        873,
+        890
+      ]
+    },
+    {
+      "url": "https://github.com/microsoft/playwright/blob/cfe490d941f992655948eee8fd4fd94e1c4234bf/browser_patches/firefox/juggler/content/FrameTree.js",
+      "sha256": "80c79d541bd9ebd6c94c49bd8e14079a791d1add649232c7aef17fba7593d74a",
+      "lines": [
+        233,
+        238
+      ]
+    }
+  ],
+  "helperIdenticalToMain": true,
+  "findings": [
+    "Helper teardown closure calls removeProgressListener directly.",
+    "PageTarget.dispose catches and dumps listener teardown errors for a half-destroyed linked browser.",
+    "FrameTree.dispose also removes progress listeners without this catch.",
+    "Native log line alone cannot identify which disposal path emitted it or prove it caused earlier click stalls."
+  ],
+  "changes": "No dependency/browser patch or protocol-error suppression."
+}

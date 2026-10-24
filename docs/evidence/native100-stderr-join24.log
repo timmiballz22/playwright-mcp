@@ -1,0 +1,14 @@
+✔ stderr capture preserves split UTF-8 bytes and owns its bounded storage (1.385552ms)
+✔ stderr capture accepts its exact byte boundary and rejects overflow without leaking text (6.021359ms)
+✔ one oversized stderr chunk is bounded immediately and invalid chunks are rejected (1.413389ms)
+✔ actual SDK close can precede stderr EOF; joined teardown drains within its existing ceiling (2767.215627ms)
+✔ actual inherited stderr beyond the existing ceiling stays a failed unconfirmed teardown (4674.258054ms)
+✔ joined teardown preserves a close rejection after actual EOF (0.728072ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7514.324303

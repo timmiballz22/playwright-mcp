@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: operator owner/project namespaces are stable, private and independent of tool data
+ok 1 - operator owner/project namespaces are stable, private and independent of tool data
+  ---
+  duration_ms: 20.19758
+  type: 'test'
+  ...
+# Subtest: untrusted symlinks and writable ancestors cannot redirect job storage writes
+ok 2 - untrusted symlinks and writable ancestors cannot redirect job storage writes
+  ---
+  duration_ms: 5.529578
+  type: 'test'
+  ...
+# Subtest: invalid owner/policy config is rejected before any storage creation
+ok 3 - invalid owner/policy config is rejected before any storage creation
+  ---
+  duration_ms: 2.406788
+  type: 'test'
+  ...
+# Subtest: Windows ACL helper rejects a non-Windows host without creating storage
+ok 4 - Windows ACL helper rejects a non-Windows host without creating storage
+  ---
+  duration_ms: 1.676303
+  type: 'test'
+  ...
+# Subtest: Windows helper failure diagnostics contain only fixed process categories
+ok 5 - Windows helper failure diagnostics contain only fixed process categories
+  ---
+  duration_ms: 0.36902
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 137.293113

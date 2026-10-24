@@ -1,0 +1,35 @@
+TAP version 13
+# {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+# Routing cache fixture preserved: acceptance or cleanup not confirmed
+# Subtest: owned cache comparison keeps strict routing enabled and measures its repeated resource requests
+not ok 1 - owned cache comparison keeps strict routing enabled and measures its repeated resource requests
+  ---
+  duration_ms: 1142.696276
+  type: 'test'
+  location: '/workspace/playwright-mcp/local-batch/routing-cache.test.mjs:10:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Execution ended before live factory observation
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    Object.run (file:///workspace/playwright-mcp/local-batch/jobs/fixtures/lifetime-observer.mjs:82:16)
+    async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/routing-cache.test.mjs:33:25)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1218.773343

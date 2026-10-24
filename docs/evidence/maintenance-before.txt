@@ -1,0 +1,34 @@
+✖ terminal cleanup reservation fences new admissions and other actors without changing history (106.858425ms)
+✖ unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release (50.10787ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 228.084141
+
+✖ failing tests:
+
+test at local-batch/jobs/maintenance.test.mjs:18:22
+✖ terminal cleanup reservation fences new admissions and other actors without changing history (106.858425ms)
+  Error [JournalError]: unsupported_command
+      at JobJournal.call (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:74:61)
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/maintenance.test.mjs:26:31)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'unsupported_command'
+  }
+
+test at local-batch/jobs/maintenance.test.mjs:37:22
+✖ unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release (50.10787ms)
+  Error [JournalError]: unsupported_command
+      at JobJournal.call (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:74:61)
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/maintenance.test.mjs:43:19)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'unsupported_command'
+  }

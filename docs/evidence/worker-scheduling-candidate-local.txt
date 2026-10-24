@@ -1,0 +1,106 @@
+
+> @timmiballz22/playwright-mcp-local@0.0.83 test:batch
+> node scripts/test-batch.mjs
+
+✔ 20 real screenshots across concurrent runs have unique private directories (3753.67178ms)
+✔ temporary cleanup completes in a separate process and reports a startup deadline (49.29882ms)
+✔ active browser workflow terminates after eof (1947.698023ms)
+✔ active browser workflow terminates after SIGTERM (1645.04409ms)
+✔ source distribution cannot publish as Microsoft and includes runtime SDK (4.715661ms)
+✔ supervised chromium: real browser deadline closes owned process (9307.442758ms)
+✔ supervised firefox: real browser deadline closes owned process (9315.881936ms)
+✖ supervised webkit: real browser deadline closes owned process (706.842083ms)
+✔ abrupt execution-host death terminates its supervisor, worker and real browser (995.66001ms)
+✔ supervised hang: bounded completion and owned process cleanup (1795.666853ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1781.394284ms)
+✔ supervised crash: bounded completion and owned process cleanup (75.563058ms)
+✔ pre-cancelled execution never starts a worker (0.950708ms)
+✔ cancel interrupts a worker that cannot service its abort listener (332.596066ms)
+✔ supervisor crash cannot strand its worker or detached child (137.460925ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (35.355612ms)
+✔ HTTP errors fail navigation without replaying requests or leaking headers (990.206286ms)
+✔ real chromium: navigation, 997 clicks, assertion, screenshot, cleanup (34670.10951ms)
+✔ real firefox: navigation, 20 clicks, assertion, screenshot, cleanup (3329.912792ms)
+✖ real webkit: navigation, 20 clicks, assertion, screenshot, cleanup (271.467259ms)
+✔ local stdio MCP: handshake, tool list, rejection, browser workflow (37764.513388ms)
+✔ malformed MCP input cannot echo page-like secrets or corrupt later protocol frames (246.800262ms)
+✔ oversized unterminated MCP frame closes the transport without launching browsers (909.175564ms)
+✔ partial report write failure preserves completed actions and publishes no corrupt JSON (872.845193ms)
+✔ closing a successful workflow with an outstanding allowed request is not a policy denial (828.81045ms)
+✔ rejects unknown instructions, unbounded workloads and hostile origins (3.540205ms)
+✔ 100 ordered actions finish in a single batch with one browser launch (11.319283ms)
+✔ failures stop promptly, hide underlying sensitive errors and clean up (1.58442ms)
+✔ cancellation before starting avoids launching browser (0.801924ms)
+✔ checks target origins and reports assertion failure without page content (2.092462ms)
+✔ unknown localhost ports require exact operator origins (1.907709ms)
+✔ rejects extra workflow and action properties rather than ignoring policy (0.293388ms)
+✔ deadline includes a stalled launch and closes late browser (199.701892ms)
+✔ validation snapshots actions before asynchronous launch (1.38561ms)
+✔ screenshot capture requires operator approval for sensitive artifacts (0.694245ms)
+✔ workflow version and serialized size are bounded (9.795961ms)
+✔ accessible selectors validate exact shape and clone nested values (0.207773ms)
+✔ explicit action repeats expand within the total action cap (10.591303ms)
+✔ text equality rejects duplicate counters and ambiguous expectations (4.02172ms)
+✔ chromium: unapproved iframe never reaches the local service (831.957449ms)
+✔ chromium: unapproved websocket never reaches the local service (802.829736ms)
+✔ chromium: allowed origin cannot redirect to unapproved localhost port (739.501507ms)
+✔ firefox: allowed origin cannot redirect to unapproved localhost port (3125.466521ms)
+✖ webkit: allowed origin cannot redirect to unapproved localhost port (878.981925ms)
+✔ file ingestion accepts UTF-8 BOM and rejects oversized, invalid UTF-8 and non-files (21.08999ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 42
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61250.329678
+
+✖ failing tests:
+
+test at local-batch/executor-browser.test.mjs:11:3
+✖ supervised webkit: real browser deadline closes owned process (706.842083ms)
+  AssertionError [ERR_ASSERTION]: No real browser ownership was reported; launch did not succeed
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/executor-browser.test.mjs:26:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at local-batch/integration.test.mjs:12:3
+✖ real webkit: navigation, 20 clicks, assertion, screenshot, cleanup (271.467259ms)
+  AssertionError [ERR_ASSERTION]: {"ok":false,"reason":"action_failed","browser":"webkit","blockedRequests":0,"completed":0,"total":23,"durationMs":267,"results":[{"index":0,"type":"setup","ok":false,"error":"setup_failed"}]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/integration.test.mjs:30:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/security.test.mjs:11:3
+✖ webkit: allowed origin cannot redirect to unapproved localhost port (878.981925ms)
+  AssertionError [ERR_ASSERTION]: browser could not launch
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/security.test.mjs:23:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'setup',
+    expected: 'setup',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

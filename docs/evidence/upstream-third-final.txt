@@ -1,0 +1,41 @@
+
+> @timmiballz22/playwright-mcp-local@0.0.83 test
+> playwright test --project=chromium --project=firefox --workers=2
+
+
+Running 20 tests using 2 workers
+
+(node:37223) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37222) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (531ms)
+  ✓   3 [chromium] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (576ms)
+  ✓   4 [chromium] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (588ms)
+  ✓   5 [chromium] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (345ms)
+  ✓   6 [chromium] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (582ms)
+  ✓   2 [chromium] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (2.6s)
+  ✓   7 [chromium] › tests/cli.spec.ts:22:5 › install-browser --help (489ms)
+  ✓   9 [chromium] › tests/core.spec.ts:19:5 › browser_navigate (1.3s)
+  ✓   8 [chromium] › tests/click.spec.ts:19:5 › browser_click (1.9s)
+(node:37662) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  10 [chromium] › tests/library.spec.ts:20:5 › library can be used from CommonJS (384ms)
+(node:37669) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37678) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  12 [firefox] › tests/capabilities.spec.ts:21:5 › test snapshot tool list (420ms)
+  ✓  13 [firefox] › tests/capabilities.spec.ts:52:5 › test capabilities (pdf) (720ms)
+  ✓  14 [firefox] › tests/capabilities.spec.ts:61:5 › test capabilities (vision) (560ms)
+  ✓  15 [firefox] › tests/capabilities.spec.ts:72:5 › support for legacy --vision option (504ms)
+  ✓  16 [firefox] › tests/capabilities.spec.ts:84:5 › extended upstream capability schema contract (612ms)
+  ✓  17 [firefox] › tests/cli.spec.ts:22:5 › install-browser --help (320ms)
+  ✓  11 [firefox] › tests/advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (4.8s)
+  ✓  19 [firefox] › tests/core.spec.ts:19:5 › browser_navigate (3.0s)
+(node:38385) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  20 [firefox] › tests/library.spec.ts:20:5 › library can be used from CommonJS (320ms)
+  ✓  18 [firefox] › tests/click.spec.ts:19:5 › browser_click (4.4s)
+
+  20 passed (14.3s)

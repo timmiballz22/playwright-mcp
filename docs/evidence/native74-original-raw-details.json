@@ -1,0 +1,50 @@
+[
+  {
+    "freshRun": 6,
+    "reason": "action_failed",
+    "completed": 7,
+    "cleanupFailures": [],
+    "keys": [
+      "freshRun",
+      "result",
+      "cleanupFailures",
+      "diagnostic",
+      "browserLogs"
+    ],
+    "failedStep": {
+      "index": 8,
+      "repetition": 1,
+      "type": "click",
+      "ok": false,
+      "durationMs": 5012,
+      "error": "action_failed",
+      "failureKind": "locator_timeout"
+    },
+    "diagnostic": {
+      "index": 8,
+      "type": "click",
+      "error": "action_failed",
+      "failureKind": "locator_timeout",
+      "name": "TimeoutError",
+      "fixtureCallLog": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"add\">Add</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n",
+      "counterProbe": "timeout"
+    }
+  },
+  {
+    "freshRun": 10,
+    "reason": "cleanup_failed",
+    "completed": 23,
+    "cleanupFailures": [
+      "server_timeout",
+      "server_kill_timeout"
+    ],
+    "keys": [
+      "freshRun",
+      "result",
+      "cleanupFailures",
+      "browserLogs"
+    ],
+    "failedStep": {},
+    "diagnostic": null
+  }
+]

@@ -1,0 +1,38 @@
+TAP version 13
+# Subtest: real chromium: supervised navigation respects throttling and never replays form POST or over-cap waits
+ok 1 - real chromium: supervised navigation respects throttling and never replays form POST or over-cap waits
+  ---
+  duration_ms: 7199.602139
+  type: 'test'
+  ...
+# Subtest: real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits
+ok 2 - real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits
+  ---
+  duration_ms: 17084.221843
+  type: 'test'
+  ...
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":725572,"workerPid":725579,"browserPids":[725608]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":101}
+# {"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":725679,"workerPid":725686,"browserPids":[725698]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+# Subtest: real chromium: cancellation preserves a committed POST once and identifies public fetch calls
+ok 3 - real chromium: cancellation preserves a committed POST once and identifies public fetch calls
+  ---
+  duration_ms: 2055.063412
+  type: 'test'
+  ...
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":725772,"workerPid":725779,"browserPids":[725791]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":100}
+# {"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":725957,"workerPid":725964,"browserPids":[725976]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":143}
+# Subtest: real firefox: cancellation preserves a committed POST once and identifies public fetch calls
+ok 4 - real firefox: cancellation preserves a committed POST once and identifies public fetch calls
+  ---
+  duration_ms: 5776.400474
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 32200.657485

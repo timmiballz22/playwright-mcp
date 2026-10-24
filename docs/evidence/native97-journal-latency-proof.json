@@ -1,0 +1,239 @@
+{
+  "scope": "Actual Codex0.163, two real MCP endpoints, real browser/SQLite, Linux Node24 current953/9f975. Trusted instrumentation passes a preload explicitly to owned endpoint/guardian processes; actual source modules execute unchanged. Timings include Promise settlement overhead. Aggregate files written only at normal process exit; no per-action I/O. No native Windows/macOS cause or performance guarantee. No data/key contents exported.",
+  "attempts": [
+    {
+      "attempt": 0,
+      "outcome": "Healthy1000 steps, no RPC measurements: environment-only preload did not propagate to endpoints"
+    },
+    {
+      "attempt": 1,
+      "outcome": "Probe launcher failed before acceptance; no workflow execution receipt; failed workspace preserved, process audit and appserver close observed"
+    },
+    {
+      "attempt": 2,
+      "outcome": "Explicit launcher corrected to be idempotent; healthy receipt and four normally exiting process measurements"
+    }
+  ],
+  "clientReceipt": {
+    "client": "codex-cli 0.163.0",
+    "os": "linux",
+    "launcher": "node",
+    "tools": 6,
+    "completed": 1000,
+    "startMs": 10,
+    "resultCalls": 4,
+    "durationMs": 36686,
+    "duplicateExecuted": false,
+    "foreignOwnerDenied": true,
+    "terminalCleanup": true,
+    "activeCancel": true,
+    "cancelledJobCompleted": 1,
+    "modelTurns": 0,
+    "temporaryConfigOnly": true,
+    "activeOwnedProcesses": 0
+  },
+  "normalExitProcessReceipts": 4,
+  "binUpperBoundsMs": [
+    1,
+    5,
+    20,
+    100,
+    "unbounded"
+  ],
+  "commands": {
+    "init": {
+      "count": 4,
+      "totalMs": 239.76542800000004,
+      "maxMs": 74.12885,
+      "bins": [
+        0,
+        0,
+        0,
+        4,
+        0
+      ]
+    },
+    "verify": {
+      "count": 2,
+      "totalMs": 1.3160000000000025,
+      "maxMs": 0.7067550000000011,
+      "bins": [
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "read": {
+      "count": 416,
+      "totalMs": 198.56613500002499,
+      "maxMs": 8.436647999999991,
+      "bins": [
+        398,
+        15,
+        3,
+        0,
+        0
+      ]
+    },
+    "activate": {
+      "count": 2,
+      "totalMs": 1.6706590000000006,
+      "maxMs": 0.8554139999999961,
+      "bins": [
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "resources": {
+      "count": 4,
+      "totalMs": 4.940706999999918,
+      "maxMs": 2.2678069999999764,
+      "bins": [
+        3,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    "progress": {
+      "count": 42,
+      "totalMs": 33.554798999996365,
+      "maxMs": 1.3892139999989013,
+      "bins": [
+        33,
+        9,
+        0,
+        0,
+        0
+      ]
+    },
+    "finish": {
+      "count": 2,
+      "totalMs": 2.7080409999966832,
+      "maxMs": 1.6721229999966454,
+      "bins": [
+        0,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    "close": {
+      "count": 4,
+      "totalMs": 11.55400500000178,
+      "maxMs": 7.1804510000001756,
+      "bins": [
+        1,
+        2,
+        1,
+        0,
+        0
+      ]
+    },
+    "cancel": {
+      "count": 3,
+      "totalMs": 5.698368999992681,
+      "maxMs": 2.945425000000114,
+      "bins": [
+        1,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    "recover": {
+      "count": 176,
+      "totalMs": 111.36195600000724,
+      "maxMs": 6.703548999999953,
+      "bins": [
+        166,
+        9,
+        1,
+        0,
+        0
+      ]
+    },
+    "create": {
+      "count": 4,
+      "totalMs": 4.21364999999787,
+      "maxMs": 2.080899000000045,
+      "bins": [
+        3,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    "reserve": {
+      "count": 2,
+      "totalMs": 4.2465469999968946,
+      "maxMs": 3.2502960000000485,
+      "bins": [
+        1,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    "result": {
+      "count": 4,
+      "totalMs": 1.2711340000096243,
+      "maxMs": 0.4926310000009835,
+      "bins": [
+        4,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "list": {
+      "count": 1,
+      "totalMs": 0.6009770000018761,
+      "maxMs": 0.6009770000018761,
+      "bins": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "cleanup_reserve": {
+      "count": 2,
+      "totalMs": 0.709115000005113,
+      "maxMs": 0.4219760000050883,
+      "bins": [
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "cleanup_release": {
+      "count": 2,
+      "totalMs": 0.9136799999978393,
+      "maxMs": 0.5509949999977835,
+      "bins": [
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "progressCadence": "Actual execution-supervisor sends completed1, each25 and total;41 progress RPCs for main1000 plus1 for cancelled fixture. This is not1000 durable writes.",
+  "conclusion": "Measured Linux progress/read RPCs do not support a persistent local journal latency bottleneck or a SQLite timeout/settings change. Windows journal timeout cause remains open."
+}

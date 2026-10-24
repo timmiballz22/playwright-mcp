@@ -1,0 +1,33 @@
+
+Running 1 test using 1 worker
+
+(node:1068947) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"owned_video_source_paint","project":"firefox","width":320,"height":240,"pixel":[255,0,0,255]}
+{"fixture":"owned_video_original_decode_failure","project":"firefox","width":320,"height":240,"ready":4,"pixel":[255,24,0,255]}
+{"fixture":"owned_video_color_metadata_controls","project":"firefox","available":true,"controls":[{"variant":"primaries709","encodedBytesUnchanged":true,"sampled":true,"width":320,"height":240,"ready":4,"pixel":[255,24,0,255]},{"variant":"primaries709_transfer709","encodedBytesUnchanged":true,"sampled":true,"width":320,"height":240,"ready":4,"pixel":[255,24,0,255]},{"variant":"primaries709_transfer_srgb","encodedBytesUnchanged":true,"sampled":true,"width":320,"height":240,"ready":4,"pixel":[255,24,0,255]}]}
+{"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":10,"pending":0,"active":[],"recent":[{"tool":"browser_run_code_unsafe","outcome":"tool_error","durationMs":55},{"tool":"browser_run_code_unsafe","outcome":"returned","durationMs":1054},{"tool":"browser_run_code_unsafe","outcome":"returned","durationMs":1115},{"tool":"browser_run_code_unsafe","outcome":"returned","durationMs":1056}]}]}
+  ✘  1 [firefox] › tests/video-playback.spec.ts:8:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (7.1s)
+
+
+  1) [firefox] › tests/video-playback.spec.ts:8:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels 
+
+    Error: {"content":[{"type":"text","text":"### Error\nError: Owned decoded frame mismatch {\"width\":320,\"height\":240,\"ready\":4,\"pixel\":[255,24,0,255]}"}],"isError":true}
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not true
+
+      124 |     } finally { clearTimeout(timer); }
+      125 |   }
+    > 126 |   expect(decoded.isError, JSON.stringify(decoded)).not.toBe(true);
+          |                                                        ^
+      127 |   expect(playbackRequests).toBeGreaterThan(0);
+      128 |   await call('browser_close');
+      129 |   console.log(JSON.stringify({ fixture: 'owned_webm_frame', project, width: 320, height: 240,
+        at /tmp/playwright-vp9-review/tests/video-playback.spec.ts:126:56
+
+    Error Context: test-results/video-playback-original-re-0fcb7-ected-dimensions-and-pixels-firefox/error-context.md
+
+  1 failed
+    [firefox] › tests/video-playback.spec.ts:8:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels 

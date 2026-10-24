@@ -1,0 +1,30 @@
+TAP version 13
+# Subtest: navigation retry policy is bounded, disabled by default and copied
+ok 1 - navigation retry policy is bounded, disabled by default and copied
+  ---
+  duration_ms: 1.24788
+  ...
+# Subtest: Retry-After is a minimum wait and an excessive wait is never shortened
+ok 2 - Retry-After is a minimum wait and an excessive wait is never shortened
+  ---
+  duration_ms: 0.353215
+  ...
+# Subtest: malformed MCP input cannot echo page-like secrets or corrupt later protocol frames
+ok 3 - malformed MCP input cannot echo page-like secrets or corrupt later protocol frames
+  ---
+  duration_ms: 223.844117
+  ...
+# Subtest: oversized unterminated MCP frame closes the transport without launching browsers
+ok 4 - oversized unterminated MCP frame closes the transport without launching browsers
+  ---
+  duration_ms: 583.57383
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 882.942089

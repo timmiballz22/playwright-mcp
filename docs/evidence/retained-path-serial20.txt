@@ -1,0 +1,80 @@
+TAP version 13
+# Subtest: operator owner/project namespaces are stable, private and independent of tool data
+ok 1 - operator owner/project namespaces are stable, private and independent of tool data
+  ---
+  duration_ms: 26.027061
+  ...
+# Subtest: untrusted symlinks and writable ancestors cannot redirect job storage writes
+ok 2 - untrusted symlinks and writable ancestors cannot redirect job storage writes
+  ---
+  duration_ms: 8.742932
+  ...
+# Subtest: invalid owner/policy config is rejected before any storage creation
+ok 3 - invalid owner/policy config is rejected before any storage creation
+  ---
+  duration_ms: 1.73379
+  ...
+# Subtest: retained admission accepts the exact reserved boundary and preserves prior bytes when full
+ok 4 - retained admission accepts the exact reserved boundary and preserves prior bytes when full
+  ---
+  duration_ms: 9.950122
+  ...
+# Subtest: retained admission rejects symbolic entries without mutation
+ok 5 - retained admission rejects symbolic entries without mutation
+  ---
+  duration_ms: 2.884293
+  ...
+# Subtest: retained admission rejects hard entries without mutation
+ok 6 - retained admission rejects hard entries without mutation
+  ---
+  duration_ms: 3.01978
+  ...
+# Subtest: retained admission rejects depth entries without mutation
+ok 7 - retained admission rejects depth entries without mutation
+  ---
+  duration_ms: 10.874413
+  ...
+# Subtest: retained limit rejects malformed trusted configuration
+ok 8 - retained limit rejects malformed trusted configuration
+  ---
+  duration_ms: 0.298159
+  ...
+# Subtest: real supervised admission denies before browser launch and preserves prior artifacts
+ok 9 - real supervised admission denies before browser launch and preserves prior artifacts
+  ---
+  duration_ms: 139.966207
+  ...
+# Subtest: a stalled retained scan stays inside the existing supervised workflow deadline
+ok 10 - a stalled retained scan stays inside the existing supervised workflow deadline
+  ---
+  duration_ms: 1900.680284
+  ...
+# Subtest: retained inventory stops at its entry boundary and closes the directory iterator
+ok 11 - retained inventory stops at its entry boundary and closes the directory iterator
+  ---
+  duration_ms: 137.095747
+  ...
+# Subtest: retained admission accepts host temp aliases but rejects caller directory links
+ok 12 - retained admission accepts host temp aliases but rejects caller directory links
+  ---
+  duration_ms: 1.622286
+  ...
+# Subtest: partial write: report failure preserves completed actions and publishes no corrupt JSON
+ok 13 - partial write: report failure preserves completed actions and publishes no corrupt JSON
+  ---
+  duration_ms: 920.365812
+  ...
+# Subtest: byte ceiling: report failure preserves completed actions and publishes no corrupt JSON
+ok 14 - byte ceiling: report failure preserves completed actions and publishes no corrupt JSON
+  ---
+  duration_ms: 944.050388
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4332.241921

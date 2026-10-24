@@ -1,0 +1,464 @@
+TAP version 13
+# Subtest: bounded artifact worker previews, removes and preserves fixed safe errors
+ok 1 - bounded artifact worker previews, removes and preserves fixed safe errors
+  ---
+  duration_ms: 275.729924
+  type: 'test'
+  ...
+# Subtest: artifact worker before-result: independent deadline and natural-exit confirmation
+ok 2 - artifact worker before-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 773.34339
+  type: 'test'
+  ...
+# Subtest: artifact worker after-result: independent deadline and natural-exit confirmation
+ok 3 - artifact worker after-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 793.317743
+  type: 'test'
+  ...
+# Subtest: artifact worker invalid-result: independent deadline and natural-exit confirmation
+ok 4 - artifact worker invalid-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 125.958498
+  type: 'test'
+  ...
+# Subtest: artifact worker failed-result: independent deadline and natural-exit confirmation
+ok 5 - artifact worker failed-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 128.466687
+  type: 'test'
+  ...
+# Subtest: artifact worker signal-exit: independent deadline and natural-exit confirmation
+ok 6 - artifact worker signal-exit: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 149.148152
+  type: 'test'
+  ...
+# Subtest: an unconfirmed cleanup blocks further scopes in the same controller
+ok 7 - an unconfirmed cleanup blocks further scopes in the same controller
+  ---
+  duration_ms: 1.105599
+  type: 'test'
+  ...
+# Subtest: actual artifact worker exits after controller death while filesystem awaits
+ok 8 - actual artifact worker exits after controller death while filesystem awaits
+  ---
+  duration_ms: 929.511127
+  type: 'test'
+  ...
+# Subtest: bounded artifact cleanup previews, removes only one scope and is idempotent
+ok 9 - bounded artifact cleanup previews, removes only one scope and is idempotent
+  ---
+  duration_ms: 57.788986
+  type: 'test'
+  ...
+# Subtest: linked entries and oversized trees reject before deleting any artifact
+ok 10 - linked entries and oversized trees reject before deleting any artifact
+  ---
+  duration_ms: 10.171889
+  type: 'test'
+  ...
+# Subtest: controller rejects active, uncertain and expired-result cleanup before filesystem access
+ok 11 - controller rejects active, uncertain and expired-result cleanup before filesystem access
+  ---
+  duration_ms: 15.399943
+  type: 'test'
+  ...
+# Subtest: operator owner/project namespaces are stable, private and independent of tool data
+ok 12 - operator owner/project namespaces are stable, private and independent of tool data
+  ---
+  duration_ms: 58.587599
+  type: 'test'
+  ...
+# Subtest: untrusted symlinks and writable ancestors cannot redirect job storage writes
+ok 13 - untrusted symlinks and writable ancestors cannot redirect job storage writes
+  ---
+  duration_ms: 5.920393
+  type: 'test'
+  ...
+# Subtest: invalid owner/policy config is rejected before any storage creation
+ok 14 - invalid owner/policy config is rejected before any storage creation
+  ---
+  duration_ms: 3.31772
+  type: 'test'
+  ...
+# Subtest: bounded writer contention waits before one mutation without replay
+ok 15 - bounded writer contention waits before one mutation without replay
+  ---
+  duration_ms: 786.328685
+  type: 'test'
+  ...
+# Subtest: recovery with live unexpired records is read-only while another writer owns the lock
+ok 16 - recovery with live unexpired records is read-only while another writer owns the lock
+  ---
+  duration_ms: 203.566996
+  type: 'test'
+  ...
+# Subtest: controller recovery failure remains primary if journal shutdown also fails
+ok 17 - controller recovery failure remains primary if journal shutdown also fails
+  ---
+  duration_ms: 3.106292
+  type: 'test'
+  ...
+# Subtest: controller recovery failure identity is unchanged after confirmed journal shutdown
+ok 18 - controller recovery failure identity is unchanged after confirmed journal shutdown
+  ---
+  duration_ms: 1.000692
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-success
+ok 19 - internal job controller queue-success
+  ---
+  duration_ms: 2502.69299
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-and-reconnect
+ok 20 - internal job controller cancel-and-reconnect
+  ---
+  duration_ms: 1623.285206
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-pressure
+ok 21 - internal job controller queue-pressure
+  ---
+  duration_ms: 2622.722501
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-expiry
+ok 22 - internal job controller queue-expiry
+  ---
+  duration_ms: 2247.240155
+  type: 'test'
+  ...
+# Subtest: internal job controller guardian-crash
+ok 23 - internal job controller guardian-crash
+  ---
+  duration_ms: 1903.093031
+  type: 'test'
+  ...
+# Subtest: internal job controller close-before-dequeue
+ok 24 - internal job controller close-before-dequeue
+  ---
+  duration_ms: 814.714871
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-during-guardian-start
+ok 25 - internal job controller cancel-during-guardian-start
+  ---
+  duration_ms: 680.20113
+  type: 'test'
+  ...
+# Subtest: guardian diagnostics retain fixed journal metadata and discard private values
+ok 26 - guardian diagnostics retain fixed journal metadata and discard private values
+  ---
+  duration_ms: 1.077917
+  type: 'test'
+  ...
+# Subtest: journal transport diagnostics retain only fixed causes and originating verbs
+ok 27 - journal transport diagnostics retain only fixed causes and originating verbs
+  ---
+  duration_ms: 0.295865
+  type: 'test'
+  ...
+# Subtest: unconfirmed journal exit is a fixed boolean diagnostic without raw values
+ok 28 - unconfirmed journal exit is a fixed boolean diagnostic without raw values
+  ---
+  duration_ms: 0.169119
+  type: 'test'
+  ...
+# Subtest: unconfirmed guardian journal exit stops the next queued job even after terminal metadata
+ok 29 - unconfirmed guardian journal exit stops the next queued job even after terminal metadata
+  ---
+  duration_ms: 312.239452
+  type: 'test'
+  ...
+# Subtest: durable guardian success: cleanup and canonical journal outcome
+ok 30 - durable guardian success: cleanup and canonical journal outcome
+  ---
+  duration_ms: 1045.535001
+  type: 'test'
+  ...
+# Subtest: durable guardian cancel: cleanup and canonical journal outcome
+ok 31 - durable guardian cancel: cleanup and canonical journal outcome
+  ---
+  duration_ms: 1158.835217
+  type: 'test'
+  ...
+# Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+ok 32 - durable guardian disconnect: cleanup and canonical journal outcome
+  ---
+  duration_ms: 1103.465148
+  type: 'test'
+  ...
+# Subtest: durable guardian crash: cleanup and canonical journal outcome
+ok 33 - durable guardian crash: cleanup and canonical journal outcome
+  ---
+  duration_ms: 1109.143627
+  type: 'test'
+  ...
+# Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+ok 34 - durable guardian mismatch: cleanup and canonical journal outcome
+  ---
+  duration_ms: 351.221052
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+ok 35 - durable guardian admissionFailure: cleanup and canonical journal outcome
+  ---
+  duration_ms: 411.99567
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionTimeout: cleanup and canonical journal outcome
+ok 36 - durable guardian admissionTimeout: cleanup and canonical journal outcome
+  ---
+  duration_ms: 2566.629619
+  type: 'test'
+  ...
+# Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+ok 37 - durable guardian preDisconnected: cleanup and canonical journal outcome
+  ---
+  duration_ms: 787.375352
+  type: 'test'
+  ...
+# Subtest: journal init timeout reports unconfirmed exit without waiting forever or losing first cause
+ok 38 - journal init timeout reports unconfirmed exit without waiting forever or losing first cause
+  ---
+  duration_ms: 6.663466
+  type: 'test'
+  ...
+# Subtest: journal closed receipt alone cannot confirm worker shutdown
+ok 39 - journal closed receipt alone cannot confirm worker shutdown
+  ---
+  duration_ms: 5.41054
+  type: 'test'
+  ...
+# Subtest: busy initialization is not retried while its prior worker exit is unconfirmed
+ok 40 - busy initialization is not retried while its prior worker exit is unconfirmed
+  ---
+  duration_ms: 1.73134
+  type: 'test'
+  ...
+# Subtest: malformed journal IPC fails pending init safely instead of throwing outside its promise
+ok 41 - malformed journal IPC fails pending init safely instead of throwing outside its promise
+  ---
+  duration_ms: 1.601493
+  type: 'test'
+  ...
+# Subtest: unexpected journal worker exit remains distinct from an RPC timeout
+ok 42 - unexpected journal worker exit remains distinct from an RPC timeout
+  ---
+  duration_ms: 314.985737
+  type: 'test'
+  ...
+# Subtest: malformed actual worker IPC is rejected and owned shutdown is confirmed
+ok 43 - malformed actual worker IPC is rejected and owned shutdown is confirmed
+  ---
+  duration_ms: 56.265981
+  type: 'test'
+  ...
+# Subtest: termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+ok 44 - termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+  ---
+  duration_ms: 182.088937
+  type: 'test'
+  ...
+# Subtest: managed directory links and database hardlinks cannot modify another file
+ok 45 - managed directory links and database hardlinks cannot modify another file
+  ---
+  duration_ms: 575.734307
+  type: 'test'
+  ...
+# Subtest: POSIX journal directory must exclude group and other access
+ok 46 - POSIX journal directory must exclude group and other access
+  ---
+  duration_ms: 98.622651
+  type: 'test'
+  ...
+# Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+ok 47 - a simulated reused PID cannot resume old work or clear uncertain active resources
+  ---
+  duration_ms: 276.385167
+  type: 'test'
+  ...
+# Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+ok 48 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+  ---
+  duration_ms: 139.605816
+  type: 'test'
+  ...
+# Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+ok 49 - a success mutation after the persisted deadline cannot commit or release the lease
+  ---
+  duration_ms: 185.119893
+  type: 'test'
+  ...
+# Subtest: competing writers initialize consistently and cannot overfill the project queue
+ok 50 - competing writers initialize consistently and cannot overfill the project queue
+  ---
+  duration_ms: 210.594597
+  type: 'test'
+  ...
+# Subtest: killed transaction rolls back without a partial job or duplicate request
+ok 51 - killed transaction rolls back without a partial job or duplicate request
+  ---
+  duration_ms: 464.605428
+  type: 'test'
+  ...
+# Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+ok 52 - reconnect marks a dead controller queued job crashed and never requeues its request
+  ---
+  duration_ms: 362.19126
+  type: 'test'
+  ...
+# Subtest: corrupt journal is rejected without silently erasing the file
+ok 53 - corrupt journal is rejected without silently erasing the file
+  ---
+  duration_ms: 187.949658
+  type: 'test'
+  ...
+# (node:591653) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: an unrelated SQLite file is rejected without changing its bytes
+ok 54 - an unrelated SQLite file is rejected without changing its bytes
+  ---
+  duration_ms: 75.673797
+  type: 'test'
+  ...
+# Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+ok 55 - journal preserves idempotency, owner isolation and a single project execution lease
+  ---
+  duration_ms: 418.717743
+  type: 'test'
+  ...
+# Subtest: monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+ok 56 - monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+  ---
+  duration_ms: 256.842706
+  type: 'test'
+  ...
+# Subtest: terminal cleanup reservation fences new admissions and other actors without changing history
+ok 57 - terminal cleanup reservation fences new admissions and other actors without changing history
+  ---
+  duration_ms: 474.838561
+  type: 'test'
+  ...
+# Subtest: unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release
+ok 58 - unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release
+  ---
+  duration_ms: 290.638892
+  type: 'test'
+  ...
+# Subtest: unconfirmed artifact worker is fenced durably from another controller
+ok 59 - unconfirmed artifact worker is fenced durably from another controller
+  ---
+  duration_ms: 512.352952
+  type: 'test'
+  ...
+# Subtest: unconfirmed artifact worker is fenced durably from another controller after lost finalization
+ok 60 - unconfirmed artifact worker is fenced durably from another controller after lost finalization
+  ---
+  duration_ms: 382.228224
+  type: 'test'
+  ...
+# Subtest: dead maintenance holder becomes uncertain without releasing its reservation or execution history
+ok 61 - dead maintenance holder becomes uncertain without releasing its reservation or execution history
+  ---
+  duration_ms: 331.017895
+  type: 'test'
+  ...
+# Subtest: Windows ACL helper rejects a non-Windows host without creating storage
+ok 62 - Windows ACL helper rejects a non-Windows host without creating storage
+  ---
+  duration_ms: 2.010114
+  type: 'test'
+  ...
+# Subtest: Windows helper failure diagnostics contain only fixed process categories
+ok 63 - Windows helper failure diagnostics contain only fixed process categories
+  ---
+  duration_ms: 0.507513
+  type: 'test'
+  ...
+# Subtest: controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+ok 64 - controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+  ---
+  duration_ms: 155.524913
+  type: 'test'
+  ...
+# Subtest: retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+ok 65 - retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+  ---
+  duration_ms: 131.547998
+  type: 'test'
+  ...
+# Subtest: invalid or pre-aborted retention does not query storage
+ok 66 - invalid or pre-aborted retention does not query storage
+  ---
+  duration_ms: 0.462871
+  type: 'test'
+  ...
+# Subtest: retention interruption completes one authorized scope and preserves the continuation
+ok 67 - retention interruption completes one authorized scope and preserves the continuation
+  ---
+  duration_ms: 71.191147
+  type: 'test'
+  ...
+# Subtest: artifact retention never conceals a blocked project even when no old artifacts qualify
+ok 68 - artifact retention never conceals a blocked project even when no old artifacts qualify
+  ---
+  duration_ms: 0.33016
+  type: 'test'
+  ...
+# Subtest: retention stops on lost journal transport without touching later scopes
+ok 69 - retention stops on lost journal transport without touching later scopes
+  ---
+  duration_ms: 0.349345
+  type: 'test'
+  ...
+# (node:593135) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+ok 70 - read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+  ---
+  duration_ms: 330.402061
+  type: 'test'
+  ...
+# Subtest: actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+ok 71 - actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+  ---
+  duration_ms: 623.9488
+  type: 'test'
+  ...
+# Subtest: workflow identity ignores object key order, defaults and equivalent repeat expansion
+ok 72 - workflow identity ignores object key order, defaults and equivalent repeat expansion
+  ---
+  duration_ms: 2.708005
+  type: 'test'
+  ...
+# Subtest: captured workflow input cannot change after submission and oversized or unknown data is rejected
+ok 73 - captured workflow input cannot change after submission and oversized or unknown data is rejected
+  ---
+  duration_ms: 7.277396
+  type: 'test'
+  ...
+# Subtest: CI totals include TAP, Node24 spec and original Playwright summaries
+ok 74 - CI totals include TAP, Node24 spec and original Playwright summaries
+  ---
+  duration_ms: 2.760337
+  type: 'test'
+  ...
+# Subtest: a repeated summary is counted once and incomplete Node totals fail closed
+ok 75 - a repeated summary is counted once and incomplete Node totals fail closed
+  ---
+  duration_ms: 1.021557
+  type: 'test'
+  ...
+1..75
+# tests 75
+# suites 0
+# pass 75
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 34403.515071

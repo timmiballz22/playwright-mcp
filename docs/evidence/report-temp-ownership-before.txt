@@ -1,0 +1,27 @@
+✔ a report target created during its temporary write is never replaced (19.066779ms)
+✔ published report is complete and its returned step summary remains bounded (8.894891ms)
+✖ exclusive temporary-name collision preserves the file this report did not create (6.573279ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.137458
+
+✖ failing tests:
+
+test at local-batch/report-publication.test.mjs:43:1
+✖ exclusive temporary-name collision preserves the file this report did not create (6.573279ms)
+  Error: ENOENT: no such file or directory, open '/tmp/report-temp-collision-NED204/.run-11111111-1111-4111-8111-111111111111.tmp'
+      at async open (node:internal/fs/promises:697:25)
+      at async readFile (node:internal/fs/promises:1348:14)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/report-publication.test.mjs:51:18)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/tmp/report-temp-collision-NED204/.run-11111111-1111-4111-8111-111111111111.tmp'
+  }

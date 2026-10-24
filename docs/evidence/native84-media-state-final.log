@@ -1,0 +1,44 @@
+
+Running 4 tests using 2 workers
+
+(node:1011473) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1011472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"owned_webm_frame","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"bytes":5453}
+  ✓  1 [chromium] › tests/video-playback.spec.ts:5:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (3.3s)
+(node:1011776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"owned_pcm_media","durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+  ✓  2 [chromium] › tests/media.spec.ts:18:5 › original muted PCM media advances, pauses and reports a missing media source (5.3s)
+(node:1011947) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":6,"pending":0,"active":[],"recent":[{"tool":"browser_run_code_unsafe","outcome":"returned","durationMs":1069},{"tool":"browser_stop_video","outcome":"returned","durationMs":22},{"tool":"browser_navigate","outcome":"returned","durationMs":155},{"tool":"browser_run_code_unsafe","outcome":"tool_error","durationMs":60}]}]}
+  ✘  4 [firefox] › tests/video-playback.spec.ts:5:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (3.8s)
+{"fixture":"owned_pcm_media","durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+  ✓  3 [firefox] › tests/media.spec.ts:18:5 › original muted PCM media advances, pauses and reports a missing media source (6.3s)
+
+
+  1) [firefox] › tests/video-playback.spec.ts:5:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels 
+
+    Error: {"content":[{"type":"text","text":"### Error\nError: Owned decoded frame mismatch {\"width\":320,\"height\":240,\"ready\":4,\"pixel\":[255,24,0,255]}"}],"isError":true}
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not true
+
+      11 |   const call = async (name: string, args: Record<string, unknown> = {}) => {
+      12 |     const result = await client.callTool({ name, arguments: args });
+    > 13 |     expect(result.isError, JSON.stringify(result)).not.toBe(true); return result;
+         |                                                        ^
+      14 |   };
+      15 |   await call('browser_navigate', { url: server.PREFIX });
+      16 |   const filename = testInfo.outputPath('owned-frame.webm');
+        at call (/workspace/playwright-mcp/tests/video-playback.spec.ts:13:56)
+        at /workspace/playwright-mcp/tests/video-playback.spec.ts:33:3
+
+    Error Context: test-results/video-playback-original-re-0fcb7-ected-dimensions-and-pixels-firefox/error-context.md
+
+  1 failed
+    [firefox] › tests/video-playback.spec.ts:5:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels 
+  3 passed (11.3s)

@@ -1,0 +1,11 @@
+{
+  "readExit": 0,
+  "scope": "Read-only upstream context; no upgrade or external message",
+  "blobSha": "20261820cd659eb8533aacb554ad2f0c6899d2e2",
+  "sha256": "b94c54277fdef15fe74ba324af52e0d703b2d1b96147c55c304372d4cd69d886",
+  "colorArgumentLines": [
+    "// We use \"pad\" and \"crop\" video filters (-vf option) to resize incoming frames",
+    "'-c:v libvpx-vp9',",
+    "`-vf pad=${w}:${h}:0:0:gray,crop=${w}:${h}:0:0`,"
+  ]
+}

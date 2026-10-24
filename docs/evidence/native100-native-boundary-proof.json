@@ -1,0 +1,135 @@
+{
+  "source": "b2cbc636f4188e3a9bbea335b2908a779f578f57",
+  "scope": "Actual terminal positive TAP rows only; never match the ok suffix of not ok.31/32 boundary cases pass; Windows non-COMMIT calibration times out before its target. Native100 still has three Windows component failures overall. Headers/decode successes separate from strict resize regression.",
+  "boundaryLanes": [
+    {
+      "job": "journal (windows-latest, 22)",
+      "pass": [
+        "confirmed worker exit after pre-COMMIT timeout permits bounded fresh initialization",
+        "lost init acknowledgement after real COMMIT preserves existing jobs and key",
+        "persistent real COMMIT pause exhausts the unchanged three-attempt initialization cap",
+        "store version changed between confirmed exit and retry is refused without repair",
+        "actual unconfirmed worker exit never authorizes an initialization retry",
+        "private witness publishes complete JSON without replacing a prior target",
+        "actual worker interruption before link cannot expose partial final witness JSON"
+      ],
+      "fail": [
+        "non-COMMIT initialization timeout keeps one attempt and its original phase"
+      ]
+    },
+    {
+      "job": "journal (ubuntu-latest, 22)",
+      "pass": [
+        "confirmed worker exit after pre-COMMIT timeout permits bounded fresh initialization",
+        "lost init acknowledgement after real COMMIT preserves existing jobs and key",
+        "persistent real COMMIT pause exhausts the unchanged three-attempt initialization cap",
+        "store version changed between confirmed exit and retry is refused without repair",
+        "actual unconfirmed worker exit never authorizes an initialization retry",
+        "non-COMMIT initialization timeout keeps one attempt and its original phase",
+        "private witness publishes complete JSON without replacing a prior target",
+        "actual worker interruption before link cannot expose partial final witness JSON"
+      ],
+      "fail": []
+    },
+    {
+      "job": "journal (macos-15-intel, 22)",
+      "pass": [
+        "confirmed worker exit after pre-COMMIT timeout permits bounded fresh initialization",
+        "lost init acknowledgement after real COMMIT preserves existing jobs and key",
+        "persistent real COMMIT pause exhausts the unchanged three-attempt initialization cap",
+        "store version changed between confirmed exit and retry is refused without repair",
+        "actual unconfirmed worker exit never authorizes an initialization retry",
+        "non-COMMIT initialization timeout keeps one attempt and its original phase",
+        "private witness publishes complete JSON without replacing a prior target",
+        "actual worker interruption before link cannot expose partial final witness JSON"
+      ],
+      "fail": []
+    },
+    {
+      "job": "journal (ubuntu-latest, 24)",
+      "pass": [
+        "confirmed worker exit after pre-COMMIT timeout permits bounded fresh initialization",
+        "lost init acknowledgement after real COMMIT preserves existing jobs and key",
+        "persistent real COMMIT pause exhausts the unchanged three-attempt initialization cap",
+        "store version changed between confirmed exit and retry is refused without repair",
+        "actual unconfirmed worker exit never authorizes an initialization retry",
+        "non-COMMIT initialization timeout keeps one attempt and its original phase",
+        "private witness publishes complete JSON without replacing a prior target",
+        "actual worker interruption before link cannot expose partial final witness JSON"
+      ],
+      "fail": []
+    }
+  ],
+  "boundaryPass": 31,
+  "boundaryFail": 1,
+  "videoInputs": 94,
+  "videoSizes": {
+    "320x240": 94
+  },
+  "decodeSuccesses": 11,
+  "actualClients": [
+    {
+      "job": "codex_client (ubuntu-latest)",
+      "data": {
+        "client": "codex-cli 0.163.0",
+        "os": "linux",
+        "launcher": "node",
+        "tools": 6,
+        "completed": 1000,
+        "startMs": 43,
+        "resultCalls": 4,
+        "durationMs": 37816,
+        "duplicateExecuted": false,
+        "foreignOwnerDenied": true,
+        "terminalCleanup": true,
+        "activeCancel": true,
+        "cancelledJobCompleted": 1,
+        "modelTurns": 0,
+        "temporaryConfigOnly": true,
+        "activeOwnedProcesses": 0
+      }
+    },
+    {
+      "job": "codex_client (windows-latest)",
+      "data": {
+        "client": "codex-cli 0.163.0",
+        "os": "win32",
+        "launcher": "node",
+        "tools": 6,
+        "completed": 1000,
+        "startMs": 22,
+        "resultCalls": 4,
+        "durationMs": 38455,
+        "duplicateExecuted": false,
+        "foreignOwnerDenied": true,
+        "terminalCleanup": true,
+        "activeCancel": true,
+        "cancelledJobCompleted": 1,
+        "modelTurns": 0,
+        "temporaryConfigOnly": true,
+        "activeOwnedProcesses": 0
+      }
+    },
+    {
+      "job": "codex_journal_diagnostic",
+      "data": {
+        "client": "codex-cli 0.163.0",
+        "os": "darwin",
+        "launcher": "node",
+        "tools": 6,
+        "completed": 1000,
+        "startMs": 37,
+        "resultCalls": 9,
+        "durationMs": 86792,
+        "duplicateExecuted": false,
+        "foreignOwnerDenied": true,
+        "terminalCleanup": true,
+        "activeCancel": true,
+        "cancelledJobCompleted": 1,
+        "modelTurns": 0,
+        "temporaryConfigOnly": true,
+        "activeOwnedProcesses": 0
+      }
+    }
+  ]
+}

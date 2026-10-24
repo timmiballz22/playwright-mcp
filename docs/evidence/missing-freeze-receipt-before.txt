@@ -1,0 +1,124 @@
+✔ invalid termination roots remain rejected and emit only a fixed diagnostic (1.812034ms)
+✔ diagnostic callback preserves bounded termination of an actually owned fork (590.72002ms)
+✔ POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors (0.818203ms)
+✔ POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors (0.170174ms)
+✔ POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors (0.209013ms)
+✔ POSIX signal diagnostic retains fixed already-gone result without raw errors (0.315616ms)
+{"fixture":"worker_freeze_authority","stop":"ESRCH","cleaned":true,"groupSignals":1,"failures":[]}
+✖ a root freeze ESRCH cannot authorize a later group signal or certify cleanup (191.381309ms)
+{"fixture":"worker_freeze_authority","stop":"EPERM","cleaned":false,"groupSignals":1,"failures":["signal_permission_denied","worker_stop_failed"]}
+✖ a root freeze EPERM cannot authorize a later group signal or certify cleanup (187.890015ms)
+{"fixture":"worker_freeze_authority","stop":"EINVAL","cleaned":false,"groupSignals":1,"failures":["signal_invalid_argument","worker_stop_failed"]}
+✖ a root freeze EINVAL cannot authorize a later group signal or certify cleanup (180.207797ms)
+{"fixture":"worker_freeze_authority","stop":"unknown","cleaned":false,"groupSignals":1,"failures":["signal_unknown_error","worker_stop_failed"]}
+✖ a root freeze unknown error cannot authorize a later group signal or certify cleanup (171.261241ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 6
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1392.668912
+
+✖ failing tests:
+
+test at local-batch/process-tree.test.mjs:39:209
+✖ a root freeze ESRCH cannot authorize a later group signal or certify cleanup (191.381309ms)
+  AssertionError [ERR_ASSERTION]: Missing root must not authorize a process-group signal
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'SIGKILL',
+  +     pid: -2147483646
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:48:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { pid: -2147483646, name: 'SIGKILL' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/process-tree.test.mjs:39:209
+✖ a root freeze EPERM cannot authorize a later group signal or certify cleanup (187.890015ms)
+  AssertionError [ERR_ASSERTION]: Missing root must not authorize a process-group signal
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'SIGKILL',
+  +     pid: -2147483646
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:48:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { pid: -2147483646, name: 'SIGKILL' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/process-tree.test.mjs:39:209
+✖ a root freeze EINVAL cannot authorize a later group signal or certify cleanup (180.207797ms)
+  AssertionError [ERR_ASSERTION]: Missing root must not authorize a process-group signal
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'SIGKILL',
+  +     pid: -2147483646
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:48:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { pid: -2147483646, name: 'SIGKILL' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/process-tree.test.mjs:39:209
+✖ a root freeze unknown error cannot authorize a later group signal or certify cleanup (171.261241ms)
+  AssertionError [ERR_ASSERTION]: Missing root must not authorize a process-group signal
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'SIGKILL',
+  +     pid: -2147483646
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:48:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { pid: -2147483646, name: 'SIGKILL' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

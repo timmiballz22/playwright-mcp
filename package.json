@@ -1,20 +1,19 @@
 {
-  "name": "@playwright/mcp",
+  "name": "@timmiballz22/playwright-mcp-local",
   "version": "0.0.83",
   "description": "Playwright Tools for MCP",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/microsoft/playwright-mcp.git"
+    "url": "git+https://github.com/timmiballz22/playwright-mcp.git"
   },
   "homepage": "https://playwright.dev",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "author": {
     "name": "Microsoft Corporation"
   },
   "license": "Apache-2.0",
-  "mcpName": "io.github.microsoft/playwright-mcp",
   "scripts": {
     "lint": "node update-readme.js",
     "test": "playwright test",
@@ -22,12 +21,15 @@
     "ftest": "playwright test --project=firefox",
     "wtest": "playwright test --project=webkit",
     "dtest": "MCP_IN_DOCKER=1 playwright test --project=chromium-docker",
-    "build": "echo OK",
-    "npm-publish": "npm run lint && npm run test && npm publish",
+    "build": "node scripts/prepare-vp9-metadata.cjs",
+    "npm-publish": "node scripts/publish-disabled.cjs",
     "docker-build": "docker build --no-cache -t playwright-mcp-dev:latest .",
     "docker-rm": "docker rm playwright-mcp-dev",
     "docker-run": "docker run -it -p 8080:8080 --name playwright-mcp-dev playwright-mcp-dev:latest",
-    "roll": "node roll.js"
+    "roll": "node roll.js",
+    "test:batch": "node scripts/test-batch.mjs",
+    "typecheck": "tsc --project tsconfig.json",
+    "prepare": "node scripts/prepare-vp9-metadata.cjs"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -37,15 +39,58 @@
     }
   },
   "dependencies": {
-    "playwright": "1.64.0-alpha-1790635538000",
-    "playwright-core": "1.64.0-alpha-1790635538000"
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "playwright": "1.64.1",
+    "playwright-core": "1.64.1"
   },
   "devDependencies": {
-    "@modelcontextprotocol/sdk": "^1.25.2",
-    "@playwright/test": "1.64.0-alpha-1790635538000",
-    "@types/node": "^24.3.0"
+    "@playwright/test": "1.64.1",
+    "@types/debug": "4.1.13",
+    "@types/node": "^24.3.0",
+    "@types/pngjs": "6.0.5",
+    "pngjs": "7.0.0",
+    "typescript": "6.0.3"
   },
   "bin": {
-    "playwright-mcp": "cli.js"
-  }
+    "playwright-mcp": "cli.js",
+    "playwright-batch": "local-batch/cli.mjs",
+    "playwright-batch-mcp": "local-batch/mcp.mjs",
+    "playwright-jobs-mcp": "local-batch/jobs-mcp.mjs",
+    "playwright-jobs": "local-batch/jobs-cli.mjs"
+  },
+  "private": true,
+  "files": [
+    "README.md",
+    "LICENSE",
+    "cli.js",
+    "index.js",
+    "index.d.ts",
+    "config.d.ts",
+    "local-batch/*.mjs",
+    "local-batch/profile-guard.cjs",
+    "local-batch/profile-lease.cjs",
+    "scripts/bootstrap-local-batch.*",
+    "docs/*.md",
+    "scripts/*.mjs",
+    "scripts/*.cjs",
+    "local-batch/fixtures/*.mjs",
+    "local-batch/jobs/config.mjs",
+    "local-batch/jobs/private-windows.mjs",
+    "local-batch/jobs/private-windows.ps1",
+    "local-batch/jobs/artifact-cleanup.mjs",
+    "local-batch/jobs/artifact-cleanup-supervisor.mjs",
+    "local-batch/jobs/artifact-cleanup-worker.mjs",
+    "local-batch/jobs/controller.mjs",
+    "local-batch/jobs/journal.mjs",
+    "local-batch/jobs/journal-worker.mjs",
+    "local-batch/jobs/journal-protocol.mjs",
+    "local-batch/jobs/guardian.mjs",
+    "local-batch/jobs/guardian-diagnostic.mjs",
+    "local-batch/jobs/workflow-snapshot.mjs"
+  ],
+  "bundleDependencies": [
+    "playwright",
+    "playwright-core"
+  ],
+  "playwrightCorePatch": "vp9-bt601-bt709-primaries-2"
 }

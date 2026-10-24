@@ -1,0 +1,78 @@
+{
+  "phase": "uncommitted follow-up after native73 ca638b0 start",
+  "sourceSha256": {
+    "local-batch/mcp.test.mjs": "9a3e144e8c7014ac1cc3408edb2f256918ba74a4129ef85c90267cc52f1f7112",
+    "local-batch/jobs-mcp.test.mjs": "48c3096654602356d56e11a0727d0772544cb4febb76f9ae24270223f606b4ba",
+    "scripts/discover-tools.mjs": "ca4a422fe695f449c33833f19bb82311823a20aef641b35c974cb03d577ac0d6",
+    "scripts/production-smoke.mjs": "76a3e47f52091bb0c1af96dd8b174c257684dbef670aa8fff273cec58c363a3c",
+    "scripts/production-jobs-smoke.mjs": "360b19377a9b226db1cf5cf2d0f695539c08afb499c4cd18f46c317790f80c27",
+    "scripts/production-profile-smoke.mjs": "74f196a032236c5bcf9d4891c666023eb6ea233350bcbfa61d15da3c2037d37d",
+    "scripts/verify-stdio-listeners.mjs": "6fd8c3b640edbcd5d4eed3aec04865ccad9d2b2422676bc4839547269675a895"
+  },
+  "checks": [
+    {
+      "name": "mcp",
+      "command": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "--test",
+        "--test-concurrency=1",
+        "local-batch/mcp.test.mjs",
+        "local-batch/jobs-mcp.test.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "production",
+      "command": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "scripts/verify-package.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "listeners",
+      "command": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "scripts/verify-stdio-listeners.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "discovery": {
+    "exitCode": 0,
+    "snapshots": 6,
+    "changedSnapshots": [],
+    "hashes": {
+      "docs/evidence/discovery-chromium-default.json": "8b7735220ae92e686e31b71d8f1f1e2d6e14bdb17a25355c80f26d154252a1f7",
+      "docs/evidence/discovery-firefox-default.json": "8807f5671e0469c162f36f01baecd76f49f79aa8980286384c67dbaa341c2c44",
+      "docs/evidence/discovery-webkit-default.json": "d45d428117043d5cca41e8e9fd68c6d073eddac8399ce87c1812d2b058fdb957",
+      "docs/evidence/discovery-chromium-extended.json": "7d4f69ae93db1e427a95df76945bbc7737a3ecb3c7519d180ef4834ca670fc3f",
+      "docs/evidence/discovery-firefox-extended.json": "480cf5994c7220020ea2b606eb80dad205c7b44df79b96b228e7f55c85c9539f",
+      "docs/evidence/discovery-webkit-extended.json": "04e804ed83a6866e1db6490f201ecab60817216e390a6dbd3e493afe16ee46f7"
+    }
+  },
+  "change": "Consume/discard SDK verification-client stderr from construction; no raw logging or new retained payloads",
+  "limitations": [
+    "No production browser execution policy/default transport change",
+    "No causal fix claimed for prior native provider/journal failures",
+    "Native73 tests prior source ca638b0; these seven follow-up files are not in that SHA"
+  ]
+}

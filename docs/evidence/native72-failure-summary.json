@@ -1,0 +1,37 @@
+{
+  "commit": "e37c5064666a9c39f22cad1171a52091a6effb7c",
+  "passes": 1861,
+  "testFailures": 11,
+  "stockControl": {
+    "successfullyClosedRuns": 1,
+    "confirmedActions": 46,
+    "lastRunActions": 23,
+    "lastRunTotal": 23,
+    "cleanupFailure": "server_close_failed",
+    "classificationAtNative72": "timeout versus rejection not distinguished",
+    "residualOwnedBeforeParentForce": 6,
+    "finalOwned": 0
+  },
+  "windowsSdk": {
+    "state": "CRASHED",
+    "reason": "recovered_interrupted",
+    "completedLowerBound": 375,
+    "resultAvailable": false,
+    "operatorAttentionRequired": true,
+    "cause": "unknown; prior stderr unconsumed"
+  },
+  "macComponent": {
+    "test": "retained_scan_stall",
+    "durationMs": 1615.250153,
+    "expected": "timeout",
+    "actual": "cleanup_failed"
+  },
+  "windowsComponent": {
+    "test": "readonly_recovery_contention",
+    "durationMs": 2173.2456,
+    "code": "journal_unavailable",
+    "cause": "not captured by old assertion"
+  },
+  "artifactAccess": "Two ordinary downloads Forbidden; no retry/workaround; saved receipts sanitized",
+  "watcher": "One HTTP401; subsequent ordinary metadata/log reads recovered without credential changes"
+}

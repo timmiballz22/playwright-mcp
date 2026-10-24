@@ -1,0 +1,31 @@
+
+Running 2 tests using 1 worker
+
+{"fixture":"owned_video_source_paint","project":"chromium","width":320,"height":240,"pixel":[255,0,0,255],"points":[{"x":0,"y":0,"pixel":[255,0,0,255]},{"x":1,"y":1,"pixel":[171,171,171,255]},{"x":10,"y":10,"pixel":[0,0,0,255]},{"x":100,"y":100,"pixel":[255,0,0,255]},{"x":319,"y":239,"pixel":[255,0,0,255]}]}
+(node:1142691) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":1,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":2,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":3,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":4,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":5,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":6,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":7,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":8,"width":320,"height":240}
+{"fixture":"owned_webm_frame","project":"chromium","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"playbackRequests":1,"rangeRequests":1,"partialResponses":1,"bytes":5279}
+  ✓  1 [chromium] › tests/video-playback.spec.ts:11:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (2.5s)
+{"fixture":"owned_video_source_paint","project":"firefox","width":320,"height":240,"pixel":[255,0,0,255],"points":[{"x":0,"y":0,"pixel":[255,0,0,255]},{"x":1,"y":1,"pixel":[171,128,139,255]},{"x":10,"y":10,"pixel":[220,220,224,255]},{"x":100,"y":100,"pixel":[255,0,0,255]},{"x":319,"y":239,"pixel":[255,0,0,255]}]}
+(node:1142839) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":1,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":2,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":3,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":4,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":5,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":6,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":7,"width":320,"height":240}
+{"fixture":"owned_video_encoder_input","encoder":1,"frame":8,"width":320,"height":240}
+{"fixture":"owned_webm_frame","project":"firefox","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"playbackRequests":1,"rangeRequests":1,"partialResponses":1,"bytes":7394}
+  ✓  2 [firefox] › tests/video-playback.spec.ts:11:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (4.0s)
+
+  2 passed (8.1s)

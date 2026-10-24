@@ -1,0 +1,32 @@
+✖ durable quota failure remains deduplicated and a later admitted job executes (815.266829ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 893.722949
+
+✖ failing tests:
+
+test at local-batch/jobs/retained-artifact-budget.test.mjs:45:22
+✖ durable quota failure remains deduplicated and a later admitted job executes (815.266829ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'FAILED'
+  - 'SUCCEEDED'
+  
+      at file:///workspace/playwright-mcp/local-batch/jobs/retained-artifact-budget.test.mjs:60:73
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async fixture (file:///workspace/playwright-mcp/local-batch/jobs/retained-artifact-budget.test.mjs:17:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'FAILED',
+    expected: 'SUCCEEDED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

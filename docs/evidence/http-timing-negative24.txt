@@ -1,0 +1,32 @@
+{"fixture":"http_privacy_workspace_preserved","verifiedCases":5,"primaryFailed":true,"primaryStage":"summary","route":"/500","outcome":{"ok":false,"reason":"action_failed","completed":0,"failureCode":"http_5xx","failureKind":"http_failure","httpStatus":500,"forced":false,"cleanup":"terminated","tempCleanup":"removed","requestsSeen":1,"responsesFinished":1,"timing":{"workerMs":36,"browserMs":876,"startAuditMs":165,"firstRequestMs":1667,"lastResponseMs":1668}},"auditConfirmed":true,"auditFailure":null,"audit":null}
+✖ real firefox: HTTP error codes and script exceptions keep response secrets out of reports (12322.855268ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12430.636725
+
+✖ failing tests:
+
+test at local-batch/http-failure-privacy.test.mjs:12:3
+✖ real firefox: HTTP error codes and script exceptions keep response secrets out of reports (12322.855268ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'http_5xx'
+  - 'forced_fixed_receipt'
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-failure-privacy.test.mjs:76:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'http_5xx',
+    expected: 'forced_fixed_receipt',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

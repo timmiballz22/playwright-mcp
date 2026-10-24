@@ -1,0 +1,32 @@
+{
+  "source": "732c913b144bee6010bbb4febf63089c30ba4dfd",
+  "scope": "Two strict first-JPEG assertions fail despite completed request ordering. Other lanes pass this sample; no general capture guarantee.",
+  "failures": [
+    {
+      "job": "batch (macos-15-intel, 22)",
+      "data": {
+        "fixture": "chromium_viewport_first_input",
+        "firstInput": {
+          "width": 320,
+          "height": 98,
+          "viewportWidth": 500,
+          "viewportHeight": 153
+        },
+        "metricsBeforeBoundsCompleted": false
+      }
+    },
+    {
+      "job": "batch (ubuntu-latest, 22)",
+      "data": {
+        "fixture": "chromium_viewport_first_input",
+        "firstInput": {
+          "width": 320,
+          "height": 153,
+          "viewportWidth": 320,
+          "viewportHeight": 240
+        },
+        "metricsBeforeBoundsCompleted": false
+      }
+    }
+  ]
+}

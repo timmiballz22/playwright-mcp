@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: stderr capture preserves split UTF-8 bytes and owns its bounded storage
+ok 1 - stderr capture preserves split UTF-8 bytes and owns its bounded storage
+  ---
+  duration_ms: 3.210605
+  ...
+# Subtest: stderr capture accepts its exact byte boundary and rejects overflow without leaking text
+ok 2 - stderr capture accepts its exact byte boundary and rejects overflow without leaking text
+  ---
+  duration_ms: 9.076171
+  ...
+# Subtest: one oversized stderr chunk is bounded immediately and invalid chunks are rejected
+ok 3 - one oversized stderr chunk is bounded immediately and invalid chunks are rejected
+  ---
+  duration_ms: 1.105765
+  ...
+# Subtest: actual SDK close can precede stderr EOF; joined teardown drains within its existing ceiling
+ok 4 - actual SDK close can precede stderr EOF; joined teardown drains within its existing ceiling
+  ---
+  duration_ms: 2977.28702
+  ...
+# Subtest: actual inherited stderr beyond the existing ceiling stays a failed unconfirmed teardown
+ok 5 - actual inherited stderr beyond the existing ceiling stays a failed unconfirmed teardown
+  ---
+  duration_ms: 4678.028933
+  ...
+# Subtest: joined teardown preserves a close rejection after actual EOF
+ok 6 - joined teardown preserves a close rejection after actual EOF
+  ---
+  duration_ms: 0.794537
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7865.640497

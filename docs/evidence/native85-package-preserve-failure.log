@@ -1,0 +1,82 @@
+
+> @timmiballz22/playwright-mcp-local@0.0.83 prepare
+> node scripts/prepare-vp9-metadata.cjs
+
+{"component":"private_vp9_metadata_patch","version":"1.64.1","changed":false,"sha256":"b46a37ecb04912c639ffd32f890269ea33a612dfdcb43f518bac76b85cc0fa9f"}
+{"component":"installed_vp9_metadata_patch","version":"1.64.1","sharedBundledCore":true,"sha256":"b46a37ecb04912c639ffd32f890269ea33a612dfdcb43f518bac76b85cc0fa9f","installScriptsDisabled":true}
+{"entry":"cli.js","handshake":true,"toolCount":25,"realBrowser":true,"production":true}
+{"entry":"local-batch/mcp.mjs","handshake":true,"toolCount":1,"realBrowser":true,"pageLimit":true,"production":true}
+{"entry":"local-batch/cli.mjs","realBrowser":true,"navigationRetry":true,"pageLimit":true,"production":true}
+{"component":"delegated_profile_guard","production":true,"realBrowser":"chromium","contentionDenied":true,"readOnlyDoctor":true,"persistentCookieRestored":true,"leaseReleasedAfterClose":true,"activeOwnedProcesses":0}
+{"entry":"local-batch/jobs-cli.mjs","production":true,"realBrowser":"chromium","completed":2,"duplicateExecuted":false,"statusResultListCleanup":true,"retentionPreview":true,"retentionFreshPreserved":true,"activeCancel":true}
+{"entry":"local-batch/jobs-mcp.mjs","handshake":true,"toolCount":6,"realBrowser":"chromium","completed":2,"duplicateExecuted":false,"production":true}
+{"component":"internal_job_controller","realBrowser":"chromium","jobs":2,"completed":10,"duplicateExecuted":false,"reconnectReplay":false,"activeOwnedProcesses":0,"production":true}
+{"entry":"local-batch/jobs/guardian.mjs","durableExecution":true,"realBrowser":true,"completed":7,"production":true}
+{"entry":"local-batch/jobs/journal.mjs","storageKernel":true,"ownerIsolation":true,"terminationDiagnosticMetadata":true,"production":true}
+file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:27
+const readinessError = (code, exitCode = null, signal = 'none') => new Error(code + ': ' + JSON.stringify({
+                                                                   ^
+
+Error: fixture_exited_before_ready: {"exitCode":1,"signal":"none","failures":[{"diagnostic":{"stage":"journal_open","code":"journal_unavailable","command":"init","journalFailure":"rpc_timeout","journalFailureCommand":"init"},"state":"unknown"}]}
+    at readinessError (file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:27:68)
+    at file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:35:411
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:35:17
+
+Node.js v24.19.0
+{"component":"installed_package_workspace_preserved","workspaceId":"fork-install spaces-KlS9PO","checksCompleted":false}
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node scripts/verify-guardian-parent-death.mjs /tmp/fork-install spaces-KlS9PO/node_modules/@timmiballz22/playwright-mcp-local
+file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:27
+const readinessError = (code, exitCode = null, signal = 'none') => new Error(code + ': ' + JSON.stringify({
+                                                                   ^
+
+Error: fixture_exited_before_ready: {"exitCode":1,"signal":"none","failures":[{"diagnostic":{"stage":"journal_open","code":"journal_unavailable","command":"init","journalFailure":"rpc_timeout","journalFailureCommand":"init"},"state":"unknown"}]}
+    at readinessError (file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:27:68)
+    at file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:35:411
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:35:17
+
+Node.js v24.19.0
+
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:942:11)
+    at execFileSync (node:child_process:978:15)
+    at file:///workspace/playwright-mcp/scripts/verify-package.mjs:54:24 {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    '',
+    'file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:27\n' +
+      "const readinessError = (code, exitCode = null, signal = 'none') => new Error(code + ': ' + JSON.stringify({\n" +
+      '                                                                   ^\n' +
+      '\n' +
+      'Error: fixture_exited_before_ready: {"exitCode":1,"signal":"none","failures":[{"diagnostic":{"stage":"journal_open","code":"journal_unavailable","command":"init","journalFailure":"rpc_timeout","journalFailureCommand":"init"},"state":"unknown"}]}\n' +
+      '    at readinessError (file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:27:68)\n' +
+      '    at file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:35:411\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n' +
+      '    at async file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:35:17\n' +
+      '\n' +
+      'Node.js v24.19.0\n'
+  ],
+  pid: 1053395,
+  stdout: '',
+  stderr: 'file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:27\n' +
+    "const readinessError = (code, exitCode = null, signal = 'none') => new Error(code + ': ' + JSON.stringify({\n" +
+    '                                                                   ^\n' +
+    '\n' +
+    'Error: fixture_exited_before_ready: {"exitCode":1,"signal":"none","failures":[{"diagnostic":{"stage":"journal_open","code":"journal_unavailable","command":"init","journalFailure":"rpc_timeout","journalFailureCommand":"init"},"state":"unknown"}]}\n' +
+    '    at readinessError (file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:27:68)\n' +
+    '    at file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:35:411\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n' +
+    '    at async file:///workspace/playwright-mcp/scripts/verify-guardian-parent-death.mjs:35:17\n' +
+    '\n' +
+    'Node.js v24.19.0\n'
+}
+
+Node.js v24.19.0

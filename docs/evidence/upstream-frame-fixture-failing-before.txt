@@ -1,0 +1,31 @@
+
+Running 2 tests using 2 workers
+
+(node:74402) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74401) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/interactions.spec.ts:37:5 › original iframe snapshot targets stay scoped to the embedded document (2.1s)
+  ✓  2 [firefox] › tests/interactions.spec.ts:37:5 › original iframe snapshot targets stay scoped to the embedded document (8.4s)
+
+
+  1) [chromium] › tests/interactions.spec.ts:37:5 › original iframe snapshot targets stay scoped to the embedded document 
+
+    Error: expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not true
+
+      52 |   expect(JSON.stringify(after)).toContain('Outer');
+      53 |   const replaced = await client.callTool({ name: 'browser_navigate', arguments: { url: server.PREFIX + '/plain' } });
+    > 54 |   expect(replaced.isError).not.toBe(true);
+         |                                ^
+      55 |   const stale = await client.callTool({ name: 'browser_click', arguments: { target: frameTarget![1] } });
+      56 |   expect(stale.isError).toBe(true);
+      57 |   const unchanged = await client.callTool({ name: 'browser_snapshot', arguments: {} });
+        at /workspace/playwright-mcp/tests/interactions.spec.ts:54:32
+
+    Error Context: test-results/interactions-original-ifra-0a23f-ed-to-the-embedded-document-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/interactions.spec.ts:37:5 › original iframe snapshot targets stay scoped to the embedded document 
+  1 passed (9.5s)

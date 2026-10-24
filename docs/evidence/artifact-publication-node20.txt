@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: a report target created during its temporary write is never replaced
+ok 1 - a report target created during its temporary write is never replaced
+  ---
+  duration_ms: 21.989194
+  ...
+# Subtest: published report is complete and its returned step summary remains bounded
+ok 2 - published report is complete and its returned step summary remains bounded
+  ---
+  duration_ms: 6.712912
+  ...
+# Subtest: exclusive temporary-name collision preserves the file this report did not create
+ok 3 - exclusive temporary-name collision preserves the file this report did not create
+  ---
+  duration_ms: 10.189044
+  ...
+# Subtest: screenshot budget refuses excess before writes and publishes complete private files without overwriting
+ok 4 - screenshot budget refuses excess before writes and publishes complete private files without overwriting
+  ---
+  duration_ms: 26.675668
+  ...
+# Subtest: cancellation after image capture cannot publish a late screenshot or leave a temporary file
+ok 5 - cancellation after image capture cannot publish a late screenshot or leave a temporary file
+  ---
+  duration_ms: 2.263387
+  ...
+# Subtest: a target created during capture is never overwritten by publication
+ok 6 - a target created during capture is never overwritten by publication
+  ---
+  duration_ms: 2.936311
+  ...
+# Subtest: concurrent captures publish one complete winner and refuse the other
+ok 7 - concurrent captures publish one complete winner and refuse the other
+  ---
+  duration_ms: 3.448378
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 274.308896

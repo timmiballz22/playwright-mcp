@@ -1,0 +1,48 @@
+TAP version 13
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"page_limit_chromium_quota_4","lifetimes":1,"observed":0}
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"page_limit_chromium_quota_2","lifetimes":2,"observed":0}
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"page_limit_chromium_reuse","lifetimes":3,"observed":0}
+# {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":3,"observed":0}
+# Subtest: chromium: operator page limit stops an approved popup burst without executing the next step
+ok 1 - chromium: operator page limit stops an approved popup burst without executing the next step
+  ---
+  duration_ms: 4370.047706
+  type: 'test'
+  ...
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"page_limit_firefox_quota_4","lifetimes":1,"observed":0}
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"page_limit_firefox_quota_2","lifetimes":2,"observed":0}
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"page_limit_firefox_reuse","lifetimes":3,"observed":0}
+# {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":3,"observed":0}
+# Subtest: firefox: operator page limit stops an approved popup burst without executing the next step
+ok 2 - firefox: operator page limit stops an approved popup burst without executing the next step
+  ---
+  duration_ms: 8954.479134
+  type: 'test'
+  ...
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"routing_cache_control","lifetimes":1,"observed":0}
+# {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":7,"rememberedRootBirths":null}
+# {"fixture":"factory_lifetime_audit","phase":"routing_cache_strict","lifetimes":2,"observed":0}
+# {"fixture":"routing_cache","os":"linux","browser":"chromium","samplesPerMode":1,"receipts":[{"mode":"control","navigations":6,"assetRequests":1,"assetResponseBytes":262201,"coldNavigationMs":29,"subsequentNavigationMs":[13,14,12,14,13]},{"mode":"strict","navigations":6,"assetRequests":6,"assetResponseBytes":1573206,"coldNavigationMs":58,"subsequentNavigationMs":[32,31,56,31,26]}],"activeOwnedProcesses":0,"modelTurns":0}
+# {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":2,"observed":0}
+# Subtest: owned cache comparison keeps strict routing enabled and measures its repeated resource requests
+ok 3 - owned cache comparison keeps strict routing enabled and measures its repeated resource requests
+  ---
+  duration_ms: 3102.940568
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16576.833243

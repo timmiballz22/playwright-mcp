@@ -1,0 +1,35 @@
+✔ supervised hang: bounded completion and owned process cleanup (1814.463393ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1789.920776ms)
+✔ supervised crash: bounded completion and owned process cleanup (77.308943ms)
+✔ pre-cancelled execution never starts a worker (0.752413ms)
+✔ cancel interrupts a worker that cannot service its abort listener (322.704557ms)
+✔ supervisor crash cannot strand its worker or detached child (123.742373ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (38.606244ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (132.161816ms)
+✔ verified cleanup recovery preserves success action outcome (133.432067ms)
+✔ verified cleanup recovery preserves blocked action outcome (115.974831ms)
+✔ verified cleanup recovery preserves action action outcome (128.19922ms)
+✔ partial report write failure preserves completed actions and publishes no corrupt JSON (647.416031ms)
+✔ failure classification returns fixed codes and never browser text (1.343717ms)
+✔ rejects unknown instructions, unbounded workloads and hostile origins (1.410521ms)
+✔ 100 ordered actions finish in a single batch with one browser launch (8.333701ms)
+✔ failures stop promptly, hide underlying sensitive errors and clean up (1.361891ms)
+✔ cancellation before starting avoids launching browser (0.304663ms)
+✔ checks target origins and reports assertion failure without page content (1.296366ms)
+✔ unknown localhost ports require exact operator origins (1.459174ms)
+✔ rejects extra workflow and action properties rather than ignoring policy (0.337454ms)
+✔ deadline includes a stalled launch and closes late browser (200.036988ms)
+✔ validation snapshots actions before asynchronous launch (1.124282ms)
+✔ screenshot capture requires operator approval for sensitive artifacts (0.693881ms)
+✔ workflow version and serialized size are bounded (7.179541ms)
+✔ accessible selectors validate exact shape and clone nested values (0.197584ms)
+✔ explicit action repeats expand within the total action cap (9.374452ms)
+✔ text equality rejects duplicate counters and ambiguous expectations (3.337047ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5758.517185

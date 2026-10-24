@@ -1,0 +1,297 @@
+[
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "test": "not ok 8 - real full Chromium applies device metrics after the existing window-bounds request completes",
+    "facts": [],
+    "fixedErrorLines": [
+      "  expected:",
+      "  actual:"
+    ]
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "test": "not ok 88 - preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect",
+    "facts": [
+      {
+        "job": {
+          "jobId": "af6b7402-36c1-4955-b29b-6c3c6542b878",
+          "state": "TIMED_OUT",
+          "revision": 45,
+          "stage": "complete",
+          "completed": 984,
+          "total": 1000,
+          "createdAt": "2026-10-22T21:51:45.215Z",
+          "updatedAt": "2026-10-22T21:53:44.400Z",
+          "deadlineAt": "2026-10-22T21:53:45.204Z",
+          "cancelRequested": false,
+          "reason": "timeout",
+          "resultAvailable": true,
+          "completionCertainty": "confirmed_lower_bound",
+          "retrySafe": false,
+          "operatorAttentionRequired": false,
+          "progressPercent": 98
+        },
+        "result": {
+          "schemaVersion": 1,
+          "runId": "e3149b00-37e8-44f2-934b-daeab16bf06b",
+          "browser": "chromium",
+          "total": 1000,
+          "ok": false,
+          "reason": "timeout",
+          "completed": 984,
+          "recentSteps": [],
+          "failedStep": {
+            "index": 985,
+            "type": "click",
+            "ok": false,
+            "error": "cancelled",
+            "failureKind": "interrupted"
+          },
+          "execution": {
+            "mode": "supervised",
+            "forced": false,
+            "cleanup": "terminated",
+            "tempCleanup": "removed",
+            "supervisorPid": 11398,
+            "workerPid": 11399,
+            "browserPids": [
+              11403
+            ]
+          },
+          "completionCertainty": "confirmed_lower_bound",
+          "retrySafe": false,
+          "durationMs": 118847
+        },
+        "ready": true
+      }
+    ],
+    "fixedErrorLines": [
+      "  expected: 'SUCCEEDED'",
+      "  actual: 'TIMED_OUT'"
+    ]
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "test": "not ok 95 - local stdio MCP: handshake, tool list, rejection, browser workflow",
+    "facts": [
+      {
+        "ok": false,
+        "reason": "timeout",
+        "completed": 980,
+        "cleanup": "terminated",
+        "tempCleanup": "removed"
+      }
+    ],
+    "fixedErrorLines": [
+      "  expected: false",
+      "  actual: true"
+    ]
+  },
+  {
+    "job": "batch (ubuntu-latest, 22)",
+    "test": "not ok 8 - real full Chromium applies device metrics after the existing window-bounds request completes",
+    "facts": [],
+    "fixedErrorLines": [
+      "  expected:",
+      "  actual:"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "not ok 81 - real firefox: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "facts": [
+      {
+        "fixture": "raw_browser_failure",
+        "browser": "firefox",
+        "mode": "headed",
+        "freshRun": 4,
+        "reason": "cleanup_failed",
+        "completed": 4,
+        "total": 23,
+        "durationMs": 18381,
+        "actionsSucceeded": false,
+        "cleanupFailureCount": 2,
+        "failedStep": {
+          "index": 5,
+          "type": "click",
+          "error": "action_failed",
+          "failureKind": "locator_timeout"
+        }
+      }
+    ],
+    "fixedErrorLines": [
+      "  expected: true",
+      "  actual: false"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "not ok 82 - real firefox headed: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "facts": [
+      {
+        "fixture": "raw_browser_failure",
+        "browser": "firefox",
+        "mode": "direct-pipe",
+        "freshRun": 1,
+        "reason": "cleanup_failed",
+        "completed": 3,
+        "total": 23,
+        "durationMs": 19582,
+        "actionsSucceeded": false,
+        "cleanupFailureCount": 2,
+        "failedStep": {
+          "index": 4,
+          "type": "click",
+          "error": "action_failed",
+          "failureKind": "pointer_action_timeout"
+        }
+      }
+    ],
+    "fixedErrorLines": [
+      "  expected: true",
+      "  actual: false"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "not ok 83 - real firefox direct-pipe: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "facts": [],
+    "fixedErrorLines": [
+      "  expected: true",
+      "  actual: false"
+    ]
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "not ok 95 - supervised firefox: six locator forms are exact and ambiguity never selects a first match",
+    "facts": [],
+    "fixedErrorLines": [
+      "  expected: false",
+      "  actual: true"
+    ],
+    "failureStage": "live_factory_observation_before_negative_result_validation",
+    "scope": "The failed true/false assertion is observer entry.settled, not workflow.ok. No successful ambiguous selector inferred."
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "test": "not ok 103 - real firefox: cancellation preserves a committed POST once and identifies public fetch calls",
+    "facts": [
+      {
+        "component": "private_fetch_cancel_witness",
+        "browser": "webkit",
+        "scenario": "cancel",
+        "reason": "cancelled",
+        "completed": 0,
+        "execution": {
+          "mode": "supervised",
+          "forced": false,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "supervisorPid": 7504,
+          "workerPid": 6576,
+          "browserPids": [
+            5984
+          ]
+        },
+        "requests": [
+          {
+            "method": "GET",
+            "fetchId": "1",
+            "offsetMs": 0
+          }
+        ],
+        "abortOffsetMs": 101
+      },
+      {
+        "component": "private_fetch_cancel_witness",
+        "browser": "webkit",
+        "scenario": "commit",
+        "reason": "cancelled",
+        "completed": 1,
+        "execution": {
+          "mode": "supervised",
+          "forced": false,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "supervisorPid": 6428,
+          "workerPid": 1916,
+          "browserPids": [
+            8924
+          ]
+        },
+        "requests": [
+          {
+            "method": "POST",
+            "fetchId": "2",
+            "offsetMs": 0
+          }
+        ],
+        "abortOffsetMs": 101
+      },
+      {
+        "component": "private_fetch_cancel_witness",
+        "browser": "webkit",
+        "scenario": "commit-stalled",
+        "reason": "cancelled",
+        "completed": 1,
+        "execution": {
+          "mode": "supervised",
+          "forced": true,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "supervisorPid": 5700,
+          "workerPid": 7316,
+          "browserPids": [
+            7888
+          ]
+        },
+        "requests": [
+          {
+            "method": "POST",
+            "fetchId": "2",
+            "offsetMs": 0
+          }
+        ],
+        "abortOffsetMs": 101
+      },
+      {
+        "component": "private_fetch_cancel_witness",
+        "browser": "webkit",
+        "scenario": "action-stalled",
+        "reason": "cancelled",
+        "completed": 1,
+        "execution": {
+          "mode": "supervised",
+          "forced": true,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "supervisorPid": 4636,
+          "workerPid": 3660,
+          "browserPids": [
+            6956
+          ]
+        },
+        "requests": [
+          {
+            "method": "GET",
+            "fetchId": "1",
+            "offsetMs": 0
+          }
+        ],
+        "abortOffsetMs": 117
+      }
+    ],
+    "fixedErrorLines": [
+      "  expected:",
+      "  actual:"
+    ]
+  },
+  {
+    "job": "batch (ubuntu-latest, 24)",
+    "test": "\u2716 real firefox: cancellation preserves a committed POST once and identifies public fetch calls (6142.932997ms)",
+    "facts": [],
+    "fixedErrorLines": [
+      "  SyntaxError: Unexpected end of JSON input"
+    ]
+  }
+]

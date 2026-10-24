@@ -1,0 +1,59 @@
+
+Running 1 test using 1 worker
+
+(node:967317) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"original_stderr_budget_probe","byteLimit":1048576,"retainedBytes":1048576,"overflow":true}
+{"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":0,"pending":0,"active":[],"recent":[]}]}
+  ✘  1 [chromium] › tests/stdio-stderr.spec.ts:6:5 › original stdio drains substantial stderr before MCP initialization (1.1s)
+
+
+  1) [chromium] › tests/stdio-stderr.spec.ts:6:5 › original stdio drains substantial stderr before MCP initialization 
+
+    Error: fixture_stderr_output_limit
+
+       at fixtures/bounded-stderr.mjs:7
+
+       5 |   let bytes; let retainedBytes = 0; let overflow = false;
+       6 |   const assertWithinLimit = () => {
+    >  7 |     if (overflow) throw Object.assign(new Error('fixture_stderr_output_limit'), { code: 'fixture_stderr_output_limit' });
+         |                                       ^
+       8 |   };
+       9 |   return {
+      10 |     observe(chunk) {
+        at assertWithinLimit (/workspace/playwright-mcp/tests/fixtures/bounded-stderr.mjs:7:39)
+        at Object.text (/workspace/playwright-mcp/tests/fixtures/bounded-stderr.mjs:27:14)
+        at stderr (/workspace/playwright-mcp/tests/fixtures.ts:138:52)
+        at /workspace/playwright-mcp/tests/stdio-stderr.spec.ts:19:28
+
+    AggregateError: Original MCP fixture teardown failed
+
+       at fixtures.ts:156
+
+      154 |         if (!ended()) failures.push(new Error('fixture_stderr_close_unconfirmed'));
+      155 |       }
+    > 156 |       if (failures.length) throw new AggregateError(failures, 'Original MCP fixture teardown failed');
+          |                                  ^
+      157 |     }
+      158 |   },
+      159 |
+        at Object.startClient (/workspace/playwright-mcp/tests/fixtures.ts:156:34)
+
+    Error: fixture_stderr_output_limit
+
+       at fixtures/bounded-stderr.mjs:7
+
+       5 |   let bytes; let retainedBytes = 0; let overflow = false;
+       6 |   const assertWithinLimit = () => {
+    >  7 |     if (overflow) throw Object.assign(new Error('fixture_stderr_output_limit'), { code: 'fixture_stderr_output_limit' });
+         |                                       ^
+       8 |   };
+       9 |   return {
+      10 |     observe(chunk) {
+        at Object.assertWithinLimit (/workspace/playwright-mcp/tests/fixtures/bounded-stderr.mjs:7:39)
+        at Object.startClient (/workspace/playwright-mcp/tests/fixtures.ts:151:23)
+
+    Error Context: test-results/stdio-stderr-original-stdi-b94e5-r-before-MCP-initialization-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/stdio-stderr.spec.ts:6:5 › original stdio drains substantial stderr before MCP initialization 

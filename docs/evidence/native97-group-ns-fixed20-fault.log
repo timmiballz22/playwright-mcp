@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: group hint retains members after reported leader disappears without declaring ownership
+ok 1 - group hint retains members after reported leader disappears without declaring ownership
+  ---
+  duration_ms: 2.623868
+  ...
+# Subtest: group hint bounds and rejects raw diagnostics without leaking or signaling
+ok 2 - group hint bounds and rejects raw diagnostics without leaking or signaling
+  ---
+  duration_ms: 43.6167
+  ...
+# Subtest: failure process hint distinguishes reported state counts without leaking diagnostic text or granting identity
+ok 3 - failure process hint distinguishes reported state counts without leaking diagnostic text or granting identity
+  ---
+  duration_ms: 0.886816
+  ...
+# Subtest: read-only process hint observes this live test process
+ok 4 - read-only process hint observes this live test process
+  ---
+  duration_ms: 10.529012
+  ...
+# {"fixture":"group_hint_control_failure","workspace":"group-hint-orphan-8RBCE0","factoryExitCode":0,"primaryPhase":"leader_hint","cleanupPhase":"fixture_remove","removalAttempted":false,"selfExitConfirmed":true,"invalidSnapshotReason":null,"leaderHint":{"coverage":"reported_pids_only","nonZombie":0,"zombie":0,"missing":1,"identityVerified":false},"groupHint":null,"selfExitHint":{"coverage":"reported_pids_only","nonZombie":0,"zombie":1,"missing":0,"identityVerified":false},"failureFacts":[{"phase":"leader_hint","kind":"Error","code":"unclassified"}]}
+# Subtest: group hint observes a real member after its actual factory leader exits
+not ok 5 - group hint observes a real member after its actual factory leader exits
+  ---
+  duration_ms: 236.342513
+  location: '/workspace/playwright-mcp/local-batch/process-state-hint.test.mjs:39:53'
+  failureType: 'testCodeFailure'
+  error: 'Group hint fixture verification or cleanup failed'
+  code: 'ERR_TEST_FAILURE'
+  name: 'AggregateError'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-state-hint.test.mjs:98:11)
+    process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    async Test.run (node:internal/test_runner/test:797:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:526:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 4
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 402.215224

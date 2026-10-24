@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: supervised hang: bounded completion and owned process cleanup
+ok 1 - supervised hang: bounded completion and owned process cleanup
+  ---
+  duration_ms: 1856.007707
+  type: 'test'
+  ...
+# Subtest: supervised report-stall: bounded completion and owned process cleanup
+ok 2 - supervised report-stall: bounded completion and owned process cleanup
+  ---
+  duration_ms: 1843.110353
+  type: 'test'
+  ...
+# Subtest: supervised crash: bounded completion and owned process cleanup
+ok 3 - supervised crash: bounded completion and owned process cleanup
+  ---
+  duration_ms: 83.949545
+  type: 'test'
+  ...
+# Subtest: pre-cancelled execution never starts a worker
+ok 4 - pre-cancelled execution never starts a worker
+  ---
+  duration_ms: 0.819857
+  type: 'test'
+  ...
+# Subtest: cancel interrupts a worker that cannot service its abort listener
+ok 5 - cancel interrupts a worker that cannot service its abort listener
+  ---
+  duration_ms: 304.885992
+  type: 'test'
+  ...
+# Subtest: supervisor crash cannot strand its worker or detached child
+ok 6 - supervisor crash cannot strand its worker or detached child
+  ---
+  duration_ms: 104.889978
+  type: 'test'
+  ...
+# Subtest: cancellation between precheck and supervisor startup does not start a worker
+ok 7 - cancellation between precheck and supervisor startup does not start a worker
+  ---
+  duration_ms: 31.026716
+  type: 'test'
+  ...
+# Subtest: local stdio MCP: handshake, tool list, rejection, browser workflow
+ok 8 - local stdio MCP: handshake, tool list, rejection, browser workflow
+  ---
+  duration_ms: 34360.593548
+  type: 'test'
+  ...
+# Subtest: partial report write failure preserves completed actions and publishes no corrupt JSON
+ok 9 - partial report write failure preserves completed actions and publishes no corrupt JSON
+  ---
+  duration_ms: 750.328023
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 39620.193752

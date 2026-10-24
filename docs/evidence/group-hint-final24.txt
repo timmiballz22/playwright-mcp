@@ -1,0 +1,40 @@
+✔ group hint retains members after reported leader disappears without declaring ownership (1.556847ms)
+✔ group hint bounds and rejects raw diagnostics without leaking or signaling (1.713982ms)
+✔ failure process hint distinguishes reported state counts without leaking diagnostic text or granting identity (0.576614ms)
+✔ read-only process hint observes this live test process (190.949891ms)
+✔ group hint observes a real member after its actual factory leader exits (655.705983ms)
+✔ invalid termination roots remain rejected and emit only a fixed diagnostic (1.495647ms)
+{"fixture":"worker_freeze_authority","stop":"ESRCH","cleaned":false,"groupSignals":0,"failures":["worker_stop_failed"]}
+{"fixture":"worker_freeze_authority","stop":"EPERM","cleaned":false,"groupSignals":0,"failures":["signal_permission_denied","worker_stop_failed"]}
+{"fixture":"worker_freeze_authority","stop":"EINVAL","cleaned":false,"groupSignals":0,"failures":["signal_invalid_argument","worker_stop_failed"]}
+{"fixture":"worker_freeze_authority","stop":"unknown","cleaned":false,"groupSignals":0,"failures":["signal_unknown_error","worker_stop_failed"]}
+✔ diagnostic callback preserves bounded termination of an actually owned fork (633.532077ms)
+✔ POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors (0.517713ms)
+✔ POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors (0.163405ms)
+✔ POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors (0.176391ms)
+✔ POSIX signal diagnostic retains fixed already-gone result without raw errors (0.129493ms)
+✔ a root freeze ESRCH cannot authorize a later group signal or certify cleanup (0.514128ms)
+✔ a root freeze EPERM cannot authorize a later group signal or certify cleanup (0.197121ms)
+✔ a root freeze EINVAL cannot authorize a later group signal or certify cleanup (0.157315ms)
+✔ a root freeze unknown error cannot authorize a later group signal or certify cleanup (0.200573ms)
+✔ audit receipts describe reused IDs without hiding possible processes or exposing identities (1.857698ms)
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (0.255412ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (0.185178ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (0.679546ms)
+✔ live-root snapshots retain exited browser identities for the final orphan scan (0.206335ms)
+✔ CIM error phase keeps only exact fixed markers and never raw diagnostics (0.385736ms)
+✔ separate owned lifetimes retain old orphans when a new client reuses its PID (0.4185ms)
+✔ new client may reuse an earlier observed descendant without losing either orphan lineage (0.210042ms)
+✔ live controller anchors retain exited browser roots and reject changes within that lifetime (0.347298ms)
+✔ live anchor refresh preserves an old orphan before recording a new owned browser incarnation (0.275376ms)
+✔ historical PID links cannot rewrite a live controller identity before validation (0.205714ms)
+✔ legacy comparison preserves old candidates while scoped birth facts retain an owned orphan (0.365978ms)
+✔ comparison records a replacement parent row even when it is outside legacy candidates (1.187118ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1669.257501

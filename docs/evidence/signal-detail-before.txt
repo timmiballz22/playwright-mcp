@@ -1,0 +1,82 @@
+✔ invalid termination roots remain rejected and emit only a fixed diagnostic (1.445097ms)
+✔ diagnostic callback preserves bounded termination of an actually owned fork (546.816736ms)
+✖ POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors (1.382279ms)
+✖ POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors (0.345433ms)
+✖ POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors (0.278162ms)
+✔ POSIX signal diagnostic retains fixed already-gone result without raw errors (0.143939ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 3
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 616.734878
+
+✖ failing tests:
+
+test at local-batch/process-tree.test.mjs:27:3
+✖ POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors (1.382279ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  -   'signal_permission_denied',
+      'browser_group_signal_failed'
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:33:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'browser_group_signal_failed' ],
+    expected: [ 'signal_permission_denied', 'browser_group_signal_failed' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/process-tree.test.mjs:27:3
+✖ POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors (0.345433ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  -   'signal_invalid_argument',
+      'browser_group_signal_failed'
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:33:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'browser_group_signal_failed' ],
+    expected: [ 'signal_invalid_argument', 'browser_group_signal_failed' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/process-tree.test.mjs:27:3
+✖ POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors (0.278162ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  -   'signal_unknown_error',
+      'browser_group_signal_failed'
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/process-tree.test.mjs:33:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'browser_group_signal_failed' ],
+    expected: [ 'signal_unknown_error', 'browser_group_signal_failed' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

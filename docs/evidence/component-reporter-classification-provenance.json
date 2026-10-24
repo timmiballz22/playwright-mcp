@@ -1,0 +1,20 @@
+{
+  "phase": "uncommitted after native72 e37c506",
+  "sourceSha256": "bcec4a8b71ee0b533424177357c1526957a964d2f2ff52be463811044a4e0b45",
+  "classification": "fixed known codes only; three error nodes maximum; no getters invoked",
+  "durationMs": "integer 0..1800000 only",
+  "before": "new classification case fails; 4/1 total",
+  "after": "6/6 each Node20/22/24",
+  "live": "three intentional failures per Node20/22/24, expected exit1 and exact safe classifications verified",
+  "checks": [
+    {
+      "name": "lint",
+      "exitCode": 0
+    },
+    {
+      "name": "diff",
+      "exitCode": 0
+    }
+  ],
+  "native": "pending; does not change test pass/fail or production runtime"
+}

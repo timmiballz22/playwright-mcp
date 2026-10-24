@@ -1,0 +1,926 @@
+{
+  "source": "b2cbc636f4188e3a9bbea335b2908a779f578f57",
+  "scope": "Exact failed cases and parseable emitted objects, original raw terminal logs remain authoritative. No absent fields inferred. Three Windows journal tests fail before their intended injected phase or during the recovery open; no deadline/retry widening justified. Later healthy samples never clear old Windows identities/exits.",
+  "failures": [
+    {
+      "job": "batch (macos-15-intel, 22)",
+      "name": "not ok 8 - real full Chromium applies device metrics after the existing window-bounds request completes",
+      "objects": [
+        {
+          "fixture": "chromium_viewport_first_input",
+          "firstInput": {
+            "width": 320,
+            "height": 98,
+            "viewportWidth": 500,
+            "viewportHeight": 153
+          },
+          "metricsBeforeBoundsCompleted": false,
+          "trace": [
+            {
+              "stage": "window_sent",
+              "offsetMs": 104.909,
+              "width": 320,
+              "height": 240
+            },
+            {
+              "stage": "window_ack",
+              "offsetMs": 115.576
+            },
+            {
+              "stage": "metrics_sent",
+              "offsetMs": 115.614,
+              "width": 320,
+              "height": 240
+            },
+            {
+              "stage": "frame_resized",
+              "offsetMs": 124.421
+            },
+            {
+              "stage": "metrics_ack",
+              "offsetMs": 124.504
+            },
+            {
+              "stage": "viewport_api_resolved",
+              "offsetMs": 125.185
+            },
+            {
+              "stage": "first_native_frame",
+              "offsetMs": 144.859,
+              "deviceWidth": 500,
+              "deviceHeight": 153,
+              "pageScaleFactor": 1,
+              "offsetTop": 0
+            }
+          ],
+          "traceDropped": 0
+        }
+      ],
+      "expectedActualLines": [
+        "    + actual - expected",
+        "    +   height: 98,",
+        "    +   viewportHeight: 153,",
+        "    +   viewportWidth: 500,",
+        "    -   height: 240,",
+        "    -   viewportHeight: 240,",
+        "    -   viewportWidth: 320,"
+      ]
+    },
+    {
+      "job": "batch (macos-15-intel, 22)",
+      "name": "not ok 30 - supervised webkit: real browser deadline closes owned process",
+      "objects": [],
+      "expectedActualLines": [
+        "    + actual - expected",
+        "    + 'unknown'",
+        "    - 'removed'"
+      ]
+    },
+    {
+      "job": "batch (macos-15-intel, 22)",
+      "name": "not ok 80 - real chromium: 1 fresh runs, navigation, 997 clicks, assertion, screenshot, cleanup",
+      "objects": [],
+      "expectedActualLines": []
+    },
+    {
+      "job": "journal (windows-latest, 22)",
+      "name": "not ok 62 - non-COMMIT initialization timeout keeps one attempt and its original phase",
+      "objects": [],
+      "expectedActualLines": [
+        "    + actual - expected",
+        "    +   journalInitStage: 'configure'",
+        "    -   journalInitStage: 'schema_verify'"
+      ]
+    },
+    {
+      "job": "journal (windows-latest, 22)",
+      "name": "not ok 67 - real init timeout retains phase configure and confirmed worker exit",
+      "objects": [],
+      "expectedActualLines": []
+    },
+    {
+      "job": "journal (windows-latest, 22)",
+      "name": "not ok 68 - real init timeout retains phase schema and confirmed worker exit",
+      "objects": [],
+      "expectedActualLines": [
+        "    + actual - expected",
+        "    + 'configure'",
+        "    - 'schema'"
+      ]
+    },
+    {
+      "job": "batch (windows-latest, 22)",
+      "name": "not ok 24 - firefox: canonical localhost aliases cannot escape an unapproved port",
+      "objects": [
+        {
+          "control": false,
+          "hits": 6,
+          "result": {
+            "schemaVersion": 1,
+            "runId": "4327620a-7787-46f6-a99a-371477337063",
+            "browser": "firefox",
+            "total": 4,
+            "ok": false,
+            "reason": "timeout",
+            "completed": 4,
+            "recentSteps": [],
+            "failedStep": null,
+            "reportPath": null,
+            "execution": {
+              "mode": "supervised",
+              "forced": true,
+              "cleanup": "terminated",
+              "tempCleanup": "removed",
+              "supervisorPid": 8816,
+              "workerPid": 8280,
+              "browserPids": [
+                5240
+              ]
+            },
+            "completionCertainty": "confirmed_lower_bound",
+            "retrySafe": false,
+            "durationMs": 16405
+          }
+        }
+      ],
+      "expectedActualLines": [
+        "    + actual - expected",
+        "    + 'timeout'",
+        "    - 'policy_blocked'"
+      ]
+    },
+    {
+      "job": "batch (windows-latest, 22)",
+      "name": "not ok 25 - firefox: canonical IPv6 loopback aliases cannot escape an unapproved port",
+      "objects": [
+        {
+          "control": false,
+          "hits": 4,
+          "result": {
+            "schemaVersion": 1,
+            "runId": "d6d1ba6c-963a-4427-b48a-c31200481c03",
+            "browser": "firefox",
+            "total": 4,
+            "ok": false,
+            "reason": "timeout",
+            "completed": 4,
+            "recentSteps": [],
+            "failedStep": null,
+            "reportPath": null,
+            "execution": {
+              "mode": "supervised",
+              "forced": true,
+              "cleanup": "terminated",
+              "tempCleanup": "removed",
+              "supervisorPid": 3100,
+              "workerPid": 5364,
+              "browserPids": [
+                2816
+              ]
+            },
+            "completionCertainty": "confirmed_lower_bound",
+            "retrySafe": false,
+            "durationMs": 16097
+          }
+        }
+      ],
+      "expectedActualLines": [
+        "    + actual - expected",
+        "    + 'timeout'",
+        "    - 'policy_blocked'"
+      ]
+    },
+    {
+      "job": "batch (windows-latest, 22)",
+      "name": "not ok 63 - real firefox: HTTP error codes and script exceptions keep response secrets out of reports",
+      "objects": [],
+      "expectedActualLines": [
+        "    + actual - expected",
+        "    + 'cancelled'",
+        "    - 'http_404'"
+      ]
+    },
+    {
+      "job": "batch (windows-latest, 22)",
+      "name": "not ok 82 - real firefox headed: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+      "objects": [
+        {
+          "freshRun": 6,
+          "result": {
+            "ok": false,
+            "reason": "action_failed",
+            "browser": "firefox",
+            "blockedRequests": 0,
+            "actionsSucceeded": false,
+            "cleanupFailures": [],
+            "completed": 8,
+            "total": 23,
+            "durationMs": 9626,
+            "results": [
+              {
+                "index": 1,
+                "repetition": 1,
+                "type": "goto",
+                "ok": true,
+                "durationMs": 618
+              },
+              {
+                "index": 2,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 287
+              },
+              {
+                "index": 3,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 105
+              },
+              {
+                "index": 4,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 149
+              },
+              {
+                "index": 5,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 96
+              },
+              {
+                "index": 6,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 108
+              },
+              {
+                "index": 7,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 94
+              },
+              {
+                "index": 8,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 94
+              },
+              {
+                "index": 9,
+                "repetition": 1,
+                "type": "click",
+                "ok": false,
+                "durationMs": 5004,
+                "error": "action_failed",
+                "failureKind": "pointer_action_timeout"
+              }
+            ]
+          },
+          "cleanupFailures": [],
+          "diagnostic": {
+            "index": 9,
+            "type": "click",
+            "error": "action_failed",
+            "failureKind": "pointer_action_timeout",
+            "name": "TimeoutError",
+            "fixtureCallLog": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"add\">Add</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n",
+            "fixtureCounter": 7
+          },
+          "browserLogs": "JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]\r\n\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n[ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: \"Unspecified error\" }\n\nJavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]\r\n\n"
+        }
+      ],
+      "expectedActualLines": []
+    },
+    {
+      "job": "batch (windows-latest, 22)",
+      "name": "not ok 83 - real firefox direct-pipe: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+      "objects": [
+        {
+          "freshRun": 7,
+          "result": {
+            "ok": false,
+            "reason": "action_failed",
+            "browser": "firefox",
+            "blockedRequests": 0,
+            "actionsSucceeded": false,
+            "cleanupFailures": [],
+            "completed": 13,
+            "total": 23,
+            "durationMs": 10067,
+            "results": [
+              {
+                "index": 1,
+                "repetition": 1,
+                "type": "goto",
+                "ok": true,
+                "durationMs": 751
+              },
+              {
+                "index": 2,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 163
+              },
+              {
+                "index": 3,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 241
+              },
+              {
+                "index": 4,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 69
+              },
+              {
+                "index": 5,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 55
+              },
+              {
+                "index": 6,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 79
+              },
+              {
+                "index": 7,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 50
+              },
+              {
+                "index": 8,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 59
+              },
+              {
+                "index": 9,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 49
+              },
+              {
+                "index": 10,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 64
+              },
+              {
+                "index": 11,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 93
+              },
+              {
+                "index": 12,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 46
+              },
+              {
+                "index": 13,
+                "repetition": 1,
+                "type": "click",
+                "ok": true,
+                "durationMs": 50
+              },
+              {
+                "index": 14,
+                "repetition": 1,
+                "type": "click",
+                "ok": false,
+                "durationMs": 5015,
+                "error": "action_failed",
+                "failureKind": "locator_timeout"
+              }
+            ]
+          },
+          "cleanupFailures": [],
+          "diagnostic": {
+            "index": 14,
+            "type": "click",
+            "error": "action_failed",
+            "failureKind": "locator_timeout",
+            "name": "TimeoutError",
+            "fixtureCallLog": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"add\">Add</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n",
+            "counterProbe": "timeout"
+          }
+        }
+      ],
+      "expectedActualLines": []
+    },
+    {
+      "job": "batch (windows-latest, 22)",
+      "name": "not ok 95 - supervised firefox: six locator forms are exact and ambiguity never selects a first match",
+      "objects": [
+        {
+          "schemaVersion": 1,
+          "runId": "4d053e8e-68b7-4720-bffc-07da806405f8",
+          "browser": "firefox",
+          "total": 19,
+          "ok": false,
+          "reason": "timeout",
+          "completed": 19,
+          "recentSteps": [],
+          "failedStep": null,
+          "reportPath": null,
+          "execution": {
+            "mode": "supervised",
+            "forced": true,
+            "cleanup": "terminated",
+            "tempCleanup": "removed",
+            "supervisorPid": 8088,
+            "workerPid": 3360,
+            "browserPids": [
+              10188
+            ]
+          },
+          "completionCertainty": "confirmed_lower_bound",
+          "retrySafe": false,
+          "durationMs": 8034
+        }
+      ],
+      "expectedActualLines": []
+    },
+    {
+      "job": "batch (ubuntu-latest, 24)",
+      "name": "\u2716 real full Chromium applies device metrics after the existing window-bounds request completes (643.182131ms)",
+      "objects": [],
+      "expectedActualLines": [
+        "  + actual - expected",
+        "  +   height: 153,",
+        "  -   height: 240,"
+      ]
+    }
+  ],
+  "viewport": [
+    {
+      "job": "batch (macos-15-intel, 22)",
+      "data": {
+        "fixture": "chromium_viewport_first_input",
+        "firstInput": {
+          "width": 320,
+          "height": 98,
+          "viewportWidth": 500,
+          "viewportHeight": 153
+        },
+        "metricsBeforeBoundsCompleted": false,
+        "trace": [
+          {
+            "stage": "window_sent",
+            "offsetMs": 104.909,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "window_ack",
+            "offsetMs": 115.576
+          },
+          {
+            "stage": "metrics_sent",
+            "offsetMs": 115.614,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "frame_resized",
+            "offsetMs": 124.421
+          },
+          {
+            "stage": "metrics_ack",
+            "offsetMs": 124.504
+          },
+          {
+            "stage": "viewport_api_resolved",
+            "offsetMs": 125.185
+          },
+          {
+            "stage": "first_native_frame",
+            "offsetMs": 144.859,
+            "deviceWidth": 500,
+            "deviceHeight": 153,
+            "pageScaleFactor": 1,
+            "offsetTop": 0
+          }
+        ],
+        "traceDropped": 0
+      }
+    },
+    {
+      "job": "batch (ubuntu-latest, 24)",
+      "data": {
+        "fixture": "chromium_viewport_first_input",
+        "firstInput": {
+          "width": 320,
+          "height": 153,
+          "viewportWidth": 320,
+          "viewportHeight": 240
+        },
+        "metricsBeforeBoundsCompleted": false,
+        "trace": [
+          {
+            "stage": "window_sent",
+            "offsetMs": 100.209,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "window_ack",
+            "offsetMs": 104.162
+          },
+          {
+            "stage": "metrics_sent",
+            "offsetMs": 104.176,
+            "width": 320,
+            "height": 240
+          },
+          {
+            "stage": "frame_resized",
+            "offsetMs": 106.611
+          },
+          {
+            "stage": "metrics_ack",
+            "offsetMs": 106.632
+          },
+          {
+            "stage": "viewport_api_resolved",
+            "offsetMs": 106.854
+          },
+          {
+            "stage": "first_native_frame",
+            "offsetMs": 122.99,
+            "deviceWidth": 320,
+            "deviceHeight": 240,
+            "pageScaleFactor": 1,
+            "offsetTop": 0
+          }
+        ],
+        "traceDropped": 0
+      }
+    }
+  ],
+  "privacy": [
+    {
+      "job": "batch (windows-latest, 22)",
+      "data": {
+        "fixture": "http_privacy_workspace_preserved",
+        "verifiedCases": 2,
+        "primaryFailed": true,
+        "primaryStage": "summary",
+        "route": "/404",
+        "outcome": {
+          "ok": false,
+          "reason": "timeout",
+          "completed": 0,
+          "failureCode": "cancelled",
+          "failureKind": "interrupted",
+          "httpStatus": null,
+          "forced": true,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "requestsSeen": 0,
+          "responsesFinished": 0,
+          "timing": {
+            "workerMs": 65,
+            "browserMs": 2578,
+            "startAuditMs": 478,
+            "firstRequestMs": null,
+            "lastResponseMs": null
+          }
+        },
+        "auditConfirmed": true,
+        "auditFailure": null,
+        "audit": null
+      }
+    }
+  ],
+  "primaryMac": [
+    {
+      "job": "codex_client (macos-15-intel)",
+      "data": {
+        "phase": "codex_primary_job",
+        "failedStep": {
+          "index": 952,
+          "type": "click",
+          "error": "cancelled",
+          "failureKind": "interrupted"
+        },
+        "state": "TIMED_OUT",
+        "jobReason": "timeout",
+        "jobStage": "complete",
+        "jobCompleted": 951,
+        "resultAvailable": true,
+        "operatorAttentionRequired": false,
+        "guardianFailures": [],
+        "journalFailures": [],
+        "journalInitStages": [],
+        "journalExitUnconfirmed": false,
+        "diagnosticCoverage": "bounded_stderr_tail",
+        "stderrTailTruncated": false,
+        "guardianExits": [],
+        "forced": false,
+        "completed": 951,
+        "reason": "timeout",
+        "cleanup": "terminated",
+        "tempCleanup": "removed"
+      }
+    },
+    {
+      "job": "codex_client (macos-15-intel)",
+      "data": {
+        "fixture": "codex_client_workspace_retention",
+        "workspace": "codex-jobs-LYeYpM",
+        "acceptanceVerified": false,
+        "primaryFailed": true,
+        "cleanupFailed": false,
+        "removalAttempted": false,
+        "processAuditConfirmed": true,
+        "appServerCloseObserved": true,
+        "journalExitUnconfirmed": false,
+        "journalInitStages": [],
+        "diagnosticCoverage": "bounded_stderr_tail",
+        "stderrTailTruncated": false
+      }
+    },
+    {
+      "job": "codex_client (macos-15-intel)",
+      "data": {
+        "phase": "codex_primary_job",
+        "failedStep": {
+          "index": 952,
+          "type": "click",
+          "error": "cancelled",
+          "failureKind": "interrupted"
+        },
+        "state": "TIMED_OUT",
+        "jobReason": "timeout",
+        "jobStage": "complete",
+        "jobCompleted": 951,
+        "resultAvailable": true,
+        "operatorAttentionRequired": false,
+        "guardianFailures": [],
+        "journalFailures": [],
+        "journalInitStages": [],
+        "journalExitUnconfirmed": false,
+        "diagnosticCoverage": "bounded_stderr_tail",
+        "stderrTailTruncated": false,
+        "guardianExits": [],
+        "forced": false,
+        "completed": 951,
+        "reason": "timeout",
+        "cleanup": "terminated",
+        "tempCleanup": "removed"
+      }
+    }
+  ],
+  "actualClients": [
+    {
+      "job": "codex_client (ubuntu-latest)",
+      "data": {
+        "client": "codex-cli 0.163.0",
+        "os": "linux",
+        "launcher": "node",
+        "tools": 6,
+        "completed": 1000,
+        "startMs": 43,
+        "resultCalls": 4,
+        "durationMs": 37816,
+        "duplicateExecuted": false,
+        "foreignOwnerDenied": true,
+        "terminalCleanup": true,
+        "activeCancel": true,
+        "cancelledJobCompleted": 1,
+        "modelTurns": 0,
+        "temporaryConfigOnly": true,
+        "activeOwnedProcesses": 0
+      }
+    },
+    {
+      "job": "codex_client (windows-latest)",
+      "data": {
+        "client": "codex-cli 0.163.0",
+        "os": "win32",
+        "launcher": "node",
+        "tools": 6,
+        "completed": 1000,
+        "startMs": 22,
+        "resultCalls": 4,
+        "durationMs": 38455,
+        "duplicateExecuted": false,
+        "foreignOwnerDenied": true,
+        "terminalCleanup": true,
+        "activeCancel": true,
+        "cancelledJobCompleted": 1,
+        "modelTurns": 0,
+        "temporaryConfigOnly": true,
+        "activeOwnedProcesses": 0
+      }
+    },
+    {
+      "job": "codex_journal_diagnostic",
+      "data": {
+        "client": "codex-cli 0.163.0",
+        "os": "darwin",
+        "launcher": "node",
+        "tools": 6,
+        "completed": 1000,
+        "startMs": 37,
+        "resultCalls": 9,
+        "durationMs": 86792,
+        "duplicateExecuted": false,
+        "foreignOwnerDenied": true,
+        "terminalCleanup": true,
+        "activeCancel": true,
+        "cancelledJobCompleted": 1,
+        "modelTurns": 0,
+        "temporaryConfigOnly": true,
+        "activeOwnedProcesses": 0
+      }
+    }
+  ],
+  "allFactoryObservations": [
+    {
+      "job": "journal (windows-latest, 22)",
+      "data": {
+        "fixture": "factory_lifetime_comparison",
+        "phase": "deliberate_orphan",
+        "observed": [
+          1048
+        ],
+        "legacy": {
+          "observed": [
+            1048
+          ],
+          "legacyOnly": [],
+          "rows": [
+            {
+              "pid": 1048,
+              "parent": 6272,
+              "started": "2026-10-22T23:36:59.5935700Z"
+            }
+          ],
+          "rootRows": [
+            {
+              "pid": 1048,
+              "parent": 6272,
+              "started": "2026-10-22T23:36:59.5935700Z"
+            },
+            {
+              "pid": 4328,
+              "parent": 1572,
+              "started": "2026-10-22T23:37:00.1252690Z"
+            }
+          ],
+          "auditHelperPid": 4328,
+          "auditHelperMatched": false
+        },
+        "lifetimes": [
+          {
+            "runId": "ec311def-6b6a-4c98-81b2-a025a95f17cc",
+            "roots": [
+              3980,
+              6272,
+              1048,
+              7416
+            ],
+            "identities": [
+              [
+                3980,
+                "2026-10-22T23:36:59.4838760Z"
+              ],
+              [
+                6272,
+                "2026-10-22T23:36:59.5280180Z"
+              ],
+              [
+                1048,
+                "2026-10-22T23:36:59.5935700Z"
+              ],
+              [
+                7416,
+                "2026-10-22T23:36:59.5305720Z"
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "originalTeardown": [
+    {
+      "job": "test (macos-15-intel)",
+      "data": {
+        "fixture": "original_mcp_teardown",
+        "clientCount": 1,
+        "closeRejectedCount": 0,
+        "clients": [
+          {
+            "calls": 18,
+            "pending": 0,
+            "active": [],
+            "recent": [
+              {
+                "tool": "browser_tabs",
+                "outcome": "returned",
+                "durationMs": 101
+              },
+              {
+                "tool": "browser_tabs",
+                "outcome": "returned",
+                "durationMs": 119
+              },
+              {
+                "tool": "browser_stop_tracing",
+                "outcome": "returned",
+                "durationMs": 168
+              },
+              {
+                "tool": "browser_pdf_save",
+                "outcome": "returned",
+                "durationMs": 407
+              }
+            ]
+          }
+        ],
+        "stderr": [
+          {
+            "ended": false,
+            "byteLimit": 1048576,
+            "retainedBytes": 162,
+            "overflow": false
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "job": "test (macos-15-intel)",
+      "data": {
+        "fixture": "original_mcp_teardown",
+        "clientCount": 1,
+        "closeRejectedCount": 0,
+        "clients": [
+          {
+            "calls": 18,
+            "pending": 0,
+            "active": [],
+            "recent": [
+              {
+                "tool": "browser_tabs",
+                "outcome": "returned",
+                "durationMs": 101
+              },
+              {
+                "tool": "browser_tabs",
+                "outcome": "returned",
+                "durationMs": 119
+              },
+              {
+                "tool": "browser_stop_tracing",
+                "outcome": "returned",
+                "durationMs": 168
+              },
+              {
+                "tool": "browser_pdf_save",
+                "outcome": "returned",
+                "durationMs": 407
+              }
+            ]
+          }
+        ],
+        "stderr": [
+          {
+            "ended": false,
+            "byteLimit": 1048576,
+            "retainedBytes": 162,
+            "overflow": false
+          }
+        ],
+        "truncated": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+✔ cooperative context cleanup timeout retains fixed stage and stays failed (27.154266ms)
+✔ cooperative context cleanup error retains fixed stage and stays failed (3.155486ms)
+✔ untrusted Retry-After hints cannot exceed bounded durable result metadata (4.9295ms)
+✔ all three close failures plus final server kill failure remain bounded fixed metadata (2.380283ms)
+✖ client step failure receipts retain fixed taxonomy without private step fields (1.506927ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 108.385222
+
+✖ failing tests:
+
+test at local-batch/cleanup-diagnostics.test.mjs:70:1
+✖ client step failure receipts retain fixed taxonomy without private step fields (1.506927ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   error: 'unknown',
+  -   error: 'setup_failed',
+      failureKind: 'unknown',
+  +   type: 'unknown'
+  -   index: 0,
+  -   type: 'setup'
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/cleanup-diagnostics.test.mjs:84:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { type: 'unknown', error: 'unknown', failureKind: 'unknown' },
+    expected: { index: 0, type: 'setup', error: 'setup_failed', failureKind: 'unknown' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

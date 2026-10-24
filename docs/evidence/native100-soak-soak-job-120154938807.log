@@ -1,0 +1,523 @@
+functional_soak (ubuntu-latest)	Set up job	﻿2026-10-22T23:46:35.8550623Z Current runner version: '2.338.0'
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8575404Z ##[group]Runner Image Provisioner
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8576562Z Hosted Compute Agent
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8577175Z Version: 20261012.601
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8577886Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8578626Z Build Date: 2026-10-12T17:48:21Z
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8579320Z Worker ID: {4657a456-e337-4b74-b105-68ec9ecdd9ac}
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8580110Z Region: westus2
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8580668Z Cloud: Azure
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8581246Z ##[endgroup]
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8582719Z ##[group]Operating System
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8583431Z Ubuntu
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8584053Z 24.04.5
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8584566Z LTS
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8585117Z ##[endgroup]
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8585697Z ##[group]Runner Image
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8586857Z Image: ubuntu-24.04
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8587748Z Version: 20261012.334.1
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8588852Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8590737Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8591765Z ##[endgroup]
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8592960Z ##[group]GITHUB_TOKEN Permissions
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8594824Z Contents: read
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8595553Z Metadata: read
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8596356Z ##[endgroup]
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8599026Z Secret source: Actions
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8600014Z Cache mode: write
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8600688Z Prepare workflow directory
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.8955400Z Prepare all required actions
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:35.9005030Z Getting action download info
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:36.2484185Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:36.3422345Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:36.5870615Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+functional_soak (ubuntu-latest)	Set up job	2026-10-22T23:46:36.7976649Z Complete job name: functional_soak (ubuntu-latest)
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T23:46:36.8837415Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8838972Z with:
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8839760Z   repository: timmiballz22/playwright-mcp
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8844114Z   token: ***
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8844552Z   ssh-strict: true
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8844980Z   ssh-user: git
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8845412Z   persist-credentials: true
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8845879Z   clean: true
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8846465Z   sparse-checkout-cone-mode: true
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8846963Z   fetch-depth: 1
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8847378Z   fetch-tags: false
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8847800Z   show-progress: true
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8848231Z   lfs: false
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8848634Z   submodules: false
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8849063Z   set-safe-directory: true
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8849578Z   allow-unsafe-pr-checkout: false
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.8850403Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.9863479Z Syncing repository: timmiballz22/playwright-mcp
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.9866365Z ##[group]Getting Git version info
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.9867754Z Working directory is '/home/runner/work/playwright-mcp/playwright-mcp'
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.9869541Z [command]/usr/bin/git version
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.9929791Z git version 2.55.0
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.9952554Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.9962663Z Temporarily overriding HOME='/home/runner/work/_temp/3eac5ba6-ff86-42bf-9a68-509ca8b8d07d' before making global git config changes
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.9965014Z Adding repository directory to the temporary git global config as a safe directory
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:36.9970897Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/playwright-mcp/playwright-mcp
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0021878Z Deleting the contents of '/home/runner/work/playwright-mcp/playwright-mcp'
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0030453Z ##[group]Determining repository object format
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0031730Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0032449Z ##[group]Initializing the repository
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0035460Z [command]/usr/bin/git init /home/runner/work/playwright-mcp/playwright-mcp
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0149576Z hint: Using 'master' as the name for the initial branch. This default branch name
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0151373Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0153241Z hint: to use in all of your new repositories, which will suppress this warning,
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0154708Z hint: call:
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0155534Z hint:
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0156707Z hint: 	git config --global init.defaultBranch <name>
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0157902Z hint:
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0159094Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0160940Z hint: 'development'. The just-created branch can be renamed via this command:
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0162417Z hint:
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0163274Z hint: 	git branch -m <name>
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0164208Z hint:
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0165952Z hint: Disable this message with "git config set advice.defaultBranchName false"
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0168255Z Initialized empty Git repository in /home/runner/work/playwright-mcp/playwright-mcp/.git/
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0171303Z [command]/usr/bin/git remote add origin https://github.com/timmiballz22/playwright-mcp
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0215653Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0217271Z ##[group]Disabling automatic garbage collection
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0220143Z [command]/usr/bin/git config --local gc.auto 0
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0253496Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0255019Z ##[group]Setting up auth
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0255843Z Removing SSH command configuration
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0260299Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0297237Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0712518Z Removing HTTP extra header
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0718647Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0761203Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0983615Z Removing includeIf entries pointing to credentials config files
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.0988603Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.1024228Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.1254132Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-ed2a517a-b03a-43d9-bb97-3e23ac018ef5.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.1295063Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path /home/runner/work/_temp/git-credentials-ed2a517a-b03a-43d9-bb97-3e23ac018ef5.config
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.1328742Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-ed2a517a-b03a-43d9-bb97-3e23ac018ef5.config
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.1365263Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-ed2a517a-b03a-43d9-bb97-3e23ac018ef5.config
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.1400025Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-ed2a517a-b03a-43d9-bb97-3e23ac018ef5.config
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.1433159Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.1434004Z ##[group]Fetching the repository
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:37.1440408Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b2cbc636f4188e3a9bbea335b2908a779f578f57:refs/remotes/origin/feat/local-production-hardening
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8556979Z From https://github.com/timmiballz22/playwright-mcp
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8558298Z  * [new ref]         b2cbc636f4188e3a9bbea335b2908a779f578f57 -> origin/feat/local-production-hardening
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8576100Z [command]/usr/bin/git branch --list --remote origin/feat/local-production-hardening
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8596479Z   origin/feat/local-production-hardening
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8603963Z [command]/usr/bin/git rev-parse refs/remotes/origin/feat/local-production-hardening
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8630245Z b2cbc636f4188e3a9bbea335b2908a779f578f57
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8634396Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8635323Z ##[group]Determining the checkout info
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8636559Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8640704Z [command]/usr/bin/git sparse-checkout disable
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8694969Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8728747Z ##[group]Checking out the ref
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:42.8734084Z [command]/usr/bin/git checkout --progress --force -B feat/local-production-hardening refs/remotes/origin/feat/local-production-hardening
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:43.3848408Z Switched to a new branch 'feat/local-production-hardening'
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:43.3853589Z branch 'feat/local-production-hardening' set up to track 'origin/feat/local-production-hardening'.
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:43.3911646Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:43.3961622Z [command]/usr/bin/git log -1 --format=%H
+functional_soak (ubuntu-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:46:43.3990870Z b2cbc636f4188e3a9bbea335b2908a779f578f57
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-22T23:46:43.4332106Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:43.4332619Z with:
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:43.4332853Z   node-version: 22
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:43.4333103Z   cache: npm
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:43.4333343Z   check-latest: false
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:43.4335778Z   token: ***
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:43.4336043Z   package-manager-cache: true
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:43.4336727Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:43.5580034Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:43.6682081Z ##[group]Environment details
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:44.0061440Z node: v22.23.3
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:44.0061861Z npm: 10.9.9
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:44.0062103Z yarn: 1.22.22
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:44.0062861Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:44.0079307Z [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:44.1237507Z /home/runner/.npm
+functional_soak (ubuntu-latest)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:46:44.3687103Z npm cache is not found
+functional_soak (ubuntu-latest)	Run npm ci	﻿2026-10-22T23:46:44.3838757Z ##[group]Run npm ci
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:44.3839094Z [36;1mnpm ci[0m
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:44.4110012Z shell: /usr/bin/bash -e {0}
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:44.4110311Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1236276Z 
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1864309Z {"component":"private_vp9_metadata_patch","version":"1.64.1","changed":true,"sha256":"9f9750ae24604e2099e1c1f6564d5d6cb3d19d30dfbc8b5ec61ba18c0989e25a"}
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1865675Z > @timmiballz22/playwright-mcp-local@0.0.83 prepare
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1866435Z > node scripts/prepare-vp9-metadata.cjs
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1866733Z 
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1940873Z 
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1941348Z added 103 packages, and audited 104 packages in 4s
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1941818Z 
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1942006Z 31 packages are looking for funding
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1942334Z   run `npm fund` for details
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1959096Z 
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1959435Z 1 moderate severity vulnerability
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1959703Z 
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1959841Z To address all issues, run:
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1960177Z   npm audit fix
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1960319Z 
+functional_soak (ubuntu-latest)	Run npm ci	2026-10-22T23:46:48.1960450Z Run `npm audit` for details.
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	﻿2026-10-22T23:46:48.2516445Z Prepare all required actions
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2563549Z ##[group]Run ./.github/actions/ubuntu-archive
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2563872Z ##[endgroup]
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2617930Z ##[start-action display=Run # Runner images can indirect Ubuntu URIs through apt-mirrors.txt.;id=__self.__run]
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2643595Z ##[group]Run # Runner images can indirect Ubuntu URIs through apt-mirrors.txt.
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2644212Z [36;1m# Runner images can indirect Ubuntu URIs through apt-mirrors.txt.[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2644739Z [36;1m# Change only the known public Azure URI, preserving apt signatures.[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2645146Z [36;1mchanged_files=0[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2645573Z [36;1mfor source_file in /etc/apt/sources.list /etc/apt/sources.list.d/ubuntu.sources; do[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2646526Z [36;1m  if [[ -f "$source_file" ]] && grep -qE '(^|[[:space:]])https?://azure[.]archive[.]ubuntu[.]com/ubuntu/?([[:space:]]|$)' "$source_file"; then[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2647505Z [36;1m    sudo sed -i -E 's#(^|[[:space:]])https?://azure[.]archive[.]ubuntu[.]com/ubuntu(/?)([[:space:]]|$)#\1https://archive.ubuntu.com/ubuntu\2\3#g' "$source_file"[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2648213Z [36;1m    changed_files=$((changed_files + 1))[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2648507Z [36;1m  fi[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2648702Z [36;1mdone[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2648923Z [36;1msource_file=/etc/apt/apt-mirrors.txt[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2649553Z [36;1mif [[ -f "$source_file" ]] && grep -qE '^[[:space:]]*https?://azure[.]archive[.]ubuntu[.]com/ubuntu/?([[:space:]]|$)' "$source_file"; then[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2650313Z [36;1m  if grep -qE '^[[:space:]]*https://archive[.]ubuntu[.]com/ubuntu/?([[:space:]]|$)' "$source_file"; then[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2651050Z [36;1m    sudo sed -i -E '\#^[[:space:]]*https?://azure[.]archive[.]ubuntu[.]com/ubuntu/?([[:space:]]|$)#d' "$source_file"[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2651549Z [36;1m  else[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2652111Z [36;1m    sudo sed -i -E 's#(^|[[:space:]])https?://azure[.]archive[.]ubuntu[.]com/ubuntu(/?)([[:space:]]|$)#\1https://archive.ubuntu.com/ubuntu\2\3#g' "$source_file"[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2652734Z [36;1m  fi[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2652963Z [36;1m  changed_files=$((changed_files + 1))[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2653256Z [36;1mfi[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2653717Z [36;1mfor source_file in /etc/apt/sources.list /etc/apt/sources.list.d/ubuntu.sources /etc/apt/apt-mirrors.txt; do[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2654626Z [36;1m  if [[ -f "$source_file" ]] && grep -vE '^[[:space:]]*#' "$source_file" | grep -E '(^|[[:space:]])https?://azure[.]archive[.]ubuntu[.]com/ubuntu/?([[:space:]]|$)' > /dev/null; then[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2655407Z [36;1m    echo 'Known Azure Ubuntu URI remains in targeted configuration.' >&2[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2655792Z [36;1m    exit 1[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2656006Z [36;1m  fi[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2656348Z [36;1mdone[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2656828Z [36;1mprintf '::notice title=Ubuntu archive sources::changedFiles=%s remainingMatchedAzureEntries=0\n' "$changed_files"[0m
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2723212Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.2723581Z ##[endgroup]
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.3011111Z ##[notice]changedFiles=1 remainingMatchedAzureEntries=0
+functional_soak (ubuntu-latest)	Use canonical Ubuntu archive for browser dependencies	2026-10-22T23:46:48.3021703Z ##[end-action id=__self.__run;outcome=success;conclusion=success;duration_ms=40]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	﻿2026-10-22T23:46:48.3070901Z ##[group]Run npx playwright install --with-deps chromium
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:48.3071365Z [36;1mnpx playwright install --with-deps chromium[0m
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:48.3132539Z shell: /usr/bin/bash -e {0}
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:48.3132818Z ##[endgroup]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:49.0835815Z Installing dependencies...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:49.0954804Z Switching to root user to install dependencies...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:49.1788657Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [93 B]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:49.2138336Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:49.2954418Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [635 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:49.3136476Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.4 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:49.3163616Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [572 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:49.9470678Z Hit:2 https://archive.ubuntu.com/ubuntu noble InRelease
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:50.0967185Z Get:3 https://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:50.6250227Z Get:4 https://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:50.9281365Z Get:5 https://archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:51.1323984Z Get:10 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1400 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:51.8368594Z Get:11 https://archive.ubuntu.com/ubuntu noble-updates/main Translation-en [310 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:52.0035212Z Get:12 https://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1706 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:52.3486645Z Get:13 https://archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [342 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:52.5039822Z Get:14 https://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1805 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:52.7320273Z Get:15 https://archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [411 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:52.8884759Z Get:16 https://archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1146 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:53.0779862Z Get:17 https://archive.ubuntu.com/ubuntu noble-security/main Translation-en [231 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:53.2269599Z Get:18 https://archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1222 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:53.4190805Z Get:19 https://archive.ubuntu.com/ubuntu noble-security/universe Translation-en [246 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:53.7493607Z Get:20 https://archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1713 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:53.9634660Z Get:21 https://archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [392 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:56.0304704Z Fetched 12.5 MB in 5s (2568 kB/s)
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:56.9416838Z Reading package lists...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:56.9651313Z Reading package lists...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.1352726Z Building dependency tree...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.1360510Z Reading state information...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2858018Z libasound2t64 is already the newest version (1.2.11-1ubuntu0.3).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2877343Z libasound2t64 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2887933Z libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2888869Z libatk-bridge2.0-0t64 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2889383Z libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2889822Z libatk1.0-0t64 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2890267Z libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2890693Z libatspi2.0-0t64 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2891096Z libcairo2 is already the newest version (1.18.0-3build1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2891818Z libcairo2 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2892597Z libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.14).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2893357Z libcups2t64 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2893792Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2894531Z libdbus-1-3 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2894954Z libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.2).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2895553Z libdrm2 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2896538Z libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.4).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2897299Z libgbm1 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2898091Z libnspr4 is already the newest version (2:4.35-1.1build1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2898831Z libnspr4 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2899581Z libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2900399Z libpango-1.0-0 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2901121Z libx11-6 is already the newest version (2:1.8.7-1ubuntu0.1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2901797Z libx11-6 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2902700Z libxcb1 is already the newest version (1.15-1ubuntu2).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2903356Z libxcb1 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2904104Z libxcomposite1 is already the newest version (1:0.4.5-1build3).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2904841Z libxcomposite1 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2905576Z libxdamage1 is already the newest version (1:1.1.6-1build1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2906595Z libxdamage1 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2907323Z libxext6 is already the newest version (2:1.3.4-1build2).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2907986Z libxext6 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2908680Z libxfixes3 is already the newest version (1:6.0.0-2build1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2909364Z libxfixes3 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2910079Z libxkbcommon0 is already the newest version (1.6.0-1build1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2910788Z libxkbcommon0 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2911508Z libxrandr2 is already the newest version (2:1.5.2-2build1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2912187Z libxrandr2 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2913038Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2914174Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2914950Z libfontconfig1 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2915738Z libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.2).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2916699Z libfreetype6 set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2917422Z fonts-liberation is already the newest version (1:2.1.5-3).
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2918138Z fonts-liberation set to manually installed.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2918830Z The following additional packages will be installed:
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2919611Z   gir1.2-glib-2.0 libglib2.0-bin libglib2.0-data libnss3-tools
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2920344Z   xfonts-encodings xfonts-utils xserver-common
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2920912Z Suggested packages:
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2921305Z   low-memory-monitor
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2921719Z Recommended packages:
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.2922237Z   fonts-ipafont-mincho fonts-tlwg-loma xfonts-base
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.3118796Z The following NEW packages will be installed:
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.3119790Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.3124740Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.3125196Z   xfonts-utils
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.3128702Z The following packages will be upgraded:
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.3130562Z   gir1.2-glib-2.0 libglib2.0-0t64 libglib2.0-bin libglib2.0-data libnss3
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.3134712Z   libnss3-tools xserver-common xvfb
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.3296031Z 8 upgraded, 9 newly installed, 0 to remove and 91 not upgraded.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.3297197Z Need to get 25.9 MB of archives.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.3297991Z After this operation, 79.5 MB of additional disk space will be used.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:57.3298876Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [93 B]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:58.0989519Z Get:2 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:59.7758611Z Get:3 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-data all 2.80.0-6ubuntu3.10 [50.2 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:46:59.9164225Z Get:4 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-bin amd64 2.80.0-6ubuntu3.10 [97.9 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:00.0589822Z Get:5 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 gir1.2-glib-2.0 amd64 2.80.0-6ubuntu3.10 [183 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:00.2054951Z Get:6 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-0t64 amd64 2.80.0-6ubuntu3.10 [1548 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:00.4090263Z Get:7 https://archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2 [5641 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:00.8375329Z Get:8 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:00.9787398Z Get:9 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1 [2993 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:01.1634315Z Get:10 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:01.4629990Z Get:11 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 libnss3 amd64 2:3.98-1ubuntu0.3 [1445 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:01.6139382Z Get:12 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 libnss3-tools amd64 2:3.98-1ubuntu0.3 [615 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:01.7581209Z Get:13 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:01.9020981Z Get:14 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.0425706Z Get:15 https://archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.1850114Z Get:16 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.3280592Z Get:17 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 xserver-common all 2:21.1.12-1ubuntu1.9 [35.0 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.4678783Z Get:18 https://archive.ubuntu.com/ubuntu noble-updates/universe amd64 xvfb amd64 2:21.1.12-1ubuntu1.9 [877 kB]
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.8585081Z Fetched 25.9 MB in 5s (5032 kB/s)
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.8839617Z Selecting previously unselected package fonts-ipafont-gothic.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9142940Z (Reading database ... 
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9143561Z (Reading database ... 5%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9144034Z (Reading database ... 10%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9144426Z (Reading database ... 15%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9144796Z (Reading database ... 20%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9145172Z (Reading database ... 25%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9145532Z (Reading database ... 30%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9146033Z (Reading database ... 35%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9146778Z (Reading database ... 40%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9147182Z (Reading database ... 45%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9147583Z (Reading database ... 50%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:02.9188130Z (Reading database ... 55%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:03.0675429Z (Reading database ... 60%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:03.2734152Z (Reading database ... 65%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:03.4599875Z (Reading database ... 70%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:03.6661931Z (Reading database ... 75%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:03.8275431Z (Reading database ... 80%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.0158854Z (Reading database ... 85%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.1950746Z (Reading database ... 90%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.3693246Z (Reading database ... 95%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.3693874Z (Reading database ... 100%
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.3694632Z (Reading database ... 203540 files and directories currently installed.)
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.3733618Z Preparing to unpack .../00-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.3827780Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.6201336Z Preparing to unpack .../01-libglib2.0-data_2.80.0-6ubuntu3.10_all.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.6223460Z Unpacking libglib2.0-data (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.6551929Z Preparing to unpack .../02-libglib2.0-bin_2.80.0-6ubuntu3.10_amd64.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.6575909Z Unpacking libglib2.0-bin (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.7054264Z Preparing to unpack .../03-gir1.2-glib-2.0_2.80.0-6ubuntu3.10_amd64.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.7080524Z Unpacking gir1.2-glib-2.0:amd64 (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.7468770Z Preparing to unpack .../04-libglib2.0-0t64_2.80.0-6ubuntu3.10_amd64.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.7535982Z Unpacking libglib2.0-0t64:amd64 (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.7937219Z Selecting previously unselected package fonts-freefont-ttf.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.8062128Z Preparing to unpack .../05-fonts-freefont-ttf_20211204+svn4273-2_all.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.8071222Z Unpacking fonts-freefont-ttf (20211204+svn4273-2) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.8816703Z Selecting previously unselected package fonts-tlwg-loma-otf.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.8942040Z Preparing to unpack .../06-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.8949864Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.9152494Z Selecting previously unselected package fonts-unifont.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.9277661Z Preparing to unpack .../07-fonts-unifont_1%3a15.1.01-1build1_all.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:04.9288451Z Unpacking fonts-unifont (1:15.1.01-1build1) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.0299900Z Selecting previously unselected package fonts-wqy-zenhei.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.0425817Z Preparing to unpack .../08-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.0544269Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.5188348Z Preparing to unpack .../09-libnss3_2%3a3.98-1ubuntu0.3_amd64.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.5208921Z Unpacking libnss3:amd64 (2:3.98-1ubuntu0.3) over (2:3.98-1ubuntu0.2) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.5685840Z Preparing to unpack .../10-libnss3-tools_2%3a3.98-1ubuntu0.3_amd64.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.5703387Z Unpacking libnss3-tools (2:3.98-1ubuntu0.3) over (2:3.98-1ubuntu0.2) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.6088450Z Selecting previously unselected package xfonts-encodings.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.6214822Z Preparing to unpack .../11-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.6221553Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.6494740Z Selecting previously unselected package xfonts-utils.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.6617311Z Preparing to unpack .../12-xfonts-utils_1%3a7.7+6build3_amd64.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.6624260Z Unpacking xfonts-utils (1:7.7+6build3) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.6923702Z Selecting previously unselected package xfonts-cyrillic.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.7045898Z Preparing to unpack .../13-xfonts-cyrillic_1%3a1.0.5+nmu1_all.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.7053023Z Unpacking xfonts-cyrillic (1:1.0.5+nmu1) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.7369695Z Selecting previously unselected package xfonts-scalable.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.7491536Z Preparing to unpack .../14-xfonts-scalable_1%3a1.0.3-1.3_all.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.7498098Z Unpacking xfonts-scalable (1:1.0.3-1.3) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.7833054Z Preparing to unpack .../15-xserver-common_2%3a21.1.12-1ubuntu1.9_all.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.7853334Z Unpacking xserver-common (2:21.1.12-1ubuntu1.9) over (2:21.1.12-1ubuntu1.8) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.8181058Z Preparing to unpack .../16-xvfb_2%3a21.1.12-1ubuntu1.9_amd64.deb ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.8199288Z Unpacking xvfb (2:21.1.12-1ubuntu1.9) over (2:21.1.12-1ubuntu1.8) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.8726416Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.8839993Z Setting up fonts-freefont-ttf (20211204+svn4273-2) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.8857461Z Setting up libnss3:amd64 (2:3.98-1ubuntu0.3) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.8876378Z Setting up libglib2.0-0t64:amd64 (2.80.0-6ubuntu3.10) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.8981436Z Setting up libglib2.0-data (2.80.0-6ubuntu3.10) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.8998487Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9014561Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9031491Z Setting up gir1.2-glib-2.0:amd64 (2.80.0-6ubuntu3.10) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9047799Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9111833Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9127642Z Setting up xserver-common (2:21.1.12-1ubuntu1.9) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9144898Z Setting up libnss3-tools (2:3.98-1ubuntu0.3) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9163218Z Setting up fonts-unifont (1:15.1.01-1build1) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9180119Z Setting up xvfb (2:21.1.12-1ubuntu1.9) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9196905Z Setting up libglib2.0-bin (2.80.0-6ubuntu3.10) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9213106Z Setting up xfonts-utils (1:7.7+6build3) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9249638Z Setting up xfonts-cyrillic (1:1.0.5+nmu1) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9693894Z Setting up xfonts-scalable (1:1.0.3-1.3) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:05.9972389Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.0319935Z Processing triggers for man-db (2.12.0-4build2) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.0342608Z Not building database; man-db/auto-update is not 'true'.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.0352990Z Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.6852523Z 
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.6853393Z Running kernel seems to be up-to-date.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.6853732Z 
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.6853882Z Restarting services...
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.7299482Z  systemctl restart packagekit.service php8.3-fpm.service polkit.service udisks2.service
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.8852941Z 
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.8853928Z Service restarts being deferred:
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.8855356Z  systemctl restart ModemManager.service
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.8856822Z  systemctl restart networkd-dispatcher.service
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.8857622Z 
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.8858182Z No containers need to be restarted.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.8858641Z 
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.8859317Z No user sessions are running outdated binaries.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.8860148Z 
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:06.8861114Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:07.7140494Z Downloading Chrome for Testing 156.0.8078.4 (playwright chromium v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:08.1732818Z |                                                                                |   0% of 191.1 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:08.3416668Z |■■■■■■■■                                                                        |  10% of 191.1 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:08.4441711Z |■■■■■■■■■■■■■■■■                                                                |  20% of 191.1 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:08.5372845Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 191.1 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:08.6729909Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 191.1 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:08.7817289Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 191.1 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:08.8817118Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 191.1 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:08.9869369Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 191.1 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:09.0825543Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 191.1 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:09.1869353Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 191.1 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:09.2897188Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 191.1 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.1906914Z Chrome for Testing 156.0.8078.4 (playwright chromium v1248) downloaded to /home/runner/.cache/ms-playwright/chromium-1248
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.1912011Z Downloading FFmpeg (playwright ffmpeg v1013) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-linux.zip
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.5711561Z |                                                                                |   0% of 2.2 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.5830005Z |■■■■■■■■                                                                        |  10% of 2.2 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.5925447Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.2 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.5979090Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.2 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.6016615Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.2 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.6044813Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.2 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.6090534Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.2 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.6108235Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.2 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.6135774Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.2 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.6159350Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.2 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.6181079Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.2 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.6895014Z FFmpeg (playwright ffmpeg v1013) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1013
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:12.6899364Z Downloading Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-headless-shell-linux64.zip
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:13.1058178Z |                                                                                |   0% of 120 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:13.2865221Z |■■■■■■■■                                                                        |  10% of 120 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:13.3486462Z |■■■■■■■■■■■■■■■■                                                                |  20% of 120 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:13.4127379Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 120 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:13.4574597Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 120 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:13.5117335Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 120 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:13.5615305Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 120 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:13.6130253Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 120 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:13.6650754Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 120 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:13.7155365Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 120 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:13.7674037Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 120 MiB
+functional_soak (ubuntu-latest)	Run npx playwright install --with-deps chromium	2026-10-22T23:47:15.9594881Z Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1248
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	﻿2026-10-22T23:47:15.9866431Z ##[group]Run node scripts/soak-local.mjs 100 2>&1 | tee functional-soak.log
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:47:15.9867030Z [36;1mnode scripts/soak-local.mjs 100 2>&1 | tee functional-soak.log[0m
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:47:15.9934251Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:47:15.9934606Z ##[endgroup]
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:47:25.2098766Z {"runs":10,"completed":60,"activeOwnedAfterEveryRun":0,"freshCookieAndLocalStorageVerified":true,"elapsedMs":9143}
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:47:34.1335419Z {"runs":20,"completed":120,"activeOwnedAfterEveryRun":0,"freshCookieAndLocalStorageVerified":true,"elapsedMs":18067}
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:47:43.1440356Z {"runs":30,"completed":180,"activeOwnedAfterEveryRun":0,"freshCookieAndLocalStorageVerified":true,"elapsedMs":27077}
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:47:52.1130978Z {"runs":40,"completed":240,"activeOwnedAfterEveryRun":0,"freshCookieAndLocalStorageVerified":true,"elapsedMs":36046}
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:48:00.9685390Z {"runs":50,"completed":300,"activeOwnedAfterEveryRun":0,"freshCookieAndLocalStorageVerified":true,"elapsedMs":44902}
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:48:10.6596497Z {"runs":60,"completed":360,"activeOwnedAfterEveryRun":0,"freshCookieAndLocalStorageVerified":true,"elapsedMs":54593}
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:48:19.6751469Z {"runs":70,"completed":420,"activeOwnedAfterEveryRun":0,"freshCookieAndLocalStorageVerified":true,"elapsedMs":63609}
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:48:29.0725329Z {"runs":80,"completed":480,"activeOwnedAfterEveryRun":0,"freshCookieAndLocalStorageVerified":true,"elapsedMs":73006}
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:48:37.9577467Z {"runs":90,"completed":540,"activeOwnedAfterEveryRun":0,"freshCookieAndLocalStorageVerified":true,"elapsedMs":81891}
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:48:47.0492991Z {"runs":100,"completed":600,"activeOwnedAfterEveryRun":0,"freshCookieAndLocalStorageVerified":true,"elapsedMs":90983}
+functional_soak (ubuntu-latest)	Exercise 100 supervised fresh functional workflows	2026-10-22T23:48:47.0497591Z {"scope":"portable_functional_soak","os":"linux","runs":100,"completed":600,"elapsedMs":90983,"activeOwnedAfterEveryRun":0,"freshCookieAndLocalStorageVerified":true,"minSubjectRssIncludingAudit":67903488,"maxSubjectRssIncludingAudit":73076736,"note":"No browser RSS, CPU, handle or FD bounds are established by this functional soak"}
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	﻿2026-10-22T23:48:47.0863812Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.0864442Z with:
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.0864680Z   name: functional-soak-ubuntu-latest
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.0864993Z   path: functional-soak.log
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.0865373Z   retention-days: 1
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.0865595Z   if-no-files-found: error
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.0865831Z   compression-level: 6
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.0866046Z   overwrite: false
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.0866564Z   include-hidden-files: false
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.0866829Z ##[endgroup]
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.2531706Z (node:13033) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.2533287Z (Use `node --trace-deprecation ...` to show where the warning was created)
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.2581578Z With the provided path, there will be 1 file uploaded
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.2607107Z Artifact name is valid!
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.2627176Z Root directory input is valid!
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.6198620Z Beginning upload of artifact content to blob storage
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.6392447Z (node:13033) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:47.9248500Z Uploaded bytes 516
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:48.0059827Z Finished uploading artifact content to blob storage!
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:48.0061235Z SHA256 digest of uploaded artifact zip is 92ebe463a8c70d2b43f482bc1ab0235b34b9e9855f2f74866786ff05ad20ad5a
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:48.0062715Z Finalizing artifact upload
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:48.4792343Z Artifact functional-soak-ubuntu-latest.zip successfully finalized. Artifact ID 12467721139
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:48.4793570Z Artifact functional-soak-ubuntu-latest has been successfully uploaded! Final size is 516 bytes. Artifact ID is 12467721139
+functional_soak (ubuntu-latest)	Preserve functional soak receipt	2026-10-22T23:48:48.4799716Z Artifact download URL: https://github.com/timmiballz22/playwright-mcp/actions/runs/39873975191/artifacts/12467721139
+functional_soak (ubuntu-latest)	Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-22T23:48:48.4978895Z Post job cleanup.
+functional_soak (ubuntu-latest)	Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:48:48.6301154Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/playwright-mcp/playwright-mcp --files-from manifest.txt --use-compress-program zstdmt
+functional_soak (ubuntu-latest)	Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:48:49.9567267Z Sent 12364567 of 12364567 (100.0%), 11.8 MBs/sec
+functional_soak (ubuntu-latest)	Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T23:48:50.2916744Z Cache saved with the key: node-cache-Linux-x64-npm-e0b72ab14bf176ab905de84052b5da34dfbad59ce1f9a689a6e5c17c0a67a6f9
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T23:48:50.3098545Z Post job cleanup.
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.3981629Z [command]/usr/bin/git version
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4040543Z git version 2.55.0
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4079844Z Temporarily overriding HOME='/home/runner/work/_temp/48f6fb17-64a2-4142-b47f-e6e8ae31e426' before making global git config changes
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4081486Z Adding repository directory to the temporary git global config as a safe directory
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4084593Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/playwright-mcp/playwright-mcp
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4123520Z Removing SSH command configuration
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4131433Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4175100Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4455417Z Removing HTTP extra header
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4460223Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4504820Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4781221Z Removing includeIf entries pointing to credentials config files
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4788226Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4824893Z includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4826728Z includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4827747Z includeif.gitdir:/github/workspace/.git.path
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4828558Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4840025Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4868865Z /home/runner/work/_temp/git-credentials-ed2a517a-b03a-43d9-bb97-3e23ac018ef5.config
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4881433Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-ed2a517a\-b03a\-43d9\-bb97\-3e23ac018ef5\.config
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4925322Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4956245Z /home/runner/work/_temp/git-credentials-ed2a517a-b03a-43d9-bb97-3e23ac018ef5.config
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.4974289Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-ed2a517a\-b03a\-43d9\-bb97\-3e23ac018ef5\.config
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.5013043Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.5041109Z /github/runner_temp/git-credentials-ed2a517a-b03a-43d9-bb97-3e23ac018ef5.config
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.5049935Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-ed2a517a\-b03a\-43d9\-bb97\-3e23ac018ef5\.config
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.5093883Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.5121135Z /github/runner_temp/git-credentials-ed2a517a-b03a-43d9-bb97-3e23ac018ef5.config
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.5129412Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-ed2a517a\-b03a\-43d9\-bb97\-3e23ac018ef5\.config
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.5167576Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+functional_soak (ubuntu-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T23:48:50.5401581Z Removing credentials config '/home/runner/work/_temp/git-credentials-ed2a517a-b03a-43d9-bb97-3e23ac018ef5.config'
+functional_soak (ubuntu-latest)	Complete job	﻿2026-10-22T23:48:50.5565283Z Cleaning up orphan processes
+functional_soak (ubuntu-latest)	Complete job	2026-10-22T23:48:50.6002447Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

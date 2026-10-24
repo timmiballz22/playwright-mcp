@@ -1,0 +1,43 @@
+{
+  "source": "cc9562b8ab38a0a2ba6ca7de7d8a0d0a5f32026f",
+  "actualClient": "CRASHED at75 durable reported steps; no result; operatorAttentionRequired true; guardian poll/journal_unavailable/read, exit1/none; journal rpc_timeout/progress. Further browser effects and worker/browser exits are not established by this receipt.",
+  "freshSdk": "inherited iteration1 connected1/2; rpc_timeout/init and journal_unavailable. Remaining iterations/mode unexecuted after the unchanged assertion fails. Old helper discards init-phase/worker-exit lines, so their absence does not certify no phase or confirmed exit.",
+  "scope": "All source receipts retained; no signals, replay, lease clearance or historical debt clearance. Full test-summary total excludes this non-TAP failed actual-client job, which remains a separate critical failure.",
+  "receipts": [
+    {
+      "phase": "codex_primary_job",
+      "failedStep": null,
+      "state": "CRASHED",
+      "jobReason": "recovered_interrupted",
+      "jobStage": "complete",
+      "jobCompleted": 75,
+      "resultAvailable": false,
+      "operatorAttentionRequired": true,
+      "guardianFailures": [
+        "poll/journal_unavailable/read"
+      ],
+      "journalFailures": [
+        "rpc_timeout/progress"
+      ],
+      "journalInitStages": [],
+      "guardianExits": [
+        "1/none"
+      ]
+    },
+    {
+      "os": "win32",
+      "mode": "inherited",
+      "iteration": 1,
+      "clients": 2,
+      "connected": 1,
+      "durationMs": 3722,
+      "startupCodes": [
+        "journal_unavailable"
+      ],
+      "journalFailures": [
+        "rpc_timeout/init"
+      ],
+      "browserActions": 0
+    }
+  ]
+}

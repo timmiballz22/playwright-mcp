@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: component CI annotations retain only known source location and numeric test index
+ok 1 - component CI annotations retain only known source location and numeric test index
+  ---
+  duration_ms: 1.022869
+  type: 'test'
+  ...
+# Subtest: unknown CI paths, malformed fields and error text cannot enter annotations
+ok 2 - unknown CI paths, malformed fields and error text cannot enter annotations
+  ---
+  duration_ms: 0.277762
+  type: 'test'
+  ...
+# Subtest: component annotation reporter stays silent outside explicit GitHub Actions mode
+ok 3 - component annotation reporter stays silent outside explicit GitHub Actions mode
+  ---
+  duration_ms: 2.399205
+  type: 'test'
+  ...
+# Subtest: component annotations classify bounded Node failure metadata without error payloads
+ok 4 - component annotations classify bounded Node failure metadata without error payloads
+  ---
+  duration_ms: 0.432182
+  type: 'test'
+  ...
+# Subtest: component failure metadata ignores unknown codes and invalid durations with bounded traversal
+ok 5 - component failure metadata ignores unknown codes and invalid durations with bounded traversal
+  ---
+  duration_ms: 0.151849
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 59.890883

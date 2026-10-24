@@ -1,0 +1,250 @@
+[
+  {
+    "test": "not ok 88 - local stdio MCP: handshake, tool list, rejection, browser workflow",
+    "receipt": {
+      "ok": false,
+      "reason": "timeout",
+      "completed": 981,
+      "cleanup": "terminated",
+      "tempCleanup": "removed"
+    }
+  },
+  {
+    "test": "not ok 79 - real firefox direct-pipe: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup",
+    "receipt": {
+      "freshRun": 10,
+      "result": {
+        "ok": false,
+        "reason": "cleanup_failed",
+        "browser": "firefox",
+        "blockedRequests": 0,
+        "actionsSucceeded": true,
+        "cleanupFailures": [
+          "context_timeout"
+        ],
+        "completed": 23,
+        "total": 23,
+        "durationMs": 11560,
+        "results": [
+          {
+            "index": 1,
+            "repetition": 1,
+            "type": "goto",
+            "ok": true,
+            "durationMs": 390
+          },
+          {
+            "index": 2,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 339
+          },
+          {
+            "index": 3,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 50
+          },
+          {
+            "index": 4,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 70
+          },
+          {
+            "index": 5,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 100
+          },
+          {
+            "index": 6,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 98
+          },
+          {
+            "index": 7,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 62
+          },
+          {
+            "index": 8,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 78
+          },
+          {
+            "index": 9,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 77
+          },
+          {
+            "index": 10,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 63
+          },
+          {
+            "index": 11,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 47
+          },
+          {
+            "index": 12,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 48
+          },
+          {
+            "index": 13,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 53
+          },
+          {
+            "index": 14,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 57
+          },
+          {
+            "index": 15,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 62
+          },
+          {
+            "index": 16,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 48
+          },
+          {
+            "index": 17,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 62
+          },
+          {
+            "index": 18,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 48
+          },
+          {
+            "index": 19,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 78
+          },
+          {
+            "index": 20,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 78
+          },
+          {
+            "index": 21,
+            "repetition": 1,
+            "type": "click",
+            "ok": true,
+            "durationMs": 77
+          },
+          {
+            "index": 22,
+            "repetition": 1,
+            "type": "assertText",
+            "ok": true,
+            "durationMs": 5
+          },
+          {
+            "index": 23,
+            "repetition": 1,
+            "type": "screenshot",
+            "ok": true,
+            "durationMs": 21,
+            "artifact": "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\pw-batch-PM8mMA\\run-e31c1255-d1cb-4dd9-81b3-5acdf6b8845c\\step-0023.png"
+          }
+        ]
+      },
+      "cleanupFailures": [
+        "context_timeout"
+      ]
+    }
+  },
+  {
+    "test": "not ok 93 - real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits",
+    "receipt": {
+      "route": "/429",
+      "reason": "timeout",
+      "completed": 0,
+      "failedStep": {
+        "index": 1,
+        "type": "goto",
+        "ok": false,
+        "error": "cancelled",
+        "failureKind": "interrupted"
+      },
+      "execution": {
+        "mode": "supervised",
+        "forced": false,
+        "cleanup": "terminated",
+        "tempCleanup": "removed",
+        "supervisorPid": 1736,
+        "workerPid": 3404,
+        "browserPids": [
+          7424
+        ]
+      },
+      "hits": 2,
+      "timing": {
+        "supervisorEventMs": 5,
+        "workerEventMs": 73,
+        "browserEventMs": 1650,
+        "requestsSeen": 2,
+        "responsesFinished": 2,
+        "firstRequestMs": 4402,
+        "lastResponseFinishedMs": 5421
+      }
+    }
+  },
+  {
+    "test": "not ok 103 - firefox: operator page limit stops an approved popup burst without executing the next step",
+    "receipt": {
+      "fixture": "page_limit_ownership",
+      "browser": "firefox",
+      "phase": "reuse",
+      "audit": {
+        "observedCount": 2,
+        "auditHelperMatched": true,
+        "rootMatches": 1,
+        "rememberedRootBirths": 0,
+        "birthsBeforeObservationWindow": 0,
+        "missingObservedBirths": 0
+      }
+    }
+  }
+]

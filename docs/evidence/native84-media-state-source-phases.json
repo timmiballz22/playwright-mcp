@@ -1,0 +1,18 @@
+{
+  "beforeSha256": {
+    "tests/media.spec.ts": "53b4b800bed2df5472ee57181fffae4ef7bb60ec6f00828e3d8cb77b8f1016d8",
+    "tests/video-playback.spec.ts": "262f884694442c00cfd6f5aeea91a5c2bffa8ca0d0f9cb70e08354d686952d2a"
+  },
+  "change": "Readiness wait remains5000ms; one fewer RPC in each fixture. Timeout still fails even if late state becomes ready. Original pixel and initial-state assertions remain, with fixed codec/error/ready/network diagnostics. No skip, encoder/dependency change or unsupported classification.",
+  "intermediateReadyStatePollSha256": {
+    "tests/media.spec.ts": "5d2673a34a0a2cb995956d73d4e93b97a57a0aef4bda5c0af97294dfeb2704c4",
+    "tests/video-playback.spec.ts": "62c2745702992ed98d290f39e6527b5bb4b8769afeae70330a7454d4bd7445bf"
+  },
+  "afterSha256": {
+    "tests/media.spec.ts": "0860d7d83fc0696a83518489239eb20572c90b52dcec671eb64ca51273dd28a1",
+    "tests/video-playback.spec.ts": "fa6330b4a8e083649e0883b7caa865f2b9e8a76ad800049d9798576066183a58"
+  },
+  "finalWaiter": "Same existing getByText(label).first().waitFor(visible,5000) as the original wait tool; not a weaker readyState-only predicate.",
+  "beforePaintWitnessSha256": "082b1d225924e1931275a18f41e6b3b64494ff2fcb82fa6c3ecb9f568ae1b43a",
+  "paintPrecondition": "Single actual PNG capture before recording, bounded bytes/dimensions and same red-pixel threshold. Initial decoded-frame assertion retained; no sleep, retry or runtime warm-up introduced."
+}

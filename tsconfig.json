@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "allowJs": true,
+    "checkJs": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "noImplicitOverride": true,
+    "useUnknownInCatchVariables": false,
+    "useDefineForClassFields": false,
+    "skipLibCheck": false,
+    "types": [
+      "node"
+    ]
+  },
+  "files": [
+    "index.d.ts",
+    "config.d.ts"
+  ],
+  "include": [
+    "tests/**/*.ts",
+    "playwright.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "docs/evidence",
+    "test-results"
+  ]
+}

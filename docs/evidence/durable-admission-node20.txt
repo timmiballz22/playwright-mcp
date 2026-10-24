@@ -1,0 +1,80 @@
+TAP version 13
+# Subtest: supervised hang: bounded completion and owned process cleanup
+ok 1 - supervised hang: bounded completion and owned process cleanup # SKIP test name does not match pattern
+  ---
+  duration_ms: 1.226388
+  ...
+# Subtest: supervised report-stall: bounded completion and owned process cleanup
+ok 2 - supervised report-stall: bounded completion and owned process cleanup # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.112042
+  ...
+# Subtest: supervised crash: bounded completion and owned process cleanup
+ok 3 - supervised crash: bounded completion and owned process cleanup # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.27299
+  ...
+# Subtest: pre-cancelled execution never starts a worker
+ok 4 - pre-cancelled execution never starts a worker # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.085598
+  ...
+# Subtest: cancel interrupts a worker that cannot service its abort listener
+ok 5 - cancel interrupts a worker that cannot service its abort listener # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.08817
+  ...
+# Subtest: supervisor crash cannot strand its worker or detached child
+ok 6 - supervisor crash cannot strand its worker or detached child # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.116716
+  ...
+# Subtest: cancellation between precheck and supervisor startup does not start a worker
+ok 7 - cancellation between precheck and supervisor startup does not start a worker # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.185748
+  ...
+# Subtest: safe failure and lower-bound progress survive supervisor death without raw diagnostics
+ok 8 - safe failure and lower-bound progress survive supervisor death without raw diagnostics # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.08745
+  ...
+# Subtest: verified cleanup recovery preserves success action outcome
+ok 9 - verified cleanup recovery preserves success action outcome # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.132067
+  ...
+# Subtest: verified cleanup recovery preserves blocked action outcome
+ok 10 - verified cleanup recovery preserves blocked action outcome # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.146271
+  ...
+# Subtest: verified cleanup recovery preserves action action outcome
+ok 11 - verified cleanup recovery preserves action action outcome # SKIP test name does not match pattern
+  ---
+  duration_ms: 0.098979
+  ...
+# Subtest: failed durable admission cannot start worker actions
+ok 12 - failed durable admission cannot start worker actions
+  ---
+  duration_ms: 144.912979
+  ...
+# Subtest: stalled durable admission cannot evade watchdog deadline or start late
+ok 13 - stalled durable admission cannot evade watchdog deadline or start late
+  ---
+  duration_ms: 1611.609314
+  ...
+# Subtest: successful durable admission precedes owned worker effects
+ok 14 - successful durable admission precedes owned worker effects
+  ---
+  duration_ms: 216.199925
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 11
+# todo 0
+# duration_ms 2053.137693

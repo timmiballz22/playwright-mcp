@@ -1,0 +1,238 @@
+TAP version 13
+# Subtest: cooperative context cleanup timeout retains fixed stage and stays failed
+ok 1 - cooperative context cleanup timeout retains fixed stage and stays failed
+  ---
+  duration_ms: 28.962125
+  type: 'test'
+  ...
+# Subtest: cooperative context cleanup error retains fixed stage and stays failed
+ok 2 - cooperative context cleanup error retains fixed stage and stays failed
+  ---
+  duration_ms: 2.922711
+  type: 'test'
+  ...
+# Subtest: untrusted Retry-After hints cannot exceed bounded durable result metadata
+ok 3 - untrusted Retry-After hints cannot exceed bounded durable result metadata
+  ---
+  duration_ms: 7.781577
+  type: 'test'
+  ...
+# Subtest: all three close failures plus final server kill failure remain bounded fixed metadata
+ok 4 - all three close failures plus final server kill failure remain bounded fixed metadata
+  ---
+  duration_ms: 3.29805
+  type: 'test'
+  ...
+# Subtest: client step failure receipts retain fixed taxonomy without private step fields
+ok 5 - client step failure receipts retain fixed taxonomy without private step fields
+  ---
+  duration_ms: 0.474972
+  type: 'test'
+  ...
+# Subtest: raw workflow diagnostic keeps completion counters outside long traces without reflecting private data
+ok 6 - raw workflow diagnostic keeps completion counters outside long traces without reflecting private data
+  ---
+  duration_ms: 0.396145
+  type: 'test'
+  ...
+# Subtest: known main GET 401 fails precisely even when document readiness never settles
+ok 7 - known main GET 401 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 7.610557
+  type: 'test'
+  ...
+# Subtest: known main GET 403 fails precisely even when document readiness never settles
+ok 8 - known main GET 403 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 1.309788
+  type: 'test'
+  ...
+# Subtest: known main GET 404 fails precisely even when document readiness never settles
+ok 9 - known main GET 404 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 2.436976
+  type: 'test'
+  ...
+# Subtest: known main GET 429 fails precisely even when document readiness never settles
+ok 10 - known main GET 429 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 1.216378
+  type: 'test'
+  ...
+# Subtest: known main GET 503 fails precisely even when document readiness never settles
+ok 11 - known main GET 503 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 2.71662
+  type: 'test'
+  ...
+# Subtest: HTTP error outside the current main GET does not become its navigation failure ({"main":false})
+ok 12 - HTTP error outside the current main GET does not become its navigation failure ({"main":false})
+  ---
+  duration_ms: 1.309749
+  type: 'test'
+  ...
+# Subtest: HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"})
+ok 13 - HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"})
+  ---
+  duration_ms: 1.067235
+  type: 'test'
+  ...
+# Subtest: known HTTP failure waits for the configured retry attempts before failing without DOM readiness
+ok 14 - known HTTP failure waits for the configured retry attempts before failing without DOM readiness
+  ---
+  duration_ms: 331.857219
+  type: 'test'
+  ...
+# Subtest: observed cancellation keeps precedence over a newly available HTTP failure
+ok 15 - observed cancellation keeps precedence over a newly available HTTP failure
+  ---
+  duration_ms: 1.694575
+  type: 'test'
+  ...
+# Subtest: failed fulfillment disposes its fetched response without replay or hiding the request failure
+ok 16 - failed fulfillment disposes its fetched response without replay or hiding the request failure
+  ---
+  duration_ms: 2.111318
+  type: 'test'
+  ...
+# Subtest: response disposal rejection preserves the existing failure and is not retried (200)
+ok 17 - response disposal rejection preserves the existing failure and is not retried (200)
+  ---
+  duration_ms: 2.990318
+  type: 'test'
+  ...
+# Subtest: response disposal rejection preserves the existing failure and is not retried (503)
+ok 18 - response disposal rejection preserves the existing failure and is not retried (503)
+  ---
+  duration_ms: 1.136582
+  type: 'test'
+  ...
+# Subtest: failed fulfillment releases a real retained API response before its request context closes (GET)
+ok 19 - failed fulfillment releases a real retained API response before its request context closes (GET)
+  ---
+  duration_ms: 412.418907
+  type: 'test'
+  ...
+# Subtest: failed fulfillment releases a real retained API response before its request context closes (POST)
+ok 20 - failed fulfillment releases a real retained API response before its request context closes (POST)
+  ---
+  duration_ms: 9.53692
+  type: 'test'
+  ...
+# Subtest: navigation retry policy is bounded, disabled by default and copied
+ok 21 - navigation retry policy is bounded, disabled by default and copied
+  ---
+  duration_ms: 1.392017
+  type: 'test'
+  ...
+# Subtest: Retry-After is a minimum wait and an excessive wait is never shortened
+ok 22 - Retry-After is a minimum wait and an excessive wait is never shortened
+  ---
+  duration_ms: 0.427597
+  type: 'test'
+  ...
+# Subtest: failure classification returns fixed codes and never browser text
+ok 23 - failure classification returns fixed codes and never browser text
+  ---
+  duration_ms: 0.919808
+  type: 'test'
+  ...
+# Subtest: rejects unknown instructions, unbounded workloads and hostile origins
+ok 24 - rejects unknown instructions, unbounded workloads and hostile origins
+  ---
+  duration_ms: 2.611287
+  type: 'test'
+  ...
+# Subtest: 100 ordered actions finish in a single batch with one browser launch
+ok 25 - 100 ordered actions finish in a single batch with one browser launch
+  ---
+  duration_ms: 12.237147
+  type: 'test'
+  ...
+# Subtest: failures stop promptly, hide underlying sensitive errors and clean up
+ok 26 - failures stop promptly, hide underlying sensitive errors and clean up
+  ---
+  duration_ms: 1.840715
+  type: 'test'
+  ...
+# Subtest: cancellation before starting avoids launching browser
+ok 27 - cancellation before starting avoids launching browser
+  ---
+  duration_ms: 0.245186
+  type: 'test'
+  ...
+# Subtest: checks target origins and reports assertion failure without page content
+ok 28 - checks target origins and reports assertion failure without page content
+  ---
+  duration_ms: 2.148645
+  type: 'test'
+  ...
+# Subtest: unknown localhost ports require exact operator origins
+ok 29 - unknown localhost ports require exact operator origins
+  ---
+  duration_ms: 1.663668
+  type: 'test'
+  ...
+# Subtest: rejects extra workflow and action properties rather than ignoring policy
+ok 30 - rejects extra workflow and action properties rather than ignoring policy
+  ---
+  duration_ms: 0.398101
+  type: 'test'
+  ...
+# Subtest: deadline includes a stalled launch and closes late browser
+ok 31 - deadline includes a stalled launch and closes late browser
+  ---
+  duration_ms: 200.981468
+  type: 'test'
+  ...
+# Subtest: validation snapshots actions before asynchronous launch
+ok 32 - validation snapshots actions before asynchronous launch
+  ---
+  duration_ms: 1.677871
+  type: 'test'
+  ...
+# Subtest: screenshot capture requires operator approval for sensitive artifacts
+ok 33 - screenshot capture requires operator approval for sensitive artifacts
+  ---
+  duration_ms: 0.476923
+  type: 'test'
+  ...
+# Subtest: workflow version and serialized size are bounded
+ok 34 - workflow version and serialized size are bounded
+  ---
+  duration_ms: 6.967406
+  type: 'test'
+  ...
+# Subtest: accessible selectors validate exact shape and clone nested values
+ok 35 - accessible selectors validate exact shape and clone nested values
+  ---
+  duration_ms: 0.464348
+  type: 'test'
+  ...
+# Subtest: explicit action repeats expand within the total action cap
+ok 36 - explicit action repeats expand within the total action cap
+  ---
+  duration_ms: 19.264964
+  type: 'test'
+  ...
+# Subtest: text equality rejects duplicate counters and ambiguous expectations
+ok 37 - text equality rejects duplicate counters and ambiguous expectations
+  ---
+  duration_ms: 2.240406
+  type: 'test'
+  ...
+# Subtest: ownership launch phase precedes even a rejected public launch call
+ok 38 - ownership launch phase precedes even a rejected public launch call
+  ---
+  duration_ms: 1.569528
+  type: 'test'
+  ...
+1..38
+# tests 38
+# suites 0
+# pass 38
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1304.213312

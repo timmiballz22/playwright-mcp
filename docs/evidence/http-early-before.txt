@@ -1,0 +1,123 @@
+✖ known main GET 401 fails precisely even when document readiness never settles (9.708839ms)
+✖ known main GET 403 fails precisely even when document readiness never settles (6.679239ms)
+✖ known main GET 404 fails precisely even when document readiness never settles (1.768301ms)
+✖ known main GET 429 fails precisely even when document readiness never settles (1.577941ms)
+✖ known main GET 503 fails precisely even when document readiness never settles (1.627404ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"main":false}) (1.883182ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"}) (1.258893ms)
+✔ known HTTP failure waits for the configured retry attempts before failing without DOM readiness (353.92652ms)
+✔ observed cancellation keeps precedence over a newly available HTTP failure (4.192553ms)
+✖ a later global timeout retains known early HTTP metadata without replacing its outcome (2904.522958ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 4
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3443.9002
+
+✖ failing tests:
+
+test at local-batch/http-navigation-response.test.mjs:24:3
+✖ known main GET 401 fails precisely even when document readiness never settles (9.708839ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 401
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-navigation-response.test.mjs:28:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/http-navigation-response.test.mjs:24:3
+✖ known main GET 403 fails precisely even when document readiness never settles (6.679239ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 403
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-navigation-response.test.mjs:28:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 403,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/http-navigation-response.test.mjs:24:3
+✖ known main GET 404 fails precisely even when document readiness never settles (1.768301ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 404
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-navigation-response.test.mjs:28:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 404,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/http-navigation-response.test.mjs:24:3
+✖ known main GET 429 fails precisely even when document readiness never settles (1.577941ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 429
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-navigation-response.test.mjs:28:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 429,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/http-navigation-response.test.mjs:24:3
+✖ known main GET 503 fails precisely even when document readiness never settles (1.627404ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 503
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/http-navigation-response.test.mjs:28:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/jobs/http-early-metadata.test.mjs:5:1
+✖ a later global timeout retains known early HTTP metadata without replacing its outcome (2904.522958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 429
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/http-early-metadata.test.mjs:12:65)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 429,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

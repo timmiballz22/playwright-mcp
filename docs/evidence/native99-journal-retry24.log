@@ -1,0 +1,15 @@
+✔ confirmed worker exit after pre-COMMIT timeout permits bounded fresh initialization (2096.720466ms)
+✔ lost init acknowledgement after real COMMIT preserves existing jobs and key (2125.359553ms)
+✔ persistent real COMMIT pause exhausts the unchanged three-attempt initialization cap (6077.751631ms)
+✔ store version changed between confirmed exit and retry is refused without repair (2079.046911ms)
+{"fixture":"journal_commit_retry_late_exit","processExitObserved":true,"wireCloseObserved":false,"signalCode":"SIGKILL"}
+✔ actual unconfirmed worker exit never authorizes an initialization retry (3007.117817ms)
+✔ non-COMMIT initialization timeout keeps one attempt and its original phase (2005.164993ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17475.686921

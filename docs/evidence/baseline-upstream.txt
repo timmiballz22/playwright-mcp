@@ -1,0 +1,101 @@
+
+> @playwright/mcp@0.0.83 test
+> playwright test --workers=2
+
+
+Running 8 tests using 2 workers
+
+(node:700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:699) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chrome] › tests/capabilities.spec.ts:50:5 › test capabilities (pdf) (550ms)
+  ✓  2 [chrome] › tests/capabilities.spec.ts:19:5 › test snapshot tool list (542ms)
+  ✓  4 [chrome] › tests/capabilities.spec.ts:70:5 › support for legacy --vision option (429ms)
+  ✓  3 [chrome] › tests/capabilities.spec.ts:59:5 › test capabilities (vision) (493ms)
+  ✓  6 [chrome] › tests/cli.spec.ts:22:5 › install-browser --help (470ms)
+  ✘  5 [chrome] › tests/click.spec.ts:19:5 › browser_click (481ms)
+(node:813) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  7 [chrome] › tests/core.spec.ts:19:5 › browser_navigate (570ms)
+(node:841) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  8 [chrome] › tests/library.spec.ts:20:5 › library can be used from CommonJS (312ms)
+
+
+  1) [chrome] › tests/click.spec.ts:19:5 › browser_click ───────────────────────────────────────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  3
+    + Received  + 13
+
+    - ObjectContaining {
+    -   "code": "await page.goto('http://localhost:8911/');",
+    -   "snapshot": StringContaining "- button \"Submit\" [ref=e2]",
+    + Object {
+    +   "attachments": Array [],
+    +   "code": undefined,
+    +   "consoleMessages": undefined,
+    +   "downloads": undefined,
+    +   "error": "Error: async initializeServer: Chromium distribution 'chrome' is not found at /opt/google/chrome/chrome
+    + Run \"npx playwright install chrome\"",
+    +   "isError": true,
+    +   "modalState": undefined,
+    +   "pageState": undefined,
+    +   "result": undefined,
+    +   "snapshot": undefined,
+    +   "tabs": undefined,
+      }
+
+      32 |     name: 'browser_navigate',
+      33 |     arguments: { url: server.PREFIX },
+    > 34 |   })).toHaveResponse({
+         |       ^
+      35 |     code: `await page.goto('${server.PREFIX}');`,
+      36 |     snapshot: expect.stringContaining(`- button \"Submit\" [ref=e2]`),
+      37 |   });
+        at /workspace/playwright-mcp/tests/click.spec.ts:34:7
+
+    Error Context: test-results/click-browser-click-chrome/error-context.md
+
+  2) [chrome] › tests/core.spec.ts:19:5 › browser_navigate ─────────────────────────────────────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  3
+    + Received  + 13
+
+    - ObjectContaining {
+    -   "code": "await page.goto('http://localhost:8907/hello-world');",
+    -   "snapshot": StringContaining "generic [active] [ref=e1]: Hello, world!",
+    + Object {
+    +   "attachments": Array [],
+    +   "code": undefined,
+    +   "consoleMessages": undefined,
+    +   "downloads": undefined,
+    +   "error": "Error: async initializeServer: Chromium distribution 'chrome' is not found at /opt/google/chrome/chrome
+    + Run \"npx playwright install chrome\"",
+    +   "isError": true,
+    +   "modalState": undefined,
+    +   "pageState": undefined,
+    +   "result": undefined,
+    +   "snapshot": undefined,
+    +   "tabs": undefined,
+      }
+
+      21 |     name: 'browser_navigate',
+      22 |     arguments: { url: server.HELLO_WORLD },
+    > 23 |   })).toHaveResponse({
+         |       ^
+      24 |     code: `await page.goto('${server.HELLO_WORLD}');`,
+      25 |     snapshot: expect.stringContaining(`generic [active] [ref=e1]: Hello, world!`),
+      26 |   });
+        at /workspace/playwright-mcp/tests/core.spec.ts:23:7
+
+    Error Context: test-results/core-browser-navigate-chrome/error-context.md
+
+  2 failed
+    [chrome] › tests/click.spec.ts:19:5 › browser_click ────────────────────────────────────────────
+    [chrome] › tests/core.spec.ts:19:5 › browser_navigate ──────────────────────────────────────────
+  6 passed (3.9s)

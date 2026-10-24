@@ -1,0 +1,34 @@
+{
+  "phase": "local follow-up after native75 head90e1c43; not included in native75 matrix",
+  "beforeCommit": "90e1c43c3b6b56a6d2b1210dfbd0a98910d75538",
+  "runnerBeforeSha256": "638510aa83cabbf6ffcf2a73882b8b0a71db0e32bec70681a32afbbb1d5b9faa",
+  "runnerAfterSha256": "9906164e5efcb916794ab117ff069a5d35139fde6a614406594c62237b6c0015",
+  "playwright": "1.64.1",
+  "publicTypes": {
+    "path": "node_modules/playwright-core/types/types.d.ts",
+    "sha256": "c458c9da21dde7732dd440f4f2f861ec66ef89813955a591157ec30e4a90186e",
+    "routeFetchSignalLine": 23297
+  },
+  "runtime": {
+    "path": "node_modules/playwright-core/lib/coreBundle.js",
+    "sha256": "829521b67ed7be90c7d6d6098ff39f2241562d47e4ad7ccab13710924a56001d",
+    "timeoutSettingsPassesSignalLine": 58958,
+    "fetchUsesTimeoutSettingsLine": 60886
+  },
+  "negative": {
+    "exitCode": 1,
+    "failure": "ENOENT fetch-abort-witness after stalled public closes; cleanup assertions pass"
+  },
+  "positive": {
+    "exitCode": 0,
+    "witness": {
+      "signalAborted": true,
+      "browserConnected": true,
+      "method": "POST"
+    }
+  },
+  "scope": "actual API fetch rejection while browser connected; not proof of socket close ordering or a hard response-body memory quota",
+  "budgetsChanged": false,
+  "defaultTransportChanged": false,
+  "privateWitnessGrantsAuthority": false
+}

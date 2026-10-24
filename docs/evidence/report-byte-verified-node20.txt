@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: partial write: report failure preserves completed actions and publishes no corrupt JSON
+ok 1 - partial write: report failure preserves completed actions and publishes no corrupt JSON
+  ---
+  duration_ms: 988.629289
+  ...
+# Subtest: byte ceiling: report failure preserves completed actions and publishes no corrupt JSON
+ok 2 - byte ceiling: report failure preserves completed actions and publishes no corrupt JSON
+  ---
+  duration_ms: 959.738919
+  ...
+# Subtest: a report target created during its temporary write is never replaced
+ok 3 - a report target created during its temporary write is never replaced
+  ---
+  duration_ms: 9.929072
+  ...
+# Subtest: published report is complete and its returned step summary remains bounded
+ok 4 - published report is complete and its returned step summary remains bounded
+  ---
+  duration_ms: 2.614976
+  ...
+# Subtest: exclusive temporary-name collision preserves the file this report did not create
+ok 5 - exclusive temporary-name collision preserves the file this report did not create
+  ---
+  duration_ms: 2.136426
+  ...
+# Subtest: report UTF-8 byte ceiling rejects oversized data before creating its output directory
+ok 6 - report UTF-8 byte ceiling rejects oversized data before creating its output directory
+  ---
+  duration_ms: 28.164403
+  ...
+# Subtest: report exact byte ceiling includes JSON formatting and final newline
+ok 7 - report exact byte ceiling includes JSON formatting and final newline
+  ---
+  duration_ms: 60.873769
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2037.206113

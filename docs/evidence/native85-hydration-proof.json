@@ -1,0 +1,41 @@
+{
+  "scope": "Original stdio MCP, owned server-rendered disabled button, response-gated initialization, same snapshot reference after explicit readiness, exactly one actual POST effect",
+  "passed": {
+    "node20": 2,
+    "node22": 2,
+    "node24": 2
+  },
+  "failed": 0,
+  "limitations": [
+    "Excluded from active native85 at23b07fd",
+    "Explicit readiness wait; not proof that premature clicks on enabled-but-unhydrated controls are safe",
+    "No arbitrary timing delay or action replay; WebKit local engine unexecuted"
+  ],
+  "files": [
+    {
+      "file": "native85-hydration-first24.log",
+      "sha256": "2f2e2aaea07a987ee203e308323b0faf3f8783f00801486fa03b4a9b295929b1"
+    },
+    {
+      "file": "native85-hydration-final20.log",
+      "sha256": "da86ed45de734893545e4339cd8eafaed7396d318aaf7ec8a30e00cf5615d7a7"
+    },
+    {
+      "file": "native85-hydration-final22.log",
+      "sha256": "c19a08839450c4205b11d2f1e33732957780352f3683ffa9d895c36422ac0a35"
+    },
+    {
+      "file": "native85-hydration-exits.json",
+      "sha256": "ecae012061db553f07330b91817217782b412a5f050a4b9a1f19373e540b2133"
+    },
+    {
+      "file": "native85-hydration-typecheck.log",
+      "sha256": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f"
+    },
+    {
+      "file": "native85-hydration-idempotent24.log",
+      "sha256": "bc0370aeda10a0360f1111f849170122cb41f05925f717d6f64369f9e8758f81"
+    }
+  ],
+  "cleanupFollowup": "Response release now ignores ended/destroyed responses, matching the lazy fixture cleanup guard; final Node24 Chromium/Firefox2/2 pass. Earlier LTS source differs only in this fixture cleanup guard."
+}

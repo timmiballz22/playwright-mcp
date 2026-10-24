@@ -1,0 +1,28 @@
+
+Running 1 test using 1 worker
+
+(node:328098) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (1.0s)
+
+
+  1) [chromium] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 384
+    Received: 420
+
+      51 |   expect(saved.origins.some((origin: any) => origin.localStorage.some((item: any) => item.name === 'export-key' && item.value === 'fake-export-local'))).toBe(true);
+      52 |   expect(JSON.stringify(saved)).not.toContain('fake-session-only');
+    > 53 |   if (process.platform !== 'win32') expect((await fs.stat(filename)).mode & 0o777).toBe(0o600);
+         |                                                                                    ^
+      54 |   await invoke(first, 'browser_close');
+      55 |   const restored = (await startClient({ args: ['--isolated', '--caps=storage'] })).client;
+      56 |   await invoke(restored, 'browser_navigate', { url: server.PREFIX });
+        at /workspace/playwright-mcp/tests/storage.spec.ts:53:84
+
+    Error Context: test-results/storage-original-storage-s-8156c-kie-and-localStorage-values-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values 

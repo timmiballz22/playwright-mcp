@@ -1,0 +1,27 @@
+✔ supervised hang: bounded completion and owned process cleanup (1841.268563ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1829.510299ms)
+✔ supervised crash: bounded completion and owned process cleanup (98.050386ms)
+✔ pre-cancelled execution never starts a worker (0.737315ms)
+✔ cancel interrupts a worker that cannot service its abort listener (370.393202ms)
+✔ supervisor crash cannot strand its worker or detached child (156.804597ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (42.582175ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (160.886366ms)
+✔ verified cleanup recovery preserves success action outcome (119.733706ms)
+✔ verified cleanup recovery preserves blocked action outcome (128.837281ms)
+✔ verified cleanup recovery preserves action action outcome (126.628329ms)
+✔ failed durable admission cannot start worker actions (72.835309ms)
+✔ stalled durable admission cannot evade watchdog deadline or start late (1610.399751ms)
+✔ successful durable admission precedes owned worker effects (139.797365ms)
+✔ local stdio MCP: handshake, tool list, rejection, browser workflow (34212.234214ms)
+✔ partial report write failure preserves completed actions and publishes no corrupt JSON (682.225504ms)
+✔ real screenshot byte budget keeps first PNG and rejects the next before publication, with verified owned cleanup (1420.883092ms)
+✔ screenshot budget refuses excess before writes and publishes complete private files without overwriting (7.910403ms)
+✔ cancellation after image capture cannot publish a late screenshot or leave a temporary file (2.087815ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43453.123993

@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: ./mcp.mjs: malformed MCP input cannot echo page-like secrets or corrupt later protocol frames
+ok 1 - ./mcp.mjs: malformed MCP input cannot echo page-like secrets or corrupt later protocol frames
+  ---
+  duration_ms: 200.024551
+  type: 'test'
+  ...
+# Subtest: ./mcp.mjs: oversized unterminated MCP frame closes the transport without launching browsers
+ok 2 - ./mcp.mjs: oversized unterminated MCP frame closes the transport without launching browsers
+  ---
+  duration_ms: 798.044978
+  type: 'test'
+  ...
+# Subtest: ./jobs-mcp.mjs: malformed MCP input cannot echo page-like secrets or corrupt later protocol frames
+ok 3 - ./jobs-mcp.mjs: malformed MCP input cannot echo page-like secrets or corrupt later protocol frames
+  ---
+  duration_ms: 249.627635
+  type: 'test'
+  ...
+# Subtest: ./jobs-mcp.mjs: oversized unterminated MCP frame closes the transport without launching browsers
+ok 4 - ./jobs-mcp.mjs: oversized unterminated MCP frame closes the transport without launching browsers
+  ---
+  duration_ms: 891.046686
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2205.40739

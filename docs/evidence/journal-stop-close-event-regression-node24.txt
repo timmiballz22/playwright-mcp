@@ -1,0 +1,135 @@
+✔ bounded artifact worker previews, removes and preserves fixed safe errors (177.627317ms)
+✔ artifact worker before-result: independent deadline and natural-exit confirmation (760.740932ms)
+✔ artifact worker after-result: independent deadline and natural-exit confirmation (763.441183ms)
+✔ artifact worker invalid-result: independent deadline and natural-exit confirmation (41.313778ms)
+✔ artifact worker failed-result: independent deadline and natural-exit confirmation (35.78136ms)
+✔ artifact worker signal-exit: independent deadline and natural-exit confirmation (40.654175ms)
+✔ an unconfirmed cleanup blocks further scopes in the same controller (0.957111ms)
+✔ actual artifact worker exits after controller death while filesystem awaits (421.971017ms)
+✔ bounded artifact cleanup previews, removes only one scope and is idempotent (12.391987ms)
+✔ linked entries and oversized trees reject before deleting any artifact (7.792863ms)
+✔ controller rejects active, uncertain and expired-result cleanup before filesystem access (7.264714ms)
+✔ operator owner/project namespaces are stable, private and independent of tool data (19.720121ms)
+✔ untrusted symlinks and writable ancestors cannot redirect job storage writes (4.72766ms)
+✔ invalid owner/policy config is rejected before any storage creation (2.213422ms)
+✔ bounded writer contention waits before one mutation without replay (624.537594ms)
+✔ recovery with live unexpired records is read-only while another writer owns the lock (172.563821ms)
+✔ internal job controller queue-success (11790.977834ms)
+✖ internal job controller cancel-and-reconnect (10594.857335ms)
+✖ internal job controller queue-pressure (11046.874941ms)
+✖ internal job controller queue-expiry (10911.001842ms)
+✔ internal job controller guardian-crash (1000.666571ms)
+✔ internal job controller close-before-dequeue (491.689045ms)
+✔ internal job controller cancel-during-guardian-start (409.555047ms)
+✔ guardian diagnostics retain fixed journal metadata and discard private values (1.428409ms)
+✔ journal transport diagnostics retain only fixed causes and originating verbs (0.210943ms)
+✔ unconfirmed journal exit is a fixed boolean diagnostic without raw values (0.280326ms)
+✔ unconfirmed guardian journal exit stops the next queued job even after terminal metadata (107.044419ms)
+✔ durable guardian success: cleanup and canonical journal outcome (574.407871ms)
+✔ durable guardian cancel: cleanup and canonical journal outcome (1052.0146ms)
+✔ durable guardian disconnect: cleanup and canonical journal outcome (854.705364ms)
+✔ durable guardian crash: cleanup and canonical journal outcome (916.597014ms)
+✔ durable guardian mismatch: cleanup and canonical journal outcome (299.54392ms)
+✔ durable guardian admissionFailure: cleanup and canonical journal outcome (408.795028ms)
+✔ durable guardian admissionTimeout: cleanup and canonical journal outcome (2433.872904ms)
+✔ durable guardian preDisconnected: cleanup and canonical journal outcome (333.826372ms)
+✔ journal init timeout reports unconfirmed exit without waiting forever or losing first cause (6.549059ms)
+✔ journal closed receipt alone cannot confirm worker shutdown (3.674251ms)
+✔ busy initialization is not retried while its prior worker exit is unconfirmed (2.712454ms)
+✔ unexpected journal worker exit remains distinct from an RPC timeout (111.776748ms)
+✔ termination failure diagnostics persist without losing uncertain cleanup or releasing the lease (60.035481ms)
+✔ managed directory links and database hardlinks cannot modify another file (344.708934ms)
+✔ POSIX journal directory must exclude group and other access (55.444942ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (124.924034ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (83.723043ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (75.006071ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (93.914678ms)
+✔ killed transaction rolls back without a partial job or duplicate request (212.78466ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (163.068238ms)
+✔ corrupt journal is rejected without silently erasing the file (103.740053ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (55.781267ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (181.180163ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (153.973203ms)
+✔ terminal cleanup reservation fences new admissions and other actors without changing history (204.991847ms)
+✔ unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release (108.172238ms)
+✔ unconfirmed artifact worker is fenced durably from another controller (226.496079ms)
+✔ unconfirmed artifact worker is fenced durably from another controller after lost finalization (214.08122ms)
+✔ dead maintenance holder becomes uncertain without releasing its reservation or execution history (262.818576ms)
+✔ Windows ACL helper rejects a non-Windows host without creating storage (1.429126ms)
+✔ Windows helper failure diagnostics contain only fixed process categories (0.22934ms)
+✔ controller expires its queued input by monotonic elapsed time when wall deadline remains in the future (154.170014ms)
+✔ retention preview/delete rechecks age and preserves fresh or uncertain artifacts (103.171278ms)
+✔ invalid or pre-aborted retention does not query storage (0.690818ms)
+✔ retention interruption completes one authorized scope and preserves the continuation (53.834966ms)
+✔ artifact retention never conceals a blocked project even when no old artifacts qualify (0.459255ms)
+✔ retention stops on lost journal transport without touching later scopes (0.41841ms)
+✔ read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases (236.825142ms)
+✔ actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency (590.645424ms)
+✔ workflow identity ignores object key order, defaults and equivalent repeat expansion (1.615391ms)
+✔ captured workflow input cannot change after submission and oversized or unknown data is rejected (3.698274ms)
+✔ CI totals include TAP, Node24 spec and original Playwright summaries (2.853316ms)
+✔ a repeated summary is counted once and incomplete Node totals fail closed (0.694362ms)
+ℹ tests 71
+ℹ suites 0
+ℹ pass 68
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61440.733828
+
+✖ failing tests:
+
+test at local-batch/jobs/controller.test.mjs:20:3
+✖ internal job controller cancel-and-reconnect (10594.857335ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/controller.test.mjs:106:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/jobs/controller.test.mjs:20:3
+✖ internal job controller queue-pressure (11046.874941ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/controller.test.mjs:106:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at local-batch/jobs/controller.test.mjs:20:3
+✖ internal job controller queue-expiry (10911.001842ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/controller.test.mjs:106:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

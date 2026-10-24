@@ -1,0 +1,32 @@
+✔ supervised hang: bounded completion and owned process cleanup (1808.73367ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1788.899973ms)
+✔ supervised crash: bounded completion and owned process cleanup (89.363716ms)
+✔ pre-cancelled execution never starts a worker (0.859882ms)
+✔ cancel interrupts a worker that cannot service its abort listener (318.865235ms)
+✔ supervisor crash cannot strand its worker or detached child (113.903372ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (37.614064ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (124.276052ms)
+✔ partial report write failure preserves completed actions and publishes no corrupt JSON (617.258677ms)
+✔ failure classification returns fixed codes and never browser text (1.168392ms)
+✔ rejects unknown instructions, unbounded workloads and hostile origins (1.24383ms)
+✔ 100 ordered actions finish in a single batch with one browser launch (8.281845ms)
+✔ failures stop promptly, hide underlying sensitive errors and clean up (2.050808ms)
+✔ cancellation before starting avoids launching browser (0.317653ms)
+✔ checks target origins and reports assertion failure without page content (1.557465ms)
+✔ unknown localhost ports require exact operator origins (1.337061ms)
+✔ rejects extra workflow and action properties rather than ignoring policy (0.397934ms)
+✔ deadline includes a stalled launch and closes late browser (201.058559ms)
+✔ validation snapshots actions before asynchronous launch (1.788092ms)
+✔ screenshot capture requires operator approval for sensitive artifacts (0.515467ms)
+✔ workflow version and serialized size are bounded (7.065055ms)
+✔ accessible selectors validate exact shape and clone nested values (0.413302ms)
+✔ explicit action repeats expand within the total action cap (9.952668ms)
+✔ text equality rejects duplicate counters and ambiguous expectations (3.105223ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5316.138679

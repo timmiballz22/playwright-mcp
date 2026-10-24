@@ -1,0 +1,117 @@
+{
+  "source": "732c913b144bee6010bbb4febf63089c30ba4dfd",
+  "job": "batch (windows-latest, 22)",
+  "reportedPossibleSurvivors": [
+    5520,
+    6136,
+    6452,
+    6484
+  ],
+  "scope": "The unchanged legacy/root-PID absence assertion reports four IDs after Firefox cancellation-witness body assertions pass. No same-snapshot full rows/root births were logged by this fixture. Keep all four unclassified/unresolved; no role/name/age/window filtering, PID-based signal, lease/debt or retrospective clearance. Later zero observations do not clear them.",
+  "witnessReceipts": [
+    {
+      "component": "private_fetch_cancel_witness",
+      "browser": "firefox",
+      "scenario": "cancel",
+      "reason": "cancelled",
+      "completed": 0,
+      "execution": {
+        "mode": "supervised",
+        "forced": false,
+        "cleanup": "terminated",
+        "tempCleanup": "removed",
+        "supervisorPid": 7808,
+        "workerPid": 8340,
+        "browserPids": [
+          5592
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "fetchId": "1",
+          "offsetMs": 0
+        }
+      ],
+      "abortOffsetMs": 102
+    },
+    {
+      "component": "private_fetch_cancel_witness",
+      "browser": "firefox",
+      "scenario": "commit",
+      "reason": "cancelled",
+      "completed": 1,
+      "execution": {
+        "mode": "supervised",
+        "forced": false,
+        "cleanup": "terminated",
+        "tempCleanup": "removed",
+        "supervisorPid": 2480,
+        "workerPid": 4280,
+        "browserPids": [
+          1064
+        ]
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "fetchId": "2",
+          "offsetMs": 0
+        }
+      ],
+      "abortOffsetMs": 100
+    },
+    {
+      "component": "private_fetch_cancel_witness",
+      "browser": "firefox",
+      "scenario": "commit-stalled",
+      "reason": "cancelled",
+      "completed": 1,
+      "execution": {
+        "mode": "supervised",
+        "forced": true,
+        "cleanup": "terminated",
+        "tempCleanup": "removed",
+        "supervisorPid": 5368,
+        "workerPid": 948,
+        "browserPids": [
+          6772
+        ]
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "fetchId": "2",
+          "offsetMs": 0
+        }
+      ],
+      "abortOffsetMs": 114
+    },
+    {
+      "component": "private_fetch_cancel_witness",
+      "browser": "firefox",
+      "scenario": "action-stalled",
+      "reason": "cancelled",
+      "completed": 1,
+      "execution": {
+        "mode": "supervised",
+        "forced": true,
+        "cleanup": "terminated",
+        "tempCleanup": "removed",
+        "supervisorPid": 9212,
+        "workerPid": 6376,
+        "browserPids": [
+          5812
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "fetchId": "1",
+          "offsetMs": 0
+        }
+      ],
+      "abortOffsetMs": 591
+    }
+  ]
+}

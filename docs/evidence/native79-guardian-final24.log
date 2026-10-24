@@ -1,0 +1,32 @@
+✔ temporary cleanup completes in a separate process and reports a startup deadline (59.810053ms)
+✔ actual temporary cleanup worker exits on parent death while filesystem awaits (981.560361ms)
+✔ durable guardian success: cleanup and canonical journal outcome (783.809689ms)
+✔ durable guardian cancel: cleanup and canonical journal outcome (1112.399461ms)
+✔ durable guardian disconnect: cleanup and canonical journal outcome (1351.071675ms)
+✔ durable guardian crash: cleanup and canonical journal outcome (1049.227506ms)
+✔ durable guardian mismatch: cleanup and canonical journal outcome (367.984608ms)
+✔ durable guardian admissionFailure: cleanup and canonical journal outcome (451.987027ms)
+✔ durable guardian admissionTimeout: cleanup and canonical journal outcome (2427.33056ms)
+✔ durable guardian preDisconnected: cleanup and canonical journal outcome (387.643368ms)
+✔ an empty CIM snapshot fails the audit while a kernel PID row and singleton shape are retained (2.089816ms)
+✔ audit receipts describe reused IDs without hiding possible processes or exposing identities (0.751312ms)
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (0.314088ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (0.387097ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (0.521371ms)
+✔ live-root snapshots retain exited browser identities for the final orphan scan (0.26336ms)
+✔ CIM error phase keeps only exact fixed markers and never raw diagnostics (0.401339ms)
+✔ separate owned lifetimes retain old orphans when a new client reuses its PID (0.491348ms)
+✔ new client may reuse an earlier observed descendant without losing either orphan lineage (0.290057ms)
+✔ live controller anchors retain exited browser roots and reject changes within that lifetime (0.429772ms)
+✔ live anchor refresh preserves an old orphan before recording a new owned browser incarnation (0.525582ms)
+✔ historical PID links cannot rewrite a live controller identity before validation (0.186389ms)
+✔ legacy comparison preserves old candidates while scoped birth facts retain an owned orphan (0.481648ms)
+✔ comparison records a replacement parent row even when it is outside legacy candidates (0.367212ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9254.205626

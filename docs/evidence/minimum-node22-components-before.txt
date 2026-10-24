@@ -1,0 +1,239 @@
+TAP version 13
+# Subtest: bounded artifact cleanup previews, removes only one scope and is idempotent
+ok 1 - bounded artifact cleanup previews, removes only one scope and is idempotent
+  ---
+  duration_ms: 12.409849
+  ...
+# Subtest: linked entries and oversized trees reject before deleting any artifact
+ok 2 - linked entries and oversized trees reject before deleting any artifact
+  ---
+  duration_ms: 7.938057
+  ...
+# Subtest: controller rejects active, uncertain and expired-result cleanup before filesystem access
+ok 3 - controller rejects active, uncertain and expired-result cleanup before filesystem access
+  ---
+  duration_ms: 11.483311
+  ...
+# Subtest: operator owner/project namespaces are stable, private and independent of tool data
+ok 4 - operator owner/project namespaces are stable, private and independent of tool data
+  ---
+  duration_ms: 18.844217
+  ...
+# Subtest: untrusted symlinks and writable ancestors cannot redirect job storage writes
+ok 5 - untrusted symlinks and writable ancestors cannot redirect job storage writes
+  ---
+  duration_ms: 3.582212
+  ...
+# Subtest: invalid owner/policy config is rejected before any storage creation
+ok 6 - invalid owner/policy config is rejected before any storage creation
+  ---
+  duration_ms: 1.465338
+  ...
+# Subtest: bounded writer contention waits before one mutation without replay
+ok 7 - bounded writer contention waits before one mutation without replay
+  ---
+  duration_ms: 620.841507
+  ...
+# Subtest: recovery with live unexpired records is read-only while another writer owns the lock
+ok 8 - recovery with live unexpired records is read-only while another writer owns the lock
+  ---
+  duration_ms: 93.08672
+  ...
+# Subtest: internal job controller queue-success
+ok 9 - internal job controller queue-success
+  ---
+  duration_ms: 801.775974
+  ...
+# Subtest: internal job controller cancel-and-reconnect
+ok 10 - internal job controller cancel-and-reconnect
+  ---
+  duration_ms: 550.352482
+  ...
+# Subtest: internal job controller queue-pressure
+ok 11 - internal job controller queue-pressure
+  ---
+  duration_ms: 898.490015
+  ...
+# Subtest: internal job controller queue-expiry
+ok 12 - internal job controller queue-expiry
+  ---
+  duration_ms: 897.283248
+  ...
+# Subtest: internal job controller guardian-crash
+ok 13 - internal job controller guardian-crash
+  ---
+  duration_ms: 806.855448
+  ...
+# Subtest: internal job controller close-before-dequeue
+ok 14 - internal job controller close-before-dequeue
+  ---
+  duration_ms: 305.131787
+  ...
+# Subtest: internal job controller cancel-during-guardian-start
+ok 15 - internal job controller cancel-during-guardian-start
+  ---
+  duration_ms: 249.09367
+  ...
+# Subtest: durable guardian success: cleanup and canonical journal outcome
+ok 16 - durable guardian success: cleanup and canonical journal outcome
+  ---
+  duration_ms: 423.339244
+  ...
+# Subtest: durable guardian cancel: cleanup and canonical journal outcome
+ok 17 - durable guardian cancel: cleanup and canonical journal outcome
+  ---
+  duration_ms: 718.3146
+  ...
+# Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+ok 18 - durable guardian disconnect: cleanup and canonical journal outcome
+  ---
+  duration_ms: 626.64943
+  ...
+# Subtest: durable guardian crash: cleanup and canonical journal outcome
+ok 19 - durable guardian crash: cleanup and canonical journal outcome
+  ---
+  duration_ms: 755.692575
+  ...
+# Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+ok 20 - durable guardian mismatch: cleanup and canonical journal outcome
+  ---
+  duration_ms: 241.597167
+  ...
+# Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+ok 21 - durable guardian admissionFailure: cleanup and canonical journal outcome
+  ---
+  duration_ms: 335.638823
+  ...
+# Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+ok 22 - durable guardian preDisconnected: cleanup and canonical journal outcome
+  ---
+  duration_ms: 240.756522
+  ...
+# Subtest: managed directory links and database hardlinks cannot modify another file
+ok 23 - managed directory links and database hardlinks cannot modify another file
+  ---
+  duration_ms: 364.769795
+  ...
+# Subtest: POSIX journal directory must exclude group and other access
+ok 24 - POSIX journal directory must exclude group and other access
+  ---
+  duration_ms: 56.787759
+  ...
+# Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+ok 25 - a simulated reused PID cannot resume old work or clear uncertain active resources
+  ---
+  duration_ms: 119.858668
+  ...
+# Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+ok 26 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+  ---
+  duration_ms: 67.729567
+  ...
+# Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+not ok 27 - a success mutation after the persisted deadline cannot commit or release the lease
+  ---
+  duration_ms: 2005.122443
+  location: '/workspace/playwright-mcp/local-batch/jobs/journal.test.mjs:121:3'
+  failureType: 'testCodeFailure'
+  error: 'journal_unavailable'
+  code: 'journal_unavailable'
+  name: 'JournalError'
+  stack: |-
+    JobJournal.failAll (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:79:21)
+    JobJournal.abort (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:85:18)
+    Timeout.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:69:43)
+    listOnTimeout (node:internal/timers:594:17)
+    process.processTimers (node:internal/timers:529:7)
+  ...
+# Subtest: competing writers initialize consistently and cannot overfill the project queue
+ok 28 - competing writers initialize consistently and cannot overfill the project queue
+  ---
+  duration_ms: 82.970441
+  ...
+# Subtest: killed transaction rolls back without a partial job or duplicate request
+not ok 29 - killed transaction rolls back without a partial job or duplicate request
+  ---
+  duration_ms: 2005.383758
+  location: '/workspace/playwright-mcp/local-batch/jobs/journal.test.mjs:156:3'
+  failureType: 'testCodeFailure'
+  error: 'journal_unavailable'
+  code: 'journal_unavailable'
+  name: 'JournalError'
+  stack: |-
+    JobJournal.failAll (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:79:21)
+    JobJournal.abort (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:85:18)
+    Timeout.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal.mjs:69:43)
+    listOnTimeout (node:internal/timers:594:17)
+    process.processTimers (node:internal/timers:529:7)
+  ...
+# Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+ok 30 - reconnect marks a dead controller queued job crashed and never requeues its request
+  ---
+  duration_ms: 149.055672
+  ...
+# Subtest: corrupt journal is rejected without silently erasing the file
+ok 31 - corrupt journal is rejected without silently erasing the file
+  ---
+  duration_ms: 105.261408
+  ...
+# (node:290039) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: an unrelated SQLite file is rejected without changing its bytes
+ok 32 - an unrelated SQLite file is rejected without changing its bytes
+  ---
+  duration_ms: 58.064457
+  ...
+# Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+ok 33 - journal preserves idempotency, owner isolation and a single project execution lease
+  ---
+  duration_ms: 183.725166
+  ...
+# Subtest: monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+ok 34 - monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+  ---
+  duration_ms: 166.388163
+  ...
+# Subtest: Windows ACL helper rejects a non-Windows host without creating storage
+ok 35 - Windows ACL helper rejects a non-Windows host without creating storage
+  ---
+  duration_ms: 1.279157
+  ...
+# Subtest: Windows helper failure diagnostics contain only fixed process categories
+ok 36 - Windows helper failure diagnostics contain only fixed process categories
+  ---
+  duration_ms: 0.226696
+  ...
+# Subtest: controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+ok 37 - controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+  ---
+  duration_ms: 152.638702
+  ...
+# Subtest: workflow identity ignores object key order, defaults and equivalent repeat expansion
+ok 38 - workflow identity ignores object key order, defaults and equivalent repeat expansion
+  ---
+  duration_ms: 1.560332
+  ...
+# Subtest: captured workflow input cannot change after submission and oversized or unknown data is rejected
+ok 39 - captured workflow input cannot change after submission and oversized or unknown data is rejected
+  ---
+  duration_ms: 6.101251
+  ...
+# Subtest: CI totals include TAP, Node24 spec and original Playwright summaries
+ok 40 - CI totals include TAP, Node24 spec and original Playwright summaries
+  ---
+  duration_ms: 1.664207
+  ...
+# Subtest: a repeated summary is counted once and incomplete Node totals fail closed
+ok 41 - a repeated summary is counted once and incomplete Node totals fail closed
+  ---
+  duration_ms: 0.538905
+  ...
+1..41
+# tests 41
+# suites 0
+# pass 39
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14634.561646

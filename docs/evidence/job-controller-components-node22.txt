@@ -1,0 +1,174 @@
+TAP version 13
+# Subtest: internal job controller queue-success
+ok 1 - internal job controller queue-success
+  ---
+  duration_ms: 1016.881493
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-and-reconnect
+ok 2 - internal job controller cancel-and-reconnect
+  ---
+  duration_ms: 452.625393
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-pressure
+ok 3 - internal job controller queue-pressure
+  ---
+  duration_ms: 750.762189
+  type: 'test'
+  ...
+# Subtest: internal job controller queue-expiry
+ok 4 - internal job controller queue-expiry
+  ---
+  duration_ms: 774.958261
+  type: 'test'
+  ...
+# Subtest: internal job controller guardian-crash
+ok 5 - internal job controller guardian-crash
+  ---
+  duration_ms: 578.275496
+  type: 'test'
+  ...
+# Subtest: internal job controller close-before-dequeue
+ok 6 - internal job controller close-before-dequeue
+  ---
+  duration_ms: 198.568893
+  type: 'test'
+  ...
+# Subtest: internal job controller cancel-during-guardian-start
+ok 7 - internal job controller cancel-during-guardian-start
+  ---
+  duration_ms: 168.822421
+  type: 'test'
+  ...
+# Subtest: durable guardian success: cleanup and canonical journal outcome
+ok 8 - durable guardian success: cleanup and canonical journal outcome
+  ---
+  duration_ms: 363.311426
+  type: 'test'
+  ...
+# Subtest: durable guardian cancel: cleanup and canonical journal outcome
+ok 9 - durable guardian cancel: cleanup and canonical journal outcome
+  ---
+  duration_ms: 635.526426
+  type: 'test'
+  ...
+# Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+ok 10 - durable guardian disconnect: cleanup and canonical journal outcome
+  ---
+  duration_ms: 547.023228
+  type: 'test'
+  ...
+# Subtest: durable guardian crash: cleanup and canonical journal outcome
+ok 11 - durable guardian crash: cleanup and canonical journal outcome
+  ---
+  duration_ms: 607.799172
+  type: 'test'
+  ...
+# Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+ok 12 - durable guardian mismatch: cleanup and canonical journal outcome
+  ---
+  duration_ms: 196.894833
+  type: 'test'
+  ...
+# Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+ok 13 - durable guardian admissionFailure: cleanup and canonical journal outcome
+  ---
+  duration_ms: 319.670744
+  type: 'test'
+  ...
+# Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+ok 14 - durable guardian preDisconnected: cleanup and canonical journal outcome
+  ---
+  duration_ms: 358.073136
+  type: 'test'
+  ...
+# Subtest: managed directory links and database hardlinks cannot modify another file
+ok 15 - managed directory links and database hardlinks cannot modify another file
+  ---
+  duration_ms: 433.033518
+  type: 'test'
+  ...
+# Subtest: POSIX journal directory must exclude group and other access
+ok 16 - POSIX journal directory must exclude group and other access
+  ---
+  duration_ms: 89.23847
+  type: 'test'
+  ...
+# Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+ok 17 - a simulated reused PID cannot resume old work or clear uncertain active resources
+  ---
+  duration_ms: 154.653503
+  type: 'test'
+  ...
+# Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+ok 18 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+  ---
+  duration_ms: 124.438132
+  type: 'test'
+  ...
+# Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+ok 19 - a success mutation after the persisted deadline cannot commit or release the lease
+  ---
+  duration_ms: 67.233428
+  type: 'test'
+  ...
+# Subtest: competing writers initialize consistently and cannot overfill the project queue
+ok 20 - competing writers initialize consistently and cannot overfill the project queue
+  ---
+  duration_ms: 126.643983
+  type: 'test'
+  ...
+# Subtest: killed transaction rolls back without a partial job or duplicate request
+ok 21 - killed transaction rolls back without a partial job or duplicate request
+  ---
+  duration_ms: 272.657346
+  type: 'test'
+  ...
+# Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+ok 22 - reconnect marks a dead controller queued job crashed and never requeues its request
+  ---
+  duration_ms: 307.028655
+  type: 'test'
+  ...
+# Subtest: corrupt journal is rejected without silently erasing the file
+ok 23 - corrupt journal is rejected without silently erasing the file
+  ---
+  duration_ms: 272.553336
+  type: 'test'
+  ...
+# (node:137514) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: an unrelated SQLite file is rejected without changing its bytes
+ok 24 - an unrelated SQLite file is rejected without changing its bytes
+  ---
+  duration_ms: 105.481373
+  type: 'test'
+  ...
+# Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+ok 25 - journal preserves idempotency, owner isolation and a single project execution lease
+  ---
+  duration_ms: 250.418627
+  type: 'test'
+  ...
+# Subtest: workflow identity ignores object key order, defaults and equivalent repeat expansion
+ok 26 - workflow identity ignores object key order, defaults and equivalent repeat expansion
+  ---
+  duration_ms: 2.49904
+  type: 'test'
+  ...
+# Subtest: captured workflow input cannot change after submission and oversized or unknown data is rejected
+ok 27 - captured workflow input cannot change after submission and oversized or unknown data is rejected
+  ---
+  duration_ms: 6.576801
+  type: 'test'
+  ...
+1..27
+# tests 27
+# suites 0
+# pass 27
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9464.487869

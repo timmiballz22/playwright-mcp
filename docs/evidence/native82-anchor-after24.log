@@ -1,0 +1,34 @@
+✔ temporary cleanup completes in a separate process and reports a startup deadline (150.44295ms)
+✔ actual temporary cleanup worker exits on parent death while filesystem awaits (909.358079ms)
+✔ durable guardian success: cleanup and canonical journal outcome (904.06631ms)
+✔ durable guardian cancel: cleanup and canonical journal outcome (1167.613236ms)
+✔ durable guardian disconnect: cleanup and canonical journal outcome (1994.171132ms)
+✔ durable guardian crash: cleanup and canonical journal outcome (1537.186038ms)
+✔ durable guardian mismatch: cleanup and canonical journal outcome (525.577145ms)
+✔ durable guardian admissionFailure: cleanup and canonical journal outcome (545.31981ms)
+✔ durable guardian admissionTimeout: cleanup and canonical journal outcome (2497.727768ms)
+✔ durable guardian preDisconnected: cleanup and canonical journal outcome (422.082962ms)
+✔ an empty CIM snapshot fails the audit while a kernel PID row and singleton shape are retained (3.088356ms)
+✔ audit receipts describe reused IDs without hiding possible processes or exposing identities (0.988618ms)
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (0.327747ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (0.297727ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (0.499363ms)
+✔ live-root snapshots retain exited browser identities for the final orphan scan (0.263233ms)
+✔ CIM error phase keeps only exact fixed markers and never raw diagnostics (0.539528ms)
+✔ separate owned lifetimes retain old orphans when a new client reuses its PID (0.70812ms)
+✔ new client may reuse an earlier observed descendant without losing either orphan lineage (0.49394ms)
+✔ live controller anchors retain exited browser roots and reject changes within that lifetime (1.863079ms)
+✔ first live-anchor capture uses its birth before historical traversal and retains unknown legacy roots (0.8054ms)
+✔ first live-anchor capture preserves recorded orphan births across another root replacement (0.258296ms)
+✔ live anchor refresh preserves an old orphan before recording a new owned browser incarnation (0.270029ms)
+✔ historical PID links cannot rewrite a live controller identity before validation (0.344933ms)
+✔ legacy comparison preserves old candidates while scoped birth facts retain an owned orphan (0.39623ms)
+✔ comparison records a replacement parent row even when it is outside legacy candidates (0.350006ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10925.764649

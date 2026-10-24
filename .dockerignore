@@ -1,0 +1,23 @@
+# Keep source-control history, credentials, browser outputs and QA evidence out
+# of the build context. These are exactly the existing Dockerfile inputs.
+**
+!Dockerfile
+!.dockerignore
+!package.json
+!package-lock.json
+!tsconfig.json
+!server.json
+!cli.js
+!index.js
+!roll.js
+!update-readme.js
+!config.d.ts
+!index.d.ts
+!playwright.config.ts
+!scripts/
+scripts/**
+!scripts/prepare-vp9-metadata.cjs
+!local-batch/
+local-batch/**
+!local-batch/profile-guard.cjs
+!local-batch/profile-lease.cjs

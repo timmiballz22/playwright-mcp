@@ -1,0 +1,23 @@
+{"component":"installed_profile_fixture_preserved","workspaceId":"installed-profile-hXWRMw","verified":true,"primaryFailed":false,"cleanupFailureCount":1,"ownedAuditConfirmed":true}
+file:///workspace/playwright-mcp/scripts/production-profile-smoke.mjs:77
+    if (failures.length) throw new AggregateError(primaryFailure ? [primaryFailure, ...failures] : failures,
+                               ^
+
+AggregateError: Installed profile fixture cleanup failed
+    at file:///workspace/playwright-mcp/scripts/production-profile-smoke.mjs:77:32
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  [cause]: Error: controlled_close_after_actual_sdk_close
+      at Client.close (file:///tmp/native93-smoke-fixture-calibration.mjs:37:68)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async Promise.allSettled (index 1)
+      at async file:///workspace/playwright-mcp/scripts/production-profile-smoke.mjs:63:20,
+  [errors]: [
+    Error: controlled_close_after_actual_sdk_close
+        at Client.close (file:///tmp/native93-smoke-fixture-calibration.mjs:37:68)
+        at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+        at async Promise.allSettled (index 1)
+        at async file:///workspace/playwright-mcp/scripts/production-profile-smoke.mjs:63:20
+  ]
+}
+
+Node.js v22.23.3

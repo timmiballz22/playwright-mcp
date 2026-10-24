@@ -1,0 +1,20 @@
+✔ supervised hang: bounded completion and owned process cleanup (1798.596575ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1787.146486ms)
+✔ supervised crash: bounded completion and owned process cleanup (80.819877ms)
+✔ pre-cancelled execution never starts a worker (0.701024ms)
+✔ cancel interrupts a worker that cannot service its abort listener (322.016508ms)
+✔ supervisor crash cannot strand its worker or detached child (126.870182ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (35.917505ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (109.275854ms)
+✔ verified cleanup recovery preserves success action outcome (117.142162ms)
+✔ verified cleanup recovery preserves blocked action outcome (122.796071ms)
+✔ verified cleanup recovery preserves action action outcome (113.619514ms)
+✔ partial report write failure preserves completed actions and publishes no corrupt JSON (662.426435ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5409.815704

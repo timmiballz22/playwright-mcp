@@ -1,0 +1,22 @@
+✔ invalid termination roots remain rejected and emit only a fixed diagnostic (1.681307ms)
+{"fixture":"worker_freeze_authority","stop":"ESRCH","cleaned":false,"groupSignals":0,"failures":["worker_stop_failed"]}
+{"fixture":"worker_freeze_authority","stop":"EPERM","cleaned":false,"groupSignals":0,"failures":["signal_permission_denied","worker_stop_failed"]}
+{"fixture":"worker_freeze_authority","stop":"EINVAL","cleaned":false,"groupSignals":0,"failures":["signal_invalid_argument","worker_stop_failed"]}
+{"fixture":"worker_freeze_authority","stop":"unknown","cleaned":false,"groupSignals":0,"failures":["signal_unknown_error","worker_stop_failed"]}
+✔ diagnostic callback preserves bounded termination of an actually owned fork (543.607186ms)
+✔ POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors (0.985802ms)
+✔ POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors (0.239294ms)
+✔ POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors (0.379786ms)
+✔ POSIX signal diagnostic retains fixed already-gone result without raw errors (0.399386ms)
+✔ a root freeze ESRCH cannot authorize a later group signal or certify cleanup (0.868106ms)
+✔ a root freeze EPERM cannot authorize a later group signal or certify cleanup (0.40611ms)
+✔ a root freeze EINVAL cannot authorize a later group signal or certify cleanup (0.320414ms)
+✔ a root freeze unknown error cannot authorize a later group signal or certify cleanup (0.417225ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 615.080563

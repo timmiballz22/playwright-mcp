@@ -1,0 +1,8 @@
+{
+  "initialPatcherSha256": "e85a0b7619b72cb9d9033790d4900c774c4283cc316ba2d966ec69c7cb115614",
+  "initialPackageExit": 1,
+  "initialPackProjectionExit": 1,
+  "cause": "Successful prepare receipt was written to stdout ahead of npm pack --json output. Verifier rejected mixed JSON before installing or running smoke tests.",
+  "correctedPatcherSha256": "ea3c3bff21cab13e2f555733b30a949112e42ecc080fbd54780cf2cb64e12ecd",
+  "change": "Fixed build receipt goes to stderr; package JSON stdout remains parseable. No encoder/test assertion change."
+}

@@ -20,14 +20,33 @@ import { chromium } from 'playwright';
 
 import { test as baseTest, expect as baseExpect } from '@playwright/test';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
-import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { Client as SDKClient } from '@modelcontextprotocol/sdk/client/index.js';
+import type { CallToolResult, CallToolResultSchema } from '@modelcontextprotocol/sdk/types.js';
+import type { windowsLegacyComparison } from '../local-batch/fixtures/windows-process-graph.mjs';
 import { ListRootsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { TestServer } from './testserver/index';
+import { ownedScopeDescendants } from '../local-batch/fixtures/process-audit.mjs';
+import { trackToolProgress } from '../local-batch/fixtures/tool-progress.mjs';
+import { createStderrCapture } from './fixtures/bounded-stderr.mjs';
+import { closeWithStderr } from './fixtures/close-with-stderr.mjs';
+
+const originalToolNames = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/evidence/discovery-chromium-extended.json'), 'utf8')).tools.map((tool: { name: string }) => tool.name));
 
 import type { Config } from '../config';
 import type { BrowserContext } from 'playwright';
 import type { Transport } from '@modelcontextprotocol/sdk/shared/transport.js';
 import type { Stream } from 'stream';
+
+// The SDK validates its default result with CallToolResultSchema, but its
+// declaration also includes the explicit compatibility-schema result. Preserve
+// that overload while exposing the already validated default response type.
+class Client extends SDKClient {
+  override callTool(params: Parameters<SDKClient['callTool']>[0], resultSchema?: typeof CallToolResultSchema, options?: Parameters<SDKClient['callTool']>[2]): Promise<CallToolResult>;
+  override callTool(...args: Parameters<SDKClient['callTool']>): ReturnType<SDKClient['callTool']>;
+  override callTool(...args: Parameters<SDKClient['callTool']>): ReturnType<SDKClient['callTool']> {
+    return super.callTool(...args);
+  }
+}
 
 export type TestOptions = {
   mcpArgs: string[] | undefined;
@@ -48,7 +67,7 @@ export type StartClient = (options?: {
   rootsResponseDelay?: number,
   extensionToken?: string,
   env?: Record<string, string>,
-}) => Promise<{ client: Client, stderr: () => string }>;
+}) => Promise<{ client: Client, stderr: () => string, stderrInfo: () => { byteLimit: number, retainedBytes: number, overflow: boolean }, observeOwnedProcesses: () => Promise<{ observedCount: number, transportRootMatches: number }> }>;
 
 
 type TestFixtures = {
@@ -76,10 +95,14 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
 
   startClient: async ({ mcpHeadless, mcpBrowser, mcpMode, mcpArgs }, use, testInfo) => {
     const clients: Client[] = [];
+    const stderrEnds = new Map<Client, Promise<void>>();
+    const progress: Array<() => unknown> = [];
+    const stderrCaptures: Array<{ capture: ReturnType<typeof createStderrCapture>, ended: () => boolean }> = [];
+    let processAuditSequence = 0;
 
     await use(async options => {
       const cwd = testInfo.outputPath();
-      const args: string[] = mcpArgs ?? [];
+      const args: string[] = [...(mcpArgs ?? [])];
       if (mcpHeadless)
         args.push('--headless');
       if (mcpBrowser)
@@ -93,6 +116,7 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
       }
 
       const client = new Client({ name: options?.clientName ?? 'test', version: '1.0.0' }, options?.roots ? { capabilities: { roots: {} } } : undefined);
+      progress.push(trackToolProgress(client, originalToolNames));
       if (options?.roots) {
         client.setRequestHandler(ListRootsRequestSchema, async request => {
           if (options.rootsResponseDelay)
@@ -103,19 +127,72 @@ export const test = baseTest.extend<TestFixtures & TestOptions, WorkerFixtures>(
         });
       }
       const { transport, stderr } = await createTransport(args, cwd, mcpMode, testInfo.outputPath('ms-playwright'), options?.env ?? {});
-      let stderrBuffer = '';
+      const stderrCapture = createStderrCapture(); let stderrEnded = !stderr;
+      stderrCaptures.push({ capture: stderrCapture, ended: () => stderrEnded });
+      stderrEnds.set(client, stderr ? new Promise<void>(resolve => stderr.once('end', () => { stderrEnded = true; resolve(); })) : Promise.resolve());
       stderr?.on('data', data => {
         if (process.env.PWMCP_DEBUG)
           process.stderr.write(data);
-        stderrBuffer += data.toString();
+        stderrCapture.observe(data);
       });
       clients.push(client);
       await client.connect(transport);
       await client.ping();
-      return { client, stderr: () => stderrBuffer };
+      let scope: { roots: Set<number>, liveRoots: Set<number>, identities: Map<number, string> } | undefined;
+      const observeOwnedProcesses = async () => {
+        if (mcpMode === 'docker' || !(transport instanceof StdioClientTransport)) throw new Error('source_observation_unavailable');
+        const pid = transport.pid;
+        if (!Number.isSafeInteger(pid) || !pid || pid <= 1) throw new Error('source_observation_unavailable');
+        scope ??= { roots: new Set([pid]), liveRoots: new Set([pid]), identities: new Map() };
+        if (!scope.liveRoots.has(pid)) throw new Error('source_transport_changed');
+        let legacy: ReturnType<typeof windowsLegacyComparison> | undefined;
+        const observed = await ownedScopeDescendants([scope], { rememberLiveRoots: true,
+          compareLegacyRoots: [...scope.roots], onLegacyObservation: (value: ReturnType<typeof windowsLegacyComparison>) => { legacy = value; },
+        });
+        if (transport.pid !== pid) throw new Error('source_transport_changed');
+        if (process.platform === 'win32') baseExpect(legacy).toBeTruthy();
+        const record = JSON.stringify({ fixture: 'original_mcp_lifetime_comparison', observed,
+          legacy, roots: [...scope.roots], identities: [...scope.identities] });
+        baseExpect(Buffer.byteLength(record)).toBeLessThanOrEqual(65536);
+        await fs.promises.writeFile(testInfo.outputPath(`source-process-audit-${++processAuditSequence}.json`), record, { flag: 'wx', mode: 0o600 });
+        if (legacy?.legacyOnly.length) console.log(record);
+        // Read-only diagnostic: all observed identities stay in this lifetime's
+        // scope. No name/role filter, PID signalling or cleanup authorization.
+        return { observedCount: observed.length, transportRootMatches: observed.includes(pid) ? 1 : 0 };
+      };
+      return { client, stderr: () => stderrCapture.text(), stderrInfo: () => stderrCapture.snapshot(), observeOwnedProcesses };
     });
 
-    await Promise.all(clients.map(client => client.close()));
+    try {
+      if (testInfo.status !== testInfo.expectedStatus) {
+        const receipt = JSON.stringify({ fixture: 'original_mcp_progress', clientCount: progress.length, clients: progress.slice(0, 4).map(snapshot => snapshot()) });
+        console.log(receipt);
+        if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Original MCP progress::' + receipt);
+      }
+    } finally {
+      const closed = await Promise.allSettled(clients.map(client => closeWithStderr(() => client.close(), stderrEnds.get(client)!)));
+      const failures = closed.filter(result => result.status === 'rejected').map(result => result.reason);
+      for (const { capture, ended } of stderrCaptures) {
+        try { capture.assertWithinLimit(); } catch (error) { failures.push(error); }
+        // Close and actual EOF share the pinned SDK's existing total ceiling.
+        // Keep this independent final assertion; no unchecked tail is accepted.
+        if (!ended()) failures.push(new Error('fixture_stderr_close_unconfirmed'));
+      }
+      if (failures.length) {
+        // Preserve final bounded metadata even when the test body passed and
+        // only teardown failed. Never print stderr text, tool inputs or results.
+        const receipt = JSON.stringify({ fixture: 'original_mcp_teardown', clientCount: clients.length,
+          closeAndStderrRejectedCount: closed.filter(result => result.status === 'rejected').length,
+          clients: progress.slice(0, 4).map(snapshot => snapshot()),
+          stderr: stderrCaptures.slice(0, 4).map(({ capture, ended }) => ({ ended: ended(), ...capture.snapshot() })),
+          truncated: progress.length > 4 || stderrCaptures.length > 4 });
+        try {
+          console.log(receipt);
+          if (process.env.GITHUB_ACTIONS === 'true') console.error('::notice title=Original MCP teardown::' + receipt);
+        } catch { /* Keep the original teardown failure. */ }
+        throw new AggregateError(failures, 'Original MCP fixture teardown failed');
+      }
+    }
   },
 
   wsEndpoint: async ({ }, use) => {
@@ -188,7 +265,18 @@ async function createTransport(args: string[], cwd: string, mcpMode: TestOptions
   if (mcpMode === 'docker') {
     const relCwd = path.relative(test.info().project.outputDir, cwd);
     const dockerCwd = path.posix.join('/app/test-results', relCwd.split(path.sep).join('/'));
-    const dockerArgs = ['run', '--rm', '-i', '--network=host', '-v', `${test.info().project.outputDir}:/app/test-results`, '-w', dockerCwd];
+    // An arbitrary mapped UID may have no writable home in the image. Give
+    // Chromium/Crashpad private platform config/cache roots in the owned mount.
+    fs.mkdirSync(path.join(cwd, '.config'), { recursive: true, mode: 0o700 });
+    fs.mkdirSync(path.join(cwd, '.cache'), { recursive: true, mode: 0o700 });
+    const dockerArgs = ['run', '--rm', '-i', '--network=host', '-v', `${test.info().project.outputDir}:/app/test-results`, '-w', dockerCwd,
+      '-e', `PWMCP_PROFILES_DIR_FOR_TEST=${path.posix.join(dockerCwd, 'ms-playwright')}`,
+      '-e', `XDG_CONFIG_HOME=${path.posix.join(dockerCwd, '.config')}`,
+      '-e', `XDG_CACHE_HOME=${path.posix.join(dockerCwd, '.cache')}`];
+    // Bind-mounted private files must belong to the client reading them. Keep
+    // CLI 0077 privacy; never make credential/snapshot artifacts world-readable.
+    if (typeof process.getuid === 'function' && typeof process.getgid === 'function')
+      dockerArgs.push('--user', `${process.getuid()}:${process.getgid()}`);
     const transport = new StdioClientTransport({
       command: 'docker',
       args: [...dockerArgs, 'playwright-mcp-dev:latest', ...args],
@@ -270,7 +358,9 @@ function parseResponse(response: any, cwd: string) {
     if (match) {
       try {
         snapshot = fs.readFileSync(path.resolve(cwd, match[1]), 'utf-8');
-      } catch {
+      } catch (error) {
+        const code = (error as NodeJS.ErrnoException).code;
+        throw new Error(`Snapshot link could not be read (${['EACCES', 'ENOENT', 'EPERM'].includes(code ?? '') ? code : 'read_failed'}).`);
       }
     } else {
       snapshot = snapshotSection.replace(/^```yaml\n?/, '').replace(/\n?```$/, '');

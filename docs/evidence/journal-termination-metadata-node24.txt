@@ -1,0 +1,44 @@
+✔ supervised hang: bounded completion and owned process cleanup (1903.242342ms)
+✔ supervised report-stall: bounded completion and owned process cleanup (1896.925672ms)
+✔ supervised crash: bounded completion and owned process cleanup (107.364759ms)
+✔ pre-cancelled execution never starts a worker (1.185455ms)
+✔ cancel interrupts a worker that cannot service its abort listener (476.163899ms)
+✔ supervisor crash cannot strand its worker or detached child (244.130284ms)
+✔ cancellation between precheck and supervisor startup does not start a worker (48.518852ms)
+✔ safe failure and lower-bound progress survive supervisor death without raw diagnostics (234.402823ms)
+✔ verified cleanup recovery preserves success action outcome (131.901448ms)
+✔ verified cleanup recovery preserves blocked action outcome (168.816671ms)
+✔ verified cleanup recovery preserves action action outcome (164.811801ms)
+✔ failed durable admission cannot start worker actions (74.045594ms)
+✔ stalled durable admission cannot evade watchdog deadline or start late (1616.315115ms)
+✔ successful durable admission precedes owned worker effects (189.142542ms)
+✔ durable guardian success: cleanup and canonical journal outcome (706.194275ms)
+✔ durable guardian cancel: cleanup and canonical journal outcome (1157.4033ms)
+✔ durable guardian disconnect: cleanup and canonical journal outcome (866.559004ms)
+✔ durable guardian crash: cleanup and canonical journal outcome (963.346075ms)
+✔ durable guardian mismatch: cleanup and canonical journal outcome (332.049526ms)
+✔ durable guardian admissionFailure: cleanup and canonical journal outcome (413.953779ms)
+✔ durable guardian preDisconnected: cleanup and canonical journal outcome (319.549119ms)
+✔ termination failure diagnostics persist without losing uncertain cleanup or releasing the lease (85.760254ms)
+✔ managed directory links and database hardlinks cannot modify another file (355.037755ms)
+✔ POSIX journal directory must exclude group and other access (42.522299ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (101.769378ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (76.294652ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (82.949503ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (101.833219ms)
+✔ killed transaction rolls back without a partial job or duplicate request (210.196659ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (146.930571ms)
+✔ corrupt journal is rejected without silently erasing the file (147.242312ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (55.671286ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (195.785064ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (195.28441ms)
+✔ invalid termination roots remain rejected and emit only a fixed diagnostic (1.508194ms)
+✔ diagnostic callback preserves bounded termination of an actually owned fork (415.556486ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14547.502004

@@ -1,0 +1,43 @@
+✔ real chromium: HTTP error codes and script exceptions keep response secrets out of reports (6411.99693ms)
+✔ real firefox: HTTP error codes and script exceptions keep response secrets out of reports (16506.47204ms)
+✔ known main GET 401 fails precisely even when document readiness never settles (7.827285ms)
+✔ known main GET 403 fails precisely even when document readiness never settles (2.108393ms)
+✔ known main GET 404 fails precisely even when document readiness never settles (1.495368ms)
+✔ known main GET 429 fails precisely even when document readiness never settles (1.212567ms)
+✔ known main GET 503 fails precisely even when document readiness never settles (1.546029ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"main":false}) (1.478188ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"}) (1.273093ms)
+✔ known HTTP failure waits for the configured retry attempts before failing without DOM readiness (334.734947ms)
+✔ observed cancellation keeps precedence over a newly available HTTP failure (2.250938ms)
+✔ failed fulfillment disposes its fetched response without replay or hiding the request failure (3.280989ms)
+✔ response disposal rejection preserves the existing failure and is not retried (200) (1.070853ms)
+✔ response disposal rejection preserves the existing failure and is not retried (503) (0.860807ms)
+✔ failed fulfillment releases a real retained API response before its request context closes (GET) (320.819159ms)
+✔ failed fulfillment releases a real retained API response before its request context closes (POST) (6.874212ms)
+✔ HTTP errors fail navigation without replaying requests or leaking headers (1117.944926ms)
+✔ navigation retry policy is bounded, disabled by default and copied (0.913797ms)
+✔ Retry-After is a minimum wait and an excessive wait is never shortened (0.626193ms)
+✔ failure classification returns fixed codes and never browser text (1.18165ms)
+✔ rejects unknown instructions, unbounded workloads and hostile origins (1.537197ms)
+✔ 100 ordered actions finish in a single batch with one browser launch (6.6627ms)
+✔ failures stop promptly, hide underlying sensitive errors and clean up (1.966204ms)
+✔ cancellation before starting avoids launching browser (0.384331ms)
+✔ checks target origins and reports assertion failure without page content (1.428794ms)
+✔ unknown localhost ports require exact operator origins (2.824484ms)
+✔ rejects extra workflow and action properties rather than ignoring policy (0.283069ms)
+✔ deadline includes a stalled launch and closes late browser (200.903624ms)
+✔ validation snapshots actions before asynchronous launch (1.059327ms)
+✔ screenshot capture requires operator approval for sensitive artifacts (0.498222ms)
+✔ workflow version and serialized size are bounded (6.780529ms)
+✔ accessible selectors validate exact shape and clone nested values (0.200941ms)
+✔ explicit action repeats expand within the total action cap (8.975247ms)
+✔ text equality rejects duplicate counters and ambiguous expectations (1.463313ms)
+✔ ownership launch phase precedes even a rejected public launch call (2.134534ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25301.278573

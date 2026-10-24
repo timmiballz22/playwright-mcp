@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect
+ok 1 - preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect
+  ---
+  duration_ms: 45416.539172
+  type: 'test'
+  ...
+# Subtest: audit receipts describe reused IDs without hiding possible processes or exposing identities
+ok 2 - audit receipts describe reused IDs without hiding possible processes or exposing identities
+  ---
+  duration_ms: 1.708708
+  type: 'test'
+  ...
+# Subtest: older processes with recycled parent IDs are excluded while real live descendants remain
+ok 3 - older processes with recycled parent IDs are excluded while real live descendants remain
+  ---
+  duration_ms: 0.330381
+  type: 'test'
+  ...
+# Subtest: reused root identity excludes its replacement but still reports earlier surviving children
+ok 4 - reused root identity excludes its replacement but still reports earlier surviving children
+  ---
+  duration_ms: 1.195803
+  type: 'test'
+  ...
+# Subtest: missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+ok 5 - missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+  ---
+  duration_ms: 1.35101
+  type: 'test'
+  ...
+# Subtest: live-root snapshots retain exited browser identities for the final orphan scan
+ok 6 - live-root snapshots retain exited browser identities for the final orphan scan
+  ---
+  duration_ms: 0.623013
+  type: 'test'
+  ...
+# Subtest: CIM error phase keeps only exact fixed markers and never raw diagnostics
+ok 7 - CIM error phase keeps only exact fixed markers and never raw diagnostics
+  ---
+  duration_ms: 0.582146
+  type: 'test'
+  ...
+# Subtest: separate owned lifetimes retain old orphans when a new client reuses its PID
+ok 8 - separate owned lifetimes retain old orphans when a new client reuses its PID
+  ---
+  duration_ms: 0.727634
+  type: 'test'
+  ...
+# Subtest: new client may reuse an earlier observed descendant without losing either orphan lineage
+ok 9 - new client may reuse an earlier observed descendant without losing either orphan lineage
+  ---
+  duration_ms: 0.208281
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 45750.641344

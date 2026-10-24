@@ -1,0 +1,39 @@
+✔ cooperative context cleanup timeout retains fixed stage and stays failed (29.366106ms)
+✔ cooperative context cleanup error retains fixed stage and stays failed (2.71355ms)
+✔ untrusted Retry-After hints cannot exceed bounded durable result metadata (6.308265ms)
+✔ all three close failures plus final server kill failure remain bounded fixed metadata (2.452666ms)
+✔ client step failure receipts retain fixed taxonomy without private step fields (0.605802ms)
+✔ known main GET 401 fails precisely even when document readiness never settles (5.922222ms)
+✔ known main GET 403 fails precisely even when document readiness never settles (2.532826ms)
+✔ known main GET 404 fails precisely even when document readiness never settles (1.10776ms)
+✔ known main GET 429 fails precisely even when document readiness never settles (1.617715ms)
+✔ known main GET 503 fails precisely even when document readiness never settles (2.047342ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"main":false}) (1.596426ms)
+✔ HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"}) (0.93204ms)
+✔ known HTTP failure waits for the configured retry attempts before failing without DOM readiness (315.307818ms)
+✔ observed cancellation keeps precedence over a newly available HTTP failure (1.558847ms)
+✔ navigation retry policy is bounded, disabled by default and copied (1.209924ms)
+✔ Retry-After is a minimum wait and an excessive wait is never shortened (0.42509ms)
+✔ failure classification returns fixed codes and never browser text (0.929942ms)
+✔ rejects unknown instructions, unbounded workloads and hostile origins (2.128337ms)
+✔ 100 ordered actions finish in a single batch with one browser launch (9.649517ms)
+✔ failures stop promptly, hide underlying sensitive errors and clean up (2.16344ms)
+✔ cancellation before starting avoids launching browser (0.726535ms)
+✔ checks target origins and reports assertion failure without page content (2.429649ms)
+✔ unknown localhost ports require exact operator origins (2.026547ms)
+✔ rejects extra workflow and action properties rather than ignoring policy (0.338224ms)
+✔ deadline includes a stalled launch and closes late browser (200.475151ms)
+✔ validation snapshots actions before asynchronous launch (1.218004ms)
+✔ screenshot capture requires operator approval for sensitive artifacts (0.673378ms)
+✔ workflow version and serialized size are bounded (11.409038ms)
+✔ accessible selectors validate exact shape and clone nested values (0.225339ms)
+✔ explicit action repeats expand within the total action cap (12.584022ms)
+✔ text equality rejects duplicate counters and ambiguous expectations (2.012347ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 870.960832

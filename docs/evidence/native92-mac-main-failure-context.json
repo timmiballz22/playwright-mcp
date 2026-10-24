@@ -1,0 +1,121 @@
+[
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "data": {
+      "fixture": "raw_browser_failure",
+      "browser": "chromium",
+      "mode": "headless",
+      "freshRun": 1,
+      "reason": "timeout",
+      "completed": 982,
+      "total": 1000,
+      "durationMs": 120172,
+      "actionsSucceeded": false,
+      "cleanupFailureCount": 0,
+      "failedStep": {
+        "index": 983,
+        "type": "click",
+        "error": "timeout",
+        "failureKind": "interrupted"
+      }
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "data": {
+      "fixture": "jobs_mcp_failure",
+      "diagnosticCoverage": "bounded_stderr_tail",
+      "guardianFailures": [],
+      "journalFailures": [],
+      "guardianExits": [],
+      "journalExitUnconfirmed": false,
+      "stderrTailTruncated": false,
+      "diagnosticCapped": false
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "data": {
+      "fixture": "jobs_mcp_workspace_preserved",
+      "verified": false,
+      "primaryFailed": true,
+      "aborted": false,
+      "auditConfirmed": true,
+      "auditFailed": false,
+      "closeFailures": 0
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "data": {
+      "job": {
+        "jobId": "0f209827-20dc-4890-bc45-16730741b1fb",
+        "state": "TIMED_OUT",
+        "revision": 44,
+        "stage": "complete",
+        "completed": 950,
+        "total": 1000,
+        "createdAt": "2026-10-22T17:08:51.983Z",
+        "updatedAt": "2026-10-22T17:10:51.239Z",
+        "deadlineAt": "2026-10-22T17:10:51.973Z",
+        "cancelRequested": false,
+        "reason": "timeout",
+        "resultAvailable": true,
+        "completionCertainty": "confirmed_lower_bound",
+        "retrySafe": false,
+        "operatorAttentionRequired": false,
+        "progressPercent": 95
+      },
+      "ready": true,
+      "result": {
+        "schemaVersion": 1,
+        "runId": "d432471f-ded7-48b9-a10a-0c4fb7749701",
+        "browser": "chromium",
+        "total": 1000,
+        "ok": false,
+        "reason": "timeout",
+        "completed": 950,
+        "recentSteps": [],
+        "failedStep": {
+          "index": 951,
+          "type": "click",
+          "ok": false,
+          "error": "cancelled",
+          "failureKind": "interrupted"
+        },
+        "execution": {
+          "mode": "supervised",
+          "forced": false,
+          "cleanup": "terminated",
+          "tempCleanup": "removed",
+          "supervisorPid": 11337,
+          "workerPid": 11338,
+          "browserPids": [
+            11340
+          ]
+        },
+        "completionCertainty": "confirmed_lower_bound",
+        "retrySafe": false,
+        "durationMs": 118886
+      },
+      "isError": false
+    }
+  },
+  {
+    "job": "batch (macos-15-intel, 22)",
+    "data": {
+      "fixture": "batch_mcp_workspace_preserved",
+      "stage": "summary",
+      "outcome": {
+        "ok": false,
+        "reason": "timeout",
+        "completed": 986,
+        "cleanup": "terminated",
+        "tempCleanup": "removed"
+      },
+      "aborted": false,
+      "primaryFailed": true,
+      "closeFailed": false
+    }
+  }
+]

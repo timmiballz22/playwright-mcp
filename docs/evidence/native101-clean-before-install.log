@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: stderr capture preserves split UTF-8 bytes and owns its bounded storage
+ok 1 - stderr capture preserves split UTF-8 bytes and owns its bounded storage
+  ---
+  duration_ms: 1.343689
+  type: 'test'
+  ...
+# Subtest: stderr capture accepts its exact byte boundary and rejects overflow without leaking text
+ok 2 - stderr capture accepts its exact byte boundary and rejects overflow without leaking text
+  ---
+  duration_ms: 6.733325
+  type: 'test'
+  ...
+# Subtest: one oversized stderr chunk is bounded immediately and invalid chunks are rejected
+ok 3 - one oversized stderr chunk is bounded immediately and invalid chunks are rejected
+  ---
+  duration_ms: 0.884512
+  type: 'test'
+  ...
+# Subtest: actual SDK close can precede stderr EOF; joined teardown drains within its existing ceiling
+not ok 4 - actual SDK close can precede stderr EOF; joined teardown drains within its existing ceiling
+  ---
+  duration_ms: 1.105574
+  type: 'test'
+  location: '/tmp/playwright-native101-components-review/qa/bounded-stderr.test.mjs:51:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot find package '@modelcontextprotocol/sdk' imported from /tmp/playwright-native101-components-review/qa/bounded-stderr.test.mjs"
+  code: 'ERR_MODULE_NOT_FOUND'
+  stack: |-
+    Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    packageResolve (node:internal/modules/esm/resolve:772:81)
+    moduleResolve (node:internal/modules/esm/resolve:859:18)
+    defaultResolve (node:internal/modules/esm/resolve:989:11)
+    #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:680:36)
+    TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+    ModuleLoader.import (node:internal/modules/esm/loader:679:21)
+  ...
+# Subtest: actual inherited stderr beyond the existing ceiling stays a failed unconfirmed teardown
+not ok 5 - actual inherited stderr beyond the existing ceiling stays a failed unconfirmed teardown
+  ---
+  duration_ms: 0.620825
+  type: 'test'
+  location: '/tmp/playwright-native101-components-review/qa/bounded-stderr.test.mjs:60:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot find package '@modelcontextprotocol/sdk' imported from /tmp/playwright-native101-components-review/qa/bounded-stderr.test.mjs"
+  code: 'ERR_MODULE_NOT_FOUND'
+  stack: |-
+    Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    packageResolve (node:internal/modules/esm/resolve:772:81)
+    moduleResolve (node:internal/modules/esm/resolve:859:18)
+    defaultResolve (node:internal/modules/esm/resolve:989:11)
+    #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:680:36)
+    TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+    ModuleLoader.import (node:internal/modules/esm/loader:679:21)
+  ...
+# Subtest: joined teardown preserves a close rejection after actual EOF
+ok 6 - joined teardown preserves a close rejection after actual EOF
+  ---
+  duration_ms: 0.77645
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 4
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 65.93896

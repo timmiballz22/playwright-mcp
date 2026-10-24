@@ -1,0 +1,29 @@
+{
+  "scope": "Actual Linux PID namespace with its own proc mount; real detached factory/group member and unchanged read-only ps query/16384-row cap. Not host-wide coverage or default product isolation. Controlled fault follows actual leader-missing hint; self-exit uses existing private stop file, no signal from observed PID. Failed directory kept, healthy removed. Original assertions/limits unchanged.",
+  "results": [
+    {
+      "node": 20,
+      "mode": "fault",
+      "exit": 1,
+      "injected": true,
+      "directories": [
+        {
+          "basename": "group-hint-orphan-8RBCE0",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "node": 20,
+      "mode": "healthy",
+      "exit": 0,
+      "injected": false,
+      "directories": [
+        {
+          "basename": "group-hint-orphan-HyrylH",
+          "exists": false
+        }
+      ]
+    }
+  ]
+}

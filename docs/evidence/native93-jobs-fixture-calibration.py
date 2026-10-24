@@ -1,0 +1,13 @@
+from pathlib import Path
+import os,subprocess,json,hashlib
+r=Path('/workspace/playwright-mcp');p=Path('/tmp');nodes={'22':Path('/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node'),'24':Path(subprocess.check_output(['which','node'],text=True).strip())};cases=[]
+for variant,versions,modes in [('before',['22'],['combined','final_close']),('after',['22','24'],['combined','final_close','healthy'])]:
+ for version in versions:
+  for mode in modes:
+   script=(p/'playwright-jobs-fixture-baseline/scripts/production-jobs-smoke.mjs') if variant=='before' else r/'scripts/production-jobs-smoke.mjs';stem=f'native93-jobs-{variant}{version}-{mode}';proof=p/(stem+'.json');env=os.environ.copy();env['PATH']=str(nodes[version].parent)+os.pathsep+env['PATH']
+   with (p/(stem+'.log')).open('w') as f:proc=subprocess.run([str(nodes[version]),str(p/'native93-jobs-fixture-calibration.mjs'),str(r),str(script),mode,str(proof)],cwd=r,env=env,stdout=f,stderr=subprocess.STDOUT,timeout=90)
+   x=json.load(open(proof));expected=0 if mode=='healthy' or variant=='before' and mode=='final_close' else 1;assert proc.returncode==expected and x['remainingOwned']==0,x;assert x['storeExists']==(mode=='combined' or variant=='after' and mode=='final_close'),x
+   if mode=='combined':assert x['primaryInjected'] and x['closeInjected'] and x['controlledPrimaryIsCause']==(variant=='after') and x['errorCount']==(2 if variant=='after' else 1),x
+   if mode=='final_close':assert x['closeInjected'] and x['fulfilledCloseCalls']==2,x
+   cases.append({'node':version,'variant':variant,'exit':proc.returncode,**x});print(json.dumps({'node':version,'variant':variant,'mode':mode,'exit':proc.returncode,'storeRetained':x['storeExists'],'owned':x['remainingOwned']}),flush=True)
+(p/'native93-jobs-fixture-preservation-proof.json').write_text(json.dumps({'phase':'Local followup excluded from completed native93 source47d9c21','baselineCommit':'47d9c2153ec33a02c2713b3f9a10944364f70972','cases':cases,'fixedSourceSha256':hashlib.sha256((r/'scripts/production-jobs-smoke.mjs').read_bytes()).hexdigest(),'scope':'Actual smoke imports real SDK/MCP/jobs/CLI/browser paths. Primary error is injected after a real successful job result; close error only after fulfilled SDK close. Real mkdtemp records the fixture root without replacing its result. Baseline loses primary error and accepts final-close failure; fixed cases retain failures and both causes, healthy stores removed. Read-only scoped owned audits confirm zero; no signal from these observations. Negative calibrations are not native/production passes. Cleanup loops/deadlines/ownership logic unchanged; marker delayed until cleanup attempts complete.'},indent=2)+'\n')

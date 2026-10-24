@@ -1,6 +1,16 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { runWorkflow, validateWorkflow } from './runner.mjs';
+import { classifyActionFailure, FAILURE_KINDS } from './failure.mjs';
+
+test('failure classification returns fixed codes and never browser text', () => {
+  const failure = Object.assign(new Error('fake-diagnostic-secret element is not stable then overlay intercepts pointer events'), { name: 'TimeoutError' });
+  const kind = classifyActionFailure(failure, { type: 'click' });
+  assert.equal(kind, 'pointer_intercepted');
+  assert.equal(FAILURE_KINDS.includes(kind), true);
+  assert.equal(kind.includes('fake-diagnostic-secret'), false);
+  assert.equal(classifyActionFailure(new Error('Text assertion failed'), { type: 'assertText' }), 'assertion_mismatch');
+});
 
 function makeFake({ failAt = -1 } = {}) {
   const state = { clicks: 0, closes: 0, contextsClosed: 0, url: 'about:blank', routes: [] };
@@ -21,7 +31,7 @@ function makeFake({ failAt = -1 } = {}) {
       waitFor: async () => {},
       textContent: async () => String(state.clicks),
     }),
-    screenshot: async () => {},
+    screenshot: async () => Buffer.from('owned-fake-image'),
   };
   const context = {
     setDefaultTimeout: () => {},
@@ -64,9 +74,11 @@ test('100 ordered actions finish in a single batch with one browser launch', asy
 
 test('failures stop promptly, hide underlying sensitive errors and clean up', async () => {
   const { state, playwright } = makeFake({ failAt: 3 });
+  let sourceDiagnostic;
   const result = await runWorkflow({
     steps: Array.from({ length: 8 }, () => ({ type: 'click', selector: '#x' })),
-  }, { playwright });
+  }, { playwright, onActionFailure: error => { sourceDiagnostic = error; } });
+  assert.equal(sourceDiagnostic.message.includes('never-leak'), true);
   assert.equal(result.ok, false);
   assert.equal(result.reason, 'action_failed');
   assert.equal(result.completed, 2);
@@ -99,4 +111,87 @@ test('checks target origins and reports assertion failure without page content',
   assert.equal(result.reason, 'action_failed');
   assert.equal(state.routes.length, 1);
   assert.equal(state.closes, 1);
+});
+
+test('unknown localhost ports require exact operator origins', async () => {
+  const mock = makeFake();
+  for (const url of ['http://localhost:3456/', 'http://127.0.0.1:3456/', 'http://[::1]:3456/'])
+    await assert.rejects(runWorkflow({ steps: [{ type: 'goto', url }] }, mock));
+  const result = await runWorkflow({ steps: [{ type: 'goto', url: 'http://localhost:3456/' }] },
+    { ...mock, allowedOrigins: ['http://localhost:3456'] });
+  assert.equal(result.ok, true);
+});
+
+test('rejects extra workflow and action properties rather than ignoring policy', () => {
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'click', selector: 'button' }], allowedOrigins: ['http://localhost'] }));
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'click', selector: 'button', code: 'canary' }] }));
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'screenshot', value: 'canary' }] }));
+});
+
+test('deadline includes a stalled launch and closes late browser', async () => {
+  let closed = 0;
+  const result = await runWorkflow({ timeoutMs: 100, steps: [{ type: 'click', selector: 'button' }] }, {
+    playwright: { chromium: { launch: () => new Promise(resolve => setTimeout(() => resolve({ close: async () => { closed++; } }), 150)) } },
+  });
+  assert.equal(result.reason, 'timeout');
+  await new Promise(resolve => setTimeout(resolve, 100));
+  assert.equal(closed, 1);
+});
+
+test('validation snapshots actions before asynchronous launch', async () => {
+  const step = { type: 'goto', url: 'https://example.com/' };
+  const { state, playwright } = makeFake();
+  const pending = runWorkflow({ steps: [step] }, { playwright, allowedOrigins: ['https://example.com'] });
+  step.url = 'file:///etc/passwd';
+  const result = await pending;
+  assert.equal(result.ok, true);
+  assert.equal(state.url, 'https://example.com/');
+});
+
+test('screenshot capture requires operator approval for sensitive artifacts', async () => {
+  await assert.rejects(runWorkflow({ steps: [{ type: 'screenshot' }] }, makeFake()), /Sensitive artifact capture/);
+});
+
+test('workflow version and serialized size are bounded', () => {
+  assert.throws(() => validateWorkflow({ schemaVersion: 2, steps: [{ type: 'screenshot' }] }));
+  assert.doesNotThrow(() => validateWorkflow({ schemaVersion: 1, steps: [{ type: 'screenshot' }] }));
+  assert.throws(() => validateWorkflow({ steps: Array.from({ length: 200 }, () => ({ type: 'fill', selector: 'input', value: 'x'.repeat(10000) })) }));
+});
+
+test('accessible selectors validate exact shape and clone nested values', () => {
+  const selector = { role: 'button', name: 'Save' };
+  const result = validateWorkflow({ steps: [{ type: 'click', selector }] });
+  selector.name = 'Mutated';
+  assert.equal(result.steps[0].selector.name, 'Save');
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'click', selector: { role: 'button', name: 'Save', code: 'secret' } }] }));
+});
+
+test('explicit action repeats expand within the total action cap', async () => {
+  const fake = makeFake();
+  const result = await runWorkflow({ schemaVersion: 1, steps: [{ type: 'click', selector: 'button', repeat: 1000 }] }, fake);
+  assert.equal(result.completed, 1000);
+  assert.equal(fake.state.clicks, 1000);
+  assert.equal(fake.state.closes, 1);
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'click', selector: 'button', repeat: 600 }, { type: 'click', selector: 'button', repeat: 600 }] }));
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'click', selector: 'button', repeat: 0 }] }));
+  assert.throws(() => validateWorkflow({ iterations: 2, steps: [{ type: 'click', selector: 'button', repeat: 600 }] }));
+});
+
+test('text equality rejects duplicate counters and ambiguous expectations', async () => {
+  const fake = makeFake();
+  const result = await runWorkflow({ steps: [{ type: 'click', selector: 'button', repeat: 10 }, { type: 'assertText', selector: 'output', equals: '1' }] }, fake);
+  assert.equal(result.ok, false);
+  assert.equal(result.completed, 10);
+  assert.throws(() => validateWorkflow({ steps: [{ type: 'assertText', selector: 'output', equals: '1', contains: '1' }] }));
+});
+
+test('ownership launch phase precedes even a rejected public launch call', async () => {
+  const { playwright } = makeFake(); const phases = [];
+  playwright.chromium.launch = async () => { phases.push('launch'); throw new Error('private-launch-failure-canary'); };
+  const result = await runWorkflow({ steps: [{ type: 'click', selector: '#never' }] }, {
+    playwright, onBrowserLaunch: () => phases.push('ownership-pending'),
+  });
+  assert.deepEqual(phases, ['ownership-pending', 'launch']);
+  assert.equal(result.ok, false); assert.equal(result.completed, 0);
+  assert.equal(JSON.stringify(result).includes('canary'), false);
 });

@@ -1,0 +1,75 @@
+{
+  "defect": "Successful MCP tool replies echo source containing the failure-marker string; substring alone wrongly entered optional probe on healthy results. Native stock ffmpeg absent, so those probes were unexecuted.",
+  "fix": "Require isError and the marker, or explicit trusted test mode; tag every video receipt with the browser project.",
+  "defaultHealthy": {
+    "node24": {
+      "pass": 2,
+      "fail": 0
+    },
+    "controlReceipts": 0
+  },
+  "explicitMode": {
+    "node24": {
+      "pass": 2,
+      "sampledVariants": 6
+    }
+  },
+  "actualOriginalCoreNegative": {
+    "actualExit": 1,
+    "expectedExit": 1,
+    "automaticallyProbed": true,
+    "variants": 3,
+    "originalPixel": [
+      255,
+      24,
+      0,
+      255
+    ],
+    "isolatedCoreRestored": true,
+    "mainCoreUnchanged": true
+  },
+  "optionalCISetup": {
+    "host": "macOS only",
+    "command": "brew install ffmpeg; ffmpeg -version",
+    "stepBudgetMinutes": 5,
+    "existingJobBudgetMinutes": 30,
+    "continueOnError": "Only optional diagnostic tool; original browser assertions still execute and remain strict",
+    "localInstallation": "Unexecuted on Linux host; native verification required"
+  },
+  "checks": {
+    "typecheck": 0,
+    "actionlint": 0,
+    "shellcheck": "unexecuted",
+    "pyflakes": "unexecuted"
+  },
+  "files": [
+    {
+      "file": "native86-video-probe-gate-negative-phases.json",
+      "sha256": "68dd143db56bdc53352b9890357eec6ac8e66adc0a9373d755b8bd890c720a73"
+    },
+    {
+      "file": "native86-video-probe-gate-negative24.log",
+      "sha256": "6c978c5c05602afe46fbe4799810d77fb3ac7b1b28a3276350d8613b74d02242"
+    },
+    {
+      "file": "native86-video-probe-gate-checks.json",
+      "sha256": "b3748b39e2a2fea357e4f52cbc692e8a821651416e40d986cc6b130a005f15c3"
+    },
+    {
+      "file": "native86-video-probe-gate-actionlint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "native86-video-probe-gate-typecheck.log",
+      "sha256": "59e33a01e00ead259010192aa8bca8432dc73e6693e71584eec741463a75616f"
+    },
+    {
+      "file": "native86-video-probe-gate-forced24.log",
+      "sha256": "e8fe41d20979d12ae3657c8a7317c157f55a228fbddc952386711a9e9bf05fcd"
+    },
+    {
+      "file": "native86-video-probe-gate-default24.log",
+      "sha256": "b6d3f1514d4ae4101e06993907024c9c0837a7bfa7768732e1186730bd992c06"
+    }
+  ]
+}

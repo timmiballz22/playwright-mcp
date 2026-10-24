@@ -1,0 +1,202 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+import path from 'node:path';
+import { windowsAuditSerialization, windowsCimRows } from './fixtures/process-audit.mjs';
+import { windowsOwnedProcesses, windowsOwnedProcessScopes, windowsCimFailurePhase, windowsAuditReceipt, windowsLegacyComparison } from './fixtures/windows-process-graph.mjs';
+const time = value => '2026-10-21T00:00:00.' + String(value).padStart(7, '0') + 'Z';
+const row = (pid, parent, started) => ({ pid, parent, started: started === null ? null : time(started) });
+test('an empty CIM snapshot fails the audit while a kernel PID row and singleton shape are retained', () => {
+  assert.deepEqual(windowsCimRows('{"ProcessId":0,"ParentProcessId":0,"Started":null}'), [{ pid: 0, parent: 0, started: null }]);
+  assert.deepEqual(windowsCimRows('[{"ProcessId":7,"ParentProcessId":0,"Started":null}]'), [{ pid: 7, parent: 0, started: null }]);
+  assert.throws(() => windowsCimRows('[]'), /process_audit_windows_cim_empty/);
+  assert.throws(() => windowsCimRows('')); assert.throws(() => windowsCimRows('null'));
+});
+// Only a native PowerShell execution verifies its serializer. Other hosts do
+// not register this case and must not report it as a pass.
+if (process.platform === 'win32') test('native fixed CIM serialization matches legacy scalar rows and rejects malformed timestamps', { timeout: 15000 }, async () => {
+  const cases = [[], [{ ProcessId: 0, ParentProcessId: 0, Started: null }],
+    [{ ProcessId: 1, ParentProcessId: 0, Started: time(1) }],
+    [{ ProcessId: 4294967295, ParentProcessId: 7, Started: time(1234567) }, { ProcessId: 8, ParentProcessId: 4294967295, Started: null }]];
+  const input = JSON.stringify(cases.map(rows => ({ rows })));
+  const script = `$ErrorActionPreference = 'Stop'
+$cases = ConvertFrom-Json '${input}'
+$results = @(foreach ($case in $cases) {
+  $rows = @($case.rows)
+  $legacy = ConvertTo-Json -InputObject $rows -Compress
+  ${windowsAuditSerialization}
+  [pscustomobject]@{legacy=$legacy;current=$json}
+})
+$rejected = $false
+$rows = @([pscustomobject]@{ProcessId=7;ParentProcessId=0;Started='not-a-date'})
+try { ${windowsAuditSerialization} } catch { $rejected = $_.Exception.Message -eq 'invalid_audit_timestamp' }
+[pscustomobject]@{results=$results;malformedRejected=$rejected} | ConvertTo-Json -Depth 4 -Compress`;
+  const executable = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
+  const { stdout } = await promisify(execFile)(executable, ['-NoProfile', '-NonInteractive', '-Command', script], { timeout: 10000, maxBuffer: 1048576, windowsHide: true });
+  const result = JSON.parse(stdout);
+  assert.equal(result.malformedRejected, true); assert.equal(result.results.length, cases.length);
+  result.results.forEach((row, index) => {
+    assert.deepEqual(JSON.parse(row.current), cases[index]);
+    assert.deepEqual(JSON.parse(row.current), JSON.parse(row.legacy));
+  });
+});
+test('audit receipts describe reused IDs without hiding possible processes or exposing identities', () => {
+  const rows = [{ pid: 900, parent: 1, started: '2026-10-21T00:00:02.0000000Z', command: 'fake-audit-private-canary' },
+    { pid: 901, parent: 900, started: '2026-10-21T00:00:01.0000000Z' }];
+  const identities = new Map();
+  const observed = windowsOwnedProcesses([900], rows, identities);
+  assert.deepEqual(observed, [900, 901], 'Unknown legacy roots must remain conservative');
+  const receipt = windowsAuditReceipt([900], rows, observed, 900, identities, Date.parse('2026-10-21T00:00:01.500Z'));
+  assert.deepEqual(receipt, { observedCount: 2, auditHelperMatched: true, rootMatches: 1,
+    rememberedRootBirths: 0, birthsBeforeObservationWindow: 1, missingObservedBirths: 0 });
+  for (const secret of ['900', '901', '2026', 'fake-audit-private-canary']) assert.equal(JSON.stringify(receipt).includes(secret), false);
+  assert.deepEqual(observed, [900, 901], 'Diagnostics must not filter the ownership result');
+  identities.set(900, '2026-10-21T00:00:00.0000000Z');
+  const precise = windowsOwnedProcesses([900], rows, identities);
+  assert.deepEqual(precise, [901], 'Known birth excludes only the replacement, preserving an older child');
+  assert.deepEqual(windowsAuditReceipt([900], rows, precise, 900, identities), {
+    observedCount: 1, auditHelperMatched: false, rootMatches: 0, rememberedRootBirths: 1,
+    birthsBeforeObservationWindow: null, missingObservedBirths: 0,
+  });
+});
+test('older processes with recycled parent IDs are excluded while real live descendants remain', () => {
+  const identities = new Map();
+  const rows = [row(900, 1, 100), row(100, 900, 10), row(901, 900, 110), row(902, 901, 120)];
+  assert.deepEqual(windowsOwnedProcesses([900], rows, identities, true), [900, 901, 902]);
+  assert.equal(identities.has(100), false);
+});
+test('reused root identity excludes its replacement but still reports earlier surviving children', () => {
+  const identities = new Map([[900, time(100)]]);
+  assert.deepEqual(windowsOwnedProcesses([900], [row(900, 1, 200), row(901, 900, 150), row(902, 900, 250), row(903, 901, 160)], identities), [901, 903]);
+  assert.deepEqual(windowsOwnedProcesses([900], [row(900, 1, 200), row(902, 900, 250)], identities), []);
+});
+test('missing identity is uncertainty, while unknown legacy roots never hide potential orphans', () => {
+  assert.throws(() => windowsOwnedProcesses([900], [], new Map(), true), { message: 'process_audit_windows_identity_unavailable_root_missing' });
+  assert.throws(() => windowsOwnedProcesses([900], [row(900, 1, 200)], new Map([[900, time(100)]]), true), { message: 'process_audit_windows_identity_unavailable_root_birth_changed' });
+  assert.throws(() => windowsOwnedProcesses([900], [row(900, 1, null)], new Map(), true), /identity_unavailable/);
+  assert.throws(() => windowsOwnedProcesses([900], [row(900, 1, 90)], new Map([[900, time(100)]])), /identity_unavailable/);
+  assert.deepEqual(windowsOwnedProcesses([900], [row(901, 900, null)]), [901]);
+  assert.throws(() => windowsOwnedProcesses([900], [row(900, 1, 100), row(901, 900, null)], new Map(), true), /identity_unavailable/);
+});
+
+test('live-root snapshots retain exited browser identities for the final orphan scan', () => {
+  const identities = new Map();
+  windowsOwnedProcesses([900], [row(900, 1, 100), row(901, 900, 110), row(902, 901, 120)], identities, true);
+  const nextLaunch = [row(900, 1, 100), row(902, 901, 120), row(910, 900, 200)];
+  assert.throws(() => windowsOwnedProcesses([900, 901], nextLaunch, identities, true), /identity_unavailable/);
+  assert.deepEqual(windowsOwnedProcesses([900], nextLaunch, identities, true), [900, 910]);
+  assert.deepEqual(windowsOwnedProcesses([900, 901, 910], [row(902, 901, 120)], identities), [902]);
+  assert.deepEqual(windowsOwnedProcesses([900, 901, 910], [], identities), []);
+});
+
+
+test('CIM error phase keeps only exact fixed markers and never raw diagnostics', () => {
+  assert.equal(windowsCimFailurePhase(undefined), 'unknown');
+  assert.equal(windowsCimFailurePhase('PWMCP_AUDIT_PHASE=query\nPWMCP_AUDIT_PHASE=projection\n'), 'projection');
+  assert.equal(windowsCimFailurePhase('private-canary PWMCP_AUDIT_PHASE=query'), 'unknown');
+  assert.equal(windowsCimFailurePhase('PWMCP_AUDIT_PHASE=private-canary'), 'unknown');
+  assert.equal(windowsCimFailurePhase('PWMCP_AUDIT_PHASE=entered\r\nPWMCP_AUDIT_PHASE=query\r\nprivate-canary'), 'query');
+  assert.equal(windowsCimFailurePhase('PWMCP_AUDIT_PHASE=serialization\nPWMCP_AUDIT_PHASE=done\n'), 'done');
+});
+
+
+test('separate owned lifetimes retain old orphans when a new client reuses its PID', () => {
+  const earlier = { roots: new Set([900]), identities: new Map() };
+  assert.deepEqual(windowsOwnedProcessScopes([earlier], [row(900, 1, 100)], true), [900]);
+  const later = { roots: new Set([900]), identities: new Map() };
+  const replacement = [row(900, 1, 200), row(901, 900, 150), row(902, 900, 250), row(903, 901, 160)];
+  // The previous one-map registration fails closed here, as seen natively.
+  assert.throws(() => windowsOwnedProcesses([900], replacement, earlier.identities, true), /root_birth_changed/);
+  assert.deepEqual(windowsOwnedProcessScopes([later], replacement, true), [900, 902]);
+  assert.deepEqual(windowsOwnedProcessScopes([earlier, later], replacement), [900, 901, 902, 903]);
+  assert.equal(earlier.identities.get(900), time(100)); assert.equal(later.identities.get(900), time(200));
+  assert.deepEqual(windowsOwnedProcessScopes([earlier, later], [row(901, 900, 150), row(903, 901, 160)]), [901, 903]);
+  assert.throws(() => windowsOwnedProcessScopes([later], [row(900, 1, 300)], true), /root_birth_changed/,
+    'A changed identity inside one lifetime remains uncertain');
+});
+
+
+test('new client may reuse an earlier observed descendant without losing either orphan lineage', () => {
+  const earlier = { roots: new Set([900]), identities: new Map() };
+  windowsOwnedProcessScopes([earlier], [row(900, 1, 100), row(901, 900, 110)], true);
+  const later = { roots: new Set([901]), identities: new Map() };
+  const rows = [row(901, 1, 200), row(902, 901, 150), row(903, 901, 250)];
+  windowsOwnedProcessScopes([later], rows, true);
+  assert.deepEqual(windowsOwnedProcessScopes([earlier, later], rows), [901, 902, 903]);
+  const unrelatedReplacement = [row(901, 1, 300), row(902, 901, 150), row(903, 901, 250), row(904, 901, 350)];
+  assert.deepEqual(windowsOwnedProcessScopes([earlier, later], unrelatedReplacement), [902, 903],
+    'Both earlier owned branches survive; a later unrelated incarnation is not promoted to owned');
+});
+
+
+test('live controller anchors retain exited browser roots and reject changes within that lifetime', () => {
+  const scope = { roots: new Set([900]), liveRoots: new Set([900]), identities: new Map() };
+  windowsOwnedProcessScopes([scope], [row(900, 1, 100), row(901, 900, 110)], true);
+  assert.deepEqual(windowsOwnedProcessScopes([scope], [row(900, 1, 100), row(902, 901, 120), row(910, 900, 200)], true), [900, 902, 910]);
+  assert.throws(() => windowsOwnedProcessScopes([scope], [row(900, 1, 300), row(902, 901, 120)], true), /root_birth_changed/);
+  assert.throws(() => windowsOwnedProcessScopes([scope], [row(902, 901, 120)], true), /root_missing/);
+});
+
+test('first live-anchor capture uses its birth before historical traversal and retains unknown legacy roots', () => {
+  const scope = { roots: new Set([800, 900]), liveRoots: new Set([900]), identities: new Map() };
+  const rows = [row(900, 1, 100), row(100, 900, 10), row(901, 900, 110), row(800, 1, 5), row(801, 800, 6)];
+  const observed = windowsOwnedProcessScopes([scope], rows, true);
+  assert.deepEqual(observed, [800, 801, 900, 901]);
+  assert.equal(scope.identities.get(900), time(100));
+  assert.equal(scope.identities.has(800), false, 'An unknown historical root must not acquire an invented birth');
+  assert.equal(scope.roots.has(100), false, 'Invalid parent incarnation must not poison future scope roots');
+  const legacy = windowsLegacyComparison([800, 900], rows, observed, [800, 900]);
+  assert.deepEqual(legacy.observed, [100, 800, 801, 900, 901]);
+  assert.deepEqual(legacy.legacyOnly, [100]); assert.deepEqual(legacy.rows, rows);
+  assert.deepEqual(legacy.rootRows, [rows[0], rows[3]]);
+});
+
+test('first live-anchor capture preserves recorded orphan births across another root replacement', () => {
+  const scope = { roots: new Set([700, 900]), liveRoots: new Set([900]), identities: new Map([[700, time(20)]]) };
+  const rows = [row(700, 1, 80), row(701, 700, 40), row(702, 700, 90),
+    row(900, 1, 100), row(100, 900, 10), row(901, 900, 110)];
+  assert.deepEqual(windowsOwnedProcessScopes([scope], rows, true), [701, 900, 901]);
+  assert.equal(scope.identities.get(700), time(20));
+  assert.equal(scope.identities.get(701), time(40));
+  assert.deepEqual(windowsOwnedProcessScopes([scope], [row(701, 700, 40), row(901, 900, 110)]), [701, 901]);
+});
+
+test('live anchor refresh preserves an old orphan before recording a new owned browser incarnation', () => {
+  const scope = { roots: new Set([900]), liveRoots: new Set([900]), identities: new Map() };
+  windowsOwnedProcessScopes([scope], [row(900, 1, 100), row(901, 900, 110)], true);
+  const reused = [row(900, 1, 100), row(901, 900, 200), row(902, 901, 150), row(903, 901, 250)];
+  assert.deepEqual(windowsOwnedProcessScopes([scope], reused, true), [900, 901, 902, 903]);
+  assert.deepEqual(windowsOwnedProcessScopes([scope], [row(900, 1, 100), row(902, 901, 150), row(903, 901, 250)], true), [900, 902, 903]);
+});
+
+
+test('historical PID links cannot rewrite a live controller identity before validation', () => {
+  const scope = { roots: new Set([900]), liveRoots: new Set([900]), identities: new Map() };
+  windowsOwnedProcessScopes([scope], [row(900, 1, 100), row(901, 900, 110)], true);
+  assert.throws(() => windowsOwnedProcessScopes([scope], [row(901, 1, 110), row(900, 901, 300)], true), /root_birth_changed/);
+  assert.equal(scope.identities.get(900), time(100));
+});
+
+test('legacy comparison preserves old candidates while scoped birth facts retain an owned orphan', async () => {
+  const { windowsLegacyComparison, windowsOwnedProcesses } = await import('./fixtures/windows-process-graph.mjs');
+  const rows = [
+    { pid: 101, parent: 100, started: '2026-10-21T00:00:01.0000000Z' },
+    { pid: 102, parent: 100, started: '2026-10-21T00:00:03.0000000Z' },
+  ];
+  const identities = new Map([[100, '2026-10-21T00:00:02.0000000Z']]);
+  const scoped = windowsOwnedProcesses([100], rows, identities);
+  assert.deepEqual(scoped, [102]);
+  const comparison = windowsLegacyComparison([100], rows, scoped);
+  assert.deepEqual(comparison.observed, [101, 102]); assert.deepEqual(comparison.legacyOnly, [101]);
+  assert.deepEqual(comparison.rows, rows); assert.deepEqual(scoped, [102]);
+});
+
+
+test('comparison records a replacement parent row even when it is outside legacy candidates', async () => {
+  const { windowsLegacyComparison } = await import('./fixtures/windows-process-graph.mjs');
+  const rows = [row(100, 99, 40), row(200, 100, 50)];
+  const result = windowsLegacyComparison([200], rows, [], [100, 200]);
+  assert.deepEqual(result.observed, [200]); assert.deepEqual(result.rows, [rows[1]]);
+  assert.deepEqual(result.rootRows, rows); assert.deepEqual(result.legacyOnly, [200]);
+});

@@ -1,0 +1,30 @@
+✔ closing a successful workflow with an outstanding allowed request is not a policy denial (569.59527ms)
+✔ chromium: allowed origin cannot redirect to unapproved localhost port (517.947171ms)
+✔ firefox: allowed origin cannot redirect to unapproved localhost port (1796.138801ms)
+✖ webkit: allowed origin cannot redirect to unapproved localhost port (558.354024ms)
+✔ file ingestion accepts UTF-8 BOM and rejects oversized, invalid UTF-8 and non-files (17.356157ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3649.590236
+
+✖ failing tests:
+
+test at local-batch/security.test.mjs:11:3
+✖ webkit: allowed origin cannot redirect to unapproved localhost port (558.354024ms)
+  AssertionError [ERR_ASSERTION]: browser could not launch
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/security.test.mjs:23:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'setup',
+    expected: 'setup',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,18 @@
+✔ real chromium: supervised navigation respects throttling and never replays form POST or over-cap waits (6046.105704ms)
+✔ real firefox: supervised navigation respects throttling and never replays form POST or over-cap waits (15552.489294ms)
+{"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":806192,"workerPid":806199,"browserPids":[806211]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":101}
+{"component":"private_fetch_cancel_witness","browser":"chromium","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":806282,"workerPid":806289,"browserPids":[806301]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+✔ real chromium: cancellation preserves a committed POST once and identifies public fetch calls (1698.001932ms)
+{"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"cancel","reason":"cancelled","completed":0,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":806374,"workerPid":806381,"browserPids":[806393]},"requests":[{"method":"GET","fetchId":"1","offsetMs":0}],"abortOffsetMs":100}
+{"component":"private_fetch_cancel_witness","browser":"firefox","scenario":"commit","reason":"cancelled","completed":1,"execution":{"mode":"supervised","forced":false,"cleanup":"terminated","tempCleanup":"removed","supervisorPid":806562,"workerPid":806569,"browserPids":[806581]},"requests":[{"method":"POST","fetchId":"2","offsetMs":0}],"abortOffsetMs":100}
+✔ real firefox: cancellation preserves a committed POST once and identifies public fetch calls (3993.05456ms)
+✔ chromium: allowed origin cannot redirect to unapproved localhost port (610.689001ms)
+✔ firefox: allowed origin cannot redirect to unapproved localhost port (1946.161453ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30015.261982

@@ -1,22 +1,240 @@
 name: Local batch QA
 on:
+  workflow_dispatch:
+    inputs:
+      functional_soak:
+        description: Run only the three-OS 100-run functional soak
+        type: boolean
+        default: false
+      functional_soak_windows_only:
+        description: Limit the functional soak to Windows follow-up diagnosis
+        type: boolean
+        default: false
+      macos_runner:
+        description: Native macOS runner architecture
+        type: choice
+        required: true
+        default: macos-15-intel
+        options: [macos-15-intel, macos-15]
   push:
-    branches: [main, 'feat/**']
+    branches: [main]
   pull_request:
     branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  batch:
-    runs-on: ubuntu-latest
+  journal:
+    if: ${{ !inputs.functional_soak }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, "${{ inputs.macos_runner || 'macos-15-intel' }}", windows-latest]
+        node: ['22']
+        include:
+          - os: ubuntu-latest
+            node: '24'
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install locked component test dependencies
+        run: npm ci
+      - name: Run durable component tests
+        id: components
+        shell: bash
+        run: node --test --test-concurrency=1 --test-reporter=tap --test-reporter-destination=stdout --test-reporter=./scripts/component-ci-reporter.mjs --test-reporter-destination=stderr local-batch/jobs/journal.test.mjs local-batch/jobs/journal-init-retry.test.mjs local-batch/jobs/witness-publication.test.mjs local-batch/jobs/journal-stop.test.mjs local-batch/jobs/temporary-cleanup-stop.test.mjs local-batch/jobs/launch-ownership.test.mjs local-batch/jobs/lifetime-observer.test.mjs local-batch/jobs/http-early-metadata.test.mjs local-batch/cleanup.test.mjs local-batch/jobs/guardian.test.mjs local-batch/jobs/guardian-stop.test.mjs local-batch/jobs/guardian-diagnostic.test.mjs local-batch/jobs/guardian-readiness-diagnostic.test.mjs local-batch/jobs/workflow-snapshot.test.mjs local-batch/jobs/controller.test.mjs local-batch/jobs/controller-open.test.mjs local-batch/jobs/component-ci-reporter.test.mjs local-batch/jobs/contention.test.mjs local-batch/jobs/config.test.mjs local-batch/jobs/private-windows.test.mjs local-batch/jobs/artifact-cleanup.test.mjs local-batch/jobs/artifact-cleanup-supervisor.test.mjs local-batch/jobs/artifact-cleanup-receipt.test.mjs local-batch/jobs/retention.test.mjs local-batch/jobs/retained-artifact-budget.test.mjs local-batch/jobs/maintenance.test.mjs local-batch/jobs/queue-clock.test.mjs scripts/ci-test-counts.test.mjs qa/bounded-stderr.test.mjs qa/prepare-vp9-metadata.test.mjs qa/media-response.test.mjs 2>&1 | tee component-tests.log
+      - name: Preserve failed component evidence
+        if: failure() && steps.components.outcome == 'failure'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: journal-tests-${{ matrix.os }}-node${{ matrix.node }}
+          path: component-tests.log
+          retention-days: 1
+          if-no-files-found: error
+  functional_soak:
+    if: ${{ inputs.functional_soak }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ inputs.functional_soak_windows_only && fromJSON('["windows-latest"]') || fromJSON(format('["ubuntu-latest","{0}","windows-latest"]', inputs.macos_runner || 'macos-15-intel')) }}
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '20'
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Use canonical Ubuntu archive for browser dependencies
+        if: runner.os == 'Linux'
+        uses: ./.github/actions/ubuntu-archive
+      - run: npx playwright install --with-deps chromium
+      - name: Exercise 100 supervised fresh functional workflows
+        id: soak
+        shell: bash
+        run: node scripts/soak-local.mjs 100 2>&1 | tee functional-soak.log
+      - name: Preserve functional soak receipt
+        if: always() && (steps.soak.outcome == 'success' || steps.soak.outcome == 'failure')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: functional-soak-${{ matrix.os }}
+          path: functional-soak.log
+          retention-days: 1
+          if-no-files-found: error
+  batch:
+    if: ${{ !inputs.functional_soak }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, "${{ inputs.macos_runner || 'macos-15-intel' }}", windows-latest]
+        node: ['22']
+        include:
+          - os: ubuntu-latest
+            node: '20'
+          - os: ubuntu-latest
+            node: '24'
+    runs-on: ${{ matrix.os }}
+    # Cold browser installation plus the full strict suite and bounded failure
+    # diagnostics need their own CI envelope; runtime deadlines are unchanged.
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - name: Use canonical Ubuntu archive for browser dependencies
+        if: runner.os == 'Linux'
+        uses: ./.github/actions/ubuntu-archive
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - name: Verify installed production package
+        id: installed
+        shell: bash
+        run: node scripts/verify-package.mjs 2>&1 | tee installed-tests.log
+      - name: Diagnose failed Windows private job layout
+        if: failure() && runner.os == 'Windows' && steps.installed.outcome == 'failure'
+        shell: bash
+        run: node scripts/diagnose-windows-job-layout.mjs installed-tests.log 2>&1 | tee layout-probe.log
+      - name: Run mock and real browser tests through Bash bootstrap
+        id: batch_bash
+        if: runner.os != 'Windows'
+        shell: bash
+        run: bash scripts/bootstrap-local-batch.sh 2>&1 | tee batch-tests.log
+      - name: Run mock and real browser tests through PowerShell bootstrap
+        id: batch_windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./scripts/bootstrap-local-batch.ps1 2>&1 | Tee-Object -FilePath batch-tests.log
+        env:
+          PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS: '10'
+      - name: Compare ten fresh raw Firefox runs with inherited and private temp
+        if: failure() && runner.os == 'Windows' && steps.batch_windows.outcome == 'failure'
+        timeout-minutes: 11
+        shell: bash
+        run: node scripts/diagnose-firefox-runner.mjs --private-first 2>&1 | tee firefox-runner.log
+      - name: Trace headed Firefox protocol after Windows batch failure
+        if: failure() && runner.os == 'Windows' && steps.batch_windows.outcome == 'failure'
+        timeout-minutes: 4
+        shell: bash
+        run: node scripts/diagnose-firefox-runner.mjs --firefox-headed-protocol 2>&1 | tee firefox-protocol.log
+      - name: Isolate stock headed Firefox after Windows batch failure
+        if: failure() && runner.os == 'Windows' && steps.batch_windows.outcome == 'failure'
+        timeout-minutes: 4
+        shell: bash
+        run: node scripts/diagnose-firefox-runner.mjs --firefox-headed-stock 2>&1 | tee firefox-stock.log
+      - name: Compare Chromium transports after macOS install or batch failure
+        if: failure() && runner.os == 'macOS' && (steps.installed.outcome == 'failure' || steps.batch_bash.outcome == 'failure')
+        timeout-minutes: 7
+        shell: bash
+        run: node scripts/diagnose-raw-runner.mjs --chromium-transport 2>&1 | tee chromium-transport.log
+      - name: Preserve failed browser evidence
+        if: failure() && (steps.installed.outcome == 'failure' || steps.batch_bash.outcome == 'failure' || steps.batch_windows.outcome == 'failure')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: batch-tests-${{ matrix.os }}-node${{ matrix.node }}
+          path: |
+            installed-tests.log
+            layout-probe.log
+            firefox-runner.log
+            firefox-protocol.log
+            firefox-stock.log
+            chromium-transport.log
+            batch-tests.log
+          retention-days: 1
+          if-no-files-found: error
+
+  codex_client:
+    if: ${{ !inputs.functional_soak }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, "${{ inputs.macos_runner || 'macos-15-intel' }}", windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Use canonical Ubuntu archive for browser dependencies
+        if: runner.os == 'Linux'
+        uses: ./.github/actions/ubuntu-archive
+      - run: npx playwright install --with-deps chromium
+      - name: Install pinned optional Codex verification client
+        shell: bash
+        run: npm install --prefix "$RUNNER_TEMP/codex-cli" --ignore-scripts --no-package-lock --no-audit --no-fund @openai/codex@0.163.0
+      - name: Exercise actual Codex jobs client with zero model turns
+        id: codex
+        shell: bash
+        run: node scripts/verify-codex-jobs.mjs "$RUNNER_TEMP/codex-cli/node_modules/@openai/codex/bin/codex.js" 2>&1 | tee codex-jobs.log
+      - name: Compare fresh simultaneous SDK startup after Windows client failure
+        if: failure() && runner.os == 'Windows' && steps.codex.outcome == 'failure'
+        shell: bash
+        run: node scripts/diagnose-jobs-startup.mjs 2>&1 | tee sdk-startup.log
+      - name: Compare Chromium transports after macOS client timeout
+        if: failure() && runner.os == 'macOS' && steps.codex.outcome == 'failure'
+        timeout-minutes: 7
+        shell: bash
+        run: node scripts/diagnose-raw-runner.mjs --chromium-pipe-first 2>&1 | tee chromium-transport.log
+      - name: Preserve failed Codex client evidence
+        if: failure() && steps.codex.outcome == 'failure'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: codex-jobs-${{ matrix.os }}
+          path: |
+            codex-jobs.log
+            sdk-startup.log
+            chromium-transport.log
+          retention-days: 1
+          if-no-files-found: error
+
+  codex_journal_diagnostic:
+    needs: codex_client
+    if: ${{ !cancelled() && !inputs.functional_soak }}
+    runs-on: ${{ inputs.macos_runner || 'macos-15-intel' }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - name: Run mock and real browser tests
-        env:
-          RUN_BROWSER_TESTS: '1'
-        run: node --test local-batch/*.test.mjs
+      - name: Install pinned optional Codex verification client
+        shell: bash
+        run: npm install --prefix "$RUNNER_TEMP/codex-cli" --ignore-scripts --no-package-lock --no-audit --no-fund @openai/codex@0.163.0
+      - name: Measure fresh owned macOS client journal RPCs
+        shell: bash
+        run: node --import ./scripts/qa/journal-latency.mjs scripts/verify-codex-jobs.mjs "$RUNNER_TEMP/codex-cli/node_modules/@openai/codex/bin/codex.js" 2>&1 | tee codex-journal-timing.log

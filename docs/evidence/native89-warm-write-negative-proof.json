@@ -1,0 +1,9 @@
+{
+  "phase": "Local followup excluded from native89 source8416021",
+  "expectedExit": 1,
+  "actualExit": 1,
+  "realInjectedWalFrameBytes": 4120,
+  "actualJournalExitsConfirmed": 2,
+  "retainedNonemptyStores": 1,
+  "scope": "Trusted --import inserts the old redundant PRAGMA user_version=1 through a real SQLite connection after the second real journal opens. Existing regression detects changed WAL bytes and fails; original child closes confirm exit. No product interception or timeout-cause claim. Boolean equality avoids dumping store bytes."
+}

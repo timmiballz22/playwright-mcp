@@ -1,0 +1,29 @@
+{"entry":"local-batch/jobs/guardian.mjs","durableExecution":true,"realBrowser":true,"completed":7,"production":true}
+{"entry":"local-batch/jobs/journal.mjs","storageKernel":true,"ownerIsolation":true,"terminationDiagnosticMetadata":true,"production":true}
+{"component":"installed_journal_fixture_preserved","workspaceId":"installed-journal-HLpExw","verified":true,"primaryFailed":false,"clientCloseFailures":1,"rejectedOpenExitUnconfirmed":false}
+file:///workspace/playwright-mcp/scripts/production-journal-smoke.mjs:99
+    if (failures.length) throw new AggregateError(primaryFailure ? [primaryFailure, ...failures] : failures,
+                               ^
+
+AggregateError: Installed journal fixture close failed
+    at file:///workspace/playwright-mcp/scripts/production-journal-smoke.mjs:99:32
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  [cause]: Error: controlled_close_failure_after_real_exit
+      at client.close (file:///tmp/native92-journal-fixture-calibration.mjs:16:97)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Promise.allSettled (index 0)
+      at async file:///workspace/playwright-mcp/scripts/production-journal-smoke.mjs:93:20 {
+    code: 'controlled_close_failure_after_real_exit'
+  },
+  [errors]: [
+    Error: controlled_close_failure_after_real_exit
+        at client.close (file:///tmp/native92-journal-fixture-calibration.mjs:16:97)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async Promise.allSettled (index 0)
+        at async file:///workspace/playwright-mcp/scripts/production-journal-smoke.mjs:93:20 {
+      code: 'controlled_close_failure_after_real_exit'
+    }
+  ]
+}
+
+Node.js v24.19.0

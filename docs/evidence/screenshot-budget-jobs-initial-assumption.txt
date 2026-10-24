@@ -1,0 +1,51 @@
+✖ preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect (39130.741829ms)
+✔ operator owner/project namespaces are stable, private and independent of tool data (16.895794ms)
+✔ untrusted symlinks and writable ancestors cannot redirect job storage writes (4.041745ms)
+✔ invalid owner/policy config is rejected before any storage creation (1.415632ms)
+✔ durable guardian success: cleanup and canonical journal outcome (387.390823ms)
+✔ durable guardian cancel: cleanup and canonical journal outcome (664.615702ms)
+✔ durable guardian disconnect: cleanup and canonical journal outcome (626.613555ms)
+✔ durable guardian crash: cleanup and canonical journal outcome (742.97495ms)
+✔ durable guardian mismatch: cleanup and canonical journal outcome (221.63017ms)
+✔ durable guardian admissionFailure: cleanup and canonical journal outcome (292.696754ms)
+✔ durable guardian preDisconnected: cleanup and canonical journal outcome (210.640424ms)
+✔ managed directory links and database hardlinks cannot modify another file (349.951049ms)
+✔ POSIX journal directory must exclude group and other access (37.900591ms)
+✔ a simulated reused PID cannot resume old work or clear uncertain active resources (95.045984ms)
+✔ cancelled reservations never start and uncertain active cancellation keeps the project blocked (56.530007ms)
+✔ a success mutation after the persisted deadline cannot commit or release the lease (46.90025ms)
+✔ competing writers initialize consistently and cannot overfill the project queue (63.427519ms)
+✔ killed transaction rolls back without a partial job or duplicate request (192.890115ms)
+✔ reconnect marks a dead controller queued job crashed and never requeues its request (133.148948ms)
+✔ corrupt journal is rejected without silently erasing the file (88.203175ms)
+✔ an unrelated SQLite file is rejected without changing its bytes (52.165859ms)
+✔ journal preserves idempotency, owner isolation and a single project execution lease (150.91381ms)
+✔ monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries (142.492727ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 22
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 44061.191866
+
+✖ failing tests:
+
+test at local-batch/jobs-mcp.test.mjs:16:54
+✖ preview stdio jobs: durable IDs, duplicate admission, isolation, cancellation and reconnect (39130.741829ms)
+  AssertionError [ERR_ASSERTION]: Only safe report metadata may exist; no screenshot was published
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs-mcp.test.mjs:114:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

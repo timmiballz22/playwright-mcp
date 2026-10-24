@@ -1,0 +1,28 @@
+{
+  "phase": "Local product followup excluded from native89 source8416021",
+  "beforeSourceSha256": "adc38d3f39089384cb6adedd1e241efd5eb0290b4fb22e32fae7b9547f86e935",
+  "afterSourceSha256": "9670e2973b783c4467b2f474c331e7700f4949480e13434cdf61cad7ded8b449",
+  "baselineNode": 22,
+  "baselineWarmOpenWalBytes": [
+    37112,
+    41232
+  ],
+  "afterNodes": [
+    22,
+    24
+  ],
+  "afterWarmOpenWalBytes": [
+    37112,
+    37112
+  ],
+  "afterExactWalBytesUnchanged": true,
+  "actualConfirmedJournalExitsPerObservation": 2,
+  "regressionNodes": [
+    22,
+    24
+  ],
+  "regressionCasesPerNode": 38,
+  "regressionFailures": 0,
+  "strictTypecheckExit": 0,
+  "scope": "Avoids rewriting already validated user_version=1. Fresh schema/version update remain in same original BEGIN IMMEDIATE transaction; DDL, identity, metadata, FULL sync, busy timeout, WAL checkpoint and RPC budgets unchanged. Existing job/revision survives warm reopen. File-byte IO observation is not a syscall/fsync trace or Windows timeout cause proof. Native efficacy pending."
+}

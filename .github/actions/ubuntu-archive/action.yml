@@ -1,0 +1,32 @@
+name: Prepare public Ubuntu archive
+description: Preserve signed Ubuntu dependencies while avoiding the known Azure mirror URI
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        # Runner images can indirect Ubuntu URIs through apt-mirrors.txt.
+        # Change only the known public Azure URI, preserving apt signatures.
+        changed_files=0
+        for source_file in /etc/apt/sources.list /etc/apt/sources.list.d/ubuntu.sources; do
+          if [[ -f "$source_file" ]] && grep -qE '(^|[[:space:]])https?://azure[.]archive[.]ubuntu[.]com/ubuntu/?([[:space:]]|$)' "$source_file"; then
+            sudo sed -i -E 's#(^|[[:space:]])https?://azure[.]archive[.]ubuntu[.]com/ubuntu(/?)([[:space:]]|$)#\1https://archive.ubuntu.com/ubuntu\2\3#g' "$source_file"
+            changed_files=$((changed_files + 1))
+          fi
+        done
+        source_file=/etc/apt/apt-mirrors.txt
+        if [[ -f "$source_file" ]] && grep -qE '^[[:space:]]*https?://azure[.]archive[.]ubuntu[.]com/ubuntu/?([[:space:]]|$)' "$source_file"; then
+          if grep -qE '^[[:space:]]*https://archive[.]ubuntu[.]com/ubuntu/?([[:space:]]|$)' "$source_file"; then
+            sudo sed -i -E '\#^[[:space:]]*https?://azure[.]archive[.]ubuntu[.]com/ubuntu/?([[:space:]]|$)#d' "$source_file"
+          else
+            sudo sed -i -E 's#(^|[[:space:]])https?://azure[.]archive[.]ubuntu[.]com/ubuntu(/?)([[:space:]]|$)#\1https://archive.ubuntu.com/ubuntu\2\3#g' "$source_file"
+          fi
+          changed_files=$((changed_files + 1))
+        fi
+        for source_file in /etc/apt/sources.list /etc/apt/sources.list.d/ubuntu.sources /etc/apt/apt-mirrors.txt; do
+          if [[ -f "$source_file" ]] && grep -vE '^[[:space:]]*#' "$source_file" | grep -E '(^|[[:space:]])https?://azure[.]archive[.]ubuntu[.]com/ubuntu/?([[:space:]]|$)' > /dev/null; then
+            echo 'Known Azure Ubuntu URI remains in targeted configuration.' >&2
+            exit 1
+          fi
+        done
+        printf '::notice title=Ubuntu archive sources::changedFiles=%s remainingMatchedAzureEntries=0\n' "$changed_files"

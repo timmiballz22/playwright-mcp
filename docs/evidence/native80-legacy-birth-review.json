@@ -1,0 +1,39 @@
+{
+  "fixture": "factory_lifetime_comparison",
+  "phase": "teardown",
+  "legacyCandidateCount": 2,
+  "review": [
+    {
+      "row": {
+        "pid": 8544,
+        "parent": 4300,
+        "started": "2026-10-22T07:38:24.1470280Z"
+      },
+      "recordedBirths": [
+        "2026-10-22T07:38:15.1689620Z",
+        "2026-10-22T07:38:20.5364520Z"
+      ]
+    },
+    {
+      "row": {
+        "pid": 7416,
+        "parent": 8544,
+        "started": "2026-10-22T07:38:24.1496150Z"
+      },
+      "recordedBirths": []
+    },
+    {
+      "row": {
+        "pid": 8544,
+        "parent": 4300,
+        "started": "2026-10-22T07:38:24.1470280Z"
+      },
+      "recordedBirths": [
+        "2026-10-22T07:38:15.1689620Z",
+        "2026-10-22T07:38:20.5364520Z"
+      ]
+    }
+  ],
+  "scope": "Same-snapshot projected legacy rows and actual captured lifetime births. No signal/debt authority; old unclassified candidates remain unclassified.",
+  "classification": "Query8544 is a later recorded incarnation than both captured owned8544 lifetimes; child7416 is born after that replacement. Full rows/lifetimes retained. No role/window filtering or historical reclassification."
+}

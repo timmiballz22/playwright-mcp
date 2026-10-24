@@ -1,0 +1,65 @@
+[
+  {
+    "name": "pure20",
+    "command": [
+      "/home/agent/.npm/_npx/ebaba8b9e55fd0a9/node_modules/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "local-batch/jobs/component-ci-reporter.test.mjs",
+      "local-batch/jobs/guardian-diagnostic.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "focused22",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "local-batch/jobs/component-ci-reporter.test.mjs",
+      "local-batch/jobs/guardian-diagnostic.test.mjs",
+      "local-batch/jobs/contention.test.mjs",
+      "local-batch/jobs/retained-artifact-budget.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "focused24",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "local-batch/jobs/component-ci-reporter.test.mjs",
+      "local-batch/jobs/guardian-diagnostic.test.mjs",
+      "local-batch/jobs/contention.test.mjs",
+      "local-batch/jobs/retained-artifact-budget.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "production22",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "scripts/verify-package.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "lint",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "diff",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exitCode": 0
+  }
+]

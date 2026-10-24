@@ -1,0 +1,19 @@
+
+Running 4 tests using 1 worker
+
+{"fixture":"owned_pcm_media","durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+(node:1070864) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/media.spec.ts:18:5 › original muted PCM media advances, pauses and reports a missing media source (6.1s)
+{"fixture":"owned_video_source_paint","project":"chromium","width":320,"height":240,"pixel":[255,0,0,255]}
+{"fixture":"owned_webm_frame","project":"chromium","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"bytes":5611}
+  ✓  2 [chromium] › tests/video-playback.spec.ts:8:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (3.6s)
+{"fixture":"owned_pcm_media","durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+(node:1071223) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [firefox] › tests/media.spec.ts:18:5 › original muted PCM media advances, pauses and reports a missing media source (5.9s)
+{"fixture":"owned_video_source_paint","project":"firefox","width":320,"height":240,"pixel":[255,0,0,255]}
+{"fixture":"owned_webm_frame","project":"firefox","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"bytes":7117}
+  ✓  4 [firefox] › tests/video-playback.spec.ts:8:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (4.2s)
+
+  4 passed (21.9s)

@@ -1,0 +1,115 @@
+TAP version 13
+# Subtest: real browser uses a short external private temporary root and cancellation removes it
+ok 1 - real browser uses a short external private temporary root and cancellation removes it
+  ---
+  duration_ms: 1295.558315
+  ...
+# Subtest: unacknowledged external temporary collision is retained and cleanup fails closed
+ok 2 - unacknowledged external temporary collision is retained and cleanup fails closed
+  ---
+  duration_ms: 141.222019
+  ...
+# Subtest: worker crash after temporary ownership ACK removes only its owned external directory
+ok 3 - worker crash after temporary ownership ACK removes only its owned external directory
+  ---
+  duration_ms: 191.452127
+  ...
+# Subtest: unexpected exit cannot certify an unreported live browser model as cleaned
+ok 4 - unexpected exit cannot certify an unreported live browser model as cleaned
+  ---
+  duration_ms: 877.936409
+  ...
+# Subtest: reported failure cannot certify an unreported live browser model as cleaned
+ok 5 - reported failure cannot certify an unreported live browser model as cleaned
+  ---
+  duration_ms: 819.50372
+  ...
+# Subtest: failure classification returns fixed codes and never browser text
+ok 6 - failure classification returns fixed codes and never browser text
+  ---
+  duration_ms: 1.124935
+  ...
+# Subtest: rejects unknown instructions, unbounded workloads and hostile origins
+ok 7 - rejects unknown instructions, unbounded workloads and hostile origins
+  ---
+  duration_ms: 2.589796
+  ...
+# Subtest: 100 ordered actions finish in a single batch with one browser launch
+ok 8 - 100 ordered actions finish in a single batch with one browser launch
+  ---
+  duration_ms: 8.431972
+  ...
+# Subtest: failures stop promptly, hide underlying sensitive errors and clean up
+ok 9 - failures stop promptly, hide underlying sensitive errors and clean up
+  ---
+  duration_ms: 1.49765
+  ...
+# Subtest: cancellation before starting avoids launching browser
+ok 10 - cancellation before starting avoids launching browser
+  ---
+  duration_ms: 0.52458
+  ...
+# Subtest: checks target origins and reports assertion failure without page content
+ok 11 - checks target origins and reports assertion failure without page content
+  ---
+  duration_ms: 3.03124
+  ...
+# Subtest: unknown localhost ports require exact operator origins
+ok 12 - unknown localhost ports require exact operator origins
+  ---
+  duration_ms: 2.366356
+  ...
+# Subtest: rejects extra workflow and action properties rather than ignoring policy
+ok 13 - rejects extra workflow and action properties rather than ignoring policy
+  ---
+  duration_ms: 0.342857
+  ...
+# Subtest: deadline includes a stalled launch and closes late browser
+ok 14 - deadline includes a stalled launch and closes late browser
+  ---
+  duration_ms: 200.610027
+  ...
+# Subtest: validation snapshots actions before asynchronous launch
+ok 15 - validation snapshots actions before asynchronous launch
+  ---
+  duration_ms: 3.039696
+  ...
+# Subtest: screenshot capture requires operator approval for sensitive artifacts
+ok 16 - screenshot capture requires operator approval for sensitive artifacts
+  ---
+  duration_ms: 0.747622
+  ...
+# Subtest: workflow version and serialized size are bounded
+ok 17 - workflow version and serialized size are bounded
+  ---
+  duration_ms: 8.486346
+  ...
+# Subtest: accessible selectors validate exact shape and clone nested values
+ok 18 - accessible selectors validate exact shape and clone nested values
+  ---
+  duration_ms: 0.238362
+  ...
+# Subtest: explicit action repeats expand within the total action cap
+ok 19 - explicit action repeats expand within the total action cap
+  ---
+  duration_ms: 25.313599
+  ...
+# Subtest: text equality rejects duplicate counters and ambiguous expectations
+ok 20 - text equality rejects duplicate counters and ambiguous expectations
+  ---
+  duration_ms: 1.944659
+  ...
+# Subtest: ownership launch phase precedes even a rejected public launch call
+ok 21 - ownership launch phase precedes even a rejected public launch call
+  ---
+  duration_ms: 2.897116
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3868.139383

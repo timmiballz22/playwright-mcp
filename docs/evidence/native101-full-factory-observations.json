@@ -1,0 +1,232 @@
+[
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "data": {
+      "fixture": "factory_lifetime_scoped_failure",
+      "phase": "deliberate_orphan",
+      "observed": [
+        8992
+      ],
+      "legacy": null,
+      "lifetimes": [
+        {
+          "runId": "bc1c7ce1-8542-4743-b905-96cced88efe9",
+          "roots": [
+            8989,
+            8990,
+            8992
+          ],
+          "identities": []
+        }
+      ]
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "data": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (macos-15-intel, 22)",
+    "data": {
+      "fixture": "factory_lifetime_scoped_failure",
+      "phase": "self_exit",
+      "observed": [
+        8992
+      ],
+      "legacy": null,
+      "lifetimes": [
+        {
+          "runId": "bc1c7ce1-8542-4743-b905-96cced88efe9",
+          "roots": [
+            8989,
+            8990,
+            8992
+          ],
+          "identities": []
+        }
+      ]
+    }
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "data": {
+      "fixture": "factory_lifetime_comparison",
+      "phase": "deliberate_orphan",
+      "observed": [
+        2368
+      ],
+      "legacy": {
+        "observed": [
+          2368
+        ],
+        "legacyOnly": [],
+        "rows": [
+          {
+            "pid": 2368,
+            "parent": 1828,
+            "started": "2026-10-23T00:05:21.6449230Z"
+          }
+        ],
+        "rootRows": [
+          {
+            "pid": 2368,
+            "parent": 1828,
+            "started": "2026-10-23T00:05:21.6449230Z"
+          },
+          {
+            "pid": 3356,
+            "parent": 7292,
+            "started": "2026-10-23T00:05:22.3044980Z"
+          }
+        ],
+        "auditHelperPid": 3356,
+        "auditHelperMatched": false
+      },
+      "lifetimes": [
+        {
+          "runId": "cdfcc556-408c-41d5-839d-cd31766b97ae",
+          "roots": [
+            9112,
+            1828,
+            2368,
+            2884
+          ],
+          "identities": [
+            [
+              9112,
+              "2026-10-23T00:05:21.5087280Z"
+            ],
+            [
+              1828,
+              "2026-10-23T00:05:21.5633500Z"
+            ],
+            [
+              2368,
+              "2026-10-23T00:05:21.6449230Z"
+            ],
+            [
+              2884,
+              "2026-10-23T00:05:21.5664660Z"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "job": "journal (windows-latest, 22)",
+    "data": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "data": {
+      "fixture": "factory_lifetime_scoped_failure",
+      "phase": "deliberate_orphan",
+      "observed": [
+        4445
+      ],
+      "legacy": null,
+      "lifetimes": [
+        {
+          "runId": "0bf1b936-a1a6-49ac-8c00-878fb8265f6d",
+          "roots": [
+            4427,
+            4434,
+            4445
+          ],
+          "identities": []
+        }
+      ]
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "data": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 22)",
+    "data": {
+      "fixture": "factory_lifetime_scoped_failure",
+      "phase": "self_exit",
+      "observed": [
+        4445
+      ],
+      "legacy": null,
+      "lifetimes": [
+        {
+          "runId": "0bf1b936-a1a6-49ac-8c00-878fb8265f6d",
+          "roots": [
+            4427,
+            4434,
+            4445
+          ],
+          "identities": []
+        }
+      ]
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "data": {
+      "fixture": "factory_lifetime_scoped_failure",
+      "phase": "deliberate_orphan",
+      "observed": [
+        4667
+      ],
+      "legacy": null,
+      "lifetimes": [
+        {
+          "runId": "5ee4e8bc-5966-498a-97ee-814717b7e9bf",
+          "roots": [
+            4649,
+            4656,
+            4667
+          ],
+          "identities": []
+        }
+      ]
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "data": {
+      "fixture": "factory_lifetime_orphan",
+      "detected": true,
+      "cleanup": "failed"
+    }
+  },
+  {
+    "job": "journal (ubuntu-latest, 24)",
+    "data": {
+      "fixture": "factory_lifetime_scoped_failure",
+      "phase": "self_exit",
+      "observed": [
+        4667
+      ],
+      "legacy": null,
+      "lifetimes": [
+        {
+          "runId": "5ee4e8bc-5966-498a-97ee-814717b7e9bf",
+          "roots": [
+            4649,
+            4656,
+            4667
+          ],
+          "identities": []
+        }
+      ]
+    }
+  }
+]

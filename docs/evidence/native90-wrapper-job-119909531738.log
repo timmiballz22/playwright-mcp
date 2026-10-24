@@ -1,0 +1,692 @@
+test (windows-latest)	Set up job	﻿2026-10-22T15:16:25.1494850Z Current runner version: '2.338.0'
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1548911Z ##[group]Runner Image Provisioner
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1550146Z Hosted Compute Agent
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1551024Z Version: 20261021.618
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1552015Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1553284Z Build Date: 2026-10-21T00:45:21Z
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1554399Z Worker ID: {c4b88b72-5cb0-4025-8d9e-454b62486809}
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1555498Z Region: eastus2
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1556290Z Cloud: Azure
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1557150Z ##[endgroup]
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1558998Z ##[group]Operating System
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1560043Z Microsoft Windows Server 2025
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1561188Z 10.0.26100
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1562043Z Datacenter
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1562840Z ##[endgroup]
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1563722Z ##[group]Runner Image
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1565049Z Image: windows-2025-vs2026
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1566175Z Version: 20261021.278.1
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1568121Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261021.278/images/windows/Windows2025-VS2026-Readme.md
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1572452Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261021.278
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1574675Z ##[endgroup]
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1576479Z ##[group]GITHUB_TOKEN Permissions
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1579174Z Contents: read
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1580124Z Metadata: read
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1580960Z ##[endgroup]
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1584017Z Secret source: Actions
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1585918Z Cache mode: write
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1587297Z Prepare workflow directory
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1931872Z Prepare all required actions
+test (windows-latest)	Set up job	2026-10-22T15:16:25.1981229Z Getting action download info
+test (windows-latest)	Set up job	2026-10-22T15:16:25.3573261Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+test (windows-latest)	Set up job	2026-10-22T15:16:25.5566288Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+test (windows-latest)	Set up job	2026-10-22T15:16:25.8197801Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+test (windows-latest)	Set up job	2026-10-22T15:16:26.1773918Z Complete job name: test (windows-latest)
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T15:16:26.3356465Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3358495Z with:
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3359701Z   repository: timmiballz22/playwright-mcp
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3368817Z   token: ***
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3369533Z   ssh-strict: true
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3370261Z   ssh-user: git
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3371004Z   persist-credentials: true
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3371828Z   clean: true
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3372574Z   sparse-checkout-cone-mode: true
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3373462Z   fetch-depth: 1
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3374178Z   fetch-tags: false
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3374928Z   show-progress: true
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3375686Z   lfs: false
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3376395Z   submodules: false
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3377160Z   set-safe-directory: true
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3378224Z   allow-unsafe-pr-checkout: false
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.3379562Z ##[endgroup]
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.4920497Z Syncing repository: timmiballz22/playwright-mcp
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.4923525Z ##[group]Getting Git version info
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.4925594Z Working directory is 'D:\a\playwright-mcp\playwright-mcp'
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.5834673Z [command]"C:\Program Files\Git\bin\git.exe" version
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.9216837Z git version 2.56.0.windows.2
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.9270965Z ##[endgroup]
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.9288331Z Temporarily overriding HOME='D:\a\_temp\1e1eefa8-0311-40e0-b3e9-88fd71dba008' before making global git config changes
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.9289315Z Adding repository directory to the temporary git global config as a safe directory
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.9298002Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\playwright-mcp\playwright-mcp
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.9914462Z Deleting the contents of 'D:\a\playwright-mcp\playwright-mcp'
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.9920036Z ##[group]Determining repository object format
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.9922329Z ##[endgroup]
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.9923010Z ##[group]Initializing the repository
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:26.9930929Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\playwright-mcp\playwright-mcp
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:27.0870096Z Initialized empty Git repository in D:/a/playwright-mcp/playwright-mcp/.git/
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:27.0922181Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/timmiballz22/playwright-mcp
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:27.1606073Z ##[endgroup]
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:27.1606951Z ##[group]Disabling automatic garbage collection
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:27.1615458Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:27.2081283Z ##[endgroup]
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:27.2083741Z ##[group]Setting up auth
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:27.2085286Z Removing SSH command configuration
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:27.2092658Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:27.2533741Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:28.6245671Z Removing HTTP extra header
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:28.6257179Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:28.6638006Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:29.2243089Z Removing includeIf entries pointing to credentials config files
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:29.2254265Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:29.2640308Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:29.8213892Z [command]"C:\Program Files\Git\bin\git.exe" config --file D:\a\_temp\git-credentials-8649f4c4-b7fc-45e9-89da-0a09c73c8e3f.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:29.8681594Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path D:\a\_temp\git-credentials-8649f4c4-b7fc-45e9-89da-0a09c73c8e3f.config
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:29.9077245Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path D:\a\_temp\git-credentials-8649f4c4-b7fc-45e9-89da-0a09c73c8e3f.config
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:29.9525218Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-8649f4c4-b7fc-45e9-89da-0a09c73c8e3f.config
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:29.9920049Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-8649f4c4-b7fc-45e9-89da-0a09c73c8e3f.config
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.0313977Z ##[endgroup]
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.0314761Z ##[group]Fetching the repository
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:30.0331632Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +4f90a7f88b11adbcaf6266be22ca3e09e2c89084:refs/remotes/pull/2/merge
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:33.0974273Z From https://github.com/timmiballz22/playwright-mcp
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:33.0976702Z  * [new ref]         4f90a7f88b11adbcaf6266be22ca3e09e2c89084 -> pull/2/merge
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:33.1023855Z ##[endgroup]
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:33.1025479Z ##[group]Determining the checkout info
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:33.1025894Z ##[endgroup]
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:33.1036900Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:33.1476969Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:33.1860246Z ##[group]Checking out the ref
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:33.1869007Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/2/merge
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2295191Z Updating files:  93% (2630/2805)
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2360619Z Updating files:  94% (2637/2805)
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2430496Z Updating files:  95% (2665/2805)
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2509672Z Updating files:  96% (2693/2805)
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2585053Z Updating files:  97% (2721/2805)
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2657114Z Updating files:  98% (2749/2805)
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2723047Z Updating files:  99% (2777/2805)
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2723844Z Updating files: 100% (2805/2805)
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2724293Z Updating files: 100% (2805/2805), done.
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2874285Z Note: switching to 'refs/remotes/pull/2/merge'.
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2875342Z 
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2876012Z You are in 'detached HEAD' state. You can look around, make experimental
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2876992Z changes and commit them, and you can discard any commits you make in this
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2877490Z state without impacting any branches by switching back to a branch.
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2877810Z 
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2877997Z If you want to create a new branch to retain commits you create, you may
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2878420Z do so (now or later) by using -c with the switch command. Example:
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2878658Z 
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2878776Z   git switch -c <new-branch-name>
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2878940Z 
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2879036Z Or undo this operation with:
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2879189Z 
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2879260Z   git switch -
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2879374Z 
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2879573Z Turn off this advice by setting config variable advice.detachedHead to false
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2879875Z 
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2880265Z HEAD is now at 4f90a7f Merge 58edfce67a883f637af53bd34554951615b376b7 into 804bc7ef7a07248a150c98fb5bf417e925ba8033
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.2968073Z ##[endgroup]
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.3404994Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+test (windows-latest)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:16:34.3774341Z 4f90a7f88b11adbcaf6266be22ca3e09e2c89084
+test (windows-latest)	Use Node.js 20	﻿2026-10-22T15:16:34.4290492Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:34.4290947Z with:
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:34.4291128Z   node-version: 20
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:34.4291313Z   cache: npm
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:34.4291489Z   check-latest: false
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:34.4293843Z   token: ***
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:34.4294056Z   package-manager-cache: true
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:34.4294283Z ##[endgroup]
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:34.6278013Z Attempting to download 20...
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:35.2910418Z Acquiring 20.20.2 - x64 from https://github.com/actions/node-versions/releases/download/20.20.2-23521894959/node-20.20.2-win32-x64.7z
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:35.6501656Z Extracting ...
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:37.9618870Z Adding to the cache ...
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:41.5164923Z ##[group]Environment details
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:43.8263657Z node: v20.20.2
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:43.8264352Z npm: 10.8.2
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:43.8265266Z yarn: 1.22.22
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:43.8266144Z ##[endgroup]
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:43.9067522Z [command]C:\Windows\system32\cmd.exe /D /S /C "C:\hostedtoolcache\windows\node\20.20.2\x64\npm.cmd config get cache"
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:44.2622897Z C:\npm\cache
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:44.6453315Z Cache hit for: node-cache-Windows-x64-npm-7e5a5e1f7b6d826ec56ff03341eb7c81f3fe3b01c7d79434c8a706c0f632db61
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:44.8261659Z Received 12348130 of 12348130 (100.0%), 83.5 MBs/sec
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:44.8263820Z Cache Size: ~12 MB (12348130 B)
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:44.8291931Z [command]"C:\Program Files\Git\usr\bin\tar.exe" -xf D:/a/_temp/862bdfcb-640e-4333-b086-4520fb4c0174/cache.tzst -P -C D:/a/playwright-mcp/playwright-mcp --force-local --use-compress-program "zstd -d"
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:45.7179157Z Cache restored successfully
+test (windows-latest)	Use Node.js 20	2026-10-22T15:16:45.7203112Z Cache restored from key: node-cache-Windows-x64-npm-7e5a5e1f7b6d826ec56ff03341eb7c81f3fe3b01c7d79434c8a706c0f632db61
+test (windows-latest)	Install dependencies	﻿2026-10-22T15:16:45.7630000Z ##[group]Run npm ci
+test (windows-latest)	Install dependencies	2026-10-22T15:16:45.7630409Z [36;1mnpm ci[0m
+test (windows-latest)	Install dependencies	2026-10-22T15:16:45.8299012Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+test (windows-latest)	Install dependencies	2026-10-22T15:16:45.8299442Z ##[endgroup]
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.1600195Z 
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.1605926Z > @timmiballz22/playwright-mcp-local@0.0.83 prepare
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.1606456Z > node scripts/prepare-vp9-metadata.cjs
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.1606658Z 
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.2517941Z {"component":"private_vp9_metadata_patch","version":"1.64.1","changed":true,"sha256":"3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192"}
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.2647613Z 
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.2648460Z added 103 packages, and audited 104 packages in 3s
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.2648926Z 
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.2650458Z 31 packages are looking for funding
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.2651004Z   run `npm fund` for details
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.2662430Z 
+test (windows-latest)	Install dependencies	2026-10-22T15:16:49.2662813Z found 0 vulnerabilities
+test (windows-latest)	Install Chromium, Firefox and WebKit	﻿2026-10-22T15:16:49.4286610Z ##[group]Run npx playwright install --with-deps chromium firefox webkit
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:16:49.4287247Z [36;1mnpx playwright install --with-deps chromium firefox webkit[0m
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:16:49.4358423Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:16:49.4358785Z ##[endgroup]
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:44.0899174Z 
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:44.0912389Z Success Restart Needed Exit Code      Feature Result                               
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:44.0916804Z ------- -------------- ---------      --------------                               
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:44.0920991Z True    No             Success        {Media Foundation}                           
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:44.0924584Z 
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:44.0925214Z 
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:44.2550682Z Downloading Chrome for Testing 156.0.8078.4 (playwright chromium v1248)[2m from https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-win64.zip[22m
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:44.8187660Z |                                                                                |   0% of 197.5 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:45.1020172Z |■■■■■■■■                                                                        |  10% of 197.5 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:45.2910581Z |■■■■■■■■■■■■■■■■                                                                |  20% of 197.5 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:45.4736584Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 197.5 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:45.6496592Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 197.5 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:45.8272974Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 197.5 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:46.0054092Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 197.5 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:46.2735980Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 197.5 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:46.4414505Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 197.5 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:46.6200121Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 197.5 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:46.7921146Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 197.5 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:53.4725940Z Chrome for Testing 156.0.8078.4 (playwright chromium v1248) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1248
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:53.4733738Z Downloading FFmpeg (playwright ffmpeg v1013)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-win64.zip[22m
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.1230831Z |                                                                                |   0% of 1.6 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.1758532Z |■■■■■■■■                                                                        |  10% of 1.6 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.2103532Z |■■■■■■■■■■■■■■■■                                                                |  20% of 1.6 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.2291496Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 1.6 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.2427416Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 1.6 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.2548083Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 1.6 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.2624667Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 1.6 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.2699752Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 1.6 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.2757615Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 1.6 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.2822181Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 1.6 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.2866284Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 1.6 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.3729686Z FFmpeg (playwright ffmpeg v1013) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\ffmpeg-1013
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.3737877Z Downloading Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248)[2m from https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-headless-shell-win64.zip[22m
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:54.9169483Z |                                                                                |   0% of 118.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:55.1058911Z |■■■■■■■■                                                                        |  10% of 118.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:55.2349637Z |■■■■■■■■■■■■■■■■                                                                |  20% of 118.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:55.3499002Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 118.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:55.4604181Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 118.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:55.6878656Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 118.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:55.7982023Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 118.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:55.9087264Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 118.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:56.0114462Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 118.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:56.1163135Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 118.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:21:56.2194684Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 118.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:00.8820010Z Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\chromium_headless_shell-1248
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:00.8828866Z Downloading Firefox 157.0 (playwright firefox v1555)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/firefox/1555/firefox-win64.zip[22m
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:01.5356374Z |                                                                                |   0% of 123.8 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:01.8616885Z |■■■■■■■■                                                                        |  10% of 123.8 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:02.0245418Z |■■■■■■■■■■■■■■■■                                                                |  20% of 123.8 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:02.1645870Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 123.8 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:02.2948591Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 123.8 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:02.4384686Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 123.8 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:02.6050261Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 123.8 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:02.7429908Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 123.8 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:02.8835679Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 123.8 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:03.0191401Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 123.8 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:03.1390131Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 123.8 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:07.5751560Z Firefox 157.0 (playwright firefox v1555) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\firefox-1555
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:07.5759948Z Downloading WebKit 27.2 (playwright webkit v2370)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/webkit/2370/webkit-win64.zip[22m
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:08.2110239Z |                                                                                |   0% of 60.2 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:08.4688082Z |■■■■■■■■                                                                        |  10% of 60.2 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:08.5517260Z |■■■■■■■■■■■■■■■■                                                                |  20% of 60.2 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:08.6316546Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 60.2 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:08.7061836Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 60.2 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:08.8173155Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 60.2 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:08.9041464Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 60.2 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:08.9855751Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 60.2 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:09.0793343Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 60.2 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:09.1379735Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 60.2 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:09.2265086Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 60.2 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:12.4469890Z WebKit 27.2 (playwright webkit v2370) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\webkit-2370
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:12.4478168Z Downloading Winldd (playwright winldd v1007)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/winldd/1007/winldd-win64.zip[22m
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:13.0906921Z |■■■■■■■■                                                                        |  12% of 0.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:13.0930900Z |■■■■■■■■■■■■■■■■                                                                |  25% of 0.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:13.0970397Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  38% of 0.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:13.1180582Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  51% of 0.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:13.1232675Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 0.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:13.1295885Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  89% of 0.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:13.1321006Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 0.1 MiB
+test (windows-latest)	Install Chromium, Firefox and WebKit	2026-10-22T15:22:13.1616153Z Winldd (playwright winldd v1007) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\winldd-1007
+test (windows-latest)	Install Chrome	﻿2026-10-22T15:22:14.1257478Z ##[group]Run npx playwright install --with-deps chrome
+test (windows-latest)	Install Chrome	2026-10-22T15:22:14.1258101Z [36;1mnpx playwright install --with-deps chrome[0m
+test (windows-latest)	Install Chrome	2026-10-22T15:22:14.1334984Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+test (windows-latest)	Install Chrome	2026-10-22T15:22:14.1335417Z ##[endgroup]
+test (windows-latest)	Install Chrome	2026-10-22T15:22:16.1716777Z Downloading Google Chrome
+test (windows-latest)	Install Chrome	2026-10-22T15:22:16.7158094Z Installing Google Chrome
+test (windows-latest)	Install Chrome	2026-10-22T15:22:18.9620010Z 
+test (windows-latest)	Install Chrome	2026-10-22T15:22:18.9632734Z ProductVersion   FileVersion      FileName                                                                             
+test (windows-latest)	Install Chrome	2026-10-22T15:22:18.9637007Z --------------   -----------      --------                                                                             
+test (windows-latest)	Install Chrome	2026-10-22T15:22:18.9640296Z 156.0.8078.48    156.0.8078.48    C:\Program Files\Google\Chrome\Application\chrome.exe                                
+test (windows-latest)	Install Chrome	2026-10-22T15:22:18.9641872Z 
+test (windows-latest)	Install Chrome	2026-10-22T15:22:18.9642180Z 
+test (windows-latest)	Build	﻿2026-10-22T15:22:19.1751935Z ##[group]Run npm run build
+test (windows-latest)	Build	2026-10-22T15:22:19.1752593Z [36;1mnpm run build[0m
+test (windows-latest)	Build	2026-10-22T15:22:19.1836405Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+test (windows-latest)	Build	2026-10-22T15:22:19.1836814Z ##[endgroup]
+test (windows-latest)	Build	2026-10-22T15:22:19.8205519Z 
+test (windows-latest)	Build	2026-10-22T15:22:19.8206380Z > @timmiballz22/playwright-mcp-local@0.0.83 build
+test (windows-latest)	Build	2026-10-22T15:22:19.8207245Z > node scripts/prepare-vp9-metadata.cjs
+test (windows-latest)	Build	2026-10-22T15:22:19.8207600Z 
+test (windows-latest)	Build	2026-10-22T15:22:19.8967815Z {"component":"private_vp9_metadata_patch","version":"1.64.1","changed":false,"sha256":"3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192"}
+test (windows-latest)	Run playwright-mcp tests	﻿2026-10-22T15:22:20.0517450Z ##[group]Run npm test 2>&1 | tee wrapper-tests.log
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:22:20.0517997Z [36;1mnpm test 2>&1 | tee wrapper-tests.log[0m
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:22:20.0538699Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:22:20.0539173Z ##[endgroup]
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:22:22.7489413Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:22:22.7490545Z > @timmiballz22/playwright-mcp-local@0.0.83 test
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:22:22.7491059Z > playwright test
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:22:22.7491249Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:22:26.3487857Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:22:26.3488895Z Running 192 tests using 1 worker
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:22:26.3489426Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:22:56.4725104Z   ok   1 [chrome] › tests\accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (29.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:01.6874210Z   ok   2 [chrome] › tests\accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (5.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:03.8217198Z   ok   3 [chrome] › tests\accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (2.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:07.3184216Z   ok   4 [chrome] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (3.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:09.8022379Z   ok   5 [chrome] › tests\advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (2.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:15.2670281Z   ok   6 [chrome] › tests\advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (5.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:17.2565908Z {"fixture":"independent_original_trace","project":"chrome","bytes":11244,"clickAcknowledged":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:17.4964383Z   ok   7 [chrome] › tests\artifact-features.spec.ts:6:5 › original tracing independently retains an acknowledged owned click and rejects inactive stop (2.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:19.1434587Z {"fixture":"independent_original_pdf","project":"chrome","supported":true,"bytes":17571}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:19.3961642Z   ok   8 [chrome] › tests\artifact-features.spec.ts:37:5 › original PDF independently writes a Chromium document or explicitly rejects the unsupported engine (1.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:19.9065978Z   ok   9 [chrome] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (502ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:20.4409780Z   ok  10 [chrome] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (517ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:20.9635007Z   ok  11 [chrome] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (505ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:21.4867489Z   ok  12 [chrome] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (509ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:22.0130689Z   ok  13 [chrome] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (518ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:23.0249859Z   ok  14 [chrome] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (991ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:23.5101272Z   ok  15 [chrome] › tests\cli.spec.ts:22:5 › install-browser --help (456ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:25.7631848Z   ok  16 [chrome] › tests\click.spec.ts:19:5 › browser_click (2.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:27.2723738Z   ok  17 [chrome] › tests\core.spec.ts:19:5 › browser_navigate (1.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:28.7286931Z {"fixture":"highlight_region","project":"chrome","phase":"plain","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:28.8570483Z {"fixture":"highlight_region","project":"chrome","phase":"highlighted","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:28.9877799Z {"fixture":"highlight_region","project":"chrome","phase":"restored","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:29.0868201Z {"fixture":"highlight_region","project":"chrome","phase":"highlighted-again","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:29.2032646Z {"fixture":"highlight_region","project":"chrome","phase":"restored-all","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:29.4562132Z   ok  18 [chrome] › tests\devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (2.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:31.4349402Z   ok  19 [chrome] › tests\devtools.spec.ts:60:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:33.8485883Z {"fixture":"original_close_processes","phase":"before","observedCount":10,"transportRootMatches":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:34.1209912Z   ok  20 [chrome] › tests\devtools.spec.ts:81:5 › original resume rejects malformed source locations and leaves the session usable (2.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:36.3297747Z   ok  21 [chrome] › tests\dynamic-dom.spec.ts:4:5 › original snapshot references cross nested open shadow roots and activate exactly once (2.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:38.3446913Z {"fixture":"owned_virtual_rows","totalRows":400,"renderedRows":20,"finalRow":399,"confirmedEffects":1,"detachedReferenceRejected":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:38.3770813Z   ok  22 [chrome] › tests\dynamic-dom.spec.ts:28:5 › original wheel input materializes virtual rows and detached references cannot trigger duplicate effects (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:41.0393192Z {"fixture":"owned_gated_hydration","initiallyDisabled":true,"originalReferenceUsed":true,"confirmedPostEffects":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:41.0552329Z   ok  23 [chrome] › tests\dynamic-dom.spec.ts:71:5 › original disabled snapshot reference remains actionable after gated hydration without duplicate effects (2.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:44.9554371Z {"fixture":"owned_lazy_append","initialRows":10,"finalRows":30,"pageRequests":1,"confirmedPostEffects":2,"originalReferenceUsed":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:44.9872242Z   ok  24 [chrome] › tests\dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once (3.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:47.1690809Z   ok  25 [chrome] › tests\held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (2.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:52.6425803Z   ok  26 [chrome] › tests\input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (5.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:55.9599973Z   ok  27 [chrome] › tests\input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (3.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:23:58.7253551Z   ok  28 [chrome] › tests\input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (2.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:01.4399868Z   ok  29 [chrome] › tests\input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (2.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:06.0435901Z   ok  30 [chrome] › tests\input-parity.spec.ts:98:5 › original slider bounds and step failures preserve sanitized effects without replay (4.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:10.7551761Z   ok  31 [chrome] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:13.2815666Z   ok  32 [chrome] › tests\interactions.spec.ts:92:5 › original iframe snapshot targets stay scoped to the embedded document (2.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:16.7905985Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:16.8203269Z   ok  33 [chrome] › tests\large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (3.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:17.3769795Z   ok  34 [chrome] › tests\library.spec.ts:20:5 › library can be used from CommonJS (543ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:22.8215313Z {"fixture":"owned_pcm_media","project":"chrome","mediaRequests":1,"rangeRequests":1,"partialResponses":1,"durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:22.8374661Z   ok  35 [chrome] › tests\media.spec.ts:19:5 › original muted PCM media advances, pauses and reports a missing media source (5.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:24.7307806Z   ok  36 [chrome] › tests\network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (1.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:27.2831690Z   ok  37 [chrome] › tests\network-routing.spec.ts:4:5 › original malformed route headers and unknown unroute preserve an existing mock (2.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:34.5647960Z   ok  38 [chrome] › tests\network-routing.spec.ts:38:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (7.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:37.2962683Z   ok  39 [chrome] › tests\popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (2.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:24:51.4184807Z   ok  40 [chrome] › tests\profile-parity.spec.ts:5:5 › original opt-in profile locks, restore, reset and independent profile isolation (14.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:25:19.3418818Z {"fixture":"owned_service_worker_offline","explicitlyAllowed":true,"networkFallbackRequests":0,"offlineDomEffect":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:25:19.3744129Z   ok  41 [chrome] › tests\service-worker.spec.ts:4:5 › original explicitly allowed service worker serves an owned offline document without network fallback (27.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:25:19.8970214Z {"fixture":"original_stderr_budget_probe","byteLimit":1048576,"retainedBytes":983040,"overflow":false}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:25:19.9587708Z   ok  42 [chrome] › tests\stdio-stderr.spec.ts:6:5 › original stdio drains substantial stderr before MCP initialization (561ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:25:59.0625147Z   ok  43 [chrome] › tests\storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (39.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:26:28.3773246Z   ok  44 [chrome] › tests\storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (29.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:02.8701048Z   ok  45 [chrome] › tests\storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (34.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:06.8520241Z   ok  46 [chrome] › tests\storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (4.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:08.6679740Z   ok  47 [chrome] › tests\testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (1.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:10.0631094Z {"fixture":"owned_video_source_paint","project":"chrome","width":320,"height":240,"pixel":[255,0,0,255]}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:11.7021622Z {"fixture":"owned_webm_frame","project":"chrome","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"playbackRequests":1,"rangeRequests":1,"partialResponses":1,"bytes":6231}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:11.7338877Z   ok  48 [chrome] › tests\video-playback.spec.ts:9:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (3.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:15.5421022Z   ok  49 [chromium] › tests\accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (2.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:17.6070547Z   ok  50 [chromium] › tests\accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:19.3429165Z   ok  51 [chromium] › tests\accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (1.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:22.4188757Z   ok  52 [chromium] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (3.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:24.9333261Z   ok  53 [chromium] › tests\advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (2.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:30.5520227Z   ok  54 [chromium] › tests\advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (5.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:32.3959128Z {"fixture":"independent_original_trace","project":"chromium","bytes":11258,"clickAcknowledged":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:32.6362248Z   ok  55 [chromium] › tests\artifact-features.spec.ts:6:5 › original tracing independently retains an acknowledged owned click and rejects inactive stop (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:33.8657586Z {"fixture":"independent_original_pdf","project":"chromium","supported":true,"bytes":17571}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:34.3298675Z   ok  56 [chromium] › tests\artifact-features.spec.ts:37:5 › original PDF independently writes a Chromium document or explicitly rejects the unsupported engine (1.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:34.8537357Z   ok  57 [chromium] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (499ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:35.3928349Z   ok  58 [chromium] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (526ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:35.9149716Z   ok  59 [chromium] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (499ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:36.4235400Z   ok  60 [chromium] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (494ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:36.9633753Z   ok  61 [chromium] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (519ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:37.9626458Z   ok  62 [chromium] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (982ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:38.4345716Z   ok  63 [chromium] › tests\cli.spec.ts:22:5 › install-browser --help (449ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:40.6669021Z   ok  64 [chromium] › tests\click.spec.ts:19:5 › browser_click (2.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:42.1412624Z   ok  65 [chromium] › tests\core.spec.ts:19:5 › browser_navigate (1.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:43.6151762Z {"fixture":"highlight_region","project":"chromium","phase":"plain","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:43.7571313Z {"fixture":"highlight_region","project":"chromium","phase":"highlighted","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:43.8770347Z {"fixture":"highlight_region","project":"chromium","phase":"restored","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:43.9594119Z {"fixture":"highlight_region","project":"chromium","phase":"highlighted-again","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:44.0777132Z {"fixture":"highlight_region","project":"chromium","phase":"restored-all","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:44.3159228Z   ok  66 [chromium] › tests\devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (2.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:46.3554108Z   ok  67 [chromium] › tests\devtools.spec.ts:60:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:48.0645255Z {"fixture":"original_close_processes","phase":"before","observedCount":11,"transportRootMatches":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:48.3218039Z   ok  68 [chromium] › tests\devtools.spec.ts:81:5 › original resume rejects malformed source locations and leaves the session usable (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:50.3689841Z   ok  69 [chromium] › tests\dynamic-dom.spec.ts:4:5 › original snapshot references cross nested open shadow roots and activate exactly once (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:52.5932840Z {"fixture":"owned_virtual_rows","totalRows":400,"renderedRows":20,"finalRow":399,"confirmedEffects":1,"detachedReferenceRejected":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:52.6078742Z   ok  70 [chromium] › tests\dynamic-dom.spec.ts:28:5 › original wheel input materializes virtual rows and detached references cannot trigger duplicate effects (2.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:55.3949161Z {"fixture":"owned_gated_hydration","initiallyDisabled":true,"originalReferenceUsed":true,"confirmedPostEffects":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:55.4126440Z   ok  71 [chromium] › tests\dynamic-dom.spec.ts:71:5 › original disabled snapshot reference remains actionable after gated hydration without duplicate effects (2.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:59.2829626Z {"fixture":"owned_lazy_append","initialRows":10,"finalRows":30,"pageRequests":1,"confirmedPostEffects":2,"originalReferenceUsed":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:27:59.2988803Z   ok  72 [chromium] › tests\dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once (3.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:01.7734727Z   ok  73 [chromium] › tests\held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (2.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:07.3074785Z   ok  74 [chromium] › tests\input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (5.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:10.4613719Z   ok  75 [chromium] › tests\input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (3.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:12.9313640Z   ok  76 [chromium] › tests\input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (2.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:15.6985598Z   ok  77 [chromium] › tests\input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (2.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:20.3032486Z   ok  78 [chromium] › tests\input-parity.spec.ts:98:5 › original slider bounds and step failures preserve sanitized effects without replay (4.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:24.5797845Z   ok  79 [chromium] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:26.7323997Z   ok  80 [chromium] › tests\interactions.spec.ts:92:5 › original iframe snapshot targets stay scoped to the embedded document (2.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:30.3077742Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:30.3237201Z   ok  81 [chromium] › tests\large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (3.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:30.8469407Z   ok  82 [chromium] › tests\library.spec.ts:20:5 › library can be used from CommonJS (507ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:35.5402053Z {"fixture":"owned_pcm_media","project":"chromium","mediaRequests":1,"rangeRequests":1,"partialResponses":1,"durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:35.5558109Z   ok  83 [chromium] › tests\media.spec.ts:19:5 › original muted PCM media advances, pauses and reports a missing media source (4.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:37.3740204Z   ok  84 [chromium] › tests\network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (1.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:39.8025616Z   ok  85 [chromium] › tests\network-routing.spec.ts:4:5 › original malformed route headers and unknown unroute preserve an existing mock (2.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:46.4530904Z   ok  86 [chromium] › tests\network-routing.spec.ts:38:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (6.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:28:49.1573404Z   ok  87 [chromium] › tests\popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (2.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:02.8465436Z   ok  88 [chromium] › tests\profile-parity.spec.ts:5:5 › original opt-in profile locks, restore, reset and independent profile isolation (13.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:05.4191133Z {"fixture":"owned_service_worker_offline","explicitlyAllowed":true,"networkFallbackRequests":0,"offlineDomEffect":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:05.4349571Z   ok  89 [chromium] › tests\service-worker.spec.ts:4:5 › original explicitly allowed service worker serves an owned offline document without network fallback (2.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:05.9422441Z {"fixture":"original_stderr_budget_probe","byteLimit":1048576,"retainedBytes":983040,"overflow":false}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:05.9581904Z   ok  90 [chromium] › tests\stdio-stderr.spec.ts:6:5 › original stdio drains substantial stderr before MCP initialization (512ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:07.7001857Z   ok  91 [chromium] › tests\storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (1.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:09.4632098Z   ok  92 [chromium] › tests\storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (1.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:11.2174571Z   ok  93 [chromium] › tests\storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (1.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:14.6666228Z   ok  94 [chromium] › tests\storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (3.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:16.5883547Z   ok  95 [chromium] › tests\testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (1.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:17.7865789Z {"fixture":"owned_video_source_paint","project":"chromium","width":320,"height":240,"pixel":[255,0,0,255]}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:19.4654924Z {"fixture":"owned_webm_frame","project":"chromium","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"playbackRequests":1,"rangeRequests":1,"partialResponses":1,"bytes":6264}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:19.4812556Z   ok  96 [chromium] › tests\video-playback.spec.ts:9:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (2.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:31.4990416Z   ok  97 [firefox] › tests\accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (11.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:37.4337213Z   ok  98 [firefox] › tests\accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (5.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:41.1118613Z   ok  99 [firefox] › tests\accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (3.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:46.9672466Z   ok 100 [firefox] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (5.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:29:53.2106771Z   ok 101 [firefox] › tests\advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (6.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:02.9059951Z   ok 102 [firefox] › tests\advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (9.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:07.3111645Z {"fixture":"independent_original_trace","project":"firefox","bytes":13005,"clickAcknowledged":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:07.9444086Z   ok 103 [firefox] › tests\artifact-features.spec.ts:6:5 › original tracing independently retains an acknowledged owned click and rejects inactive stop (5.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:10.5254825Z {"fixture":"independent_original_pdf","project":"firefox","supported":false,"rejected":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:11.3640578Z   ok 104 [firefox] › tests\artifact-features.spec.ts:37:5 › original PDF independently writes a Chromium document or explicitly rejects the unsupported engine (3.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:11.9029632Z   ok 105 [firefox] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (511ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:12.4108321Z   ok 106 [firefox] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (497ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:12.9664981Z   ok 107 [firefox] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (532ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:13.4902312Z   ok 108 [firefox] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (516ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:14.0296062Z   ok 109 [firefox] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (522ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:15.0272649Z   ok 110 [firefox] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (988ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:15.5178035Z   ok 111 [firefox] › tests\cli.spec.ts:22:5 › install-browser --help (472ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:19.5340621Z   ok 112 [firefox] › tests\click.spec.ts:19:5 › browser_click (4.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:23.1335319Z   ok 113 [firefox] › tests\core.spec.ts:19:5 › browser_navigate (3.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:25.9712170Z {"fixture":"highlight_region","project":"firefox","phase":"plain","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:26.2418093Z {"fixture":"highlight_region","project":"firefox","phase":"highlighted","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:26.3598727Z {"fixture":"highlight_region","project":"firefox","phase":"restored","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:27.7227159Z {"fixture":"highlight_region","project":"firefox","phase":"highlighted-again","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:27.7639864Z {"fixture":"highlight_region","project":"firefox","phase":"restored-all","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:28.4136621Z   ok 114 [firefox] › tests\devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (5.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:34.6573903Z   ok 115 [firefox] › tests\devtools.spec.ts:60:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (6.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:38.0568713Z {"fixture":"original_close_processes","phase":"before","observedCount":9,"transportRootMatches":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:40.0034593Z   ok 116 [firefox] › tests\devtools.spec.ts:81:5 › original resume rejects malformed source locations and leaves the session usable (5.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:49.3360127Z   ok 117 [firefox] › tests\dynamic-dom.spec.ts:4:5 › original snapshot references cross nested open shadow roots and activate exactly once (9.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:54.7407959Z {"fixture":"owned_virtual_rows","totalRows":400,"renderedRows":20,"finalRow":399,"confirmedEffects":1,"detachedReferenceRejected":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:30:54.7549480Z   ok 118 [firefox] › tests\dynamic-dom.spec.ts:28:5 › original wheel input materializes virtual rows and detached references cannot trigger duplicate effects (5.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:00.2550127Z {"fixture":"owned_gated_hydration","initiallyDisabled":true,"originalReferenceUsed":true,"confirmedPostEffects":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:00.2709673Z   ok 119 [firefox] › tests\dynamic-dom.spec.ts:71:5 › original disabled snapshot reference remains actionable after gated hydration without duplicate effects (5.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:07.2418533Z {"fixture":"owned_lazy_append","initialRows":10,"finalRows":30,"pageRequests":1,"confirmedPostEffects":2,"originalReferenceUsed":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:07.2579451Z   ok 120 [firefox] › tests\dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once (7.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:12.4502863Z   ok 121 [firefox] › tests\held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (5.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:21.2453989Z   ok 122 [firefox] › tests\input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (8.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:27.3636844Z   ok 123 [firefox] › tests\input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (6.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:33.1974456Z   ok 124 [firefox] › tests\input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (5.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:38.4473968Z   ok 125 [firefox] › tests\input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (5.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:45.3833054Z   ok 126 [firefox] › tests\input-parity.spec.ts:98:5 › original slider bounds and step failures preserve sanitized effects without replay (6.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:51.7005246Z   ok 127 [firefox] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (6.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:31:57.3082147Z   ok 128 [firefox] › tests\interactions.spec.ts:92:5 › original iframe snapshot targets stay scoped to the embedded document (5.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:04.6306239Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:04.6605289Z   ok 129 [firefox] › tests\large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (7.3s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:05.1509392Z   ok 130 [firefox] › tests\library.spec.ts:20:5 › library can be used from CommonJS (482ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:12.7680970Z {"fixture":"owned_pcm_media","project":"firefox","mediaRequests":1,"rangeRequests":1,"partialResponses":1,"durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:12.7857676Z   ok 131 [firefox] › tests\media.spec.ts:19:5 › original muted PCM media advances, pauses and reports a missing media source (7.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:16.2510089Z   ok 132 [firefox] › tests\network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (3.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:21.7214207Z   ok 133 [firefox] › tests\network-routing.spec.ts:4:5 › original malformed route headers and unknown unroute preserve an existing mock (5.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:31.3719703Z   ok 134 [firefox] › tests\network-routing.spec.ts:38:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (9.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:37.1286635Z   ok 135 [firefox] › tests\popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (5.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:53.0751237Z   ok 136 [firefox] › tests\profile-parity.spec.ts:5:5 › original opt-in profile locks, restore, reset and independent profile isolation (15.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:59.8846422Z {"fixture":"owned_service_worker_offline","explicitlyAllowed":true,"networkFallbackRequests":0,"offlineDomEffect":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:32:59.9006364Z   ok 137 [firefox] › tests\service-worker.spec.ts:4:5 › original explicitly allowed service worker serves an owned offline document without network fallback (6.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:00.4094782Z {"fixture":"original_stderr_budget_probe","byteLimit":1048576,"retainedBytes":983040,"overflow":false}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:00.4413079Z   ok 138 [firefox] › tests\stdio-stderr.spec.ts:6:5 › original stdio drains substantial stderr before MCP initialization (516ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:04.1586632Z   ok 139 [firefox] › tests\storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (3.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:09.2720659Z   ok 140 [firefox] › tests\storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (5.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:14.3048166Z   ok 141 [firefox] › tests\storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (5.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:23.7457464Z   ok 142 [firefox] › tests\storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (9.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:28.7957588Z   ok 143 [firefox] › tests\testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (5.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:31.5351929Z {"fixture":"owned_video_source_paint","project":"firefox","width":320,"height":240,"pixel":[255,0,0,255]}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:34.7852624Z {"fixture":"owned_webm_frame","project":"firefox","width":320,"height":240,"recordedClicks":6,"decodedRedFrame":true,"playbackRequests":1,"rangeRequests":1,"partialResponses":1,"bytes":6620}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:34.8034506Z   ok 144 [firefox] › tests\video-playback.spec.ts:9:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (6.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:37.3941558Z   ok 145 [webkit] › tests\accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (1.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:39.0566142Z   ok 146 [webkit] › tests\accessibility-mobile.spec.ts:28:5 › original responsive viewport, CSS screenshot and actual touch preserve fixture behavior (1.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:40.0614930Z   ok 147 [webkit] › tests\accessibility-mobile.spec.ts:57:5 › original media emulation switches dark mode and reduced motion and resets both (979ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:42.8870395Z   ok 148 [webkit] › tests\advanced.spec.ts:6:5 › original storage, screenshot, trace, video, tabs and Chromium PDF behavior (2.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:44.7504905Z   ok 149 [webkit] › tests\advanced.spec.ts:46:5 › original named tab contexts share only their own cookie and localStorage state (1.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:57.6386495Z   ok 150 [webkit] › tests\advanced.spec.ts:75:5 › original trusted-code tool executes 100 real clicks with exact owned fixture assertions (12.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:59.3215460Z {"fixture":"independent_original_trace","project":"webkit","bytes":10989,"clickAcknowledged":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:33:59.4296639Z   ok 151 [webkit] › tests\artifact-features.spec.ts:6:5 › original tracing independently retains an acknowledged owned click and rejects inactive stop (1.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:00.3329040Z {"fixture":"independent_original_pdf","project":"webkit","supported":false,"rejected":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:00.4286369Z   ok 152 [webkit] › tests\artifact-features.spec.ts:37:5 › original PDF independently writes a Chromium document or explicitly rejects the unsupported engine (959ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:00.9504574Z   ok 153 [webkit] › tests\capabilities.spec.ts:21:5 › test snapshot tool list (500ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:01.4738569Z   ok 154 [webkit] › tests\capabilities.spec.ts:52:5 › test capabilities (pdf) (496ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:01.9847924Z   ok 155 [webkit] › tests\capabilities.spec.ts:61:5 › test capabilities (vision) (504ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:02.5047178Z   ok 156 [webkit] › tests\capabilities.spec.ts:72:5 › support for legacy --vision option (498ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:03.0590770Z   ok 157 [webkit] › tests\capabilities.spec.ts:84:5 › extended upstream capability schema contract (546ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:04.0580404Z   ok 158 [webkit] › tests\capabilities.spec.ts:94:7 › client argument isolation › one client capability override cannot leak into another client (983ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:04.5497341Z   ok 159 [webkit] › tests\cli.spec.ts:22:5 › install-browser --help (469ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:06.1373205Z   ok 160 [webkit] › tests\click.spec.ts:19:5 › browser_click (1.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:07.0297267Z   ok 161 [webkit] › tests\core.spec.ts:19:5 › browser_navigate (863ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:08.0194419Z {"fixture":"highlight_region","project":"webkit","phase":"plain","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:08.1700304Z {"fixture":"highlight_region","project":"webkit","phase":"highlighted","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:08.2955261Z {"fixture":"highlight_region","project":"webkit","phase":"restored","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:08.4271440Z {"fixture":"highlight_region","project":"webkit","phase":"highlighted-again","observations":1,"redPixels":512}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:08.5512799Z {"fixture":"highlight_region","project":"webkit","phase":"restored-all","observations":1,"redPixels":0}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:08.6332767Z   ok 162 [webkit] › tests\devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (1.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:10.2250183Z   ok 163 [webkit] › tests\devtools.spec.ts:60:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (1.6s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:11.6531694Z {"fixture":"original_close_processes","phase":"before","observedCount":9,"transportRootMatches":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:11.7282981Z   ok 164 [webkit] › tests\devtools.spec.ts:81:5 › original resume rejects malformed source locations and leaves the session usable (1.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:13.3887059Z   ok 165 [webkit] › tests\dynamic-dom.spec.ts:4:5 › original snapshot references cross nested open shadow roots and activate exactly once (1.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:15.1682705Z {"fixture":"owned_virtual_rows","totalRows":400,"renderedRows":20,"finalRow":399,"confirmedEffects":1,"detachedReferenceRejected":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:15.1953867Z   ok 166 [webkit] › tests\dynamic-dom.spec.ts:28:5 › original wheel input materializes virtual rows and detached references cannot trigger duplicate effects (1.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:17.3592170Z {"fixture":"owned_gated_hydration","initiallyDisabled":true,"originalReferenceUsed":true,"confirmedPostEffects":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:17.3748913Z   ok 167 [webkit] › tests\dynamic-dom.spec.ts:71:5 › original disabled snapshot reference remains actionable after gated hydration without duplicate effects (2.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:20.8609554Z {"fixture":"owned_lazy_append","initialRows":10,"finalRows":30,"pageRequests":1,"confirmedPostEffects":2,"originalReferenceUsed":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:20.8912701Z   ok 168 [webkit] › tests\dynamic-dom.spec.ts:125:5 › original wheel-triggered lazy append preserves existing references and activates the new row once (3.5s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:22.6546506Z   ok 169 [webkit] › tests\held-input.spec.ts:4:5 › original held pointer paints canvas and repeated keyboard chords release modifiers (1.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:28.0694855Z   ok 170 [webkit] › tests\input-parity.spec.ts:15:5 › original form fill, typing, selection, hover, viewport and history affect the owned page (5.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:31.2666583Z   ok 171 [webkit] › tests\input-parity.spec.ts:48:5 › original element drag and MIME/file drops reach only the owned drop target (3.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:33.3388009Z   ok 172 [webkit] › tests\input-parity.spec.ts:65:5 › original coordinate drag paints a held canvas stroke and wheel scrolls the owned page (2.1s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:35.3803076Z   ok 173 [webkit] › tests\input-parity.spec.ts:84:5 › original form slider fills and exposes non-atomic invalid-value failure (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:39.6122312Z   ok 174 [webkit] › tests\input-parity.spec.ts:98:5 › original slider bounds and step failures preserve sanitized effects without replay (4.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:44.0490496Z   ok 175 [webkit] › tests\interactions.spec.ts:7:5 › original dialogs and workspace file upload preserve modal behavior (4.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:45.9140081Z   ok 176 [webkit] › tests\interactions.spec.ts:92:5 › original iframe snapshot targets stay scoped to the embedded document (1.9s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:49.6349368Z {"fixture":"large_dom_verified","callToolRequests":6,"snapshotBytes":161846,"lastRowWitness":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:49.6648544Z   ok 177 [webkit] › tests\large-dom.spec.ts:5:5 › original large DOM can use explicit snapshot files and bounded find without losing element actions (3.7s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:34:50.1407913Z   ok 178 [webkit] › tests\library.spec.ts:20:5 › library can be used from CommonJS (470ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:01.0894075Z {"fixture":"owned_pcm_http_failure","project":"webkit","tool":"browser_run_code_unsafe","mediaRequests":1,"rangeRequests":1,"partialResponses":1,"requestCountsAreLowerBounds":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:01.1019217Z {"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":2,"pending":0,"active":[],"recent":[{"tool":"browser_navigate","outcome":"returned","durationMs":5413},{"tool":"browser_run_code_unsafe","outcome":"tool_error","durationMs":5049}]}]}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:01.1110697Z ##[notice]{"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":2,"pending":0,"active":[],"recent":[{"tool":"browser_navigate","outcome":"returned","durationMs":5413},{"tool":"browser_run_code_unsafe","outcome":"tool_error","durationMs":5049}]}]}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:01.1559722Z   x  179 [webkit] › tests\media.spec.ts:19:5 › original muted PCM media advances, pauses and reports a missing media source (11.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:03.1696811Z   ok 180 [webkit] › tests\network-console.spec.ts:5:5 › original network status/details and console filtering preserve explicit file output (1.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:05.2436339Z   ok 181 [webkit] › tests\network-routing.spec.ts:4:5 › original malformed route headers and unknown unroute preserve an existing mock (2.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:11.5086653Z   ok 182 [webkit] › tests\network-routing.spec.ts:38:5 › original route mock, header override, unroute and offline/online state preserve live owned requests (6.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:13.9629711Z   ok 183 [webkit] › tests\popup.spec.ts:4:5 › original popup can be listed, selected, interacted with and closed without losing its opener (2.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:20.1453227Z   ok 184 [webkit] › tests\profile-parity.spec.ts:5:5 › original opt-in profile locks, restore, reset and independent profile isolation (6.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:22.9830600Z {"fixture":"owned_service_worker_offline","explicitlyAllowed":true,"networkFallbackRequests":0,"offlineDomEffect":1}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:22.9993813Z   ok 185 [webkit] › tests\service-worker.spec.ts:4:5 › original explicitly allowed service worker serves an owned offline document without network fallback (2.8s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:23.5066413Z {"fixture":"original_stderr_budget_probe","byteLimit":1048576,"retainedBytes":983040,"overflow":false}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:23.5374827Z   ok 186 [webkit] › tests\stdio-stderr.spec.ts:6:5 › original stdio drains substantial stderr before MCP initialization (519ms)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:24.5729856Z   ok 187 [webkit] › tests\storage.spec.ts:5:7 › original cookie get/set/list/delete/clear preserve sibling values (1.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:25.5956317Z   ok 188 [webkit] › tests\storage.spec.ts:5:7 › original localstorage get/set/list/delete/clear preserve sibling values (1.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:26.6420512Z   ok 189 [webkit] › tests\storage.spec.ts:5:7 › original sessionstorage get/set/list/delete/clear preserve sibling values (1.0s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:28.8707839Z   ok 190 [webkit] › tests\storage.spec.ts:32:5 › original storage state export/restore replaces existing cookie and localStorage values (2.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:30.0872292Z   ok 191 [webkit] › tests\testing-capabilities.spec.ts:4:5 › original config, locator and testing tools verify real controls and reject mismatches (1.2s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:30.9940037Z {"fixture":"owned_video_source_paint","project":"webkit","width":320,"height":240,"pixel":[255,0,0,255]}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.4360992Z {"fixture":"owned_video_http_failure","project":"webkit","playbackRequests":2,"rangeRequests":2,"partialResponses":2,"requestCountsAreLowerBounds":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.4437805Z {"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":7,"pending":0,"active":[],"recent":[{"tool":"browser_run_code_unsafe","outcome":"returned","durationMs":1260},{"tool":"browser_stop_video","outcome":"returned","durationMs":28},{"tool":"browser_navigate","outcome":"returned","durationMs":1092},{"tool":"browser_run_code_unsafe","outcome":"tool_error","durationMs":5041}]}]}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.4455937Z ##[notice]{"fixture":"original_mcp_progress","clientCount":1,"clients":[{"calls":7,"pending":0,"active":[],"recent":[{"tool":"browser_run_code_unsafe","outcome":"returned","durationMs":1260},{"tool":"browser_stop_video","outcome":"returned","durationMs":28},{"tool":"browser_navigate","outcome":"returned","durationMs":1092},{"tool":"browser_run_code_unsafe","outcome":"tool_error","durationMs":5041}]}]}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5015263Z   x  192 [webkit] › tests\video-playback.spec.ts:9:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels (8.4s)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5168656Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5328022Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5329468Z   1) [webkit] › tests\media.spec.ts:19:5 › original muted PCM media advances, pauses and reports a missing media source 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5330241Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5331269Z     Error: {"content":[{"type":"text","text":"### Error\nError: Owned media readiness failed {\"readinessTimedOut\":true,\"paused\":true,\"muted\":true,\"duration\":null,\"ready\":0,\"network\":2,\"error\":0,\"wav\":\"probably\"}"}],"isError":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5332285Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5332642Z     expect(received).not.toBe(expected) // Object.is equality
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5333014Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5333172Z     Expected: not true
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5333353Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5333670Z       36 |     const result = await client.callTool({ name, arguments: args });
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5335024Z       37 |     if (result.isError) console.log(JSON.stringify({ fixture: 'owned_pcm_http_failure', project, tool: name, mediaRequests, rangeRequests, partialResponses, requestCountsAreLowerBounds: true }));
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5336430Z     > 38 |     expect(result.isError, JSON.stringify(result)).not.toBe(true); return result;
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5337098Z          |                                                        ^
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5337808Z       39 |   };
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5338283Z       40 |   await call('browser_navigate', { url: server.PREFIX });
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5338933Z       41 |   await call('browser_run_code_unsafe', { code: `async page => {
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5339647Z         at call (D:\a\playwright-mcp\playwright-mcp\tests\media.spec.ts:38:56)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5340365Z         at D:\a\playwright-mcp\playwright-mcp\tests\media.spec.ts:41:3
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5340750Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5341506Z     Error Context: test-results\media-original-muted-PCM-m-6420b-orts-a-missing-media-source-webkit\error-context.md
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5342187Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5343000Z   2) [webkit] › tests\video-playback.spec.ts:9:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5343592Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5344418Z     Error: {"content":[{"type":"text","text":"### Error\nError: Owned video readiness failed {\"readinessTimedOut\":true,\"ready\":0,\"network\":3,\"error\":4,\"webm\":\"probably\",\"width\":0,\"height\":0}"}],"isError":true}
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5345216Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5345459Z     expect(received).not.toBe(expected) // Object.is equality
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5345732Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5345904Z     Expected: not true
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5346090Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5346265Z       127 |     } finally { clearTimeout(timer); }
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5346656Z       128 |   }
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5347069Z     > 129 |   expect(decoded.isError, JSON.stringify(decoded)).not.toBe(true);
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5347742Z           |                                                        ^
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5348690Z       130 |   expect(playbackRequests).toBeGreaterThan(0);
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5349118Z       131 |   await call('browser_close');
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5349741Z       132 |   console.log(JSON.stringify({ fixture: 'owned_webm_frame', project, width: 320, height: 240,
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5350494Z         at D:\a\playwright-mcp\playwright-mcp\tests\video-playback.spec.ts:129:56
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5350872Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5351337Z     Error Context: test-results\video-playback-original-re-0fcb7-ected-dimensions-and-pixels-webkit\error-context.md
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5351889Z 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5352020Z   2 failed
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5352724Z     [webkit] › tests\media.spec.ts:19:5 › original muted PCM media advances, pauses and reports a missing media source 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5353765Z     [webkit] › tests\video-playback.spec.ts:9:5 › original recorded WebM decodes an owned frame with the expected dimensions and pixels 
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5354477Z   190 passed (13.2m)
+test (windows-latest)	Run playwright-mcp tests	2026-10-22T15:35:38.5839068Z ##[error]Process completed with exit code 1.
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	﻿2026-10-22T15:35:38.6078542Z ##[group]Run node --test local-batch/integration.test.mjs 2>&1 | tee legacy-firefox.log
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:35:38.6079404Z [36;1mnode --test local-batch/integration.test.mjs 2>&1 | tee legacy-firefox.log[0m
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:35:38.6095430Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:35:38.6095895Z env:
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:35:38.6096164Z   RUN_BROWSER_TESTS: 1
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:35:38.6096456Z   PLAYWRIGHT_BATCH_TEST_BROWSERS: firefox
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:35:38.6096806Z   PLAYWRIGHT_BATCH_TEST_FRESH_FIREFOX_RUNS: 10
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:35:38.6097138Z ##[endgroup]
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:35:38.7259883Z TAP version 13
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:36:32.2959513Z # Subtest: real firefox: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:36:32.2960957Z ok 1 - real firefox: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:36:32.2961859Z   ---
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:36:32.2962277Z   duration_ms: 53488.0065
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:36:32.2962727Z   ...
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:37:33.0918437Z # Subtest: real firefox headed: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:37:33.0919388Z ok 2 - real firefox headed: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:37:33.0919939Z   ---
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:37:33.0920199Z   duration_ms: 60800.5052
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:37:33.0920483Z   ...
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8648770Z # Subtest: real firefox direct-pipe: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8650506Z ok 3 - real firefox direct-pipe: 10 fresh runs, navigation, 20 clicks, assertion, screenshot, cleanup
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8651214Z   ---
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8651541Z   duration_ms: 51763.1051
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8651933Z   ...
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8806622Z 1..3
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8807099Z # tests 3
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8807706Z # suites 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8808123Z # pass 3
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8808480Z # fail 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8808834Z # cancelled 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8809258Z # skipped 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8810656Z # todo 0
+test (windows-latest)	Exercise legacy Windows Node 20 Firefox cleanup	2026-10-22T15:38:24.8811150Z # duration_ms 166164.2587
+test (windows-latest)	Preserve failed wrapper evidence	﻿2026-10-22T15:38:24.9225617Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:24.9226106Z with:
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:24.9226320Z   name: wrapper-tests-windows-latest
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:24.9226818Z   path: wrapper-tests.log
+test (windows-latest)	Preserve failed wrapper evidence	wrapper-available-tests.log
+test (windows-latest)	Preserve failed wrapper evidence	modal-tests.log
+test (windows-latest)	Preserve failed wrapper evidence	legacy-firefox.log
+test (windows-latest)	Preserve failed wrapper evidence	
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:24.9227284Z   retention-days: 1
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:24.9227499Z   if-no-files-found: error
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:24.9227750Z   compression-level: 6
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:24.9227953Z   overwrite: false
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:24.9228161Z   include-hidden-files: false
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:24.9228390Z ##[endgroup]
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.1139741Z (node:8968) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.1141004Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.1210763Z Multiple search paths detected. Calculating the least common ancestor of all paths
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.1215260Z The least common ancestor is D:\a\playwright-mcp\playwright-mcp. This will be the root directory of the artifact
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.1216473Z With the provided path, there will be 2 files uploaded
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.1221517Z Artifact name is valid!
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.1223387Z Root directory input is valid!
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.3483149Z Beginning upload of artifact content to blob storage
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.3720268Z (node:8968) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.4178352Z Uploaded bytes 6165
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.4398045Z Finished uploading artifact content to blob storage!
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.4399777Z SHA256 digest of uploaded artifact zip is d37843d31ce12d698c5c860cea4c8aa8ecb87d61b8c8e9cbcbd7972f9d4adeaf
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.4401917Z Finalizing artifact upload
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.9013718Z Artifact wrapper-tests-windows-latest.zip successfully finalized. Artifact ID 12438297092
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.9015088Z Artifact wrapper-tests-windows-latest has been successfully uploaded! Final size is 6165 bytes. Artifact ID is 12438297092
+test (windows-latest)	Preserve failed wrapper evidence	2026-10-22T15:38:25.9025492Z Artifact download URL: https://github.com/timmiballz22/playwright-mcp/actions/runs/39803246848/artifacts/12438297092
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T15:38:25.9394135Z Post job cleanup.
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:26.1313774Z [command]"C:\Program Files\Git\bin\git.exe" version
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:26.1679405Z git version 2.56.0.windows.2
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:26.1743958Z Temporarily overriding HOME='D:\a\_temp\54312513-71ed-4af5-bd4f-5cce8fb5c23e' before making global git config changes
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:26.1745759Z Adding repository directory to the temporary git global config as a safe directory
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:26.1755746Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\playwright-mcp\playwright-mcp
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:26.2121293Z Removing SSH command configuration
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:26.2131613Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:26.2506966Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:26.8499328Z Removing HTTP extra header
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:26.8513309Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:26.8914036Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.4471885Z Removing includeIf entries pointing to credentials config files
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.4483222Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.4824991Z includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.4826396Z includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.4827226Z includeif.gitdir:/github/workspace/.git.path
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.4841892Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.4870885Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.5214749Z D:\a\_temp\git-credentials-8649f4c4-b7fc-45e9-89da-0a09c73c8e3f.config
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.5260324Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git.path D\:\\a\\_temp\\git\-credentials\-8649f4c4\-b7fc\-45e9\-89da\-0a09c73c8e3f\.config
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.5649361Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.5997731Z D:\a\_temp\git-credentials-8649f4c4-b7fc-45e9-89da-0a09c73c8e3f.config
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.6040934Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/playwright-mcp/playwright-mcp/.git/worktrees/*.path D\:\\a\\_temp\\git\-credentials\-8649f4c4\-b7fc\-45e9\-89da\-0a09c73c8e3f\.config
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.6427157Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git.path
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.6767488Z /github/runner_temp/git-credentials-8649f4c4-b7fc-45e9-89da-0a09c73c8e3f.config
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.6812396Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-8649f4c4\-b7fc\-45e9\-89da\-0a09c73c8e3f\.config
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.7195383Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.7531297Z /github/runner_temp/git-credentials-8649f4c4-b7fc-45e9-89da-0a09c73c8e3f.config
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.7578554Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-8649f4c4\-b7fc\-45e9\-89da\-0a09c73c8e3f\.config
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:27.7964451Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+test (windows-latest)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T15:38:28.3220997Z Removing credentials config 'D:\a\_temp\git-credentials-8649f4c4-b7fc-45e9-89da-0a09c73c8e3f.config'
+test (windows-latest)	Complete job	﻿2026-10-22T15:38:28.3421895Z Cleaning up orphan processes
+test (windows-latest)	Complete job	2026-10-22T15:38:28.3546877Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

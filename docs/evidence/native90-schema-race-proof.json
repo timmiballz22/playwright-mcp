@@ -1,0 +1,28 @@
+{
+  "phase": "Local security followup excluded from native90 source58edfce",
+  "beforeSourceSha256": "9670e2973b783c4467b2f474c331e7700f4949480e13434cdf61cad7ded8b449",
+  "afterSourceSha256": "1525c43e575fbe774522e03d2f917a4f49f6ced35b6bdc604e7ea1e9038e495a",
+  "baselineNode": 22,
+  "baselineIncorrectlyAcceptedModes": [
+    "future_version",
+    "cleared_version",
+    "deleted_identity"
+  ],
+  "baselineEffect": "Reset version to1 or recreated project marker after a second real connection changed it between initial identity validation and schema transaction",
+  "fixedNodes": [
+    22,
+    24
+  ],
+  "fixedCasesPerNode": 3,
+  "rejectedCodes": {
+    "future_version": "unsupported_schema",
+    "cleared_version": "store_identity_mismatch",
+    "deleted_identity": "store_identity_mismatch"
+  },
+  "fixedOtherConnectionChangesPreserved": true,
+  "rejectedWorkerExitsConfirmed": true,
+  "regressionCasesPerNode": 41,
+  "regressionFailures": 0,
+  "strictTypecheckExit": 0,
+  "scope": "Same identity/version verification runs before configuration and again under existing BEGIN IMMEDIATE before schema writes. Future/cleared versions and missing marker are rejected without repairing them; original job/revision survives. No new protocol fields, retry, timeout, SQLite setting or browser action. Controlled separate SQLite connection is not a hostile-host/filesystem sandbox claim or Windows timeout cause proof."
+}

@@ -1,0 +1,30 @@
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":3,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_orphan","detected":true,"cleanup":"failed"}
+{"fixture":"factory_lifetime_audit","phase":"self_exit","lifetimes":1,"observed":0}
+{"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+✔ live factory facts retain an owned orphan after its worker exits (938.862087ms)
+{"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":3,"rememberedRootBirths":null}
+{"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+{"fixture":"factory_lifetime_audit","phase":"collision_teardown","lifetimes":1,"observed":0}
+✔ capture publication failure still releases its assigned factory gate and preserves the collision (708.523217ms)
+✔ audit receipts describe reused IDs without hiding possible processes or exposing identities (2.078701ms)
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (0.26239ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (0.17293ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (0.625726ms)
+✔ live-root snapshots retain exited browser identities for the final orphan scan (0.453256ms)
+✔ CIM error phase keeps only exact fixed markers and never raw diagnostics (0.415415ms)
+✔ separate owned lifetimes retain old orphans when a new client reuses its PID (0.533844ms)
+✔ new client may reuse an earlier observed descendant without losing either orphan lineage (0.355845ms)
+✔ live controller anchors retain exited browser roots and reject changes within that lifetime (0.459709ms)
+✔ live anchor refresh preserves an old orphan before recording a new owned browser incarnation (0.385462ms)
+✔ historical PID links cannot rewrite a live controller identity before validation (0.219713ms)
+✔ legacy comparison preserves old candidates while scoped birth facts retain an owned orphan (0.53687ms)
+✔ comparison records a replacement parent row even when it is outside legacy candidates (1.412482ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1787.670916

@@ -1,0 +1,90 @@
+{
+  "phase": "uncommitted after native73 ca638b0",
+  "sources": {
+    "local-batch/executor-integration.test.mjs": "18666f0dc32f5c08369b4434d046815ec9a299e40bfe85f025063af2156755f9",
+    "local-batch/page-limit.test.mjs": "852b78ca5ffe535060f8ce6725361745fa67e431d4e9eaca00b03fb1d8264268",
+    "local-batch/routing-cache.test.mjs": "cf69cdc0fba13601bf8defb95d23af24e2f2f383598ca895d926bc5cab729086",
+    "local-batch/fixtures/cache-routing-control.mjs": "e272f8694ae1ec771eb7e428959a0449628cf2fb3c2c039e653d42c84f059cde"
+  },
+  "checks": [
+    {
+      "name": "browser22",
+      "command": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-name-pattern=supervised (chromium|firefox):",
+        "local-batch/executor-integration.test.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "page-cache22",
+      "command": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "--test",
+        "--test-concurrency=1",
+        "local-batch/page-limit.test.mjs",
+        "local-batch/routing-cache.test.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "cache20",
+      "command": [
+        "/home/agent/.npm/_npx/ebaba8b9e55fd0a9/node_modules/node/bin/node",
+        "--test",
+        "local-batch/routing-cache.test.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "observer22",
+      "command": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "--test",
+        "local-batch/jobs/lifetime-observer.test.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "production22",
+      "command": [
+        "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "scripts/verify-package.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "before": "Ungated cache control rejected: Execution ended before live factory observation",
+  "mechanism": "Reuse existing private observer and actual live BrowserServer factory gates; one separate identity scope per actual execution; preserve same-snapshot legacy candidates and rows",
+  "unchanged": [
+    "production process ownership/termination",
+    "workflow action counts/assertions",
+    "20s/15s workflow and30s/45s test limits",
+    "cache control1 asset request versus strict6",
+    "no PID exclusion by role/name/age/window",
+    "historical PID candidates remain unclassified"
+  ],
+  "localWebKit": "NOT_TESTED: Node22 CLI pattern selected only Chromium/Firefox; TAP reports2 tests/2 pass/0 skipped. WebKit was omitted by selection, not executed.",
+  "native": "Pending; no causal classification of native73 legacy candidates yet",
+  "observerFaultTests": "2/2, including an actual retained orphan and observation-publication collision"
+}

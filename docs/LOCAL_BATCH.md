@@ -8,7 +8,7 @@ locally without a cloud browser service, hosting, or one agent tool call per cli
 credits, but cannot remove model usage allowances, machine limits, website
 rate limits, or authorization requirements.
 
-## Setup (Node.js 20+ recommended)
+## Setup (Node.js 20+ required; 22 or 24 LTS recommended)
 
 ```bash
 git clone https://github.com/timmiballz22/playwright-mcp.git
@@ -16,12 +16,13 @@ cd playwright-mcp
 npm ci
 npx playwright install chromium
 node --test local-batch/runner.test.mjs
-RUN_BROWSER_TESTS=1 node --test local-batch/integration.test.mjs
+RUN_BROWSER_TESTS=1 PLAYWRIGHT_BATCH_TEST_BROWSERS=chromium node --test local-batch/integration.test.mjs
 ```
 
 On Windows PowerShell use
-`$env:RUN_BROWSER_TESTS="1"; node --test local-batch/integration.test.mjs`.
-Playwright MCP's existing configuration and `node cli.js` remain intact.
+`$env:RUN_BROWSER_TESTS="1"; $env:PLAYWRIGHT_BATCH_TEST_BROWSERS="chromium"; node --test local-batch/integration.test.mjs`.
+`node cli.js` delegates to the pinned Microsoft backend, with the fork's
+persistent-profile ownership guard. Original configuration options remain available.
 Install Firefox and WebKit as desired via `npx playwright install firefox webkit`.
 
 ## Codex client: two local MCP processes
@@ -39,7 +40,7 @@ Example `~/.codex/config.toml`:
 ```toml
 [mcp_servers.playwright]
 command = "node"
-args = ["/ABSOLUTE/PATH/playwright-mcp/cli.js"]
+args = ["/ABSOLUTE/PATH/playwright-mcp/cli.js", "--browser=chromium", "--isolated", "--headless"]
 
 [mcp_servers.local_playwright_batch]
 command = "node"
@@ -48,9 +49,9 @@ args = ["/ABSOLUTE/PATH/playwright-mcp/local-batch/mcp.mjs"]
 ```
 
 No HTTP listener is opened by the sidecar. Both processes use standard I/O.
-The batch server requires the repository's full dependencies (`npm ci`):
-the MCP SDK is currently an upstream development dependency. A future Codex
-packaging pass should promote it to a runtime dependency before publishing.
+The SDK is a runtime dependency. Source installs and local tarballs support
+production dependency installs. This private fork cannot be published to npm.
+The upstream npm command above installs Microsoft's package, not this fork.
 
 ## Batch CLI
 
@@ -58,6 +59,7 @@ A JSON file specifies a bounded ordered workflow:
 
 ```json
 {
+  "schemaVersion": 1,
   "browser": "chromium",
   "iterations": 1,
   "timeoutMs": 120000,
@@ -74,7 +76,7 @@ A JSON file specifies a bounded ordered workflow:
 Run against your own local site:
 
 ```bash
-node local-batch/cli.mjs --workflow ./my-workflow.json
+node local-batch/cli.mjs --workflow ./my-workflow.json --allow-origin http://127.0.0.1:3000 --allow-sensitive-artifacts
 ```
 
 To opt in to a public origin:
@@ -95,10 +97,11 @@ Supported steps: `goto`, `click`, `fill`, `press`, `check`,
 shell commands, file upload, persistent credentials, or arbitrary file URLs
 are exposed in this batch interface. Use the upstream MCP for other features.
 
-Limits: at most 1,000 total actions (`steps × iterations`), 100
+Limits: at most 1,000 total actions (`sum of action repeats × iterations`), 100
 iterations, 180s overall deadline, and 30s per-action timeout.
-Only one batch at a time per sidecar process. Localhost over HTTP is allowed
-by default; other origins must be explicitly allowed locally.
+Only one batch at a time per sidecar process. Every HTTP(S) origin, including each localhost port, must be explicitly
+allowed locally. Redirect responses and WebSockets currently fail closed.
+Blocked dependencies make the workflow fail with `policy_blocked`.
 The browser blocks requests to non-allowed origins, including most third-party
 scripts, fonts and CDN assets. Allow them individually if required.
 
@@ -113,7 +116,7 @@ the workflow JSON, and reports as potentially sensitive.** Do not commit them.
 
 - This tool uses your local browser process and machine's network access:
   run only code you trust, and do not install untrusted dependencies.
-- Navigation allows localhost by default. The browser's page content is
+- Navigation requires explicit exact origins, including localhost ports. The browser's page content is
   untrusted, and the origin filter is not a general OS/network sandbox.
 - Strict subresource filtering improves determinism but may break sites
   relying on other domains or service workers. Browser contexts should
@@ -123,9 +126,88 @@ the workflow JSON, and reports as potentially sensitive.** Do not commit them.
 - Tests in `runner.test.mjs` use mocks; `integration.test.mjs` executes
   a real Chromium browser when `RUN_BROWSER_TESTS=1`.
 - Persistent sessions, cross-run cancellation by job ID, per-origin pacing,
-  secure profile storage, deeper isolation and full cross-browser tests are
+  secure profile storage, OS sandboxing and complete cross-browser acceptance are
   Codex follow-up work, **not implemented features** in this initial batch tool.
 - For coding-agent tasks with limited model context, consider Microsoft
   Playwright CLI + SKILLS, which upstream recommends over MCP in some cases.
 
 See [CODEX_HANDOFF.md](CODEX_HANDOFF.md) for the outstanding work.
+
+## Current hardening limits
+
+CLI and MCP execute through an independent supervisor and worker. A monotonic
+execution deadline covers browser setup, actions, report publication and worker
+exit; stalled cleanup triggers scoped process termination. Uncertain cleanup
+fails closed and blocks new MCP work. Direct source calls to the raw runner use
+cooperative cleanup: same-thread timers cannot preempt synchronous dependency
+work. Pinned Playwright1.64.1 uses synchronous `taskkill` in its Windows browser
+kill path; this source finding does not establish the cause of historical close
+failures. The independent supervisor is required for companion deadline claims
+(see evidence/native74-upstream-kill-review.json). CLI input accepts regular files up to 1 MiB with strict UTF-8
+validation, but filesystem ingestion latency precedes the execution deadline.
+The supervisor starts cancellation before the deadline to reserve cleanup time:
+up to three seconds on Windows and one second elsewhere (scaled for short runs).
+This can return timeout before the requested ceiling; completed actions or a late
+successful worker report do not erase cancellation. An abort observed before the
+execution promise resolves also prevents a successful result.
+The same stop controller aborts pending `route.fetch` calls and retry backoff,
+and is passed to supported navigation, locator and screenshot APIs. Mouse wheel
+and synchronous/native/filesystem work still require independent supervision.
+A rejected or cancelled POST may already have committed its effect; it remains
+unsafe to replay automatically.
+Worker V8 heap limits do not cap browser RSS. Reports use atomic publication;
+there is no durable job journal or automatic replay of uncertain actions.
+Screenshots use an exclusively created per-run directory. This one-tool batch
+endpoint has no cumulative retention quota. The separate durable jobs endpoint
+reserves retained capacity (512 MiB default); see [JOBS_STORAGE.md](JOBS_STORAGE.md).
+Screenshot secret masking is not guaranteed: capture only approved data.
+HTTP requests are fetched without automatic redirects or driver retries and fulfilled to
+the browser to prevent Playwright's redirect routing bypass. All redirects are
+currently rejected, including same-origin redirects. This is a compatibility
+restriction of the companion only; the upstream entrypoint is unchanged.
+DNS rebinding and system-wide egress isolation still require external controls.
+
+Screenshot capture is disabled unless the local operator sets
+`--allow-sensitive-artifacts` (CLI) or
+`PLAYWRIGHT_BATCH_ALLOW_SENSITIVE_ARTIFACTS=1` (MCP environment). This approves
+capture of potentially sensitive page pixels; it does not perform secret masking.
+See [WORKFLOW_SCHEMA.md](WORKFLOW_SCHEMA.md) for v1 limits and exact accessible
+role/name, label, placeholder, test-id and text selectors.
+
+Operator opt-in for safe throttled navigation: pass `--navigation-retries 1` to
+CLI or set `PLAYWRIGHT_BATCH_NAVIGATION_RETRIES=1` in the batch MCP environment.
+Default is disabled; maximum is two retries. Enable this only for destinations
+where repeating GET navigation is safe. It handles 429/503 for explicit top-level
+goto actions, with bounded backoff and Retry-After, inside the same deadline.
+Clicks, forms and POST are never replayed. See [WORKFLOW_SCHEMA.md](WORKFLOW_SCHEMA.md)
+for exact limits. This does not change website or model usage allowances.
+
+Approved screenshot payloads now have a16 MiB per-workflow default budget. CLI can
+set `--max-screenshot-bytes N`; the one-tool MCP endpoint reads trusted
+`PLAYWRIGHT_BATCH_MAX_SCREENSHOT_BYTES`. Range0–268435456 bytes. Workflow input
+cannot override this policy, and sensitive-capture approval is still required.
+Images are buffered, checked before file writes and atomically published with
+private permissions. Screenshot/report publication requires hard-link support in
+the artifact directory; unsupported filesystems return a failure. Publication
+creates the final name only if absent, including files created during capture or
+report writing. An exceeded budget yields fixed `artifact_quota` failure
+kind and preserves earlier confirmed actions. This is screenshot payload storage
+only, not total directory/retention/browser-memory quota or pixel redaction.
+
+Atomic JSON reports have a separate fixed8 MiB UTF-8 ceiling, including formatting
+and the final newline. Oversized reports are rejected before the writer creates
+its directory or temporary/final files. A supervised report failure returns the
+fixed report stage with completed progress and retrySafe:false; it does not replay
+already executed actions. The ceiling bounds report file bytes. Serialization
+memory, cumulative retained storage and filesystem metadata remain separate limits.
+
+
+
+The companion's observed open-page limit defaults to8 per workflow (main page
+included). Set CLI `--max-pages N`, batch MCP `PLAYWRIGHT_BATCH_MAX_PAGES`, or jobs
+`PLAYWRIGHT_JOBS_MAX_PAGES` to an integer1–32 in operator configuration. Workflow
+JSON cannot override it. Exceeding the observed count stops with `resource_limit`;
+action effects may have occurred and must not be automatically replayed. This
+reactive limit can observe allocation after it happens; CPU/RAM/process-tree and
+global project quotas remain separate open requirements. Original upstream MCP
+page behavior is unchanged.

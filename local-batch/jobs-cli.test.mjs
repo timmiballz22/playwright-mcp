@@ -1,0 +1,64 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { parseJobArguments } from './jobs-cli.mjs';
+const id = '65d8d69e-7881-443c-9cf6-c7cddf57cb49';
+test('jobs CLI validates bounded commands without accepting operator policy overrides', () => {
+  assert.deepEqual(parseJobArguments(['start', '--workflow', 'flow.json', '--request-key', 'key']), { command: 'start', workflow: 'flow.json', requestKey: 'key' });
+  assert.equal(parseJobArguments(['result', '--job-id', id, '--wait-ms', '10000']).waitMs, 10000);
+  assert.deepEqual(parseJobArguments(['cleanup', '--job-id', id]), { command: 'cleanup', jobIds: [id], dryRun: true });
+  assert.equal(parseJobArguments(['cleanup', '--job-id', id, '--delete']).dryRun, false);
+  for (const args of [[], ['start'], ['start', '--workflow', 'f', '--request-key', ''], ['status', '--job-id', '../bad'], ['result', '--job-id', id, '--wait-ms', '10001'], ['list', '--limit', '21'], ['list', '--owner', 'x'], ['start', '--workflow', 'f', '--request-key', 'k', '--allow-origin', 'https://x'], ['cleanup', '--job-id', id, '--job-id', id], ['status', '--job-id', id, '--delete']]) assert.throws(() => parseJobArguments(args), TypeError);
+});
+
+test('retention CLI previews bounded age pages and requires explicit deletion', () => {
+  assert.deepEqual(parseJobArguments(['prune-artifacts', '--older-than-days', '7']),
+    { command: 'prune-artifacts', dryRun: true, olderThanDays: 7 });
+  assert.deepEqual(parseJobArguments(['prune-artifacts', '--older-than-days', '30', '--limit', '4', '--after-job-id', id, '--delete']),
+    { command: 'prune-artifacts', dryRun: false, olderThanDays: 30, limit: 4, afterJobId: id });
+  for (const args of [[], ['--older-than-days', '0'], ['--older-than-days', '3651'], ['--older-than-days', '01'],
+    ['--older-than-days', '1', '--limit', '11'], ['--older-than-days', '1', '--after-job-id', '../fake-private-canary'],
+    ['--older-than-days', '1', '--owner', 'other'], ['--older-than-days', '1', '--delete', '--delete']])
+    assert.throws(() => parseJobArguments(['prune-artifacts', ...args]), TypeError);
+});
+
+const { supportsJournal } = await import('./jobs/journal.mjs');
+if (!supportsJournal) test('jobs CLI rejects unsupported execution before opening workflow or creating state', async () => {
+  const { execFile } = await import('node:child_process');
+  const { promisify } = await import('node:util');
+  const { mkdtemp, readdir, rm } = await import('node:fs/promises');
+  const { fileURLToPath } = await import('node:url');
+  const { randomUUID } = await import('node:crypto');
+  const os = await import('node:os'); const path = await import('node:path');
+  const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-cli-unsupported-'));
+  try {
+    for (const args of [['start', '--workflow', 'fake-path-canary', '--request-key', 'fake-key-canary'], ['prune-artifacts', '--older-than-days', '7']])
+    await assert.rejects(promisify(execFile)(process.execPath, [fileURLToPath(new URL('./jobs-cli.mjs', import.meta.url)), ...args], {
+      timeout: 5000, env: { ...process.env, PLAYWRIGHT_JOBS_OWNER_ID: randomUUID(), PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data') },
+    }), error => {
+      assert.equal(error.code, 1); assert.equal(error.stdout, '');
+      assert.ok(error.stderr.includes('unsupported_runtime'));
+      assert.equal(error.stderr.includes('fake-path-canary'), false); return true;
+    });
+    assert.deepEqual(await readdir(root), []);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test('jobs CLI executes through a symlinked installation path instead of silently exiting zero', async () => {
+  const { execFile } = await import('node:child_process'); const { promisify } = await import('node:util');
+  const { mkdtemp, symlink, readdir, rm } = await import('node:fs/promises');
+  const { fileURLToPath } = await import('node:url');
+  const os = await import('node:os'); const path = await import('node:path');
+  const root = await mkdtemp(path.join(os.tmpdir(), 'jobs-cli-alias-'));
+  try {
+    const alias = path.join(root, 'install-alias');
+    await symlink(fileURLToPath(new URL('../', import.meta.url)), alias, process.platform === 'win32' ? 'junction' : 'dir');
+    const env = { ...process.env, PLAYWRIGHT_JOBS_DATA_DIR: path.join(root, 'data'), PLAYWRIGHT_JOBS_PROJECT_DIR: root };
+    delete env.PLAYWRIGHT_JOBS_OWNER_ID;
+    await assert.rejects(promisify(execFile)(process.execPath, [path.join(alias, 'local-batch/jobs-cli.mjs'), 'list'], { env, timeout: 5000 }), error => {
+      assert.equal(error.code, 1); assert.equal(error.stdout, '');
+      assert.match(error.stderr, /Local jobs CLI failed \((invalid_owner|unsupported_runtime|unsupported_private_storage)\)/);
+      return true;
+    });
+    assert.deepEqual(await readdir(root), ['install-alias']);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});

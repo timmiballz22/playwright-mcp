@@ -1,0 +1,960 @@
+journal (ubuntu-latest, 22)	Set up job	﻿2026-10-22T11:12:55.8357568Z Current runner version: '2.338.0'
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8377937Z ##[group]Runner Image Provisioner
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8378734Z Hosted Compute Agent
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8379244Z Version: 20261012.601
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8379741Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8380378Z Build Date: 2026-10-12T17:48:21Z
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8380923Z Worker ID: {c3090401-3a96-4ac1-9f1b-b600b6e97b25}
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8381518Z Region: westus2
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8382289Z Cloud: Azure
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8382742Z ##[endgroup]
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8384119Z ##[group]Operating System
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8384651Z Ubuntu
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8385170Z 24.04.5
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8385633Z LTS
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8386058Z ##[endgroup]
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8386544Z ##[group]Runner Image
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8387031Z Image: ubuntu-24.04
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8387476Z Version: 20261012.334.1
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8388400Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8389827Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8390602Z ##[endgroup]
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8391565Z ##[group]GITHUB_TOKEN Permissions
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8393233Z Contents: read
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8393716Z Metadata: read
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8394267Z ##[endgroup]
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8395901Z Secret source: Actions
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8396875Z Cache mode: write
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8397433Z Prepare workflow directory
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8651188Z Prepare all required actions
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:55.8693845Z Getting action download info
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:56.1920984Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:56.3170049Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:56.6121180Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+journal (ubuntu-latest, 22)	Set up job	2026-10-22T11:12:57.0138847Z Complete job name: journal (ubuntu-latest, 22)
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T11:12:57.0762638Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0763558Z with:
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0763959Z   repository: timmiballz22/playwright-mcp
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0767113Z   token: ***
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0767508Z   ssh-strict: true
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0767889Z   ssh-user: git
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0768274Z   persist-credentials: true
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0768698Z   clean: true
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0769081Z   sparse-checkout-cone-mode: true
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0769527Z   fetch-depth: 1
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0769894Z   fetch-tags: false
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0770270Z   show-progress: true
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0770659Z   lfs: false
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0771020Z   submodules: false
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0771425Z   set-safe-directory: true
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0772009Z   allow-unsafe-pr-checkout: false
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.0772668Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.1608578Z Syncing repository: timmiballz22/playwright-mcp
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.1611209Z ##[group]Getting Git version info
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.1612968Z Working directory is '/home/runner/work/playwright-mcp/playwright-mcp'
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.1614738Z [command]/usr/bin/git version
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2480279Z git version 2.55.0
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2496869Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2505811Z Temporarily overriding HOME='/home/runner/work/_temp/4297f8b2-f396-471b-848b-db3428745a12' before making global git config changes
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2507108Z Adding repository directory to the temporary git global config as a safe directory
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2510737Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/playwright-mcp/playwright-mcp
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2552120Z Deleting the contents of '/home/runner/work/playwright-mcp/playwright-mcp'
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2555017Z ##[group]Determining repository object format
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2556604Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2557504Z ##[group]Initializing the repository
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2559141Z [command]/usr/bin/git init /home/runner/work/playwright-mcp/playwright-mcp
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2630771Z hint: Using 'master' as the name for the initial branch. This default branch name
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2632076Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2633683Z hint: to use in all of your new repositories, which will suppress this warning,
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2635089Z hint: call:
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2635893Z hint:
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2636824Z hint: 	git config --global init.defaultBranch <name>
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2637895Z hint:
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2638959Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2640410Z hint: 'development'. The just-created branch can be renamed via this command:
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2641685Z hint:
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2642773Z hint: 	git branch -m <name>
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2643628Z hint:
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2644836Z hint: Disable this message with "git config set advice.defaultBranchName false"
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2646553Z Initialized empty Git repository in /home/runner/work/playwright-mcp/playwright-mcp/.git/
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2649330Z [command]/usr/bin/git remote add origin https://github.com/timmiballz22/playwright-mcp
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2684848Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2686195Z ##[group]Disabling automatic garbage collection
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2687521Z [command]/usr/bin/git config --local gc.auto 0
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2717695Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2719311Z ##[group]Setting up auth
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2720286Z Removing SSH command configuration
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2722344Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.2752214Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3016128Z Removing HTTP extra header
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3020663Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3050997Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3241137Z Removing includeIf entries pointing to credentials config files
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3245742Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3276306Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3463957Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-e61af4d1-c1b6-4f1f-a1ce-1f5ae0bbbf09.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3496200Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path /home/runner/work/_temp/git-credentials-e61af4d1-c1b6-4f1f-a1ce-1f5ae0bbbf09.config
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3524990Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-e61af4d1-c1b6-4f1f-a1ce-1f5ae0bbbf09.config
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3554820Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-e61af4d1-c1b6-4f1f-a1ce-1f5ae0bbbf09.config
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3583466Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-e61af4d1-c1b6-4f1f-a1ce-1f5ae0bbbf09.config
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3612391Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3613791Z ##[group]Fetching the repository
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:12:57.3618177Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +13bedb8f462337cee5e4c414f5f4fb3bbd74e925:refs/remotes/pull/2/merge
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.0226231Z From https://github.com/timmiballz22/playwright-mcp
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.0227927Z  * [new ref]         13bedb8f462337cee5e4c414f5f4fb3bbd74e925 -> pull/2/merge
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.0230089Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.0230836Z ##[group]Determining the checkout info
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.0231575Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.0235148Z [command]/usr/bin/git sparse-checkout disable
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.0280262Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.0309117Z ##[group]Checking out the ref
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.0312222Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/2/merge
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2415278Z Note: switching to 'refs/remotes/pull/2/merge'.
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2415855Z 
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2416228Z You are in 'detached HEAD' state. You can look around, make experimental
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2417105Z changes and commit them, and you can discard any commits you make in this
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2417959Z state without impacting any branches by switching back to a branch.
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2418385Z 
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2418741Z If you want to create a new branch to retain commits you create, you may
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2419593Z do so (now or later) by using -c with the switch command. Example:
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2420034Z 
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2420465Z   git switch -c <new-branch-name>
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2420801Z 
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2421048Z Or undo this operation with:
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2421378Z 
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2421545Z   git switch -
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2422076Z 
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2422631Z Turn off this advice by setting config variable advice.detachedHead to false
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2423236Z 
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2440808Z HEAD is now at 13bedb8 Merge 23b07fdd2431023f620b60806548a7b4f2fc7039 into 804bc7ef7a07248a150c98fb5bf417e925ba8033
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2443106Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2489097Z [command]/usr/bin/git log -1 --format=%H
+journal (ubuntu-latest, 22)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:02.2516900Z 13bedb8f462337cee5e4c414f5f4fb3bbd74e925
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-22T11:13:02.2816612Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:02.2817100Z with:
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:02.2817315Z   node-version: 22
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:02.2817491Z   check-latest: false
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:02.2819302Z   token: ***
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:02.2819486Z   package-manager-cache: true
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:02.2819691Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:02.3838031Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:02.6260350Z ##[group]Environment details
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:03.2892401Z node: v22.23.3
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:03.2892766Z npm: 10.9.9
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:03.2893006Z yarn: 1.22.22
+journal (ubuntu-latest, 22)	Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	2026-10-22T11:13:03.2894066Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run durable component tests	﻿2026-10-22T11:13:03.3010815Z ##[group]Run node --test --test-concurrency=1 --test-reporter=tap --test-reporter-destination=stdout --test-reporter=./scripts/component-ci-reporter.mjs --test-reporter-destination=stderr local-batch/jobs/journal.test.mjs local-batch/jobs/journal-stop.test.mjs local-batch/jobs/temporary-cleanup-stop.test.mjs local-batch/jobs/launch-ownership.test.mjs local-batch/jobs/lifetime-observer.test.mjs local-batch/jobs/http-early-metadata.test.mjs local-batch/cleanup.test.mjs local-batch/jobs/guardian.test.mjs local-batch/jobs/guardian-stop.test.mjs local-batch/jobs/guardian-diagnostic.test.mjs local-batch/jobs/guardian-readiness-diagnostic.test.mjs local-batch/jobs/workflow-snapshot.test.mjs local-batch/jobs/controller.test.mjs local-batch/jobs/controller-open.test.mjs local-batch/jobs/component-ci-reporter.test.mjs local-batch/jobs/contention.test.mjs local-batch/jobs/config.test.mjs local-batch/jobs/private-windows.test.mjs local-batch/jobs/artifact-cleanup.test.mjs local-batch/jobs/artifact-cleanup-supervisor.test.mjs local-batch/jobs/artifact-cleanup-receipt.test.mjs local-batch/jobs/retention.test.mjs local-batch/jobs/retained-artifact-budget.test.mjs local-batch/jobs/maintenance.test.mjs local-batch/jobs/queue-clock.test.mjs scripts/ci-test-counts.test.mjs qa/bounded-stderr.test.mjs qa/prepare-vp9-metadata.test.mjs 2>&1 | tee component-tests.log
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.3018760Z [36;1mnode --test --test-concurrency=1 --test-reporter=tap --test-reporter-destination=stdout --test-reporter=./scripts/component-ci-reporter.mjs --test-reporter-destination=stderr local-batch/jobs/journal.test.mjs local-batch/jobs/journal-stop.test.mjs local-batch/jobs/temporary-cleanup-stop.test.mjs local-batch/jobs/launch-ownership.test.mjs local-batch/jobs/lifetime-observer.test.mjs local-batch/jobs/http-early-metadata.test.mjs local-batch/cleanup.test.mjs local-batch/jobs/guardian.test.mjs local-batch/jobs/guardian-stop.test.mjs local-batch/jobs/guardian-diagnostic.test.mjs local-batch/jobs/guardian-readiness-diagnostic.test.mjs local-batch/jobs/workflow-snapshot.test.mjs local-batch/jobs/controller.test.mjs local-batch/jobs/controller-open.test.mjs local-batch/jobs/component-ci-reporter.test.mjs local-batch/jobs/contention.test.mjs local-batch/jobs/config.test.mjs local-batch/jobs/private-windows.test.mjs local-batch/jobs/artifact-cleanup.test.mjs local-batch/jobs/artifact-cleanup-supervisor.test.mjs local-batch/jobs/artifact-cleanup-receipt.test.mjs local-batch/jobs/retention.test.mjs local-batch/jobs/retained-artifact-budget.test.mjs local-batch/jobs/maintenance.test.mjs local-batch/jobs/queue-clock.test.mjs scripts/ci-test-counts.test.mjs qa/bounded-stderr.test.mjs qa/prepare-vp9-metadata.test.mjs 2>&1 | tee component-tests.log[0m
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.3277191Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.3277491Z ##[endgroup]
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.3806083Z TAP version 13
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.4546375Z # Subtest: temporary cleanup completes in a separate process and reports a startup deadline
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.4549903Z ok 1 - temporary cleanup completes in a separate process and reports a startup deadline
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.4554327Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.4554593Z   duration_ms: 46.233372
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.4554803Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.4554991Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5312248Z # Subtest: actual temporary cleanup worker exits on parent death while filesystem awaits
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5313441Z ok 2 - actual temporary cleanup worker exits on parent death while filesystem awaits
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5314164Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5314459Z   duration_ms: 76.931056
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5314866Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5315247Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5818287Z # Subtest: artifact cleanup drain: drained deadline and repeated-error controls
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5819310Z ok 3 - artifact cleanup drain: drained deadline and repeated-error controls
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5819985Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5820295Z   duration_ms: 13.412569
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5820697Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5821365Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5828112Z # Subtest: artifact cleanup late: drained deadline and repeated-error controls
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5829600Z ok 4 - artifact cleanup late: drained deadline and repeated-error controls
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5829969Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5830158Z   duration_ms: 0.873212
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5830371Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5830542Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5839265Z # Subtest: artifact cleanup error: drained deadline and repeated-error controls
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5840525Z ok 5 - artifact cleanup error: drained deadline and repeated-error controls
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5841081Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5841274Z   duration_ms: 2.282643
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5841602Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.5842078Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.7927465Z # Subtest: bounded artifact worker previews, removes and preserves fixed safe errors
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.7928607Z ok 6 - bounded artifact worker previews, removes and preserves fixed safe errors
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.7929223Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.7929491Z   duration_ms: 163.715648
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.7930101Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:03.7930395Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:04.5498700Z # Subtest: artifact worker before-result: independent deadline and natural-exit confirmation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:04.5503079Z ok 7 - artifact worker before-result: independent deadline and natural-exit confirmation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:04.5503624Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:04.5503935Z   duration_ms: 757.217179
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:04.5504321Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:04.5504677Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3076012Z # Subtest: artifact worker after-result: independent deadline and natural-exit confirmation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3077453Z ok 8 - artifact worker after-result: independent deadline and natural-exit confirmation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3077953Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3078196Z   duration_ms: 757.712565
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3078496Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3078723Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3431004Z # Subtest: artifact worker invalid-result: independent deadline and natural-exit confirmation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3434060Z ok 9 - artifact worker invalid-result: independent deadline and natural-exit confirmation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3434755Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3435247Z   duration_ms: 35.461032
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3435578Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3435836Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3808779Z # Subtest: artifact worker failed-result: independent deadline and natural-exit confirmation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3810074Z ok 10 - artifact worker failed-result: independent deadline and natural-exit confirmation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3810870Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3811300Z   duration_ms: 37.560689
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3811749Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.3812259Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4175417Z # Subtest: artifact worker signal-exit: independent deadline and natural-exit confirmation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4176628Z ok 11 - artifact worker signal-exit: independent deadline and natural-exit confirmation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4177384Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4177853Z   duration_ms: 35.760058
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4178409Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4178707Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4185555Z # Subtest: an unconfirmed cleanup blocks further scopes in the same controller
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4186344Z ok 12 - an unconfirmed cleanup blocks further scopes in the same controller
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4186815Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4187069Z   duration_ms: 0.748605
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4187344Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4187577Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4930028Z # Subtest: actual artifact worker exits after controller death while filesystem awaits
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4931112Z ok 13 - actual artifact worker exits after controller death while filesystem awaits
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4931910Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4932276Z   duration_ms: 74.59328
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4932557Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.4932804Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5398701Z # Subtest: bounded artifact cleanup previews, removes only one scope and is idempotent
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5399874Z ok 14 - bounded artifact cleanup previews, removes only one scope and is idempotent
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5400423Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5400709Z   duration_ms: 9.592052
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5401045Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5401348Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5511745Z # Subtest: linked entries and oversized trees reject before deleting any artifact
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5512833Z ok 15 - linked entries and oversized trees reject before deleting any artifact
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5513450Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5522579Z   duration_ms: 4.772476
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5532902Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5533355Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5534087Z # Subtest: controller rejects active, uncertain and expired-result cleanup before filesystem access
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5535212Z ok 16 - controller rejects active, uncertain and expired-result cleanup before filesystem access
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5535839Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5536070Z   duration_ms: 6.683141
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5536425Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5536685Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5926533Z # Subtest: component CI annotations retain only known source location and numeric test index
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5927678Z ok 17 - component CI annotations retain only known source location and numeric test index
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5962523Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5987320Z   duration_ms: 0.823126
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5987881Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5988178Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5988781Z # Subtest: unknown CI paths, malformed fields and error text cannot enter annotations
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5989642Z ok 18 - unknown CI paths, malformed fields and error text cannot enter annotations
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5990156Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5990413Z   duration_ms: 0.253096
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5990712Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5990962Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5991626Z # Subtest: component annotation reporter stays silent outside explicit GitHub Actions mode
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5992847Z ok 19 - component annotation reporter stays silent outside explicit GitHub Actions mode
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5993399Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5993647Z   duration_ms: 0.637469
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5993942Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5994184Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5994852Z # Subtest: component annotations classify bounded Node failure metadata without error payloads
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5995793Z ok 20 - component annotations classify bounded Node failure metadata without error payloads
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5996338Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5996579Z   duration_ms: 0.300878
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5996864Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5997147Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5997943Z # Subtest: component failure metadata ignores unknown codes and invalid durations with bounded traversal
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5998992Z ok 21 - component failure metadata ignores unknown codes and invalid durations with bounded traversal
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5999611Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.5999853Z   duration_ms: 0.15428
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6000143Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6000390Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6001023Z # Subtest: component classification never invokes error getters and stops before deep causes
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6002144Z ok 22 - component classification never invokes error getters and stops before deep causes
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6002730Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6002977Z   duration_ms: 0.200849
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6003259Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6003504Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6493068Z # Subtest: operator owner/project namespaces are stable, private and independent of tool data
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6502764Z ok 23 - operator owner/project namespaces are stable, private and independent of tool data
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6503453Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6503924Z   duration_ms: 13.813859
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6504166Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6504338Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6535801Z # Subtest: untrusted symlinks and writable ancestors cannot redirect job storage writes
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6537627Z ok 24 - untrusted symlinks and writable ancestors cannot redirect job storage writes
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6538251Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6538499Z   duration_ms: 4.268025
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6538884Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6539183Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6555681Z # Subtest: invalid owner/policy config is rejected before any storage creation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6557152Z ok 25 - invalid owner/policy config is rejected before any storage creation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6557682Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6557860Z   duration_ms: 2.076672
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:05.6558055Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.3430363Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.3431044Z # Subtest: bounded writer contention waits before one mutation without replay
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.3432162Z ok 26 - bounded writer contention waits before one mutation without replay
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.3432828Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.3433172Z   duration_ms: 646.390718
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.3433527Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.3433859Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4226352Z # Subtest: recovery with live unexpired records is read-only while another writer owns the lock
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4227551Z ok 27 - recovery with live unexpired records is read-only while another writer owns the lock
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4228503Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4228682Z   duration_ms: 79.708187
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4228969Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4229207Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4726535Z # Subtest: controller recovery failure remains primary if journal shutdown also fails
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4727621Z ok 28 - controller recovery failure remains primary if journal shutdown also fails
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4728376Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4728667Z   duration_ms: 1.540514
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4731335Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4731569Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4732304Z # Subtest: controller recovery failure identity is unchanged after confirmed journal shutdown
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4732931Z ok 29 - controller recovery failure identity is unchanged after confirmed journal shutdown
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4733345Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4733539Z   duration_ms: 0.285685
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4733736Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:06.4733907Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.0692564Z # Subtest: internal job controller queue-success
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.0693356Z ok 30 - internal job controller queue-success
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.0693795Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.0694200Z   duration_ms: 552.092606
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.0694563Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.0694815Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.4261405Z # Subtest: internal job controller cancel-and-reconnect
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.4262393Z ok 31 - internal job controller cancel-and-reconnect
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.4262901Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.4263220Z   duration_ms: 356.844748
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.4263823Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:07.4264166Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.0077177Z # Subtest: internal job controller queue-pressure
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.0078180Z ok 32 - internal job controller queue-pressure
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.0078878Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.0079055Z   duration_ms: 581.479104
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.0079264Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.0079432Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.6846172Z # Subtest: internal job controller queue-expiry
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.6847318Z ok 33 - internal job controller queue-expiry
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.6847728Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.6847982Z   duration_ms: 676.79489
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.6848340Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:08.6848702Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.2039134Z # Subtest: internal job controller guardian-crash
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.2039966Z ok 34 - internal job controller guardian-crash
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.2040355Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.2040615Z   duration_ms: 519.216694
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.2040993Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.2041325Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.3266806Z # Subtest: internal job controller close-before-dequeue
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.3267544Z ok 35 - internal job controller close-before-dequeue
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.3267853Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.3268254Z   duration_ms: 122.695646
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.3268493Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.3268711Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6416990Z # Subtest: internal job controller cancel-during-guardian-start
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6417716Z ok 36 - internal job controller cancel-during-guardian-start
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6418153Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6418421Z   duration_ms: 315.070446
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6418720Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6418981Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6834557Z # Subtest: guardian diagnostics retain fixed journal metadata and discard private values
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6843929Z ok 37 - guardian diagnostics retain fixed journal metadata and discard private values
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6850427Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6850719Z   duration_ms: 1.112326
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6851026Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6851236Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6851603Z # Subtest: journal transport diagnostics retain only fixed causes and originating verbs
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6852572Z ok 38 - journal transport diagnostics retain only fixed causes and originating verbs
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6853430Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6853681Z   duration_ms: 0.173328
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6853973Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6854218Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6854782Z # Subtest: unconfirmed journal exit is a fixed boolean diagnostic without raw values
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6855636Z ok 39 - unconfirmed journal exit is a fixed boolean diagnostic without raw values
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6856123Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6856425Z   duration_ms: 0.771138
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6856713Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6856954Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6857533Z # Subtest: stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6858415Z ok 40 - stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6858946Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6859195Z   duration_ms: 0.646943
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6859487Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6859745Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6860248Z # Subtest: stderr facts cap distinct metadata and process only a bounded tail
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6861022Z ok 41 - stderr facts cap distinct metadata and process only a bounded tail
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6861498Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6861749Z   duration_ms: 1.041501
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6862200Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6862443Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6863041Z # Subtest: initialization phase diagnostics retain only fixed stages and remain bounded
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6863924Z ok 42 - initialization phase diagnostics retain only fixed stages and remain bounded
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6864446Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6864689Z   duration_ms: 0.379415
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6864974Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.6865213Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.8410481Z # Subtest: controller fixture failure before readiness preserves fixed cause without private stderr
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.8412174Z ok 43 - controller fixture failure before readiness preserves fixed cause without private stderr
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.8413254Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.8413810Z   duration_ms: 116.459251
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.8414358Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.8414654Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.9915192Z # Subtest: unconfirmed guardian journal exit stops the next queued job even after terminal metadata
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.9916060Z ok 44 - unconfirmed guardian journal exit stops the next queued job even after terminal metadata
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.9916489Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.9916672Z   duration_ms: 100.839682
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.9916892Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:09.9917077Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:10.5208782Z # Subtest: durable guardian success: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:10.5209973Z ok 45 - durable guardian success: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:10.5210839Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:10.5211423Z   duration_ms: 485.931362
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:10.5212199Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:10.5212581Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.0458790Z # Subtest: durable guardian cancel: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.0460098Z ok 46 - durable guardian cancel: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.0460806Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.0461196Z   duration_ms: 524.951956
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.0461496Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.0461731Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.5646719Z # Subtest: durable guardian disconnect: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.5647630Z ok 47 - durable guardian disconnect: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.5648042Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.5648342Z   duration_ms: 518.752406
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.5648688Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:11.5648974Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.0499968Z # Subtest: durable guardian crash: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.0501538Z ok 48 - durable guardian crash: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.0502206Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.0502470Z   duration_ms: 485.241034
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.0502780Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.0503039Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.2658005Z # Subtest: durable guardian mismatch: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.2663018Z ok 49 - durable guardian mismatch: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.2667223Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.2667628Z   duration_ms: 213.688338
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.2667931Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.2668176Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.5225849Z # Subtest: durable guardian admissionFailure: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.5227524Z ok 50 - durable guardian admissionFailure: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.5228164Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.5228536Z   duration_ms: 258.538804
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.5228922Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:12.5229268Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.7528331Z # Subtest: durable guardian admissionTimeout: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.7529686Z ok 51 - durable guardian admissionTimeout: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.7530237Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.7530506Z   duration_ms: 2230.41366
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.7530784Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.7531019Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.9079868Z # Subtest: durable guardian preDisconnected: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.9081011Z ok 52 - durable guardian preDisconnected: cleanup and canonical journal outcome
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.9081675Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.9082194Z   duration_ms: 155.036513
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.9082577Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:14.9082844Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:17.5822800Z # Subtest: early HTTP known projection preserves timeout and fixed validated facts
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:17.5823889Z ok 53 - early HTTP known projection preserves timeout and fixed validated facts
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:17.5845127Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:17.5845415Z   duration_ms: 2627.233609
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:17.5845735Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:17.5845973Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:20.2079592Z # Subtest: early HTTP bad_status projection preserves timeout and fixed validated facts
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:20.2080777Z ok 54 - early HTTP bad_status projection preserves timeout and fixed validated facts
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:20.2081343Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:20.2081598Z   duration_ms: 2625.619891
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:20.2082095Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:20.2082345Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8324622Z # Subtest: early HTTP bad_retry projection preserves timeout and fixed validated facts
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8325555Z ok 55 - early HTTP bad_retry projection preserves timeout and fixed validated facts
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8326058Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8326326Z   duration_ms: 2625.79366
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8326632Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8326885Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8773299Z # Subtest: journal init timeout reports unconfirmed exit without waiting forever or losing first cause
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8774434Z ok 56 - journal init timeout reports unconfirmed exit without waiting forever or losing first cause
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8775339Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8775586Z   duration_ms: 4.463219
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8775889Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8776140Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8790706Z # Subtest: journal closed receipt alone cannot confirm worker shutdown
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8791550Z ok 57 - journal closed receipt alone cannot confirm worker shutdown
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8792780Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8793127Z   duration_ms: 2.725484
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8793456Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8793708Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8811158Z # Subtest: busy initialization is not retried while its prior worker exit is unconfirmed
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8812147Z ok 58 - busy initialization is not retried while its prior worker exit is unconfirmed
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8812659Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8812902Z   duration_ms: 2.061706
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8813174Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8813404Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8828654Z # Subtest: malformed journal IPC fails pending init safely instead of throwing outside its promise
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8829367Z ok 59 - malformed journal IPC fails pending init safely instead of throwing outside its promise
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8829982Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8830164Z   duration_ms: 2.048176
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8830383Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:22.8830555Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:25.3203388Z # Subtest: real init timeout retains the last received phase and confirmed worker exit
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:25.3204322Z ok 60 - real init timeout retains the last received phase and confirmed worker exit
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:25.3204820Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:25.3205076Z   duration_ms: 2396.058995
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:25.3205367Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:25.3205608Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.3907202Z # Subtest: malformed phase packets cannot leak values or become a journal acknowledgment
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.3908261Z ok 61 - malformed phase packets cannot leak values or become a journal acknowledgment
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.3908808Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.3909003Z   duration_ms: 2072.234014
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.3926913Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.3927193Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.4950884Z # Subtest: unexpected journal worker exit remains distinct from an RPC timeout
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.4951718Z ok 62 - unexpected journal worker exit remains distinct from an RPC timeout
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.4952248Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.4952426Z   duration_ms: 103.219423
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.4952618Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.4952807Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.5259975Z # Subtest: malformed actual worker IPC is rejected and owned shutdown is confirmed
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.5260872Z ok 63 - malformed actual worker IPC is rejected and owned shutdown is confirmed
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.5261372Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.5261627Z   duration_ms: 31.93084
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.5262071Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.5262304Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.6714199Z # Subtest: termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.6715457Z ok 64 - termination failure diagnostics persist without losing uncertain cleanup or releasing the lease
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.6716232Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.6716543Z   duration_ms: 145.287061
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.6716912Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:27.6717300Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0141591Z # Subtest: managed directory links and database hardlinks cannot modify another file
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0142636Z ok 65 - managed directory links and database hardlinks cannot modify another file
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0143144Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0143420Z   duration_ms: 342.713606
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0143677Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0143847Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0591600Z # Subtest: POSIX journal directory must exclude group and other access
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0592397Z ok 66 - POSIX journal directory must exclude group and other access
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0592734Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0592935Z   duration_ms: 45.000288
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0593180Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.0593607Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.1676440Z # Subtest: a simulated reused PID cannot resume old work or clear uncertain active resources
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.1677452Z ok 67 - a simulated reused PID cannot resume old work or clear uncertain active resources
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.1677923Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.1678100Z   duration_ms: 108.169817
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.1678291Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.1678466Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.2580023Z # Subtest: cancelled reservations never start and uncertain active cancellation keeps the project blocked
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.2580832Z ok 68 - cancelled reservations never start and uncertain active cancellation keeps the project blocked
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.2581205Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.2581390Z   duration_ms: 90.303616
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.2581583Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.2581744Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3154549Z # Subtest: a success mutation after the persisted deadline cannot commit or release the lease
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3155807Z ok 69 - a success mutation after the persisted deadline cannot commit or release the lease
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3158382Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3158613Z   duration_ms: 57.085769
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3158892Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3159134Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3846028Z # Subtest: competing writers initialize consistently and cannot overfill the project queue
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3846801Z ok 70 - competing writers initialize consistently and cannot overfill the project queue
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3847157Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3847334Z   duration_ms: 69.430994
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3847523Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.3847694Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.6686522Z # Subtest: killed transaction rolls back without a partial job or duplicate request
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.6687532Z ok 71 - killed transaction rolls back without a partial job or duplicate request
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.6688103Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.6688447Z   duration_ms: 284.098178
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.6688730Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.6689006Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.8381031Z # Subtest: reconnect marks a dead controller queued job crashed and never requeues its request
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.8382198Z ok 72 - reconnect marks a dead controller queued job crashed and never requeues its request
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.8382731Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.8382979Z   duration_ms: 169.461593
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.8383260Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.8383493Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.9494912Z # Subtest: corrupt journal is rejected without silently erasing the file
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.9496173Z ok 73 - corrupt journal is rejected without silently erasing the file
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.9496910Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.9497361Z   duration_ms: 111.164317
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.9497706Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.9497956Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.9526644Z # (node:3667) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:28.9527661Z # (Use `node --trace-warnings ...` to show where the warning was created)
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.0029749Z # Subtest: an unrelated SQLite file is rejected without changing its bytes
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.0030591Z ok 74 - an unrelated SQLite file is rejected without changing its bytes
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.0030949Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.0031138Z   duration_ms: 53.493171
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.0031360Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.0031538Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.2241534Z # Subtest: journal preserves idempotency, owner isolation and a single project execution lease
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.2242893Z ok 75 - journal preserves idempotency, owner isolation and a single project execution lease
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.2243310Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.2243491Z   duration_ms: 221.098571
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.2243685Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.2243853Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.4283518Z # Subtest: monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.4285116Z ok 76 - monotonic queue expiry cannot release another execution lease or cross creator/owner boundaries
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.4286478Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.4286943Z   duration_ms: 203.202074
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.4287423Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.4287861Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.6969458Z # Subtest: unexpected exit cannot certify an unreported live browser model as cleaned
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.6970484Z ok 77 - unexpected exit cannot certify an unreported live browser model as cleaned
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.6970839Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.6971113Z   duration_ms: 217.074895
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.6971410Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:29.6971581Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.1362392Z # Subtest: unexpected exit unreported browser uncertainty retains durable admission fence after child self-exit
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.1363381Z ok 78 - unexpected exit unreported browser uncertainty retains durable admission fence after child self-exit
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.1363843Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.1364037Z   duration_ms: 439.403039
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.1364242Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.1364491Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.3508044Z # Subtest: reported failure cannot certify an unreported live browser model as cleaned
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.3509690Z ok 79 - reported failure cannot certify an unreported live browser model as cleaned
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.3510206Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.3510462Z   duration_ms: 214.458095
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.3510713Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.3510882Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.9630572Z # Subtest: reported failure unreported browser uncertainty retains durable admission fence after child self-exit
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.9631953Z ok 80 - reported failure unreported browser uncertainty retains durable admission fence after child self-exit
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.9632587Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.9632836Z   duration_ms: 612.31705
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.9633131Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:30.9633366Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.1033485Z # {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":3,"rememberedRootBirths":null}
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.1702519Z # {"fixture":"factory_lifetime_orphan","detected":true,"cleanup":"failed"}
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.2059018Z # {"fixture":"factory_lifetime_audit","phase":"self_exit","lifetimes":1,"observed":0}
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.2135701Z # {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.2166203Z # Subtest: live factory facts retain an owned orphan after its worker exits
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.2167271Z ok 81 - live factory facts retain an owned orphan after its worker exits
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.2168185Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.2168451Z   duration_ms: 209.216101
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.2168738Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.2168970Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.3092621Z # {"fixture":"factory_lifetime_capture","executions":1,"factoryRoots":3,"observedBeforeRelease":3,"rememberedRootBirths":null}
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.3938327Z # {"fixture":"factory_lifetime_audit","phase":"teardown","lifetimes":1,"observed":0}
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.4017506Z # {"fixture":"factory_lifetime_audit","phase":"collision_teardown","lifetimes":1,"observed":0}
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.4032202Z # Subtest: capture publication failure still releases its assigned factory gate and preserves the collision
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.4033712Z ok 82 - capture publication failure still releases its assigned factory gate and preserves the collision
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.4034187Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.4034372Z   duration_ms: 186.782946
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.4034634Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.4034800Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.7269336Z # Subtest: terminal cleanup reservation fences new admissions and other actors without changing history
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.7273246Z ok 83 - terminal cleanup reservation fences new admissions and other actors without changing history
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.7273630Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.7273810Z   duration_ms: 277.400317
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.7274003Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:31.7274162Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.1161096Z # Subtest: unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.1162512Z ok 84 - unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.1163081Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.1163333Z   duration_ms: 388.966551
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.1163590Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.1163776Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.6374282Z # Subtest: unconfirmed artifact worker is fenced durably from another controller
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.6375224Z ok 85 - unconfirmed artifact worker is fenced durably from another controller
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.6376030Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.6376493Z   duration_ms: 521.413404
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.6376815Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.6376994Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.9916734Z # Subtest: unconfirmed artifact worker is fenced durably from another controller after lost finalization
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.9917904Z ok 86 - unconfirmed artifact worker is fenced durably from another controller after lost finalization
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.9918532Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.9918779Z   duration_ms: 354.154432
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.9919371Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:32.9919587Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.3928422Z # Subtest: dead maintenance holder becomes uncertain without releasing its reservation or execution history
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.3929505Z ok 87 - dead maintenance holder becomes uncertain without releasing its reservation or execution history
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.3930257Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.3930559Z   duration_ms: 401.283985
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.3930879Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.3931230Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4375392Z # Subtest: Windows ACL helper rejects a non-Windows host without creating storage
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4376454Z ok 88 - Windows ACL helper rejects a non-Windows host without creating storage
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4377001Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4377189Z   duration_ms: 1.100142
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4377394Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4377727Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4378859Z # Subtest: Windows helper failure diagnostics contain only fixed process categories
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4380980Z ok 89 - Windows helper failure diagnostics contain only fixed process categories
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4381311Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4381483Z   duration_ms: 0.22244
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4381665Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.4382009Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6333262Z # Subtest: controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6334146Z ok 90 - controller expires its queued input by monotonic elapsed time when wall deadline remains in the future
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6334608Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6334796Z   duration_ms: 152.694299
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6335021Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6335204Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6843506Z # Subtest: retained admission accepts the exact reserved boundary and preserves prior bytes when full
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6844805Z ok 91 - retained admission accepts the exact reserved boundary and preserves prior bytes when full
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6845555Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6845890Z   duration_ms: 6.992379
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6846270Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6846560Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6867717Z # Subtest: retained admission rejects symbolic entries without mutation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6868942Z ok 92 - retained admission rejects symbolic entries without mutation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6869404Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6869669Z   duration_ms: 2.537883
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6869959Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6870206Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6885020Z # Subtest: retained admission rejects hard entries without mutation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6886056Z ok 93 - retained admission rejects hard entries without mutation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6886498Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6886754Z   duration_ms: 1.694232
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6887047Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6887290Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6938353Z # Subtest: retained admission rejects depth entries without mutation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6943181Z ok 94 - retained admission rejects depth entries without mutation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6943676Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6943881Z   duration_ms: 4.880637
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6944071Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6944231Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6944517Z # Subtest: retained limit rejects malformed trusted configuration
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6944915Z ok 95 - retained limit rejects malformed trusted configuration
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6945177Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6945336Z   duration_ms: 0.28972
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6945511Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.6945676Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.7768776Z # Subtest: real supervised admission denies before browser launch and preserves prior artifacts
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.7769798Z ok 96 - real supervised admission denies before browser launch and preserves prior artifacts
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.7770153Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.7770322Z   duration_ms: 82.56492
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.7770507Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:33.7770679Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.1035086Z # Subtest: a stalled retained scan stays inside the existing supervised workflow deadline
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.1036330Z ok 97 - a stalled retained scan stays inside the existing supervised workflow deadline
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.1036859Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.1037104Z   duration_ms: 1326.718553
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.1037385Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.1037619Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2497631Z # Subtest: retained inventory stops at its entry boundary and closes the directory iterator
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2498602Z ok 98 - retained inventory stops at its entry boundary and closes the directory iterator
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2499101Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2499340Z   duration_ms: 145.931629
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2499560Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2499785Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2512075Z # Subtest: retained admission accepts host temp aliases but rejects caller directory links
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2513033Z ok 99 - retained admission accepts host temp aliases but rejects caller directory links
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2513605Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2513879Z   duration_ms: 1.77008
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2514160Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.2514417Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3863269Z # Subtest: retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3872542Z ok 100 - retention preview/delete rechecks age and preserves fresh or uncertain artifacts
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3892914Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3893179Z   duration_ms: 83.350787
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3893470Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3893706Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3894129Z # Subtest: invalid or pre-aborted retention does not query storage
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3894705Z ok 101 - invalid or pre-aborted retention does not query storage
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3895171Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3895411Z   duration_ms: 0.460322
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3895675Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.3895915Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4253119Z # (node:4627) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4254065Z # (Use `node --trace-warnings ...` to show where the warning was created)
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4254912Z # Subtest: retention interruption completes one authorized scope and preserves the continuation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4255848Z ok 102 - retention interruption completes one authorized scope and preserves the continuation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4256404Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4256647Z   duration_ms: 40.189559
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4256926Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4257157Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4257767Z # Subtest: artifact retention never conceals a blocked project even when no old artifacts qualify
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4258724Z ok 103 - artifact retention never conceals a blocked project even when no old artifacts qualify
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4259294Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4259545Z   duration_ms: 0.316809
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4259825Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4260067Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4260870Z # Subtest: retention stops on lost journal transport without touching later scopes
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4262393Z ok 104 - retention stops on lost journal transport without touching later scopes
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4262743Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4262921Z   duration_ms: 0.339203
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4263118Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:35.4263279Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.1225778Z # Subtest: read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.1226671Z ok 105 - read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.1227113Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.1227311Z   duration_ms: 697.560929
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.1227549Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.1227722Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9245337Z # Subtest: actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9246221Z ok 106 - actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9247182Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9247468Z   duration_ms: 802.327847
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9247795Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9248047Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9673337Z # Subtest: temporary cleanup receipt cannot authorize success without confirmed worker exit
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9675165Z ok 107 - temporary cleanup receipt cannot authorize success without confirmed worker exit
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9675812Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9676007Z   duration_ms: 5.696031
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9676268Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9676440Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9683698Z # Subtest: temporary cleanup repeated IPC errors retain owned-handle termination and uncertainty
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9712599Z ok 108 - temporary cleanup repeated IPC errors retain owned-handle termination and uncertainty
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9713135Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9713309Z   duration_ms: 1.111956
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9713496Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9713694Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9714084Z # Subtest: malformed cleanup receipt fails closed without an uncaught message handler exception
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9714649Z ok 109 - malformed cleanup receipt fails closed without an uncaught message handler exception
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9714976Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9715132Z   duration_ms: 1.680468
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9715313Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9715465Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9817351Z # Subtest: temporary cleanup drains its final receipt after process exit before confirming success
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9818548Z ok 110 - temporary cleanup drains its final receipt after process exit before confirming success
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9819260Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9819997Z   duration_ms: 11.020493
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9820326Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9820583Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9821158Z # Subtest: a late natural cleanup receipt cannot win before a delayed timeout callback
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9822152Z ok 111 - a late natural cleanup receipt cannot win before a delayed timeout callback
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9822711Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9822964Z   duration_ms: 0.683392
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9823253Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:36.9823499Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0297890Z # Subtest: workflow identity ignores object key order, defaults and equivalent repeat expansion
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0299453Z ok 112 - workflow identity ignores object key order, defaults and equivalent repeat expansion
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0300096Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0300348Z   duration_ms: 1.382687
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0300620Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0300851Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0304097Z # Subtest: captured workflow input cannot change after submission and oversized or unknown data is rejected
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0305130Z ok 113 - captured workflow input cannot change after submission and oversized or unknown data is rejected
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0305554Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0305724Z   duration_ms: 5.731414
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0306152Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0306322Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0756737Z # Subtest: stderr capture preserves split UTF-8 bytes and owns its bounded storage
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0757828Z ok 114 - stderr capture preserves split UTF-8 bytes and owns its bounded storage
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0768350Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0768767Z   duration_ms: 1.131194
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0769116Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0769471Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0770136Z # Subtest: stderr capture accepts its exact byte boundary and rejects overflow without leaking text
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0771233Z ok 115 - stderr capture accepts its exact byte boundary and rejects overflow without leaking text
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0772085Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0772384Z   duration_ms: 5.754308
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0772677Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0772929Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0773662Z # Subtest: one oversized stderr chunk is bounded immediately and invalid chunks are rejected
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0774693Z ok 116 - one oversized stderr chunk is bounded immediately and invalid chunks are rejected
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0775686Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0775973Z   duration_ms: 1.333374
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0776334Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.0776607Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1450149Z # Subtest: build patch refuses extra caller arguments before touching dependencies
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1451020Z ok 117 - build patch refuses extra caller arguments before touching dependencies
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1451507Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1452115Z   duration_ms: 33.487298
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1452404Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1452662Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1737493Z # Subtest: build patch refuses an unreviewed dependency version without mutation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1738393Z ok 118 - build patch refuses an unreviewed dependency version without mutation
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1738878Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1739122Z   duration_ms: 28.758549
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1739361Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.1739560Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2062831Z # Subtest: build patch refuses unknown source bytes and keeps JSON stdout clean
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2063730Z ok 119 - build patch refuses unknown source bytes and keeps JSON stdout clean
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2064619Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2065102Z   duration_ms: 32.386188
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2065341Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2065522Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2344288Z # Subtest: build patch refuses dependency junctions outside its own node_modules
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2345494Z ok 120 - build patch refuses dependency junctions outside its own node_modules
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2346143Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2346534Z   duration_ms: 27.945476
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2347005Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2347282Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2630163Z # Subtest: build patch refuses multiply linked source files
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2631404Z ok 121 - build patch refuses multiply linked source files
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2631939Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2632229Z   duration_ms: 28.774002
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2632506Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2632761Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2916679Z # Subtest: build patch refuses a linked node_modules shared with another source tree
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2917754Z ok 122 - build patch refuses a linked node_modules shared with another source tree
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2918316Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2918530Z   duration_ms: 28.499375
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2918720Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.2918883Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3209291Z # Subtest: build patch preserves incomplete private output and refuses to package it
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3210371Z ok 123 - build patch preserves incomplete private output and refuses to package it
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3210910Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3211215Z   duration_ms: 29.089228
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3211480Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3211661Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3487898Z # Subtest: build patch refuses a dependency link to another directory inside node_modules
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3489351Z ok 124 - build patch refuses a dependency link to another directory inside node_modules
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3490022Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3490348Z   duration_ms: 27.790877
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3490715Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3491020Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3875815Z # Subtest: CI totals include TAP, Node24 spec and original Playwright summaries
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3876861Z ok 125 - CI totals include TAP, Node24 spec and original Playwright summaries
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3877450Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3877728Z   duration_ms: 1.410908
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3878125Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3878450Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3879866Z # Subtest: a repeated summary is counted once and incomplete Node totals fail closed
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3882093Z ok 126 - a repeated summary is counted once and incomplete Node totals fail closed
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3882756Z   ---
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3883096Z   duration_ms: 0.525197
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3883464Z   type: 'test'
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3883833Z   ...
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3935142Z 1..126
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3935610Z # tests 126
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3952389Z # suites 0
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3952631Z # pass 126
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3952809Z # fail 0
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3952981Z # cancelled 0
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3953156Z # skipped 0
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3953312Z # todo 0
+journal (ubuntu-latest, 22)	Run durable component tests	2026-10-22T11:13:37.3953524Z # duration_ms 34032.207119
+journal (ubuntu-latest, 22)	Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1	﻿2026-10-22T11:13:37.4084002Z Post job cleanup.
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-22T11:13:37.5242865Z Post job cleanup.
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.5952895Z [command]/usr/bin/git version
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.5990593Z git version 2.55.0
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.6020686Z Temporarily overriding HOME='/home/runner/work/_temp/e078af7d-decf-4bad-8867-02b6991ff659' before making global git config changes
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.6021522Z Adding repository directory to the temporary git global config as a safe directory
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.6025301Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/playwright-mcp/playwright-mcp
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.6054740Z Removing SSH command configuration
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.6059781Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.6090065Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.6299016Z Removing HTTP extra header
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.6304747Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.6339369Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.6546346Z Removing includeIf entries pointing to credentials config files
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.6554082Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.8090964Z includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.8092042Z includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.8092699Z includeif.gitdir:/github/workspace/.git.path
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.8093231Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.8102504Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.8132838Z /home/runner/work/_temp/git-credentials-e61af4d1-c1b6-4f1f-a1ce-1f5ae0bbbf09.config
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.8143702Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-e61af4d1\-c1b6\-4f1f\-a1ce\-1f5ae0bbbf09\.config
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.8541732Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.8572208Z /home/runner/work/_temp/git-credentials-e61af4d1-c1b6-4f1f-a1ce-1f5ae0bbbf09.config
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.8580608Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/playwright-mcp/playwright-mcp/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-e61af4d1\-c1b6\-4f1f\-a1ce\-1f5ae0bbbf09\.config
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.9160260Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.9188990Z /github/runner_temp/git-credentials-e61af4d1-c1b6-4f1f-a1ce-1f5ae0bbbf09.config
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.9197331Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-e61af4d1\-c1b6\-4f1f\-a1ce\-1f5ae0bbbf09\.config
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.9795750Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.9821736Z /github/runner_temp/git-credentials-e61af4d1-c1b6-4f1f-a1ce-1f5ae0bbbf09.config
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:37.9827410Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-e61af4d1\-c1b6\-4f1f\-a1ce\-1f5ae0bbbf09\.config
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:38.0450630Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+journal (ubuntu-latest, 22)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-22T11:13:38.0645932Z Removing credentials config '/home/runner/work/_temp/git-credentials-e61af4d1-c1b6-4f1f-a1ce-1f5ae0bbbf09.config'
+journal (ubuntu-latest, 22)	Complete job	﻿2026-10-22T11:13:38.0784356Z Cleaning up orphan processes

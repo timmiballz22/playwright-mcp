@@ -1,0 +1,53 @@
+{
+  "scope": "Checkout-only EOF join and fuller soak failure observations; runtime unchanged from ab4e111. No test/action/job/SDK maximum raised; actual EOF required. Local Linux only, no native Mac cause or historical exit clearance.",
+  "tests": {
+    "stderrJoin": {
+      "node20": {
+        "pass": 6,
+        "fail": 0,
+        "skip": 0
+      },
+      "node22": {
+        "pass": 6,
+        "fail": 0,
+        "skip": 0
+      },
+      "node24": {
+        "pass": 6,
+        "fail": 0,
+        "skip": 0
+      }
+    },
+    "originalAdvancedNode24": {
+      "pass": 6,
+      "fail": 0,
+      "skip": 0,
+      "projects": [
+        "chromium",
+        "firefox"
+      ],
+      "durationSeconds": 26.3
+    },
+    "diagnosticSoakNode24": {
+      "runs": 20,
+      "actions": 120,
+      "elapsedMs": 20123,
+      "ownedAfterEveryRun": 0
+    }
+  },
+  "pack": {
+    "files": 297,
+    "qaEvidenceTestsOrClones": []
+  },
+  "changedAmongPrevious194": [
+    "scripts/soak-local.mjs"
+  ],
+  "candidateSha256": {
+    "tests/fixtures.ts": "085ca34a6126b82911f192edaaee57e765c8d39bb72e3bf1e7c4a69fdc88d712",
+    "tests/fixtures/close-with-stderr.mjs": "fefd6fbe7695a4e3806ef6b19807c90c26edbef6f473468b15f2791f5ab39612",
+    "qa/bounded-stderr.test.mjs": "08f0161295d32c511db3e729172f06d227bee02b5cd204a3b9faf48ffb78299a",
+    "scripts/soak-local.mjs": "acf9330c9c501a0fa1ac95438c728ea824b0b9bf96ad5498f689401ade8ee90b"
+  },
+  "typecheck": "pass",
+  "READMERegeneration": "pass unchanged"
+}

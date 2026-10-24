@@ -1,0 +1,27 @@
+{"fixture":"artifact_parent_death_phase","bootstrap":true,"runtime_imported":true,"filesystem_entered":true,"marker_written":false,"workerExited":false,"workerExitCode":null,"workerExitSignal":null,"workerResponse":false,"observedBeforeParentDeath":false,"parentExited":true}
+Artifact parent-death fixture preserved: shutdown not confirmed
+✖ actual artifact worker exits after controller death while filesystem awaits (2051.281847ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2133.202862
+
+✖ failing tests:
+
+test at local-batch/jobs/artifact-cleanup-supervisor.test.mjs:68:1
+✖ actual artifact worker exits after controller death while filesystem awaits (2051.281847ms)
+  Error: ENOENT: no such file or directory, open '/tmp/artifact-parent-death-GwUOoT/pending'
+      at async open (node:internal/fs/promises:697:25)
+      at async readFile (node:internal/fs/promises:1348:14)
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/artifact-cleanup-supervisor.test.mjs:114:26)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/tmp/artifact-parent-death-GwUOoT/pending'
+  }

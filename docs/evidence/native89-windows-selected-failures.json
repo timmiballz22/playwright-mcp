@@ -1,0 +1,53 @@
+[
+  {
+    "job": "batch (windows-latest, 22)",
+    "data": {
+      "fixture": "raw_browser_failure",
+      "browser": "firefox",
+      "mode": "headed",
+      "freshRun": 4,
+      "reason": "cleanup_failed",
+      "completed": 23,
+      "total": 23,
+      "durationMs": 15093,
+      "actionsSucceeded": true,
+      "cleanupFailureCount": 2,
+      "failedStep": null
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "data": {
+      "schemaVersion": 1,
+      "runId": "7cf37b3a-d428-420f-a10f-0356829e593d",
+      "browser": "firefox",
+      "total": 19,
+      "ok": false,
+      "reason": "timeout",
+      "completed": 14,
+      "recentSteps": [],
+      "failedStep": {
+        "index": 15,
+        "type": "waitFor",
+        "ok": false,
+        "error": "cancelled",
+        "failureKind": "interrupted"
+      },
+      "reportPath": null,
+      "execution": {
+        "mode": "supervised",
+        "forced": false,
+        "cleanup": "terminated",
+        "tempCleanup": "removed",
+        "supervisorPid": 2212,
+        "workerPid": 8560,
+        "browserPids": [
+          8520
+        ]
+      },
+      "completionCertainty": "confirmed_lower_bound",
+      "retrySafe": false,
+      "durationMs": 7324
+    }
+  }
+]

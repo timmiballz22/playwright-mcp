@@ -1,0 +1,27 @@
+✔ screenshot budget refuses excess before writes and publishes complete private files without overwriting (11.076491ms)
+✔ cancellation after image capture cannot publish a late screenshot or leave a temporary file (2.442091ms)
+✖ a target created during capture is never overwritten by publication (3.550696ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 89.15745
+
+✖ failing tests:
+
+test at local-batch/screenshot-budget.test.mjs:35:1
+✖ a target created during capture is never overwritten by publication (3.550696ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/screenshot-budget.test.mjs:40:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }

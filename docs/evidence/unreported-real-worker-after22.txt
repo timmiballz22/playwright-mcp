@@ -1,0 +1,154 @@
+TAP version 13
+# Subtest: real browser uses a short external private temporary root and cancellation removes it
+ok 1 - real browser uses a short external private temporary root and cancellation removes it
+  ---
+  duration_ms: 1193.439339
+  type: 'test'
+  ...
+# Subtest: unacknowledged external temporary collision is retained and cleanup fails closed
+ok 2 - unacknowledged external temporary collision is retained and cleanup fails closed
+  ---
+  duration_ms: 94.656372
+  type: 'test'
+  ...
+# Subtest: worker crash after temporary ownership ACK removes only its owned external directory
+ok 3 - worker crash after temporary ownership ACK removes only its owned external directory
+  ---
+  duration_ms: 128.810272
+  type: 'test'
+  ...
+# Subtest: actual worker final report cannot clear ownership after a rejected launch allocates a detached child
+ok 4 - actual worker final report cannot clear ownership after a rejected launch allocates a detached child
+  ---
+  duration_ms: 1163.614698
+  type: 'test'
+  ...
+# Subtest: unexpected exit cannot certify an unreported live browser model as cleaned
+ok 5 - unexpected exit cannot certify an unreported live browser model as cleaned
+  ---
+  duration_ms: 739.870112
+  type: 'test'
+  ...
+# Subtest: unexpected exit unreported browser uncertainty retains durable admission fence after child self-exit
+ok 6 - unexpected exit unreported browser uncertainty retains durable admission fence after child self-exit
+  ---
+  duration_ms: 993.829099
+  type: 'test'
+  ...
+# Subtest: reported failure cannot certify an unreported live browser model as cleaned
+ok 7 - reported failure cannot certify an unreported live browser model as cleaned
+  ---
+  duration_ms: 740.028848
+  type: 'test'
+  ...
+# Subtest: reported failure unreported browser uncertainty retains durable admission fence after child self-exit
+ok 8 - reported failure unreported browser uncertainty retains durable admission fence after child self-exit
+  ---
+  duration_ms: 985.071582
+  type: 'test'
+  ...
+# Subtest: failure classification returns fixed codes and never browser text
+ok 9 - failure classification returns fixed codes and never browser text
+  ---
+  duration_ms: 1.125335
+  type: 'test'
+  ...
+# Subtest: rejects unknown instructions, unbounded workloads and hostile origins
+ok 10 - rejects unknown instructions, unbounded workloads and hostile origins
+  ---
+  duration_ms: 1.579855
+  type: 'test'
+  ...
+# Subtest: 100 ordered actions finish in a single batch with one browser launch
+ok 11 - 100 ordered actions finish in a single batch with one browser launch
+  ---
+  duration_ms: 8.87037
+  type: 'test'
+  ...
+# Subtest: failures stop promptly, hide underlying sensitive errors and clean up
+ok 12 - failures stop promptly, hide underlying sensitive errors and clean up
+  ---
+  duration_ms: 1.860627
+  type: 'test'
+  ...
+# Subtest: cancellation before starting avoids launching browser
+ok 13 - cancellation before starting avoids launching browser
+  ---
+  duration_ms: 0.254817
+  type: 'test'
+  ...
+# Subtest: checks target origins and reports assertion failure without page content
+ok 14 - checks target origins and reports assertion failure without page content
+  ---
+  duration_ms: 1.549545
+  type: 'test'
+  ...
+# Subtest: unknown localhost ports require exact operator origins
+ok 15 - unknown localhost ports require exact operator origins
+  ---
+  duration_ms: 1.234559
+  type: 'test'
+  ...
+# Subtest: rejects extra workflow and action properties rather than ignoring policy
+ok 16 - rejects extra workflow and action properties rather than ignoring policy
+  ---
+  duration_ms: 0.217697
+  type: 'test'
+  ...
+# Subtest: deadline includes a stalled launch and closes late browser
+ok 17 - deadline includes a stalled launch and closes late browser
+  ---
+  duration_ms: 201.654664
+  type: 'test'
+  ...
+# Subtest: validation snapshots actions before asynchronous launch
+ok 18 - validation snapshots actions before asynchronous launch
+  ---
+  duration_ms: 1.507269
+  type: 'test'
+  ...
+# Subtest: screenshot capture requires operator approval for sensitive artifacts
+ok 19 - screenshot capture requires operator approval for sensitive artifacts
+  ---
+  duration_ms: 0.444827
+  type: 'test'
+  ...
+# Subtest: workflow version and serialized size are bounded
+ok 20 - workflow version and serialized size are bounded
+  ---
+  duration_ms: 6.586881
+  type: 'test'
+  ...
+# Subtest: accessible selectors validate exact shape and clone nested values
+ok 21 - accessible selectors validate exact shape and clone nested values
+  ---
+  duration_ms: 0.205752
+  type: 'test'
+  ...
+# Subtest: explicit action repeats expand within the total action cap
+ok 22 - explicit action repeats expand within the total action cap
+  ---
+  duration_ms: 12.637804
+  type: 'test'
+  ...
+# Subtest: text equality rejects duplicate counters and ambiguous expectations
+ok 23 - text equality rejects duplicate counters and ambiguous expectations
+  ---
+  duration_ms: 4.957326
+  type: 'test'
+  ...
+# Subtest: ownership launch phase precedes even a rejected public launch call
+ok 24 - ownership launch phase precedes even a rejected public launch call
+  ---
+  duration_ms: 3.699384
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6465.133235

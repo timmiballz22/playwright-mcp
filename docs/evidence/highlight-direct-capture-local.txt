@@ -1,0 +1,29 @@
+
+Running 6 tests using 2 workers
+
+(node:456310) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:456311) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+{"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+{"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+{"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+{"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+  ✓  1 [chromium] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (2.3s)
+  ✓  2 [chromium] › tests/devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (2.9s)
+  ✓  3 [chromium] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (1.1s)
+(node:456731) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:456740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"highlight_region","phase":"plain","observations":1,"redPixels":0}
+{"fixture":"highlight_region","phase":"highlighted","observations":1,"redPixels":512}
+{"fixture":"highlight_region","phase":"restored","observations":1,"redPixels":0}
+{"fixture":"highlight_region","phase":"highlighted-again","observations":1,"redPixels":512}
+{"fixture":"highlight_region","phase":"restored-all","observations":1,"redPixels":0}
+  ✓  4 [firefox] › tests/devtools.spec.ts:6:5 › original highlight paints a controlled region and both hide methods clear it (5.0s)
+  ✓  5 [firefox] › tests/devtools.spec.ts:55:5 › original action recording captures owned pointer input and rejects invalid lifecycle calls (5.6s)
+  ✓  6 [firefox] › tests/devtools.spec.ts:76:5 › original resume rejects malformed source locations and leaves the session usable (2.6s)
+
+  6 passed (13.0s)

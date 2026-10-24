@@ -11,3 +11,19 @@ sessions/
 .local-batch-output/
 .local-batch-profiles/
 my-workflow.json
+
+# Upstream MCP snapshots, console logs, and other potentially sensitive outputs
+.playwright-mcp/
+
+# Runtime persistent-profile ownership metadata
+**/.playwright-mcp-owner/
+
+# Trusted CI component-test diagnostics (uploaded only on failure)
+component-tests.log
+batch-tests.log
+wrapper-tests.log
+modal-tests.log
+legacy-firefox.log
+installed-tests.log
+layout-probe.log
+codex-jobs.log

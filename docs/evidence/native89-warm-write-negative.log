@@ -1,0 +1,38 @@
+TAP version 13
+# (node:1097899) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# {"fixture":"controlled_warm_header_write","addedWalBytes":4120}
+# {"fixture":"controlled_warm_write_close","actualJournalExitConfirmed":true}
+# {"fixture":"controlled_warm_write_close","actualJournalExitConfirmed":true}
+# Journal fixture preserved: acceptance or cleanup not confirmed
+# Subtest: reopening a validated journal preserves WAL bytes and existing durable state
+not ok 1 - reopening a validated journal preserves WAL bytes and existing durable state
+  ---
+  duration_ms: 133.979894
+  type: 'test'
+  location: '/workspace/playwright-mcp/local-batch/jobs/journal.test.mjs:463:22'
+  failureType: 'testCodeFailure'
+  error: |-
+    Opening the validated v1 store must not append another WAL frame
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal.test.mjs:474:12)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 195.882052

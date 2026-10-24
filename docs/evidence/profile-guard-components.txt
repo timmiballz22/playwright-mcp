@@ -1,0 +1,15 @@
+✔ guard composes public persistent API, refuses another launch and releases after confirmed public close (13.891412ms)
+✔ failed launch and disconnected context retain uncertain ownership without stale deletion (5.684876ms)
+✔ closed event before acknowledged shutdown cannot free a profile, and failed hook setup closes its allocation (9.156061ms)
+✔ profile lease refuses contention across aliases and releases only its own complete metadata (13.892572ms)
+✔ profile lease never deletes malformed or changed ownership records (4.416205ms)
+✔ another process owns the lease; dead owner remains uncertain and is never silently reclaimed (46.143191ms)
+✔ linked ownership directory cannot change or delete an outside marker (2.810484ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 214.203469

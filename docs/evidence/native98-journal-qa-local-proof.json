@@ -1,0 +1,846 @@
+{
+  "scope": "Checkout-only trusted QA preload, actual unchanged Codex verifier with two real MCP/SQLite endpoints and owned browser workflows. These local results are not native98 CI evidence. Existing runtime/timers/limits/control jobs unchanged. Only completed calls from normally exiting instrumented processes are observed; receipt count varies and is not an OS-exit/completeness claim. No per-action file writes or DB/key exports.",
+  "timestampUTC": "2026-10-22T21:38:22.193989+00:00",
+  "sourceSha256": {
+    "scripts/qa/journal-latency.mjs": "638b3ad2020227f3bf90b87e97bcb3c4df2c7f3e8b8f1cab4e9cc1c26c625bc3",
+    ".github/workflows/local-batch.yml": "d2908fa1c47e93501e1d9722e97a08ad138a983b1bb7af7c218bf1db450d7a59"
+  },
+  "healthy": [
+    {
+      "requestedNodeMajor": 22,
+      "client": {
+        "client": "codex-cli 0.163.0",
+        "os": "linux",
+        "launcher": "node",
+        "tools": 6,
+        "completed": 1000,
+        "startMs": 11,
+        "resultCalls": 4,
+        "durationMs": 37273,
+        "duplicateExecuted": false,
+        "foreignOwnerDenied": true,
+        "terminalCleanup": true,
+        "activeCancel": true,
+        "cancelledJobCompleted": 1,
+        "modelTurns": 0,
+        "temporaryConfigOnly": true,
+        "activeOwnedProcesses": 0
+      },
+      "observations": {
+        "fixture": "journal_latency_observed",
+        "scope": "completed RPCs from normally exiting instrumented processes only",
+        "processReceipts": 4,
+        "binUpperBoundsMs": [
+          1,
+          5,
+          20,
+          100,
+          "unbounded"
+        ],
+        "rows": [
+          {
+            "node": "v22.23.3",
+            "platform": "linux",
+            "commands": [
+              {
+                "command": "init",
+                "count": 1,
+                "totalMs": 94.83012,
+                "maxMs": 94.83012,
+                "bins": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "command": "verify",
+                "count": 1,
+                "totalMs": 0.8654149999999845,
+                "maxMs": 0.8654149999999845,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "read",
+                "count": 233,
+                "totalMs": 125.9340349999996,
+                "maxMs": 7.898024000000078,
+                "bins": [
+                  218,
+                  14,
+                  1,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "activate",
+                "count": 1,
+                "totalMs": 1.0971010000000092,
+                "maxMs": 1.0971010000000092,
+                "bins": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "resources",
+                "count": 2,
+                "totalMs": 4.740889999999922,
+                "maxMs": 3.2695469999999887,
+                "bins": [
+                  0,
+                  2,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "progress",
+                "count": 41,
+                "totalMs": 32.08013400000527,
+                "maxMs": 1.898533999999927,
+                "bins": [
+                  33,
+                  8,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "finish",
+                "count": 1,
+                "totalMs": 2.7885020000030636,
+                "maxMs": 2.7885020000030636,
+                "bins": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "close",
+                "count": 1,
+                "totalMs": 0.5199379999976372,
+                "maxMs": 0.5199379999976372,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "cancel",
+                "count": 1,
+                "totalMs": 0.08042199999908917,
+                "maxMs": 0.08042199999908917,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "node": "v22.23.3",
+            "platform": "linux",
+            "commands": [
+              {
+                "command": "init",
+                "count": 1,
+                "totalMs": 60.38313000000001,
+                "maxMs": 60.38313000000001,
+                "bins": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "command": "verify",
+                "count": 1,
+                "totalMs": 0.86011400000001,
+                "maxMs": 0.86011400000001,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "read",
+                "count": 14,
+                "totalMs": 11.334321000000557,
+                "maxMs": 5.743803000000071,
+                "bins": [
+                  13,
+                  0,
+                  1,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "activate",
+                "count": 1,
+                "totalMs": 0.8033279999999934,
+                "maxMs": 0.8033279999999934,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "resources",
+                "count": 2,
+                "totalMs": 2.1640309999999374,
+                "maxMs": 1.7555119999999818,
+                "bins": [
+                  1,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "progress",
+                "count": 1,
+                "totalMs": 2.2071939999999586,
+                "maxMs": 2.2071939999999586,
+                "bins": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "cancel",
+                "count": 1,
+                "totalMs": 0.3834309999999732,
+                "maxMs": 0.3834309999999732,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "finish",
+                "count": 1,
+                "totalMs": 1.2427119999999832,
+                "maxMs": 1.2427119999999832,
+                "bins": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "close",
+                "count": 1,
+                "totalMs": 0.5722440000001825,
+                "maxMs": 0.5722440000001825,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "node": "v22.23.3",
+            "platform": "linux",
+            "commands": [
+              {
+                "command": "init",
+                "count": 1,
+                "totalMs": 75.08042800000001,
+                "maxMs": 75.08042800000001,
+                "bins": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "command": "recover",
+                "count": 2,
+                "totalMs": 1.7859740000000102,
+                "maxMs": 1.0748409999999922,
+                "bins": [
+                  1,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "read",
+                "count": 1,
+                "totalMs": 0.9309210000000121,
+                "maxMs": 0.9309210000000121,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "close",
+                "count": 1,
+                "totalMs": 5.915317999999388,
+                "maxMs": 5.915317999999388,
+                "bins": [
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "node": "v22.23.3",
+            "platform": "linux",
+            "commands": [
+              {
+                "command": "init",
+                "count": 1,
+                "totalMs": 85.25818500000003,
+                "maxMs": 85.25818500000003,
+                "bins": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "command": "recover",
+                "count": 177,
+                "totalMs": 153.5777969999562,
+                "maxMs": 33.01580899999999,
+                "bins": [
+                  161,
+                  15,
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "command": "create",
+                "count": 4,
+                "totalMs": 4.599334000000454,
+                "maxMs": 1.6991199999999935,
+                "bins": [
+                  1,
+                  3,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "read",
+                "count": 175,
+                "totalMs": 71.07051699999897,
+                "maxMs": 4.443921999998565,
+                "bins": [
+                  168,
+                  7,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "reserve",
+                "count": 2,
+                "totalMs": 6.082744999994986,
+                "maxMs": 5.133223999999984,
+                "bins": [
+                  1,
+                  0,
+                  1,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "result",
+                "count": 4,
+                "totalMs": 1.4508150000037858,
+                "maxMs": 0.5801490000012564,
+                "bins": [
+                  4,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "list",
+                "count": 1,
+                "totalMs": 0.30698900000425056,
+                "maxMs": 0.30698900000425056,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "cleanup_reserve",
+                "count": 2,
+                "totalMs": 0.7387200000011944,
+                "maxMs": 0.5112799999988056,
+                "bins": [
+                  2,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "cleanup_release",
+                "count": 2,
+                "totalMs": 1.0849150000067311,
+                "maxMs": 0.7625210000041989,
+                "bins": [
+                  2,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "cancel",
+                "count": 1,
+                "totalMs": 0.8443440000046394,
+                "maxMs": 0.8443440000046394,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "close",
+                "count": 1,
+                "totalMs": 7.241097999998601,
+                "maxMs": 7.241097999998601,
+                "bins": [
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ]
+              }
+            ]
+          }
+        ],
+        "verifierExitCode": 0,
+        "removalAttempted": true,
+        "removalConfirmed": true,
+        "workspace": "journal-timing-iKEV6H"
+      },
+      "timingDirectoryAbsentAfterExit": true
+    },
+    {
+      "requestedNodeMajor": 24,
+      "client": {
+        "client": "codex-cli 0.163.0",
+        "os": "linux",
+        "launcher": "node",
+        "tools": 6,
+        "completed": 1000,
+        "startMs": 9,
+        "resultCalls": 4,
+        "durationMs": 39045,
+        "duplicateExecuted": false,
+        "foreignOwnerDenied": true,
+        "terminalCleanup": true,
+        "activeCancel": true,
+        "cancelledJobCompleted": 1,
+        "modelTurns": 0,
+        "temporaryConfigOnly": true,
+        "activeOwnedProcesses": 0
+      },
+      "observations": {
+        "fixture": "journal_latency_observed",
+        "scope": "completed RPCs from normally exiting instrumented processes only",
+        "processReceipts": 2,
+        "binUpperBoundsMs": [
+          1,
+          5,
+          20,
+          100,
+          "unbounded"
+        ],
+        "rows": [
+          {
+            "node": "v24.19.0",
+            "platform": "linux",
+            "commands": [
+              {
+                "command": "init",
+                "count": 1,
+                "totalMs": 45.00609899999999,
+                "maxMs": 45.00609899999999,
+                "bins": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "command": "verify",
+                "count": 1,
+                "totalMs": 0.5417159999999939,
+                "maxMs": 0.5417159999999939,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "read",
+                "count": 246,
+                "totalMs": 159.16016299993282,
+                "maxMs": 23.065130999999383,
+                "bins": [
+                  224,
+                  21,
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "command": "activate",
+                "count": 1,
+                "totalMs": 0.7836490000000111,
+                "maxMs": 0.7836490000000111,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "resources",
+                "count": 2,
+                "totalMs": 6.6387080000000935,
+                "maxMs": 5.755682000000007,
+                "bins": [
+                  1,
+                  0,
+                  1,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "progress",
+                "count": 41,
+                "totalMs": 38.6776649999988,
+                "maxMs": 4.526724000003014,
+                "bins": [
+                  27,
+                  14,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "finish",
+                "count": 1,
+                "totalMs": 1.2042969999965862,
+                "maxMs": 1.2042969999965862,
+                "bins": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "close",
+                "count": 1,
+                "totalMs": 2.729798000000301,
+                "maxMs": 2.729798000000301,
+                "bins": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "cancel",
+                "count": 1,
+                "totalMs": 0.09938599999441067,
+                "maxMs": 0.09938599999441067,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "node": "v24.19.0",
+            "platform": "linux",
+            "commands": [
+              {
+                "command": "init",
+                "count": 1,
+                "totalMs": 57.931217000000004,
+                "maxMs": 57.931217000000004,
+                "bins": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "command": "verify",
+                "count": 1,
+                "totalMs": 1.3134670000000028,
+                "maxMs": 1.3134670000000028,
+                "bins": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "read",
+                "count": 12,
+                "totalMs": 6.17353499999993,
+                "maxMs": 0.9148649999999918,
+                "bins": [
+                  12,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "activate",
+                "count": 1,
+                "totalMs": 0.9820869999999928,
+                "maxMs": 0.9820869999999928,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "resources",
+                "count": 2,
+                "totalMs": 4.733571999999981,
+                "maxMs": 3.435375000000022,
+                "bins": [
+                  0,
+                  2,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "progress",
+                "count": 1,
+                "totalMs": 0.8948410000000422,
+                "maxMs": 0.8948410000000422,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "cancel",
+                "count": 1,
+                "totalMs": 0.4470360000000255,
+                "maxMs": 0.4470360000000255,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "finish",
+                "count": 1,
+                "totalMs": 1.0422230000001491,
+                "maxMs": 1.0422230000001491,
+                "bins": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "command": "close",
+                "count": 1,
+                "totalMs": 0.7064359999999397,
+                "maxMs": 0.7064359999999397,
+                "bins": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ]
+          }
+        ],
+        "verifierExitCode": 0,
+        "removalAttempted": true,
+        "removalConfirmed": true,
+        "workspace": "journal-timing-Alyqbz"
+      },
+      "timingDirectoryAbsentAfterExit": true
+    }
+  ],
+  "controlledNegative": {
+    "mode": "primary_audit",
+    "toolsChecks": 2,
+    "primaryInjected": true,
+    "auditInjected": true,
+    "appServerCloseObserved": true,
+    "directories": [
+      {
+        "basename": "codex-jobs-slgncR",
+        "exists": true
+      }
+    ],
+    "exit": 1,
+    "primaryErrorVisible": true,
+    "auditErrorVisible": true,
+    "timingObservation": {
+      "fixture": "journal_latency_observation_failure",
+      "workspace": "journal-timing-BPiMNX",
+      "removalAttempted": false,
+      "removalConfirmed": false
+    },
+    "timingDirectoryExists": true
+  },
+  "earlyAttempts": [
+    "Initial Node22/24 healthy logs precede final receipt/removal/runtime-field refinements; final-named logs and healthy entries above use the final source.",
+    "Initial combined shell negative preserved both causes but did not record the Node exit separately; r1 subprocess records exit1."
+  ],
+  "frozenSourceFilesStillMatch": {
+    "scripts/diagnose-jobs-startup.mjs": "cfe459e6f22a959d3b93b2a939f6f5ec38e0e5124b8bc65a5fa610f70e5820a1",
+    "scripts/verify-codex-jobs.mjs": "b84337971fdbf2180d3fbd99747350831145e854dabf42ff29a81e599e0f8417",
+    "local-batch/fixtures/process-state-hint.mjs": "ab2b30170cc43e9207560c77d4937f24ea6ac4befbf61e48a16aa887f8bec7df",
+    "local-batch/process-state-hint.test.mjs": "a09e751ebf57fdfe5ec23e23f123ff6542c0550726744426dc6be5cafb51edd1",
+    "local-batch/chromium-viewport-order.test.mjs": "0fc73a9b539a74fae10f2464bb8971e97e90d7d9293e86ff2456003dc52db391",
+    "local-batch/screenshot-recovery.test.mjs": "10917de29ec8b5126dea6d2c5068a1f4960528948c81cbf0614bfd7171fe3b93",
+    "scripts/prepare-vp9-metadata.cjs": "c08b63a47b7fcd08f379b3335b440513bcbe57a5adcbb8680474c36c695dc3c2",
+    "tests/video-playback.spec.ts": "e2de8101b52d07f888dc1c02d36df932eca5194dcf9c98c1bad98c23c6144ab3",
+    "tests/fixtures/video-input-observer.mjs": "321fa4d1d50bfd9e2639dbbaa971aa3aae3f47a652ffd743b256f618457997ea",
+    "local-batch/frozen-page.test.mjs": "9191a9ccf13e01f6080517da052db4d18fcc3f371205ec4d1766d206dd829664",
+    "scripts/production-jobs-smoke.mjs": "e3c40ddf223eaaec3e5c9f8144aad09f3dc812b508408d21534acf67e4a90126",
+    "scripts/production-controller-smoke.mjs": "b7aed932f1ec1e8fa20376562c232a82deec98ba2a5e5b83627df38aac9e7d77",
+    "scripts/production-profile-smoke.mjs": "7b0ad6e6a8c7a8567ddb85ba3a6734171035c3b258bf9dea7860f45037fb7c8d",
+    "scripts/production-journal-smoke.mjs": "8aaec0fcf02af6749a7de67c258a280658fa7b20f0bc27cbc77d1e5a77c9a27d",
+    "scripts/verify-guardian-parent-death.mjs": "5d1b6216ea263d8ed2fe0d2538ebb3a6c52f4861a578713cf7a97c7120356650",
+    "tests/fixtures.ts": "9cea0bf221e6f69c41f6b7054436565845a29b1903857e137b261b57c4218d63",
+    "tests/media.spec.ts": "298e9bb8e74029b413f77f8c8aa5258c64c708de9a5fa2b074791c8d60997bc0",
+    "tests/fixtures/owned-pcm.mjs": "5ed093ea46077f6ead20a4ae7a6aefe8580d4b21480090c72c9eb7f35ba182b1",
+    "tests/stock-media.spec.ts": "16edcabf6ba5b8937bcb9d1aeb4aba809c12e656ac42b10962c1c16c8ccd5f17",
+    "package.json": "5b0cbed8f54939591645b80199b9b6c3ae55650aa79a4cc98e036df423b9db43",
+    "package-lock.json": "88546b42bf3cad9ca8f9e11c80625fe0f4ed1e931af0e2800827725a7fcf89da"
+  },
+  "validation": {
+    "typecheck": 0,
+    "READMEGeneration": 0,
+    "actionlint": 0,
+    "actionlintScope": "shellcheck/pyflakes disabled; workflow syntax/expressions checked"
+  },
+  "nativeStatus": "New separate macOS timing control runs after the normal client matrix regardless of outcome; not a profile of the earlier failing host. Native98 verification pending."
+}

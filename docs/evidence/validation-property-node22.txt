@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: workflow identity ignores object key order, defaults and equivalent repeat expansion
+ok 1 - workflow identity ignores object key order, defaults and equivalent repeat expansion
+  ---
+  duration_ms: 1.686727
+  type: 'test'
+  ...
+# Subtest: captured workflow input cannot change after submission and oversized or unknown data is rejected
+ok 2 - captured workflow input cannot change after submission and oversized or unknown data is rejected
+  ---
+  duration_ms: 6.438196
+  type: 'test'
+  ...
+# Subtest: explicit null browser is rejected consistently with the public schema
+ok 3 - explicit null browser is rejected consistently with the public schema
+  ---
+  duration_ms: 1.395558
+  type: 'test'
+  ...
+# Subtest: seeded valid workflows preserve action bounds and Unicode without changing input
+ok 4 - seeded valid workflows preserve action bounds and Unicode without changing input
+  ---
+  duration_ms: 28.402939
+  type: 'test'
+  ...
+# Subtest: JSON mutation corpus rejects unknown fields, wrong types and expansion overflow
+ok 5 - JSON mutation corpus rejects unknown fields, wrong types and expansion overflow
+  ---
+  duration_ms: 2.86628
+  type: 'test'
+  ...
+# Subtest: file ingestion accepts UTF-8 BOM and rejects oversized, invalid UTF-8 and non-files
+ok 6 - file ingestion accepts UTF-8 BOM and rejects oversized, invalid UTF-8 and non-files
+  ---
+  duration_ms: 19.977956
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 209.116068

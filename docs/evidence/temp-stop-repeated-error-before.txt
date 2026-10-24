@@ -1,0 +1,21 @@
+✔ temporary cleanup receipt cannot authorize success without confirmed worker exit (6.774ms)
+✔ temporary cleanup repeated IPC errors retain owned-handle termination and uncertainty (1.555728ms)
+✔ malformed cleanup receipt fails closed without an uncaught message handler exception (3.586137ms)
+✔ temporary cleanup drains its final receipt after process exit before confirming success (10.939289ms)
+✔ a late natural cleanup receipt cannot win before a delayed timeout callback (0.469831ms)
+ℹ Error: A resource generated asynchronous activity after the test ended. This activity created the error "Error: private-cleanup-canary" which triggered an uncaughtException event, caught by the test runner.
+✖ local-batch/jobs/temporary-cleanup-stop.test.mjs (73.172778ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 80.987364
+
+✖ failing tests:
+
+test at local-batch/jobs/temporary-cleanup-stop.test.mjs:1:1
+✖ local-batch/jobs/temporary-cleanup-stop.test.mjs (73.172778ms)
+  'test failed'

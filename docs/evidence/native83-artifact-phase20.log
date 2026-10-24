@@ -1,0 +1,50 @@
+TAP version 13
+# Subtest: bounded artifact worker previews, removes and preserves fixed safe errors
+ok 1 - bounded artifact worker previews, removes and preserves fixed safe errors
+  ---
+  duration_ms: 320.940031
+  ...
+# Subtest: artifact worker before-result: independent deadline and natural-exit confirmation
+ok 2 - artifact worker before-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 771.958436
+  ...
+# Subtest: artifact worker after-result: independent deadline and natural-exit confirmation
+ok 3 - artifact worker after-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 783.210673
+  ...
+# Subtest: artifact worker invalid-result: independent deadline and natural-exit confirmation
+ok 4 - artifact worker invalid-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 124.813073
+  ...
+# Subtest: artifact worker failed-result: independent deadline and natural-exit confirmation
+ok 5 - artifact worker failed-result: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 97.661759
+  ...
+# Subtest: artifact worker signal-exit: independent deadline and natural-exit confirmation
+ok 6 - artifact worker signal-exit: independent deadline and natural-exit confirmation
+  ---
+  duration_ms: 96.391279
+  ...
+# Subtest: an unconfirmed cleanup blocks further scopes in the same controller
+ok 7 - an unconfirmed cleanup blocks further scopes in the same controller
+  ---
+  duration_ms: 1.524757
+  ...
+# Subtest: actual artifact worker exits after controller death while filesystem awaits
+ok 8 - actual artifact worker exits after controller death while filesystem awaits
+  ---
+  duration_ms: 695.49008
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3012.633227

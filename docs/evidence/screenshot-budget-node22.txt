@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: operator owner/project namespaces are stable, private and independent of tool data
+ok 1 - operator owner/project namespaces are stable, private and independent of tool data
+  ---
+  duration_ms: 18.688777
+  type: 'test'
+  ...
+# Subtest: untrusted symlinks and writable ancestors cannot redirect job storage writes
+ok 2 - untrusted symlinks and writable ancestors cannot redirect job storage writes
+  ---
+  duration_ms: 5.24773
+  type: 'test'
+  ...
+# Subtest: invalid owner/policy config is rejected before any storage creation
+ok 3 - invalid owner/policy config is rejected before any storage creation
+  ---
+  duration_ms: 1.820881
+  type: 'test'
+  ...
+# Subtest: real screenshot byte budget keeps first PNG and rejects the next before publication, with verified owned cleanup
+ok 4 - real screenshot byte budget keeps first PNG and rejects the next before publication, with verified owned cleanup
+  ---
+  duration_ms: 1886.393393
+  type: 'test'
+  ...
+# Subtest: screenshot budget refuses excess before writes and publishes complete private files without overwriting
+ok 5 - screenshot budget refuses excess before writes and publishes complete private files without overwriting
+  ---
+  duration_ms: 11.521597
+  type: 'test'
+  ...
+# Subtest: cancellation after image capture cannot publish a late screenshot or leave a temporary file
+ok 6 - cancellation after image capture cannot publish a late screenshot or leave a temporary file
+  ---
+  duration_ms: 2.60267
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2094.595868

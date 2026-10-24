@@ -1,0 +1,27 @@
+✔ operator owner/project namespaces are stable, private and independent of tool data (23.337915ms)
+✔ untrusted symlinks and writable ancestors cannot redirect job storage writes (5.419889ms)
+✖ invalid owner/policy config is rejected before any storage creation (5.636638ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 120.006569
+
+✖ failing tests:
+
+test at local-batch/jobs/config.test.mjs:42:3
+✖ invalid owner/policy config is rejected before any storage creation (5.636638ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/config.test.mjs:47:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }

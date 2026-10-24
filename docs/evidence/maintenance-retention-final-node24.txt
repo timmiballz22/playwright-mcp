@@ -1,0 +1,19 @@
+✔ terminal cleanup reservation fences new admissions and other actors without changing history (158.785079ms)
+✔ unconfirmed cleanup stays blocked across reopen and cannot be cleared by ordinary release (104.799629ms)
+✔ unconfirmed artifact worker is fenced durably from another controller (221.793579ms)
+✔ unconfirmed artifact worker is fenced durably from another controller after lost finalization (204.4869ms)
+✔ retention preview/delete rechecks age and preserves fresh or uncertain artifacts (88.907663ms)
+✔ invalid or pre-aborted retention does not query storage (0.589323ms)
+✔ retention interruption completes one authorized scope and preserves the continuation (42.156579ms)
+✔ artifact retention never conceals a blocked project even when no old artifacts qualify (0.685496ms)
+✔ retention stops on lost journal transport without touching later scopes (0.401945ms)
+✔ read-only retention pages reach old owner jobs beyond recent twenty and retain uncertain leases (226.878703ms)
+✔ actual retention CLI previews/deletes old artifacts and preserves fresh files, results and idempotency (496.853626ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1697.752264

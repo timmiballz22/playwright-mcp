@@ -1,0 +1,81 @@
+{
+  "baseHead": "e95f0298030fd97b460d8798a2fd57a770123873",
+  "phase": "Local follow-up while native83 is running; excluded from native83",
+  "sourceSha256": {
+    "local-batch/locator-exactness.test.mjs": "81bd3a60801a9154da20642ece405f0ac54bb971013c9fddd346df3a0d6ef82d",
+    "local-batch/.npmignore": "96862493d98097e308569c7af5afd1770cab590262dd71bbd8c0efb25711f6a1",
+    "scripts/.npmignore": "96862493d98097e308569c7af5afd1770cab590262dd71bbd8c0efb25711f6a1",
+    "scripts/verify-package.mjs": "1ed318375fc1264a903ff59558acd34cc93577127e21a402cd9dc095eb22bbfc"
+  },
+  "locator": {
+    "command": "PLAYWRIGHT_BATCH_TEST_BROWSERS=chromium,firefox [matching Node bin on PATH] node --test local-batch/locator-exactness.test.mjs",
+    "node20": {
+      "exit": 0,
+      "pass": 2,
+      "fail": 0
+    },
+    "node22": {
+      "exit": 0,
+      "pass": 2,
+      "fail": 0
+    },
+    "node24": {
+      "exit": 0,
+      "pass": 2,
+      "fail": 0
+    },
+    "perEngine": {
+      "selectorForms": 6,
+      "positiveCompletedSteps": 19,
+      "ambiguousRefusals": 6,
+      "positiveEffects": 6,
+      "duplicateEffects": 0,
+      "lookalikeEffects": 0,
+      "nextStepNavigations": 0,
+      "ownedObservedAfter": 0,
+      "lifetimes": 7
+    },
+    "selectors": [
+      "CSS",
+      "role/name",
+      "testId",
+      "label",
+      "placeholder",
+      "text"
+    ],
+    "webkit": "unexecuted locally; host libraries unavailable, no inferred pass",
+    "scope": "Real supervised workflows through unchanged selector resolver. Actual live factory birth capture and full same-snapshot legacy receipts reuse existing observer. Failed workspaces retained; no fallback, first-match selection, input replay or new PID authority."
+  },
+  "package": {
+    "command": "node scripts/verify-package.mjs",
+    "exit": 0,
+    "beforeFilesWithNewTest": 177,
+    "existingHeadFiles": 176,
+    "afterFiles": 119,
+    "removedCheckoutTests": 58,
+    "previouslyShippedCheckoutTests": 57,
+    "removedNonTestPaths": 0,
+    "newFilesAddedToTarball": 0,
+    "testPathsRemaining": 0,
+    "scope": "Nested npmignore excludes *.test.mjs; actual tarball verifier rejects test/qa entries then runs all original installed smoke, profile, jobs, journal and guardian checks."
+  },
+  "audits": {
+    "npmAuditExit": 0,
+    "knownVulnerabilities": 0,
+    "dependencyLicenseMetadataMissing": 0,
+    "relativeDocTargetsMissing": 0,
+    "inlineRelativeTargetsChecked": 173,
+    "credentialPatternFindings": 1,
+    "credentialFindingReview": "Existing tests/testserver/key.pem matches baseline804bc7e exactly; retained as a finding. Limited current-file pattern scan, not history or general secret audit."
+  },
+  "evidenceSha256": {
+    "native83-locator-first.log": "0583e5ae4f89cc866a505eb81400d130335899e28eb2b365d0379374b25cdc42",
+    "native83-locator-node20.log": "d6321d3c9f536efbfa547b11e0c52d66d01a1c49acb02acf65ce32914a934333",
+    "native83-locator-node22.log": "d04ead9252e324e9212db89c6aad45805d34ede5da6ec223125aade9668c827a",
+    "native83-pack-list.json": "afac8af89aa01b726d7b6cefedaffd96de4fbf82b716a3d99c1d1f166bb7341f",
+    "native83-pack-after.json": "dbb79084302814fd4377d61df827b94354326dcfed4b9617b5fd9aa771bec1a7",
+    "native83-pack-final.json": "396f37779256cf5d79b1867e7e1e586f63c103ea4108fe396f73ee4a04ec98e3",
+    "native83-package-no-tests.log": "98654f3fff6976d7a0197658e6cb56c8792873627173072d6a8b602414936a1e",
+    "native83-journal-failed-annotations.json": "74dbc1bbe246c83ee718a3b39c5d17b58715b44e2a4c86bd82d0ad67b6251e80"
+  }
+}

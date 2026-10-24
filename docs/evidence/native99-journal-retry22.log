@@ -1,0 +1,59 @@
+TAP version 13
+# Subtest: confirmed worker exit after pre-COMMIT timeout permits bounded fresh initialization
+ok 1 - confirmed worker exit after pre-COMMIT timeout permits bounded fresh initialization
+  ---
+  duration_ms: 2095.697149
+  type: 'test'
+  ...
+# Subtest: lost init acknowledgement after real COMMIT preserves existing jobs and key
+ok 2 - lost init acknowledgement after real COMMIT preserves existing jobs and key
+  ---
+  duration_ms: 2166.189178
+  type: 'test'
+  ...
+# Subtest: persistent real COMMIT pause exhausts the unchanged three-attempt initialization cap
+ok 3 - persistent real COMMIT pause exhausts the unchanged three-attempt initialization cap
+  ---
+  duration_ms: 6086.047714
+  type: 'test'
+  ...
+# (node:1177244) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: store version changed between confirmed exit and retry is refused without repair
+ok 4 - store version changed between confirmed exit and retry is refused without repair
+  ---
+  duration_ms: 2092.2928
+  type: 'test'
+  ...
+# {"fixture":"journal_commit_retry_workspace_unconfirmed","workspace":"journal-commit-retry-lKdXBR","removalAttempted":false}
+# Subtest: actual unconfirmed worker exit never authorizes an initialization retry
+not ok 5 - actual unconfirmed worker exit never authorizes an initialization retry
+  ---
+  duration_ms: 5030.255574
+  type: 'test'
+  location: '/workspace/playwright-mcp/local-batch/jobs/journal-init-retry.test.mjs:108:3'
+  failureType: 'testCodeFailure'
+  error: 'Commit retry calibration or cleanup failed'
+  code: 'ERR_TEST_FAILURE'
+  name: 'AggregateError'
+  stack: |-
+    fixture (file:///workspace/playwright-mcp/local-batch/jobs/journal-init-retry.test.mjs:59:32)
+    async TestContext.<anonymous> (file:///workspace/playwright-mcp/local-batch/jobs/journal-init-retry.test.mjs:109:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: non-COMMIT initialization timeout keeps one attempt and its original phase
+ok 6 - non-COMMIT initialization timeout keeps one attempt and its original phase
+  ---
+  duration_ms: 2017.298346
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 5
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 19553.434325

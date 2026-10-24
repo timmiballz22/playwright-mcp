@@ -1,0 +1,21 @@
+
+Running 4 tests using 1 worker
+
+(node:1128855) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"owned_pcm_media","project":"chromium","mediaRequests":1,"rangeRequests":1,"partialResponses":1,"durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+  ✓  1 [chromium] › tests/media.spec.ts:7:5 › original muted PCM media advances, pauses and reports a missing media source (4.4s)
+(node:1129011) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"stock_pcm_reference","api":"stock_playwright","project":"chromium","engine":"chromium","mediaRequests":1,"partialResponses":1,"requestCountsAreLowerBounds":true,"preloadTimedOut":false,"preload":{"ready":4,"network":1,"error":0,"paused":true,"muted":true,"currentTime":0,"duration":2,"wav":"maybe"},"activationTimedOut":false,"activated":{"ready":4,"network":1,"error":0,"paused":false,"muted":true,"currentTime":0.05466,"duration":2,"wav":"maybe"},"play":{"result":"fulfilled","error":"none"}}
+  ✓  2 [chromium] › tests/stock-media.spec.ts:18:1 › stock API PCM reference records preload and owned user activation independently (348ms)
+(node:1129093) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"owned_pcm_media","project":"firefox","mediaRequests":1,"rangeRequests":1,"partialResponses":1,"durationSeconds":2,"initialPaused":true,"mutedPlaybackAdvanced":true,"explicitPause":true,"missingMediaCode":4,"missingMediaRequests":1}
+  ✓  3 [firefox] › tests/media.spec.ts:7:5 › original muted PCM media advances, pauses and reports a missing media source (6.8s)
+(node:1129299) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"stock_pcm_reference","api":"stock_playwright","project":"firefox","engine":"firefox","mediaRequests":1,"partialResponses":1,"requestCountsAreLowerBounds":true,"preloadTimedOut":false,"preload":{"ready":4,"network":1,"error":0,"paused":true,"muted":true,"currentTime":0,"duration":2,"wav":"maybe"},"activationTimedOut":false,"activated":{"ready":4,"network":1,"error":0,"paused":false,"muted":true,"currentTime":0.080381,"duration":2,"wav":"maybe"},"play":{"result":"fulfilled","error":"none"}}
+  ✓  4 [firefox] › tests/stock-media.spec.ts:18:1 › stock API PCM reference records preload and owned user activation independently (2.0s)
+
+  4 passed (18.1s)

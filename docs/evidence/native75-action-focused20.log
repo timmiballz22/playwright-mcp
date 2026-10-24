@@ -1,0 +1,205 @@
+TAP version 13
+# Subtest: real chromium: HTTP error codes and script exceptions keep response secrets out of reports
+ok 1 - real chromium: HTTP error codes and script exceptions keep response secrets out of reports
+  ---
+  duration_ms: 9986.786064
+  ...
+# Subtest: real firefox: HTTP error codes and script exceptions keep response secrets out of reports
+ok 2 - real firefox: HTTP error codes and script exceptions keep response secrets out of reports
+  ---
+  duration_ms: 19580.727292
+  ...
+# Subtest: known main GET 401 fails precisely even when document readiness never settles
+ok 3 - known main GET 401 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 14.318812
+  ...
+# Subtest: known main GET 403 fails precisely even when document readiness never settles
+ok 4 - known main GET 403 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 6.56147
+  ...
+# Subtest: known main GET 404 fails precisely even when document readiness never settles
+ok 5 - known main GET 404 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 12.231435
+  ...
+# Subtest: known main GET 429 fails precisely even when document readiness never settles
+ok 6 - known main GET 429 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 1.924213
+  ...
+# Subtest: known main GET 503 fails precisely even when document readiness never settles
+ok 7 - known main GET 503 fails precisely even when document readiness never settles
+  ---
+  duration_ms: 3.371515
+  ...
+# Subtest: HTTP error outside the current main GET does not become its navigation failure ({"main":false})
+ok 8 - HTTP error outside the current main GET does not become its navigation failure ({"main":false})
+  ---
+  duration_ms: 5.308189
+  ...
+# Subtest: HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"})
+ok 9 - HTTP error outside the current main GET does not become its navigation failure ({"method":"POST"})
+  ---
+  duration_ms: 5.222659
+  ...
+# Subtest: known HTTP failure waits for the configured retry attempts before failing without DOM readiness
+ok 10 - known HTTP failure waits for the configured retry attempts before failing without DOM readiness
+  ---
+  duration_ms: 379.4766
+  ...
+# Subtest: observed cancellation keeps precedence over a newly available HTTP failure
+ok 11 - observed cancellation keeps precedence over a newly available HTTP failure
+  ---
+  duration_ms: 8.656879
+  ...
+# Subtest: failed fulfillment disposes its fetched response without replay or hiding the request failure
+ok 12 - failed fulfillment disposes its fetched response without replay or hiding the request failure
+  ---
+  duration_ms: 2.776145
+  ...
+# Subtest: response disposal rejection preserves the existing failure and is not retried (200)
+ok 13 - response disposal rejection preserves the existing failure and is not retried (200)
+  ---
+  duration_ms: 8.40797
+  ...
+# Subtest: response disposal rejection preserves the existing failure and is not retried (503)
+ok 14 - response disposal rejection preserves the existing failure and is not retried (503)
+  ---
+  duration_ms: 2.035346
+  ...
+# Subtest: failed fulfillment releases a real retained API response before its request context closes (GET)
+ok 15 - failed fulfillment releases a real retained API response before its request context closes (GET)
+  ---
+  duration_ms: 690.158446
+  ...
+# Subtest: failed fulfillment releases a real retained API response before its request context closes (POST)
+ok 16 - failed fulfillment releases a real retained API response before its request context closes (POST)
+  ---
+  duration_ms: 12.470754
+  ...
+# Subtest: HTTP errors fail navigation without replaying requests or leaking headers
+ok 17 - HTTP errors fail navigation without replaying requests or leaking headers
+  ---
+  duration_ms: 2100.162891
+  ...
+# Subtest: navigation retry policy is bounded, disabled by default and copied
+ok 18 - navigation retry policy is bounded, disabled by default and copied
+  ---
+  duration_ms: 2.072051
+  ...
+# Subtest: Retry-After is a minimum wait and an excessive wait is never shortened
+ok 19 - Retry-After is a minimum wait and an excessive wait is never shortened
+  ---
+  duration_ms: 0.504439
+  ...
+# Subtest: failure classification returns fixed codes and never browser text
+ok 20 - failure classification returns fixed codes and never browser text
+  ---
+  duration_ms: 1.216752
+  ...
+# Subtest: rejects unknown instructions, unbounded workloads and hostile origins
+ok 21 - rejects unknown instructions, unbounded workloads and hostile origins
+  ---
+  duration_ms: 2.970438
+  ...
+# Subtest: 100 ordered actions finish in a single batch with one browser launch
+ok 22 - 100 ordered actions finish in a single batch with one browser launch
+  ---
+  duration_ms: 27.84185
+  ...
+# Subtest: failures stop promptly, hide underlying sensitive errors and clean up
+ok 23 - failures stop promptly, hide underlying sensitive errors and clean up
+  ---
+  duration_ms: 3.637303
+  ...
+# Subtest: cancellation before starting avoids launching browser
+ok 24 - cancellation before starting avoids launching browser
+  ---
+  duration_ms: 0.532572
+  ...
+# Subtest: checks target origins and reports assertion failure without page content
+ok 25 - checks target origins and reports assertion failure without page content
+  ---
+  duration_ms: 3.175199
+  ...
+# Subtest: unknown localhost ports require exact operator origins
+ok 26 - unknown localhost ports require exact operator origins
+  ---
+  duration_ms: 5.109366
+  ...
+# Subtest: rejects extra workflow and action properties rather than ignoring policy
+ok 27 - rejects extra workflow and action properties rather than ignoring policy
+  ---
+  duration_ms: 0.348747
+  ...
+# Subtest: deadline includes a stalled launch and closes late browser
+ok 28 - deadline includes a stalled launch and closes late browser
+  ---
+  duration_ms: 201.367819
+  ...
+# Subtest: validation snapshots actions before asynchronous launch
+ok 29 - validation snapshots actions before asynchronous launch
+  ---
+  duration_ms: 1.721413
+  ...
+# Subtest: screenshot capture requires operator approval for sensitive artifacts
+ok 30 - screenshot capture requires operator approval for sensitive artifacts
+  ---
+  duration_ms: 0.71938
+  ...
+# Subtest: workflow version and serialized size are bounded
+ok 31 - workflow version and serialized size are bounded
+  ---
+  duration_ms: 11.848354
+  ...
+# Subtest: accessible selectors validate exact shape and clone nested values
+ok 32 - accessible selectors validate exact shape and clone nested values
+  ---
+  duration_ms: 0.300978
+  ...
+# Subtest: explicit action repeats expand within the total action cap
+ok 33 - explicit action repeats expand within the total action cap
+  ---
+  duration_ms: 28.612267
+  ...
+# Subtest: text equality rejects duplicate counters and ambiguous expectations
+ok 34 - text equality rejects duplicate counters and ambiguous expectations
+  ---
+  duration_ms: 5.014652
+  ...
+# Subtest: ownership launch phase precedes even a rejected public launch call
+ok 35 - ownership launch phase precedes even a rejected public launch call
+  ---
+  duration_ms: 1.744815
+  ...
+# Subtest: screenshot budget refuses excess before writes and publishes complete private files without overwriting
+ok 36 - screenshot budget refuses excess before writes and publishes complete private files without overwriting
+  ---
+  duration_ms: 14.129336
+  ...
+# Subtest: cancellation after image capture cannot publish a late screenshot or leave a temporary file
+ok 37 - cancellation after image capture cannot publish a late screenshot or leave a temporary file
+  ---
+  duration_ms: 1.381167
+  ...
+# Subtest: a target created during capture is never overwritten by publication
+ok 38 - a target created during capture is never overwritten by publication
+  ---
+  duration_ms: 2.191468
+  ...
+# Subtest: concurrent captures publish one complete winner and refuse the other
+ok 39 - concurrent captures publish one complete winner and refuse the other
+  ---
+  duration_ms: 2.589805
+  ...
+1..39
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 29683.002159

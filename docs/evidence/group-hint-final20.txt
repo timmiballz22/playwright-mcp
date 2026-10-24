@@ -1,0 +1,154 @@
+TAP version 13
+# Subtest: group hint retains members after reported leader disappears without declaring ownership
+ok 1 - group hint retains members after reported leader disappears without declaring ownership
+  ---
+  duration_ms: 1.932069
+  ...
+# Subtest: group hint bounds and rejects raw diagnostics without leaking or signaling
+ok 2 - group hint bounds and rejects raw diagnostics without leaking or signaling
+  ---
+  duration_ms: 1.170998
+  ...
+# Subtest: failure process hint distinguishes reported state counts without leaking diagnostic text or granting identity
+ok 3 - failure process hint distinguishes reported state counts without leaking diagnostic text or granting identity
+  ---
+  duration_ms: 2.038416
+  ...
+# Subtest: read-only process hint observes this live test process
+ok 4 - read-only process hint observes this live test process
+  ---
+  duration_ms: 194.550625
+  ...
+# Subtest: group hint observes a real member after its actual factory leader exits
+ok 5 - group hint observes a real member after its actual factory leader exits
+  ---
+  duration_ms: 690.413439
+  ...
+# Subtest: invalid termination roots remain rejected and emit only a fixed diagnostic
+ok 6 - invalid termination roots remain rejected and emit only a fixed diagnostic
+  ---
+  duration_ms: 1.790142
+  ...
+# {"fixture":"worker_freeze_authority","stop":"ESRCH","cleaned":false,"groupSignals":0,"failures":["worker_stop_failed"]}
+# {"fixture":"worker_freeze_authority","stop":"EPERM","cleaned":false,"groupSignals":0,"failures":["signal_permission_denied","worker_stop_failed"]}
+# {"fixture":"worker_freeze_authority","stop":"EINVAL","cleaned":false,"groupSignals":0,"failures":["signal_invalid_argument","worker_stop_failed"]}
+# {"fixture":"worker_freeze_authority","stop":"unknown","cleaned":false,"groupSignals":0,"failures":["signal_unknown_error","worker_stop_failed"]}
+# Subtest: diagnostic callback preserves bounded termination of an actually owned fork
+ok 7 - diagnostic callback preserves bounded termination of an actually owned fork
+  ---
+  duration_ms: 602.998233
+  ...
+# Subtest: POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors
+ok 8 - POSIX signal diagnostic retains fixed signal_permission_denied result without raw errors
+  ---
+  duration_ms: 0.519236
+  ...
+# Subtest: POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors
+ok 9 - POSIX signal diagnostic retains fixed signal_invalid_argument result without raw errors
+  ---
+  duration_ms: 0.131381
+  ...
+# Subtest: POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors
+ok 10 - POSIX signal diagnostic retains fixed signal_unknown_error result without raw errors
+  ---
+  duration_ms: 0.165053
+  ...
+# Subtest: POSIX signal diagnostic retains fixed already-gone result without raw errors
+ok 11 - POSIX signal diagnostic retains fixed already-gone result without raw errors
+  ---
+  duration_ms: 0.107837
+  ...
+# Subtest: a root freeze ESRCH cannot authorize a later group signal or certify cleanup
+ok 12 - a root freeze ESRCH cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.696934
+  ...
+# Subtest: a root freeze EPERM cannot authorize a later group signal or certify cleanup
+ok 13 - a root freeze EPERM cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.222235
+  ...
+# Subtest: a root freeze EINVAL cannot authorize a later group signal or certify cleanup
+ok 14 - a root freeze EINVAL cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.197342
+  ...
+# Subtest: a root freeze unknown error cannot authorize a later group signal or certify cleanup
+ok 15 - a root freeze unknown error cannot authorize a later group signal or certify cleanup
+  ---
+  duration_ms: 0.2231
+  ...
+# Subtest: audit receipts describe reused IDs without hiding possible processes or exposing identities
+ok 16 - audit receipts describe reused IDs without hiding possible processes or exposing identities
+  ---
+  duration_ms: 1.89518
+  ...
+# Subtest: older processes with recycled parent IDs are excluded while real live descendants remain
+ok 17 - older processes with recycled parent IDs are excluded while real live descendants remain
+  ---
+  duration_ms: 0.23483
+  ...
+# Subtest: reused root identity excludes its replacement but still reports earlier surviving children
+ok 18 - reused root identity excludes its replacement but still reports earlier surviving children
+  ---
+  duration_ms: 1.042912
+  ...
+# Subtest: missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+ok 19 - missing identity is uncertainty, while unknown legacy roots never hide potential orphans
+  ---
+  duration_ms: 0.619176
+  ...
+# Subtest: live-root snapshots retain exited browser identities for the final orphan scan
+ok 20 - live-root snapshots retain exited browser identities for the final orphan scan
+  ---
+  duration_ms: 0.319959
+  ...
+# Subtest: CIM error phase keeps only exact fixed markers and never raw diagnostics
+ok 21 - CIM error phase keeps only exact fixed markers and never raw diagnostics
+  ---
+  duration_ms: 0.356184
+  ...
+# Subtest: separate owned lifetimes retain old orphans when a new client reuses its PID
+ok 22 - separate owned lifetimes retain old orphans when a new client reuses its PID
+  ---
+  duration_ms: 0.382646
+  ...
+# Subtest: new client may reuse an earlier observed descendant without losing either orphan lineage
+ok 23 - new client may reuse an earlier observed descendant without losing either orphan lineage
+  ---
+  duration_ms: 0.317501
+  ...
+# Subtest: live controller anchors retain exited browser roots and reject changes within that lifetime
+ok 24 - live controller anchors retain exited browser roots and reject changes within that lifetime
+  ---
+  duration_ms: 0.363004
+  ...
+# Subtest: live anchor refresh preserves an old orphan before recording a new owned browser incarnation
+ok 25 - live anchor refresh preserves an old orphan before recording a new owned browser incarnation
+  ---
+  duration_ms: 0.278509
+  ...
+# Subtest: historical PID links cannot rewrite a live controller identity before validation
+ok 26 - historical PID links cannot rewrite a live controller identity before validation
+  ---
+  duration_ms: 0.246969
+  ...
+# Subtest: legacy comparison preserves old candidates while scoped birth facts retain an owned orphan
+ok 27 - legacy comparison preserves old candidates while scoped birth facts retain an owned orphan
+  ---
+  duration_ms: 0.423878
+  ...
+# Subtest: comparison records a replacement parent row even when it is outside legacy candidates
+ok 28 - comparison records a replacement parent row even when it is outside legacy candidates
+  ---
+  duration_ms: 0.921015
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1734.515566

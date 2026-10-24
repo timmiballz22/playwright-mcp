@@ -1,0 +1,15 @@
+{
+  "url": "https://raw.githubusercontent.com/nodejs/node/v22.23.3/deps/uv/src/win/process.c",
+  "sha256": "39516fc8c2316ec53b853a67301958796372676fb1b27d4ec76ec51217ae6f26",
+  "excerpts": [
+    {
+      "lines": "69-83",
+      "text": "static void uv__init_global_job_handle(void) {\n  /* Create a job object and set it up to kill all contained processes when\n   * it's closed. Since this handle is made non-inheritable and we're not\n   * giving it to anyone, we're the only process holding a reference to it.\n   * That means that if this process exits it is closed and all the processes\n   * it contains are killed. All processes created with uv_spawn that are not\n   * spawned with the UV_PROCESS_DETACHED flag are assigned to this job.\n   *\n   * We're setting the JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK flag so only the\n   * processes that we explicitly add are affected, and *their* subprocesses\n   * are not. This ensures that our child processes are not limited in their\n   * ability to use job control on Windows versions that don't deal with\n   * nested jobs (prior to Windows 8 / Server 2012). It also lets our child\n   * processes created detached processes without explicitly breaking away\n   * from job control (which uv_spawn doesn't, either)."
+    },
+    {
+      "lines": "1082-1101",
+      "text": "  /* If the process isn't spawned as detached, assign to the global job object\n   * so windows will kill it when the parent process dies. */\n  if (!(options->flags & UV_PROCESS_DETACHED)) {\n    uv_once(&uv_global_job_handle_init_guard_, uv__init_global_job_handle);\n\n    if (!AssignProcessToJobObject(uv_global_job_handle_, info.hProcess)) {\n      /* AssignProcessToJobObject might fail if this process is under job\n       * control and the job doesn't have the\n       * JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK flag set, on a Windows version\n       * that doesn't support nested jobs.\n       *\n       * When that happens we just swallow the error and continue without\n       * establishing a kill-child-on-parent-exit relationship, otherwise\n       * there would be no way for libuv applications run under job control\n       * to spawn processes at all.\n       */\n      DWORD err = GetLastError();\n      if (err != ERROR_ACCESS_DENIED)\n        uv_fatal_error(err, \"AssignProcessToJobObject\");\n    }"
+    }
+  ],
+  "finding": "Non-detached Node child receives kill-on-parent-exit job control on Windows. Failed fixture explicitly used detached:false there. Pinned Playwright also uses non-detached Windows browser launch; this adversarial detached-child model does not prove a direct browser leak."
+}

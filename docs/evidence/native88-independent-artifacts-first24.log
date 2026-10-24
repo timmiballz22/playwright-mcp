@@ -1,0 +1,17 @@
+
+Running 4 tests using 1 worker
+
+(node:1084177) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"independent_original_trace","project":"chromium","bytes":11020,"clickAcknowledged":true}
+  ✓  1 [chromium] › tests/artifact-features.spec.ts:6:5 › original tracing independently retains an acknowledged owned click and rejects inactive stop (1.7s)
+{"fixture":"independent_original_pdf","project":"chromium","supported":true,"bytes":8115}
+  ✓  2 [chromium] › tests/artifact-features.spec.ts:37:5 › original PDF independently writes a Chromium document or explicitly rejects the unsupported engine (981ms)
+(node:1084448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"fixture":"independent_original_trace","project":"firefox","bytes":14728,"clickAcknowledged":true}
+  ✓  3 [firefox] › tests/artifact-features.spec.ts:6:5 › original tracing independently retains an acknowledged owned click and rejects inactive stop (3.1s)
+{"fixture":"independent_original_pdf","project":"firefox","supported":false,"rejected":true}
+  ✓  4 [firefox] › tests/artifact-features.spec.ts:37:5 › original PDF independently writes a Chromium document or explicitly rejects the unsupported engine (2.3s)
+
+  4 passed (9.6s)

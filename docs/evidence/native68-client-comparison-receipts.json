@@ -1,0 +1,132 @@
+[
+  {
+    "job": "codex_client (ubuntu-latest)",
+    "step": "Exercise actual Codex jobs client with zero model turns",
+    "data": {
+      "client": "codex-cli 0.163.0",
+      "os": "linux",
+      "launcher": "node",
+      "tools": 6,
+      "completed": 1000,
+      "startMs": 7,
+      "resultCalls": 4,
+      "durationMs": 35738,
+      "duplicateExecuted": false,
+      "foreignOwnerDenied": true,
+      "terminalCleanup": true,
+      "activeCancel": true,
+      "cancelledJobCompleted": 1,
+      "modelTurns": 0,
+      "temporaryConfigOnly": true,
+      "activeOwnedProcesses": 0
+    }
+  },
+  {
+    "job": "codex_client (macos-15-intel)",
+    "step": "Exercise actual Codex jobs client with zero model turns",
+    "data": {
+      "client": "codex-cli 0.163.0",
+      "os": "darwin",
+      "launcher": "node",
+      "tools": 6,
+      "completed": 1000,
+      "startMs": 24,
+      "resultCalls": 9,
+      "durationMs": 87397,
+      "duplicateExecuted": false,
+      "foreignOwnerDenied": true,
+      "terminalCleanup": true,
+      "activeCancel": true,
+      "cancelledJobCompleted": 1,
+      "modelTurns": 0,
+      "temporaryConfigOnly": true,
+      "activeOwnedProcesses": 0
+    }
+  },
+  {
+    "job": "codex_client (windows-latest)",
+    "step": "Exercise actual Codex jobs client with zero model turns",
+    "data": {
+      "client": "codex-cli 0.163.0",
+      "os": "win32",
+      "launcher": "node",
+      "tools": 6,
+      "completed": 1000,
+      "startMs": 20,
+      "resultCalls": 4,
+      "durationMs": 38370,
+      "duplicateExecuted": false,
+      "foreignOwnerDenied": true,
+      "terminalCleanup": true,
+      "activeCancel": true,
+      "cancelledJobCompleted": 1,
+      "modelTurns": 0,
+      "temporaryConfigOnly": true,
+      "activeOwnedProcesses": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "step": "Compare ten fresh raw Firefox runs with inherited and private temp",
+    "data": {
+      "os": "win32",
+      "mode": "private",
+      "comparisonOrder": [
+        "private",
+        "inherited"
+      ],
+      "position": 1,
+      "privateTempRoot": true,
+      "logging": false,
+      "browser": "firefox",
+      "transport": "browser_server",
+      "requiredFreshRuns": 10,
+      "successfulRuns": 10,
+      "confirmedActions": 230,
+      "ok": true,
+      "last": {
+        "ok": true,
+        "reason": null,
+        "completed": 23,
+        "total": 23,
+        "actionsSucceeded": true,
+        "cleanupFailures": [],
+        "durationMs": 5918
+      },
+      "residualProcessesBeforeForce": 0,
+      "activeOwnedProcesses": 0
+    }
+  },
+  {
+    "job": "batch (windows-latest, 22)",
+    "step": "Compare ten fresh raw Firefox runs with inherited and private temp",
+    "data": {
+      "os": "win32",
+      "mode": "inherited",
+      "comparisonOrder": [
+        "private",
+        "inherited"
+      ],
+      "position": 2,
+      "privateTempRoot": false,
+      "logging": false,
+      "browser": "firefox",
+      "transport": "browser_server",
+      "requiredFreshRuns": 10,
+      "successfulRuns": 10,
+      "confirmedActions": 230,
+      "ok": true,
+      "last": {
+        "ok": true,
+        "reason": null,
+        "completed": 23,
+        "total": 23,
+        "actionsSucceeded": true,
+        "cleanupFailures": [],
+        "durationMs": 6060
+      },
+      "residualProcessesBeforeForce": 0,
+      "activeOwnedProcesses": 0
+    }
+  }
+]

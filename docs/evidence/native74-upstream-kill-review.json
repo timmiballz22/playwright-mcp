@@ -1,0 +1,13 @@
+{
+  "review": "pinned dependency source inspection, not native causal reproduction",
+  "playwrightCoreVersion": "1.64.1",
+  "sourceSha256": "829521b67ed7be90c7d6d6098ff39f2241562d47e4ad7ccab13710924a56001d",
+  "source": "node_modules/playwright-core/lib/coreBundle.js",
+  "lines": {
+    "killAndWait": 10135,
+    "killProcessTree": 10141,
+    "spawnSyncTaskkill": 10144,
+    "publicBrowserServerKill": 58681
+  },
+  "finding": "Windows public browser kill path uses synchronous taskkill without a spawn timeout. Same-thread Promise timers cannot preempt synchronous dependency work. Independent supervisor remains required for companion deadlines. This does not establish the cause of any historical close failure."
+}

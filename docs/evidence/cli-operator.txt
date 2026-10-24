@@ -1,0 +1,48 @@
+Executed: node /tmp/cli-verification.mjs
+
+Script:
+import { createServer } from 'node:http';
+import { once } from 'node:events';
+import { spawn } from 'node:child_process';
+import { mkdtemp, writeFile, readFile, rm } from 'node:fs/promises';
+import path from 'node:path';
+import os from 'node:os';
+import assert from 'node:assert/strict';
+const root = '/workspace/playwright-mcp';
+const dir = await mkdtemp(path.join(os.tmpdir(), 'cli-operator-'));
+const server = createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.end('<label>Name<input id="name"></label><label>Tick<input type="checkbox" id="tick"></label><button>Add</button><output>0</output><script>let n=0;document.querySelector("button").onclick=()=>{document.querySelector("output").textContent=document.querySelector("#name").value===""&&!document.querySelector("#tick").checked?String(++n):"bad"}</script>');
+});
+server.listen(0, '127.0.0.1'); await once(server, 'listening');
+const origin = `http://127.0.0.1:${server.address().port}`;
+const canary = 'fake-cli-input-canary-should-not-leak';
+const workflow = { schemaVersion: 1, timeoutMs: 30000, steps: [
+  { type: 'goto', url: origin },
+  { type: 'fill', selector: { label: 'Name' }, value: canary },
+  { type: 'fill', selector: { label: 'Name' }, value: '' },
+  { type: 'check', selector: { label: 'Tick' } },
+  { type: 'uncheck', selector: { label: 'Tick' } },
+  { type: 'click', selector: { role: 'button', name: 'Add' }, repeat: 20 },
+  { type: 'assertText', selector: 'output', equals: '20' },
+] };
+let child; let timer;
+try {
+  const file = path.join(dir, 'workflow.json'); await writeFile(file, JSON.stringify(workflow), { mode: 0o600 });
+  child = spawn(process.execPath, [path.join(root, 'local-batch/cli.mjs'), '--workflow', file, '--allow-origin', origin, '--artifacts', dir], { stdio: ['ignore', 'pipe', 'pipe'] });
+  let stdout = ''; let stderr = '';
+  child.stdout.on('data', data => { stdout += data; });
+  child.stderr.on('data', data => { stderr += data; });
+  const [code] = await Promise.race([once(child, 'close'), new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('CLI deadline')), 10000); })]);
+  assert.equal(code, 0, stderr); const summary = JSON.parse(stdout);
+  assert.equal(summary.ok, true); assert.equal(summary.completed, 26);
+  const report = await readFile(summary.reportPath, 'utf8'); assert.equal(JSON.parse(report).results.length, 26);
+  assert.ok(!stdout.includes(canary) && !stderr.includes(canary) && !report.includes(canary));
+  console.log(JSON.stringify({ cli: true, exitCode: code, completed: 26, reportWritten: true, canaryRedacted: true, cloudClientRequired: false }));
+} finally {
+  clearTimeout(timer); if (child?.exitCode === null) child.kill('SIGKILL');
+  server.closeAllConnections(); server.close(); await rm(dir, { recursive: true, force: true });
+}
+
+Observed output:
+{"cli":true,"exitCode":0,"completed":26,"reportWritten":true,"canaryRedacted":true,"cloudClientRequired":false}

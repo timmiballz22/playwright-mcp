@@ -1,5 +1,11 @@
 ## Playwright MCP
 
+This private community fork is `@timmiballz22/playwright-mcp-local`. Install from
+this checkout or a locally packed tarball; registry publication is disabled.
+See [fork/Codex setup](docs/MCP_CLIENT_SETUP.md) and the
+[current acceptance ledger](docs/CODEX_EXECUTION_LEDGER.md). The upstream package
+installation examples below describe Microsoft's distribution.
+
 A Model Context Protocol (MCP) server that provides browser automation capabilities using [Playwright](https://playwright.dev). This server enables LLMs to interact with web pages through structured accessibility snapshots, bypassing the need for screenshots or visually-tuned models.
 
 ### Playwright MCP vs Playwright CLI
@@ -17,7 +23,7 @@ This package provides MCP interface into Playwright. If you are using a **coding
 - **Deterministic tool application**. Avoids ambiguity common with screenshot-based approaches.
 
 ### Requirements
-- Node.js 18 or newer
+- Node.js 20 or newer (22 or 24 LTS recommended)
 - VS Code, Cursor, Windsurf, Claude Desktop, Goose, Grok, Junie or any other MCP client
 
 <!--
@@ -406,7 +412,7 @@ Playwright MCP server supports following arguments. They can be provided in the 
 
 | Option | Description |
 |--------|-------------|
-| --allowed-hosts <hosts...> | comma-separated list of hosts this server is allowed to serve from. Defaults to the host the server is bound to. Pass '*' to disable the host check.<br>*env* `PLAYWRIGHT_MCP_ALLOWED_HOSTS` |
+| --allowed-hosts <hosts...> | comma-separated list of hosts this server is allowed to serve from. Defaults to localhost, loopback IPs and the host passed via --host; other hosts must be listed explicitly. Pass '*' to disable the host check.<br>*env* `PLAYWRIGHT_MCP_ALLOWED_HOSTS` |
 | --allowed-origins <origins> | semicolon-separated list of TRUSTED origins to allow the browser to request. Default is to allow all. Important: *does not* serve as a security boundary and *does not* affect redirects.<br>*env* `PLAYWRIGHT_MCP_ALLOWED_ORIGINS` |
 | --allow-unrestricted-file-access | allow access to files outside of the workspace roots. Also allows unrestricted access to file:// URLs. By default access to file system is restricted to workspace root directories (or cwd if no roots are configured) only, and navigation to file:// URLs is blocked.<br>*env* `PLAYWRIGHT_MCP_ALLOW_UNRESTRICTED_FILE_ACCESS` |
 | --blocked-origins <origins> | semicolon-separated list of origins to block the browser from requesting. Blocklist is evaluated before allowlist. If used without the allowlist, requests not matching the blocklist are still allowed. Important: *does not* serve as a security boundary and *does not* affect redirects.<br>*env* `PLAYWRIGHT_MCP_BLOCKED_ORIGINS` |
@@ -441,7 +447,7 @@ Playwright MCP server supports following arguments. They can be provided in the 
 | --port <port> | port to listen on for SSE transport.<br>*env* `PLAYWRIGHT_MCP_PORT` |
 | --profile-dir-name <name> | name of the profile directory in the user data dir to connect to with --extension, for example "Profile 1". Defaults to the last used profile that has the extension installed.<br>*env* `PLAYWRIGHT_MCP_PROFILE_DIR_NAME` |
 | --proxy-bypass <bypass> | comma-separated domains to bypass proxy, for example ".com,chromium.org,.domain.com"<br>*env* `PLAYWRIGHT_MCP_PROXY_BYPASS` |
-| --proxy-server <proxy> | specify proxy server, for example "http://myproxy:3128" or "socks5://myproxy:8080"<br>*env* `PLAYWRIGHT_MCP_PROXY_SERVER` |
+| --proxy-server <proxy> | specify proxy server, for example "http://myproxy:3128", "http://user:password@myproxy:3128" or "socks5://myproxy:8080"<br>*env* `PLAYWRIGHT_MCP_PROXY_SERVER` |
 | --sandbox | enable the sandbox for all process types that are normally not sandboxed.<br>*env* `PLAYWRIGHT_MCP_SANDBOX` |
 | --save-session | Whether to save the Playwright MCP session into the output directory.<br>*env* `PLAYWRIGHT_MCP_SAVE_SESSION` |
 | --secrets <path> | path to a file containing secrets in the dotenv format<br>*env* `PLAYWRIGHT_MCP_SECRETS_FILE` |
@@ -996,6 +1002,7 @@ http.createServer(async (req, res) => {
   - Parameters:
     - `text` (string, optional): Plain text to search for in the page snapshot (case-insensitive substring match). Provide either text or regex, not both.
     - `regex` (string, optional): Regular expression to search for in the page snapshot. Matching is case-sensitive by default; wrap the pattern in slashes to add flags, e.g. "/error/i" for case-insensitive. Provide either text or regex, not both.
+    - `maxResults` (number, optional): Maximum number of matching items to return. Defaults to returning all matches.
     - `filename` (string, optional): Save results to a file instead of returning them in the response. Relative file names are resolved against the workspace root.
   - Read-only: **true**
 
@@ -1141,9 +1148,9 @@ http.createServer(async (req, res) => {
 
 - **browser_wait_for**
   - Title: Wait for
-  - Description: Wait for text to appear or disappear or a specified time to pass
+  - Description: Wait for text to appear or disappear or a specified time to pass. When both text and textGone are provided, waits for the first one to happen
   - Parameters:
-    - `time` (number, optional): The time to wait in seconds, at most 30
+    - `time` (number, optional): The time to wait in seconds, at most 30. When combined with text or textGone, serves as a timeout for them instead of the default action timeout
     - `text` (string, optional): The text to wait for
     - `textGone` (string, optional): The text to wait for to disappear
   - Read-only: **false**
@@ -1162,6 +1169,7 @@ http.createServer(async (req, res) => {
     - `action` (string): Operation to perform
     - `index` (number, optional): Tab index, used for close/select. If omitted for close, current tab is closed.
     - `url` (string, optional): URL to navigate to in the new tab, used for new.
+    - `isolatedContext` (string, optional): Name of an isolated browser context to create the new tab in, used for new. Tabs in the same isolated context share cookies and storage, tabs in different contexts are fully isolated. If omitted or "default", the tab is created in the default context.
   - Read-only: **false**
 
 </details>
@@ -1666,9 +1674,17 @@ http.createServer(async (req, res) => {
 
 ## Community fork: local batch automation
 
-This repository is a fork of Microsoft's Playwright MCP. The original MCP server and its configuration remain unchanged. This fork adds an **optional, local-only** declarative batch runner and an independent stdio MCP sidecar for running many ordered browser interactions per tool call. No public server or external browser-agent credits are required.
+This repository is a fork of Microsoft's Playwright MCP. Its CLI/library delegate to the pinned Microsoft backend, with a public-API persistent-profile ownership guard; default25/extended72 tool contracts remain. This fork adds an **optional, local-only** declarative batch runner and an independent stdio MCP sidecar for running many ordered browser interactions per tool call. No public server or external browser-agent credits are required.
 
 - [Local batch usage, safety restrictions and setup](docs/LOCAL_BATCH.md)
 - [Codex implementation and verification handoff](docs/CODEX_HANDOFF.md)
 
 **Limits:** This does not remove ChatGPT/Codex usage allowances or target website rate limits. The original Playwright MCP is maintained upstream, with core code now in the Microsoft Playwright monorepo.
+
+The optional [local jobs MCP preview](docs/JOBS_MCP_PREVIEW.md) provides durable
+start/status/result/cancel/list/cleanup tools with Node22.13+. POSIX acceptance
+has scoped native proof; Windows configuration/ACL, installed public MCP/CLI and
+source1,000-action jobs checks now pass. Native actual Codex zero-turn jobs checks
+now pass on Windows, Linux and macOS. Windows raw Firefox reliability remains
+unresolved; execution is experimental. Full
+quotas, retention, managed profiles and other release gates remain open.

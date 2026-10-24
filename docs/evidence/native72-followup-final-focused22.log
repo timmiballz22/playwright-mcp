@@ -1,0 +1,142 @@
+TAP version 13
+# Subtest: component CI annotations retain only known source location and numeric test index
+ok 1 - component CI annotations retain only known source location and numeric test index
+  ---
+  duration_ms: 0.971209
+  type: 'test'
+  ...
+# Subtest: unknown CI paths, malformed fields and error text cannot enter annotations
+ok 2 - unknown CI paths, malformed fields and error text cannot enter annotations
+  ---
+  duration_ms: 0.259225
+  type: 'test'
+  ...
+# Subtest: component annotation reporter stays silent outside explicit GitHub Actions mode
+ok 3 - component annotation reporter stays silent outside explicit GitHub Actions mode
+  ---
+  duration_ms: 1.652734
+  type: 'test'
+  ...
+# Subtest: component annotations classify bounded Node failure metadata without error payloads
+ok 4 - component annotations classify bounded Node failure metadata without error payloads
+  ---
+  duration_ms: 0.319843
+  type: 'test'
+  ...
+# Subtest: component failure metadata ignores unknown codes and invalid durations with bounded traversal
+ok 5 - component failure metadata ignores unknown codes and invalid durations with bounded traversal
+  ---
+  duration_ms: 0.222732
+  type: 'test'
+  ...
+# Subtest: component classification never invokes error getters and stops before deep causes
+ok 6 - component classification never invokes error getters and stops before deep causes
+  ---
+  duration_ms: 0.197658
+  type: 'test'
+  ...
+# Subtest: bounded writer contention waits before one mutation without replay
+ok 7 - bounded writer contention waits before one mutation without replay
+  ---
+  duration_ms: 627.162596
+  type: 'test'
+  ...
+# Subtest: recovery with live unexpired records is read-only while another writer owns the lock
+ok 8 - recovery with live unexpired records is read-only while another writer owns the lock
+  ---
+  duration_ms: 88.610638
+  type: 'test'
+  ...
+# Subtest: guardian diagnostics retain fixed journal metadata and discard private values
+ok 9 - guardian diagnostics retain fixed journal metadata and discard private values
+  ---
+  duration_ms: 1.242199
+  type: 'test'
+  ...
+# Subtest: journal transport diagnostics retain only fixed causes and originating verbs
+ok 10 - journal transport diagnostics retain only fixed causes and originating verbs
+  ---
+  duration_ms: 0.202637
+  type: 'test'
+  ...
+# Subtest: unconfirmed journal exit is a fixed boolean diagnostic without raw values
+ok 11 - unconfirmed journal exit is a fixed boolean diagnostic without raw values
+  ---
+  duration_ms: 0.315547
+  type: 'test'
+  ...
+# Subtest: stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+ok 12 - stderr facts accept only fixed endpoint diagnostics and discard unrelated text
+  ---
+  duration_ms: 1.563056
+  type: 'test'
+  ...
+# Subtest: stderr facts cap distinct metadata and process only a bounded tail
+ok 13 - stderr facts cap distinct metadata and process only a bounded tail
+  ---
+  duration_ms: 1.734994
+  type: 'test'
+  ...
+# Subtest: retained admission accepts the exact reserved boundary and preserves prior bytes when full
+ok 14 - retained admission accepts the exact reserved boundary and preserves prior bytes when full
+  ---
+  duration_ms: 12.162234
+  type: 'test'
+  ...
+# Subtest: retained admission rejects symbolic entries without mutation
+ok 15 - retained admission rejects symbolic entries without mutation
+  ---
+  duration_ms: 3.310142
+  type: 'test'
+  ...
+# Subtest: retained admission rejects hard entries without mutation
+ok 16 - retained admission rejects hard entries without mutation
+  ---
+  duration_ms: 2.188964
+  type: 'test'
+  ...
+# Subtest: retained admission rejects depth entries without mutation
+ok 17 - retained admission rejects depth entries without mutation
+  ---
+  duration_ms: 6.668278
+  type: 'test'
+  ...
+# Subtest: retained limit rejects malformed trusted configuration
+ok 18 - retained limit rejects malformed trusted configuration
+  ---
+  duration_ms: 0.507444
+  type: 'test'
+  ...
+# Subtest: real supervised admission denies before browser launch and preserves prior artifacts
+ok 19 - real supervised admission denies before browser launch and preserves prior artifacts
+  ---
+  duration_ms: 95.465905
+  type: 'test'
+  ...
+# Subtest: a stalled retained scan stays inside the existing supervised workflow deadline
+ok 20 - a stalled retained scan stays inside the existing supervised workflow deadline
+  ---
+  duration_ms: 1931.239532
+  type: 'test'
+  ...
+# Subtest: retained inventory stops at its entry boundary and closes the directory iterator
+ok 21 - retained inventory stops at its entry boundary and closes the directory iterator
+  ---
+  duration_ms: 156.642556
+  type: 'test'
+  ...
+# Subtest: retained admission accepts host temp aliases but rejects caller directory links
+ok 22 - retained admission accepts host temp aliases but rejects caller directory links
+  ---
+  duration_ms: 2.946769
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3135.937528

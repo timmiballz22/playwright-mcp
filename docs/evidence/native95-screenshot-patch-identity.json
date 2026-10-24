@@ -1,0 +1,6 @@
+{
+  "previousHash": "3eb68a089871529d6dccd723546bc87e20299047e140d382dc5fe380b1350192",
+  "patchedHash": "2e36b79ec8f27082edc4bb688abc800cfbc351d5c5c3c9a2320629939cc29686",
+  "captureNeedle": "        const result2 = await progress2.race(this._mainFrameSession._client.send(\"Page.captureScreenshot\", { format: format2, quality, clip, captureBeyondViewport: !fitsViewport }));",
+  "captureReplacement": "        const capture = () => progress2.race(this._mainFrameSession._client.send(\"Page.captureScreenshot\", { format: format2, quality, clip, captureBeyondViewport: !fitsViewport }));\n        let result2;\n        try {\n          result2 = await capture();\n        } catch (error) {\n          // One read-only retry, under the same original progress deadline.\n          if (!isProtocolError(error) || error.method !== \"Page.captureScreenshot\" || error.message !== \"Protocol error (Page.captureScreenshot): Unable to capture screenshot\")\n            throw error;\n          progress2.log(\"retrying Chromium screenshot after capture unavailable\");\n          result2 = await capture();\n        }"
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "name": "browser22",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-name-pattern=supervised (chromium|firefox):",
+      "local-batch/executor-integration.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "page-cache22",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "local-batch/page-limit.test.mjs",
+      "local-batch/routing-cache.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "cache20",
+    "command": [
+      "/home/agent/.npm/_npx/ebaba8b9e55fd0a9/node_modules/node/bin/node",
+      "--test",
+      "local-batch/routing-cache.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "observer22",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "--test",
+      "local-batch/jobs/lifetime-observer.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "production22",
+    "command": [
+      "/home/agent/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "scripts/verify-package.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "lint",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "diff",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exitCode": 0
+  }
+]

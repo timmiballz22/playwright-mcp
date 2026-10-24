@@ -1,0 +1,24 @@
+✔ an empty CIM snapshot fails the audit while a kernel PID row and singleton shape are retained (3.815325ms)
+✔ audit receipts describe reused IDs without hiding possible processes or exposing identities (1.319961ms)
+✔ older processes with recycled parent IDs are excluded while real live descendants remain (0.63176ms)
+✔ reused root identity excludes its replacement but still reports earlier surviving children (0.477454ms)
+✔ missing identity is uncertainty, while unknown legacy roots never hide potential orphans (1.03379ms)
+✔ live-root snapshots retain exited browser identities for the final orphan scan (0.413391ms)
+✔ CIM error phase keeps only exact fixed markers and never raw diagnostics (1.853586ms)
+✔ separate owned lifetimes retain old orphans when a new client reuses its PID (0.679664ms)
+✔ new client may reuse an earlier observed descendant without losing either orphan lineage (1.670463ms)
+✔ live controller anchors retain exited browser roots and reject changes within that lifetime (3.229544ms)
+✔ first live-anchor capture uses its birth before historical traversal and retains unknown legacy roots (0.487865ms)
+✔ first live-anchor capture preserves recorded orphan births across another root replacement (0.2501ms)
+✔ live anchor refresh preserves an old orphan before recording a new owned browser incarnation (0.280859ms)
+✔ historical PID links cannot rewrite a live controller identity before validation (0.303314ms)
+✔ legacy comparison preserves old candidates while scoped birth facts retain an owned orphan (0.376739ms)
+✔ comparison records a replacement parent row even when it is outside legacy candidates (0.482802ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 192.10881

@@ -1,0 +1,34 @@
+
+Running 4 tests using 1 worker
+
+(node:210565) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (1.5s)
+  ✓  2 [chromium] › tests/accessibility-mobile.spec.ts:26:5 › original mobile context supports responsive CSS screenshot and actual touch where supported (1.5s)
+(node:210833) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [firefox] › tests/accessibility-mobile.spec.ts:5:5 › original ARIA snapshot and keyboard-only activation preserve focus order (2.8s)
+  ✘  4 [firefox] › tests/accessibility-mobile.spec.ts:26:5 › original mobile context supports responsive CSS screenshot and actual touch where supported (1.9s)
+
+
+  1) [firefox] › tests/accessibility-mobile.spec.ts:26:5 › original mobile context supports responsive CSS screenshot and actual touch where supported 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: undefined
+
+      36 |     // Playwright documents isMobile as unsupported in Firefox. This negative
+      37 |     // assertion is compatibility evidence, never a Firefox touch success claim.
+    > 38 |     expect(navigation.isError).toBe(true);
+         |                                ^
+      39 |     expect(JSON.stringify(navigation)).toContain('isMobile');
+      40 |     return;
+      41 |   }
+        at /workspace/playwright-mcp/tests/accessibility-mobile.spec.ts:38:32
+
+    Error Context: test-results/accessibility-mobile-origi-41eb0-ctual-touch-where-supported-firefox/error-context.md
+
+  1 failed
+    [firefox] › tests/accessibility-mobile.spec.ts:26:5 › original mobile context supports responsive CSS screenshot and actual touch where supported 
+  3 passed (9.2s)

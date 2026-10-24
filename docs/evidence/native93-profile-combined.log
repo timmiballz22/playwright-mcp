@@ -1,0 +1,27 @@
+{"component":"installed_profile_fixture_preserved","workspaceId":"installed-profile-wHTlP8","verified":false,"primaryFailed":true,"cleanupFailureCount":1,"ownedAuditConfirmed":true}
+file:///workspace/playwright-mcp/scripts/production-profile-smoke.mjs:77
+    if (failures.length) throw new AggregateError(primaryFailure ? [primaryFailure, ...failures] : failures,
+                               ^
+
+AggregateError: Installed profile fixture cleanup failed
+    at file:///workspace/playwright-mcp/scripts/production-profile-smoke.mjs:77:32
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  [cause]: Error: controlled_primary_after_actual_cookie_get
+      at Client.callTool (file:///tmp/native93-smoke-fixture-combined.mjs:34:251)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async call (file:///workspace/playwright-mcp/scripts/production-profile-smoke.mjs:31:18)
+      at async file:///workspace/playwright-mcp/scripts/production-profile-smoke.mjs:52:14,
+  [errors]: [
+    Error: controlled_primary_after_actual_cookie_get
+        at Client.callTool (file:///tmp/native93-smoke-fixture-combined.mjs:34:251)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async call (file:///workspace/playwright-mcp/scripts/production-profile-smoke.mjs:31:18)
+        at async file:///workspace/playwright-mcp/scripts/production-profile-smoke.mjs:52:14,
+    Error: controlled_close_after_actual_sdk_close
+        at Client.close (file:///tmp/native93-smoke-fixture-combined.mjs:39:88)
+        at async Promise.allSettled (index 1)
+        at async file:///workspace/playwright-mcp/scripts/production-profile-smoke.mjs:63:20
+  ]
+}
+
+Node.js v24.19.0
